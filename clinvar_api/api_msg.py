@@ -5,6 +5,9 @@ import typing
 
 import attrs
 
+ERROR_CODE_PARTIAL_SUCCESS = "1"
+ERROR_CODE_ALL_FAILURE = "2"
+
 
 @attrs.define
 class Created:
@@ -20,14 +23,6 @@ class Error:
 
     #: The error response's message.
     message: str
-
-
-@attrs.define
-class SubmissionCreate:
-    """Representation of server's response to a submission creation."""
-
-    #: The submission's ID.
-    submission_id: int
 
 
 @attrs.define
