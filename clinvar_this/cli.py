@@ -8,16 +8,16 @@ import logzero
 from logzero import logger
 
 
-def main():
+def main(argv=None):
     """Console script for clinvar_this."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--verbose", action="store_true", default=False, help="Enable more verbose output"
     )
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     # Setup logging verbosity.
-    if args.verbose:  # pragma: no cover
+    if args.verbose:
         level = logging.DEBUG
     else:
         formatter = logzero.LogFormatter(
