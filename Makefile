@@ -21,8 +21,13 @@ isort-check:
 flake8:
 	flake8
 
+.PHONY: mypy
+mypy: export MYPYPATH=stubs
+mypy:
+	mypy clinvar_this clinvar_api
+
 .PHONY: lint
-lint: flake8 isort-check black-check
+lint: flake8 isort-check black-check mypy
 
 .PHONY: pytest
 pytest:
