@@ -7,8 +7,6 @@ import attrs
 
 from clinvar_api import api_msg
 
-_Created = typing.TypeVar("Created")
-
 
 @attrs.define
 class Created:
@@ -16,11 +14,8 @@ class Created:
     id: str
 
     @classmethod
-    def from_msg(cls, other: api_msg.Created) -> _Created:
+    def from_msg(cls, other: api_msg.Created):
         return Created(id=other.id)
-
-
-_Error = typing.TypeVar("Error")
 
 
 @attrs.define
@@ -29,16 +24,12 @@ class Error:
     message: str
 
     @classmethod
-    def from_msg(cls, other: api_msg.Error) -> _Error:
+    def from_msg(cls, other: api_msg.Error):
         return Error(message=other.message)
 
 
 #: Re-use the type directly.
 SubmissionStatusFile = api_msg.SubmissionStatusFile
-
-
-#: Type variable as ``Self`` does not exist yet.
-_SubmissionStatusObjectContent = typing.TypeVar("SubmissionStatusObjectContent")
 
 
 @attrs.define
@@ -49,17 +40,11 @@ class SubmissionStatusObjectContent:
     clinvar_release_status: str
 
     @classmethod
-    def from_msg(
-        cls, other: api_msg.SubmissionStatusObjectContent
-    ) -> _SubmissionStatusObjectContent:
+    def from_msg(cls, other: api_msg.SubmissionStatusObjectContent):
         return SubmissionStatusObjectContent(
             clinvar_processing_status=other.clinvarProcessingStatus,
             clinvar_release_status=other.clinvarReleaseStatus,
         )
-
-
-#: Type variable as ``Self`` does not exist yet.
-_SubmissionStatusObject = typing.TypeVar("SubmissionStatusObject")
 
 
 @attrs.define
@@ -72,16 +57,12 @@ class SubmissionStatusObject:
     target_db: str
 
     @classmethod
-    def from_msg(cls, other: api_msg.SubmissionStatusObject) -> _SubmissionStatusObject:
+    def from_msg(cls, other: api_msg.SubmissionStatusObject):
         return SubmissionStatusObject(
             accession=other.accession,
             content=SubmissionStatusObjectContent.from_msg(other.content),
             target_db=other.targetDb,
         )
-
-
-#: Type variable as ``Self`` does not exist yet.
-_SubmissionStatusResponseMessage = typing.TypeVar("SubmissionStatusResponseMessage")
 
 
 @attrs.define
@@ -97,16 +78,12 @@ class SubmissionStatusResponseMessage:
     def from_msg(
         cls,
         other: api_msg.SubmissionStatusResponseMessage,
-    ) -> _SubmissionStatusResponseMessage:
+    ):
         return SubmissionStatusResponseMessage(
             error_code=other.errorCode,
             severity=other.severity,
             text=other.text,
         )
-
-
-#: Type variable as ``Self`` does not exist yet.
-_SubmissionStatusResponse = typing.TypeVar("SubmissionStatusResponse")
 
 
 @attrs.define
@@ -123,7 +100,7 @@ class SubmissionStatusResponse:
     objects: typing.List[SubmissionStatusObject]
 
     @classmethod
-    def from_msg(cls, other: api_msg.SubmissionStatusResponse) -> _SubmissionStatusResponse:
+    def from_msg(cls, other: api_msg.SubmissionStatusResponse):
         if other.message:
             message = SubmissionStatusResponseMessage.from_msg(other.message)
         else:
@@ -134,10 +111,6 @@ class SubmissionStatusResponse:
             message=message,
             objects=list(map(SubmissionStatusObject.from_msg, other.objects)),
         )
-
-
-#: Type variable as ``Self`` does not exist yet.
-_SubmissionStatus = typing.TypeVar("SubmissionStatus")
 
 
 @attrs.define
@@ -156,7 +129,7 @@ class SubmissionStatus:
     updated: datetime.datetime
 
     @classmethod
-    def from_msg(cls, other: api_msg.SubmissionStatus) -> _SubmissionStatus:
+    def from_msg(cls, other: api_msg.SubmissionStatus):
         if other.actions[0].responses:
             response = SubmissionStatusResponse.from_msg(other.actions[0].responses[0])
         else:
