@@ -82,7 +82,7 @@ def data_submission_processed():
                                 "url": (
                                     "https://dsubmit.ncbi.nlm.nih.gov/api/2.0/files/xxxxxxxx"
                                     "/sub999999-summary-report.json/?format=attachment"
-                                ),
+                                )
                             }
                         ],
                         "objects": [],
@@ -168,4 +168,311 @@ def data_submission_error():
                 ],
             }
         ]
+    }
+
+
+@pytest.fixture
+def data_summary_response_processed():
+    """Example of a successful submission with a status of processed:
+
+    This response contains a URL for a summary file with more details. Following is an example:
+    """
+    return {
+        "submissionName": "SUB673156",
+        "submissionDate": "2021-03-25",
+        "batchProcessingStatus": "Success",
+        "batchReleaseStatus": "Not released",
+        "totalCount": 3,
+        "totalErrors": 0,
+        "totalSuccess": 3,
+        "totalPublic": 0,
+        "submissions": [
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "clinvarAccession": "SCV000839746",
+                },
+                "processingStatus": "Success",
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "clinvarAccession": "SCV000839747",
+                },
+                "processingStatus": "Success",
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3",
+                    "clinvarAccession": "SCV000839748",
+                },
+                "processingStatus": "Success",
+            },
+        ],
+    }
+
+
+@pytest.fixture
+def data_summary_response_error_partial():
+    """Example of a partially successful submission and a status of error:
+
+    This response contains a URL for a summary file with more details. Following is an example:
+    """
+    return {
+        "submissionName": "PAHVCEP_10_2020_API",
+        "submissionDate": "2021-03-25",
+        "batchProcessingStatus": "Partial success",
+        "batchReleaseStatus": "Not released",
+        "totalCount": 6,
+        "totalErrors": 5,
+        "totalSuccess": 1,
+        "totalPublic": 0,
+        "submissions": [
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {"field": "ConditionID.type", "value": "MONDO"},
+                            {"field": "ConditionID.value", "value": "MONDO:0009861"},
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "The identifier you provided (MONDO:MONDO:0009861) cannot be validated, either because it is invalid or because it is valid but not in our database yet. For the latter case, contact us at clinvar@ncbi.nlm.nih.gov."
+                                }
+                            ]
+                        },
+                    }
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {"field": "ConditionID.type", "value": "MONDO"},
+                            {"field": "ConditionID.value", "value": "MONDO:000"},
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "The identifier you provided (MONDO:MONDO:000) cannot be validated, either because it is invalid or because it is valid but not in our database yet. For the latter case, contact us at clinvar@ncbi.nlm.nih.gov."
+                                }
+                            ]
+                        },
+                    },
+                    {
+                        "input": [],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "Records adefc5ed-7d59-4119-8b3d-07dcdc504c09, adefc5ed-7d59-4119-8b3d-07dcdc504c09 and adefc5ed-7d59-4119-8b3d-07dcdc504c09 report the same variant/condition pair. Please remove all but one of these records. If your intent is to provide data for more than one individuals with the variant, please report them as distinct observations (ObservedIn)."
+                                }
+                            ]
+                        },
+                    },
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {"field": "ConditionID.type", "value": "MONDO"},
+                            {"field": "ConditionID.value", "value": "MONDO:000"},
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "The identifier you provided (MONDO:MONDO:000) cannot be validated, either because it is invalid or because it is valid but not in our database yet. For the latter case, contact us at clinvar@ncbi.nlm.nih.gov."
+                                }
+                            ]
+                        },
+                    },
+                    {
+                        "input": [],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "Records adefc5ed-7d59-4119-8b3d-07dcdc504c09, adefc5ed-7d59-4119-8b3d-07dcdc504c09 and adefc5ed-7d59-4119-8b3d-07dcdc504c09 report the same variant/condition pair. Please remove all but one of these records. If your intent is to provide data for more than one individuals with the variant, please report them as distinct observations (ObservedIn)."
+                                }
+                            ]
+                        },
+                    },
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {"field": "ConditionID.type", "value": "MONDO"},
+                            {"field": "ConditionID.value", "value": "MONDO:000"},
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "The identifier you provided (MONDO:MONDO:000) cannot be validated, either because it is invalid or because it is valid but not in our database yet. For the latter case, contact us at clinvar@ncbi.nlm.nih.gov."
+                                }
+                            ]
+                        },
+                    },
+                    {
+                        "input": [],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "Records adefc5ed-7d59-4119-8b3d-07dcdc504c09, adefc5ed-7d59-4119-8b3d-07dcdc504c09 and adefc5ed-7d59-4119-8b3d-07dcdc504c09 report the same variant/condition pair. Please remove all but one of these records. If your intent is to provide data for more than one individuals with the variant, please report them as distinct observations (ObservedIn)."
+                                }
+                            ]
+                        },
+                    },
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "clinvarAccession": "SCV000839746",
+                },
+                "processingStatus": "Success",
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "localKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [{"value": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2"}],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "You provided multiple rows on the Variant tab with the same LinkingID adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2."
+                                }
+                            ]
+                        },
+                    }
+                ],
+            },
+        ],
+    }
+
+
+@pytest.fixture
+def data_summary_response_error_all():
+    """Example of a submission with a status of error where all records failed:
+
+    This response contains a URL for a summary file with more details. Following is an example:
+    """
+    return {
+        "submissionName": "PAHVCEP_10_2020_API",
+        "submissionDate": "2021-03-25",
+        "batchProcessingStatus": "Error",
+        "batchReleaseStatus": "Not released",
+        "totalCount": 3,
+        "totalErrors": 3,
+        "totalSuccess": 0,
+        "totalPublic": 0,
+        "submissions": [
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1|MedGen_C0149978",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {
+                                "value": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1|MedGen_C0149978"
+                            }
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "This assertion duplicates another assertion with the RecordID adefc5ed-7d59-4119-8b3d-07dcdc504c09_success1, ClinVar accession SCV000839746, and Submitted variant NC_000012.12:g.102852945T>M."
+                                }
+                            ]
+                        },
+                    }
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2|MedGen_C0153436",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {
+                                "value": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2|MedGen_C0153436"
+                            }
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "This assertion duplicates another assertion with the RecordID adefc5ed-7d59-4119-8b3d-07dcdc504c09_success2, ClinVar accession SCV000839747, and Submitted variant NC_000012.12:g.102852945T>M."
+                                }
+                            ]
+                        },
+                    }
+                ],
+            },
+            {
+                "identifiers": {
+                    "localID": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3",
+                    "clinvarLocalKey": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3|MedGen_C1134719",
+                },
+                "processingStatus": "Error",
+                "errors": [
+                    {
+                        "input": [
+                            {
+                                "value": "adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3|MedGen_C1134719"
+                            }
+                        ],
+                        "output": {
+                            "errors": [
+                                {
+                                    "userMessage": "This assertion duplicates another assertion with the RecordID adefc5ed-7d59-4119-8b3d-07dcdc504c09_success3, ClinVar accession SCV000839748, and Submitted variant NC_000012.12:g.102852945T>M."
+                                }
+                            ]
+                        },
+                    }
+                ],
+            },
+        ],
     }

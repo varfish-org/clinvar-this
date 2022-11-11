@@ -103,3 +103,79 @@ class SubmissionStatus:
 
     #: The list of actions (one element only by the docs).
     actions: typing.List[SubmissionStatusActions]
+
+
+@attrs.define
+class SummaryResponseErrorInput:
+    value: str
+    field: typing.Optional[str] = None
+
+
+@attrs.define
+class SummaryResponseErrorOutputError:
+    userMessage: str
+
+
+@attrs.define
+class SummaryResponseErrorOutput:
+    errors: typing.List[SummaryResponseErrorOutputError]
+
+
+@attrs.define
+class SummaryResponseError:
+    # NB: docs and schema say required but examples do not show
+    input: typing.List[SummaryResponseErrorInput]
+    output: SummaryResponseErrorOutput
+
+
+@attrs.define
+class SummaryResponseDeletionIdentifier:
+    clinvarAccession: str
+    clinvarLocalKey: typing.Optional[str] = None
+
+
+@attrs.define
+class SummaryResponseDeletion:
+    identifiers: SummaryResponseDeletionIdentifier
+    processingStatus: str
+    deleteDate: typing.Optional[str] = None
+    deleteStatus: typing.Optional[str] = None
+    errors: typing.Optional[typing.List[SummaryResponseError]] = None
+
+
+@attrs.define
+class SummaryResponseSubmissionIdentifiers:
+    clinvarLocalKey: str
+    clinvarAccession: typing.Optional[str] = None
+    localID: typing.Optional[str] = None
+    localKey: typing.Optional[str] = None
+
+
+@attrs.define
+class SummaryResponseSubmission:
+    identifiers: SummaryResponseSubmissionIdentifiers
+    processingStatus: str
+    clinvarAccessionVersion: typing.Optional[str] = None
+    errors: typing.Optional[typing.List[SummaryResponseError]] = None
+    releaseDate: typing.Optional[str] = None
+    releaseStatus: typing.Optional[str] = None
+
+
+@attrs.define
+class SummaryResponse:
+    """Represetation of server's response to a submission."""
+
+    batchProcessingStatus: str
+    batchReleaseStatus: str
+    submissionDate: str
+    submissionName: str
+    totalCount: int
+    totalErrors: int
+    totalPublic: int
+    totalSuccess: int
+    deletions: typing.Optional[typing.List[SummaryResponseDeletion]] = None
+    submissions: typing.Optional[typing.List[SummaryResponseSubmission]] = None
+    totalDeleteCount: typing.Optional[int] = None
+    totalDeleted: typing.Optional[int] = None
+    totalDeleteErrors: typing.Optional[int] = None
+    totalDeleteSuccess: typing.Optional[int] = None

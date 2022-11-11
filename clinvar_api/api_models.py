@@ -75,20 +75,14 @@ class SubmissionStatusResponseMessage:
     text: str
 
     @classmethod
-    def from_msg(
-        cls,
-        other: api_msg.SubmissionStatusResponseMessage,
-    ):
+    def from_msg(cls, other: api_msg.SubmissionStatusResponseMessage):
         return SubmissionStatusResponseMessage(
-            error_code=other.errorCode,
-            severity=other.severity,
-            text=other.text,
+            error_code=other.errorCode, severity=other.severity, text=other.text
         )
 
 
 @attrs.define
 class SubmissionStatusResponse:
-    """Internal submission status response"""
 
     #: Status, one of "processing", "processed", "error",
     status: str

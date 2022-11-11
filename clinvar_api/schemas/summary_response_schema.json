@@ -1,0 +1,311 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "submissionName",
+    "submissionDate",
+    "batchProcessingStatus",
+    "batchReleaseStatus",
+    "totalCount",
+    "totalErrors",
+    "totalSuccess",
+    "totalPublic"
+  ],
+  "properties": {
+    "batchProcessingStatus": {
+      "type": "string",
+      "description": "The status of internal processing for this batch of submitted records, including deletion requests. Options are 'In processing', 'Error' (all records in the batch failed), 'Success' (all records in the batch succeeded), and 'Partial success' (some records in the batch failed, the rest succeeded)",
+      "enum": [
+        "In processing",
+        "Success",
+        "Error",
+        "Partial success"
+      ]
+    },
+    "batchReleaseStatus": {
+      "type": "string",
+      "description": " Indicates whether records, including deletion requests, in this batch are released publicly in ClinVar. This  Options are 'Released' (all records in the batch are released), 'Partial released' (all successfully processed records in the batch are released), and 'Not released' (not released publicly on the ClinVar web site because some or all records in the batch failed or the batch is processed internally but not yet released)",
+      "enum": [
+        "Released",
+        "Partial released",
+        "Not released"
+      ]
+    },
+    "deletions": {
+      "type": "array",
+      "description": "A summary for each deletion",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "identifiers",
+          "processingStatus"
+        ],
+        "properties": {
+          "deleteDate": {
+            "type": "string",
+            "description": "The date the record was deleted publicly in ClinVar."
+          },
+          "deleteStatus": {
+            "type": "string",
+            "description": "Indicates whether the record is deleted publicly in ClinVar."
+          },
+          "errors": {
+            "type": "array",
+            "description": "A detailed description of each error when 'processingStatus' is 'Error'",
+            "items": {
+              "type": "object",
+              "description": "",
+              "required": [
+                "input",
+                "output"
+              ],
+              "properties": {
+                "input": {
+                  "type": "array",
+                  "description": "The field names and values that are erroneous",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "The json path of the item with the error"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The submitted value"
+                      }
+                    }
+                  }
+                },
+                "output": {
+                  "type": "object",
+                  "required": [
+                    "errors"
+                  ],
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "description": "The field names and values that are erroneous",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "userMessage"
+                        ],
+                        "properties": {
+                          "userMessage": {
+                            "type": "string",
+                            "description": "User friendly error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "identifiers": {
+            "type": "object",
+            "description": "Identifiers unique to this submitted record",
+            "required": [
+              "clinvarAccession"
+            ],
+            "properties": {
+              "clinvarAccession": {
+                "type": "string",
+                "description": "The SCV accession number of the record requested for deletion."
+              },
+              "clinvarLocalKey": {
+                "type": "string",
+                "description": "An identifier for the variant-condition pair. This is the 'localKey' if it was included in the submission; otherwise it is computed by NCBI."
+              }
+            }
+          },
+          "processingStatus": {
+            "type": "string",
+            "description": "The status of the deletion request, either 'Error' or 'Success'",
+            "enum": [
+              "Error",
+              "Success"
+            ]
+          }
+        }
+      }
+    },
+    "submissionDate": {
+      "type": "string",
+      "description": "The date this submission was uploaded to NCBI."
+    },
+    "submissionName": {
+      "type": "string",
+      "description": "The name for this batch of submitted records. Either a name provided by the submitter or the submission ID as a default. This name will be searchable on the NCBI website as 'Submitter Batch'"
+    },
+    "submissions": {
+      "type": "array",
+      "description": "A summary for each submission",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "identifiers",
+          "processingStatus"
+        ],
+        "properties": {
+          "clinvarAccessionVersion": {
+            "type": "string",
+            "description": "The SCV accession and version number assigned by NCBI. The version number is not available until the record is released publicly, so clinvarAccessionVersion is only reported after release."
+          },
+          "errors": {
+            "type": "array",
+            "description": "A detailed description of each error when 'processingStatus' is 'Error'",
+            "items": {
+              "type": "object",
+              "description": "",
+              "required": [
+                "input",
+                "output"
+              ],
+              "properties": {
+                "input": {
+                  "type": "array",
+                  "description": "The field names and values that are erroneous",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "description": "The json path of the item with the error"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The submitted value"
+                      }
+                    }
+                  }
+                },
+                "output": {
+                  "type": "object",
+                  "required": [
+                    "errors"
+                  ],
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "description": "The field names and values that are erroneous",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "userMessage"
+                        ],
+                        "properties": {
+                          "userMessage": {
+                            "type": "string",
+                            "description": "User friendly error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "identifiers": {
+            "type": "object",
+            "description": "Identifiers unique to this submitted record",
+            "required": [
+              "clinvarLocalKey"
+            ],
+            "properties": {
+              "clinvarAccession": {
+                "type": "string",
+                "description": "The SCV accession number assigned by NCBI.  If this was not included in the submitted record, it will not be available until this submission is successfully processed."
+              },
+              "clinvarLocalKey": {
+                "type": "string",
+                "description": "An identifier for the variant-condition pair. This is the 'localKey' if it was included in the submission; otherwise it is computed by NCBI."
+              },
+              "localID": {
+                "type": "string",
+                "description": "The 'localID' included in the submission, an identifier for the variant."
+              },
+              "localKey": {
+                "type": "string",
+                "description": "The 'localKey' included in the submission."
+              }
+            }
+          },
+          "processingStatus": {
+            "type": "string",
+            "description": "The status of the submitted record, either 'Error' or 'Success'",
+            "enum": [
+              "Error",
+              "Success"
+            ]
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "The date the record was released publicly in ClinVar; it is only reported after release."
+          },
+          "releaseStatus": {
+            "type": "string",
+            "description": "Indicates whether the record is released publicly in ClinVar and is only reported after release."
+          }
+        }
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of records submitted in this batch."
+    },
+    "totalDeleteCount": {
+      "type": "integer",
+      "description": "The total number of records requested for deletion in this batch."
+    },
+    "totalDeleted": {
+      "type": "integer",
+      "description": "The number of records requested for deletion in this batch that are deleted publicly in ClinVar."
+    },
+    "totalDeleteErrors": {
+      "type": "integer",
+      "description": "The number of records requested for deletion in this batch that have at least one error and failed to be processed."
+    },
+    "totalDeleteSuccess": {
+      "type": "integer",
+      "description": "The number of records requested for deletion in this batch that have no errors and were successfully processed."
+    },
+    "totalErrors": {
+      "type": "integer",
+      "description": "The number of records submitted in this batch that have at least one error and failed to be processed."
+    },
+    "totalPublic": {
+      "type": "integer",
+      "description": "The number of records submitted in this batch that are released publicly in ClinVar."
+    },
+    "totalSuccess": {
+      "type": "integer",
+      "description": "The number of records submitted in this batch that have no errors and were successfully processed."
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "submissions"
+      ]
+    },
+    {
+      "required": [
+        "deletions"
+      ]
+    }
+  ]
+}
