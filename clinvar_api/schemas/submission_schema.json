@@ -1,0 +1,1024 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "behalfOrgID": {
+      "type": "integer",
+      "description": "Optional.  When submitting on behalf of another organization, this specifies the other organization's ID",
+      "minimum": 1
+    },
+    "clinvarDeletion": {
+      "type": "object",
+      "items": {
+        "type": "object",
+        "title": "ClinVar Deletions",
+        "required": [
+          "accessionSet"
+        ],
+        "properties": {
+          "accessionSet": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10000,
+            "items": {
+              "type": "object",
+              "title": "Clinvar accession and reason for deleting",
+              "required": [
+                "accession"
+              ],
+              "properties": {
+                "accession": {
+                  "type": "string",
+                  "description": "The SCV accession for your submitted record to delete (not the RCV or the VCV).",
+                  "pattern": "^SCV[0123456789]{9}$"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "A public comment explaining why this record is being deleted."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "clinvarSubmission": {
+      "type": "array",
+      "title": "ClinVar Submission Set",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "title": "ClinVar Submission",
+        "description": "Submissions to ClinVar are considered 'variant-level' (not case-level or patient-specific), because they are focused on the variant or set of variants that was interpreted. One of variantSet, haplotypeSet, haplotypeSingleVariantSet, phaseUnknownSet, distinctChromosomesSet, diplotypeSet, compoundHeterozygoteSet is required to define the variant or set of variants that was interpreted.",
+        "required": [
+          "recordStatus",
+          "releaseStatus",
+          "clinicalSignificance",
+          "observedIn",
+          "conditionSet"
+        ],
+        "properties": {
+          "assertionCriteria": {
+            "type": "object",
+            "required": [
+              "method",
+              "citation"
+            ],
+            "properties": {
+              "citation": {
+                "type": "object",
+                "description": "\"Assertion criteria\" refers to documentation of the criteria that your organization uses to classify variants. It can be provided as a database identifier, like a PubMed ID, or a file that is submitted to ClinVar, but not both. Only one document may be provided for assertion criteria. These fields are equivalent to the \"Assertion method citation\" column in the spreadsheet.",
+                "properties": {
+                  "db": {
+                    "type": "string",
+                    "enum": [
+                      "PubMed",
+                      "BookShelf",
+                      "DOI",
+                      "pmc"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "The URL for a file that you have already submitted to ClinVar as assertion criteria.",
+                    "errors": {
+                      "pattern": "The URL for assertion criteria must be the URL provided by ClinVar. Contact clinvar@ncbi.nlm.nih.gov if you need to find this URL or if you need to submit new assertion criteria."
+                    },
+                    "pattern": "^https://[qd]?submit.ncbi.nlm.nih.gov/ft/byid/.*"
+                  }
+                },
+                "additionalProperties": false,
+                "oneOf": [
+                  {
+                    "required": [
+                      "url"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "db",
+                      "id"
+                    ]
+                  }
+                ]
+              },
+              "method": {
+                "type": "string",
+                "description": "A name for your assertion criteria is required. We'll use the file name if a file is cited so the submitter does not need to provide a separate name. The submitter must provide a name if a database identifier is cited. This field is equivalent to the \"Assertion method\" column in the spreadsheet."
+              }
+            },
+            "additionalProperties": false
+          },
+          "clinicalSignificance": {
+            "type": "object",
+            "description": "Clinical significance",
+            "required": [
+              "clinicalSignificanceDescription"
+            ],
+            "properties": {
+              "citation": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "Citations that were used by the submitter to evaluate the clinical significance of the variant. More than one citation may be provided. Each citation can be provided as a database identifier, like a PubMed ID, or a URL, but not both.",
+                  "properties": {
+                    "db": {
+                      "type": "string",
+                      "enum": [
+                        "PubMed",
+                        "BookShelf",
+                        "DOI",
+                        "pmc"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "oneOf": [
+                    {
+                      "required": [
+                        "db",
+                        "id"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "url"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "clinicalSignificanceDescription": {
+                "type": "string",
+                "description": "The interpretation, or clinical significance, of the variant for the submitted condition, equivalent to Clinical significance in the submission spreadsheet.",
+                "enum": [
+                  "Pathogenic",
+                  "Likely pathogenic",
+                  "Uncertain significance",
+                  "Likely benign",
+                  "Benign",
+                  "Pathogenic, low penetrance",
+                  "Uncertain risk allele",
+                  "Likely pathogenic, low penetrance",
+                  "Established risk allele",
+                  "Likely risk allele",
+                  "affects",
+                  "association",
+                  "drug response",
+                  "confers sensitivity",
+                  "protective",
+                  "other",
+                  "not provided"
+                ]
+              },
+              "comment": {
+                "type": "string",
+                "description": "Optional, but highly encouraged. Free text describing the rationale for the clinical significance."
+              },
+              "customAssertionScore": {
+                "type": "number",
+                "description": "The final score, or point value, calculated when the assertion method uses a point-based scoring system, e.g. ACMG/ClinGen CNV Guidelines, 2019 (PMID: 31690835).  The assertion method must also be provided. "
+              },
+              "dateLastEvaluated": {
+                "type": "string",
+                "description": "The date that the clinical significance was last evaluated by the submitter (not the date the phenotype of the patient was evaluated), equivalent to Date last evaluated in the submission spreadsheet. Use the format yyyy-mm-dd.  If only month/year is known, use the first day of the month. If only year is known, use Jan. 1.",
+                "pattern": "^[1-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
+              },
+              "explanationOfDrugResponse": {
+                "type": "string",
+                "description": "Required for a record with clinical significance of  'drug response'.  Please provide a value describing  the drug response, e.g. 'likely responsive'. This value must be short for display purposes. A longer explanation should be provided in the 'Comment on clinical significance'."
+              },
+              "explanationOfOtherClinicalSignificance": {
+                "type": "string",
+                "description": "Required if 'other' is selected for clinical significance. Please provide the new value for clinical significance, e.g. pseudodeficiency allele. This value must be short for display purposes. A longer explanation should be provided in the 'Comment on clinical significance'."
+              },
+              "modeOfInheritance": {
+                "type": "string",
+                "description": "The mode of inheritance specific to the variant-disease pair, not generally for the disease.",
+                "enum": [
+                  "Autosomal dominant inheritance",
+                  "Autosomal recessive inheritance",
+                  "Mitochondrial inheritance",
+                  "Somatic mutation",
+                  "Genetic anticipation",
+                  "Sporadic",
+                  "Sex-limited autosomal dominant",
+                  "X-linked recessive inheritance",
+                  "X-linked dominant inheritance",
+                  "Y-linked inheritance",
+                  "Other",
+                  "X-linked inheritance",
+                  "Codominant",
+                  "Semidominant inheritance",
+                  "Autosomal unknown",
+                  "Autosomal dominant inheritance with maternal imprinting",
+                  "Autosomal dominant inheritance with paternal imprinting",
+                  "Multifactorial inheritance",
+                  "Unknown mechanism",
+                  "Oligogenic inheritance"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "clinvarAccession": {
+            "type": "string",
+            "description": "Required for updated records and for novel records if accession numbers were reserved. Provide the SCV number for your submitted record (not the RCV number). For novel records without reserved accessions: the SCV accession number will be returned to you after your submission file is processed. You should provide that accession number back to ClinVar when you update your SCV record. "
+          },
+          "compoundHeterozygoteSet": {
+            "$ref": "#/definitions/compoundHeterozygoteSetType"
+          },
+          "conditionSet": {
+            "type": "object",
+            "description": "The condition for which the variant is interpreted. Detailed information about reporting condition is available at https://www.ncbi.nlm.nih.gov/clinvar/docs/faq_submitters/#pheno  If multiple conditions are submitted for a variant, this indicates that the variant was interpreted for the combination of conditions in the same individual(s).  i.e. this variant causes both condition A and condition B in the same individual. This scenario is most common for a new disease or syndrome that does not yet have a name and is described by several clinical features.  If you want to indicate that the variant has been interpreted for more than one condition, please submit these as separate records. i.e. this variant causes condition A in some individuals and causes disease B in other individuals. Provide only one name or identifier for a condition; do not provide multiple names or identifiers for the same condition.",
+            "properties": {
+              "condition": {
+                "description": "The condition must be provided as either a database identifier or a name, but not both. A database identifier is preferred by ClinVar; a name should be provided only if there is no database identifier available.",
+                "$ref": "#/definitions/conditionType"
+              },
+              "drugResponse": {
+                "description": "The drug Response evaluated specified by database ID or drug name, but not both",
+                "$ref": "#/definitions/drugResponseType"
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "condition"
+                ]
+              },
+              {
+                "required": [
+                  "drugResponse"
+                ]
+              }
+            ]
+          },
+          "diplotypeSet": {
+            "$ref": "#/definitions/diplotypeSetType"
+          },
+          "distinctChromosomesSet": {
+            "$ref": "#/definitions/distinctChromosomesSetType"
+          },
+          "haplotypeSet": {
+            "$ref": "#/definitions/haplotypeSetType"
+          },
+          "haplotypeSingleVariantSet": {
+            "$ref": "#/definitions/haplotypeSingleVariantSetType"
+          },
+          "localID": {
+            "type": "string",
+            "description": "Optional, but highly recommended. The stable unique identifier your organization uses to identifiy this variant. This identifier will be public so should not include protected health information."
+          },
+          "localKey": {
+            "type": "string",
+            "description": "Your unique local identifier for the variant-condition pair, equivalent to the Linking ID in the submission spreadsheet."
+          },
+          "observedIn": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "alleleOrigin",
+                "affectedStatus",
+                "collectionMethod"
+              ],
+              "properties": {
+                "affectedStatus": {
+                  "type": "string",
+                  "description": "Indicates whether or not the individual(s) in each observation were affected by the condition for the interpretation",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "unknown",
+                    "not provided",
+                    "not applicable"
+                  ]
+                },
+                "alleleOrigin": {
+                  "type": "string",
+                  "description": "The genetic origin of the variant for individuals in each aggregate observation. For de novo variants, please indicate 'de novo', not the origin of the chromosome.",
+                  "enum": [
+                    "germline",
+                    "somatic",
+                    "de novo",
+                    "unknown",
+                    "inherited",
+                    "maternal",
+                    "paternal",
+                    "biparental",
+                    "not applicable"
+                  ]
+                },
+                "clinicalFeatures": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Clinical features that were observed by the submitter in an individual with the variant. More than one feature may be provided. Each clinical feature may be described by a database identifier or by a name, but not both. These fields are equivalent to the \"Clinical features\" column in the spreadsheet.",
+                    "required": [
+                      "clinicalFeaturesAffectedStatus"
+                    ],
+                    "properties": {
+                      "clinicalFeaturesAffectedStatus": {
+                        "type": "string",
+                        "description": "To indicate whether each clinical feature was present, absent, or not tested in the individual(s) observed. ",
+                        "enum": [
+                          "present",
+                          "absent",
+                          "not tested"
+                        ]
+                      },
+                      "db": {
+                        "type": "string",
+                        "enum": [
+                          "HP"
+                        ]
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "oneOf": [
+                      {
+                        "required": [
+                          "id",
+                          "db"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "name"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "clinicalFeaturesComment": {
+                  "type": "string",
+                  "description": "To provide a free text explanation of clinical features provided in the previous column, e.g. to describe the progression of disease or diagnosis. Please use this comment to expand on the information in 'clinicalFeatures'"
+                },
+                "collectionMethod": {
+                  "type": "string",
+                  "description": "The method used to collect the data for each observation, e.g. clinical testing or research.  See https://www.ncbi.nlm.nih.gov/clinvar/docs/spreadsheet/#collection",
+                  "enum": [
+                    "curation",
+                    "literature only",
+                    "reference population",
+                    "provider interpretation",
+                    "phenotyping only",
+                    "case-control",
+                    "clinical testing",
+                    "in vitro",
+                    "in vivo",
+                    "research",
+                    "not provided"
+                  ]
+                },
+                "numberOfIndividuals": {
+                  "type": "integer",
+                  "description": "The total number of individuals with the variant observed by the submitter.",
+                  "minimum": 0
+                },
+                "structVarMethodType": {
+                  "type": "string",
+                  "description": "The method and type of analysis used to identify a structural variant, i.e. any variant >50 nt, equivalent to \"Structural variant method/analysis type\" in the submission spreadsheet. Allowed values are enumerated in the schema. Although optional in the JSON, this field is required for variants that are >50 nt (and in scope for dbVar).",
+                  "enum": [
+                    "SNP array",
+                    "Oligo array",
+                    "Read depth",
+                    "Paired-end mapping",
+                    "One end anchored assembly",
+                    "Sequence alignment",
+                    "Optical mapping",
+                    "Curated,PCR"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "phaseUnknownSet": {
+            "$ref": "#/definitions/phaseUnknownSetType"
+          },
+          "recordStatus": {
+            "type": "string",
+            "description": "If you include SCV accessions for 'clinvarAccession', you must indicate whether each record is novel (and accessions were reserved prior to submission) or is an update to an existing SCV record.",
+            "enum": [
+              "novel",
+              "update"
+            ]
+          },
+          "releaseStatus": {
+            "type": "string",
+            "description": "\"hold until published\" allows a temporary hold on data being presented publicly. If no value is provided, the default is public.",
+            "enum": [
+              "public",
+              "hold until published"
+            ]
+          },
+          "variantSet": {
+            "$ref": "#/definitions/variantSetType"
+          }
+        },
+        "additionalProperties": false,
+        "else": {
+          "properties": {
+            "conditionSet": {
+              "required": [
+                "condition"
+              ],
+              "errors": {
+                "required": "conditionSet.drugResponse is allowed only when clinicalSignificanceDescription is \"drug response\""
+              }
+            }
+          }
+        },
+        "if": {
+          "properties": {
+            "clinicalSignificance": {
+              "properties": {
+                "clinicalSignificanceDescription": {
+                  "const": "drug response"
+                }
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "variantSet"
+            ]
+          },
+          {
+            "required": [
+              "haplotypeSet"
+            ]
+          },
+          {
+            "required": [
+              "haplotypeSingleVariantSet"
+            ]
+          },
+          {
+            "required": [
+              "phaseUnknownSet"
+            ]
+          },
+          {
+            "required": [
+              "distinctChromosomesSet"
+            ]
+          },
+          {
+            "required": [
+              "diplotypeSet"
+            ]
+          },
+          {
+            "required": [
+              "compoundHeterozygoteSet"
+            ]
+          }
+        ],
+        "then": {
+          "properties": {
+            "conditionSet": {
+              "required": [
+                "drugResponse"
+              ],
+              "errors": {
+                "required": "when clinicalSignificanceDescription is \"drug response\", conditionSet.drugResponse is a required property"
+              }
+            }
+          }
+        }
+      }
+    },
+    "submissionName": {
+      "type": "string",
+      "description": "Optional. The name for this submission. If not provided, it will be the submission id."
+    }
+  },
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": [
+        "clinvarSubmission"
+      ]
+    },
+    {
+      "required": [
+        "clinvarDeletion"
+      ]
+    }
+  ],
+  "definitions": {
+    "compoundHeterozygoteSetType": {
+      "type": "object",
+      "description": "Complex variants on different chromosomes, affecting multiple polypeptide chains.",
+      "required": [
+        "hgvs",
+        "variantSets"
+      ],
+      "properties": {
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression"
+        },
+        "variantSets": {
+          "type": "array",
+          "description": "Sets of variants grouped by chromosome",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "variantSet": {
+                "$ref": "#/definitions/variantSetType"
+              }
+            },
+            "additionalProperties": false
+          },
+          "errors": {
+            "minItems": "Only allow exactly two sets of variants.",
+            "maxItems": "Only allow exactly two sets of variants."
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "conditionType": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "db": {
+            "type": "string",
+            "enum": [
+              "OMIM",
+              "MedGen",
+              "Orphanet",
+              "MeSH",
+              "HP",
+              "MONDO"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "id",
+              "db"
+            ]
+          },
+          {
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "errors": {
+        "minItems": "Empty condition  not allowed"
+      }
+    },
+    "diplotypeSetType": {
+      "type": "object",
+      "description": "A genotype consisting of two haplotypes.",
+      "required": [
+        "hgvs",
+        "haplotypeSets"
+      ],
+      "properties": {
+        "haplotypeSets": {
+          "type": "array",
+          "description": "A container for a combination of exactly two sets, which may be any combination of haplotypeSet and/or haplotypeSingleVariantSet",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "haplotypeSet": {
+                "$ref": "#/definitions/haplotypeSetType"
+              },
+              "haplotypeSingleVariantSet": {
+                "$ref": "#/definitions/haplotypeSingleVariantSetType"
+              }
+            },
+            "additionalProperties": false
+          },
+          "errors": {
+            "minItems": "Only allow exactly two sets of variants.",
+            "maxItems": "Only allow exactly two sets of variants."
+          }
+        },
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression to describe the diplotype."
+        },
+        "starAlleleName": {
+          "type": "string",
+          "description": "The star allele name for the diplotype"
+        }
+      },
+      "additionalProperties": false
+    },
+    "distinctChromosomesSetType": {
+      "type": "object",
+      "description": "Linked variant data from more than one chromosome",
+      "required": [
+        "hgvs",
+        "variants"
+      ],
+      "properties": {
+        "hgvs": {
+          "type": "string",
+          "description": "Set level HGVS"
+        },
+        "variants": {
+          "type": "array",
+          "description": "The linked variants from more than one chromosome",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/variantType"
+          },
+          "errors": {
+            "minItems": "At least two variants are required."
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "drugResponseType": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "description": "The conditions for which the drug is used  specified by database ID or name, but not both.",
+            "$ref": "#/definitions/conditionType"
+          },
+          "db": {
+            "type": "string",
+            "enum": [
+              "OMIM",
+              "MedGen",
+              "Orphanet",
+              "MeSH",
+              "HP",
+              "MONDO"
+            ]
+          },
+          "drugName": {
+            "type": "string",
+            "description": "Name of the drug for which the response is evaluated."
+          },
+          "id": {
+            "type": "string",
+            "description": "The identifier for the drug response"
+          }
+        },
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "id",
+              "db"
+            ]
+          },
+          {
+            "required": [
+              "drugName"
+            ]
+          }
+        ]
+      },
+      "errors": {
+        "minItems": "Empty drugResponse  not allowed"
+      }
+    },
+    "haplotypeSetType": {
+      "type": "object",
+      "description": "A set of two or more variants on the same chromosome, typically in the same gene, that were classified together.",
+      "required": [
+        "hgvs",
+        "variants"
+      ],
+      "properties": {
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression to describe the haplotype."
+        },
+        "starAlleleName": {
+          "type": "string",
+          "description": "The star allele name for the haplotype."
+        },
+        "variants": {
+          "type": "array",
+          "description": "List of variants that make up the haplotype",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/variantType"
+          },
+          "errors": {
+            "minItems": "At least two variants are required."
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "haplotypeSingleVariantSetType": {
+      "type": "object",
+      "description": "A haplotype that is defined by a single variant; likely only expected for pharmacogenomic genes where a single variant may represent the haplotype across an entire gene.",
+      "required": [
+        "hgvs",
+        "variants"
+      ],
+      "properties": {
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression to describe the haplotype."
+        },
+        "starAlleleName": {
+          "type": "string",
+          "description": "Star allele name for haplotype."
+        },
+        "variants": {
+          "type": "array",
+          "description": "The variant that makes up the haplotype",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/definitions/variantType"
+          },
+          "errors": {
+            "minItems": "Only allow exact one variant",
+            "maxItems": "Only allow exact one variant"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "phaseUnknownSetType": {
+      "type": "object",
+      "description": "A set of two or more variants that were classified together, but the phasing has not been established",
+      "required": [
+        "hgvs",
+        "variants"
+      ],
+      "properties": {
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression."
+        },
+        "variants": {
+          "type": "array",
+          "description": "The linked variants with unknown phase",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/variantType"
+          },
+          "errors": {
+            "minItems": "At least two variants are required."
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "variantSetType": {
+      "type": "object",
+      "description": "A single variant that was classified; this is the most common type of set for variants in ClinVar. The interpreted variant must be described either by HGVS or by chromosome coordinates, but not both.",
+      "required": [
+        "variant"
+      ],
+      "properties": {
+        "variant": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/definitions/variantType"
+          },
+          "errors": {
+            "minItems": "Only allow exact one variant",
+            "maxItems": "Only allow exact one variant"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "variantType": {
+      "type": "object",
+      "description": "type of variant",
+      "properties": {
+        "chromosomeCoordinates": {
+          "type": "object",
+          "description": "The location of the variant in chromosome coordinates.  Use only 1-based coordinates, not 0-based.  For large variants (> 50 nt.), if the exact coordinates (to basepair resolution) of the variant call are known, provide only the start and stop coordinates.  Otherwise, use outer_start (lower value) and inner_start (upper value) to define the interval in which the call begins. Likewise, use inner_stop (lower value) and outer_stop (upper value) to define the interval in which the call ends.  If only the minimal region is known, use inner_start and inner_stop.  If only the maximum region is known, use outer_start and outer_stop.  You must provide either one set of coordinates (start and stop, outers only, or inners only) or two sets of coordinates (inners and outers).",
+          "properties": {
+            "accession": {
+              "type": "string"
+            },
+            "alternateAllele": {
+              "type": "string",
+              "description": "The alternate allele for the submitted variant.  This is used only for small variants (up to 50 nt.)"
+            },
+            "assembly": {
+              "type": "string",
+              "description": "The genome assembly that was used to call the variant.",
+              "enum": [
+                "GRCh38",
+                "hg38",
+                "GRCh37",
+                "hg19",
+                "NCBI36",
+                "hg18"
+              ]
+            },
+            "chromosome": {
+              "type": "string",
+              "description": "The chromosome for the location of the variant. Values are 1-22, X, Y, and MT. If the location is pseudoautosomal, submit on X and  ClinVar will calculate the Y location.",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "X",
+                "Y",
+                "MT"
+              ]
+            },
+            "innerStart": {
+              "type": "integer",
+              "description": "Indicate imprecise locations for structural variants.  This is used only for large variants (more than 50 nt.)",
+              "minimum": 0
+            },
+            "innerStop": {
+              "type": "integer",
+              "description": "Indicate imprecise locations for structural variants.  This is used only for large variants (more than 50 nt.)",
+              "minimum": 0
+            },
+            "outerStart": {
+              "type": "integer",
+              "description": "Indicate imprecise locations for structural variants.  This is used only for large variants (more than 50 nt.)",
+              "minimum": 0
+            },
+            "outerStop": {
+              "type": "integer",
+              "description": "Indicate imprecise locations for structural variants.  This is used only for large variants (more than 50 nt.)",
+              "minimum": 0
+            },
+            "referenceAllele": {
+              "type": "string",
+              "description": "The reference allele for the submitted variant.  This is used only for small variants (up to 50 nt.)"
+            },
+            "start": {
+              "type": "integer",
+              "description": "The start location for the reference allele in chromosome coordinates. If only start is provided for the location, stop will be presumed to be the same coordinate.",
+              "minimum": 0
+            },
+            "stop": {
+              "type": "integer",
+              "description": "The stop location for the reference allele in chromosome coordinates. If only start is provided for the location, stop will be presumed to be the same coordinate.",
+              "minimum": 0
+            },
+            "variantLength": {
+              "type": "integer",
+              "description": "Required for structural variants if outer start/stop is provided but inner start/stop is not provided",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "required": [
+                "assembly",
+                "chromosome"
+              ]
+            },
+            {
+              "required": [
+                "accession"
+              ]
+            }
+          ]
+        },
+        "copyNumber": {
+          "type": "string",
+          "description": "For copy number variants, both the reference copy number and the observed copy number can be provided. The observed copy number is a string, to allow for cases where the copy number is ambiguous and a range is provided, e.g. 3,4."
+        },
+        "gene": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Gene symbol should be provided only to indicate the gene-disease relationship supporting the variant interpretation. Gene symbol is not expected for CNVs or cytogenetic variants, except to make a statement that a specific gene within the variant has a relationship to the interpreted condition. Gene symbol can be provided as either the HGNC official symbol or as the NCBI Gene ID, but not both.",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "NCBI Gene ID",
+                "minimum": 0
+              },
+              "symbol": {
+                "type": "string",
+                "description": "HGNC official gene symbol."
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "id"
+                ]
+              },
+              {
+                "required": [
+                  "symbol"
+                ]
+              }
+            ]
+          }
+        },
+        "hgvs": {
+          "type": "string",
+          "description": "A single, valid HGVS expression to describe the variant on a nucleotide sequence."
+        },
+        "referenceCopyNumber": {
+          "type": "integer",
+          "description": "For copy number variants, both the reference copy number and the observed copy number can be provided. The reference copy number is an integer and is typically \"2\", as most genes and variants are on autosomes.",
+          "minimum": 0
+        },
+        "variantType": {
+          "type": "string",
+          "description": "The type of variant; provided for larger variants instead of reference and alternate alleles.  Required for any variant for which the reference and alternate alleles are not specified. In practice, this will occur for structural variants and for deletions or duplications described only by genomic coordinates.",
+          "enum": [
+            "Insertion",
+            "Deletion",
+            "Duplication",
+            "Tandem duplication",
+            "copy number loss",
+            "copy number gain",
+            "Inversion",
+            "Translocation",
+            "Complex"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "chromosomeCoordinates"
+          ]
+        },
+        {
+          "required": [
+            "hgvs"
+          ]
+        }
+      ]
+    }
+  }
+}

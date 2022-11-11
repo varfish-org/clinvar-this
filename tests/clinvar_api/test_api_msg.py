@@ -25,3 +25,15 @@ def test_data_partially_successful_submission(data_partially_successful_submissi
     assert common.CONVERTER.structure(
         data_partially_successful_submission, api_msg.SubmissionStatus
     )
+
+
+def test_data_summary_response_processed(data_summary_response_processed):
+    assert common.CONVERTER.structure(data_summary_response_processed, api_msg.SummaryResponse)
+
+
+def test_data_summary_response_error_partial(data_summary_response_error_partial):
+    assert common.CONVERTER.structure(data_summary_response_error_partial, api_msg.SummaryResponse)
+
+
+def test_data_summary_response_error_all(data_summary_response_error_all):
+    assert common.CONVERTER.structure(data_summary_response_error_all, api_msg.SummaryResponse)
