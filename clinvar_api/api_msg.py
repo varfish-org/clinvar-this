@@ -1,6 +1,7 @@
 """Types for the messages as returned by the API."""
 
 import datetime
+from enum import Enum
 import typing
 
 import attrs
@@ -192,11 +193,48 @@ class SubmissionClinvarDeletion:
     accessionSet: typing.List[SubmissionClinvarDeletionAccessionSet]
 
 
+class Assembly(Enum):
+    GRCH38 = "GRCh38"
+    HG38 = "hg38"
+    GRCH37 = "GRCh37"
+    HG19 = "hg19"
+    NCBI36 = "NCBI36"
+    HG18 = "hg18"
+
+
+class Chromosome(Enum):
+    CHR1 = "1"
+    CHR2 = "2"
+    CHR3 = "3"
+    CHR4 = "4"
+    CHR5 = "5"
+    CHR6 = "6"
+    CHR7 = "7"
+    CHR8 = "8"
+    CHR9 = "9"
+    CHR10 = "10"
+    CHR11 = "11"
+    CHR12 = "12"
+    CHR13 = "13"
+    CHR14 = "14"
+    CHR15 = "15"
+    CHR16 = "16"
+    CHR17 = "17"
+    CHR18 = "18"
+    CHR19 = "19"
+    CHR20 = "20"
+    CHR21 = "21"
+    CHR22 = "22"
+    CHRX = "X"
+    CHRY = "Y"
+    CHRMT = "MT"
+
+
 @attrs.define
 class SubmissionChromosomeCoordinates:
     accession: typing.Optional[str] = None
-    assembly: typing.Optional[str] = None
-    chromosome: typing.Optional[str] = None
+    assembly: typing.Optional[Assembly] = None
+    chromosome: typing.Optional[Chromosome] = None
     innerStart: typing.Optional[int] = None
     innerStop: typing.Optional[int] = None
     outerStart: typing.Optional[int] = None
@@ -213,6 +251,18 @@ class SubmissionVariantGene:
     symbol: typing.Optional[str] = None
 
 
+class VariantType(Enum):
+    INSERTION = "Insertion"
+    DELETION = "Deletion"
+    DUPLICATION = "Duplication"
+    TANDEM_DUPLICATIOn = "Tandem duplication"
+    COPY_NUMBER_LOSS = "copy number loss"
+    COPY_NUMBER_GAIN = "copy number gain"
+    INVERSION = "Inversion"
+    TRANSLOCATION = "Translocation"
+    COMPLEX = "Complex"
+
+
 @attrs.define
 class SubmissionVariant:
     chromosomeCoordinates: typing.Optional[SubmissionChromosomeCoordinates] = None
@@ -220,7 +270,7 @@ class SubmissionVariant:
     gene: typing.Optional[typing.List[SubmissionVariantGene]] = None
     hgvs: typing.Optional[str] = None
     referenceCopyNumber: typing.Optional[int] = None
-    variantType: typing.Optional[str] = None
+    variantType: typing.Optional[VariantType] = None
 
 
 @attrs.define
@@ -280,9 +330,21 @@ class SubmissionDisplotypeSet:
     starAlleleName: typing.Optional[str] = None
 
 
+class CitationDb(Enum):
+    """Allowed values for a citation's `db` field.
+
+    The values of the enumeration map to the values used by the ClinVar submission API.
+    """
+
+    PUBMED = "PubMed"
+    BOOKSHELF = "BookShelf"
+    DOI = "DOI"
+    PMC = "pmc"
+
+
 @attrs.define
 class SubmissionCitation:
-    db: typing.Optional[str] = None
+    db: typing.Optional[CitationDb] = None
     id: typing.Optional[str] = None
     url: typing.Optional[str] = None
 
@@ -293,16 +355,25 @@ class SubmissionAssertionCriteria:
     method: str
 
 
+class ConditionDb(Enum):
+    OMIM = "OMIM"
+    MEDGEN = "MedGen"
+    ORPHANET = "Orphanet"
+    MESH = "MeSH"
+    HP = "HP"
+    MONDO = "MONDO"
+
+
 @attrs.define
 class SubmissionCondition:
-    db: typing.Optional[str] = None
+    db: typing.Optional[ConditionDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
 
 @attrs.define
 class SubmissionDrugResponse:
-    db: typing.Optional[str] = None
+    db: typing.Optional[ConditionDb] = None
     drugName: typing.Optional[str] = None
     id: typing.Optional[str] = None
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
@@ -326,16 +397,68 @@ class SubmissionCompoundHeterozygoteSet:
     variantSets: typing.List[SubmissionCompoundHeterozygoteSetVariantSet]
 
 
+class ClinicalSignificanceDescription(Enum):
+    """Allowed values for the ``clinicalSignificanceDescription``.
+
+    The values of the enumeration map to the values used by the ClinVar submission API.
+    """
+
+    PATHOGENIC = "Pathogenic"
+    LIKELY_PATHOGENIC = "Likely pathogenic"
+    UNCERTAIN_SIGNIFICANCE = "Uncertain significance"
+    LIKELY_BENIGN = "Likely benign"
+    BENIGN = "Benign"
+    PATHOGENIC_LOW_PENETRANCE = "Pathogenic, low penetrance"
+    UNCERTAIN_RISK_ALLELE = "Uncertain risk allele"
+    LIKELY_PATHOGENIC_LOW_PENETRANCE = "Likely pathogenic, low penetrance"
+    ESTABLISHED_RISK_ALLELE = "Established risk allele"
+    LIKELY_RISK_ALLELE = "Likely risk allele"
+    AFFECTED = "affects"
+    ASSOCIATION = "association"
+    DRUG_RESPONSE = "drug response"
+    CONFERS_SENSITIVITY = "confers sensitivity"
+    PROTECTIVE = "protective"
+    OTHER = "other"
+    NOT_PROVIDED = "not provided"
+
+
+class ModeOfInheritance(Enum):
+    AUTOSOMAL_DOMINANT_INHERITANCE = "Autosomal dominant inheritance"
+    AUTOSOMAL_RECESSIVE_INHERITANCE = "Autosomal recessive inheritance"
+    MITOCHONDRIAL_INHERITANCE = "Mitochondrial inheritance"
+    SOMATIC_MUTATION = "Somatic mutation"
+    GENETIC_ANTICIPATION = "Genetic anticipation"
+    SPORADIC = "Sporadic"
+    SEX_LIMITED_AUTOSOMAL_DOMINANT = "Sex-limited autosomal dominant"
+    X_LINKED_RECESSIVE_INHERITANCE = "X-linked recessive inheritance"
+    X_LINKED_DOMINANT_INHERITANCE = "X-linked dominant inheritance"
+    Y_LINKED_INHERITANCE = "Y-linked inheritance"
+    OTHER = "Other"
+    X_LINKED_INHERITANCE = "X-linked inheritance"
+    CODOMINANT = "Codominant"
+    DEMIDOMINANT_INHERITANCE = "Semidominant inheritance"
+    AUTOSOMAL_UNKNOWN = "Autosomal unknown"
+    AUTOSOMAL_DOMINANT_INHERITANCE_WITH_MATERNAL_IMPRINTING = (
+        "Autosomal dominant inheritance with maternal imprinting"
+    )
+    AUTOSOMAL_DOMINANT_INHERITANCE_WITH_PATERNAL_IMPRINTING = (
+        "Autosomal dominant inheritance with paternal imprinting"
+    )
+    MULTIFACTORIAL_INHERITANCE = "Multifactorial inheritance"
+    UNKNOWN_MECHANISM = "Unknown mechanism"
+    OLIGOGENIC_INHERITANCe = "Oligogenic inheritance"
+
+
 @attrs.define
 class SubmissionClinicalSignificance:
-    clinicalSignificanceDescription: str
+    clinicalSignificanceDescription: ClinicalSignificanceDescription
     citation: typing.Optional[typing.List[SubmissionCitation]] = None
     comment: typing.Optional[str] = None
     customAssertionScore: typing.Optional[float] = None
     dateLastEvaluated: typing.Optional[str] = None
     explanationOfDrugResponse: typing.Optional[str] = None
     explanationOfOtherClinicalSignificance: typing.Optional[str] = None
-    modeOfInheritance: typing.Optional[str] = None
+    modeOfInheritance: typing.Optional[ModeOfInheritance] = None
 
 
 @attrs.define
