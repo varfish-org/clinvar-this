@@ -37,3 +37,7 @@ def test_data_summary_response_error_partial(data_summary_response_error_partial
 
 def test_data_summary_response_error_all(data_summary_response_error_all):
     assert common.CONVERTER.structure(data_summary_response_error_all, api_msg.SummaryResponse)
+
+
+def test_data_submission_snv(data_submission_snv):
+    assert common.CONVERTER.structure(data_submission_snv, api_msg.SubmissionContainer)

@@ -476,3 +476,91 @@ def data_summary_response_error_all():
             },
         ],
     }
+
+
+@pytest.fixture
+def data_submission_snv():
+    return {
+        "clinvarSubmission": [
+            {
+                "assertionCriteria": {
+                    "citation": {"db": "PubMed", "id": "25741868"},
+                    "method": "ACMG",
+                },
+                "clinicalSignificance": {
+                    "citation": [],
+                    "clinicalSignificanceDescription": "Likely pathogenic",
+                    "comment": "PM1_sup, PP3_mod, PM2_sup, PP4_mod",
+                    "dateLastEvaluated": "2022-11-09",
+                    "modeOfInheritance": "Autosomal recessive inheritance",
+                },
+                "conditionSet": {"condition": [{"name": "not provided"}]},
+                "observedIn": [
+                    {
+                        "affectedStatus": "yes",
+                        "alleleOrigin": "biparental",
+                        "clinicalFeatures": [
+                            {
+                                "db": "HP",
+                                "id": "HP:0003097",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0011427",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0002643",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0002089",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0005180",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0001762",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0001342",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                            {
+                                "db": "HP",
+                                "id": "HP:0001250",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            },
+                        ],
+                        "numberOfIndividuals": 1,
+                        "collectionMethod": "clinical testing",
+                    }
+                ],
+                "recordStatus": "novel",
+                "releaseStatus": "hold until published",
+                "variantSet": {
+                    "variant": [
+                        {
+                            "chromosomeCoordinates": {
+                                "assembly": "GRCh37",
+                                "chromosome": "9",
+                                "start": 116021007,
+                                "stop": 116021007,
+                                "referenceAllele": "T",
+                                "alternateAllele": "C",
+                            }
+                        }
+                    ]
+                },
+            }
+        ]
+    }
