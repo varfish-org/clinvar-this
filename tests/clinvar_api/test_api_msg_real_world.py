@@ -1,3 +1,5 @@
+"""Test ``clinar_api.api_msg`` with real-world examples."""
+
 from clinvar_api import api_msg, common
 
 

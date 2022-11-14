@@ -444,7 +444,7 @@ class SubmissionCompoundHeterozygoteSetVariantSet:
 
 @attrs.define
 class SubmissionCompoundHeterozygoteSet:
-    hvs: str
+    hgvs: str
     # Must have two entries
     variantSets: typing.List[SubmissionCompoundHeterozygoteSetVariantSet]
 
