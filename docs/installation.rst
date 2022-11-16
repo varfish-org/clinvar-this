@@ -5,8 +5,9 @@ Installation
 ============
 
 
-Stable release
---------------
+--------------------
+Stable Release (Pip)
+--------------------
 
 To install ClinVar This!, run this command in your terminal:
 
@@ -16,36 +17,37 @@ To install ClinVar This!, run this command in your terminal:
 
 This is the preferred method to install ClinVar This!, as it will always install the most recent stable release.
 
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
-
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+If you don't have `pip <https://pip.pypa.io>`__ installed, this `Python installation guide <http://docs.python-guide.org/en/latest/starting/installation/>`__ can guide you through the process.
 
 
+----------------------
+Stable Release (Conda)
+----------------------
+
+As a prerequisite, you have to install conda and setup the bioconda channel `as documented on the Bioconda website <https://bioconda.github.io/index.html#usage>`__.
+
+Then, you can create a new environment with ``clinvar-this``.
+
+.. code-block:: console
+
+    $ conda create -y -n clinvar-this python=3.11 clinvar-this
+
+Or install the package in your current environment:
+
+
+.. code-block:: console
+
+    $ conda install -y clinvar-this
+
+
+------------
 From sources
 ------------
 
-The sources for ClinVar This! can be downloaded from the `Github repo`_.
+The sources for ClinVar This! can be downloaded from the `Github repo <https://github.com/bihealth/clinvar-this>`__.
 
-You can either clone the public repository:
+Clone the public repository:
 
 .. code-block:: console
 
     $ git clone git://github.com/bihealth/clinvar-this
-
-Or download the `tarball`_:
-
-.. code-block:: console
-
-    $ curl -OJL https://github.com/bihealth/clinvar-this/tarball/master
-
-Once you have a copy of the source, you can install it with:
-
-.. code-block:: console
-
-    $ python setup.py install
-
-
-.. _Github repo: https://github.com/bihealth/clinvar-this
-.. _tarball: https://github.com/bihealth/clinvar-this/tarball/master

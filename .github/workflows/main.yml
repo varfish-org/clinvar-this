@@ -44,6 +44,27 @@ jobs:
           message: 'Please format your code with [black](https://black.readthedocs.io): `make black`.'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  sphinx-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: |
+            pip install -r requirements/test.txt
+            pip freeze
+
+      - name: Build documentation
+        run: |
+          cd docs
+          make html
+
+
   testing:
     runs-on: ubuntu-latest
     strategy:
