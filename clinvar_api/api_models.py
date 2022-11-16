@@ -64,8 +64,13 @@ class Error:
         return Error(message=other.message)
 
 
-#: Re-use the type directly.
-SubmissionStatusFile = api_msg.SubmissionStatusFile
+@attrs.define
+class SubmissionStatusFile:
+    url: str
+
+    @classmethod
+    def from_msg(cls, other: api_msg.SubmissionStatusFile):
+        return SubmissionStatusFile(url=other.url)
 
 
 @attrs.define
@@ -137,20 +142,19 @@ class SubmissionStatusResponse:
             message = None
         return SubmissionStatusResponse(
             status=other.status,
-            files=other.files,
+            files=[SubmissionStatusFile.from_msg(f) for f in other.files],
             message=message,
             objects=list(map(SubmissionStatusObject.from_msg, other.objects)),
         )
 
 
 @attrs.define
-class SubmissionStatus:
-    """Internal submission status."""
+class SubmissionStatusActions:
 
     #: Identifier of the submission
     id: str
     #: Entries in ``actions[*].responses``, only one entry per the docs.
-    response: typing.Optional[SubmissionStatusResponse]
+    responses: typing.List[SubmissionStatusResponse]
     #: Status of the submission, one of "submitted", "processing", "processed", "error"
     status: str
     #: Target database, usually "clinvar"
@@ -159,17 +163,27 @@ class SubmissionStatus:
     updated: datetime.datetime
 
     @classmethod
+    def from_msg(cls, other: api_msg.SubmissionStatusActions):
+        return SubmissionStatusActions(
+            id=other.id,
+            responses=[SubmissionStatusResponse.from_msg(response) for response in other.responses],
+            status=other.status,
+            target_db=other.targetDb,
+            updated=other.updated,
+        )
+
+
+@attrs.define
+class SubmissionStatus:
+    """Internal submission status."""
+
+    #: The list of actions (one element only by the docs).
+    actions: typing.List[SubmissionStatusActions]
+
+    @classmethod
     def from_msg(cls, other: api_msg.SubmissionStatus):
-        if other.actions[0].responses:
-            response = SubmissionStatusResponse.from_msg(other.actions[0].responses[0])
-        else:
-            response = None
         return SubmissionStatus(
-            id=other.actions[0].id,
-            response=response,
-            status=other.actions[0].status,
-            target_db=other.actions[0].targetDb,
-            updated=other.actions[0].updated,
+            actions=[SubmissionStatusActions.from_msg(action) for action in other.actions]
         )
 
 
@@ -381,6 +395,7 @@ class SubmissionClinvarDeletion:
 @attrs.define
 class SubmissionChromosomeCoordinates:
     accession: typing.Optional[str] = None
+    alternate_allele: typing.Optional[str] = None
     assembly: typing.Optional[Assembly] = None
     chromosome: typing.Optional[Chromosome] = None
     inner_start: typing.Optional[int] = None
@@ -397,6 +412,7 @@ class SubmissionChromosomeCoordinates:
         return SubmissionChromosomeCoordinates(
             accession=other.accession,
             assembly=other.assembly,
+            alternate_allele=other.alternateAllele,
             chromosome=other.chromosome,
             inner_start=other.innerStart,
             inner_stop=other.innerStop,
@@ -572,14 +588,14 @@ class SubmissionHaplotypeSets:
 
 
 @attrs.define
-class SubmissionDisplotypeSet:
+class SubmissionDiplotypeSet:
     haplotype_sets: typing.List[SubmissionHaplotypeSets]
     hgvs: str
     star_allele_name: typing.Optional[str] = None
 
     @classmethod
     def from_msg(cls, other: api_msg.SubmissionDiplotypeSet):
-        return SubmissionDisplotypeSet(
+        return SubmissionDiplotypeSet(
             haplotype_sets=[
                 SubmissionHaplotypeSets.from_msg(msg_sets) for msg_sets in other.haplotypeSets
             ],
@@ -744,7 +760,7 @@ class SubmissionClinvarSubmission:
     assertion_criteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvar_accession: typing.Optional[str] = None
     compound_heterozygote_set: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
-    diplotype_set: typing.Optional[SubmissionDisplotypeSet] = None
+    diplotype_set: typing.Optional[SubmissionDiplotypeSet] = None
     distinct_chromosomes_set: typing.Optional[SubmissionDistinctChromosomesSet] = None
     #: Has at least two elements in `variants`
     haplotype_set: typing.Optional[SubmissionHaplotypeSet] = None
@@ -767,7 +783,7 @@ class SubmissionClinvarSubmission:
             )
         diplotype_set = None
         if other.diplotypeSet:
-            diplotype_set = SubmissionDisplotypeSet.from_msg(other.diplotypeSet)
+            diplotype_set = SubmissionDiplotypeSet.from_msg(other.diplotypeSet)
         distinct_chromosomes_set = None
         if other.distinctChromosomesSet:
             distinct_chromosomes_set = SubmissionDistinctChromosomesSet.from_msg(
