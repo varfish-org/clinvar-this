@@ -6,7 +6,7 @@ import typing
 
 import attrs
 
-from clinvar_api import Assembly, Chromosome, ModeOfInheritance
+from clinvar_api.msg import Assembly, Chromosome, ModeOfInheritance
 from clinvar_this import exceptions
 
 #: The expected first header columns.
@@ -21,7 +21,7 @@ HEADER = (
 )
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class TsvRecord:
     """Record for reading."""
 

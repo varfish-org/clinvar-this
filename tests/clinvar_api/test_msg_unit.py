@@ -1,41 +1,41 @@
-"""Test ``clinvar_api.api_msg`` with unit tests."""
+"""Test ``clinvar_api.msg`` with unit tests."""
 
 import datetime
 
-from clinvar_api import api_msg
+from clinvar_api import msg
 
 
 def test_created_construction():
-    api_msg.Created(id="test-id")
+    msg.Created(id="test-id")
 
 
 def test_error_construction():
-    api_msg.Error(message="fake-message")
+    msg.Error(message="fake-message")
 
 
 def test_submission_status_file_construction():
-    api_msg.SubmissionStatusFile(url="http://example.com")
+    msg.SubmissionStatusFile(url="http://example.com")
 
 
 def test_submission_status_object_content_construction():
-    api_msg.SubmissionStatusObjectContent(
+    msg.SubmissionStatusObjectContent(
         clinvarProcessingStatus="In processing",
         clinvarReleaseStatus="Not released",
     )
 
 
 def test_submission_status_object_construction():
-    api_msg.SubmissionStatusObject(
+    msg.SubmissionStatusObject(
         accession="accession",
-        content=api_msg.SubmissionStatusObjectContent(
+        content=msg.SubmissionStatusObjectContent(
             clinvarProcessingStatus="In processing",
             clinvarReleaseStatus="Not released",
         ),
         targetDb="clinvar",
     )
-    api_msg.SubmissionStatusObject(
+    msg.SubmissionStatusObject(
         accession=None,
-        content=api_msg.SubmissionStatusObjectContent(
+        content=msg.SubmissionStatusObjectContent(
             clinvarProcessingStatus="In processing",
             clinvarReleaseStatus="Not released",
         ),
@@ -44,25 +44,23 @@ def test_submission_status_object_construction():
 
 
 def test_submission_status_response_message_construction():
-    api_msg.SubmissionStatusResponseMessage(
+    msg.SubmissionStatusResponseMessage(
         errorCode="error-code", severity="fake-severity", text="fake text"
     )
-    api_msg.SubmissionStatusResponseMessage(
-        errorCode=None, severity="fake-severity", text="fake text"
-    )
+    msg.SubmissionStatusResponseMessage(errorCode=None, severity="fake-severity", text="fake text")
 
 
 def test_submission_status_response_construction():
-    api_msg.SubmissionStatusResponse(
+    msg.SubmissionStatusResponse(
         status=None,
-        files=[api_msg.SubmissionStatusFile(url="http://example.com")],
-        message=api_msg.SubmissionStatusResponseMessage(
+        files=[msg.SubmissionStatusFile(url="http://example.com")],
+        message=msg.SubmissionStatusResponseMessage(
             errorCode="error-code", severity="fake-severity", text="fake text"
         ),
         objects=[
-            api_msg.SubmissionStatusObject(
+            msg.SubmissionStatusObject(
                 accession=None,
-                content=api_msg.SubmissionStatusObjectContent(
+                content=msg.SubmissionStatusObjectContent(
                     clinvarProcessingStatus="In processing",
                     clinvarReleaseStatus="Not released",
                 ),
@@ -70,16 +68,16 @@ def test_submission_status_response_construction():
             )
         ],
     )
-    api_msg.SubmissionStatusResponse(
+    msg.SubmissionStatusResponse(
         status="fake-status",
-        files=[api_msg.SubmissionStatusFile(url="http://example.com")],
-        message=api_msg.SubmissionStatusResponseMessage(
+        files=[msg.SubmissionStatusFile(url="http://example.com")],
+        message=msg.SubmissionStatusResponseMessage(
             errorCode="error-code", severity="fake-severity", text="fake text"
         ),
         objects=[
-            api_msg.SubmissionStatusObject(
+            msg.SubmissionStatusObject(
                 accession=None,
-                content=api_msg.SubmissionStatusObjectContent(
+                content=msg.SubmissionStatusObjectContent(
                     clinvarProcessingStatus="In processing",
                     clinvarReleaseStatus="Not released",
                 ),
@@ -90,19 +88,19 @@ def test_submission_status_response_construction():
 
 
 def test_submission_status_actions_construction():
-    api_msg.SubmissionStatusActions(
+    msg.SubmissionStatusActions(
         id="fake-id",
         responses=[
-            api_msg.SubmissionStatusResponse(
+            msg.SubmissionStatusResponse(
                 status=None,
-                files=[api_msg.SubmissionStatusFile(url="http://example.com")],
-                message=api_msg.SubmissionStatusResponseMessage(
+                files=[msg.SubmissionStatusFile(url="http://example.com")],
+                message=msg.SubmissionStatusResponseMessage(
                     errorCode="error-code", severity="fake-severity", text="fake text"
                 ),
                 objects=[
-                    api_msg.SubmissionStatusObject(
+                    msg.SubmissionStatusObject(
                         accession=None,
-                        content=api_msg.SubmissionStatusObjectContent(
+                        content=msg.SubmissionStatusObjectContent(
                             clinvarProcessingStatus="In processing",
                             clinvarReleaseStatus="Not released",
                         ),
@@ -115,7 +113,7 @@ def test_submission_status_actions_construction():
         targetDb="clinvar",
         updated=datetime.datetime.now(),
     )
-    api_msg.SubmissionStatusActions(
+    msg.SubmissionStatusActions(
         id="fake-id",
         responses=[],
         status="the-status",
@@ -125,10 +123,10 @@ def test_submission_status_actions_construction():
 
 
 def test_submission_status_construction():
-    api_msg.SubmissionStatus(actions=[])
-    api_msg.SubmissionStatus(
+    msg.SubmissionStatus(actions=[])
+    msg.SubmissionStatus(
         actions=[
-            api_msg.SubmissionStatusActions(
+            msg.SubmissionStatusActions(
                 id="fake-id",
                 responses=[],
                 status="the-status",
@@ -140,56 +138,54 @@ def test_submission_status_construction():
 
 
 def test_summary_response_error_input_construction():
-    api_msg.SummaryResponseErrorInput(value="value", field="field")
-    api_msg.SummaryResponseErrorInput(value="value", field=None)
+    msg.SummaryResponseErrorInput(value="value", field="field")
+    msg.SummaryResponseErrorInput(value="value", field=None)
 
 
 def test_summary_response_error_output_error_construction():
-    api_msg.SummaryResponseErrorOutputError(userMessage="the message")
+    msg.SummaryResponseErrorOutputError(userMessage="the message")
 
 
 def test_summary_response_error_output_construction():
-    api_msg.SummaryResponseErrorOutput(
-        errors=[api_msg.SummaryResponseErrorOutputError(userMessage="the message")]
+    msg.SummaryResponseErrorOutput(
+        errors=[msg.SummaryResponseErrorOutputError(userMessage="the message")]
     )
-    api_msg.SummaryResponseErrorOutput(errors=[])
+    msg.SummaryResponseErrorOutput(errors=[])
 
 
 def test_summary_response_error_construction():
-    api_msg.SummaryResponseError(
-        input=[api_msg.SummaryResponseErrorInput(value="value", field="field")],
-        output=api_msg.SummaryResponseErrorOutput(errors=[]),
+    msg.SummaryResponseError(
+        input=[msg.SummaryResponseErrorInput(value="value", field="field")],
+        output=msg.SummaryResponseErrorOutput(errors=[]),
     )
-    api_msg.SummaryResponseError(input=[], output=api_msg.SummaryResponseErrorOutput(errors=[]))
+    msg.SummaryResponseError(input=[], output=msg.SummaryResponseErrorOutput(errors=[]))
 
 
 def test_summary_response_deletion_identifier_construction():
-    api_msg.SummaryResponseDeletionIdentifier(
+    msg.SummaryResponseDeletionIdentifier(
         clinvarAccession="the-accession",
         clinvarLocalKey="the-local-key",
     )
-    api_msg.SummaryResponseDeletionIdentifier(
+    msg.SummaryResponseDeletionIdentifier(
         clinvarAccession="the-accession",
         clinvarLocalKey=None,
     )
 
 
 def test_summary_response_deletion_construction():
-    api_msg.SummaryResponseDeletion(
-        identifiers=api_msg.SummaryResponseDeletionIdentifier(
+    msg.SummaryResponseDeletion(
+        identifiers=msg.SummaryResponseDeletionIdentifier(
             clinvarAccession="the-accession",
         ),
         processingStatus="processing-status",
         deleteDate="2022-01-01",
         deleteStatus="delete-status",
         errors=[
-            api_msg.SummaryResponseError(
-                input=[], output=api_msg.SummaryResponseErrorOutput(errors=[])
-            )
+            msg.SummaryResponseError(input=[], output=msg.SummaryResponseErrorOutput(errors=[]))
         ],
     )
-    api_msg.SummaryResponseDeletion(
-        identifiers=api_msg.SummaryResponseDeletionIdentifier(
+    msg.SummaryResponseDeletion(
+        identifiers=msg.SummaryResponseDeletionIdentifier(
             clinvarAccession="the-accession",
         ),
         processingStatus="processing-status",
@@ -200,13 +196,13 @@ def test_summary_response_deletion_construction():
 
 
 def test_summary_response_submission_identifier_construction():
-    api_msg.SummaryResponseSubmissionIdentifiers(
+    msg.SummaryResponseSubmissionIdentifiers(
         clinvarLocalKey="local-key",
         clinvarAccession="the-accession",
         localID="local-id",
         localKey="local-key",
     )
-    api_msg.SummaryResponseSubmissionIdentifiers(
+    msg.SummaryResponseSubmissionIdentifiers(
         clinvarLocalKey="local-key",
         clinvarAccession=None,
         localID=None,
@@ -215,20 +211,18 @@ def test_summary_response_submission_identifier_construction():
 
 
 def test_summary_response_submission_construction():
-    api_msg.SummaryResponseSubmission(
-        identifiers=api_msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
+    msg.SummaryResponseSubmission(
+        identifiers=msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
         processingStatus="processing-status",
         clinvarAccessionVersion="accession-version",
         errors=[
-            api_msg.SummaryResponseError(
-                input=[], output=api_msg.SummaryResponseErrorOutput(errors=[])
-            )
+            msg.SummaryResponseError(input=[], output=msg.SummaryResponseErrorOutput(errors=[]))
         ],
         releaseDate="2022-01-01",
         releaseStatus="released",
     )
-    api_msg.SummaryResponseSubmission(
-        identifiers=api_msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
+    msg.SummaryResponseSubmission(
+        identifiers=msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
         processingStatus="processing-status",
         clinvarAccessionVersion=None,
         errors=None,
@@ -238,7 +232,7 @@ def test_summary_response_submission_construction():
 
 
 def test_summary_response_construction():
-    api_msg.SummaryResponse(
+    msg.SummaryResponse(
         batchProcessingStatus="status",
         batchReleaseStatus="released",
         submissionDate="2022-01-01",
@@ -248,18 +242,16 @@ def test_summary_response_construction():
         totalPublic=10,
         totalSuccess=10,
         deletions=[
-            api_msg.SummaryResponseDeletion(
-                identifiers=api_msg.SummaryResponseDeletionIdentifier(
+            msg.SummaryResponseDeletion(
+                identifiers=msg.SummaryResponseDeletionIdentifier(
                     clinvarAccession="the-accession",
                 ),
                 processingStatus="processing-status",
             )
         ],
         submissions=[
-            api_msg.SummaryResponseSubmission(
-                identifiers=api_msg.SummaryResponseSubmissionIdentifiers(
-                    clinvarLocalKey="local-key"
-                ),
+            msg.SummaryResponseSubmission(
+                identifiers=msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
                 processingStatus="processing-status",
             )
         ],
@@ -268,7 +260,7 @@ def test_summary_response_construction():
         totalDeleteErrors=10,
         totalDeleteSuccess=10,
     )
-    api_msg.SummaryResponse(
+    msg.SummaryResponse(
         batchProcessingStatus="status",
         batchReleaseStatus="released",
         submissionDate="2022-01-01",
@@ -287,34 +279,34 @@ def test_summary_response_construction():
 
 
 def test_sumbmission_clinvar_deletetion_accession_set_construction():
-    api_msg.SubmissionClinvarDeletionAccessionSet(
+    msg.SubmissionClinvarDeletionAccessionSet(
         accession="accession",
         reason="whatever",
     )
-    api_msg.SubmissionClinvarDeletionAccessionSet(
+    msg.SubmissionClinvarDeletionAccessionSet(
         accession="accession",
         reason=None,
     )
 
 
 def test_submission_clinvar_deletion_construction():
-    api_msg.SubmissionClinvarDeletion(
+    msg.SubmissionClinvarDeletion(
         accessionSet=[
-            api_msg.SubmissionClinvarDeletionAccessionSet(
+            msg.SubmissionClinvarDeletionAccessionSet(
                 accession="accession",
                 reason="whatever",
             )
         ]
     )
-    api_msg.SubmissionClinvarDeletion(accessionSet=[])
+    msg.SubmissionClinvarDeletion(accessionSet=[])
 
 
 def test_submission_chromosome_coordinates_construction():
-    api_msg.SubmissionChromosomeCoordinates(
+    msg.SubmissionChromosomeCoordinates(
         accession="accession",
         alternateAllele="A",
-        assembly=api_msg.Assembly.GRCH37,
-        chromosome=api_msg.Chromosome.CHR12,
+        assembly=msg.Assembly.GRCH37,
+        chromosome=msg.Chromosome.CHR12,
         innerStart=100,
         innerStop=200,
         outerStart=90,
@@ -324,9 +316,9 @@ def test_submission_chromosome_coordinates_construction():
         stop=200,
         variantLength=10,
     )
-    api_msg.SubmissionChromosomeCoordinates(
-        assembly=api_msg.Assembly.GRCH37,
-        chromosome=api_msg.Chromosome.CHR12,
+    msg.SubmissionChromosomeCoordinates(
+        assembly=msg.Assembly.GRCH37,
+        chromosome=msg.Chromosome.CHR12,
         start=100,
         stop=100,
         referenceAllele="C",
@@ -336,18 +328,18 @@ def test_submission_chromosome_coordinates_construction():
 
 
 def test_submission_variant_gene_construction():
-    api_msg.SubmissionVariantGene(
+    msg.SubmissionVariantGene(
         id="some-id",
         symbol="some-symbol",
     )
-    api_msg.SubmissionVariantGene()
+    msg.SubmissionVariantGene()
 
 
 def test_submission_variant_construction():
-    api_msg.SubmissionVariant(
-        chromosomeCoordinates=api_msg.SubmissionChromosomeCoordinates(
-            assembly=api_msg.Assembly.GRCH37,
-            chromosome=api_msg.Chromosome.CHR12,
+    msg.SubmissionVariant(
+        chromosomeCoordinates=msg.SubmissionChromosomeCoordinates(
+            assembly=msg.Assembly.GRCH37,
+            chromosome=msg.Chromosome.CHR12,
             start=100,
             stop=100,
             referenceAllele="C",
@@ -355,32 +347,32 @@ def test_submission_variant_construction():
             variantLength=1,
         ),
         copyNumber="2",
-        gene=[api_msg.SubmissionVariantGene()],
+        gene=[msg.SubmissionVariantGene()],
         hgvs="hgvs-string",
         referenceCopyNumber="2",
-        variantType=api_msg.VariantType.DELETION,
+        variantType=msg.VariantType.DELETION,
     )
-    api_msg.SubmissionVariant()
+    msg.SubmissionVariant()
 
 
 def test_sumbmission_variant_set_construction():
-    api_msg.SubmissionVariantSet(variant=[api_msg.SubmissionVariant()])
-    api_msg.SubmissionVariantSet(variant=[])
+    msg.SubmissionVariantSet(variant=[msg.SubmissionVariant()])
+    msg.SubmissionVariantSet(variant=[])
 
 
 def test_submission_phase_unknown_set_construction():
-    api_msg.SubmissionPhaseUnknownSet(
+    msg.SubmissionPhaseUnknownSet(
         hgvs="hgvs-string",
-        variants=[api_msg.SubmissionVariant()],
+        variants=[msg.SubmissionVariant()],
     )
-    api_msg.SubmissionPhaseUnknownSet(
+    msg.SubmissionPhaseUnknownSet(
         hgvs="hgvs-string",
         variants=[],
     )
 
 
 def test_submission_clinical_feature_construction():
-    api_msg.SubmissionClinicalFeature(
+    msg.SubmissionClinicalFeature(
         clinicalFeaturesAffectedStatus="affected-status",
         db="HP",
         id="the-id",
@@ -389,12 +381,12 @@ def test_submission_clinical_feature_construction():
 
 
 def test_submission_observed_in_construction():
-    api_msg.SubmissionObservedIn(
+    msg.SubmissionObservedIn(
         affectedStatus="affected",
         alleleOrigin="germline",
         collectionMethod="clinical testing",
         clinicalFeatures=[
-            api_msg.SubmissionClinicalFeature(
+            msg.SubmissionClinicalFeature(
                 clinicalFeaturesAffectedStatus="affected-status",
                 db="HP",
                 id="the-id",
@@ -405,7 +397,7 @@ def test_submission_observed_in_construction():
         numberOfIndividuals=1,
         structVarMethodType="some-type",
     )
-    api_msg.SubmissionObservedIn(
+    msg.SubmissionObservedIn(
         affectedStatus="affected",
         alleleOrigin="germline",
         collectionMethod="clinical testing",
@@ -413,64 +405,64 @@ def test_submission_observed_in_construction():
 
 
 def test_submission_haplotype_set_construction():
-    api_msg.SubmissionHaplotypeSet(
+    msg.SubmissionHaplotypeSet(
         hgvs="the-hgvs",
         variants=[],
         starAlleleName="the-name",
     )
-    api_msg.SubmissionHaplotypeSet(
+    msg.SubmissionHaplotypeSet(
         hgvs="the-hgvs",
-        variants=[api_msg.SubmissionVariant()],
+        variants=[msg.SubmissionVariant()],
         starAlleleName="the-name",
     )
 
 
 def test_submission_distinct_chromosome_set_construction():
-    api_msg.SubmissionDistinctChromosomesSet(
+    msg.SubmissionDistinctChromosomesSet(
         hgvs="some-hgvs",
         variants=[
-            api_msg.SubmissionVariant(),
-            api_msg.SubmissionVariant(),
+            msg.SubmissionVariant(),
+            msg.SubmissionVariant(),
         ],
     )
 
 
 def test_submission_haplotype_sets_construction():
-    api_msg.SubmissionHaplotypeSets(
-        haplotypeSet=api_msg.SubmissionHaplotypeSet(
+    msg.SubmissionHaplotypeSets(
+        haplotypeSet=msg.SubmissionHaplotypeSet(
             hgvs="the-hgvs",
-            variants=[api_msg.SubmissionVariant()],
+            variants=[msg.SubmissionVariant()],
             starAlleleName="the-name",
         ),
-        haplotypeSingleVariantSet=api_msg.SubmissionHaplotypeSet(
+        haplotypeSingleVariantSet=msg.SubmissionHaplotypeSet(
             hgvs="the-hgvs",
-            variants=[api_msg.SubmissionVariant()],
+            variants=[msg.SubmissionVariant()],
             starAlleleName="the-name",
         ),
     )
-    api_msg.SubmissionHaplotypeSets()
+    msg.SubmissionHaplotypeSets()
 
 
 def test_submission_diplotype_set_construction():
-    api_msg.SubmissionDiplotypeSet(
-        haplotypeSets=[api_msg.SubmissionHaplotypeSets()],
+    msg.SubmissionDiplotypeSet(
+        haplotypeSets=[msg.SubmissionHaplotypeSets()],
         hgvs="the-hgvs",
         starAlleleName="star-allele-name",
     )
-    api_msg.SubmissionDiplotypeSet(
-        haplotypeSets=[api_msg.SubmissionHaplotypeSets()],
+    msg.SubmissionDiplotypeSet(
+        haplotypeSets=[msg.SubmissionHaplotypeSets()],
         hgvs="the-hgvs",
         starAlleleName=None,
     )
 
 
 def test_submission_citation_construction():
-    api_msg.SubmissionCitation(
-        db=api_msg.CitationDb.PMC,
+    msg.SubmissionCitation(
+        db=msg.CitationDb.PMC,
         id="PMC123",
         url="https://example.com",
     )
-    api_msg.SubmissionCitation(
+    msg.SubmissionCitation(
         db=None,
         id=None,
         url=None,
@@ -478,19 +470,19 @@ def test_submission_citation_construction():
 
 
 def test_submission_assertion_criteria_construction():
-    api_msg.SubmissionAssertionCriteria(
-        citation=api_msg.SubmissionCitation(),
+    msg.SubmissionAssertionCriteria(
+        citation=msg.SubmissionCitation(),
         method="some-method",
     )
 
 
 def test_submission_condition_construction():
-    api_msg.SubmissionCondition(
-        db=api_msg.ConditionDb.HP,
+    msg.SubmissionCondition(
+        db=msg.ConditionDb.HP,
         id="some-id",
         name="some-name",
     )
-    api_msg.SubmissionCondition(
+    msg.SubmissionCondition(
         db=None,
         id=None,
         name=None,
@@ -498,13 +490,13 @@ def test_submission_condition_construction():
 
 
 def test_submission_drug_response_construction():
-    api_msg.SubmissionDrugResponse(
-        db=api_msg.ConditionDb.HP,
+    msg.SubmissionDrugResponse(
+        db=msg.ConditionDb.HP,
         drugName="some drug",
         id="some-id",
-        condition=[api_msg.SubmissionCondition()],
+        condition=[msg.SubmissionCondition()],
     )
-    api_msg.SubmissionDrugResponse(
+    msg.SubmissionDrugResponse(
         db=None,
         drugName=None,
         id=None,
@@ -513,41 +505,41 @@ def test_submission_drug_response_construction():
 
 
 def test_submission_condition_set_construction():
-    api_msg.SubmissionConditionSet(
-        condition=[api_msg.SubmissionCondition()],
-        drugResponse=[api_msg.SubmissionDrugResponse()],
+    msg.SubmissionConditionSet(
+        condition=[msg.SubmissionCondition()],
+        drugResponse=[msg.SubmissionDrugResponse()],
     )
-    api_msg.SubmissionConditionSet(
+    msg.SubmissionConditionSet(
         condition=None,
         drugResponse=None,
     )
 
 
 def test_submission_compound_heterozygote_set_variant_set_construction():
-    api_msg.SubmissionCompoundHeterozygoteSetVariantSet(
-        variantSet=api_msg.SubmissionVariantSet(variant=[]),
+    msg.SubmissionCompoundHeterozygoteSetVariantSet(
+        variantSet=msg.SubmissionVariantSet(variant=[]),
     )
-    api_msg.SubmissionCompoundHeterozygoteSetVariantSet(
+    msg.SubmissionCompoundHeterozygoteSetVariantSet(
         variantSet=None,
     )
 
 
 def test_submission_compound_heterozygote_set_construction():
-    api_msg.SubmissionCompoundHeterozygoteSet(
+    msg.SubmissionCompoundHeterozygoteSet(
         hgvs="hgvs",
         variantSets=[
-            api_msg.SubmissionCompoundHeterozygoteSetVariantSet(),
-            api_msg.SubmissionCompoundHeterozygoteSetVariantSet(),
+            msg.SubmissionCompoundHeterozygoteSetVariantSet(),
+            msg.SubmissionCompoundHeterozygoteSetVariantSet(),
         ],
     )
 
 
 def test_submission_clinical_significance_construction():
-    api_msg.SubmissionClinicalSignificance(
-        clinicalSignificanceDescription=api_msg.ClinicalSignificanceDescription.PATHOGENIC,
+    msg.SubmissionClinicalSignificance(
+        clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         citation=[
-            api_msg.SubmissionCitation(
-                db=api_msg.CitationDb.PMC,
+            msg.SubmissionCitation(
+                db=msg.CitationDb.PMC,
                 id="PMC123",
                 url="https://example.com",
             )
@@ -557,21 +549,21 @@ def test_submission_clinical_significance_construction():
         dateLastEvaluated="2022-01-01",
         explanationOfDrugResponse="some explanation",
         explanationOfOtherClinicalSignificance="2022-01-01",
-        modeOfInheritance=api_msg.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+        modeOfInheritance=msg.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
     )
-    api_msg.SubmissionClinicalSignificance(
-        clinicalSignificanceDescription=api_msg.ClinicalSignificanceDescription.PATHOGENIC,
+    msg.SubmissionClinicalSignificance(
+        clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
     )
 
 
 def test_submission_clinvar_submission_construction():
-    api_msg.SubmissionClinvarSubmission(
-        clinicalSignificance=api_msg.SubmissionClinicalSignificance(
-            clinicalSignificanceDescription=api_msg.ClinicalSignificanceDescription.PATHOGENIC,
+    msg.SubmissionClinvarSubmission(
+        clinicalSignificance=msg.SubmissionClinicalSignificance(
+            clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=api_msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSet(),
         observedIn=[
-            api_msg.SubmissionObservedIn(
+            msg.SubmissionObservedIn(
                 affectedStatus="affected",
                 alleleOrigin="germline",
                 collectionMethod="clinical testing",
@@ -579,54 +571,54 @@ def test_submission_clinvar_submission_construction():
         ],
         recordStatus="record-status",
         releaseStatus="release-status",
-        assertionCriteria=api_msg.SubmissionAssertionCriteria(
-            citation=api_msg.SubmissionCitation(),
+        assertionCriteria=msg.SubmissionAssertionCriteria(
+            citation=msg.SubmissionCitation(),
             method="some-method",
         ),
         clinvarAccession="some-accession",
-        compoundHeterozygoteSet=api_msg.SubmissionCompoundHeterozygoteSet(
+        compoundHeterozygoteSet=msg.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
             variantSets=[
-                api_msg.SubmissionCompoundHeterozygoteSetVariantSet(),
-                api_msg.SubmissionCompoundHeterozygoteSetVariantSet(),
+                msg.SubmissionCompoundHeterozygoteSetVariantSet(),
+                msg.SubmissionCompoundHeterozygoteSetVariantSet(),
             ],
         ),
-        diplotypeSet=api_msg.SubmissionDiplotypeSet(
-            haplotypeSets=[api_msg.SubmissionHaplotypeSets()],
+        diplotypeSet=msg.SubmissionDiplotypeSet(
+            haplotypeSets=[msg.SubmissionHaplotypeSets()],
             hgvs="the-hgvs",
         ),
-        distinctChromosomesSet=api_msg.SubmissionDistinctChromosomesSet(
+        distinctChromosomesSet=msg.SubmissionDistinctChromosomesSet(
             hgvs="some-hgvs",
             variants=[
-                api_msg.SubmissionVariant(),
-                api_msg.SubmissionVariant(),
+                msg.SubmissionVariant(),
+                msg.SubmissionVariant(),
             ],
         ),
-        haplotypeSet=api_msg.SubmissionHaplotypeSet(
+        haplotypeSet=msg.SubmissionHaplotypeSet(
             hgvs="the-hgvs",
             variants=[],
             starAlleleName="the-name",
         ),
-        haplotypeSingleVariantSet=api_msg.SubmissionHaplotypeSet(
+        haplotypeSingleVariantSet=msg.SubmissionHaplotypeSet(
             hgvs="the-hgvs",
-            variants=[api_msg.SubmissionVariant()],
+            variants=[msg.SubmissionVariant()],
             starAlleleName="the-name",
         ),
         localID="local-id",
         localKey="local-key",
-        phaseUnknownSet=api_msg.SubmissionPhaseUnknownSet(
+        phaseUnknownSet=msg.SubmissionPhaseUnknownSet(
             hgvs="hgvs-string",
             variants=[],
         ),
-        variantSet=api_msg.SubmissionVariantSet(variant=[]),
+        variantSet=msg.SubmissionVariantSet(variant=[]),
     )
-    api_msg.SubmissionClinvarSubmission(
-        clinicalSignificance=api_msg.SubmissionClinicalSignificance(
-            clinicalSignificanceDescription=api_msg.ClinicalSignificanceDescription.PATHOGENIC,
+    msg.SubmissionClinvarSubmission(
+        clinicalSignificance=msg.SubmissionClinicalSignificance(
+            clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=api_msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSet(),
         observedIn=[
-            api_msg.SubmissionObservedIn(
+            msg.SubmissionObservedIn(
                 affectedStatus="affected",
                 alleleOrigin="germline",
                 collectionMethod="clinical testing",
@@ -638,11 +630,11 @@ def test_submission_clinvar_submission_construction():
 
 
 def test_submission_container_construction():
-    api_msg.SubmissionContainer(
+    msg.SubmissionContainer(
         behalfOrgID=123,
-        clinvarDeletion=api_msg.SubmissionClinvarDeletion(
+        clinvarDeletion=msg.SubmissionClinvarDeletion(
             accessionSet=[
-                api_msg.SubmissionClinvarDeletionAccessionSet(
+                msg.SubmissionClinvarDeletionAccessionSet(
                     accession="accession",
                     reason="whatever",
                 )
@@ -651,17 +643,17 @@ def test_submission_container_construction():
         clinvarSubmission=None,
         submissionName="some-name",
     )
-    api_msg.SubmissionContainer(
+    msg.SubmissionContainer(
         behalfOrgID=123,
         clinvarDeletion=None,
         clinvarSubmission=[
-            api_msg.SubmissionClinvarSubmission(
-                clinicalSignificance=api_msg.SubmissionClinicalSignificance(
-                    clinicalSignificanceDescription=api_msg.ClinicalSignificanceDescription.PATHOGENIC,
+            msg.SubmissionClinvarSubmission(
+                clinicalSignificance=msg.SubmissionClinicalSignificance(
+                    clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
                 ),
-                conditionSet=api_msg.SubmissionConditionSet(),
+                conditionSet=msg.SubmissionConditionSet(),
                 observedIn=[
-                    api_msg.SubmissionObservedIn(
+                    msg.SubmissionObservedIn(
                         affectedStatus="affected",
                         alleleOrigin="germline",
                         collectionMethod="clinical testing",
