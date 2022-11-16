@@ -80,6 +80,73 @@ class ConditionDb(Enum):
     MONDO = "MONDO"
 
 
+class AffectedStatus(Enum):
+    YES = "yes"
+    NO = "no"
+    UNKNOWN = "unknown"
+    NOT_PROVIDED = "not provided"
+    NOT_APPLICABLE = "not applicable"
+
+
+class AlleleOrigin(Enum):
+    GERMLINE = "germline"
+    SOMATIC = "somatic"
+    DE_NOVO = "de novo"
+    UNKNOWN = "unknown"
+    INHERITED = "inherited"
+    MATERNAL = "maternal"
+    PATERNAL = "paternal"
+    BIPARENTL = "biparental"
+    NOT_APPLICABLE = "not applicable"
+
+
+class ClinicalFeaturesAffectedStatus(Enum):
+    PRESENT = "present"
+    ABSENT = "absent"
+    NOT_TESTED = "not tested"
+
+
+class ClinicalFeaturesDb(Enum):
+    HP = "HP"
+
+
+class CollectionMethod(Enum):
+    CURATION = "curation"
+    LITERATURE_ONLY = "literature only"
+    REFERENCE_POPULATION = "reference population"
+    PROVIDER_INTERPRETATION = "provider interpretation"
+    PHENOTYPING_ONLY = "phenotyping only"
+    CASE_CONTROL = "case-control"
+    CLINICAL_TESTING = "clinical testing"
+    IN_VITRO = "in vitro"
+    IN_VIVO = "in vivo"
+    RESEARCH = "research"
+    NOT_PROVIDED = "not provided"
+
+
+class StructVarMethodType(Enum):
+    SNP_ARRAY = "SNP array"
+    OLIGO_ARRAY = "Oligo array"
+    READ_DEPTH = "Read depth"
+    PAIRED_END_MAPPING = "Paired-end mapping"
+    ONE_END_ANCHORED_ASSEMBLY = "One end anchored assembly"
+    SEQUENCE_ALIGNMENT = "Sequence alignment"
+    OPTICAL_MAPPING = "Optical mapping"
+    CURATED_PCR = "Curated,PCR"
+
+
+class BatchProcessingStatus(Enum):
+    IN_PROCESSING = "In processing"
+    SUCCESS = "Success"
+    ERROR = "Error"
+    PARTIAL_SUCCESS = "Partial success"
+
+
+class ProcessingStatus(Enum):
+    ERROR = "Error"
+    SUCCESS = "Success"
+
+
 class ClinicalSignificanceDescription(Enum):
     """Allowed values for the ``clinicalSignificanceDescription``.
 
@@ -130,6 +197,22 @@ class ModeOfInheritance(Enum):
     MULTIFACTORIAL_INHERITANCE = "Multifactorial inheritance"
     UNKNOWN_MECHANISM = "Unknown mechanism"
     OLIGOGENIC_INHERITANCE = "Oligogenic inheritance"
+
+
+class RecordStatus(Enum):
+    NOVEL = "novel"
+    UPDATE = "update"
+
+
+class ReleaseStatus(Enum):
+    PUBLIC = "public"
+    HOLD_UNTIL_PUBLISHED = "hold until published"
+
+
+class BatchReleaseStatus(Enum):
+    RELEASED = "Released"
+    PARTIAL_RELEASED = "Partial released"
+    NOT_RELEASED = "Not released"
 
 
 @attrs.define
@@ -288,8 +371,8 @@ class SummaryResponseSubmission:
 class SummaryResponse:
     """Represetation of server's response to a submission."""
 
-    batchProcessingStatus: str
-    batchReleaseStatus: str
+    batchProcessingStatus: BatchProcessingStatus
+    batchReleaseStatus: BatchReleaseStatus
     submissionDate: str
     submissionName: str
     totalCount: int
@@ -360,21 +443,21 @@ class SubmissionPhaseUnknownSet:
 
 @attrs.define
 class SubmissionClinicalFeature:
-    clinicalFeaturesAffectedStatus: str
-    db: typing.Optional[str] = None
+    clinicalFeaturesAffectedStatus: ClinicalFeaturesAffectedStatus
+    db: typing.Optional[ClinicalFeaturesDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
 
 @attrs.define
 class SubmissionObservedIn:
-    affectedStatus: str
-    alleleOrigin: str
-    collectionMethod: str
+    affectedStatus: AffectedStatus
+    alleleOrigin: AlleleOrigin
+    collectionMethod: CollectionMethod
     clinicalFeatures: typing.Optional[typing.List[SubmissionClinicalFeature]] = None
     clinicalFeaturesComment: typing.Optional[str] = None
     numberOfIndividuals: typing.Optional[int] = None
-    structVarMethodType: typing.Optional[str] = None
+    structVarMethodType: typing.Optional[StructVarMethodType] = None
 
 
 @attrs.define
@@ -467,8 +550,8 @@ class SubmissionClinvarSubmission:
     clinicalSignificance: SubmissionClinicalSignificance
     conditionSet: SubmissionConditionSet
     observedIn: typing.List[SubmissionObservedIn]
-    recordStatus: str
-    releaseStatus: str
+    recordStatus: RecordStatus
+    releaseStatus: ReleaseStatus
     assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvarAccession: typing.Optional[str] = None
     compoundHeterozygoteSet: typing.Optional[SubmissionCompoundHeterozygoteSet] = None

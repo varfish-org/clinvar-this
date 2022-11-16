@@ -21,6 +21,28 @@ ClinicalSignificanceDescription = api_msg.ClinicalSignificanceDescription
 
 ModeOfInheritance = api_msg.ModeOfInheritance
 
+AffectedStatus = api_msg.AffectedStatus
+
+AlleleOrigin = api_msg.AlleleOrigin
+
+ClinicalFeaturesAffectedStatus = api_msg.ClinicalFeaturesAffectedStatus
+
+ClinicalFeaturesDb = api_msg.ClinicalFeaturesDb
+
+CollectionMethod = api_msg.CollectionMethod
+
+StructVarMethodType = api_msg.StructVarMethodType
+
+BatchProcessingStatus = api_msg.BatchProcessingStatus
+
+ProcessingStatus = api_msg.ProcessingStatus
+
+RecordStatus = api_msg.RecordStatus
+
+ReleaseStatus = api_msg.ReleaseStatus
+
+BatchReleaseStatus = api_msg.BatchReleaseStatus
+
 
 @attrs.define
 class Created:
@@ -283,8 +305,8 @@ class SummaryResponseSubmission:
 class SummaryResponse:
     """Represetation of server's response to a submission."""
 
-    batch_processing_status: str
-    batch_release_status: str
+    batch_processing_status: BatchProcessingStatus
+    batch_release_status: BatchReleaseStatus
     submission_date: str
     submission_name: str
     total_count: int
@@ -455,8 +477,8 @@ class SubmissionPhaseUnknownSet:
 
 @attrs.define
 class SubmissionClinicalFeature:
-    clinical_features_affected_status: str
-    db: typing.Optional[str] = None
+    clinical_features_affected_status: ClinicalFeaturesAffectedStatus
+    db: typing.Optional[ClinicalFeaturesDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
@@ -472,13 +494,13 @@ class SubmissionClinicalFeature:
 
 @attrs.define
 class SubmissionObservedIn:
-    affected_status: str
-    allele_origin: str
-    collection_method: str
+    affected_status: AffectedStatus
+    allele_origin: AlleleOrigin
+    collection_method: CollectionMethod
     clinical_features: typing.Optional[typing.List[SubmissionClinicalFeature]] = None
     clinical_features_comment: typing.Optional[str] = None
     number_of_individuals: typing.Optional[int] = None
-    struct_var_method_type: typing.Optional[str] = None
+    struct_var_method_type: typing.Optional[StructVarMethodType] = None
 
     @classmethod
     def from_msg(cls, other: api_msg.SubmissionObservedIn):
@@ -717,8 +739,8 @@ class SubmissionClinvarSubmission:
     clinical_significance: SubmissionClinicalSignificance
     condition_set: SubmissionConditionSet
     observed_in: typing.List[SubmissionObservedIn]
-    record_status: str
-    release_status: str
+    record_status: RecordStatus
+    release_status: ReleaseStatus
     assertion_criteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvar_accession: typing.Optional[str] = None
     compound_heterozygote_set: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
