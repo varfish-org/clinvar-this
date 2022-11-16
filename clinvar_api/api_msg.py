@@ -317,6 +317,7 @@ class SubmissionClinvarDeletion:
 
 @attrs.define
 class SubmissionChromosomeCoordinates:
+    alternateAllele: typing.Optional[str] = None
     accession: typing.Optional[str] = None
     assembly: typing.Optional[Assembly] = None
     chromosome: typing.Optional[Chromosome] = None
@@ -397,7 +398,7 @@ class SubmissionHaplotypeSets:
 
 
 @attrs.define
-class SubmissionDisplotypeSet:
+class SubmissionDiplotypeSet:
     haplotypeSets: typing.List[SubmissionHaplotypeSets]
     hgvs: str
     starAlleleName: typing.Optional[str] = None
@@ -471,7 +472,7 @@ class SubmissionClinvarSubmission:
     assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvarAccession: typing.Optional[str] = None
     compoundHeterozygoteSet: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
-    diplotypeSet: typing.Optional[SubmissionDisplotypeSet] = None
+    diplotypeSet: typing.Optional[SubmissionDiplotypeSet] = None
     distinctChromosomesSet: typing.Optional[SubmissionDistinctChromosomesSet] = None
     #: Has at least two elements in `variants`
     haplotypeSet: typing.Optional[SubmissionHaplotypeSet] = None

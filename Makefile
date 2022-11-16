@@ -24,7 +24,7 @@ flake8:
 .PHONY: mypy
 mypy: export MYPYPATH=stubs
 mypy:
-	mypy clinvar_this clinvar_api
+	mypy clinvar_this clinvar_api tests
 
 .PHONY: lint
 lint: flake8 isort-check black-check mypy
