@@ -1,13 +1,9 @@
-"""Types for the messages as returned by the API."""
+"""Data structures for encoding the submission payload."""
 
-import datetime
 from enum import Enum
 import typing
 
 import attrs
-
-ERROR_CODE_PARTIAL_SUCCESS = "1"
-ERROR_CODE_ALL_FAILURE = "2"
 
 
 class Assembly(Enum):
@@ -135,18 +131,6 @@ class StructVarMethodType(Enum):
     CURATED_PCR = "Curated,PCR"
 
 
-class BatchProcessingStatus(Enum):
-    IN_PROCESSING = "In processing"
-    SUCCESS = "Success"
-    ERROR = "Error"
-    PARTIAL_SUCCESS = "Partial success"
-
-
-class ProcessingStatus(Enum):
-    ERROR = "Error"
-    SUCCESS = "Success"
-
-
 class ClinicalSignificanceDescription(Enum):
     """Allowed values for the ``clinicalSignificanceDescription``.
 
@@ -209,196 +193,18 @@ class ReleaseStatus(Enum):
     HOLD_UNTIL_PUBLISHED = "hold until published"
 
 
-class BatchReleaseStatus(Enum):
-    RELEASED = "Released"
-    PARTIAL_RELEASED = "Partial released"
-    NOT_RELEASED = "Not released"
-
-
-@attrs.define
-class Created:
-    """Representation of successful creation."""
-
-    #: The submission ID.
-    id: str
-
-
-@attrs.define
-class Error:
-    """Representation of server's response in case of failure."""
-
-    #: The error response's message.
-    message: str
-
-
-@attrs.define
-class SubmissionStatusFile:
-    """Type for ``SubmissionStatus`` entry ``actions[*].response[*].files[*]``."""
-
-    #: File URL
-    url: str
-
-
-@attrs.define
-class SubmissionStatusObjectContent:
-    """type for ``SubmissionStatusObjectContent`` entry in ``actions[*].response[*].objects[*].content``."""
-
-    #: Processing status
-    clinvarProcessingStatus: str
-    #: Release status
-    clinvarReleaseStatus: str
-
-
-@attrs.define
-class SubmissionStatusObject:
-    """Type for ``SubmissionStatusObject`` entry in ``actions[*].response[*].objects[*]``."""
-
-    #: Optional object accession.
-    accession: typing.Optional[str]
-    #: Object content.
-    content: SubmissionStatusObjectContent
-    #: Target database, usually "clinvar" per the docs.
-    targetDb: str
-
-
-@attrs.define
-class SubmissionStatusResponseMessage:
-    """Type for ``SubmissionStatusResponseMessage`` entry in ``actions[*].response[*].message``."""
-
-    #: The error code.
-    errorCode: typing.Optional[str]
-    #: The message severity.
-    severity: str
-    #: The message text.
-    text: str
-
-
-@attrs.define
-class SubmissionStatusResponse:
-    """Type for ``SubmissionStatus`` entry ``actions[*].response[*]``."""
-
-    #: Status, one of "processing", "processed", "error",
-    status: str
-    #: Files
-    files: typing.List[SubmissionStatusFile]
-    #: Message
-    message: typing.Optional[SubmissionStatusResponseMessage]
-    #: Objects
-    objects: typing.List[SubmissionStatusObject]
-
-
-@attrs.define
-class SubmissionStatusActions:
-    """Type for ``SubmissionStatus`` entry ``actions[*]``."""
-
-    #: Identifier of the submission
-    id: str
-    #: Entries in ``actions[*].responses``, only one entry per the docs.
-    responses: typing.List[SubmissionStatusResponse]
-    #: Status of the submission, one of "submitted", "processing", "processed", "error"
-    status: str
-    #: Target database, usually "clinvar"
-    targetDb: str
-    #: Last updated time
-    updated: datetime.datetime
-
-
-@attrs.define
-class SubmissionStatus:
-    """Representation of server's response to a submission status query."""
-
-    #: The list of actions (one element only by the docs).
-    actions: typing.List[SubmissionStatusActions]
-
-
-@attrs.define
-class SummaryResponseErrorInput:
-    value: str
-    field: typing.Optional[str] = None
-
-
-@attrs.define
-class SummaryResponseErrorOutputError:
-    userMessage: str
-
-
-@attrs.define
-class SummaryResponseErrorOutput:
-    errors: typing.List[SummaryResponseErrorOutputError]
-
-
-@attrs.define
-class SummaryResponseError:
-    # NB: docs and schema say required but examples do not show
-    input: typing.List[SummaryResponseErrorInput]
-    output: SummaryResponseErrorOutput
-
-
-@attrs.define
-class SummaryResponseDeletionIdentifier:
-    clinvarAccession: str
-    clinvarLocalKey: typing.Optional[str] = None
-
-
-@attrs.define
-class SummaryResponseDeletion:
-    identifiers: SummaryResponseDeletionIdentifier
-    processingStatus: str
-    deleteDate: typing.Optional[str] = None
-    deleteStatus: typing.Optional[str] = None
-    errors: typing.Optional[typing.List[SummaryResponseError]] = None
-
-
-@attrs.define
-class SummaryResponseSubmissionIdentifiers:
-    clinvarLocalKey: str
-    clinvarAccession: typing.Optional[str] = None
-    localID: typing.Optional[str] = None
-    localKey: typing.Optional[str] = None
-
-
-@attrs.define
-class SummaryResponseSubmission:
-    identifiers: SummaryResponseSubmissionIdentifiers
-    processingStatus: str
-    clinvarAccessionVersion: typing.Optional[str] = None
-    errors: typing.Optional[typing.List[SummaryResponseError]] = None
-    releaseDate: typing.Optional[str] = None
-    releaseStatus: typing.Optional[str] = None
-
-
-@attrs.define
-class SummaryResponse:
-    """Represetation of server's response to a submission."""
-
-    batchProcessingStatus: BatchProcessingStatus
-    batchReleaseStatus: BatchReleaseStatus
-    submissionDate: str
-    submissionName: str
-    totalCount: int
-    totalErrors: int
-    totalPublic: int
-    totalSuccess: int
-    deletions: typing.Optional[typing.List[SummaryResponseDeletion]] = None
-    submissions: typing.Optional[typing.List[SummaryResponseSubmission]] = None
-    totalDeleteCount: typing.Optional[int] = None
-    totalDeleted: typing.Optional[int] = None
-    totalDeleteErrors: typing.Optional[int] = None
-    totalDeleteSuccess: typing.Optional[int] = None
-
-
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionClinvarDeletionAccessionSet:
     accession: str
     reason: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionClinvarDeletion:
     accessionSet: typing.List[SubmissionClinvarDeletionAccessionSet]
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionChromosomeCoordinates:
     alternateAllele: typing.Optional[str] = None
     accession: typing.Optional[str] = None
@@ -414,13 +220,13 @@ class SubmissionChromosomeCoordinates:
     variantLength: typing.Optional[int] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionVariantGene:
     id: typing.Optional[int] = None
     symbol: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionVariant:
     chromosomeCoordinates: typing.Optional[SubmissionChromosomeCoordinates] = None
     copyNumber: typing.Optional[str] = None
@@ -430,18 +236,18 @@ class SubmissionVariant:
     variantType: typing.Optional[VariantType] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionVariantSet:
     variant: typing.List[SubmissionVariant]
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionPhaseUnknownSet:
     hgvs: str
     variants: typing.List[SubmissionVariant]
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionClinicalFeature:
     clinicalFeaturesAffectedStatus: ClinicalFeaturesAffectedStatus
     db: typing.Optional[ClinicalFeaturesDb] = None
@@ -449,7 +255,7 @@ class SubmissionClinicalFeature:
     name: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionObservedIn:
     affectedStatus: AffectedStatus
     alleleOrigin: AlleleOrigin
@@ -460,54 +266,54 @@ class SubmissionObservedIn:
     structVarMethodType: typing.Optional[StructVarMethodType] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionHaplotypeSet:
     hgvs: str
     variants: typing.List[SubmissionVariant]
     starAlleleName: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionDistinctChromosomesSet:
     hgvs: str
     #: Hast at least two elements
     variants: typing.List[SubmissionVariant]
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionHaplotypeSets:
     haplotypeSet: typing.Optional[SubmissionHaplotypeSet] = None
     haplotypeSingleVariantSet: typing.Optional[SubmissionHaplotypeSet] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionDiplotypeSet:
     haplotypeSets: typing.List[SubmissionHaplotypeSets]
     hgvs: str
     starAlleleName: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionCitation:
     db: typing.Optional[CitationDb] = None
     id: typing.Optional[str] = None
     url: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionAssertionCriteria:
     citation: SubmissionCitation
     method: str
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionCondition:
     db: typing.Optional[ConditionDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionDrugResponse:
     db: typing.Optional[ConditionDb] = None
     drugName: typing.Optional[str] = None
@@ -515,25 +321,25 @@ class SubmissionDrugResponse:
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionConditionSet:
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
     drugResponse: typing.Optional[typing.List[SubmissionDrugResponse]] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionCompoundHeterozygoteSetVariantSet:
     variantSet: typing.Optional[SubmissionVariantSet] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionCompoundHeterozygoteSet:
     hgvs: str
     # Must have two entries
     variantSets: typing.List[SubmissionCompoundHeterozygoteSetVariantSet]
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionClinicalSignificance:
     clinicalSignificanceDescription: ClinicalSignificanceDescription
     citation: typing.Optional[typing.List[SubmissionCitation]] = None
@@ -545,7 +351,7 @@ class SubmissionClinicalSignificance:
     modeOfInheritance: typing.Optional[ModeOfInheritance] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionClinvarSubmission:
     clinicalSignificance: SubmissionClinicalSignificance
     conditionSet: SubmissionConditionSet
@@ -567,7 +373,7 @@ class SubmissionClinvarSubmission:
     variantSet: typing.Optional[SubmissionVariantSet] = None
 
 
-@attrs.define
+@attrs.define(frozen=True)
 class SubmissionContainer:
     """Representation of the container for a submission."""
 
