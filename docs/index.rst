@@ -4,7 +4,7 @@ ClinVar This!
 ClinVar This! is a Python-based software for the easy submission of variants to ClinVar.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
 
     installation
@@ -12,7 +12,7 @@ ClinVar This! is a Python-based software for the easy submission of variants to 
     usage_cli
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Project Info
 
     contributing
@@ -20,7 +20,13 @@ ClinVar This! is a Python-based software for the easy submission of variants to 
     history
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
+    :caption: CLI
+
+    cli
+
+.. toctree::
+    :maxdepth: 1
     :caption: API
 
     clinvar_api/modules
