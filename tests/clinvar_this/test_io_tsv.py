@@ -3,7 +3,7 @@ import pathlib
 import pytest
 
 from clinvar_this import exceptions
-from clinvar_this.tsv import TsvRecord, read_tsv
+from clinvar_this.io.tsv import TsvRecord, read_tsv
 
 DATA_DIR = pathlib.Path(__file__).parent / "data"
 
