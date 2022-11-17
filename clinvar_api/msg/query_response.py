@@ -8,6 +8,7 @@ import attrs
 
 
 class ErrorCode(Enum):
+    SUCCESS = "0"
     PARTIAL_SUCCESS = "1"
     ALL_FAILURE = "2"
 

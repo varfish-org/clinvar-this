@@ -21,7 +21,7 @@ def test_load_config_success(fs):
     fake_pathlib = FakePathlibModule(fs)
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
-        base_path = config.pathlib.Path.home() / "clinvar-this"
+        base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
         base_path.mkdir(parents=True)
         fs.create_file(
             (base_path / "config.toml"), contents=CONFIG_CONTENT, create_missing_dirs=True
@@ -44,7 +44,7 @@ def test_load_config_fail_invalid_toml(fs):
     fake_pathlib = FakePathlibModule(fs)
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
-        base_path = config.pathlib.Path.home() / "clinvar-this"
+        base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
         base_path.mkdir(parents=True)
         fs.create_file(
             (base_path / "config.toml"), contents=CONFIG_CONTENT + "x", create_missing_dirs=True
@@ -58,7 +58,7 @@ def test_load_config_fail_profile(fs):
     fake_pathlib = FakePathlibModule(fs)
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
-        base_path = config.pathlib.Path.home() / "clinvar-this"
+        base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
         base_path.mkdir(parents=True)
         fs.create_file(
             (base_path / "config.toml"), contents=CONFIG_CONTENT, create_missing_dirs=True
@@ -72,7 +72,7 @@ def test_save_config_fresh(fs):
     fake_pathlib = FakePathlibModule(fs)
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
-        base_path = config.pathlib.Path.home() / "clinvar-this"
+        base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
         config.save_config(config=config.Config("xxx"))
 
         with (base_path / "config.toml").open("rt") as inputf:
@@ -85,7 +85,7 @@ def test_save_config_overwrite(fs):
     fake_pathlib = FakePathlibModule(fs)
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
-        base_path = config.pathlib.Path.home() / "clinvar-this"
+        base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
         base_path.mkdir(parents=True)
         fs.create_file(
             (base_path / "config.toml"), contents=CONFIG_CONTENT, create_missing_dirs=True

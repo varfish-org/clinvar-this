@@ -33,7 +33,7 @@ def load_config(profile: str = "default") -> Config:
     :raises exceptions.ConfigException: In the case of problems with configuration.
     """
 
-    config_path = pathlib.Path.home() / "clinvar-this" / "config.toml"
+    config_path = pathlib.Path.home() / ".config" / "clinvar-this" / "config.toml"
 
     if not config_path.exists():
         raise exceptions.ConfigFileMissingException(
@@ -59,7 +59,7 @@ def load_config(profile: str = "default") -> Config:
 def save_config(config: Config, profile: str = "default"):
     """Save configuration to the given profile."""
 
-    config_path = pathlib.Path.home() / "clinvar-this" / "config.toml"
+    config_path = pathlib.Path.home() / ".config" / "clinvar-this" / "config.toml"
 
     if not config_path.parent.exists():
         config_path.parent.mkdir(parents=True)
