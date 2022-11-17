@@ -48,7 +48,7 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     description="ClinVar Submission via API Made Easy",
-    entry_points={"console_scripts": ["clinvar-this=clinvar_this.cli:main"]},
+    entry_points={"console_scripts": ["clinvar-this=clinvar_this.cli:cli"]},
     install_requires=install_requirements,
     license="MIT license",
     long_description=readme + "\n\n" + history,

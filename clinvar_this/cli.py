@@ -1,37 +1,59 @@
 """Console script for ClinVar This!"""
-import argparse
-import json
-import logging
-import sys
 
-import logzero
-from logzero import logger
+import attrs
+import click
 
-
-def main(argv=None):
-    """Console script for clinvar_this."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--verbose", action="store_true", default=False, help="Enable more verbose output"
-    )
-    args = parser.parse_args(argv)
-
-    # Setup logging verbosity.
-    if args.verbose:
-        level = logging.DEBUG
-    else:
-        formatter = logzero.LogFormatter(
-            fmt="%(color)s[%(levelname)1.1s %(asctime)s]%(end_color)s %(message)s"
-        )
-        logzero.formatter(formatter)
-        level = logging.INFO
-    logzero.loglevel(level=level)
-
-    logger.info("args = %s", json.dumps(vars(args), indent=2))
-
-    logger.info("All done, have a nice day!")
-    return 0
+from clinvar_this import exceptions
+from clinvar_this.config import Config, load_config, save_config
 
 
-if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+@click.group()
+@click.option("--verbose/--no-verbose", default=False)
+@click.option("--profile", default="default", help="The profile to use")
+@click.pass_context
+def cli(ctx: click.Context, verbose: bool, profile: str):
+    """Main entry point for CLI via click."""
+    ctx.ensure_object(dict)
+    ctx.obj["verbose"] = verbose
+    ctx.obj["profile"] = profile
+
+
+@cli.group()
+@click.pass_context
+def config(ctx: click.Context):
+    """Sub command category ``varfish-this config ...``"""
+    _ = ctx
+
+
+@config.command("set")
+@click.argument("name")
+@click.argument("value")
+@click.pass_context
+def config_set(ctx: click.Context, name: str, value: str):
+    """Sub command ``varfish-this config set NAME VALUE``.
+
+    Set the configuration variable with the given ``NAME`` to the given ``VALUE``.  This will interpret the
+    current ``--profile`` setting.
+    """
+    profile: str = ctx.obj["profile"]
+    try:
+        config_obj = load_config(profile)
+    except exceptions.ConfigFileMissingException:
+        config_obj = Config(auth_token="")  # swallow, will recreate
+    allowed_names = ["auth_token"]
+    if name not in allowed_names:
+        raise click.ClickException(f"Invalid value {name}, must be one of {allowed_names}")
+    config_obj = attrs.evolve(config_obj, **{name: value})
+    save_config(config_obj, profile)
+
+
+@config.command("get")
+@click.option("--profile", default="default", help="The profile to get the value from")
+@click.argument("name")
+def config_get(profile: str, name: str):
+    """Sub command ``varfish-this config get NAME``.
+
+    Show the configuration variable with the given ``NAME``.  This will interpret the current ``--profile`` setting.
+    """
+    config = load_config(profile)
+    print(getattr(config, name, "<undefined>"))
