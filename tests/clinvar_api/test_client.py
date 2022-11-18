@@ -5,19 +5,22 @@ from clinvar_api import client, exceptions, models
 FAKE_ID = "SUBxxx"
 FAKE_TOKEN = "1234567890abcdefghijklmnopqrstuvwxyz"
 FAKE_HEADERS = {
-    "Content-type": "application/json",
     "SP-API-KEY": FAKE_TOKEN,
 }
 
 
 def test_config_long_token():
     config = client.Config(auth_token="1234567890", use_testing=False, use_dryrun=False)
-    assert str(config) == "Config(auth_token='12345*****', use_testing=False, use_dryrun=False)"
+    assert str(config) == (
+        "Config(auth_token='12345*****', use_testing=False, use_dryrun=False, presubmission_validation=True)"
+    )
 
 
 def test_config_short_token():
     config = client.Config(auth_token="123", use_testing=False, use_dryrun=False)
-    assert str(config) == "Config(auth_token='***', use_testing=False, use_dryrun=False)"
+    assert str(config) == (
+        "Config(auth_token='***', use_testing=False, use_dryrun=False, presubmission_validation=True)"
+    )
 
 
 def test_submit_data_success(requests_mock):
@@ -30,7 +33,8 @@ def test_submit_data_success(requests_mock):
         json={"id": "SUB999999"},
     )
     result = client.submit_data(
-        models.SubmissionContainer(), config=client.Config(auth_token=FAKE_TOKEN)
+        models.SubmissionContainer(),
+        config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False),
     )
     assert str(result) == "Created(id='SUB999999')"
 
@@ -46,7 +50,8 @@ def test_submit_data_failed(requests_mock):
     )
     with pytest.raises(exceptions.SubmissionFailed):
         client.submit_data(
-            models.SubmissionContainer(), config=client.Config(auth_token=FAKE_TOKEN)
+            models.SubmissionContainer(),
+            config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False),
         )
 
 
@@ -69,7 +74,9 @@ def test_retrieve_status_success_no_extra_file(requests_mock, data_submission_su
         reason="OK",
         json=data_submission_submitted,
     )
-    result = client.retrieve_status(FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN))
+    result = client.retrieve_status(
+        FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+    )
     assert str(result).replace("tzlocal", "tzutc") == (
         "RetrieveStatusResult(status=SubmissionStatus(actions=[SubmissionStatusActions("
         "id='SUB999999-1', responses=[], status='submitted', target_db='clinvar', "
@@ -98,7 +105,9 @@ def test_retrieve_status_success_with_extra_files(
         reason="OK",
         json=data_summary_response_processed,
     )
-    result = client.retrieve_status(FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN))
+    result = client.retrieve_status(
+        FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+    )
     assert str(result).replace("tzlocal", "tzutc") == (
         "RetrieveStatusResult(status=SubmissionStatus(actions=[SubmissionStatusActions(id='SUB999999-1', "
         "responses=[SubmissionStatusResponse(status='processed', files=[SubmissionStatusFile(url='"
@@ -142,7 +151,9 @@ def test_retrieve_status_failed_initial_request(requests_mock):
     )
 
     with pytest.raises(exceptions.QueryFailed):
-        client.retrieve_status(FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN))
+        client.retrieve_status(
+            FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+        )
 
 
 def test_retrieve_status_failed_extra_request(requests_mock, data_submission_processed):
@@ -165,7 +176,9 @@ def test_retrieve_status_failed_extra_request(requests_mock, data_submission_pro
     )
 
     with pytest.raises(exceptions.QueryFailed):
-        client.retrieve_status(FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN))
+        client.retrieve_status(
+            FAKE_ID, config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+        )
 
 
 def test_client_submit_success(requests_mock):
@@ -177,7 +190,9 @@ def test_client_submit_success(requests_mock):
         reason="OK",
         json={"id": "SUB999999"},
     )
-    client_obj = client.Client(config=client.Config(auth_token=FAKE_TOKEN))
+    client_obj = client.Client(
+        config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+    )
     result = client_obj.submit_data(models.SubmissionContainer())
     assert str(result) == "Created(id='SUB999999')"
 
@@ -191,7 +206,9 @@ def test_client_retrieve_status_success_no_extra_file(requests_mock, data_submis
         reason="OK",
         json=data_submission_submitted,
     )
-    client_obj = client.Client(config=client.Config(auth_token=FAKE_TOKEN))
+    client_obj = client.Client(
+        config=client.Config(auth_token=FAKE_TOKEN, presubmission_validation=False)
+    )
     result = client_obj.retrieve_status(FAKE_ID)
     assert str(result).replace("tzlocal", "tzutc") == (
         "RetrieveStatusResult(status=SubmissionStatus(actions=[SubmissionStatusActions("

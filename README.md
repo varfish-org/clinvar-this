@@ -8,3 +8,10 @@ ClinVar Submission via API Made Easy
 - Free software: MIT license
 - Documentation: https://clinvar-this.readthedocs.io/en/latest/
 
+
+## Caveats
+
+- **The `--use-testing` and `--dry-run` mode.**
+  When enabling `--use-testing`, an alternative API endpoint provided by ClinVar will be used.
+  This endpoint may use a different schema than the official endpoint (e.g., this has happened in November 2022).
+  ClinVar has previously notified their submitters via email without official news posts.

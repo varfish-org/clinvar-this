@@ -15,3 +15,7 @@ class ConfigException(ClinvarThisException):
 
 class ConfigFileMissingException(ClinvarThisException):
     """Raised if the configuration file is missing."""
+
+
+class ArgumentsError(ClinvarThisException):
+    """Raised on problems with program arguments."""

@@ -37,7 +37,7 @@ class Error:
 
 @attrs.define(frozen=True)
 class SummaryResponseErrorInput:
-    value: str
+    value: typing.Optional[str] = None
     field: typing.Optional[str] = None
 
 
