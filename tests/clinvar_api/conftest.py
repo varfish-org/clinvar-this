@@ -481,6 +481,7 @@ def data_summary_response_error_all():
 @pytest.fixture
 def data_submission_snv():
     return {
+        "clinvarSubmissionReleaseStatus": "hold until published",
         "clinvarSubmission": [
             {
                 "assertionCriteria": {
@@ -546,7 +547,6 @@ def data_submission_snv():
                     }
                 ],
                 "recordStatus": "novel",
-                "releaseStatus": "hold until published",
                 "variantSet": {
                     "variant": [
                         {
@@ -562,5 +562,5 @@ def data_submission_snv():
                     ]
                 },
             }
-        ]
+        ],
     }

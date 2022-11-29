@@ -302,8 +302,9 @@ class SubmissionCitation:
 
 @attrs.define(frozen=True)
 class SubmissionAssertionCriteria:
-    citation: SubmissionCitation
-    method: str
+    db: typing.Optional[CitationDb] = None
+    id: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 @attrs.define(frozen=True)
@@ -357,8 +358,6 @@ class SubmissionClinvarSubmission:
     conditionSet: SubmissionConditionSet
     observedIn: typing.List[SubmissionObservedIn]
     recordStatus: RecordStatus
-    releaseStatus: ReleaseStatus
-    assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvarAccession: typing.Optional[str] = None
     compoundHeterozygoteSet: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
     diplotypeSet: typing.Optional[SubmissionDiplotypeSet] = None
@@ -377,7 +376,9 @@ class SubmissionClinvarSubmission:
 class SubmissionContainer:
     """Representation of the container for a submission."""
 
+    assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     behalfOrgID: typing.Optional[int] = None
     clinvarDeletion: typing.Optional[SubmissionClinvarDeletion] = None
     clinvarSubmission: typing.Optional[typing.List[SubmissionClinvarSubmission]] = None
+    clinvarSubmissionReleaseStatus: typing.Optional[ReleaseStatus] = None
     submissionName: typing.Optional[str] = None

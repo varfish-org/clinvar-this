@@ -2,6 +2,49 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
+    "assertionCriteria": {
+      "type": "object",
+      "description": "\"Assertion criteria\" refers to documentation of the criteria that your organization uses to classify variants. It can be provided as a database identifier, like a PubMed ID, or a file that is submitted to ClinVar, but not both. Only one document may be provided for assertion criteria. These fields are equivalent to the \"Assertion method citation\" column in the spreadsheet. Note that only one single assertion criteria (a citation or an electronic document) may be provided for a submission. This assertion criteria will be applied to all interpretations in the submission.  For assertion criteria submitted as a database identifier, an assertion criteria name will be calculated based on the citation details. For assertion criteria submitted as a file, you may provide an assertion criteria name during file upload on your Organization page in Submission Portal.",
+      "properties": {
+        "db": {
+          "type": "string",
+          "enum": [
+            "PubMed",
+            "DOI",
+            "pmc"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "errors": {
+            "pattern": "The identifier value is considered an invalid citation. Please provide only one identifier as the citation for your assertion criteria."
+          },
+          "pattern": "^[^;]+$"
+        },
+        "url": {
+          "type": "string",
+          "description": " The URL for a file that you have already submitted to ClinVar as assertion criteria. If you need to find this URL or if you need to submit new assertion criteria, please go to the \"View/add assertion criteria files\" tab on your Organization page in Submission Portal.",
+          "errors": {
+            "pattern": "The URL for assertion criteria must be the URL provided by ClinVar. If you need to find this URL or if you need to submit new assertion criteria, Please go to the \"View/add assertion criteria files\" tab on your Organization page in Submission Portal."
+          },
+          "pattern": "^https://[qd]?submit.ncbi.nlm.nih.gov/(api/2.0/files|ft/byid)/.*"
+        }
+      },
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "db",
+            "id"
+          ]
+        }
+      ]
+    },
     "behalfOrgID": {
       "type": "integer",
       "description": "Optional.  When submitting on behalf of another organization, this specifies the other organization's ID",
@@ -53,66 +96,11 @@
         "description": "Submissions to ClinVar are considered 'variant-level' (not case-level or patient-specific), because they are focused on the variant or set of variants that was interpreted. One of variantSet, haplotypeSet, haplotypeSingleVariantSet, phaseUnknownSet, distinctChromosomesSet, diplotypeSet, compoundHeterozygoteSet is required to define the variant or set of variants that was interpreted.",
         "required": [
           "recordStatus",
-          "releaseStatus",
           "clinicalSignificance",
           "observedIn",
           "conditionSet"
         ],
         "properties": {
-          "assertionCriteria": {
-            "type": "object",
-            "required": [
-              "method",
-              "citation"
-            ],
-            "properties": {
-              "citation": {
-                "type": "object",
-                "description": "\"Assertion criteria\" refers to documentation of the criteria that your organization uses to classify variants. It can be provided as a database identifier, like a PubMed ID, or a file that is submitted to ClinVar, but not both. Only one document may be provided for assertion criteria. These fields are equivalent to the \"Assertion method citation\" column in the spreadsheet.",
-                "properties": {
-                  "db": {
-                    "type": "string",
-                    "enum": [
-                      "PubMed",
-                      "BookShelf",
-                      "DOI",
-                      "pmc"
-                    ]
-                  },
-                  "id": {
-                    "type": "string"
-                  },
-                  "url": {
-                    "type": "string",
-                    "description": "The URL for a file that you have already submitted to ClinVar as assertion criteria.",
-                    "errors": {
-                      "pattern": "The URL for assertion criteria must be the URL provided by ClinVar. Contact clinvar@ncbi.nlm.nih.gov if you need to find this URL or if you need to submit new assertion criteria."
-                    },
-                    "pattern": "^https://[qd]?submit.ncbi.nlm.nih.gov/ft/byid/.*"
-                  }
-                },
-                "additionalProperties": false,
-                "oneOf": [
-                  {
-                    "required": [
-                      "url"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "db",
-                      "id"
-                    ]
-                  }
-                ]
-              },
-              "method": {
-                "type": "string",
-                "description": "A name for your assertion criteria is required. We'll use the file name if a file is cited so the submitter does not need to provide a separate name. The submitter must provide a name if a database identifier is cited. This field is equivalent to the \"Assertion method\" column in the spreadsheet."
-              }
-            },
-            "additionalProperties": false
-          },
           "clinicalSignificance": {
             "type": "object",
             "description": "Clinical significance",
@@ -424,14 +412,6 @@
               "update"
             ]
           },
-          "releaseStatus": {
-            "type": "string",
-            "description": "\"hold until published\" allows a temporary hold on data being presented publicly. If no value is provided, the default is public.",
-            "enum": [
-              "public",
-              "hold until published"
-            ]
-          },
           "variantSet": {
             "$ref": "#/definitions/variantSetType"
           }
@@ -510,6 +490,14 @@
           }
         }
       }
+    },
+    "clinvarSubmissionReleaseStatus": {
+      "type": "string",
+      "description": "\"hold until published\" allows a temporary hold on submission data being presented publicly. If no value is provided, the default is public.",
+      "enum": [
+        "public",
+        "hold until published"
+      ]
     },
     "submissionName": {
       "type": "string",

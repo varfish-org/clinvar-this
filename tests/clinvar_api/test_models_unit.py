@@ -895,15 +895,22 @@ def test_submission_citation_to_msg():
 
 def test_submission_assertion_criteria_construction():
     models.SubmissionAssertionCriteria(
-        citation=models.SubmissionCitation(),
-        method="some-method",
-    )
+        db=models.CitationDb.PMC,
+        id="PMC123",
+        url="https://example.com",
+    ).to_msg()
+    models.SubmissionAssertionCriteria(
+        db=None,
+        id=None,
+        url=None,
+    ).to_msg()
 
 
 def test_submission_assertion_criteria_to_msg():
     models.SubmissionAssertionCriteria(
-        citation=models.SubmissionCitation(),
-        method="some-method",
+        db=models.CitationDb.PMC,
+        id="PMC123",
+        url="https://example.com",
     ).to_msg()
 
 
@@ -1081,11 +1088,6 @@ def test_submission_clinvar_submission_construction():
             )
         ],
         record_status="record-status",
-        release_status="release-status",
-        assertion_criteria=models.SubmissionAssertionCriteria(
-            citation=models.SubmissionCitation(),
-            method="some-method",
-        ),
         clinvar_accession="some-accession",
         compound_heterozygote_set=models.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -1136,7 +1138,6 @@ def test_submission_clinvar_submission_construction():
             )
         ],
         record_status="record-status",
-        release_status="release-status",
     )
 
 
@@ -1154,11 +1155,6 @@ def test_submission_clinvar_submission_to_msg():
             )
         ],
         record_status="record-status",
-        release_status="release-status",
-        assertion_criteria=models.SubmissionAssertionCriteria(
-            citation=models.SubmissionCitation(),
-            method="some-method",
-        ),
         clinvar_accession="some-accession",
         compound_heterozygote_set=models.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -1209,7 +1205,6 @@ def test_submission_clinvar_submission_to_msg():
             )
         ],
         record_status="record-status",
-        release_status="release-status",
     ).to_msg()
 
 
@@ -1225,6 +1220,7 @@ def test_submission_container_construction():
             ]
         ),
         clinvar_submission=None,
+        clinvar_submission_release_status="release-status",
         submission_name="some-name",
     )
     models.SubmissionContainer(
@@ -1244,9 +1240,9 @@ def test_submission_container_construction():
                     )
                 ],
                 record_status="record-status",
-                release_status="release-status",
             )
         ],
+        clinvar_submission_release_status="release-status",
         submission_name="some-name",
     )
 
@@ -1263,6 +1259,7 @@ def test_submission_container_to_msg():
             ]
         ),
         clinvar_submission=None,
+        clinvar_submission_release_status="release-status",
         submission_name="some-name",
     ).to_msg()
     models.SubmissionContainer(
@@ -1282,8 +1279,8 @@ def test_submission_container_to_msg():
                     )
                 ],
                 record_status="record-status",
-                release_status="release-status",
             )
         ],
+        clinvar_submission_release_status="release-status",
         submission_name="some-name",
     ).to_msg()

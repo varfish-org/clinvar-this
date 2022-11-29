@@ -261,11 +261,16 @@ class SubmissionCitation:
 
 @attrs.define(frozen=True)
 class SubmissionAssertionCriteria:
-    citation: SubmissionCitation
-    method: str
+    db: typing.Optional[CitationDb] = None
+    id: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
     def to_msg(self) -> msg.SubmissionAssertionCriteria:
-        return msg.SubmissionAssertionCriteria(citation=self.citation.to_msg(), method=self.method)
+        return msg.SubmissionAssertionCriteria(
+            db=self.db,
+            id=self.id,
+            url=self.url,
+        )
 
 
 @attrs.define(frozen=True)
@@ -376,8 +381,6 @@ class SubmissionClinvarSubmission:
     condition_set: SubmissionConditionSet
     observed_in: typing.List[SubmissionObservedIn]
     record_status: RecordStatus
-    release_status: ReleaseStatus
-    assertion_criteria: typing.Optional[SubmissionAssertionCriteria] = None
     clinvar_accession: typing.Optional[str] = None
     compound_heterozygote_set: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
     diplotype_set: typing.Optional[SubmissionDiplotypeSet] = None
@@ -392,9 +395,6 @@ class SubmissionClinvarSubmission:
     variant_set: typing.Optional[SubmissionVariantSet] = None
 
     def to_msg(self) -> msg.SubmissionClinvarSubmission:
-        assertion_criteria = None
-        if self.assertion_criteria:
-            assertion_criteria = self.assertion_criteria.to_msg()
         compound_heterozygote_set = None
         if self.compound_heterozygote_set:
             compound_heterozygote_set = self.compound_heterozygote_set.to_msg()
@@ -421,8 +421,6 @@ class SubmissionClinvarSubmission:
             conditionSet=self.condition_set.to_msg(),
             observedIn=[msg_observed_in.to_msg() for msg_observed_in in self.observed_in],
             recordStatus=self.record_status,
-            releaseStatus=self.release_status,
-            assertionCriteria=assertion_criteria,
             clinvarAccession=self.clinvar_accession,
             compoundHeterozygoteSet=compound_heterozygote_set,
             diplotypeSet=diplotype_set,
@@ -438,12 +436,17 @@ class SubmissionClinvarSubmission:
 
 @attrs.define(frozen=True)
 class SubmissionContainer:
+    assertion_criteria: typing.Optional[SubmissionAssertionCriteria] = None
     behalf_org_id: typing.Optional[int] = None
     clinvar_deletion: typing.Optional[SubmissionClinvarDeletion] = None
     clinvar_submission: typing.Optional[typing.List[SubmissionClinvarSubmission]] = None
+    clinvar_submission_release_status: typing.Optional[ReleaseStatus] = None
     submission_name: typing.Optional[str] = None
 
     def to_msg(self) -> msg.SubmissionContainer:
+        assertion_criteria = None
+        if self.assertion_criteria:
+            assertion_criteria = self.assertion_criteria.to_msg()
         clinvar_deletion = None
         if self.clinvar_deletion:
             clinvar_deletion = self.clinvar_deletion.to_msg()
@@ -453,8 +456,10 @@ class SubmissionContainer:
                 msg_submission.to_msg() for msg_submission in self.clinvar_submission
             ]
         return msg.SubmissionContainer(
+            assertionCriteria=assertion_criteria,
             behalfOrgID=self.behalf_org_id,
             clinvarDeletion=clinvar_deletion,
             clinvarSubmission=clinvar_submission,
+            clinvarSubmissionReleaseStatus=self.clinvar_submission_release_status,
             submissionName=self.submission_name,
         )
