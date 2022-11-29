@@ -22,7 +22,6 @@ from clinvar_api.models import (
     ReleaseStatus,
     SubmissionAssertionCriteria,
     SubmissionChromosomeCoordinates,
-    SubmissionCitation,
     SubmissionClinicalSignificance,
     SubmissionClinvarSubmission,
     SubmissionCondition,
@@ -260,6 +259,14 @@ def tsv_records_to_submission_container(
     release_status = batch_metadata.release_status or BATCH_METADATA_DEFAULTS["release_status"]
 
     return SubmissionContainer(
+        assertion_criteria=SubmissionAssertionCriteria(
+            # The following should come from the profile, cf.
+            #
+            # https://github.com/bihealth/clinvar-this/issues/36
+            db=CitationDb.PUBMED,
+            id="25741868",
+        ),
+        clinvar_submission_release_status=release_status,
         clinvar_submission=[
             SubmissionClinvarSubmission(
                 local_id=str(_uuid4_if_falsy()),
@@ -277,17 +284,6 @@ def tsv_records_to_submission_container(
                     mode_of_inheritance=record.inheritance,
                 ),
                 record_status=RecordStatus.NOVEL,
-                release_status=release_status,
-                assertion_criteria=SubmissionAssertionCriteria(
-                    # The following should come from the profile, cf.
-                    #
-                    # https://github.com/bihealth/clinvar-this/issues/36
-                    citation=SubmissionCitation(
-                        db=CitationDb.PUBMED,
-                        id="25741868",
-                    ),
-                    method="ACMG Assertion Criteria",
-                ),
                 variant_set=SubmissionVariantSet(
                     variant=[
                         SubmissionVariant(
@@ -304,7 +300,7 @@ def tsv_records_to_submission_container(
                 ),
             )
             for record in tsv_records
-        ]
+        ],
     )
 
 

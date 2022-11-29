@@ -219,7 +219,6 @@ def test_summary_response_submission_construction():
             msg.SummaryResponseError(input=[], output=msg.SummaryResponseErrorOutput(errors=[]))
         ],
         releaseDate="2022-01-01",
-        releaseStatus="released",
     )
     msg.SummaryResponseSubmission(
         identifiers=msg.SummaryResponseSubmissionIdentifiers(clinvarLocalKey="local-key"),
@@ -227,7 +226,6 @@ def test_summary_response_submission_construction():
         clinvarAccessionVersion=None,
         errors=None,
         releaseDate=None,
-        releaseStatus=None,
     )
 
 
@@ -471,8 +469,9 @@ def test_submission_citation_construction():
 
 def test_submission_assertion_criteria_construction():
     msg.SubmissionAssertionCriteria(
-        citation=msg.SubmissionCitation(),
-        method="some-method",
+        db=msg.CitationDb.PMC,
+        id="PMC123",
+        url="https://example.com",
     )
 
 
@@ -570,11 +569,6 @@ def test_submission_clinvar_submission_construction():
             )
         ],
         recordStatus="record-status",
-        releaseStatus="release-status",
-        assertionCriteria=msg.SubmissionAssertionCriteria(
-            citation=msg.SubmissionCitation(),
-            method="some-method",
-        ),
         clinvarAccession="some-accession",
         compoundHeterozygoteSet=msg.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -625,7 +619,6 @@ def test_submission_clinvar_submission_construction():
             )
         ],
         recordStatus="record-status",
-        releaseStatus="release-status",
     )
 
 
@@ -640,12 +633,18 @@ def test_submission_container_construction():
                 )
             ]
         ),
-        clinvarSubmission=None,
+        clinvarSubmissionReleaseStatus=None,
         submissionName="some-name",
     )
     msg.SubmissionContainer(
+        assertionCriteria=msg.SubmissionAssertionCriteria(
+            db=msg.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
         behalfOrgID=123,
         clinvarDeletion=None,
+        clinvarSubmissionReleaseStatus="release-status",
         clinvarSubmission=[
             msg.SubmissionClinvarSubmission(
                 clinicalSignificance=msg.SubmissionClinicalSignificance(
@@ -660,7 +659,6 @@ def test_submission_container_construction():
                     )
                 ],
                 recordStatus="record-status",
-                releaseStatus="release-status",
             )
         ],
         submissionName="some-name",
