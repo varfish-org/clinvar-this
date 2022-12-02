@@ -6,7 +6,7 @@ import attrs
 import click
 
 from clinvar_this import batches, exceptions
-from clinvar_this.config import Config, load_config, save_config
+from clinvar_this.config import Config, dump_config, load_config, save_config
 
 
 @click.group()
@@ -39,7 +39,7 @@ def config_set(ctx: click.Context, name: str, value: str):
     try:
         config_obj = load_config(profile)
     except exceptions.ConfigFileMissingException:
-        config_obj = Config(auth_token="")  # swallow, will recreate
+        config_obj = Config(profile=profile, auth_token="")  # swallow, will recreate
     allowed_names = ["auth_token"]
     if name not in allowed_names:
         raise click.ClickException(f"Invalid value {name}, must be one of {allowed_names}")
@@ -57,6 +57,15 @@ def config_get(profile: str, name: str):
     """
     config = load_config(profile)
     print(getattr(config, name, "<undefined>"))
+
+
+@config.command("dump")
+def config_dump():
+    """Sub command ``varfish-this config dump``
+
+    Print the configuration file to stdout.
+    """
+    dump_config()
 
 
 @cli.group("batch")
@@ -90,8 +99,9 @@ def batch_import(
     metadata: typing.Optional[typing.Tuple[str, ...]] = None,
 ):
     """Import data for a new or existing batch"""
+    config_obj = load_config(ctx.obj["profile"])
     if not name:
-        name = batches.gen_name()
+        name = batches.gen_name(config_obj)
         print(f"Using name = {name}")
     if not metadata:
         metadata = ()

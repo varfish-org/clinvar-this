@@ -1,6 +1,8 @@
 """Configuration management."""
 
+import datetime
 import pathlib
+import sys
 
 import attrs
 import cattrs
@@ -20,6 +22,9 @@ def _obfuscate_repr(s):
 @attrs.define(frozen=True)
 class Config:
     """Configuration for the ``clinvar-this`` app."""
+
+    #: The name of the profile.
+    profile: str
 
     #: The authentication token to use in the API.
     auth_token: str = attrs.field(repr=_obfuscate_repr)
@@ -48,12 +53,7 @@ def load_config(profile: str = "default") -> Config:
                 f"Problem decoding configuration file {config_path}"
             ) from e
 
-    if profile not in config_dict:
-        raise exceptions.ConfigException(
-            f"Could not find profile {profile} in configuration file {config_path}."
-        )
-
-    return Config(auth_token=config_dict[profile].get("auth_token"))
+    return Config(profile=profile, auth_token=config_dict.get(profile, {}).get("auth_token"))
 
 
 def save_config(config: Config, profile: str = "default"):
@@ -68,8 +68,27 @@ def save_config(config: Config, profile: str = "default"):
     if config_path.exists():
         with config_path.open("rt") as configf:
             all_config = toml.load(configf)
+        # create backup
+        suffix = datetime.datetime.now().strftime("%Y%m%d-%H%M%S.%f")
+        backup_path = config_path.parent / (config_path.name + f"~{suffix}")
+        config_path.rename(backup_path)
+
     all_config.setdefault("default", {})
-    all_config[profile] = cattrs.unstructure(config)
+    all_config[profile] = {k: v for k, v in cattrs.unstructure(config).items() if k != "profile"}
 
     with config_path.open("wt") as configf:
         toml.dump(all_config, configf)
+
+
+def dump_config(outf=None):
+    """Dump configuraiton file to ``outf``."""
+    if not outf:
+        outf = sys.stdout
+
+    config_path = pathlib.Path.home() / ".config" / "clinvar-this" / "config.toml"
+    if config_path.exists():
+        with config_path.open("rt") as configf:
+            print(f"# path: {config_path}", file=outf)
+            print(configf.read(), file=outf)
+    else:
+        print(f"# no file at path: {config_path}", file=outf)
