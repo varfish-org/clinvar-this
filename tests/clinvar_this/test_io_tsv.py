@@ -52,7 +52,7 @@ def test_read_tsv_file():
 
 
 def test_read_tsv_path_bad():
-    with pytest.raises(exceptions.IOException):
+    with pytest.raises(exceptions.InvalidFormat):
         read_tsv(path=DATA_DIR / "example.bad.tsv")
 
 
