@@ -393,6 +393,9 @@ class SubmissionClinvarSubmission:
     local_key: typing.Optional[str] = None
     phase_unknown_set: typing.Optional[SubmissionPhaseUnknownSet] = None
     variant_set: typing.Optional[SubmissionVariantSet] = None
+    #: Additional information from import.  Will not be used for conversion to message but can be converted back to
+    #: external formats.
+    extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
 
     def to_msg(self) -> msg.SubmissionClinvarSubmission:
         compound_heterozygote_set = None

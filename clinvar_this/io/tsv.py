@@ -110,11 +110,17 @@ class TsvRecord:
 
 def _read_tsv_file(inputf: typing.TextIO) -> typing.List[TsvRecord]:
     """Read TSV from the given file."""
+
+    def row_empty(row: typing.List[str]) -> bool:
+        return not row or not [val.strip() for val in row if val.strip()]
+
     reader = csv.reader(inputf, delimiter="\t")
     header = None
 
     result: typing.List[TsvRecord] = []
     for row in reader:
+        if row_empty(row):
+            continue  # skip empty lines
         if header:
             core = row[: len(HEADER)]
             extra = row[len(HEADER) :]
@@ -298,6 +304,7 @@ def tsv_records_to_submission_container(
                         )
                     ]
                 ),
+                extra_data=record.extra_data or None,  # prefer ``None`` over ``{}``
             )
             for record in tsv_records
         ],
@@ -356,7 +363,9 @@ def submission_container_to_tsv_records(
 
         extra_data = {}
         if submission.clinvar_accession:
-            extra_data["clinvar_accession"] = submission.clinvar_accession
+            extra_data["clinvar_accession"] = submission.clinvar_accession  # XXX
+        if submission.extra_data:
+            extra_data.update(submission.extra_data)
 
         return TsvRecord(
             assembly=chromosome_coordinates.assembly,
