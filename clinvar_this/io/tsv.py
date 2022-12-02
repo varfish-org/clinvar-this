@@ -374,7 +374,7 @@ def tsv_records_to_submission_container(
 
     def record_condition(record: TsvRecord) -> SubmissionCondition:
         """Construct ``SubmissionCondition`` from ``TsvRecord``."""
-        if not record.omim:
+        if not record.omim or record.omim == ["not provided"]:
             return SubmissionCondition(name="not provided")
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
