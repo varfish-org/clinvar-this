@@ -1,5 +1,8 @@
+[![CI](https://github.com/bihealth/clinvar-this/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/bihealth/clinvar-this/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/bihealth/clinvar-this/branch/main/graph/badge.svg?token=059T45KAQM)](https://codecov.io/gh/bihealth/clinvar-this)
 [![Documentation Status](https://readthedocs.org/projects/clinvar-this/badge/?version=latest)](https://clinvar-this.readthedocs.io/en/latest/?badge=latest)
+[![Bioconda](https://img.shields.io/conda/dn/bioconda/clinvar-this.svg?label=Bioconda)](https://bioconda.github.io/recipes/clinvar-this/README.html)
+[![Pypi](https://img.shields.io/pypi/pyversions/clinvar-this.svg)](https://pypi.org/project/clinvar-this)
 
 # ClinVar This!
 
