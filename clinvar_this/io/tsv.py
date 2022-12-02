@@ -1,6 +1,8 @@
 """Support for I/O of the minimal TSV format to define submissions."""
 
 import csv
+import datetime
+import enum
 import pathlib
 import typing
 import uuid
@@ -33,54 +35,6 @@ from clinvar_api.models import (
 )
 from clinvar_this import exceptions
 
-#: The expected first header columns.
-HEADER = (
-    "ASSEMBLY",
-    "CHROM",
-    "POS",
-    "REF",
-    "ALT",
-    "OMIM",
-    "MOI",
-    "CLIN_SIG",
-    "KEY",
-)
-
-#: Corresponding keys in ``TsvRecord``.
-KEYS = (
-    "assembly",
-    "chromosome",
-    "pos",
-    "ref",
-    "alt",
-    "omim",
-    "inheritance",
-    "clinical_significance_description",
-    "local_key",
-)
-
-
-def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
-    """Return a new UUID4 if ``value`` is falsy."""
-    if value:
-        return value
-    else:
-        return uuid.uuid4()
-
-
-#: Type converters
-CONV = (
-    str,
-    str,
-    int,
-    str,
-    str,
-    lambda x: x.split(","),
-    lambda x: x or None,
-    str,
-    _uuid4_if_falsy,
-)
-
 
 @attrs.define(frozen=True)
 class TsvRecord:
@@ -106,6 +60,163 @@ class TsvRecord:
     local_key: str
     #: Additional columns
     extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
+    #: Date of last evaluation of clinical significance
+    clinical_significance_date_last_evaluated: typing.Optional[str] = None
+    #: Additional comment of clinical significance
+    clinical_significance_comment: typing.Optional[str] = None
+
+
+def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
+    """Return a new UUID4 if ``value`` is falsy."""
+    if value:
+        return value
+    else:
+        return uuid.uuid4()
+
+
+def _today_if_falsy(value: typing.Optional[str] = None) -> str:
+    """Return string with today's date if ``value`` is falsy."""
+    if value:
+        return value
+    else:
+        return datetime.datetime.now().strftime("%Y-%m-%d")
+
+
+@attrs.frozen
+class HeaderColumn:
+    #: Interpreted header names from TSV
+    header_names: typing.Tuple[str]
+    #: The corresponding key in in ``TsvRecord``
+    key: str
+    #: Whether the header is required
+    required: bool
+    #: Type converter on import
+    converter: typing.Callable[[str], typing.Any]
+    #: Extractor on export
+    extractor: typing.Callable[[TsvRecord], str]
+
+    @property
+    def canonical_name(self):
+        """The first entry in ``header_names`` is the canonical one."""
+        return self.header_names[0]
+
+
+def _enum_value(e: enum.Enum) -> str:
+    return str(e.value)
+
+
+def _enum_value_or_empty(e: typing.Optional[enum.Enum]) -> str:
+    if e:
+        return str(e.value)
+    else:
+        return ""
+
+
+def _join_list(xs: typing.List[typing.Any]) -> str:
+    return ",".join([str(x).strip() for x in xs])
+
+
+#: The header columns for TSV files.
+HEADER_COLUMNS: typing.Tuple[HeaderColumn, ...] = (
+    HeaderColumn(
+        header_names=("ASSEMBLY",),
+        key="assembly",
+        required=True,
+        converter=str,
+        extractor=lambda r: _enum_value(r.assembly),
+    ),
+    HeaderColumn(
+        header_names=("CHROM",),
+        key="chromosome",
+        required=True,
+        converter=str,
+        extractor=lambda r: _enum_value(r.chromosome),
+    ),
+    HeaderColumn(
+        header_names=("POS",),
+        key="pos",
+        required=True,
+        converter=int,
+        extractor=lambda r: str(r.pos),
+    ),
+    HeaderColumn(
+        header_names=("REF",),
+        key="ref",
+        required=True,
+        converter=str,
+        extractor=lambda r: str(r.ref),
+    ),
+    HeaderColumn(
+        header_names=("ALT",),
+        key="alt",
+        required=True,
+        converter=str,
+        extractor=lambda r: str(r.alt),
+    ),
+    HeaderColumn(
+        header_names=("OMIM",),
+        key="omim",
+        required=True,
+        converter=lambda x: x.split(","),
+        extractor=lambda r: _join_list(r.omim),
+    ),
+    HeaderColumn(
+        header_names=("MOI",),
+        key="inheritance",
+        required=True,
+        converter=lambda x: x or None,
+        extractor=lambda r: _enum_value_or_empty(r.inheritance),
+    ),
+    HeaderColumn(
+        header_names=("CLIN_SIG",),
+        key="clinical_significance_description",
+        required=True,
+        converter=str,
+        extractor=lambda r: str(r.clinical_significance_description),
+    ),
+    HeaderColumn(
+        header_names=("CLIN_EVAL",),
+        key="clinical_significance_date_last_evaluated",
+        required=False,
+        converter=_today_if_falsy,
+        extractor=lambda r: str(r.clinical_significance_date_last_evaluated or ""),
+    ),
+    HeaderColumn(
+        header_names=("CLIN_COMMENT",),
+        key="clinical_significance_comment",
+        required=False,
+        converter=lambda x: x or None,
+        extractor=lambda r: str(r.clinical_significance_comment or ""),
+    ),
+    HeaderColumn(
+        header_names=("KEY",),
+        key="local_key",
+        required=False,
+        converter=_uuid4_if_falsy,
+        extractor=lambda r: str(r.local_key),
+    ),
+)
+
+
+def _map_header(header: typing.List[str]) -> typing.List[typing.Optional[HeaderColumn]]:
+    """Map header row from TSV file to header columns
+
+    Map to ``None`` for extra data columns.  Raises if a required column is missing.
+    """
+    seen_required = {column.canonical_name: False for column in HEADER_COLUMNS if column.required}
+    by_name = {name: column for column in HEADER_COLUMNS for name in column.header_names}
+    result = []
+    for entry in header:
+        column = by_name.get(entry)
+        if column:
+            seen_required[column.canonical_name] = True
+        result.append(column)
+
+    missing_columns = [name for name, seen in seen_required.items() if not seen]
+    if missing_columns:
+        raise exceptions.InvalidFormat(f"Missing columns in TSV file: {missing_columns}")
+
+    return result
 
 
 def _read_tsv_file(inputf: typing.TextIO) -> typing.List[TsvRecord]:
@@ -115,26 +226,28 @@ def _read_tsv_file(inputf: typing.TextIO) -> typing.List[TsvRecord]:
         return not row or not [val.strip() for val in row if val.strip()]
 
     reader = csv.reader(inputf, delimiter="\t")
-    header = None
+    header_row = None
+    headers = None
 
     result: typing.List[TsvRecord] = []
-    for row in reader:
+    for lineno, row in enumerate(reader):
         if row_empty(row):
             continue  # skip empty lines
-        if header:
-            core = row[: len(HEADER)]
-            extra = row[len(HEADER) :]
-            extra_header = header[len(HEADER) :]
-            raw_record = {key: conv(data) for key, conv, data in zip(KEYS, CONV, core)}
+        if header_row:
+            raw_record = {}
+            extra_data = {}
+            if len(row) != len(header_row):
+                raise exceptions.InvalidFormat(f"Wrong number of rows in line {lineno+1}")
+            for value, header, header_name in zip(row, headers, header_row):
+                if header:
+                    raw_record[header.key] = header.converter(value)
+                else:
+                    extra_data[header_name] = value
             record = cattrs.structure(raw_record, TsvRecord)
-            result.append(attrs.evolve(record, extra_data=dict(zip(extra_header, extra))))
+            result.append(attrs.evolve(record, extra_data=extra_data))
         else:
-            header = row
-            prefix = tuple(header[: len(HEADER)])
-            if prefix != HEADER:
-                raise exceptions.IOException(
-                    f"Expected header to start with {HEADER} but was {prefix}"
-                )
+            header_row = row
+            headers = _map_header(row)
     return result
 
 
@@ -162,24 +275,11 @@ def _write_tsv_file(tsv_records: typing.Iterable[TsvRecord], outputf: typing.Tex
                 if key not in extra_keys:
                     extra_keys.append(key)
     writer = csv.writer(outputf, delimiter="\t")
-    writer.writerow(list(HEADER) + extra_keys)
+    writer.writerow([h.canonical_name for h in HEADER_COLUMNS] + extra_keys)
     for record in tsv_records:
-        row = list(
-            map(
-                str,
-                [
-                    record.assembly.value,
-                    record.chromosome.value,
-                    record.pos,
-                    record.ref,
-                    record.alt,
-                    ",".join(record.omim),
-                    "" if not record.inheritance else record.inheritance.value,
-                    record.clinical_significance_description.value,
-                    record.local_key,
-                ],
-            )
-        ) + [record.extra_data.get(extra_key, "") for extra_key in extra_keys]
+        row = [hc.extractor(record) for hc in HEADER_COLUMNS] + [
+            record.extra_data.get(extra_key, "") for extra_key in extra_keys
+        ]
         writer.writerow(row)
 
 
@@ -378,6 +478,9 @@ def submission_container_to_tsv_records(
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             local_key=submission.local_key or "",
             extra_data=extra_data,
+            clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
+            or "",
+            clinical_significance_comment=submission.clinical_significance.comment or "",
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []

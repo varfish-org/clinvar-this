@@ -111,7 +111,7 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
     existing_payloads = list((SHARE_DIR / config.profile / name).glob("payload.*.json"))
     if existing_payloads:
         logger.info("Loading existing payload for later merging with new one")
-        previous_submission_container = _load_latest_payload(name)
+        previous_submission_container = _load_latest_payload(config.profile, name)
     else:
         previous_submission_container = None
     if path.endswith(".tsv") or path.endswith(".txt"):
@@ -132,8 +132,8 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
-def _load_latest_payload(name):
-    submission_path = SHARE_DIR / name
+def _load_latest_payload(profile: str, name: str):
+    submission_path = SHARE_DIR / profile / name
     payload_paths = list(sorted(submission_path.glob("payload.*.json")))
     if not payload_paths:
         raise exceptions.ClinvarThisException(f"Found no payload JSON file at {submission_path}")
@@ -152,7 +152,7 @@ def export_(config: config.Config, name: str, path: str, force: bool = False):
             f"File at output path {path} already exists. Use --force to overwrite."
         )
     if path.endswith(".tsv") or path.endswith(".txt"):
-        payload = _load_latest_payload(name)
+        payload = _load_latest_payload(config.profile, name)
         tsv_records = tsv.submission_container_to_tsv_records(payload)
         tsv.write_tsv(tsv_records, path=path)
     else:
@@ -174,7 +174,7 @@ def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_r
         client.Config(auth_token=config.auth_token, use_testing=use_testing, use_dryrun=dry_run)
     )
 
-    payload = _load_latest_payload(name)
+    payload = _load_latest_payload(config.profile, name)
 
     logger.info("Initiating submission to ClinVar API")
     client_res = client_obj.submit_data(payload)
@@ -221,7 +221,7 @@ def _retrieve_store_response(
             ] = submission.identifiers.clinvar_accession
     logger.debug("Update map is %s", local_key_to_accession)
     logger.debug("Loading latest payload")
-    payload = _load_latest_payload(name)
+    payload = _load_latest_payload(config.profile, name)
     logger.debug("Updating local payload")
     clinvar_submission = [
         evolve(
