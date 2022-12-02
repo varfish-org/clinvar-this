@@ -196,9 +196,10 @@ def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_r
     )
     logger.info(
         (
-            "The next step is to run ``clinvar-this batch retrieve %s`` and wait until you get a "
+            "The next step is to run ``clinvar-this %sbatch retrieve %s`` and wait until you get a "
             "final success or error response"
         ),
+        f"--profile {config.profile}" if config.profile != "default" else "",
         name,
     )
     logger.info("All done. Have a nice day!")
