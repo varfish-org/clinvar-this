@@ -87,6 +87,7 @@ def _merge_submission_container(
             base,
             condition_set=patch.condition_set,
             clinical_significance=patch.clinical_significance,
+            observed_in=patch.observed_in,
         )
 
     patch_clinvar_submission = {

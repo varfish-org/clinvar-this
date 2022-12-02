@@ -4,6 +4,7 @@ import csv
 import datetime
 import enum
 import pathlib
+import re
 import typing
 import uuid
 
@@ -32,6 +33,11 @@ from clinvar_api.models import (
     SubmissionObservedIn,
     SubmissionVariant,
     SubmissionVariantSet,
+)
+from clinvar_api.models.sub_payload import SubmissionClinicalFeature
+from clinvar_api.msg.sub_payload import (
+    ClinicalFeaturesAffectedStatus,
+    ClinicalFeaturesDb,
 )
 from clinvar_this import exceptions
 
@@ -64,22 +70,8 @@ class TsvRecord:
     clinical_significance_date_last_evaluated: typing.Optional[str] = None
     #: Additional comment of clinical significance
     clinical_significance_comment: typing.Optional[str] = None
-
-
-def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
-    """Return a new UUID4 if ``value`` is falsy."""
-    if value:
-        return value
-    else:
-        return uuid.uuid4()
-
-
-def _today_if_falsy(value: typing.Optional[str] = None) -> str:
-    """Return string with today's date if ``value`` is falsy."""
-    if value:
-        return value
-    else:
-        return datetime.datetime.now().strftime("%Y-%m-%d")
+    #: HPO terms for clinical features
+    hpo_terms: typing.Optional[typing.List[str]] = None
 
 
 @attrs.frozen
@@ -99,6 +91,27 @@ class HeaderColumn:
     def canonical_name(self):
         """The first entry in ``header_names`` is the canonical one."""
         return self.header_names[0]
+
+
+def _str_list(val: str, pat: str = r"[;,]") -> typing.List[str]:
+    """Split a string and return list of trimmed entries"""
+    return [x.strip() for x in re.split(pat, val)]
+
+
+def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
+    """Return a new UUID4 if ``value`` is falsy."""
+    if value:
+        return value
+    else:
+        return uuid.uuid4()
+
+
+def _today_if_falsy(value: typing.Optional[str] = None) -> str:
+    """Return string with today's date if ``value`` is falsy."""
+    if value:
+        return value
+    else:
+        return datetime.datetime.now().strftime("%Y-%m-%d")
 
 
 def _enum_value(e: enum.Enum) -> str:
@@ -157,7 +170,7 @@ HEADER_COLUMNS: typing.Tuple[HeaderColumn, ...] = (
         header_names=("OMIM",),
         key="omim",
         required=True,
-        converter=lambda x: x.split(","),
+        converter=_str_list,
         extractor=lambda r: _join_list(r.omim),
     ),
     HeaderColumn(
@@ -194,6 +207,13 @@ HEADER_COLUMNS: typing.Tuple[HeaderColumn, ...] = (
         required=False,
         converter=_uuid4_if_falsy,
         extractor=lambda r: str(r.local_key),
+    ),
+    HeaderColumn(
+        header_names=("HPO",),
+        key="hpo_terms",
+        required=False,
+        converter=_str_list,
+        extractor=lambda r: _join_list(r.omim),
     ),
 )
 
@@ -352,11 +372,28 @@ def tsv_records_to_submission_container(
 ) -> SubmissionContainer:
     """Convert TSV records to submission container data structure."""
 
-    def record_condition(record: TsvRecord):
+    def record_condition(record: TsvRecord) -> SubmissionCondition:
+        """Construct ``SubmissionCondition`` from ``TsvRecord``."""
         if not record.omim:
             return SubmissionCondition(name="not provided")
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
+
+    def record_clinical_features(
+        record: TsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionClinicalFeature]]:
+        """Construct ``typing.Optional[typing.List[SubmissionClinicalFeature]]`` from ``TsvRecord``."""
+        if record.hpo_terms:
+            return [
+                SubmissionClinicalFeature(
+                    clinical_features_affected_status=ClinicalFeaturesAffectedStatus.PRESENT,
+                    db=ClinicalFeaturesDb.HP,
+                    id=hpo_term,
+                )
+                for hpo_term in record.hpo_terms
+            ]
+        else:
+            return None
 
     allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["batch_metadata"]
     collection_method = (
@@ -383,6 +420,7 @@ def tsv_records_to_submission_container(
                         affected_status=AffectedStatus.YES,
                         allele_origin=allele_origin,
                         collection_method=collection_method,
+                        clinical_features=record_clinical_features(record),
                     )
                 ],
                 clinical_significance=SubmissionClinicalSignificance(
