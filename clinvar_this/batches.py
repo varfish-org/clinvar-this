@@ -214,12 +214,19 @@ def _retrieve_store_response(
     logger.debug("Updating local payload from retrieve status response ...")
     logger.debug("Obtaining local key to accession map")
     local_key_to_accession = {}
+    local_id_to_error = {}
     for summary_response in status_result.summaries.values():
         submissions = summary_response.submissions or []
         for submission in submissions:
             local_key_to_accession[
                 submission.identifiers.local_key
             ] = submission.identifiers.clinvar_accession
+            errors = [
+                error_inner.user_message
+                for error_outer in (submission.errors or [])
+                for error_inner in (error_outer.output.errors or [])
+            ]
+            local_id_to_error[submission.identifiers.local_id] = "; ".join(errors)
     logger.debug("Update map is %s", local_key_to_accession)
     logger.debug("Loading latest payload")
     payload = _load_latest_payload(config.profile, name)
@@ -233,6 +240,10 @@ def _retrieve_store_response(
             record_status=models.RecordStatus.UPDATE
             if submission.local_key in local_key_to_accession
             else models.RecordStatus.NOVEL,
+            extra_data={
+                **(submission.extra_data or {}),
+                "error_msg": local_id_to_error.get(submission.local_id, ""),
+            },
         )
         for submission in payload.clinvar_submission
     ]
