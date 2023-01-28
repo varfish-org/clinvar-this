@@ -10,9 +10,19 @@ ClinVar Submission via API Made Easy
 
 - Free software: MIT license
 - Documentation: https://clinvar-this.readthedocs.io/en/latest/
+- Discussion Forum: https://github.com/bihealth/clinvar-this/discussions
+- Bug Reports: https://github.com/bihealth/clinvar-this/issues
 
 ## Getting Started
 
 ![The clinvar-this workflow](docs/figures/clinvar-this-workflow.png)
 
-See ["Getting Started" in the documentation](https://clinvar-this.readthedocs.io/en/latest/getting_started.html)
+## Documentation
+
+You can find comprehensive documentation here:
+
+- https://clinvar-this.readthedocs.io/en/latest/
+
+A good place to start is:
+
+- ["Getting Started" in the documentation](https://clinvar-this.readthedocs.io/en/latest/getting_started.html)
