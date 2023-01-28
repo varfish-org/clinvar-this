@@ -123,22 +123,22 @@ def batch_export(
 ):
     """Export batch data to a given file"""
     config_obj = load_config(ctx.obj["profile"])
-    batches.export_(config_obj, name, path, force)
+    batches.export(config_obj, name, path, force)
 
 
-@batch.command("update")
+@batch.command("update-metadata")
 @click.argument("name")
 @click.argument("metadata", nargs=-1)
 @click.pass_context
-def batch_update(
+def batch_update_metadata(
     ctx: click.Context, name: str, metadata: typing.Optional[typing.Tuple[str, ...]] = None
 ):
-    """Update batch data without importing files"""
+    """Update batch metadata without importing files"""
     if not metadata:
         metadata = ()
     print(metadata)
     config_obj = load_config(ctx.obj["profile"])
-    batches.update(config_obj, name, metadata)
+    batches.update_metadata(config_obj, name, metadata)
 
 
 @batch.command("submit")

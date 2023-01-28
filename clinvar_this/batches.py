@@ -146,7 +146,7 @@ def _load_latest_payload(profile: str, name: str):
     return common.CONVERTER.structure(payload_unstructured, models.SubmissionContainer)
 
 
-def export_(config: config.Config, name: str, path: str, force: bool = False):
+def export(config: config.Config, name: str, path: str, force: bool = False):
     """Export the batch with the given ``name`` to the file at ``path``."""
     if pathlib.Path(path).exists() and not force:
         raise exceptions.IOException(
@@ -160,7 +160,7 @@ def export_(config: config.Config, name: str, path: str, force: bool = False):
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
-def update(config: config.Config, name: str, metadata: typing.Tuple[str, ...]):
+def update_metadata(config: config.Config, name: str, metadata: typing.Tuple[str, ...]):
     """Update the batch' meta data."""
     batch_metadata = tsv.batch_metadata_from_mapping(metadata, use_defaults=False)
     _ = batch_metadata
