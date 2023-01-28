@@ -21,6 +21,7 @@ Otherwise, the following are good entry points:
     api_vs_cli
     usage_library
     usage_cli
+    file_formats
     limitations
 
 .. toctree::
