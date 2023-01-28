@@ -35,9 +35,9 @@ Resolution
     You can either submit a revision of your interpretation, (or, e.g., extend the "observed in" information), or leave it as is.
     Revisions are coded by providing the ``clinvar_accession`` header in the TSV file.
 
-==================================
+----------------------------------
 Submission Names Cannot be Changed
-==================================
+----------------------------------
 
 Message
     This update changes the description of the variant for ``<SCV>``, which is generally not allowed on a ClinVar record.
