@@ -1,6 +1,12 @@
 *~
 .*.sw?
 
+# Data files
+/*.tsv
+
+# WSL
+*:Zone.Identifier
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

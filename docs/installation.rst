@@ -41,7 +41,7 @@ Or install the package in your current environment:
 
 
 ------------
-From sources
+From Sources
 ------------
 
 The sources for ClinVar This! can be downloaded from the `Github repo <https://github.com/bihealth/clinvar-this>`__.
@@ -50,4 +50,4 @@ Clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/bihealth/clinvar-this
+    $ git clone https://github.com/bihealth/clinvar-this.git
