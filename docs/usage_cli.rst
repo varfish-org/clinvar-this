@@ -18,6 +18,29 @@ After installation, you can run ``clinvar-this``:
       -h, --help  show this help message and exit
       --verbose   Enable more verbose output
 
+--------
+Workflow
+--------
+
+The following figure shows the overall workflow when using clinvar-this.
+
+.. figure:: figures/clinvar-this-workflow.png
+   :alt: clinvar-this workflow
+
+- You start out by creating a file for import.
+- You then import the data into a local repository batch with ``clinvar-this batch import``.
+- You can then post the data to the ClinVar API with ``clinvar-this batch submit``.
+- The server will process your data in the background.
+  You can query the current result with ``clinvar-this batch retrieve``.
+  If this does not return yet, try again.
+- Otherwise, you can export the current state of the batch with ``clinvar-this batch export`` to a TSV file.
+- When there are errors, fix the variants to be submitted and re-submit with ``clinvar-this batch submit``.
+- If everything runs to your liking, read out your ClinVar SCV identifier.
+
+Note that the NCBI ClinVar server process runs the checks in several steps.
+If an earlier step fails, you will not see the results of later checks.
+Also, when processing runs longer this meansn that more steps succeeded so waiting longer is a good thing.
+
 -------------
 Configuration
 -------------
