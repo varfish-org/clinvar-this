@@ -4,6 +4,10 @@ ClinVar This!
 
 ``clinvar-this`` is a Python-based software for the easy submission of variants to ClinVar.
 
+
+.. figure:: figures/clinvar-this-workflow.png
+   :alt: clinvar-this workflow
+
 When reading this online, you can use the navigation bar to the left to find your way around.
 Otherwise, the following are good entry points:
 

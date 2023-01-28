@@ -155,8 +155,10 @@ Submission Updates
 If you provided a ``clinvar_accession`` then clinvar-this will submit an update.
 Such a variant must already exist from your organisation for the given condition (again, OMIM codde or "not provided").
 
-Deletions
-=========
+Record Removals
+===============
 
-Deletions have to take another path.
-You have to create a deletion TSV file as documented in :ref:`file_formats` (you only have to provide the SCV identifier to delete for and a free-text comment), import it into a new clinvar-this batch and submit it.
+Removals have to take another path.
+You have to create a removal TSV file as documented in :ref:`file_formats` (you only have to provide the SCV identifier to delete for and a free-text comment), import it into a new clinvar-this batch and submit it.
+
+Note that ClinVar refers to this as "deletion" but we refer as this to "removal" to have one less term collision to the meaning of "sequence deletion".
