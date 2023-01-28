@@ -31,6 +31,11 @@ def test_load_config_success(fs):
     assert str(config_obj) == "Config(profile='default', auth_token='MYTOK**')"
 
 
+def test_load_config_fail_missing_config(fs):
+    with pytest.raises(exceptions.ConfigFileMissingException):
+        config.load_config(profile="default")
+
+
 def test_load_config_fail_invalid_toml(fs):
     fake_pathlib = FakePathlibModule(fs)
 
@@ -74,3 +79,17 @@ def test_save_config_overwrite(fs):
             config_str = inputf.read()
 
     assert config_str == CONFIG_CONTENT.replace("MYTOKEN", "xxx")
+
+
+def test_dump_config_success(fs_config, capsys):
+    config.dump_config()
+
+    captured = capsys.readouterr()
+    assert "fake" in captured.out
+
+
+def test_dump_config_no_file(fs, capsys):
+    config.dump_config()
+
+    captured = capsys.readouterr()
+    assert "# no file at" in captured.out
