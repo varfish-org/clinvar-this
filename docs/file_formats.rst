@@ -37,3 +37,51 @@ The following headers are optional:
 
 Any further header will be imported into the local repository into an ``extra_data`` field.
 Note that the error returned by ClinVar for your variant will be writen to a ``error_msg`` field.
+
+-------------------------------
+Structural Variant TSV (Native)
+-------------------------------
+
+TBD
+
+------------
+Deletion TSV
+------------
+
+The following headers are required.
+Clinvar-this will recognize the TSV file format based on these headers.
+
+- ``SCV`` - the ClinVar accession to be deleted
+- ``COMMENT`` - a free text comment to give to ClinVar as a reason
+
+------------
+Phenopackets
+------------
+
+TBD
+
+-----------------
+Small Variant VCF
+-----------------
+
+Note that you cannot mix small and structural variants in one VCF (yet).
+
+TBD
+
+----------------------
+Structural Variant VCF
+----------------------
+
+Note that you cannot mix small and structural variants in one VCF (yet).
+
+TBD
+
+-----------------------
+ClinVar Excel Templates
+-----------------------
+
+You already have a process for filling out these ClinVar Excel tables?
+You have one filled out already and not submitted before discovering clinvar-this?
+This is for you.
+
+TBD

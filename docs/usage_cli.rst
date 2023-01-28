@@ -41,6 +41,37 @@ Note that the NCBI ClinVar server process runs the checks in several steps.
 If an earlier step fails, you will not see the results of later checks.
 Also, when processing runs longer this meansn that more steps succeeded so waiting longer is a good thing.
 
+-------------------
+ClinVar Terminology
+-------------------
+
+ClinVar is an immensely useful and large resource.
+The most useful upstream documentation by NCBI ClinVar includes:
+
+- `ClinVar Identifiers Documentation <https://www.ncbi.nlm.nih.gov/clinvar/docs/identifiers/>`__
+- `ClinVar FAQ <https://www.ncbi.nlm.nih.gov/clinvar/docs/faq/>`__
+- `ClinVar Submission FAQ <https://www.ncbi.nlm.nih.gov/clinvar/docs/faq_submitters/>`__
+
+A key concept in ClinVar is that it is **variant-centric**.
+That is, if you observe one variant in multiple samples (for the same condition! which may be an OMIM identifier or "not reported"!) it is one ClinVar record and ClinVar consider this record from your organisation as one submission.
+For your submission, you obtain a so-called SCV identifier and this is what you need for publications etc.
+ClinVar has these nice star ratings and these do not incorporate information on how many samples you report but only whether or not you apply formal assertion criteria such as the ACMG criteria or a local formal list of criteria.
+By yourself, you can only generate one star by providing an assertion criteria.
+
+ClinVar then aggregates all submissions by all organisations for a given variant in a given condition (as explained above, yes the exlamation marks were intentional) into a reference record with an RCV record.
+Aggregation is based on conflicting interpretations and whether the submitters applied formal criteria (cf. `nudging <https://en.wikipedia.org/wiki/Nudge_theory>`__).
+In the case of multiple submitters providing conflict-free interpretations and assertion criteria, two stars may be gained.
+Submitters that don't provide assertion criteria are overruled by those who do.
+
+ClinVar will further aggreate all reference records into a variant record with a VCV identifier.
+For example, for BRCA variants all of these different tumor-related disorders will be thrown together.
+
+Note that nothing in the above talked about multiple variants.
+You can *submit* them together via the *NCBI submission API* but each of these variants will be one **NCBI ClinVar submission** from your organisation.
+The software package clinvar-this (completely indepent of NCBI and developed on the other side of the atlantic) calls a list of variants to be submitted (as one submission each) a **batch**.
+
+All of this hopefully leaves you less confused as before.
+
 -------------
 Configuration
 -------------
@@ -100,4 +131,32 @@ Otherwise, a name will be created for you based on the current date and time.
 File Formats
 ------------
 
-See the dedicatd section :ref:`file_formats`.
+See the dedicated section :ref:`file_formats`.
+
+----------------
+Submission Types
+----------------
+
+The following is written with the native TSV file format in mind.
+This translates to the other known file formats in the case that the :ref:`file_formats` describes the relevant columns/information.
+
+Novel Submissions
+=================
+
+If your sample sheet does not have a ``clinvar_accession`` column or it is empty for your variant, the variant will be submitted as novel.
+ClinVar will check whether your organisation has submitted this variant before for the same condition (OMIM code or "not provided") and report back errors if one such record exists.
+
+clinvar-this will write the SCV from the clinvar processing results to its local repository.
+On re-submission of the batch after processing and result retrieval, the variant will be submitted as an update.
+
+Submission Updates
+==================
+
+If you provided a ``clinvar_accession`` then clinvar-this will submit an update.
+Such a variant must already exist from your organisation for the given condition (again, OMIM codde or "not provided").
+
+Deletions
+=========
+
+Deletions have to take another path.
+You have to create a deletion TSV file as documented in :ref:`file_formats` (you only have to provide the SCV identifier to delete for and a free-text comment), import it into a new clinvar-this batch and submit it.
