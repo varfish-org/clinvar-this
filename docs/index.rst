@@ -23,6 +23,7 @@ Otherwise, the following are good entry points:
     usage_cli
     file_formats
     limitations
+    common_errors
 
 .. toctree::
     :hidden:

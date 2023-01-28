@@ -13,4 +13,6 @@ ClinVar Submission via API Made Easy
 
 ## Getting Started
 
+![The clinvar-this workflow](docs/figures/clinvar-this-workflow.png)
+
 See ["Getting Started" in the documentation](https://clinvar-this.readthedocs.io/en/latest/getting_started.html)

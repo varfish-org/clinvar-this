@@ -26,7 +26,9 @@ Clinvar-this will recognize the TSV file format based on these headers.
 
 The following headers are optional:
 
-- ``CLIN_EVAL`` - optional, date of late clinical evaluation, e.g. ``2022-12-02``, leave empty to fill with the date of today
+- ``clinvar_accession`` - ClinVar SCV accession if any exists yet.
+  When this is set then this variant will be updated in the batch rather than added as a novel variant.
+- ``CLIN_EVAL`` - date of late clinical evaluation, e.g. ``2022-12-02``, leave empty to fill with the date of today
 - ``CLIN_COMMENT`` - a comment on the clinical significance, e.g., ``ACMG Class IV; PS3, PM2_sup, PP4``
 - ``KEY`` - a local key to identify the variant/condition pair.
   Filled automatically with a UUID if missing, recommeded to leave empty.
