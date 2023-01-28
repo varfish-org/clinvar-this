@@ -21,7 +21,7 @@ Otherwise, the following are good entry points:
     api_vs_cli
     usage_library
     usage_cli
-    known_issues
+    limitations
 
 .. toctree::
     :hidden:

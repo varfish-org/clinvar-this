@@ -4,6 +4,7 @@
 Getting Started
 ===============
 
+This section describes how to get started with clinvar-this.
 You will need some experience with VCF files, ClinVar, and the Linux/Mac command line.
 
 ----------------------
