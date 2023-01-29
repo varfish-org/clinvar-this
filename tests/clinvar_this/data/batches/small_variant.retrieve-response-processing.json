@@ -1,0 +1,25 @@
+{
+  "status": {
+    "actions": [
+      {
+        "id": "SUB000fake-1",
+        "responses": [
+          {
+            "status": "processing",
+            "files": [],
+            "message": {
+              "error_code": null,
+              "severity": "info",
+              "text": "Your ClinVar submission processing status is \"In processing\"."
+            },
+            "objects": []
+          }
+        ],
+        "status": "processing",
+        "target_db": "clinvar",
+        "updated": "2022-11-18T16:25:05+01:00"
+      }
+    ]
+  },
+  "summaries": {}
+}
