@@ -63,7 +63,7 @@ class TsvRecord:
     #: Clinical significance
     clinical_significance_description: ClinicalSignificanceDescription
     #: Local identifier of variant-condition pair.
-    local_key: str
+    local_key: typing.Optional[str] = None
     #: Additional columns
     extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
     #: Date of last evaluation of clinical significance

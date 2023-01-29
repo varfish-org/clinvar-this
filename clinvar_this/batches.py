@@ -62,6 +62,7 @@ def _write_payload(submission_container: models.SubmissionContainer, profile: st
     payload_json = json.dumps(common.CONVERTER.unstructure(submission_container), indent=2)
     with payload_path.open("wt") as outputf:
         outputf.write(payload_json)
+        outputf.write("\n")
 
 
 def _merge_submission_container(
@@ -114,6 +115,7 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         logger.info("Loading existing payload for later merging with new one")
         previous_submission_container = _load_latest_payload(config.profile, name)
     else:
+        logger.info("Creating new payload only")
         previous_submission_container = None
     if path.endswith(".tsv") or path.endswith(".txt"):
         tsv_records = tsv.read_tsv(path=path)

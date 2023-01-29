@@ -11,7 +11,7 @@ from clinvar_api.msg import (
 from clinvar_this import exceptions
 from clinvar_this.io.tsv import TsvRecord, read_tsv
 
-DATA_DIR = pathlib.Path(__file__).parent / "data"
+DATA_DIR = pathlib.Path(__file__).parent / "data/io_tsv"
 
 
 def test_read_tsv_path():

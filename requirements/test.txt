@@ -6,6 +6,7 @@ flake8 >=5.0.4, <6.0
 pytest
 pytest-cov
 pyfakefs
+freezegun
 
 requests-mock >=1.10.0, <2.0
 
