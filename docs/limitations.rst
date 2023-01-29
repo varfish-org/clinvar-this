@@ -1,4 +1,4 @@
-.. _limitatinos:
+.. _limitations:
 
 ===========
 Limitations
