@@ -131,14 +131,14 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         else:
             submission_container = new_submission_container
         _write_payload(submission_container, config.profile, name)
-    else:
+    else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
 def _load_latest_payload(profile: str, name: str):
     submission_path = SHARE_DIR / profile / name
     payload_paths = list(sorted(submission_path.glob("payload.*.json")))
-    if not payload_paths:
+    if not payload_paths:  # pragma: no cover
         raise exceptions.ClinvarThisException(f"Found no payload JSON file at {submission_path}")
 
     payload_path = submission_path / payload_paths[-1]
@@ -158,7 +158,7 @@ def export(config: config.Config, name: str, path: str, force: bool = False):
         payload = _load_latest_payload(config.profile, name)
         tsv_records = tsv.submission_container_to_tsv_records(payload)
         tsv.write_tsv(tsv_records, path=path)
-    else:
+    else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
