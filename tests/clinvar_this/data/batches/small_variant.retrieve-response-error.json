@@ -1,0 +1,173 @@
+{
+  "status": {
+    "actions": [
+      {
+        "id": "SUB000fake-1",
+        "responses": [
+          {
+            "status": "error",
+            "files": [
+              {
+                "url": "https://submit.ncbi.nlm.nih.gov/api/2.0/files/fake/subfake-summary-report.json/?format=attachment"
+              }
+            ],
+            "message": {
+              "error_code": "1",
+              "severity": "error",
+              "text": "Your ClinVar submission processing status is \"Partial success\". Please find the details in the file referenced by actions[0].responses[0].files[0].url."
+            },
+            "objects": []
+          }
+        ],
+        "status": "error",
+        "target_db": "clinvar",
+        "updated": "2022-12-02T10:18:04+01:00"
+      }
+    ]
+  },
+  "summaries": {
+    "https://submit.ncbi.nlm.nih.gov/api/2.0/files/fake/subfake-summary-report.json/?format=attachment": {
+      "batch_processing_status": "Partial success",
+      "batch_release_status": "Not released",
+      "submission_date": "2022-12-02",
+      "submission_name": "SUB000fake",
+      "total_count": 2,
+      "total_errors": 1,
+      "total_public": 0,
+      "total_success": 1,
+      "deletions": null,
+      "submissions": [
+        {
+          "identifiers": {
+            "clinvar_local_key": "fake",
+            "clinvar_accession": null,
+            "local_id": "fake",
+            "local_key": null
+          },
+          "processing_status": "Error",
+          "clinvar_accession_version": null,
+          "errors": [
+            {
+              "input": [
+                {
+                  "value": "Variation",
+                  "field": "Variant.type"
+                },
+                {
+                  "value": null,
+                  "field": "HGVS.accession"
+                },
+                {
+                  "value": null,
+                  "field": "HGVS.change"
+                },
+                {
+                  "value": null,
+                  "field": "HGVS.hgvs"
+                },
+                {
+                  "value": "GRCh37",
+                  "field": "SequenceLocation.assembly"
+                },
+                {
+                  "value": "11",
+                  "field": "SequenceLocation.chr"
+                },
+                {
+                  "value": "123",
+                  "field": "SequenceLocation.start"
+                },
+                {
+                  "value": "1223",
+                  "field": "SequenceLocation.stop"
+                },
+                {
+                  "value": "T",
+                  "field": "SequenceLocation.reference_allele"
+                },
+                {
+                  "value": "A",
+                  "field": "SequenceLocation.alternate_allele"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.outer_start"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.inner_start"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.inner_stop"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.outer_stop"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.variant_length"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.copy_number"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.reference_copy_number"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.breakpoint1"
+                },
+                {
+                  "value": null,
+                  "field": "SequenceLocation.breakpoint2"
+                },
+                {
+                  "value": null,
+                  "field": "Condition.name"
+                },
+                {
+                  "value": "OMIM",
+                  "field": "ConditionID.type"
+                },
+                {
+                  "value": "12345",
+                  "field": "ConditionID.value"
+                }
+              ],
+              "output": {
+                "errors": [
+                  {
+                    "user_message": "This record is submitted as novel but it should be submitted as an update, including the SCV accession, because your organization previously submitted SCVfake for the same variant and condition."
+                  }
+                ]
+              }
+            }
+          ],
+          "release_date": null,
+          "release_status": null
+        },
+        {
+          "identifiers": {
+            "clinvar_local_key": "fake",
+            "clinvar_accession": "SCVfake",
+            "local_id": "fake",
+            "local_key": "fake"
+          },
+          "processing_status": "Success",
+          "clinvar_accession_version": null,
+          "errors": null,
+          "release_date": null,
+          "release_status": null
+        }
+      ],
+      "total_delete_count": null,
+      "total_deleted": null,
+      "total_delete_errors": null,
+      "total_delete_success": null
+    }
+  }
+}

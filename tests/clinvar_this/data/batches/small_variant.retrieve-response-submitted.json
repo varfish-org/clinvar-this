@@ -1,0 +1,14 @@
+{
+  "status": {
+    "actions": [
+      {
+        "id": "SUB000fake-1",
+        "responses": [],
+        "status": "submitted",
+        "target_db": "clinvar",
+        "updated": "2022-11-18T16:24:19+01:00"
+      }
+    ]
+  },
+  "summaries": {}
+}

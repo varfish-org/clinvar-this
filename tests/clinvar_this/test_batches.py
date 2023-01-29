@@ -1,10 +1,15 @@
+import json
 import os
 import pathlib
+from unittest.mock import MagicMock
 
 from freezegun import freeze_time
 import pytest
 
 import clinvar_api
+from clinvar_api import models
+from clinvar_api.client import RetrieveStatusResult
+from clinvar_api.common import CONVERTER
 from clinvar_this import batches, exceptions
 from clinvar_this.io import tsv as io_tsv
 
@@ -28,6 +33,30 @@ with (pathlib.Path(__file__).parent / "data/batches/small_variant-update.payload
 ) as inputf:
     #: The `SMALL_VARIANT_UPDATE_TSV` after import / merge.
     SMALL_VARIANT_UPDATE_PAYLOAD_JSON = inputf.read()
+
+with (
+    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-processing.json"
+).open("rt") as inputf:
+    #: A static response on retrieving with "processing" status.
+    SMALL_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON = inputf.read()
+
+with (
+    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-submitted.json"
+).open("rt") as inputf:
+    #: A static response on retrieving with "submitted" status.
+    SMALL_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON = inputf.read()
+
+with (
+    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-success.json"
+).open("rt") as inputf:
+    #: A static response on retrieving with "success" status.
+    SMALL_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON = inputf.read()
+
+with (
+    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-error.json"
+).open("rt") as inputf:
+    #: A static response on retrieving with "error" status.
+    SMALL_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON = inputf.read()
 
 SUBMISSION_SCHEMA_JSON_PATH = (
     pathlib.Path(clinvar_api.__file__).parent / "schemas/submission_schema.json"
@@ -133,19 +162,19 @@ def test_import_small_variant_tsv_update(fs, app_config):
 
 
 def test_import_deletion_tsv_new(fs):
-    pass
+    pass  # TODO
 
 
 def test_import_deletion_tsv_update(fs):
-    pass
+    pass  # TODO
 
 
 def test_import_structural_variant_tsv_new(fs):
-    pass
+    pass  # TODO
 
 
 def test_import_structural_variant_tsv_update(fs):
-    pass
+    pass  # TODO
 
 
 @pytest.mark.parametrize(
@@ -194,7 +223,7 @@ def test_export_small_variant_tsv(fs, app_config, exists, force):
 
 
 def test_export_structural_variant_tsv(fs):
-    pass
+    pass  # TODO
 
 
 @pytest.mark.parametrize(
@@ -215,7 +244,7 @@ def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
     def mock_submit_data(_self, _payload):
         return {"id": "SUB000fake"}
 
-    monkeypatch.setattr(batches.client, "submit_data", mock_submit_data)
+    monkeypatch.setattr(batches.client.Client, "submit_data", mock_submit_data)
 
     batches.submit(config=app_config, name="the-batch", use_testing=use_testing, dry_run=dry_run)
 
@@ -230,17 +259,129 @@ def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
         assert not os.path.exists(response_path)
 
 
-def test_retrieve_state_submitted(fs):
-    pass
+def test_retrieve_state_submitted(fs, app_config, monkeypatch):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/submission-response.20120114000000.json"
+        ),
+        contents='{"id": "SUB000fake"}',
+    )
+
+    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON)
+
+    mock_retrieve_status = MagicMock()
+    mock_retrieve_status.return_value = RetrieveStatusResult(
+        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+    )
+
+    monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
+
+    batches.retrieve(config=app_config, name="the-batch", use_testing=False)
+
+    mock_retrieve_status.assert_called_once()
+    assert len(mock_retrieve_status.call_args.args) == 1
+    assert len(mock_retrieve_status.call_args.kwargs) == 0
+    assert mock_retrieve_status.call_args.args[0] == "SUB000fake"
 
 
-def test_retrieve_state_processing(fs):
-    pass
+def test_retrieve_state_processing(fs, app_config, monkeypatch):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/submission-response.20120114000000.json"
+        ),
+        contents='{"id": "SUB000fake"}',
+    )
+
+    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON)
+
+    mock_retrieve_status = MagicMock()
+    mock_retrieve_status.return_value = RetrieveStatusResult(
+        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+    )
+
+    monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
+
+    batches.retrieve(config=app_config, name="the-batch", use_testing=False)
+
+    mock_retrieve_status.assert_called_once()
+    assert len(mock_retrieve_status.call_args.args) == 1
+    assert len(mock_retrieve_status.call_args.kwargs) == 0
+    assert mock_retrieve_status.call_args.args[0] == "SUB000fake"
 
 
-def test_retrieve_state_processed(fs):
-    pass
+def test_retrieve_state_processed(fs, app_config, monkeypatch):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/submission-response.20120114000000.json"
+        ),
+        contents='{"id": "SUB000fake"}',
+    )
+
+    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON)
+
+    mock_retrieve_status = MagicMock()
+    mock_retrieve_status.return_value = RetrieveStatusResult(
+        status=CONVERTER.structure(response["status"], models.SubmissionStatus),
+        summaries={
+            key: CONVERTER.structure(value, models.SummaryResponse)
+            for key, value in response["summaries"].items()
+        },
+    )
+
+    monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
+
+    batches.retrieve(config=app_config, name="the-batch", use_testing=False)
+
+    mock_retrieve_status.assert_called_once()
+    assert len(mock_retrieve_status.call_args.args) == 1
+    assert len(mock_retrieve_status.call_args.kwargs) == 0
+    assert mock_retrieve_status.call_args.args[0] == "SUB000fake"
 
 
-def test_retrieve_state_error(fs):
-    pass
+def test_retrieve_state_error(fs, app_config, monkeypatch):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/submission-response.20120114000000.json"
+        ),
+        contents='{"id": "SUB000fake"}',
+    )
+
+    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON)
+
+    mock_retrieve_status = MagicMock()
+    mock_retrieve_status.return_value = RetrieveStatusResult(
+        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+    )
+
+    monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
+
+    batches.retrieve(config=app_config, name="the-batch", use_testing=False)
+
+    mock_retrieve_status.assert_called_once()
+    assert len(mock_retrieve_status.call_args.args) == 1
+    assert len(mock_retrieve_status.call_args.kwargs) == 0
+    assert mock_retrieve_status.call_args.args[0] == "SUB000fake"

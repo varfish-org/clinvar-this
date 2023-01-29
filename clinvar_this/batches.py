@@ -273,9 +273,9 @@ def retrieve(config: config.Config, name: str, *, use_testing: bool = False):
     submission_path = get_share_dir() / config.profile / name
     submission_response_paths = list(sorted(submission_path.glob("submission-response.*.json")))
 
-    if not submission_path.exists():
+    if not submission_path.exists():  # pragma: no cover
         raise exceptions.ClinvarThisException(f"Submission does not exist at {submission_path}")
-    elif not submission_response_paths:
+    elif not submission_response_paths:  # pragma: no cover
         raise exceptions.ClinvarThisException(
             f"Submission not submitted? No submission response at {submission_path}"
         )
@@ -311,6 +311,6 @@ def retrieve(config: config.Config, name: str, *, use_testing: bool = False):
         logger.info("Will now update local information from response...")
         _retrieve_store_response(config, name, status_result)
         logger.info("... done updating local information from response")
-    else:
+    else:  # pragma: no cover
         logger.error("Status is %s and clinvar-this does not know how to handle this yet!")
         raise exceptions.ClinvarThisException(f"Unknown status {status_str}")
