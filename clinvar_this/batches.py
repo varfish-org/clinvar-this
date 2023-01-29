@@ -170,7 +170,7 @@ def update_metadata(config: config.Config, name: str, metadata: typing.Tuple[str
 
 def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_run: bool = False):
     """Submit the batch to ClinVar."""
-    if not config.auth_token:
+    if not config.auth_token:  # pragma: no cover
         raise exceptions.ConfigException("auth_token not configured")
 
     client_obj = client.Client(
