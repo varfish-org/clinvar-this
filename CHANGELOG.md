@@ -1,5 +1,15 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/bihealth/clinvar-this/compare/v0.1.0...v0.1.1) (2023-01-29)
+
+
+### Documentation
+
+* add badges to readme ([#65](https://www.github.com/bihealth/clinvar-this/issues/65)) ([207038c](https://www.github.com/bihealth/clinvar-this/commit/207038ccfa2473e09f283903e9c2a3cd249e2f30))
+* adding file format documentation ([#71](https://www.github.com/bihealth/clinvar-this/issues/71)) ([3a04ffd](https://www.github.com/bihealth/clinvar-this/commit/3a04ffddd50ab21c52d3d2fe281d96ac30c505cb))
+* extending docs; getting started from README ([#44](https://www.github.com/bihealth/clinvar-this/issues/44)) ([#68](https://www.github.com/bihealth/clinvar-this/issues/68)) ([77892f0](https://www.github.com/bihealth/clinvar-this/commit/77892f0fdaf158ed77c126f0aae11b12457c6043))
+* updating docs introduction section ([#67](https://www.github.com/bihealth/clinvar-this/issues/67)) ([d6c865b](https://www.github.com/bihealth/clinvar-this/commit/d6c865b28db14e217c839239940bf9fe4fdcd5ed))
+
 ## 0.1.0 (2022-12-02)
 
 
