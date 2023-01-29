@@ -2,8 +2,9 @@ import os
 import pathlib
 
 from freezegun import freeze_time
+import pytest
 
-from clinvar_this import batches
+from clinvar_this import batches, exceptions
 from clinvar_this.io import tsv as io_tsv
 
 # We must read this outside of the test as we use the fake file system.
@@ -140,8 +141,49 @@ def test_import_structural_variant_tsv_update(fs):
     pass
 
 
-def test_export_small_variant_tsv(fs):
-    pass
+@pytest.mark.parametrize(
+    "exists,force",
+    [
+        (False, False),
+        (True, False),
+        (True, True),
+    ],
+)
+def test_export_small_variant_tsv(fs, app_config, exists, force):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+
+    if exists:
+        fs.create_file("/tmp/output.tsv", contents="foo")
+
+    batch_name = "the-batch"
+
+    if exists and not force:
+        with pytest.raises(exceptions.IOException):
+            batches.export(config=app_config, name=batch_name, path="/tmp/output.tsv")
+    else:
+        batches.export(config=app_config, name=batch_name, path="/tmp/output.tsv", force=force)
+
+    with open("/tmp/output.tsv", "rt") as inputf:
+        fcontents = inputf.read()
+
+    if not exists or force:
+        expected = "\n".join(
+            [
+                "ASSEMBLY\tCHROM\tPOS\tREF\tALT\tOMIM\tMOI\tCLIN_SIG\tCLIN_EVAL\tCLIN_COMMENT\tKEY\tHPO",
+                (
+                    "GRCh37\t19\t48183936\tC\tCA\t619325\tAutosomal dominant inheritance\t"
+                    "ClinicalSignificanceDescription.LIKELY_PATHOGENIC\t\t\t\t619325\n"
+                ),
+            ]
+        )
+    else:
+        expected = "foo"
+    assert fcontents == expected
 
 
 def test_export_structural_variant_tsv(fs):
