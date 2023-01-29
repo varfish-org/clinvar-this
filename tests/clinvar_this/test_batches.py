@@ -4,6 +4,7 @@ import pathlib
 from freezegun import freeze_time
 import pytest
 
+import clinvar_api
 from clinvar_this import batches, exceptions
 from clinvar_this.io import tsv as io_tsv
 
@@ -27,6 +28,12 @@ with (pathlib.Path(__file__).parent / "data/batches/small_variant-update.payload
 ) as inputf:
     #: The `SMALL_VARIANT_UPDATE_TSV` after import / merge.
     SMALL_VARIANT_UPDATE_PAYLOAD_JSON = inputf.read()
+
+SUBMISSION_SCHEMA_JSON_PATH = (
+    pathlib.Path(clinvar_api.__file__).parent / "schemas/submission_schema.json"
+)
+with SUBMISSION_SCHEMA_JSON_PATH.open("rt") as inputf:
+    SUBMISSION_SCHEMA_JSON = inputf.read()
 
 
 def test_list_no_batches_no_dir(fs, app_config, capsys):
@@ -190,8 +197,37 @@ def test_export_structural_variant_tsv(fs):
     pass
 
 
-def test_submit(fs):
-    pass
+@pytest.mark.parametrize(
+    "use_testing,dry_run",
+    [(False, False), (False, True)],
+)
+@freeze_time("2012-01-14")
+def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=SMALL_VARIANT_PAYLOAD_JSON,
+    )
+
+    fs.create_file(SUBMISSION_SCHEMA_JSON_PATH, contents=SUBMISSION_SCHEMA_JSON)
+
+    def mock_submit_data(_self, _payload):
+        return {"id": "SUB000fake"}
+
+    monkeypatch.setattr(batches.client, "submit_data", mock_submit_data)
+
+    batches.submit(config=app_config, name="the-batch", use_testing=use_testing, dry_run=dry_run)
+
+    response_path = os.path.expanduser(
+        "~/.local/share/clinvar-this/default/the-batch/submission-response.20120114000000.json"
+    )
+    if not dry_run:
+        assert os.path.exists(response_path)
+        with open(response_path, "rt") as inputf:
+            assert inputf.read() == '{"id": "SUB000fake"}'
+    else:
+        assert not os.path.exists(response_path)
 
 
 def test_retrieve_state_submitted(fs):

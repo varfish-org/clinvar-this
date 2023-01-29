@@ -20,4 +20,5 @@ def app_config():
     yield config.Config(
         profile="default",
         auth_token="fake_auth_token",
+        verify_ssl=False,
     )

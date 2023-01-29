@@ -174,7 +174,12 @@ def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_r
         raise exceptions.ConfigException("auth_token not configured")
 
     client_obj = client.Client(
-        client.Config(auth_token=config.auth_token, use_testing=use_testing, use_dryrun=dry_run)
+        client.Config(
+            auth_token=config.auth_token,
+            use_testing=use_testing,
+            use_dryrun=dry_run,
+            verify_ssl=config.verify_ssl,
+        )
     )
 
     payload = _load_latest_payload(config.profile, name)

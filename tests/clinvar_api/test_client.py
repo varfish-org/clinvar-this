@@ -12,14 +12,14 @@ FAKE_HEADERS = {
 def test_config_long_token():
     config = client.Config(auth_token="1234567890", use_testing=False, use_dryrun=False)
     assert str(config) == (
-        "Config(auth_token='12345*****', use_testing=False, use_dryrun=False, presubmission_validation=True)"
+        "Config(auth_token='12345*****', use_testing=False, use_dryrun=False, presubmission_validation=True, verify_ssl=True)"
     )
 
 
 def test_config_short_token():
     config = client.Config(auth_token="123", use_testing=False, use_dryrun=False)
     assert str(config) == (
-        "Config(auth_token='***', use_testing=False, use_dryrun=False, presubmission_validation=True)"
+        "Config(auth_token='***', use_testing=False, use_dryrun=False, presubmission_validation=True, verify_ssl=True)"
     )
 
 

@@ -100,7 +100,10 @@ def test_call_batch_export(fs_config, monkeypatch, force):
     mock_export.assert_called_once()
     assert len(mock_export.call_args.args) == 4
     assert len(mock_export.call_args.kwargs) == 0
-    assert str(mock_export.call_args.args[0]) == "Config(profile='default', auth_token='****')"
+    assert (
+        str(mock_export.call_args.args[0])
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+    )
     assert mock_export.call_args.args[1] == "batch-name"
     assert mock_export.call_args.args[2] == "out-tsv"
     assert mock_export.call_args.args[3] == force
@@ -136,7 +139,10 @@ def test_call_batch_import(fs_config, monkeypatch, name, metadata):
     mock_import.assert_called_once()
     assert len(mock_import.call_args.args) == 4
     assert len(mock_import.call_args.kwargs) == 0
-    assert str(mock_import.call_args.args[0]) == "Config(profile='default', auth_token='****')"
+    assert (
+        str(mock_import.call_args.args[0])
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+    )
     assert mock_import.call_args.args[1] == (name if name else "generated")
     assert mock_import.call_args.args[2] == "input-tsv"
     assert mock_import.call_args.args[3] == (metadata if metadata else ())
@@ -154,7 +160,10 @@ def test_call_batch_list(fs_config, monkeypatch):
     mock_list.assert_called_once()
     assert len(mock_list.call_args.args) == 1
     assert len(mock_list.call_args.kwargs) == 0
-    assert str(mock_list.call_args.args[0]) == "Config(profile='default', auth_token='****')"
+    assert (
+        str(mock_list.call_args.args[0])
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+    )
     assert result.exit_code == 0
 
 
@@ -182,7 +191,7 @@ def test_call_batch_update_metadata(fs_config, monkeypatch, name, metadata):
     assert len(mock_update_metadata.call_args.kwargs) == 0
     assert (
         str(mock_update_metadata.call_args.args[0])
-        == "Config(profile='default', auth_token='****')"
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
     )
     assert mock_update_metadata.call_args.args[1] == name
     assert mock_update_metadata.call_args.args[2] == (metadata if metadata else ())
@@ -214,7 +223,10 @@ def test_call_batch_submit(fs_config, monkeypatch, dry_run, use_testing):
     mock_submit.assert_called_once()
     assert len(mock_submit.call_args.args) == 2
     assert len(mock_submit.call_args.kwargs) == 2
-    assert str(mock_submit.call_args.args[0]) == "Config(profile='default', auth_token='****')"
+    assert (
+        str(mock_submit.call_args.args[0])
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+    )
     assert mock_submit.call_args.args[1] == "name"
     assert mock_submit.call_args.kwargs == {"dry_run": dry_run, "use_testing": use_testing}
     assert result.exit_code == 0
@@ -239,7 +251,10 @@ def test_call_batch_retrieve(fs_config, monkeypatch, use_testing):
     mock_retrieve.assert_called_once()
     assert len(mock_retrieve.call_args.args) == 2
     assert len(mock_retrieve.call_args.kwargs) == 1
-    assert str(mock_retrieve.call_args.args[0]) == "Config(profile='default', auth_token='****')"
+    assert (
+        str(mock_retrieve.call_args.args[0])
+        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+    )
     assert mock_retrieve.call_args.args[1] == "name"
     assert mock_retrieve.call_args.kwargs == {"use_testing": use_testing}
     assert result.exit_code == 0

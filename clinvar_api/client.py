@@ -45,6 +45,9 @@ class Config:
     #: Whether to validate submission payload before posting.
     presubmission_validation: bool = True
 
+    #: Whether or not to verify SSL on submission.
+    verify_ssl: bool = True
+
 
 def submit_data(submission_container: models.SubmissionContainer, config: Config) -> models.Created:
     """Submit new data to ClinVar API.
@@ -82,7 +85,7 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
     }
     logger.debug("Overall POST payload is %s", post_data)
 
-    response = requests.post(url, headers=headers, json=post_data)
+    response = requests.post(url, headers=headers, json=post_data, verify=config.verify_ssl)
 
     if response.ok:
         logger.info("API returned OK - %s:  %s", response.status_code, response.reason)

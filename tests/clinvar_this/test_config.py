@@ -7,14 +7,15 @@ from clinvar_this import config, exceptions
 
 CONFIG_CONTENT = """[default]
 auth_token = "MYTOKEN"
+verify_ssl = true
 """
 
 
 def test_config():
     short_config = config.Config(profile="default", auth_token="123")
-    assert str(short_config) == "Config(profile='default', auth_token='***')"
+    assert str(short_config) == "Config(profile='default', auth_token='***', verify_ssl=True)"
     long_config = config.Config(profile="default", auth_token="1234567890")
-    assert str(long_config) == "Config(profile='default', auth_token='12345*****')"
+    assert str(long_config) == "Config(profile='default', auth_token='12345*****', verify_ssl=True)"
 
 
 def test_load_config_success(fs):
@@ -28,7 +29,7 @@ def test_load_config_success(fs):
         )
         config_obj = config.load_config(profile="default")
 
-    assert str(config_obj) == "Config(profile='default', auth_token='MYTOK**')"
+    assert str(config_obj) == "Config(profile='default', auth_token='MYTOK**', verify_ssl=True)"
 
 
 def test_load_config_fail_missing_config(fs):
