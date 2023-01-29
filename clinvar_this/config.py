@@ -29,6 +29,9 @@ class Config:
     #: The authentication token to use in the API.
     auth_token: str = attrs.field(repr=_obfuscate_repr)
 
+    #: Whether to verify SSL or not
+    verify_ssl: bool = True
+
 
 def load_config(profile: str = "default") -> Config:
     """Load configuration for the given profile.

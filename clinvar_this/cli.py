@@ -12,12 +12,16 @@ from clinvar_this.config import Config, dump_config, load_config, save_config
 @click.group()
 @click.option("--verbose/--no-verbose", default=False)
 @click.option("--profile", default="default", help="The profile to use")
+@click.option(
+    "--verify-ssl/--no-verify-ssl", default=True, help="Whether to enable SSL verification"
+)
 @click.pass_context
-def cli(ctx: click.Context, verbose: bool, profile: str):
+def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool):
     """Main entry point for CLI via click."""
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
     ctx.obj["profile"] = profile
+    ctx.obj["verify_ssl"] = verify_ssl
 
 
 @cli.group()
@@ -123,22 +127,22 @@ def batch_export(
 ):
     """Export batch data to a given file"""
     config_obj = load_config(ctx.obj["profile"])
-    batches.export_(config_obj, name, path, force)
+    batches.export(config_obj, name, path, force)
 
 
-@batch.command("update")
+@batch.command("update-metadata")
 @click.argument("name")
 @click.argument("metadata", nargs=-1)
 @click.pass_context
-def batch_update(
+def batch_update_metadata(
     ctx: click.Context, name: str, metadata: typing.Optional[typing.Tuple[str, ...]] = None
 ):
-    """Update batch data without importing files"""
+    """Update batch metadata without importing files"""
     if not metadata:
         metadata = ()
     print(metadata)
     config_obj = load_config(ctx.obj["profile"])
-    batches.update(config_obj, name, metadata)
+    batches.update_metadata(config_obj, name, metadata)
 
 
 @batch.command("submit")
@@ -159,6 +163,7 @@ def batch_update(
 def batch_submit(ctx: click.Context, use_testing: bool, dry_run: bool, name: str):
     """Submit the given batch to ClinVar"""
     config_obj = load_config(ctx.obj["profile"])
+    config_obj = attrs.evolve(config_obj, verify_ssl=ctx.obj["verify_ssl"])
     batches.submit(config_obj, name, use_testing=use_testing, dry_run=dry_run)
 
 
@@ -174,4 +179,5 @@ def batch_submit(ctx: click.Context, use_testing: bool, dry_run: bool, name: str
 def batch_retrieve(ctx: click.Context, use_testing: bool, name: str):
     """Submit the given batch to ClinVar"""
     config_obj = load_config(ctx.obj["profile"])
+    config_obj = attrs.evolve(config_obj, verify_ssl=ctx.obj["verify_ssl"])
     batches.retrieve(config_obj, name, use_testing=use_testing)

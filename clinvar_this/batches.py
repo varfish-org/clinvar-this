@@ -13,8 +13,11 @@ from clinvar_api import client, common, models
 from clinvar_this import config, exceptions
 from clinvar_this.io import tsv
 
-#: Shared files directory
-SHARE_DIR = pathlib.Path.home() / ".local" / "share" / "clinvar-this"
+
+def get_share_dir():
+    """Shared files directory"""
+    return pathlib.Path.home() / ".local" / "share" / "clinvar-this"
+
 
 #: Format string
 FORMAT_STR = "%Y%m%d%H%M%S"
@@ -29,9 +32,10 @@ def _list_get_batches(share_dir: pathlib.Path):
 
 def list_(config: config.Config):
     """List batches to stdout."""
-    print(f"Listing batches at {SHARE_DIR}/{config.profile}")
+    share_dir = get_share_dir()
+    print(f"Listing batches at {share_dir}/{config.profile}")
     _ = config
-    paths = _list_get_batches(SHARE_DIR / config.profile)
+    paths = _list_get_batches(share_dir / config.profile)
     if not paths:
         table = [["-- NO BATCHES YET --"]]
         print(tabulate(table))
@@ -45,7 +49,7 @@ def gen_name(config: config.Config) -> str:
     base = datetime.date.today().strftime("%Y-%m-%d")
     for i in range(1000):
         dirname = "%s-%03d" % (base, i)
-        if not (SHARE_DIR / config.profile / dirname).exists():
+        if not (get_share_dir() / config.profile / dirname).exists():
             return dirname
     else:  # pragma: no cover
         raise exceptions.IOException("Could not generate batch name")
@@ -54,7 +58,7 @@ def gen_name(config: config.Config) -> str:
 def _write_payload(submission_container: models.SubmissionContainer, profile: str, name: str):
     """Write out payload to a new JSON file."""
     # Create directory for batch.
-    batch_dir = SHARE_DIR / profile / name
+    batch_dir = get_share_dir() / profile / name
     batch_dir.mkdir(exist_ok=True, parents=True)
     # Write out payload.
     timestamp = datetime.datetime.now().strftime(FORMAT_STR)
@@ -62,6 +66,7 @@ def _write_payload(submission_container: models.SubmissionContainer, profile: st
     payload_json = json.dumps(common.CONVERTER.unstructure(submission_container), indent=2)
     with payload_path.open("wt") as outputf:
         outputf.write(payload_json)
+        outputf.write("\n")
 
 
 def _merge_submission_container(
@@ -109,11 +114,12 @@ def _merge_submission_container(
 
 def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[str, ...]):
     """Import the data file at ``path`` into the batch of name ``name``."""
-    existing_payloads = list((SHARE_DIR / config.profile / name).glob("payload.*.json"))
+    existing_payloads = list((get_share_dir() / config.profile / name).glob("payload.*.json"))
     if existing_payloads:
         logger.info("Loading existing payload for later merging with new one")
         previous_submission_container = _load_latest_payload(config.profile, name)
     else:
+        logger.info("Creating new payload only")
         previous_submission_container = None
     if path.endswith(".tsv") or path.endswith(".txt"):
         tsv_records = tsv.read_tsv(path=path)
@@ -129,14 +135,14 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         else:
             submission_container = new_submission_container
         _write_payload(submission_container, config.profile, name)
-    else:
+    else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
 def _load_latest_payload(profile: str, name: str):
-    submission_path = SHARE_DIR / profile / name
+    submission_path = get_share_dir() / profile / name
     payload_paths = list(sorted(submission_path.glob("payload.*.json")))
-    if not payload_paths:
+    if not payload_paths:  # pragma: no cover
         raise exceptions.ClinvarThisException(f"Found no payload JSON file at {submission_path}")
 
     payload_path = submission_path / payload_paths[-1]
@@ -146,7 +152,7 @@ def _load_latest_payload(profile: str, name: str):
     return common.CONVERTER.structure(payload_unstructured, models.SubmissionContainer)
 
 
-def export_(config: config.Config, name: str, path: str, force: bool = False):
+def export(config: config.Config, name: str, path: str, force: bool = False):
     """Export the batch with the given ``name`` to the file at ``path``."""
     if pathlib.Path(path).exists() and not force:
         raise exceptions.IOException(
@@ -156,11 +162,11 @@ def export_(config: config.Config, name: str, path: str, force: bool = False):
         payload = _load_latest_payload(config.profile, name)
         tsv_records = tsv.submission_container_to_tsv_records(payload)
         tsv.write_tsv(tsv_records, path=path)
-    else:
+    else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
 
-def update(config: config.Config, name: str, metadata: typing.Tuple[str, ...]):
+def update_metadata(config: config.Config, name: str, metadata: typing.Tuple[str, ...]):
     """Update the batch' meta data."""
     batch_metadata = tsv.batch_metadata_from_mapping(metadata, use_defaults=False)
     _ = batch_metadata
@@ -168,11 +174,16 @@ def update(config: config.Config, name: str, metadata: typing.Tuple[str, ...]):
 
 def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_run: bool = False):
     """Submit the batch to ClinVar."""
-    if not config.auth_token:
+    if not config.auth_token:  # pragma: no cover
         raise exceptions.ConfigException("auth_token not configured")
 
     client_obj = client.Client(
-        client.Config(auth_token=config.auth_token, use_testing=use_testing, use_dryrun=dry_run)
+        client.Config(
+            auth_token=config.auth_token,
+            use_testing=use_testing,
+            use_dryrun=dry_run,
+            verify_ssl=config.verify_ssl,
+        )
     )
 
     payload = _load_latest_payload(config.profile, name)
@@ -186,7 +197,9 @@ def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_r
         return
 
     timestamp = datetime.datetime.now().strftime(FORMAT_STR)
-    response_path = SHARE_DIR / config.profile / name / f"submission-response.{timestamp}.json"
+    response_path = (
+        get_share_dir() / config.profile / name / f"submission-response.{timestamp}.json"
+    )
     response_data = common.CONVERTER.unstructure(client_res)
     logger.info("Writing out server response to %s", response_path)
     with response_path.open("wt") as outputf:
@@ -257,7 +270,7 @@ def retrieve(config: config.Config, name: str, *, use_testing: bool = False):
     """Retrieve current processing status from ClinVar."""
     client_obj = client.Client(client.Config(auth_token=config.auth_token, use_testing=use_testing))
 
-    submission_path = SHARE_DIR / config.profile / name
+    submission_path = get_share_dir() / config.profile / name
     submission_response_paths = list(sorted(submission_path.glob("submission-response.*.json")))
 
     if not submission_path.exists():
