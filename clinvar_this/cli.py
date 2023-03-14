@@ -118,16 +118,23 @@ def batch_import(
 @click.argument("name")
 @click.argument("path")
 @click.option("--force/--no-force", required=False, default=False, help="Overwrite existing files")
+@click.option(
+    "--struc-var/--no-struc-var",
+    required=False,
+    default=False,
+    help="Export structural variants rather than sequence variants",
+)
 @click.pass_context
 def batch_export(
     ctx: click.Context,
     name: str,
     path: str,
     force: bool = False,
+    struc_var: bool = False,
 ):
     """Export batch data to a given file"""
     config_obj = load_config(ctx.obj["profile"])
-    batches.export(config_obj, name, path, force)
+    batches.export(config_obj, name, path, force, struc_var)
 
 
 @batch.command("update-metadata")

@@ -14,7 +14,7 @@ from clinvar_this.io.tsv import SeqVarTsvRecord, read_seq_var_tsv
 DATA_DIR = pathlib.Path(__file__).parent / "data/io_tsv"
 
 
-def test_read_tsv_path():
+def test_read_seq_var_tsv_path():
     actual = read_seq_var_tsv(path=DATA_DIR / "example.tsv")
     assert actual == [
         SeqVarTsvRecord(
@@ -32,7 +32,7 @@ def test_read_tsv_path():
     ]
 
 
-def test_read_tsv_file():
+def test_read_seq_var_tsv_file():
     with (DATA_DIR / "example.tsv").open("rt") as inputf:
         actual = read_seq_var_tsv(file=inputf)
     assert actual == [
@@ -51,11 +51,11 @@ def test_read_tsv_file():
     ]
 
 
-def test_read_tsv_path_bad():
+def test_read_seq_var_tsv_path_bad():
     with pytest.raises(exceptions.InvalidFormat):
         read_seq_var_tsv(path=DATA_DIR / "example.bad.tsv")
 
 
-def test_read_tsv_error():
+def test_read_seq_var_tsv_error():
     with pytest.raises(TypeError):
         read_seq_var_tsv()

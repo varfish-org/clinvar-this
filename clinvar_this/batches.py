@@ -152,7 +152,9 @@ def _load_latest_payload(profile: str, name: str):
     return common.CONVERTER.structure(payload_unstructured, models.SubmissionContainer)
 
 
-def export(config: config.Config, name: str, path: str, force: bool = False):
+def export(
+    config: config.Config, name: str, path: str, force: bool = False, struc_var: bool = False
+):
     """Export the batch with the given ``name`` to the file at ``path``."""
     if pathlib.Path(path).exists() and not force:
         raise exceptions.IOException(
@@ -160,8 +162,11 @@ def export(config: config.Config, name: str, path: str, force: bool = False):
         )
     if path.endswith(".tsv") or path.endswith(".txt"):
         payload = _load_latest_payload(config.profile, name)
-        tsv_records = tsv.submission_container_to_seq_var_tsv_records(payload)
-        tsv.write_seq_var_tsv(tsv_records, path=path)
+        if struc_var:
+            raise RuntimeError("Not implemented yet")
+        else:
+            tsv_records = tsv.submission_container_to_seq_var_tsv_records(payload)
+            tsv.write_seq_var_tsv(tsv_records, path=path)
     else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 

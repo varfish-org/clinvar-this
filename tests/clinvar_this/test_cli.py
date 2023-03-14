@@ -79,13 +79,13 @@ def test_call_config_set_fail_invalid_name():
 
 
 @pytest.mark.parametrize(
-    "force",
+    "force,struc_var",
     [
-        True,
-        False,
+        (True, False),
+        (False, False),
     ],
 )
-def test_call_batch_export(fs_config, monkeypatch, force):
+def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
     """Unit test of ``batch export``, stubs out call of ``batches.list`` and checks results."""
     mock_export = MagicMock()
     monkeypatch.setattr(batches, "export", mock_export)
@@ -98,7 +98,7 @@ def test_call_batch_export(fs_config, monkeypatch, force):
     result = runner.invoke(cli.cli, args)
 
     mock_export.assert_called_once()
-    assert len(mock_export.call_args.args) == 4
+    assert len(mock_export.call_args.args) == 5
     assert len(mock_export.call_args.kwargs) == 0
     assert (
         str(mock_export.call_args.args[0])
@@ -107,6 +107,7 @@ def test_call_batch_export(fs_config, monkeypatch, force):
     assert mock_export.call_args.args[1] == "batch-name"
     assert mock_export.call_args.args[2] == "out-tsv"
     assert mock_export.call_args.args[3] == force
+    assert mock_export.call_args.args[4] == struc_var
     assert result.exit_code == 0
 
 
@@ -118,7 +119,7 @@ def test_call_batch_export(fs_config, monkeypatch, force):
         (None, ("A=a", "B=b")),
     ],
 )
-def test_call_batch_import(fs_config, monkeypatch, name, metadata):
+def test_call_batch_import_seq_var(fs_config, monkeypatch, name, metadata):
     """Unit test of ``batch import``, stubs out call of ``batches.import_`` and checks results."""
     mock_import = MagicMock()
     monkeypatch.setattr(batches, "import_", mock_import)
