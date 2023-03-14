@@ -712,7 +712,81 @@ def struc_var_tsv_records_to_submission_container(
     batch_metadata: BatchMetadata,
 ) -> SubmissionContainer:
     """Convert struc. var. TSV records to submission container data structure."""
-    raise RuntimeError("Implement me!")
+
+    def record_condition(record: StrucVarTsvRecord) -> SubmissionCondition:
+        """Construct ``SubmissionCondition`` from ``TsvRecord``."""
+        if not record.omim or record.omim == ["not provided"]:
+            return SubmissionCondition(name="not provided")
+        else:
+            return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
+
+    def record_clinical_features(
+        record: StrucVarTsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionClinicalFeature]]:
+        """Construct ``typing.Optional[typing.List[SubmissionClinicalFeature]]`` from ``TsvRecord``."""
+        if record.hpo_terms:
+            return [
+                SubmissionClinicalFeature(
+                    clinical_features_affected_status=ClinicalFeaturesAffectedStatus.PRESENT,
+                    db=ClinicalFeaturesDb.HP,
+                    id=hpo_term,
+                )
+                for hpo_term in record.hpo_terms
+            ]
+        else:
+            return None
+
+    allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["batch_metadata"]
+    collection_method = (
+        batch_metadata.collection_method or BATCH_METADATA_DEFAULTS["collection_method"]
+    )
+    release_status = batch_metadata.release_status or BATCH_METADATA_DEFAULTS["release_status"]
+
+    return SubmissionContainer(
+        assertion_criteria=SubmissionAssertionCriteria(
+            # The following should come from the profile, cf.
+            #
+            # https://github.com/bihealth/clinvar-this/issues/36
+            db=CitationDb.PUBMED,
+            id="25741868",
+        ),
+        clinvar_submission_release_status=release_status,
+        clinvar_submission=[
+            SubmissionClinvarSubmission(
+                local_id=str(_uuid4_if_falsy()),
+                local_key=record.local_key,
+                condition_set=SubmissionConditionSet(condition=[record_condition(record)]),
+                observed_in=[
+                    SubmissionObservedIn(
+                        affected_status=AffectedStatus.YES,
+                        allele_origin=allele_origin,
+                        collection_method=collection_method,
+                        clinical_features=record_clinical_features(record),
+                    )
+                ],
+                clinical_significance=SubmissionClinicalSignificance(
+                    clinical_significance_description=record.clinical_significance_description,
+                    mode_of_inheritance=record.inheritance,
+                ),
+                record_status=RecordStatus.NOVEL,
+                variant_set=SubmissionVariantSet(
+                    variant=[
+                        SubmissionVariant(
+                            chromosome_coordinates=SubmissionChromosomeCoordinates(
+                                assembly=record.assembly,
+                                chromosome=record.chromosome,
+                                start=record.start,
+                                stop=record.stop,
+                            ),
+                            variant_type=record.sv_type,
+                        )
+                    ]
+                ),
+                extra_data=record.extra_data or None,  # prefer ``None`` over ``{}``
+            )
+            for record in tsv_records
+        ],
+    )
 
 
 def submission_container_to_seq_var_tsv_records(
@@ -797,4 +871,83 @@ def submission_container_to_seq_var_tsv_records(
 def submission_container_to_struc_var_tsv_records(
     submission_container: SubmissionContainer,
 ) -> typing.List[StrucVarTsvRecord]:
-    raise RuntimeError("Implement me!")
+    def _condition(submission: SubmissionClinvarSubmission) -> typing.List[str]:
+        if not submission.condition_set.condition:
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - condition cannot be empty"
+            )
+        if submission.condition_set.condition[0].name:
+            return []  # not provided
+        else:
+            if submission.condition_set.condition[0].id:
+                return [submission.condition_set.condition[0].id]
+            else:
+                return []
+
+    def _inheritance(submission: SubmissionClinvarSubmission) -> typing.Optional[ModeOfInheritance]:
+        if submission.clinical_significance.mode_of_inheritance:
+            return submission.clinical_significance.mode_of_inheritance
+        else:
+            return None
+
+    def submission_to_struc_var_tsv_record(
+        submission: SubmissionClinvarSubmission,
+    ) -> StrucVarTsvRecord:
+        if not submission.variant_set:
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - no variant set"
+            )
+        elif not submission.variant_set.variant:
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - no variant"
+            )
+        elif not submission.variant_set.variant[0].chromosome_coordinates:
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - no chromosome coordinates"
+            )
+        else:
+            chromosome_coordinates: SubmissionChromosomeCoordinates = (
+                submission.variant_set.variant[0].chromosome_coordinates
+            )
+            variant_type: typing.Optional[VariantType] = submission.variant_set.variant[
+                0
+            ].variant_type
+        if not (
+            chromosome_coordinates.assembly
+            and chromosome_coordinates.chromosome
+            and chromosome_coordinates.start
+            and chromosome_coordinates.stop
+        ):
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - incomplete coordinates"
+            )
+        if not variant_type:
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - no variant type"
+            )
+
+        extra_data = {}
+        if submission.clinvar_accession:
+            extra_data["clinvar_accession"] = submission.clinvar_accession  # XXX
+        if submission.extra_data:
+            extra_data.update(submission.extra_data)
+
+        return StrucVarTsvRecord(
+            assembly=chromosome_coordinates.assembly,
+            chromosome=chromosome_coordinates.chromosome,
+            start=chromosome_coordinates.start,
+            stop=chromosome_coordinates.stop,
+            sv_type=variant_type,
+            omim=_condition(submission),
+            inheritance=_inheritance(submission),
+            clinical_significance_description=submission.clinical_significance.clinical_significance_description,
+            local_key=submission.local_key or "",
+            extra_data=extra_data,
+            clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
+            or "",
+            clinical_significance_comment=submission.clinical_significance.comment or "",
+        )
+
+    clinvar_submissions = submission_container.clinvar_submission or []
+
+    return [submission_to_struc_var_tsv_record(submission) for submission in clinvar_submissions]
