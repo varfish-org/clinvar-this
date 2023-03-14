@@ -122,18 +122,26 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         logger.info("Creating new payload only")
         previous_submission_container = None
     if path.endswith(".tsv") or path.endswith(".txt"):
-        tsv_records = tsv.read_seq_var_tsv(path=path)
-        batch_metadata = tsv.batch_metadata_from_mapping(metadata, use_defaults=True)
-        new_submission_container = tsv.seq_var_tsv_records_to_submission_container(
-            tsv_records, batch_metadata
-        )
-        if previous_submission_container:
-            submission_container = _merge_submission_container(
-                base=previous_submission_container,
-                patch=new_submission_container,
-            )
+        tsv_type = tsv.guess_tsv_type(path)
+        if tsv_type in (tsv.TsvType.SEQ_VAR, tsv.TsvType.STRUC_VAR):
+            batch_metadata = tsv.batch_metadata_from_mapping(metadata, use_defaults=True)
+            if tsv_type == tsv.TsvType.SEQ_VAR:
+                new_submission_container = tsv.seq_var_tsv_records_to_submission_container(
+                    tsv.read_seq_var_tsv(path=path), batch_metadata
+                )
+            else:  # tsv_type == tsv.TsvType.STRUC_VAR
+                new_submission_container = tsv.struc_var_tsv_records_to_submission_container(
+                    tsv.read_struc_var_tsv(path=path), batch_metadata
+                )
+            if previous_submission_container:
+                submission_container = _merge_submission_container(
+                    base=previous_submission_container,
+                    patch=new_submission_container,
+                )
+            else:
+                submission_container = new_submission_container
         else:
-            submission_container = new_submission_container
+            raise exceptions.IOException(f"Could not guess TSV file type from header for {path}")
         _write_payload(submission_container, config.profile, name)
     else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")

@@ -13,6 +13,8 @@ from clinvar_this import exceptions
 from clinvar_this.io.tsv import (
     SeqVarTsvRecord,
     StrucVarTsvRecord,
+    TsvType,
+    guess_tsv_type,
     read_seq_var_tsv,
     read_struc_var_tsv,
 )
@@ -110,3 +112,9 @@ def test_read_seq_var_tsv_error():
 def test_read_struc_var_tsv_error():
     with pytest.raises(TypeError):
         read_struc_var_tsv()
+
+
+def test_guess_file_type():
+    assert guess_tsv_type(path=DATA_DIR / "example.bad.tsv") == None  # noqa: E711
+    assert guess_tsv_type(path=DATA_DIR / "example.tsv") == TsvType.SEQ_VAR
+    assert guess_tsv_type(path=DATA_DIR / "example_sv.tsv") == TsvType.STRUC_VAR

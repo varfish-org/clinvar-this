@@ -365,6 +365,30 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
 )
 
 
+class TsvType(enum.Enum):
+    """Type of TSV file."""
+
+    #: Sequence variants.
+    SEQ_VAR = "seqvar"
+    #: Structural variants.
+    STRUC_VAR = "strucvar"
+
+
+def guess_tsv_type(path: str) -> typing.Optional[TsvType]:
+    """Guess TSV type."""
+    with open(path, "rt") as inputf:
+        arr = inputf.readline().strip().split("\t")
+    try:
+        _map_seq_var_header(arr)
+        return TsvType.SEQ_VAR
+    except exceptions.InvalidFormat:
+        try:
+            _map_struc_var_header(arr)
+            return TsvType.STRUC_VAR
+        except exceptions.InvalidFormat:
+            return None
+
+
 def _map_seq_var_header(
     header: typing.List[str],
 ) -> typing.List[typing.Optional[SeqVarHeaderColumn]]:

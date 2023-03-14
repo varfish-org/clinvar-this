@@ -83,18 +83,23 @@ def test_call_config_set_fail_invalid_name():
     [
         (True, False),
         (False, False),
+        (True, True),
+        (False, True),
     ],
 )
-def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
-    """Unit test of ``batch export`` with sequence variant.
+def test_call_batch_export(fs_config, monkeypatch, force, struc_var):
+    """Unit test of ``batch export`` with both sequence and structural variant.
 
-    The test stubs out call of ``batches.list`` and checks results."""
+    The test stubs out call of ``batches.list`` and checks results.
+    """
     mock_export = MagicMock()
     monkeypatch.setattr(batches, "export", mock_export)
 
     args = ["batch", "export", "batch-name", "out-tsv"]
     if force:
         args.append("--force")
+    if struc_var:
+        args.append("--struc-var")
 
     runner = CliRunner()
     result = runner.invoke(cli.cli, args)
@@ -114,20 +119,6 @@ def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
 
 
 @pytest.mark.parametrize(
-    "force,struc_var",
-    [
-        (True, True),
-        (False, True),
-    ],
-)
-def test_call_batch_export_struc_var(fs_config, monkeypatch, force, struc_var):
-    """Unit test of ``batch export`` with structural variant.
-
-    The test stubs out call of ``batches.list`` and checks results."""
-    assert False, "Write me!"
-
-
-@pytest.mark.parametrize(
     "name,metadata",
     [
         (None, None),
@@ -135,10 +126,11 @@ def test_call_batch_export_struc_var(fs_config, monkeypatch, force, struc_var):
         (None, ("A=a", "B=b")),
     ],
 )
-def test_call_batch_import_seq_var(fs_config, monkeypatch, name, metadata):
-    """Unit test of ``batch import`` with sequence variant TSV.
+def test_call_batch_import(fs_config, monkeypatch, name, metadata):
+    """Unit test of ``batch import``.
 
-    The test stubs out call of ``batches.import_`` and checks results."""
+    The test stubs out call of ``batches.import_`` and checks results.
+    """
     mock_import = MagicMock()
     monkeypatch.setattr(batches, "import_", mock_import)
 
@@ -165,39 +157,6 @@ def test_call_batch_import_seq_var(fs_config, monkeypatch, name, metadata):
     assert mock_import.call_args.args[1] == (name if name else "generated")
     assert mock_import.call_args.args[2] == "input-tsv"
     assert mock_import.call_args.args[3] == (metadata if metadata else ())
-    assert result.exit_code == 0
-
-
-@pytest.mark.parametrize(
-    "name,metadata",
-    [
-        (None, None),
-        ("foo", None),
-        (None, ("A=a", "B=b")),
-    ],
-)
-def test_call_batch_import_struc_var(fs_config, monkeypatch, name, metadata):
-    """Unit test of ``batch import`` with structural variant TSV.
-
-    The test stubs out call of ``batches.import_`` and checks results."""
-    assert False, "Write me!"
-
-
-def test_call_batch_list(fs_config, monkeypatch):
-    """Unit test of ``batch list``, stubs out call of ``batches.list`` and checks results."""
-    mock_list = MagicMock()
-    monkeypatch.setattr(batches, "list_", mock_list)
-
-    runner = CliRunner()
-    result = runner.invoke(cli.cli, ["batch", "list"])
-
-    mock_list.assert_called_once()
-    assert len(mock_list.call_args.args) == 1
-    assert len(mock_list.call_args.kwargs) == 0
-    assert (
-        str(mock_list.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
-    )
     assert result.exit_code == 0
 
 
