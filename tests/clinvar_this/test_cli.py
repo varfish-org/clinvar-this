@@ -120,7 +120,7 @@ def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
         (False, True),
     ],
 )
-def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
+def test_call_batch_export_struc_var(fs_config, monkeypatch, force, struc_var):
     """Unit test of ``batch export`` with structural variant.
 
     The test stubs out call of ``batches.list`` and checks results."""
