@@ -151,7 +151,10 @@ class StrucVarHeaderColumn:
 
 def _str_list(val: str, pat: str = r"[;,]") -> typing.List[str]:
     """Split a string and return list of trimmed entries"""
-    return [x.strip() for x in re.split(pat, val)]
+    if not val:
+        return []
+    else:
+        return [x.strip() for x in re.split(pat, val)]
 
 
 def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
@@ -298,7 +301,7 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
     ),
     StrucVarHeaderColumn(
         header_names=("STOP",),
-        key="start",
+        key="stop",
         required=True,
         converter=int,
         extractor=lambda r: str(r.stop),
@@ -472,7 +475,7 @@ def _read_struc_var_tsv_file(inputf: typing.TextIO) -> typing.List[StrucVarTsvRe
             result.append(attrs.evolve(record, extra_data=extra_data))
         else:
             header_row = row
-            headers = _map_seq_var_header(row)
+            headers = _map_struc_var_header(row)
     return result
 
 
