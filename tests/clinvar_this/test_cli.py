@@ -86,7 +86,9 @@ def test_call_config_set_fail_invalid_name():
     ],
 )
 def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
-    """Unit test of ``batch export``, stubs out call of ``batches.list`` and checks results."""
+    """Unit test of ``batch export`` with sequence variant.
+
+    The test stubs out call of ``batches.list`` and checks results."""
     mock_export = MagicMock()
     monkeypatch.setattr(batches, "export", mock_export)
 
@@ -112,6 +114,20 @@ def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
 
 
 @pytest.mark.parametrize(
+    "force,struc_var",
+    [
+        (True, True),
+        (False, True),
+    ],
+)
+def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
+    """Unit test of ``batch export`` with structural variant.
+
+    The test stubs out call of ``batches.list`` and checks results."""
+    assert False, "Write me!"
+
+
+@pytest.mark.parametrize(
     "name,metadata",
     [
         (None, None),
@@ -120,7 +136,9 @@ def test_call_batch_export_seq_var(fs_config, monkeypatch, force, struc_var):
     ],
 )
 def test_call_batch_import_seq_var(fs_config, monkeypatch, name, metadata):
-    """Unit test of ``batch import``, stubs out call of ``batches.import_`` and checks results."""
+    """Unit test of ``batch import`` with sequence variant TSV.
+
+    The test stubs out call of ``batches.import_`` and checks results."""
     mock_import = MagicMock()
     monkeypatch.setattr(batches, "import_", mock_import)
 
@@ -148,6 +166,21 @@ def test_call_batch_import_seq_var(fs_config, monkeypatch, name, metadata):
     assert mock_import.call_args.args[2] == "input-tsv"
     assert mock_import.call_args.args[3] == (metadata if metadata else ())
     assert result.exit_code == 0
+
+
+@pytest.mark.parametrize(
+    "name,metadata",
+    [
+        (None, None),
+        ("foo", None),
+        (None, ("A=a", "B=b")),
+    ],
+)
+def test_call_batch_import_struc_var(fs_config, monkeypatch, name, metadata):
+    """Unit test of ``batch import`` with structural variant TSV.
+
+    The test stubs out call of ``batches.import_`` and checks results."""
+    assert False, "Write me!"
 
 
 def test_call_batch_list(fs_config, monkeypatch):
