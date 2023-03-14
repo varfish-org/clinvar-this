@@ -9,15 +9,15 @@ from clinvar_api.msg import (
     ModeOfInheritance,
 )
 from clinvar_this import exceptions
-from clinvar_this.io.tsv import TsvRecord, read_tsv
+from clinvar_this.io.tsv import SeqVarTsvRecord, read_seq_var_tsv
 
 DATA_DIR = pathlib.Path(__file__).parent / "data/io_tsv"
 
 
 def test_read_tsv_path():
-    actual = read_tsv(path=DATA_DIR / "example.tsv")
+    actual = read_seq_var_tsv(path=DATA_DIR / "example.tsv")
     assert actual == [
-        TsvRecord(
+        SeqVarTsvRecord(
             assembly=Assembly.GRCH37,
             chromosome=Chromosome.CHR10,
             pos=115614632,
@@ -34,9 +34,9 @@ def test_read_tsv_path():
 
 def test_read_tsv_file():
     with (DATA_DIR / "example.tsv").open("rt") as inputf:
-        actual = read_tsv(file=inputf)
+        actual = read_seq_var_tsv(file=inputf)
     assert actual == [
-        TsvRecord(
+        SeqVarTsvRecord(
             assembly=Assembly.GRCH37,
             chromosome=Chromosome.CHR10,
             pos=115614632,
@@ -53,9 +53,9 @@ def test_read_tsv_file():
 
 def test_read_tsv_path_bad():
     with pytest.raises(exceptions.InvalidFormat):
-        read_tsv(path=DATA_DIR / "example.bad.tsv")
+        read_seq_var_tsv(path=DATA_DIR / "example.bad.tsv")
 
 
 def test_read_tsv_error():
     with pytest.raises(TypeError):
-        read_tsv()
+        read_seq_var_tsv()

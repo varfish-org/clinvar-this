@@ -122,9 +122,9 @@ def import_(config: config.Config, name: str, path: str, metadata: typing.Tuple[
         logger.info("Creating new payload only")
         previous_submission_container = None
     if path.endswith(".tsv") or path.endswith(".txt"):
-        tsv_records = tsv.read_tsv(path=path)
+        tsv_records = tsv.read_seq_var_tsv(path=path)
         batch_metadata = tsv.batch_metadata_from_mapping(metadata, use_defaults=True)
-        new_submission_container = tsv.tsv_records_to_submission_container(
+        new_submission_container = tsv.seq_var_tsv_records_to_submission_container(
             tsv_records, batch_metadata
         )
         if previous_submission_container:
@@ -160,8 +160,8 @@ def export(config: config.Config, name: str, path: str, force: bool = False):
         )
     if path.endswith(".tsv") or path.endswith(".txt"):
         payload = _load_latest_payload(config.profile, name)
-        tsv_records = tsv.submission_container_to_tsv_records(payload)
-        tsv.write_tsv(tsv_records, path=path)
+        tsv_records = tsv.submission_container_to_seq_var_tsv_records(payload)
+        tsv.write_seq_var_tsv(tsv_records, path=path)
     else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
