@@ -163,10 +163,13 @@ def export(
     if path.endswith(".tsv") or path.endswith(".txt"):
         payload = _load_latest_payload(config.profile, name)
         if struc_var:
-            raise RuntimeError("Not implemented yet")
+            tsv.write_struc_var_tsv(
+                tsv_records=tsv.submission_container_to_struc_var_tsv_records(payload), path=path
+            )
         else:
-            tsv_records = tsv.submission_container_to_seq_var_tsv_records(payload)
-            tsv.write_seq_var_tsv(tsv_records, path=path)
+            tsv.write_seq_var_tsv(
+                tsv_records=tsv.submission_container_to_seq_var_tsv_records(payload), path=path
+            )
     else:  # pragma: no cover
         raise exceptions.IOException(f"File extension of {path} cannot be handled.")
 
