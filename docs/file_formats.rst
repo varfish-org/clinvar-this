@@ -10,9 +10,9 @@ In the case of the non-native TSV format, this section documents how the file fo
 Overall, the aim of clinvar-this is to support you in submitting data easily with restrictions (see :ref:`limitations`).
 If you need the full functionality of the NCBI ClinVar API then please consider using the ``clinvar_api`` Python module.
 
---------------------------
-Small Variant TSV (Native)
---------------------------
+-----------------------------
+Sequence Variant TSV (Native)
+-----------------------------
 
 The following headers are required.
 Clinvar-this will recognize the TSV file format based on these headers.
