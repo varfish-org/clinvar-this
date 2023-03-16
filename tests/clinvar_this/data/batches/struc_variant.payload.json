@@ -1,0 +1,89 @@
+{
+  "assertion_criteria": {
+    "db": "PubMed",
+    "id": "25741868",
+    "url": null
+  },
+  "behalf_org_id": null,
+  "clinvar_deletion": null,
+  "clinvar_submission": [
+    {
+      "clinical_significance": {
+        "clinical_significance_description": "not provided",
+        "citation": null,
+        "comment": null,
+        "custom_assertion_score": null,
+        "date_last_evaluated": null,
+        "explanation_of_drug_response": null,
+        "explanation_of_other_clinical_significance": null,
+        "mode_of_inheritance": "Autosomal dominant inheritance"
+      },
+      "condition_set": {
+        "condition": [
+          {
+            "db": null,
+            "id": null,
+            "name": "not provided"
+          }
+        ],
+        "drug_response": null
+      },
+      "observed_in": [
+        {
+          "affected_status": "yes",
+          "allele_origin": "germline",
+          "collection_method": "not provided",
+          "clinical_features": [
+            {
+              "clinical_features_affected_status": "present",
+              "db": "HP",
+              "id": "HP:0001263",
+              "name": null
+            }
+          ],
+          "clinical_features_comment": null,
+          "number_of_individuals": null,
+          "struct_var_method_type": null
+        }
+      ],
+      "record_status": "novel",
+      "clinvar_accession": null,
+      "compound_heterozygote_set": null,
+      "diplotype_set": null,
+      "distinct_chromosomes_set": null,
+      "haplotype_set": null,
+      "haplotype_single_variant_set": null,
+      "local_id": "mock-uuid4",
+      "local_key": null,
+      "phase_unknown_set": null,
+      "variant_set": {
+        "variant": [
+          {
+            "chromosome_coordinates": {
+              "accession": null,
+              "alternate_allele": null,
+              "assembly": "GRCh38",
+              "chromosome": "1",
+              "inner_start": null,
+              "inner_stop": null,
+              "outer_start": null,
+              "outer_stop": null,
+              "reference_allele": null,
+              "start": 844347,
+              "stop": 4398122,
+              "variant_length": null
+            },
+            "copy_number": null,
+            "gene": null,
+            "hgvs": null,
+            "reference_copy_number": null,
+            "variant_type": "Deletion"
+          }
+        ]
+      },
+      "extra_data": null
+    }
+  ],
+  "clinvar_submission_release_status": "public",
+  "submission_name": null
+}
