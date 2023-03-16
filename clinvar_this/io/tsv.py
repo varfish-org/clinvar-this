@@ -243,8 +243,8 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         header_names=("CLIN_SIG",),
         key="clinical_significance_description",
         required=True,
-        converter=str,
-        extractor=lambda r: str(r.clinical_significance_description),
+        converter=lambda r: r or None,
+        extractor=lambda r: _enum_value_or_empty(r.clinical_significance_description),
     ),
     SeqVarHeaderColumn(
         header_names=("CLIN_EVAL",),
@@ -272,7 +272,7 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         key="hpo_terms",
         required=False,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.hpo_terms or []),
     ),
 )
 
@@ -835,6 +835,13 @@ def submission_container_to_seq_var_tsv_records(
         else:
             return None
 
+    def _hpo_terms(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+        clinical_features = submission.observed_in[0].clinical_features
+        result = None
+        if clinical_features:
+            result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
+        return result
+
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
     ) -> SeqVarTsvRecord:
@@ -885,6 +892,7 @@ def submission_container_to_seq_var_tsv_records(
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
             or "",
             clinical_significance_comment=submission.clinical_significance.comment or "",
+            hpo_terms=_hpo_terms(submission),
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []
