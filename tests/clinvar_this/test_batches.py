@@ -14,49 +14,67 @@ from clinvar_this import batches, exceptions
 from clinvar_this.io import tsv as io_tsv
 
 # We must read this outside of the test as we use the fake file system.
-with (pathlib.Path(__file__).parent / "data/batches/small_variant.tsv").open("rt") as inputf:
+with (pathlib.Path(__file__).parent / "data/batches/seq_variant.tsv").open("rt") as inputf:
     #: Small variant TSV for testing batches module.  Likely pathogenic.
-    SMALL_VARIANT_TSV = inputf.read()
+    SEQ_VARIANT_TSV = inputf.read()
 
-with (pathlib.Path(__file__).parent / "data/batches/small_variant.payload.json").open(
+with (pathlib.Path(__file__).parent / "data/batches/struc_variant.tsv").open("rt") as inputf:
+    #: Structural variant TSV for testing batches module.  Likely pathogenic.
+    STRUC_VARIANT_TSV = inputf.read()
+
+with (pathlib.Path(__file__).parent / "data/batches/seq_variant.payload.json").open("rt") as inputf:
+    #: The ``SEQ_VARIANT_TSV`` after import for testing batches module.
+    SEQ_VARIANT_PAYLOAD_JSON = inputf.read()
+
+with (pathlib.Path(__file__).parent / "data/batches/struc_variant.payload.json").open(
     "rt"
 ) as inputf:
-    #: The ``SMALL_VARIANT_TSV`` after import for testing batches module.
-    SMALL_VARIANT_PAYLOAD_JSON = inputf.read()
+    #: The ``STRUC_VARIANT_TSV`` after import for testing batches module.
+    STRUC_VARIANT_PAYLOAD_JSON = inputf.read()
 
-with (pathlib.Path(__file__).parent / "data/batches/small_variant-update.tsv").open("rt") as inputf:
-    #: Small variant TSV for testing batches module.  Updated to Pathonenic.
-    SMALL_VARIANT_UPDATE_TSV = inputf.read()
+with (pathlib.Path(__file__).parent / "data/batches/seq_variant-update.tsv").open("rt") as inputf:
+    #: Sequence variant TSV for testing batches module.  Updated to Pathonenic.
+    SEQ_VARIANT_UPDATE_TSV = inputf.read()
 
-with (pathlib.Path(__file__).parent / "data/batches/small_variant-update.payload.json").open(
+with (pathlib.Path(__file__).parent / "data/batches/struc_variant-update.tsv").open("rt") as inputf:
+    #: Structural variant TSV for testing batches module.  Updated to Pathonenic.
+    STRUC_VARIANT_UPDATE_TSV = inputf.read()
+
+with (pathlib.Path(__file__).parent / "data/batches/seq_variant-update.payload.json").open(
     "rt"
 ) as inputf:
-    #: The `SMALL_VARIANT_UPDATE_TSV` after import / merge.
-    SMALL_VARIANT_UPDATE_PAYLOAD_JSON = inputf.read()
+    #: The `SEQ_VARIANT_UPDATE_TSV` after import / merge.
+    SEQ_VARIANT_UPDATE_PAYLOAD_JSON = inputf.read()
+
+with (pathlib.Path(__file__).parent / "data/batches/struc_variant-update.payload.json").open(
+    "rt"
+) as inputf:
+    #: The `STRUC_VARIANT_UPDATE_TSV` after import / merge.
+    STRUC_VARIANT_UPDATE_PAYLOAD_JSON = inputf.read()
 
 with (
-    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-processing.json"
+    pathlib.Path(__file__).parent / "data/batches/seq_variant.retrieve-response-processing.json"
 ).open("rt") as inputf:
     #: A static response on retrieving with "processing" status.
-    SMALL_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON = inputf.read()
+    SEQ_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON = inputf.read()
 
 with (
-    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-submitted.json"
+    pathlib.Path(__file__).parent / "data/batches/seq_variant.retrieve-response-submitted.json"
 ).open("rt") as inputf:
     #: A static response on retrieving with "submitted" status.
-    SMALL_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON = inputf.read()
+    SEQ_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON = inputf.read()
 
 with (
-    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-success.json"
+    pathlib.Path(__file__).parent / "data/batches/seq_variant.retrieve-response-success.json"
 ).open("rt") as inputf:
     #: A static response on retrieving with "success" status.
-    SMALL_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON = inputf.read()
+    SEQ_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON = inputf.read()
 
-with (
-    pathlib.Path(__file__).parent / "data/batches/small_variant.retrieve-response-error.json"
-).open("rt") as inputf:
+with (pathlib.Path(__file__).parent / "data/batches/seq_variant.retrieve-response-error.json").open(
+    "rt"
+) as inputf:
     #: A static response on retrieving with "error" status.
-    SMALL_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON = inputf.read()
+    SEQ_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON = inputf.read()
 
 SUBMISSION_SCHEMA_JSON_PATH = (
     pathlib.Path(clinvar_api.__file__).parent / "schemas/submission_schema.json"
@@ -114,9 +132,9 @@ def test_merge_submission_container():
 
 
 @freeze_time("2012-01-14")
-def test_import_small_variant_tsv_new(fs, app_config, monkeypatch):
-    path_tsv = "/tmp/small_variant.tsv"
-    fs.create_file(path_tsv, contents=SMALL_VARIANT_TSV)
+def test_import_seq_variant_tsv_new(fs, app_config, monkeypatch):
+    path_tsv = "/tmp/seq_variant.tsv"
+    fs.create_file(path_tsv, contents=SEQ_VARIANT_TSV)
 
     def mock_uuid4():
         return "mock-uuid4"
@@ -132,25 +150,56 @@ def test_import_small_variant_tsv_new(fs, app_config, monkeypatch):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == SMALL_VARIANT_PAYLOAD_JSON
+    assert payload_json == SEQ_VARIANT_PAYLOAD_JSON
 
 
 @freeze_time("2012-01-14")
-def test_import_small_variant_tsv_update(fs, app_config):
-    path_tsv = "/tmp/small_variant-update.tsv"
-    fs.create_file(path_tsv, contents=SMALL_VARIANT_UPDATE_TSV)
+def test_import_seq_variant_tsv_update(fs, app_config):
+    path_tsv = "/tmp/seq_variant-update.tsv"
+    fs.create_file(path_tsv, contents=SEQ_VARIANT_UPDATE_TSV)
 
+    payload_path = os.path.expanduser(
+        "~/.local/share/clinvar-this/default/the-batch/payload.20120114000000.json"
+    )
     fs.create_file(
-        os.path.expanduser(
-            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
-        ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        os.path.expanduser(payload_path),
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
 
     batch_name = "the-batch"
     batches.import_(config=app_config, name=batch_name, path=path_tsv, metadata=())
 
-    print(os.listdir(os.path.expanduser("~/.local/share/clinvar-this/default/the-batch")))
+    filename = os.listdir(os.path.expanduser("~/.local/share/clinvar-this/default/the-batch"))[-1]
+
+    payload_path = os.path.expanduser(f"~/.local/share/clinvar-this/default/the-batch/{filename}")
+    assert os.path.exists(payload_path)
+    with open(payload_path, "rt") as inputf:
+        payload_json = inputf.read()
+    assert payload_json == SEQ_VARIANT_UPDATE_PAYLOAD_JSON
+
+
+@freeze_time("2012-01-14")
+def test_import_deletion_tsv_new(fs):
+    pass  # TODO
+
+
+@freeze_time("2012-01-14")
+def test_import_deletion_tsv_update(fs):
+    pass  # TODO
+
+
+@freeze_time("2012-01-14")
+def test_import_structural_variant_tsv_new(fs, app_config, monkeypatch):
+    path_tsv = "/tmp/seq_variant.tsv"
+    fs.create_file(path_tsv, contents=STRUC_VARIANT_TSV)
+
+    def mock_uuid4():
+        return "mock-uuid4"
+
+    monkeypatch.setattr(io_tsv.uuid, "uuid4", mock_uuid4)
+
+    batch_name = "the-batch"
+    batches.import_(config=app_config, name=batch_name, path=path_tsv, metadata=())
 
     payload_path = os.path.expanduser(
         "~/.local/share/clinvar-this/default/the-batch/payload.20120114000000.json"
@@ -158,23 +207,32 @@ def test_import_small_variant_tsv_update(fs, app_config):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == SMALL_VARIANT_UPDATE_PAYLOAD_JSON
+    assert payload_json == STRUC_VARIANT_PAYLOAD_JSON
 
 
-def test_import_deletion_tsv_new(fs):
-    pass  # TODO
+def test_import_structural_variant_tsv_update(fs, app_config):
+    path_tsv = "/tmp/struc_variant-update.tsv"
+    fs.create_file(path_tsv, contents=STRUC_VARIANT_UPDATE_TSV)
 
+    payload_path = os.path.expanduser(
+        "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+    )
+    fs.create_file(
+        os.path.expanduser(payload_path),
+        contents=STRUC_VARIANT_PAYLOAD_JSON,
+    )
+    assert os.path.exists(payload_path)
 
-def test_import_deletion_tsv_update(fs):
-    pass  # TODO
+    batch_name = "the-batch"
+    batches.import_(config=app_config, name=batch_name, path=path_tsv, metadata=())
 
+    fname = os.listdir(os.path.expanduser("~/.local/share/clinvar-this/default/the-batch"))[-1]
 
-def test_import_structural_variant_tsv_new(fs):
-    pass  # TODO
-
-
-def test_import_structural_variant_tsv_update(fs):
-    pass  # TODO
+    payload_path = os.path.expanduser(f"~/.local/share/clinvar-this/default/the-batch/{fname}")
+    assert os.path.exists(payload_path)
+    with open(payload_path, "rt") as inputf:
+        payload_json = inputf.read()
+    assert payload_json == STRUC_VARIANT_UPDATE_PAYLOAD_JSON
 
 
 @pytest.mark.parametrize(
@@ -185,12 +243,12 @@ def test_import_structural_variant_tsv_update(fs):
         (True, True),
     ],
 )
-def test_export_small_variant_tsv(fs, app_config, exists, force):
+def test_export_seq_variant_tsv(fs, app_config, exists, force):
     fs.create_file(
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
 
     if exists:
@@ -222,8 +280,56 @@ def test_export_small_variant_tsv(fs, app_config, exists, force):
     assert fcontents == expected
 
 
-def test_export_structural_variant_tsv(fs):
-    pass  # TODO
+@pytest.mark.parametrize(
+    "exists,force",
+    [
+        (False, False),
+        (True, False),
+        (True, True),
+    ],
+)
+def test_export_structural_variant_tsv(fs, app_config, exists, force):
+    fs.create_file(
+        os.path.expanduser(
+            "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
+        ),
+        contents=STRUC_VARIANT_PAYLOAD_JSON,
+    )
+
+    if exists:
+        fs.create_file("/tmp/output.tsv", contents="foo")
+
+    batch_name = "the-batch"
+
+    if exists and not force:
+        with pytest.raises(exceptions.IOException):
+            batches.export(
+                config=app_config, name=batch_name, path="/tmp/output.tsv", struc_var=True
+            )
+    else:
+        batches.export(
+            config=app_config, name=batch_name, path="/tmp/output.tsv", force=force, struc_var=True
+        )
+
+    with open("/tmp/output.tsv", "rt") as inputf:
+        fcontents = inputf.read()
+
+    if not exists or force:
+        expected = "\n".join(
+            [
+                (
+                    "ASSEMBLY\tCHROM\tSTART\tSTOP\tSV_TYPE\tOMIM\tMOI\tCLIN_SIG\tCLIN_EVAL\t"
+                    "CLIN_COMMENT\tKEY\tHPO"
+                ),
+                (
+                    "GRCh38\t1\t844347\t4398122\tDeletion\t\tAutosomal dominant inheritance\t"
+                    "not provided\t\t\t\t\n"
+                ),
+            ]
+        )
+    else:
+        expected = "foo"
+    assert fcontents == expected
 
 
 @pytest.mark.parametrize(
@@ -236,7 +342,7 @@ def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
 
     fs.create_file(SUBMISSION_SCHEMA_JSON_PATH, contents=SUBMISSION_SCHEMA_JSON)
@@ -264,7 +370,7 @@ def test_retrieve_state_submitted(fs, app_config, monkeypatch):
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
     fs.create_file(
         os.path.expanduser(
@@ -273,7 +379,7 @@ def test_retrieve_state_submitted(fs, app_config, monkeypatch):
         contents='{"id": "SUB000fake"}',
     )
 
-    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON)
+    response = json.loads(SEQ_VARIANT_RETRIEVE_RESPONSE_SUBMITTED_JSON)
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
@@ -295,7 +401,7 @@ def test_retrieve_state_processing(fs, app_config, monkeypatch):
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
     fs.create_file(
         os.path.expanduser(
@@ -304,7 +410,7 @@ def test_retrieve_state_processing(fs, app_config, monkeypatch):
         contents='{"id": "SUB000fake"}',
     )
 
-    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON)
+    response = json.loads(SEQ_VARIANT_RETRIEVE_RESPONSE_PROCESSING_JSON)
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
@@ -326,7 +432,7 @@ def test_retrieve_state_processed(fs, app_config, monkeypatch):
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
     fs.create_file(
         os.path.expanduser(
@@ -335,7 +441,7 @@ def test_retrieve_state_processed(fs, app_config, monkeypatch):
         contents='{"id": "SUB000fake"}',
     )
 
-    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON)
+    response = json.loads(SEQ_VARIANT_RETRIEVE_RESPONSE_SUCCESS_JSON)
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
@@ -361,7 +467,7 @@ def test_retrieve_state_error(fs, app_config, monkeypatch):
         os.path.expanduser(
             "~/.local/share/clinvar-this/default/the-batch/payload.20120113000000.json"
         ),
-        contents=SMALL_VARIANT_PAYLOAD_JSON,
+        contents=SEQ_VARIANT_PAYLOAD_JSON,
     )
     fs.create_file(
         os.path.expanduser(
@@ -370,7 +476,7 @@ def test_retrieve_state_error(fs, app_config, monkeypatch):
         contents='{"id": "SUB000fake"}',
     )
 
-    response = json.loads(SMALL_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON)
+    response = json.loads(SEQ_VARIANT_RETRIEVE_RESPONSE_ERROR_JSON)
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(

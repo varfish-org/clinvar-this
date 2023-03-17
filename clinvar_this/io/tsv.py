@@ -10,6 +10,7 @@ import uuid
 
 import attrs
 import cattrs
+from logzero import logger
 
 from clinvar_api.models import (
     AffectedStatus,
@@ -311,7 +312,7 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         key="sv_type",
         required=True,
         converter=str,
-        extractor=lambda r: str(r.sv_type),
+        extractor=lambda r: _enum_value_or_empty(r.sv_type),
     ),
     StrucVarHeaderColumn(
         header_names=("OMIM",),
@@ -332,7 +333,7 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         key="clinical_significance_description",
         required=True,
         converter=str,
-        extractor=lambda r: str(r.clinical_significance_description),
+        extractor=lambda r: _enum_value_or_empty(r.clinical_significance_description),
     ),
     StrucVarHeaderColumn(
         header_names=("CLIN_EVAL",),
@@ -813,7 +814,7 @@ def struc_var_tsv_records_to_submission_container(
     )
 
 
-def submission_container_to_seq_var_tsv_records(
+def submission_container_to_seq_var_tsv_records(  # noqa: C901
     submission_container: SubmissionContainer,
 ) -> typing.List[SeqVarTsvRecord]:
     def _condition(submission: SubmissionClinvarSubmission) -> typing.List[str]:
@@ -844,7 +845,7 @@ def submission_container_to_seq_var_tsv_records(
 
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
-    ) -> SeqVarTsvRecord:
+    ) -> typing.Optional[SeqVarTsvRecord]:
         if not submission.variant_set:
             raise exceptions.ClinvarThisException(
                 "Problem with internal data structure - no variant set"
@@ -861,10 +862,19 @@ def submission_container_to_seq_var_tsv_records(
             chromosome_coordinates: SubmissionChromosomeCoordinates = (
                 submission.variant_set.variant[0].chromosome_coordinates
             )
+        if not (chromosome_coordinates.assembly and chromosome_coordinates.chromosome):
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - missing chromosome"
+            )
+        if submission.variant_set.variant[0].variant_type:
+            logger.warning(
+                "Skipping variant at %s:%d as it looks like a SV",
+                chromosome_coordinates.chromosome.value,
+                chromosome_coordinates.start,
+            )
+            return None
         if not (
-            chromosome_coordinates.assembly
-            and chromosome_coordinates.chromosome
-            and chromosome_coordinates.start
+            chromosome_coordinates.start
             and chromosome_coordinates.reference_allele
             and chromosome_coordinates.alternate_allele
         ):
@@ -897,10 +907,15 @@ def submission_container_to_seq_var_tsv_records(
 
     clinvar_submissions = submission_container.clinvar_submission or []
 
-    return [submission_to_seq_var_tsv_record(submission) for submission in clinvar_submissions]
+    result: typing.List[SeqVarTsvRecord] = []
+    for submission in clinvar_submissions:
+        record = submission_to_seq_var_tsv_record(submission)
+        if record:
+            result.append(record)
+    return result
 
 
-def submission_container_to_struc_var_tsv_records(
+def submission_container_to_struc_var_tsv_records(  # noqa: C901
     submission_container: SubmissionContainer,
 ) -> typing.List[StrucVarTsvRecord]:
     def _condition(submission: SubmissionClinvarSubmission) -> typing.List[str]:
@@ -924,7 +939,7 @@ def submission_container_to_struc_var_tsv_records(
 
     def submission_to_struc_var_tsv_record(
         submission: SubmissionClinvarSubmission,
-    ) -> StrucVarTsvRecord:
+    ) -> typing.Optional[StrucVarTsvRecord]:
         if not submission.variant_set:
             raise exceptions.ClinvarThisException(
                 "Problem with internal data structure - no variant set"
@@ -944,12 +959,18 @@ def submission_container_to_struc_var_tsv_records(
             variant_type: typing.Optional[VariantType] = submission.variant_set.variant[
                 0
             ].variant_type
-        if not (
-            chromosome_coordinates.assembly
-            and chromosome_coordinates.chromosome
-            and chromosome_coordinates.start
-            and chromosome_coordinates.stop
-        ):
+        if not (chromosome_coordinates.assembly and chromosome_coordinates.chromosome):
+            raise exceptions.ClinvarThisException(
+                "Problem with internal data structure - missing chromosome"
+            )
+        if not submission.variant_set.variant[0].variant_type:
+            logger.warning(
+                "Skipping variant at %s:%d as it does not look like a SV",
+                chromosome_coordinates.chromosome.value,
+                chromosome_coordinates.start,
+            )
+            return None
+        if not (chromosome_coordinates.start and chromosome_coordinates.stop):
             raise exceptions.ClinvarThisException(
                 "Problem with internal data structure - incomplete coordinates"
             )
@@ -982,4 +1003,9 @@ def submission_container_to_struc_var_tsv_records(
 
     clinvar_submissions = submission_container.clinvar_submission or []
 
-    return [submission_to_struc_var_tsv_record(submission) for submission in clinvar_submissions]
+    result: typing.List[StrucVarTsvRecord] = []
+    for submission in clinvar_submissions:
+        record = submission_to_struc_var_tsv_record(submission)
+        if record:
+            result.append(record)
+    return result
