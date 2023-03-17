@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/bihealth/clinvar-this/compare/v0.2.0...v0.2.1) (2023-03-17)
+
+
+### Bug Fixes
+
+* fixing strucvar export ([#84](https://www.github.com/bihealth/clinvar-this/issues/84)) ([1050a67](https://www.github.com/bihealth/clinvar-this/commit/1050a67edff50150da955f0e5364148c82b46902))
+* sequence variant export ([#82](https://www.github.com/bihealth/clinvar-this/issues/82)) ([0fe3fb9](https://www.github.com/bihealth/clinvar-this/commit/0fe3fb9b4ec783218a408926007bb7370c70be64))
+
 ## [0.2.0](https://www.github.com/bihealth/clinvar-this/compare/v0.1.0...v0.2.0) (2023-03-15)
 
 
