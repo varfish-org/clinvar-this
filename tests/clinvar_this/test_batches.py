@@ -213,7 +213,7 @@ def test_export_small_variant_tsv(fs, app_config, exists, force):
                 "ASSEMBLY\tCHROM\tPOS\tREF\tALT\tOMIM\tMOI\tCLIN_SIG\tCLIN_EVAL\tCLIN_COMMENT\tKEY\tHPO",
                 (
                     "GRCh37\t19\t48183936\tC\tCA\t619325\tAutosomal dominant inheritance\t"
-                    "ClinicalSignificanceDescription.LIKELY_PATHOGENIC\t\t\t\t619325\n"
+                    "Likely pathogenic\t\t\t\tHP:0004322,HP:0001263\n"
                 ),
             ]
         )
