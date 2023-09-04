@@ -69,7 +69,6 @@ class SubmissionStatusResponseMessage:
 
 @attrs.define(frozen=True)
 class SubmissionStatusResponse:
-
     #: Status, one of "processing", "processed", "error",
     status: str
     #: Files in the response.
@@ -95,7 +94,6 @@ class SubmissionStatusResponse:
 
 @attrs.define(frozen=True)
 class SubmissionStatusActions:
-
     #: Identifier of the submission
     id: str
     #: Entries in ``actions[*].responses``, only one entry per the docs.
