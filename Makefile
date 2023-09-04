@@ -1,6 +1,16 @@
 .PHONY: default
 default:
 
+.PHONY: format
+format: black isort
+
+.PHONY: lint
+lint: flake8 isort-check black-check mypy
+
+.PHONY: test
+pytest:
+	pytest .
+
 .PHONY: black
 black:
 	black -l 100 .
@@ -25,10 +35,3 @@ flake8:
 mypy: export MYPYPATH=stubs
 mypy:
 	mypy clinvar_this clinvar_api tests
-
-.PHONY: lint
-lint: flake8 isort-check black-check mypy
-
-.PHONY: pytest
-pytest:
-	pytest .
