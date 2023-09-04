@@ -5,6 +5,7 @@ isort >=5.10.1, <6.0
 flake8 >=5.0.4, <7.0
 pytest
 pytest-cov
+pytest-snapshot
 pyfakefs
 freezegun
 

@@ -285,14 +285,21 @@ class ClinicalSignificanceSCV:
             review_status = None
 
         descriptions = []
+        import sys
+
+        print(json_data, file=sys.stderr)
         for raw_description in force_list(json_data.get("Description", [])):
-            if "Description" in raw_description:
-                if isinstance(raw_description["Description"], str):
-                    descriptions.append(raw_description["Description"])
-                else:
-                    descriptions.append(raw_description["Description"]["#text"])
-            elif "@Description" in raw_description:
-                descriptions.append(raw_description["@Description"])
+            print(raw_description, file=sys.stderr)
+            if isinstance(raw_description, str):
+                value = raw_description
+            else:
+                value = raw_description.get("#text")
+            if value:
+                descriptions.append(ClinicalSignificanceDescription(raw_description.lower()))
+                break
+        else:  # did not break out of for loop above
+            if "@Description" in json_data:
+                descriptions.append(ClinicalSignificanceDescription(json_data.get["@Description"]))
 
         return cls(
             review_status=review_status,
@@ -587,6 +594,7 @@ class ObservedDataAttributeType(enum.Enum):
 @attrs.frozen(auto_attribs=True)
 class ObservedDataAttribute:
     type: ObservedDataAttributeType
+    value: typing.Optional[str] = None
     integer_value: typing.Optional[int] = None
     date_value: typing.Optional[datetime.date] = None
 
@@ -594,6 +602,7 @@ class ObservedDataAttribute:
     def from_json_data(cls, json_data: dict) -> "ObservedDataAttribute":
         return cls(
             type=ObservedDataAttributeType(json_data["@Type"]),
+            value=json_data.get("#text"),
             integer_value=int(json_data["@integerValue"])
             if json_data.get("@integerValue")
             else None,
@@ -757,8 +766,8 @@ class AffectedStatus(enum.Enum):
     NOT_APPLICABLE = "not applicable"
 
 
-@attrs.frozen(auto_attribs=True)
-class Gender:
+@enum.unique
+class Gender(enum.Enum):
     MALE = "male"
     FEMALE = "female"
     MIXED = "mixed"
@@ -1133,32 +1142,30 @@ class SampleType:
             sample_description=SampleDescription.from_json_data(json_data["SampleDescription"])
             if json_data.get("SampleDescription")
             else None,
-            origin=SampleOrigin(json_data["@Origin"]) if json_data.get("@Origin") else None,
-            ethnicity=json_data.get("@Ethnicity"),
-            geographic_origin=json_data.get("@GeographicOrigin"),
-            tissue=json_data.get("@Tissue"),
-            cell_line=json_data.get("@CellLine"),
+            origin=SampleOrigin(json_data["Origin"]) if json_data.get("Origin") else None,
+            ethnicity=json_data.get("Ethnicity"),
+            geographic_origin=json_data.get("GeographicOrigin"),
+            tissue=json_data.get("Tissue"),
+            cell_line=json_data.get("CellLine"),
             species=Species.from_json_data(json_data.get("Species")),
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
-            strain=json_data.get("@Strain"),
-            affected_status=AffectedStatus(json_data["@AffectedStatus"])
-            if json_data.get("@AffectedStatus")
+            strain=json_data.get("Strain"),
+            affected_status=AffectedStatus(json_data["AffectedStatus"])
+            if json_data.get("AffectedStatus")
             else AffectedStatus.NOT_PROVIDED,
-            number_tested=int(json_data["@NumberTested"])
-            if json_data.get("@NumberTested")
+            number_tested=int(json_data["NumberTested"]) if json_data.get("NumberTested") else None,
+            number_males=int(json_data["NumberMales"]) if json_data.get("NumberMales") else None,
+            number_females=int(json_data["NumberFemales"])
+            if json_data.get("NumberFemales")
             else None,
-            number_males=int(json_data["@NumberMales"]) if json_data.get("@NumberMales") else None,
-            number_females=int(json_data["@NumberFemales"])
-            if json_data.get("@NumberFemales")
+            number_chr_tested=int(json_data["NumberChrTested"])
+            if json_data.get("NumberChrTested")
             else None,
-            number_chr_tested=int(json_data["@NumberChrTested"])
-            if json_data.get("@NumberChrTested")
-            else None,
-            gender=Gender(json_data["@Gender"]) if json_data.get("@Gender") else None,
+            gender=Gender(json_data["Gender"]) if json_data.get("Gender") else None,
             family_data=FamilyInfo.from_json_data(json_data.get("FamilyData"))
             if json_data.get("FamilyData")
             else None,
-            proband=json_data.get("@Proband"),
+            proband=json_data.get("Proband"),
             indication=Indication.from_json_data(json_data.get("Indication"))
             if json_data.get("Indication")
             else None,
@@ -1174,7 +1181,7 @@ class SampleType:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            source=SampleSource(json_data["@Source"]) if json_data.get("@Source") else None,
+            source=SampleSource(json_data["SourceType"]) if json_data.get("SourceType") else None,
         )
 
 
@@ -1701,8 +1708,25 @@ class MeasureType:
         )
 
 
+@enum.unique
+class MeasureSetType(enum.Enum):
+    GENE = "Gene"
+    VARIANT = "Variant"
+    GENE_VARIANT = "gene-variant"
+    OMIM_RECORD = "OMIM record"
+    HAPLOTYPE = "Haplotype"
+    HAPLOTYPE_SINGLE_VARIANT = "Haplotype, single variant"
+    PHASE_UNKNOWN = "Phase unknown"
+    DISTINCT_CHROMOSOMES = "Distinct chromosomes"
+    COMPOUND_HETEROZYGOUS = "Compound heterozygous"
+    DIPLOTYPE = "Diplotype"
+
+
 @attrs.frozen(auto_attribs=True)
 class MeasureSet:
+    type: MeasureSetType
+    acc: str
+    version: typing.Optional[int] = None
     measures: typing.List[MeasureType] = attrs.field(factory=list)
     names: typing.List[SetElementSetType] = attrs.field(factory=list)
     symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
@@ -1710,10 +1734,15 @@ class MeasureSet:
     citations: typing.List[Citation] = attrs.field(factory=list)
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
     comments: typing.List[Comment] = attrs.field(factory=list)
+    number_of_chromosomes: typing.Optional[int] = None
+    id: typing.Optional[int] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureSet":
         return cls(
+            type=MeasureSetType(json_data["@Type"]),
+            acc=json_data.get("@Acc"),
+            version=int(json_data["@Version"]) if json_data.get("@Version") else None,
             measures=[
                 MeasureType.from_json_data(raw_measure)
                 for raw_measure in force_list(json_data.get("Measure", []))
@@ -1742,6 +1771,10 @@ class MeasureSet:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
+            number_of_chromosomes=int(json_data["@NumberOfChromosomes"])
+            if json_data.get("@NumberOfChromosomes")
+            else None,
+            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
         )
 
 
@@ -1961,10 +1994,10 @@ class PublicSetType:
     def from_json(cls, json_data: dict) -> "PublicSetType":
         raw_clinvar_assertions = force_list(json_data["ClinVarAssertion"])
 
-        return PublicSetType(
+        result = PublicSetType(
             record_status=RecordStatus(json_data["RecordStatus"]),
             title=json_data.get("Title"),
-            replaces=force_list(json_data.get("Replaces")),
+            replaces=force_list(json_data.get("Replaces", [])),
             reference_clinvar_assertion=ReferenceClinVarAssertion.from_json_data(
                 json_data["ReferenceClinVarAssertion"]
             ),
@@ -1972,3 +2005,4 @@ class PublicSetType:
                 ClinVarAssertion.from_json_data(raw_cva) for raw_cva in raw_clinvar_assertions
             ],
         )
+        return result
