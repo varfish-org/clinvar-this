@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/bihealth/clinvar-this/compare/v0.2.1...v0.3.0) (2023-09-04)
+
+
+### Features
+
+* removing versioneer in favour of version from release-please ([#95](https://www.github.com/bihealth/clinvar-this/issues/95)) ([5b922bb](https://www.github.com/bihealth/clinvar-this/commit/5b922bb0a1fef23426cc73890db3f0868d668947))
+
+
+### Bug Fixes
+
+* using varfish-bot token for release-please ([#97](https://www.github.com/bihealth/clinvar-this/issues/97)) ([35fad52](https://www.github.com/bihealth/clinvar-this/commit/35fad5261210e8dfadc1e93fe151f4e885fb843b))
+
 ### [0.2.1](https://www.github.com/bihealth/clinvar-this/compare/v0.2.0...v0.2.1) (2023-03-17)
 
 
