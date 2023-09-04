@@ -285,11 +285,7 @@ class ClinicalSignificanceSCV:
             review_status = None
 
         descriptions = []
-        import sys
-
-        print(json_data, file=sys.stderr)
         for raw_description in force_list(json_data.get("Description", [])):
-            print(raw_description, file=sys.stderr)
             if isinstance(raw_description, str):
                 value = raw_description
             else:
@@ -1260,243 +1256,6 @@ class AssertionTypeRCV:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ReferenceClinVarAssertion:
-    #: Accesion of the RCV record.
-    clinvar_accession: ClinVarAccession
-    #: Status of the record.
-    record_status: RecordStatus
-    #: Clinical significance summary of RCV record.
-    clinical_significance: ClinicalSignificance
-    #: The assertion RCV type.
-    assertion: AssertionTypeRCV
-    #: Represents the public identifier a source may have for this record.
-    external_ids: typing.List[XrefType] = attrs.field(factory=list)
-    #: Attributes of the RCV record
-    attributes: typing.List[ReferenceClinVarAssertionAttribute] = attrs.field(factory=list)
-    #: Observations.
-    observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertion":
-        return cls(
-            clinvar_accession=ClinVarAccession.from_json_data(json_data["ClinVarAccession"]),
-            record_status=RecordStatus(json_data["RecordStatus"]),
-            clinical_significance=ClinicalSignificance.from_json_data(
-                json_data["ClinicalSignificance"]
-            ),
-            assertion=AssertionTypeRCV.from_json_data(json_data["Assertion"]),
-            external_ids=[
-                XrefType.from_json_data(raw_external_id)
-                for raw_external_id in force_list(json_data.get("ExternalID", []))
-            ],
-            attributes=[
-                ReferenceClinVarAssertionAttribute.from_json_data(raw_attribute)
-                for raw_attribute in force_list(json_data.get("Attribute", []))
-            ],
-            observed_in=[
-                ObservationSet.from_json_data(raw_observation_set)
-                for raw_observation_set in force_list(json_data.get("ObservedIn", []))
-            ],
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class ClinVarSubmissionID:
-    """Corresponds to ``ClinVarSubmissionID`` in XML file."""
-
-    #: Of primary use to submitters, to facilitate identification of records corresponding to
-    #: their submissions.  If not provided by a submitter, NCBI generates. If provided by
-    #: submitter, that is represented in localKeyIsSubmitted.
-    local_key: str
-    #: Name of the submitter
-    submitter: typing.Optional[str] = None
-    #: Title of the submission
-    title: typing.Optional[str] = None
-    #: Assembly used in submission
-    submitted_assembly: typing.Optional[str] = None
-    #: Submission date
-    submitter_date: typing.Optional[datetime.date] = None
-    #: Whether the local key was submitted (True) or has ben set by NCBI (False)
-    local_key_is_submitted: typing.Optional[bool] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarSubmissionID":
-        return cls(
-            local_key=json_data["@localKey"],
-            submitter=json_data.get("@submitter"),
-            title=json_data.get("@title"),
-            submitted_assembly=json_data.get("@submittedAssembly"),
-            submitter_date=parse_datetime(json_data.get("@submitterDate")).date()
-            if json_data.get("@submitterDate")
-            else None,
-            local_key_is_submitted=json_data.get("localKeyIsSubmitted") == "1"
-            if json_data.get("localKeyIsSubmitted")
-            else None,
-        )
-
-
-@enum.unique
-class SubmitterType(enum.Enum):
-    """Enumeration with ``Submitter.type``."""
-
-    PRIMARY = "primary"
-    SECONDARY = "secondary"
-    BEHALF = "behalf"
-
-
-@attrs.frozen(auto_attribs=True)
-class Submitter:
-    """A structure to support reportng the name of a submitter, its org_id, and whether primary
-    or secondary or behalf.
-
-    Corresponds to ``SubmitterType`` in XML file.
-    """
-
-    #: The type of the submitter
-    type: SubmitterType
-    #: The name of the submitter
-    submitter_name: typing.Optional[str] = None
-    #: The ID of the submitting organisation
-    org_id: typing.Optional[int] = None
-    #: The submitter category
-    category: typing.Optional[str] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "Submitter":
-        return cls(
-            type=SubmitterType(json_data["@Type"]),
-            submitter_name=json_data.get("@SubmitterName"),
-            org_id=int(json_data.get("@OrgID")),
-            category=json_data.get("@Category"),
-        )
-
-
-@enum.unique
-class ClinVarAssertionAccessionType(enum.Enum):
-    """ClinVar assertion accession type"""
-
-    RCV = "RCV"
-    SCV = "SCV"
-
-
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAccession:
-    """Accession number for a ClinVar record in a ``ClinVarAssertion``."""
-
-    #: The accession
-    acc: str
-    #: The version
-    version: int
-    #: The accession type
-    type: ClinVarAssertionAccessionType
-    #: The date that the latest update to the submitted record became public in ClinVar.
-    date_updated: datetime.date
-    #: DateCreated is the date when the record first became public in ClinVar.
-    date_created: typing.Optional[datetime.date] = None
-    #: The ID of the submitting organisation
-    org_id: typing.Optional[str] = None
-    #: The abbreviation of the submitting organisation
-    org_abbreviation: typing.Optional[str] = None
-    #: The type of the organisation
-    org_type: typing.Optional[str] = None
-    #: The category of the organisation.
-    org_category: typing.Optional[str] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAccession":
-        return cls(
-            acc=json_data["@Acc"],
-            version=int(json_data["@Version"]),
-            type=ClinVarAssertionAccessionType(json_data["@Type"]),
-            date_updated=parse_datetime(json_data["@DateUpdated"]).date()
-            if json_data.get("@DateUpdated")
-            else None,
-            date_created=parse_datetime(json_data["@DateCreated"]).date()
-            if json_data.get("@DateCreated")
-            else None,
-            org_id=json_data.get("@OrgID"),
-            org_abbreviation=json_data.get("@OrgAbbreviation"),
-            org_type=json_data.get("@OrgType"),
-            org_category=json_data.get("@OrganizationCategory"),
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class RecordHistory:
-    """A structure to support reporting of an accession, its version, the date its status
-    changed, and text describing that change.
-    """
-
-    #: The accession
-    accession: str
-    #: The version
-    version: int
-    #: The date the status changed
-    date_changed: datetime.date
-    #: Comment text
-    comment: typing.Optional[str] = None
-    #: Attribute @VaritionID is only populated for VCV, where @Accession is like VCV000000009
-    variation_id: typing.Optional[int] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "RecordHistory":
-        return cls(
-            accession=json_data["@Accession"],
-            version=int(json_data["@Version"]),
-            date_changed=parse_datetime(json_data["@DateChanged"]).date(),
-            comment=json_data.get("@Comment"),
-            variation_id=int(json_data["@VariationID"]) if json_data.get("@VariationID") else None,
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAttribute:
-    type: ClinVarAssertionAttributeType
-    value: str
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAttribute":
-        return cls(
-            type=ClinVarAssertionAttributeType(json_data["@Type"]),
-            value=json_data["#text"],
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAttributeSet:
-    """AttributeSet is a package to represent a unit of information, the source(s) of that unit,
-    identifiers representing that unit, and comments.
-    """
-
-    #: Specification of the attribute set type.
-    attribute: ClinVarAssertionAttribute
-    #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
-    #: List of Xrefs
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
-    #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAttributeSet":
-        return cls(
-            attribute=ClinVarAssertionAttribute.from_json_data(json_data["Attribute"]),
-            citations=[
-                Citation.from_json_data(raw_citation)
-                for raw_citation in force_list(json_data.get("Citation", []))
-            ],
-            xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
-            ],
-            comments=[
-                Comment.from_json_data(raw_comment)
-                for raw_comment in force_list(json_data.get("Comment", []))
-            ],
-        )
-
-
 @enum.unique
 class MeasureSetAttributeType(enum.Enum):
     DESCRIPTION = "Description"
@@ -1832,6 +1591,374 @@ class GenotypeSet:
             id=int(json_data["@ID"]) if json_data.get("@ID") else None,
             acc=json_data.get("@Acc"),
             version=json_data.get("@Version"),
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class TraitSetTypeAttribute:
+    type: str
+    value: str
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "TraitSetTypeAttribute":
+        return cls(
+            type=json_data["@Type"],
+            value=json_data["#text"],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class TraitSetTypeAttributeSet:
+    attribute: TraitSetTypeAttribute
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "TraitSetTypeAttributeSet":
+        return cls(
+            attribute=TraitSetTypeAttribute.from_json_data(json_data["Attribute"]),
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
+
+@enum.unique
+class TraitSetTypeType(enum.Enum):
+    DISEASE = "Disease"
+    DRUG_RESPONSE = "DrugResponse"
+    FINDING = "Finding"
+    PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
+    TRAIT_CHOICE = "TraitChoice"
+
+
+@attrs.frozen(auto_attribs=True)
+class TraitSetType:
+    type: TraitSetTypeType
+    traits: typing.List[SetElementSetType] = attrs.field(factory=list)
+    id: typing.Optional[int] = None
+    names: typing.List[SetElementSetType] = attrs.field(factory=list)
+    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
+    attributes: typing.List[TraitSetTypeAttributeSet] = attrs.field(factory=list)
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "TraitSetType":
+        return cls(
+            type=TraitSetTypeType(json_data["@Type"]),
+            traits=[
+                SetElementSetType.from_json_data(raw_trait)
+                for raw_trait in force_list(json_data.get("Trait", []))
+            ],
+            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
+            names=[
+                SetElementSetType.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                SetElementSetType.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                TraitSetTypeAttributeSet.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class ReferenceClinVarAssertion:
+    #: Accesion of the RCV record.
+    clinvar_accession: ClinVarAccession
+    #: Status of the record.
+    record_status: RecordStatus
+    #: Clinical significance summary of RCV record.
+    clinical_significance: ClinicalSignificance
+    #: The assertion RCV type.
+    assertion: AssertionTypeRCV
+    #: Represents the public identifier a source may have for this record.
+    external_ids: typing.List[XrefType] = attrs.field(factory=list)
+    #: Attributes of the RCV record
+    attributes: typing.List[ReferenceClinVarAssertionAttribute] = attrs.field(factory=list)
+    #: Observations.
+    observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
+    #: Measurement information, mutually exlusive with ``genotype_set``.
+    measure_set: typing.Optional[MeasureSet] = None
+    #: Genotyping information, mutually exlusive with ``measure_set``.
+    genotype_set: typing.Optional[GenotypeSet] = None
+    trait_set: typing.Optional[TraitSetType] = None
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    comments: typing.List[Comment] = attrs.field(factory=list)
+    date_created: typing.Optional[datetime.date] = None
+    date_last_updated: typing.Optional[datetime.date] = None
+    submission_date: typing.Optional[datetime.date] = None
+    id: typing.Optional[int] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertion":
+        return cls(
+            clinvar_accession=ClinVarAccession.from_json_data(json_data["ClinVarAccession"]),
+            record_status=RecordStatus(json_data["RecordStatus"]),
+            clinical_significance=ClinicalSignificance.from_json_data(
+                json_data["ClinicalSignificance"]
+            ),
+            assertion=AssertionTypeRCV.from_json_data(json_data["Assertion"]),
+            external_ids=[
+                XrefType.from_json_data(raw_external_id)
+                for raw_external_id in force_list(json_data.get("ExternalID", []))
+            ],
+            attributes=[
+                ReferenceClinVarAssertionAttribute.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("Attribute", []))
+            ],
+            observed_in=[
+                ObservationSet.from_json_data(raw_observation_set)
+                for raw_observation_set in force_list(json_data.get("ObservedIn", []))
+            ],
+            measure_set=MeasureSet.from_json_data(json_data["MeasureSet"])
+            if json_data.get("MeasureSet")
+            else None,
+            genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
+            if json_data.get("GenotypeSet")
+            else None,
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+            date_created=parse_datetime(json_data["@DateCreated"]).date()
+            if json_data.get("@DateCreated")
+            else None,
+            date_last_updated=parse_datetime(json_data["@DateLastUpdated"]).date()
+            if json_data.get("@DateLastUpdated")
+            else None,
+            submission_date=parse_datetime(json_data["@SubmissionDate"]).date()
+            if json_data.get("@SubmissionDate")
+            else None,
+            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class ClinVarSubmissionID:
+    """Corresponds to ``ClinVarSubmissionID`` in XML file."""
+
+    #: Of primary use to submitters, to facilitate identification of records corresponding to
+    #: their submissions.  If not provided by a submitter, NCBI generates. If provided by
+    #: submitter, that is represented in localKeyIsSubmitted.
+    local_key: str
+    #: Name of the submitter
+    submitter: typing.Optional[str] = None
+    #: Title of the submission
+    title: typing.Optional[str] = None
+    #: Assembly used in submission
+    submitted_assembly: typing.Optional[str] = None
+    #: Submission date
+    submitter_date: typing.Optional[datetime.date] = None
+    #: Whether the local key was submitted (True) or has ben set by NCBI (False)
+    local_key_is_submitted: typing.Optional[bool] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinVarSubmissionID":
+        return cls(
+            local_key=json_data["@localKey"],
+            submitter=json_data.get("@submitter"),
+            title=json_data.get("@title"),
+            submitted_assembly=json_data.get("@submittedAssembly"),
+            submitter_date=parse_datetime(json_data.get("@submitterDate")).date()
+            if json_data.get("@submitterDate")
+            else None,
+            local_key_is_submitted=json_data.get("localKeyIsSubmitted") == "1"
+            if json_data.get("localKeyIsSubmitted")
+            else None,
+        )
+
+
+@enum.unique
+class SubmitterType(enum.Enum):
+    """Enumeration with ``Submitter.type``."""
+
+    PRIMARY = "primary"
+    SECONDARY = "secondary"
+    BEHALF = "behalf"
+
+
+@attrs.frozen(auto_attribs=True)
+class Submitter:
+    """A structure to support reportng the name of a submitter, its org_id, and whether primary
+    or secondary or behalf.
+
+    Corresponds to ``SubmitterType`` in XML file.
+    """
+
+    #: The type of the submitter
+    type: SubmitterType
+    #: The name of the submitter
+    submitter_name: typing.Optional[str] = None
+    #: The ID of the submitting organisation
+    org_id: typing.Optional[int] = None
+    #: The submitter category
+    category: typing.Optional[str] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "Submitter":
+        return cls(
+            type=SubmitterType(json_data["@Type"]),
+            submitter_name=json_data.get("@SubmitterName"),
+            org_id=int(json_data.get("@OrgID")),
+            category=json_data.get("@Category"),
+        )
+
+
+@enum.unique
+class ClinVarAssertionAccessionType(enum.Enum):
+    """ClinVar assertion accession type"""
+
+    RCV = "RCV"
+    SCV = "SCV"
+
+
+@attrs.frozen(auto_attribs=True)
+class ClinVarAssertionAccession:
+    """Accession number for a ClinVar record in a ``ClinVarAssertion``."""
+
+    #: The accession
+    acc: str
+    #: The version
+    version: int
+    #: The accession type
+    type: ClinVarAssertionAccessionType
+    #: The date that the latest update to the submitted record became public in ClinVar.
+    date_updated: datetime.date
+    #: DateCreated is the date when the record first became public in ClinVar.
+    date_created: typing.Optional[datetime.date] = None
+    #: The ID of the submitting organisation
+    org_id: typing.Optional[str] = None
+    #: The abbreviation of the submitting organisation
+    org_abbreviation: typing.Optional[str] = None
+    #: The type of the organisation
+    org_type: typing.Optional[str] = None
+    #: The category of the organisation.
+    org_category: typing.Optional[str] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAccession":
+        return cls(
+            acc=json_data["@Acc"],
+            version=int(json_data["@Version"]),
+            type=ClinVarAssertionAccessionType(json_data["@Type"]),
+            date_updated=parse_datetime(json_data["@DateUpdated"]).date()
+            if json_data.get("@DateUpdated")
+            else None,
+            date_created=parse_datetime(json_data["@DateCreated"]).date()
+            if json_data.get("@DateCreated")
+            else None,
+            org_id=json_data.get("@OrgID"),
+            org_abbreviation=json_data.get("@OrgAbbreviation"),
+            org_type=json_data.get("@OrgType"),
+            org_category=json_data.get("@OrganizationCategory"),
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class RecordHistory:
+    """A structure to support reporting of an accession, its version, the date its status
+    changed, and text describing that change.
+    """
+
+    #: The accession
+    accession: str
+    #: The version
+    version: int
+    #: The date the status changed
+    date_changed: datetime.date
+    #: Comment text
+    comment: typing.Optional[str] = None
+    #: Attribute @VaritionID is only populated for VCV, where @Accession is like VCV000000009
+    variation_id: typing.Optional[int] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "RecordHistory":
+        return cls(
+            accession=json_data["@Accession"],
+            version=int(json_data["@Version"]),
+            date_changed=parse_datetime(json_data["@DateChanged"]).date(),
+            comment=json_data.get("@Comment"),
+            variation_id=int(json_data["@VariationID"]) if json_data.get("@VariationID") else None,
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class ClinVarAssertionAttribute:
+    type: ClinVarAssertionAttributeType
+    value: str
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAttribute":
+        return cls(
+            type=ClinVarAssertionAttributeType(json_data["@Type"]),
+            value=json_data["#text"],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class ClinVarAssertionAttributeSet:
+    """AttributeSet is a package to represent a unit of information, the source(s) of that unit,
+    identifiers representing that unit, and comments.
+    """
+
+    #: Specification of the attribute set type.
+    attribute: ClinVarAssertionAttribute
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of Xrefs
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAttributeSet":
+        return cls(
+            attribute=ClinVarAssertionAttribute.from_json_data(json_data["Attribute"]),
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
         )
 
 
