@@ -545,6 +545,14 @@ class ObservationMethod(enum.Enum):
     INFERRED_FROM_SOURCE = "inferred from source"
     RESEARCH = "research"
     NOT_PROVIDED = "not provided"
+    OTHER = "other"
+
+    @classmethod
+    def from_the_wild(cls, str) -> "ObservationMethod":
+        try:
+            return cls(str)
+        except ValueError:
+            return cls.OTHER
 
 
 @enum.unique
@@ -1193,7 +1201,7 @@ class ObservationSet:
         return cls(
             sample=SampleType.from_json_data(json_data["Sample"]),
             method=[
-                ObservationMethod(method["MethodType"])
+                ObservationMethod.from_the_wild(method["MethodType"])
                 for method in force_list(json_data.get("Method", []))
             ],
             observed_data=[
@@ -1739,7 +1747,7 @@ class MeasureSet:
 
 @enum.unique
 class GenotypeSetType(enum.Enum):
-    COMPOUND_HETEROZYGOUS = "CompoundHeterozygous"
+    COMPOUND_HETEROZYGOTE = "CompoundHeterozygote"
     DIPLOTYPE = "Diplotype"
 
 
