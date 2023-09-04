@@ -47,7 +47,11 @@ def config_set(ctx: click.Context, name: str, value: str):
     allowed_names = ["auth_token"]
     if name not in allowed_names:
         raise click.ClickException(f"Invalid value {name}, must be one of {allowed_names}")
-    config_obj = attrs.evolve(config_obj, **{name: value})
+    # We need to ignore type checking in the following line because of a false positive:
+    #
+    # error: Argument 2 to "evolve" of "Config" has incompatible type "**dict[str, str]";
+    # expected "bool"  [arg-type]
+    config_obj = attrs.evolve(config_obj, **{name: value})  # type: ignore
     save_config(config_obj, profile)
 
 
