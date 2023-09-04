@@ -5,8 +5,6 @@ import os
 
 from setuptools import find_packages, setup
 
-import versioneer
-
 
 def parse_requirements(path):
     """Parse ``requirements.txt`` at ``path``."""
@@ -31,6 +29,13 @@ with open("CHANGELOG.md") as history_file:
 
 test_requirements = parse_requirements("requirements/test.txt")
 install_requirements = parse_requirements("requirements/base.txt")
+
+
+package_root = os.path.abspath(os.path.dirname(__file__))
+version = {}
+with open(os.path.join(package_root, "clinvar_this/_version.py")) as fp:
+    exec(fp.read(), version)
+version = version["__version__"]
 
 setup(
     author="Manuel Holtgrewe",
@@ -61,8 +66,7 @@ setup(
     ),
     test_suite="tests",
     tests_require=test_requirements,
-    url="https://github.com/bihealth/clinvar_this",
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    url="https://github.com/bihealth/clinvar-this",
+    version=version,
     zip_safe=False,
 )
