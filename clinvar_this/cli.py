@@ -5,6 +5,7 @@ import typing
 import attrs
 import click
 
+from clinvar_data import conversion
 from clinvar_this import batches, exceptions
 from clinvar_this.config import Config, dump_config, load_config, save_config
 
@@ -192,3 +193,17 @@ def batch_retrieve(ctx: click.Context, use_testing: bool, name: str):
     config_obj = load_config(ctx.obj["profile"])
     config_obj = attrs.evolve(config_obj, verify_ssl=ctx.obj["verify_ssl"])
     batches.retrieve(config_obj, name, use_testing=use_testing)
+
+
+@cli.group("data")
+def data():
+    """Sub command category "data"."""
+
+
+@data.command("xml-to-jsonl")
+@click.argument("input_file")
+@click.argument("output_file")
+@click.pass_context
+def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str):
+    """Convert XML to JSONL"""
+    conversion.convert(input_file, output_file, use_click=True)

@@ -8,7 +8,7 @@ format: black isort
 lint: flake8 isort-check black-check mypy
 
 .PHONY: test
-pytest:
+test:
 	pytest .
 
 .PHONY: black
