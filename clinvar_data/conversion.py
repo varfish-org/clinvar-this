@@ -6,6 +6,7 @@ import io
 import json
 import multiprocessing
 import sys
+import traceback
 import typing
 
 import cattrs
@@ -108,11 +109,14 @@ def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
             try:
                 data = convert_clinvarset(json_cvs)
             except Exception as e:
-                print(f"Problem with data: {e} -- data follows", file=sys.stderr)
+                print("Problem with data: exception and data follow", file=sys.stderr)
+                traceback.print_exc()
                 print(json_cvs, file=sys.stderr)
                 return True
             print(
-                json.dumps(cattrs.unstructure(data), default=json_default),
+                json.dumps(
+                    remove_empties_from_containers(cattrs.unstructure(data)), default=json_default
+                ),
                 file=tmpf,
             )
             return True
@@ -146,11 +150,14 @@ def convert(
             try:
                 data = convert_clinvarset(json_cvs)
             except Exception as e:
-                print(f"Problem with data: {e} -- data follows", file=sys.stderr)
+                print("Problem with data: exception and data follow", file=sys.stderr)
+                traceback.print_exc()
                 print(json_cvs, file=sys.stderr)
                 return True
             print(
-                json.dumps(cattrs.unstructure(data), default=json_default),
+                json.dumps(
+                    remove_empties_from_containers(cattrs.unstructure(data)), default=json_default
+                ),
                 file=outputf,
             )
             return True

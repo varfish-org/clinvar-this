@@ -1538,6 +1538,7 @@ class MeasureTypeAttributeType(enum.Enum):
     HGVS_GENOMIC_TOP_LEVEL_OTHER = "HGVS, genomic, top level, other"
     HGVS_GENOMIC_REFSEQGENE = "HGVS, genomic, RefSeqGene"
     HGVS_GENOMIC_LRG = "HGVS, genomic, LRG"
+    HGVS_GENOMIC = "HGVS, genomic"
     HGVS_CODING_REFSEQGENE = "HGVS, coding, RefSeq"
     HGVS_CODING_LRG = "HGVS, coding, LRG"
     HGVS_CODING = "HGVS, coding"
@@ -1567,9 +1568,9 @@ class MeasureTypeAttributeType(enum.Enum):
     NUCLEOTIDE_CHANGE = "nucleotide change"
     PROTEIN_CHANGE_HISTORICAL = "protein change, historical"
     TRANSCRIPT_VARIANT = "transcript variant"
-    ABSOLUTE_COPY_NUMBER = "absolute copy number"
-    REFERENCE_COPY_NUMBER = "reference copy number"
-    COPY_NUMBER_TUPLE = "copy number tuple"
+    ABSOLUTE_COPY_NUMBER = "AbsoluteCopyNumber"
+    REFERENCE_COPY_NUMBER = "ReferenceCopyNumber"
+    COPY_NUMBER_TUPLE = "CopyNumberTuple"
     COSMIC = "COSMIC"
     SUBMITTER_VARIANT_ID = "SubmitterVariantId"
     ISCN_COORDINATES = "ISCNCoordinates"
@@ -1582,7 +1583,7 @@ class MeasureAttribute:
     #: The type of the attribute
     type: MeasureTypeAttributeType
     #: Value of the attribute
-    value: str
+    value: typing.Optional[str]
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
@@ -1595,7 +1596,7 @@ class MeasureAttribute:
         attribute = json_data["Attribute"]
         return MeasureAttribute(
             type=MeasureTypeAttributeType(attribute["@Type"]),
-            value=attribute["#text"],
+            value=attribute.get("#text"),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
