@@ -10,7 +10,7 @@ from dateutil.parser import parse as parse_datetime
 T = typing.TypeVar("T")
 
 
-def extract_text(element: typing.Any) -> str:
+def extract_text(element: typing.Any) -> typing.Optional[str]:
     """Extract text from a string or dict with ``#text`` key"""
     if element is None:
         return element
@@ -173,7 +173,7 @@ class Comment:
     datasource: typing.Optional[str] = None
 
     @classmethod
-    def from_json_data(cls, json_data: typing.Union[str, dict]) -> "Comment":
+    def from_json_data(cls, json_data: dict) -> "Comment":
         if isinstance(json_data, str):
             return Comment(text=json_data)
         else:
@@ -296,7 +296,7 @@ class ClinicalSignificanceTypeSCV:
         #     <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         review_status = None
         if "ReviewStatus" in json_data:
-            review_status = extract_text(json_data["ReviewStatus"])
+            review_status = ReviewStatus(extract_text(json_data["ReviewStatus"]))
 
         # Same for the descriptions.
         descriptions = []
@@ -308,7 +308,7 @@ class ClinicalSignificanceTypeSCV:
         return ClinicalSignificanceTypeSCV(
             review_status=review_status,
             descriptions=descriptions,
-            explanation=Comment.from_json_data(json_data.get("Explanation"))
+            explanation=Comment.from_json_data(json_data["Explanation"])
             if json_data.get("Explanation")
             else None,
             explanation_of_interpretation=json_data.get("ExplanationOfInterpretation"),
@@ -363,7 +363,7 @@ class ClinicalSignificanceRCV:
     date_last_evaluated: typing.Optional[datetime.date] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceTypeSCV":
+    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceRCV":
         # Handle case of the following::
         #
         #     <ReviewStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\
@@ -374,20 +374,19 @@ class ClinicalSignificanceRCV:
         #     <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         review_status = None
         if "ReviewStatus" in json_data:
-            if isinstance(json_data["ReviewStatus"], str):
-                review_status = extract_text(json_data["ReviewStatus"])
+            review_status = ReviewStatus(extract_text(json_data["ReviewStatus"]))
 
         # Same for the optional description.
-        raw_description = json_data.get("Description", None)
-        description = ClinicalSignificanceDescription.from_the_wild(
-            extract_text(raw_description).lower()
-        )
+        raw_description = extract_text(json_data.get("Description", None))
+        description = None
+        if raw_description:
+            description = ClinicalSignificanceDescription.from_the_wild(raw_description.lower())
 
         return ClinicalSignificanceRCV(
             review_status=review_status,
             description=description,
-            explanation=Comment.from_json_data(json_data.get("Explanation"))
-            if json_data.get("Explanation")
+            explanation=Comment.from_json_data(json_data["Explanation"])
+            if "Explanation" in json_data
             else None,
             explanation_of_interpretation=json_data.get("ExplanationOfInterpretation"),
             xrefs=[
@@ -527,7 +526,7 @@ class AlleleDescription:
     #: Zygosity information
     zygosity: typing.Optional[Zygosity] = None
     #: Clinical significance description of variant
-    clinical_significance: typing.Optional[ClinicalSignificanceTypeSCV] = None
+    clinical_significance: typing.Optional[ClinicalSignificanceRCV] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "AlleleDescription":
@@ -1273,7 +1272,7 @@ class Indication:
                 XrefType.from_json_data(raw_xref)
                 for raw_xref in force_list(json_data.get("XRef", []))
             ],
-            comment=Comment.from_json_data(json_data.get("Comment"))
+            comment=Comment.from_json_data(json_data["Comment"])
             if "Comment" in json_data
             else None,
         )
@@ -1335,7 +1334,9 @@ class Sample:
     def from_json_data(cls, json_data: dict) -> "Sample":
         origin = None
         if "Origin" in json_data:
-            origin = SampleOrigin.from_the_wild(extract_text(json_data["Origin"]))
+            raw_origin = extract_text(json_data["Origin"])
+            if raw_origin:
+                origin = SampleOrigin.from_the_wild(raw_origin)
         return Sample(
             description=SampleDescription.from_json_data(json_data["SampleDescription"])
             if "SampleDescription" in json_data
@@ -1345,30 +1346,32 @@ class Sample:
             geographic_origin=json_data.get("GeographicOrigin"),
             tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
             cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
-            species=Species.from_json_data(json_data.get("Species")),
+            species=Species.from_json_data(json_data["Species"])
+            if "Species" in json_data
+            else None,
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
             affected_status=AffectedStatus(extract_text(json_data["AffectedStatus"]))
             if "AffectedStatus" in json_data
             else AffectedStatus.NOT_PROVIDED,
-            number_tested=int(extract_text(json_data["NumberTested"]))
+            number_tested=int(extract_text(json_data["NumberTested"]) or 0)
             if "NumberTested" in json_data
             else None,
-            number_males=int(extract_text(json_data["NumberMales"]))
+            number_males=int(extract_text(json_data["NumberMales"]) or 0)
             if "NumberMales" in json_data
             else None,
-            number_females=int(extract_text(json_data["NumberFemales"]))
+            number_females=int(extract_text(json_data["NumberFemales"]) or 0)
             if "NumberFemales" in json_data
             else None,
-            number_chr_tested=int(extract_text(json_data["NumberChrTested"]))
+            number_chr_tested=int(extract_text(json_data["NumberChrTested"]) or 0)
             if "NumberChrTested" in json_data
             else None,
             gender=Gender(extract_text(json_data["Gender"])) if "Gender" in json_data else None,
-            family_data=FamilyInfo.from_json_data(json_data.get("FamilyData"))
+            family_data=FamilyInfo.from_json_data(json_data["FamilyData"])
             if "FamilyData" in json_data
             else None,
             proband=json_data.get("Proband"),
-            indication=Indication.from_json_data(json_data.get("Indication"))
+            indication=Indication.from_json_data(json_data["Indication"])
             if "Indication" in json_data
             else None,
             citations=[
@@ -1776,7 +1779,7 @@ class MeasureRelationshipAttribute:
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "MeasureRelationship":
+    def from_json_data(cls, json_data: dict) -> "MeasureRelationshipAttribute":
         attribute = json_data["Attribute"]
         return MeasureRelationshipAttribute(
             # value of <Attribute> tag
@@ -1965,7 +1968,7 @@ class MeasureSet:
     #: Type of the measure
     type: MeasureSetType
     #: Accession of the measure
-    acc: str
+    acc: typing.Optional[str]
     #: Version of the measure
     version: typing.Optional[int] = None
     #: List of measures
@@ -2287,7 +2290,7 @@ class ClinVarSubmissionId:
             submitter=json_data.get("@submitter"),
             title=json_data.get("@title"),
             submitted_assembly=json_data.get("@submittedAssembly"),
-            submitter_date=parse_datetime(json_data.get("@submitterDate")).date()
+            submitter_date=parse_datetime(json_data["@submitterDate"] or "").date()
             if json_data.get("@submitterDate")
             else None,
             local_key_is_submitted=json_data.get("localKeyIsSubmitted") == "1"
@@ -2327,7 +2330,7 @@ class Submitter:
         return cls(
             type=SubmitterType(json_data["@Type"]),
             submitter_name=json_data.get("@SubmitterName"),
-            org_id=int(json_data.get("@OrgID")),
+            org_id=int(json_data["@OrgID"]) if "@OrgID" in json_data else None,
             category=json_data.get("@Category"),
         )
 
@@ -2351,7 +2354,7 @@ class ClinVarAssertionAccession:
     #: The accession type
     type: ClinVarAssertionAccessionType
     #: The date that the latest update to the submitted record became public in ClinVar.
-    date_updated: datetime.date
+    date_updated: typing.Optional[datetime.date] = None
     #: DateCreated is the date when the record first became public in ClinVar.
     date_created: typing.Optional[datetime.date] = None
     #: The ID of the submitting organisation
@@ -2369,10 +2372,10 @@ class ClinVarAssertionAccession:
             acc=json_data["@Acc"],
             version=int(json_data["@Version"]),
             type=ClinVarAssertionAccessionType(json_data["@Type"]),
-            date_updated=parse_datetime(json_data["@DateUpdated"]).date()
+            date_updated=parse_datetime(json_data["@DateUpdated"] or "").date()
             if json_data.get("@DateUpdated")
             else None,
-            date_created=parse_datetime(json_data["@DateCreated"]).date()
+            date_created=parse_datetime(json_data["@DateCreated"] or "").date()
             if json_data.get("@DateCreated")
             else None,
             org_id=json_data.get("@OrgID"),
@@ -2586,10 +2589,10 @@ class ClinVarAssertion:
                 ObservationSet.from_json_data(raw_observation_set)
                 for raw_observation_set in force_list(json_data.get("ObservedIn", []))
             ],
-            measure_set=MeasureSet.from_json_data(json_data.get("MeasureSet"))
+            measure_set=MeasureSet.from_json_data(json_data["MeasureSet"])
             if json_data.get("MeasureSet")
             else None,
-            genotype_set=GenotypeSet.from_json_data(json_data.get("GenotypeSet"))
+            genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
             if json_data.get("GenotypeSet")
             else None,
             citations=[

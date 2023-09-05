@@ -40,8 +40,10 @@ def remove_empties_from_containers(
         assert False, "must not happen"
 
 
-def chunker(inputf: typing.BinaryIO, records: int = 1_000) -> typing.Iterator[io.BytesIO]:
-    head = []
+def chunker(
+    inputf: typing.Union[typing.BinaryIO, gzip.GzipFile], records: int = 1_000
+) -> typing.Iterator[io.BytesIO]:
+    head: typing.List[bytes] = []
     head_done = False
     chunk = io.BytesIO()
     chunk_size = 0
@@ -103,12 +105,12 @@ def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
     xml_chunk.seek(0)
 
     path_out = f"{tmpdir}/out-{no}.jsonl"
-    with open(path_out, "wt") as tmpf:
+    with open(path_out, "wt") as outf:
 
         def handle_local(_, json_cvs: dict):
             try:
                 data = convert_clinvarset(json_cvs)
-            except Exception as e:
+            except Exception:
                 print("Problem with data: exception and data follow", file=sys.stderr)
                 traceback.print_exc()
                 print(json_cvs, file=sys.stderr)
@@ -117,7 +119,7 @@ def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
                 json.dumps(
                     remove_empties_from_containers(cattrs.unstructure(data)), default=json_default
                 ),
-                file=tmpf,
+                file=outf,
             )
             return True
 
@@ -131,7 +133,7 @@ def convert(
 ):
     """Run conversion from ClinVar XML to JSONL"""
     if input_file.endswith((".gz", ".bgz")):
-        inputf = gzip.open(input_file, "rb")
+        inputf: typing.Union[typing.BinaryIO, gzip.GzipFile] = gzip.open(input_file, "rb")
     elif use_click:
         inputf = click.open_file(input_file, "rb")
     else:
@@ -149,7 +151,7 @@ def convert(
             """Handle single ClinVarSet entry after parsing by ``xmltodict``."""
             try:
                 data = convert_clinvarset(json_cvs)
-            except Exception as e:
+            except Exception:
                 print("Problem with data: exception and data follow", file=sys.stderr)
                 traceback.print_exc()
                 print(json_cvs, file=sys.stderr)

@@ -38,4 +38,4 @@ flake8:
 .PHONY: mypy
 mypy: export MYPYPATH=stubs
 mypy:
-	mypy clinvar_this clinvar_api tests
+	mypy clinvar_this clinvar_api clinvar_data tests

@@ -308,6 +308,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
             {
                 "date_last_evaluated": datetime.date(2022, 9, 27),
                 "description": "pathogenic",
+                "review_status": "criteria provided, single submitter",
             },
         ),
     ],
