@@ -133,6 +133,16 @@ class ClinicalSignificanceDescription(enum.Enum):
     PROTECTIVE = "protective"
     RISK_FACTOR = "risk factor"
 
+    @property
+    def is_canonical_acmg(self) -> bool:
+        return self in (
+            ClinicalSignificanceDescription.BENIGN,
+            ClinicalSignificanceDescription.LIKELY_BENIGN,
+            ClinicalSignificanceDescription.UNCERTAIN_SIGNIFICANCE,
+            ClinicalSignificanceDescription.LIKELY_PATHOGENIC,
+            ClinicalSignificanceDescription.PATHOGENIC,
+        )
+
     @classmethod
     def from_the_wild(cls, str) -> "ClinicalSignificanceDescription":
         """Convert values "from the wild" where sometimes invalid values are used.
@@ -1533,7 +1543,7 @@ class MeasureSetAttribute:
 
 
 @enum.unique
-class MeasureTypeAttributeType(enum.Enum):
+class MeasureAttributeType(enum.Enum):
     """Type of an attribute in a measure type"""
 
     HGVS_GENOMIC_TOP_LEVEL = "HGVS, genomic, top level"
@@ -1584,9 +1594,9 @@ class MeasureAttribute:
     """An attribute in a MeasureType"""
 
     #: The type of the attribute
-    type: MeasureTypeAttributeType
+    type: MeasureAttributeType
     #: Value of the attribute
-    value: typing.Optional[str]
+    value: typing.Optional[str] = None
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
@@ -1598,7 +1608,7 @@ class MeasureAttribute:
     def from_json_data(cls, json_data: dict) -> "MeasureAttribute":
         attribute = json_data["Attribute"]
         return MeasureAttribute(
-            type=MeasureTypeAttributeType(attribute["@Type"]),
+            type=MeasureAttributeType(attribute["@Type"]),
             value=attribute.get("#text"),
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -1968,7 +1978,7 @@ class MeasureSet:
     #: Type of the measure
     type: MeasureSetType
     #: Accession of the measure
-    acc: typing.Optional[str]
+    acc: typing.Optional[str] = None
     #: Version of the measure
     version: typing.Optional[int] = None
     #: List of measures
@@ -2492,7 +2502,7 @@ class ClinAsserTraitSetTypeType(enum.Enum):
 @attrs.frozen(auto_attribs=True)
 class ClinAsserTraitSetType:
     type: ClinAsserTraitSetTypeType
-    date_last_evaluated: datetime.date
+    date_last_evaluated: typing.Optional[datetime.date] = None
     traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
