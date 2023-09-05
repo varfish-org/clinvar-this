@@ -2,7 +2,22 @@
 
 import os
 
+import pytest
+
 from clinvar_data import conversion
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        ({}, None),
+        ({"a": 1, "b": 2}, {"a": 1, "b": 2}),
+        ({"a": None}, None),
+        ({"a": {"b": None}}, None),
+    ],
+)
+def test_remove_empties_from_dict(value, expected):
+    assert conversion.remove_empties_from_containers(value) == expected
 
 
 def test_cli_xml_to_json(tmp_path, snapshot):

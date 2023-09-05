@@ -48,6 +48,7 @@ def test_cli_xml_to_json_stdin_stdout(snapshot):
         "ex_custom_score.xml",
         "ex_indication.xml",
         "ex_replaces.xml",
+        "ex_review_status_ns.xml",
         "ex_study_description.xml",
         "ex_with_ethnicity.xml",
         "ex_with_hpo.xml",

@@ -15,6 +15,29 @@ import xmltodict
 from clinvar_data import models
 
 
+def remove_empties_from_containers(
+    container: typing.Union[dict, list]
+) -> typing.Union[dict, list, None]:
+    if isinstance(container, list):
+        new_list = []
+        for v in container:
+            if isinstance(v, (dict, list)):
+                v = remove_empties_from_containers(v)
+            if v is not None:
+                new_list.append(v)
+        return new_list or None
+    elif isinstance(container, dict):
+        new_dict = {}
+        for k, v in container.items():
+            if isinstance(v, (dict, list)):
+                v = remove_empties_from_containers(v)
+            if v is not None:
+                new_dict[k] = v
+        return new_dict or None
+    else:
+        assert False, "must not happen"
+
+
 def chunker(inputf: typing.BinaryIO, records: int = 1_000) -> typing.Iterator[io.BytesIO]:
     head = []
     head_done = False
@@ -114,7 +137,8 @@ def convert(
         def handle_clinvarset(_, json_cvs: dict):
             """Handle single ClinVarSet entry after parsing by ``xmltodict``."""
             print(
-                json.dumps(cattrs.unstructure(convert_clinvarset(json_cvs)), default=json_default),
+                # json.dumps(cattrs.unstructure(convert_clinvarset(json_cvs)), default=json_default),
+                json.dumps(json_cvs, default=json_default),
                 file=outputf,
             )
             return True

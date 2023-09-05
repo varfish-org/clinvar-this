@@ -1,4 +1,4 @@
-"""Support for representing ClinVar data from XSD file using attrs."""
+"""Support for representing ClinVar data from XSD file using attrs"""
 
 import datetime
 import enum
@@ -11,7 +11,7 @@ T = typing.TypeVar("T")
 
 
 def force_list(value: typing.Union[T, typing.List[T]]) -> typing.List[T]:
-    """Helper value that wraps atomic values in a list."""
+    """Helper value that wraps atomic values in a list"""
     if isinstance(value, list):
         return value
     else:
@@ -27,7 +27,7 @@ class ClinVarAccessionType(enum.Enum):
 
 @enum.unique
 class RecordStatus(enum.Enum):
-    """Enumeration with ``ClinVarSet.record_status`."""
+    """Enumeration with ``ClinVarSet.record_status`"""
 
     CURRENT = "current"
     REPLACED = "replaced"
@@ -36,7 +36,7 @@ class RecordStatus(enum.Enum):
 
 @enum.unique
 class Status(enum.Enum):
-    """Corresponds to ``typeStatus``."""
+    """Corresponds to ``typeStatus``"""
 
     CURRENT = "current"
     COMPLETED_AND_RETIRED = "completed and retired"
@@ -68,7 +68,7 @@ class XrefType:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "XrefType":
-        return cls(
+        return XrefType(
             db=json_data["@DB"],
             id=json_data["@ID"],
             type=json_data.get("@Type"),
@@ -100,7 +100,7 @@ class ReviewStatus(enum.Enum):
 
 @enum.unique
 class ClinicalSignificanceDescription(enum.Enum):
-    """Allowed values for clinical significance description."""
+    """Allowed values for clinical significance description"""
 
     AFFECTS = "affects"
     BENIGN = "benign"
@@ -125,15 +125,19 @@ class ClinicalSignificanceDescription(enum.Enum):
 
     @classmethod
     def from_the_wild(cls, str) -> "ClinicalSignificanceDescription":
+        """Convert values "from the wild" where sometimes invalid values are used.
+
+        These are converted to ``Other``.
+        """
         try:
-            return cls(str)
+            return ClinicalSignificanceDescription(str)
         except ValueError:
-            return cls.OTHER
+            return ClinicalSignificanceDescription.OTHER
 
 
 @enum.unique
 class CommentType(enum.Enum):
-    """Types of comments."""
+    """Types of comments"""
 
     PUBLIC = "public"
     CONVERTED_BY_NCBI = "ConvertedByNCBI"
@@ -149,7 +153,7 @@ class CommentType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class Comment:
-    """A structure to support reporting unformatted content."""
+    """A structure to support reporting unformatted content"""
 
     #: The comment's content.
     text: str
@@ -161,17 +165,19 @@ class Comment:
     @classmethod
     def from_json_data(cls, json_data: typing.Union[str, dict]) -> "Comment":
         if isinstance(json_data, str):
-            return cls(text=json_data)
+            return Comment(text=json_data)
         else:
-            return cls(
+            return Comment(
                 type=CommentType(json_data["@Type"]) if json_data.get("@Type") else None,
-                datasource=json_data.get("@Datasource"),
+                datasource=json_data.get("@DataSource"),
                 text=json_data["#text"],
             )
 
 
 @attrs.frozen(auto_attribs=True)
 class CitationIdentifier:
+    """Type for a citation identifier"""
+
     #: The identifier source.
     source: str
     #: The identifier value.
@@ -179,7 +185,7 @@ class CitationIdentifier:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "CitationIdentifier":
-        return cls(
+        return CitationIdentifier(
             source=json_data["@Source"],
             value=json_data["#text"],
         )
@@ -190,7 +196,7 @@ class Citation:
     """Type for a citation"""
 
     #: Citation identifiers.
-    identifiers: typing.List[CitationIdentifier] = attrs.field(factory=list)
+    ids: typing.List[CitationIdentifier] = attrs.field(factory=list)
     #: Citation type.
     type: typing.Optional[str] = None
     #: Corresponds to the abbreviation reported by GTR
@@ -202,21 +208,21 @@ class Citation:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Citation":
-        return cls(
-            identifiers=[
+        return Citation(
+            ids=[
                 CitationIdentifier.from_json_data(raw_identifier)
                 for raw_identifier in force_list(json_data.get("ID", []))
             ],
             type=json_data.get("@Type"),
             abbrev=json_data.get("@Abbrev"),
-            url=json_data.get("@URL"),
+            url=json_data.get("URL"),
             citation_text=json_data.get("CitationText"),
         )
 
 
 @enum.unique
 class AssertionTypeSCV(enum.Enum):
-    """The assertion types available for SCV records."""
+    """The assertion types available for SCV records"""
 
     VARIATION_TO_DISEASE = "variation to disease"
     VARIATION_IN_MODIFIER_GENE_TO_DISEASE = "variation in modifier gene to disease"
@@ -228,20 +234,24 @@ class AssertionTypeSCV(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class CustomAssertionScore:
+    """A custom assertion score"""
+
+    #: Score value
     value: float
+    #: Scoring scheme
     type: typing.Optional[str] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "CustomAssertionScore":
-        return cls(
-            value=float(json_data["@Value"]),
-            type=json_data.get("@Type"),
+        return CustomAssertionScore(
+            value=float(json_data["#text"]),
+            type=json_data.get("@type"),
         )
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinicalSignificanceSCV:
-    """The clinical significance from the SCV."""
+class ClinicalSignificanceTypeSCV:
+    """The clinical significance from the SCV"""
 
     #: The review status
     review_status: typing.Optional[ReviewStatus] = None
@@ -265,7 +275,7 @@ class ClinicalSignificanceSCV:
     date_last_evaluated: typing.Optional[datetime.date] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceSCV":
+    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceTypeSCV":
         # Handle case of the following::
         #
         #     <ReviewStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\
@@ -274,16 +284,14 @@ class ClinicalSignificanceSCV:
         # In contrast to::
         #
         #     <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        review_status = None
         if "ReviewStatus" in json_data:
             if isinstance(json_data["ReviewStatus"], str):
                 review_status = json_data["ReviewStatus"]
             else:
                 review_status = json_data["ReviewStatus"]["#text"]
-        elif "@ReviewStatus" in json_data:
-            review_status = json_data["@ReviewStatus"]
-        else:
-            review_status = None
 
+        # Same for the descriptions.
         descriptions = []
         for raw_description in force_list(json_data.get("Description", [])):
             if isinstance(raw_description, str):
@@ -291,13 +299,9 @@ class ClinicalSignificanceSCV:
             else:
                 value = raw_description.get("#text")
             if value:
-                descriptions.append(ClinicalSignificanceDescription(raw_description.lower()))
-                break
-        else:  # did not break out of for loop above
-            if "@Description" in json_data:
-                descriptions.append(ClinicalSignificanceDescription(json_data.get["@Description"]))
+                descriptions.append(ClinicalSignificanceDescription(value.lower()))
 
-        return cls(
+        return ClinicalSignificanceTypeSCV(
             review_status=review_status,
             descriptions=descriptions,
             explanation=Comment.from_json_data(json_data.get("Explanation"))
@@ -332,8 +336,8 @@ class ClinicalSignificanceSCV:
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinicalSignificance:
-    """The clinical significance from the RCV."""
+class ClinicalSignificanceRCV:
+    """The clinical significance from the RCV"""
 
     #: The review status
     review_status: typing.Optional[ReviewStatus] = None
@@ -355,7 +359,7 @@ class ClinicalSignificance:
     date_last_evaluated: typing.Optional[datetime.date] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceSCV":
+    def from_json_data(cls, json_data: dict) -> "ClinicalSignificanceTypeSCV":
         # Handle case of the following::
         #
         #     <ReviewStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\
@@ -364,19 +368,24 @@ class ClinicalSignificance:
         # In contrast to::
         #
         #     <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        review_status = None
         if "ReviewStatus" in json_data:
             if isinstance(json_data["ReviewStatus"], str):
                 review_status = json_data["ReviewStatus"]
             else:
                 review_status = json_data["ReviewStatus"]["#text"]
-        elif "@ReviewStatus" in json_data:
-            review_status = json_data["@ReviewStatus"]
-        else:
-            review_status = None
 
-        return cls(
+        # Same for the optional description.
+        raw_description = json_data.get("Description", None)
+        description = None
+        if isinstance(raw_description, str):
+            description = ClinicalSignificanceDescription(raw_description.lower())
+        elif raw_description:
+            description = ClinicalSignificanceDescription(raw_description.get("#text").lower())
+
+        return ClinicalSignificanceRCV(
             review_status=review_status,
-            description=json_data.get("Description"),
+            description=description,
             explanation=Comment.from_json_data(json_data.get("Explanation"))
             if json_data.get("Explanation")
             else None,
@@ -402,7 +411,9 @@ class ClinicalSignificance:
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinVarAccession:
+class ReferenceClinVarAccession:
+    """Accession for a reference ClinVar record"""
+
     #: The accession assigned by ClinVar
     acc: str
     #: A new version of an SCV accession is assigned with an update from the submitter.
@@ -417,8 +428,8 @@ class ClinVarAccession:
     date_created: datetime.date
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarAccession":
-        return cls(
+    def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAccession":
+        return ReferenceClinVarAccession(
             acc=json_data["@Acc"],
             version=int(json_data["@Version"]),
             type=ClinVarAccessionType(json_data["@Type"]),
@@ -428,7 +439,9 @@ class ClinVarAccession:
 
 
 @enum.unique
-class ReferenceClinVarAssertionAttribute(enum.Enum):
+class ReferenceClinVarAssertionAttributeType(enum.Enum):
+    """Type for an attribute in a ``ReferenceClinVarAssertion``"""
+
     MODE_OF_INHERITANCE = "ModeOfInheritance"
     PENETRANCE = "Penetrance"
     AGE_OF_ONSET = "AgeOfOnset"
@@ -436,29 +449,38 @@ class ReferenceClinVarAssertionAttribute(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class ReferenceClinVarAssertionAttribute:
-    """Many concepts in the database are represented by what ClinVar terms an AttributeSet,
-    which is an open-ended structure providing the equivalent of a type of information,
-    the value(s) for that data type, submitter(s), free text comment(s) describing that attribute,
-    identifier(s) for that attribute, and citation(s) related to that attribute.
+    """Attribute for ``ReferenceClnVarAssertion``
+
+    Corresponds to the ``<AttributeSet>`` elements.
     """
 
-    type: ReferenceClinVarAssertionAttribute
+    #: The attribute's value
+    value: str
+    #: The attribute's type
+    type: ReferenceClinVarAssertionAttributeType
+    #: The optional integer value provided in ClinVar public XML
     integer_value: typing.Optional[int] = None
+    #: The optional date value provided in ClinVar public XML
     date_value: typing.Optional[datetime.date] = None
+    #: Optional list of citations for this attribute
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: Optional list of cross-references for this attribute
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: Optional list of comments for this attribute
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertionAttribute":
-        return cls(
-            type=ReferenceClinVarAssertionAttribute(json_data["@Type"]),
-            integer_value=int(json_data["@integerValue"])
-            if json_data.get("@integerValue")
+        attribute = json_data["Attribute"]
+        return ReferenceClinVarAssertionAttribute(
+            # value of <Attribute> tag
+            value=attribute["#text"],
+            type=ReferenceClinVarAssertionAttributeType(attribute["@Type"]),
+            integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
+            date_value=parse_datetime(attribute["@dateValue"])
+            if "@dateValue" in attribute
             else None,
-            date_value=parse_datetime(json_data["@dateValue"]).date()
-            if json_data.get("@dateValue")
-            else None,
+            # other data in lists
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -476,6 +498,8 @@ class ReferenceClinVarAssertionAttribute:
 
 @enum.unique
 class Zygosity(enum.Enum):
+    """Zygosity options"""
+
     HOMOZYGOTE = "Homozygote"
     SINGLE_HETEROZYGOTE = "SingleHeterozygote"
     COMPOUND_HETEROZYGOTE = "CompoundHeterozygote"
@@ -485,6 +509,8 @@ class Zygosity(enum.Enum):
 
 @enum.unique
 class RelativeOrientation(enum.Enum):
+    """Relative orientation of two variants"""
+
     CIS = "cis"
     TRANS = "trans"
     UNKNOWN = "unknown"
@@ -492,51 +518,60 @@ class RelativeOrientation(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class AlleleDescription:
-    """This is to be used within co-occurrence set"""
+    """Description of one allele for use in co-occurence description"""
 
+    #: Name of the allele
     name: str
+    #: Relative orientation in variant co-occurence
     relative_orientation: typing.Optional[RelativeOrientation]
+    #: Zygosity information
     zygosity: typing.Optional[Zygosity] = None
-    clinical_significance: typing.Optional[ClinicalSignificanceSCV] = None
+    #: Clinical significance description of variant
+    clinical_significance: typing.Optional[ClinicalSignificanceTypeSCV] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "AlleleDescription":
-        return cls(
-            name=json_data["@Name"],
-            relative_orientation=RelativeOrientation(json_data["@RelativeOrientation"])
-            if json_data.get("@RelativeOrientation")
+        return AlleleDescription(
+            name=json_data["Name"],
+            relative_orientation=RelativeOrientation(json_data["RelativeOrientation"])
+            if "RelativeOrientation" in json_data
             else None,
-            zygosity=Zygosity(json_data["@Zygosity"]) if json_data.get("@Zygosity") else None,
-            clinical_significance=ClinicalSignificanceSCV.from_json_data(
-                json_data.get("ClinicalSignificance")
+            zygosity=Zygosity(json_data["Zygosity"]) if "Zygosity" in json_data else None,
+            clinical_significance=ClinicalSignificanceRCV.from_json_data(
+                json_data["ClinicalSignificance"]
             )
-            if json_data.get("ClinicalSignificance")
+            if "ClinicalSignificance" in json_data
             else None,
         )
 
 
 @attrs.frozen(auto_attribs=True)
-class Coocurrence:
-    """This refers to the zygosity of the variant being asserted."""
+class Cooccurrence:
+    """Describes co-ocurrence of variants"""
 
+    #: The overall zygosity
     zygosity: typing.Optional[Zygosity] = None
+    #: The description of the alleles
     allele_descriptions: typing.List[AlleleDescription] = attrs.field(factory=list)
+    #: A count (undocumented in ClinVar XML)
     count: typing.Optional[int] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "Coocurrence":
-        return cls(
-            zygosity=Zygosity(json_data["@Zygosity"]) if json_data.get("@Zygosity") else None,
+    def from_json_data(cls, json_data: dict) -> "Cooccurrence":
+        return Cooccurrence(
+            zygosity=Zygosity(json_data["Zygosity"]) if "Zygosity" in json_data else None,
             allele_descriptions=[
                 AlleleDescription.from_json_data(raw_allele_description)
-                for raw_allele_description in force_list(json_data.get("AlleleDescription", []))
+                for raw_allele_description in force_list(json_data.get("AlleleDescSet", []))
             ],
-            count=int(json_data["@Count"]) if json_data.get("@Count") else None,
+            count=int(json_data["Count"]) if "Count" in json_data else None,
         )
 
 
 @enum.unique
 class ObservationMethod(enum.Enum):
+    """Method for generating an observation"""
+
     CURATION = "curation"
     LITERATURE_ONLY = "literature only"
     REFERENCE_POPULATION = "reference population"
@@ -552,14 +587,20 @@ class ObservationMethod(enum.Enum):
 
     @classmethod
     def from_the_wild(cls, str) -> "ObservationMethod":
+        """Convert values "from the wild" where sometimes invalid values are used.
+
+        These are converted to ``Other``.
+        """
         try:
-            return cls(str)
+            return ObservationMethod(str)
         except ValueError:
             return cls.OTHER
 
 
 @enum.unique
 class ObservedDataAttributeType(enum.Enum):
+    """Type for an attribute in a ``ObservedData``"""
+
     DESCRIPTION = "Description"
     VARIANT_ALLELES = "VariantAlleles"
     SUBJECTS_WITH_VARIANT = "SubjectsWithVariant"
@@ -589,27 +630,33 @@ class ObservedDataAttributeType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class ObservedDataAttribute:
+    """Attribute for ``ObservedData``"""
+
+    #: The type of the attribute
     type: ObservedDataAttributeType
+    #: The attribute's value
     value: typing.Optional[str] = None
+    #: The optional integer value provided in ClinVar public XML
     integer_value: typing.Optional[int] = None
+    #: The optional date value provided in ClinVar public XML
     date_value: typing.Optional[datetime.date] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ObservedDataAttribute":
-        return cls(
+        return ObservedDataAttribute(
             type=ObservedDataAttributeType(json_data["@Type"]),
             value=json_data.get("#text"),
-            integer_value=int(json_data["@integerValue"])
-            if json_data.get("@integerValue")
-            else None,
-            date_value=parse_datetime(json_data["@dateValue"]).date()
-            if json_data.get("@dateValue")
+            integer_value=int(json_data["@integerValue"]) if "@integerValue" in json_data else None,
+            date_value=parse_datetime(json_data["@dateValue"])
+            if "@dateValue" in json_data
             else None,
         )
 
 
 @enum.unique
 class Severity(enum.Enum):
+    """Severity of a condition"""
+
     MILD = "mild"
     MODERATE = "moderate"
     SEVERE = "severe"
@@ -617,17 +664,24 @@ class Severity(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class ObservedData:
+    """Store structured observed data"""
+
+    #: The core observation data
     attribute: ObservedDataAttribute
+    #: Optional description of severity
     severity: typing.Optional[Severity] = None
+    #: Optional list of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: Optional list of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: Optional list of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ObservedData":
-        return cls(
+        return ObservedData(
             attribute=ObservedDataAttribute.from_json_data(json_data["Attribute"]),
-            severity=Severity(json_data["@Severity"]) if json_data.get("@Severity") else None,
+            severity=Severity(json_data["Severity"]) if "Severity" in json_data else None,
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -645,59 +699,71 @@ class ObservedData:
 
 @attrs.frozen(auto_attribs=True)
 class SampleDescription:
+    """Description of a sample with optional citation"""
+
+    #: The sample's description
     description: typing.Optional[Comment] = None
+    #: A citation for the sample
     citation: typing.Optional[Citation] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "SampleDescription":
-        return cls(
-            description=Comment.from_json_data(json_data.get("Description"))
-            if json_data.get("Description")
+        return SampleDescription(
+            description=Comment.from_json_data(json_data["Description"])
+            if "Description" in json_data
             else None,
-            citation=Citation.from_json_data(json_data.get("Citation"))
-            if json_data.get("Citation")
+            citation=Citation.from_json_data(json_data["Citation"])
+            if "Citation" in json_data
             else None,
         )
 
 
 @attrs.frozen(auto_attribs=True)
 class FamilyInfo:
-    """Structure to describe attributes of any family data in an observation.
+    """Description of a family in an observation.
 
     If the details of the number of families and the de-identified pedigree id are not available,
     use FamilyHistory to describe what type of family data is available.  Can also be used to report
     'Yes' or 'No' if there are no more details.
     """
 
+    #: Family history description
     family_history: typing.Optional[str] = None
+    #: Number of families with observations
     num_families: typing.Optional[int] = None
+    #: Number of families with a varaint
     num_families_with_variant: typing.Optional[int] = None
+    #: Number of families with observed segregation
     num_families_with_segregation_observed: typing.Optional[int] = None
+    #: Pedigree identifier
     pedigree_id: typing.Optional[str] = None
+    #: Whether segration was observeds
     segregation_observed: typing.Optional[bool] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "FamilyInfo":
-        return cls(
+        return FamilyInfo(
             family_history=json_data.get("FamilyHistory"),
-            num_families=int(json_data["@NumFamilies"]) if json_data.get("@NumFamilies") else None,
+            num_families=int(json_data["@NumFamilies"]) if "@NumFamilies" in json_data else None,
             num_families_with_variant=int(json_data["@NumFamiliesWithVariant"])
-            if json_data.get("@NumFamiliesWithVariant")
+            if "@NumFamiliesWithVariant" in json_data
             else None,
             num_families_with_segregation_observed=int(
                 json_data["@NumFamiliesWithSegregationObserved"]
             )
-            if json_data.get("@NumFamiliesWithSegregationObserved")
+            if "@NumFamiliesWithSegregationObserved" in json_data
             else None,
             pedigree_id=json_data.get("@PedigreeID"),
             segregation_observed=json_data["@SegregationObserved"] == "yes"
-            if json_data.get("@SegregationObserved")
+            if "@SegregationObserved" in json_data
             else None,
         )
 
 
 @enum.unique
 class SampleOrigin(enum.Enum):
+    """Origin of a sample"""
+
     GERMLINE = "germline"
     SOMATIC = "somatic"
     DE_NOVO = "de novo"
@@ -715,17 +781,21 @@ class SampleOrigin(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class Species:
+    """Definition of the species of a sample"""
+
+    #: The species name
     value: str
+    #: The taxonomy id
     taxonomy_id: typing.Optional[int] = None
 
     @classmethod
     def from_json_data(cls, json_data: typing.Union[dict, str]) -> "Species":
         if isinstance(json_data, str):
-            return cls(
+            return Species(
                 value=json_data,
             )
         else:
-            return cls(
+            return Species(
                 value=json_data["#text"],
                 taxonomy_id=int(json_data["@TaxonomyId"]),
             )
@@ -733,6 +803,8 @@ class Species:
 
 @enum.unique
 class AgeType(enum.Enum):
+    """Type of an age or side of an age range"""
+
     MINIMUM = "minimum"
     MAXIMUM = "maximum"
     SINGLE = "single"
@@ -740,13 +812,18 @@ class AgeType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class Age:
+    """Description of an age or a side of an age range"""
+
+    #: The unit of the age
     age_unit: str
+    #: The age value
     value: int
+    #: The type of the age (side of a range or single age)
     type: AgeType
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Age":
-        return cls(
+        return Age(
             age_unit=json_data["@age_unit"],
             value=int(json_data["#text"]),
             type=AgeType(json_data["@Type"]),
@@ -755,6 +832,8 @@ class Age:
 
 @enum.unique
 class AffectedStatus(enum.Enum):
+    """Affected status of a sample"""
+
     YES = "yes"
     NO = "no"
     NOT_PROVIDED = "not provided"
@@ -764,6 +843,8 @@ class AffectedStatus(enum.Enum):
 
 @enum.unique
 class Gender(enum.Enum):
+    """Gender of a sample"""
+
     MALE = "male"
     FEMALE = "female"
     MIXED = "mixed"
@@ -771,39 +852,46 @@ class Gender(enum.Enum):
 
 @enum.unique
 class SampleSource(enum.Enum):
+    """Source of a sample"""
+
     SUBMITTER_GENERATED = "submitter generated"
     DATA_MINING = "data mining"
 
 
-@enum.unique
-class IndicationType(enum.Enum):
-    INDICATION = "Indication"
-
-
 @attrs.frozen(auto_attribs=True)
-class ElementValue:
+class TypedValue:
+    """A typed value in a value set"""
+
+    #: The type description
     type: str
+    #: The value
     value: str
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ElementValue":
-        return cls(
+    def from_json_data(cls, json_data: dict) -> "TypedValue":
+        return TypedValue(
             type=json_data["@Type"],
             value=json_data["#text"],
         )
 
 
 @attrs.frozen(auto_attribs=True)
-class SetElementSetType:
-    element_value: ElementValue
+class AnnotatedTypedValue:
+    """A further annotated ``TypedValue``"""
+
+    #: The inner typed value
+    value: TypedValue
+    #: Optional list of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: Optional list of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: Optional list of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "SetElementSetType":
-        return cls(
-            element_value=ElementValue.from_json_data(json_data["ElementValue"]),
+    def from_json_data(cls, json_data: dict) -> "AnnotatedTypedValue":
+        return AnnotatedTypedValue(
+            value=TypedValue.from_json_data(json_data["ElementValue"]),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -819,56 +907,19 @@ class SetElementSetType:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class AttributeType:
-    """The attribute is a general element to represent a defined set of data
-        qualified by an enumerated set of types.
-
-    For each attribute element, the value will
-    be a character string and is optional. Source shall be used to store identifiers for
-    supplied data from source other than the submitter (e.g. SequenceOntology). The data
-    submitted where Type="variation" shall be validated against sequence_alternation in
-    Sequence Ontology http://www.sequenceontology.org/. This is to be a generic version
-    of AttributeType and should be used with extension when it is used to specify Type
-    and its enumerations.
-    """
-
-    value: str
-    integer_value: typing.Optional[int] = None
-    date_value: typing.Optional[datetime.date] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "AttributeType":
-        return cls(
-            integerValue=int(json_data["@integerValue"])
-            if json_data.get("@integerValue")
-            else None,
-            dateValue=parse_datetime(json_data["@dateValue"]).date()
-            if json_data.get("@dateValue")
-            else None,
-            value=json_data["#text"],
-        )
-
-
-@enum.unique
-class ClinAsserTraitTypeType(enum.Enum):
-    DISEASE = "Disease"
-    DRUG_RESPONSE = "DrugResponse"
-    BLOOD_GROUP = "BloodGroup"
-    FINDING = "Finding"
-    NAMED_PROTEIN_VARIANT = "NamedProteinVariant"
-    PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
-
-
 @enum.unique
 class ClinicalFeaturesAffectedStatus(enum.Enum):
+    """Affected status of a clinical feature"""
+
     PRESENT = "present"
     ABSENT = "absent"
     NOT_TESTED = "not tested"
 
 
 @enum.unique
-class DataSourceTypeType(enum.Enum):
+class SourceType(enum.Enum):
+    """Type of a source"""
+
     LABORATORY = "laboratory"
     LSDB = "locus-specific database (LSDB)"
     CONSORTIUM = "consortium"
@@ -877,111 +928,75 @@ class DataSourceTypeType(enum.Enum):
     OTHER = "other"
 
 
-@enum.unique
-class TraitRelationshipType(enum.Enum):
-    PHENOCOPY = "phenocopy"
-    SUBPHENOTYPE = "Subphenotype"
-    DRUG_RESPONSE_AND_DIASEASE = "DrugResponseAndDisease"
-    CO_OCCURRING_CONDITION = "co-occurring condition"
-    FINDING_MEMBER = "finding member"
-
-
 @attrs.frozen(auto_attribs=True)
-class DataSourceType:
+class Source:
+    """Source information of some data"""
+
     #: A standard term for the source of the information
     data_source: str
     #: The identifier used by the data source
     id: typing.Optional[str] = None
     #: Controlled terms to categorize the source of the information
-    source_type: typing.Optional[DataSourceTypeType] = None
+    source_type: typing.Optional[SourceType] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "DataSourceType":
-        return cls(
+    def from_json_data(cls, json_data: dict) -> "Source":
+        return Source(
             data_source=json_data["@DataSource"],
             id=json_data.get("@ID"),
-            source_type=DataSourceTypeType(json_data["@SourceType"])
+            source_type=SourceType(json_data["@SourceType"])
             if json_data.get("@SourceType")
             else None,
         )
 
 
 @enum.unique
-class ClinVarAssertionAttributeType(enum.Enum):
-    MODE_OF_INHERITANCE = "ModeOfInheritance"
-    PENETRANCE = "Penetrance"
-    AGE_OF_ONSET = "AgeOfOnset"
-    SEVERITY = "Severity"
-    CLINICAL_SIGNIFICANCE_HISTORY = "ClinicalSignificanceHistory"
-    SEVERITY_DESCRIPTION = "SeverityDescription"
-    ASSERTION_METHOD = "AssertionMethod"
+class TraitRelationshipType(enum.Enum):
+    """Type of a trait relationship"""
 
-
-@attrs.frozen(auto_attribs=True)
-class ClinAsserTraitTypeAttribute:
-    type: ClinVarAssertionAttributeType
-    value: str
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitTypeAttribute":
-        return cls(
-            type=ClinVarAssertionAttributeType(json_data["@Type"]),
-            value=json_data["#text"],
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class ClinAsserTraitTypeAttributeSet:
-    attribute: ClinAsserTraitTypeAttribute
-    citations: typing.List[Citation] = attrs.field(factory=list)
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
-    comments: typing.List[Comment] = attrs.field(factory=list)
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitTypeAttributeSet":
-        return cls(
-            attribute=ClinAsserTraitTypeAttribute.from_json_data(json_data["Attribute"]),
-            citations=[
-                Citation.from_json_data(raw_citation)
-                for raw_citation in force_list(json_data.get("Citation", []))
-            ],
-            xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
-            ],
-            comments=[
-                Comment.from_json_data(raw_comment)
-                for raw_comment in force_list(json_data.get("Comment", []))
-            ],
-        )
+    PHENOCOPY = "phenocopy"
+    SUBPHENOTYPE = "Subphenotype"
+    DRUG_RESPONSE_AND_DIASEASE = "DrugResponseAndDisease"
+    CO_OCCURRING_CONDITION = "co-occurring condition"
+    FINDING_MEMBER = "Finding member"
 
 
 @attrs.frozen(auto_attribs=True)
 class TraitRelationship:
+    """Describe relations between two types"""
+
+    #: The type of the relationship
     type: TraitRelationshipType
+    #: An optional identifier of the relationship
     id: typing.Optional[int] = None
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[ClinAsserTraitTypeAttributeSet] = attrs.field(factory=list)
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
-    source: typing.List[DataSourceType] = attrs.field(factory=list)
+    #: List of comments
+    source: typing.List[Source] = attrs.field(factory=list)
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "TraitRelationship":
-        return cls(
+        return TraitRelationship(
             type=TraitRelationshipType(json_data["@Type"]),
-            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
+            id=int(json_data["@ID"]) if "@ID" in json_data else None,
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                ClinAsserTraitTypeAttributeSet.from_json_data(raw_attribute)
+                AnnotatedTypedValue.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             citations=[
@@ -993,39 +1008,99 @@ class TraitRelationship:
                 for raw_xref in force_list(json_data.get("XRef", []))
             ],
             source=[
-                DataSourceType.from_json_data(raw_source)
+                Source.from_json_data(raw_source)
                 for raw_source in force_list(json_data.get("Source", []))
             ],
         )
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinAsserTraitType:
-    type: ClinAsserTraitTypeType
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[ClinAsserTraitTypeAttributeSet] = attrs.field(factory=list)
-    trait_relationships: typing.List[TraitRelationship] = attrs.field(factory=list)
+class ClinVarAssertionTraitRelationship:
+    """Trait relationship for ``ClinVarAssertionTrait`` records"""
+
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
-    source: typing.List[DataSourceType] = attrs.field(factory=list)
-    affected_status: typing.Optional[ClinicalFeaturesAffectedStatus] = None
+    #: List of sources
+    sources: typing.List[Source] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitType":
-        return cls(
-            type=ClinAsserTraitTypeType(json_data["@Type"]),
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTraitRelationship":
+        return ClinVarAssertionTraitRelationship(
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                ClinAsserTraitTypeAttributeSet.from_json_data(raw_attribute)
+                AnnotatedTypedValue.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+            sources=[
+                Source.from_json_data(raw_source)
+                for raw_source in force_list(json_data.get("Source", []))
+            ],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class ClinVarAssertionTrait:
+    """Trait description for a ClinVar assertion"""
+
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of trait relationships
+    trait_relationships: typing.List[TraitRelationship] = attrs.field(factory=list)
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+    #: List of sources
+    sources: typing.List[Source] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTrait":
+        return ClinVarAssertionTrait(
+            names=[
+                AnnotatedTypedValue.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                AnnotatedTypedValue.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                AnnotatedTypedValue.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             trait_relationships=[
@@ -1044,44 +1119,133 @@ class ClinAsserTraitType:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            source=[
-                DataSourceType.from_json_data(raw_source)
+            sources=[
+                Source.from_json_data(raw_source)
                 for raw_source in force_list(json_data.get("Source", []))
             ],
-            affected_status=ClinicalFeaturesAffectedStatus(json_data["@AffectedStatus"])
-            if json_data.get("@AffectedStatus")
-            else None,
         )
+
+
+@enum.unique
+class TraitType(enum.Enum):
+    """Type of a trait"""
+
+    DISEASE = "Disease"
+    DRUG_RESPONSE = "DrugResponse"
+    BLOOD_GROUP = "BloodGroup"
+    FINDING = "Finding"
+    NAMED_PROTEIN_VARIANT = "NamedProteinVariant"
+    PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
+
+
+@attrs.frozen(auto_attribs=True)
+class Trait:
+    """Trait description for trait sets"""
+
+    #: Type of the trait
+    type: TraitType
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of trait relationships
+    trait_relationships: typing.List[TraitRelationship] = attrs.field(factory=list)
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+    #: List of sources
+    sources: typing.List[Source] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "Trait":
+        return Trait(
+            type=TraitType(json_data["@Type"]),
+            names=[
+                AnnotatedTypedValue.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                AnnotatedTypedValue.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                AnnotatedTypedValue.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
+            ],
+            trait_relationships=[
+                TraitRelationship.from_json_data(raw_trait_relationship)
+                for raw_trait_relationship in force_list(json_data.get("TraitRelationship", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+            sources=[
+                Source.from_json_data(raw_source)
+                for raw_source in force_list(json_data.get("Source", []))
+            ],
+        )
+
+
+@enum.unique
+class IndicationType(enum.Enum):
+    """Type of an indication"""
+
+    INDICATION = "Indication"
 
 
 @attrs.frozen(auto_attribs=True)
 class Indication:
-    traits: typing.List[ClinAsserTraitType] = attrs.field(factory=list)
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[AttributeType] = attrs.field(factory=list)
+    """Connect trait to test"""
+
+    #: List of traits
+    traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comment: typing.Optional[Comment] = None
+    #: The type of the indication
     type: typing.Optional[IndicationType] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Indication":
-        return cls(
+        return Indication(
+            type=IndicationType(json_data["@Type"]),
             traits=[
-                ClinAsserTraitType.from_json_data(raw_trait)
+                ClinVarAssertionTrait.from_json_data(raw_trait)
                 for raw_trait in force_list(json_data.get("Trait", []))
             ],
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                AttributeType.from_json_data(raw_attribute)
+                AnnotatedTypedValue.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("Attribute", []))
             ],
             citations=[
@@ -1093,23 +1257,34 @@ class Indication:
                 for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comment=Comment.from_json_data(json_data.get("Comment"))
-            if json_data.get("Comment")
+            if "Comment" in json_data
             else None,
-            type=IndicationType(json_data["@Type"]),
         )
 
 
 @attrs.frozen(auto_attribs=True)
-class SampleType:
-    sample_description: typing.Optional[SampleDescription] = None
+class Sample:
+    """A sample from a ClinVar XML file"""
+
+    #: Sample description
+    description: typing.Optional[SampleDescription] = None
+    #: Sample origin
     origin: typing.Optional[SampleOrigin] = None
+    #: Proband's ethnicity
     ethnicity: typing.Optional[str] = None
+    #: Geographic origin
     geographic_origin: typing.Optional[str] = None
+    #: Tissue
     tissue: typing.Optional[str] = None
+    #: Cell line
     cell_line: typing.Optional[str] = None
+    #: Species
     species: typing.Optional[Species] = None
+    #: Age
     age: typing.List[Age] = attrs.field(factory=list)
+    #: Strain
     strain: typing.Optional[str] = None
+    #: Affected status
     affected_status: AffectedStatus = AffectedStatus.NOT_PROVIDED
     #: Denominator, total individuals included in this observation set.
     number_tested: typing.Optional[int] = None
@@ -1124,21 +1299,28 @@ class SampleType:
     #: of males or females, and there is a need to indicate that the genders in
     #: the sample are known.
     gender: typing.Optional[Gender] = None
+    #: Family data
     family_data: typing.Optional[FamilyInfo] = None
+    #: Proband
     proband: typing.Optional[str] = None
+    #: Indication
     indication: typing.Optional[Indication] = None
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: Sample source
     source: typing.Optional[SampleSource] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "SampleType":
-        return cls(
-            sample_description=SampleDescription.from_json_data(json_data["SampleDescription"])
-            if json_data.get("SampleDescription")
+    def from_json_data(cls, json_data: dict) -> "Sample":
+        return Sample(
+            description=SampleDescription.from_json_data(json_data["SampleDescription"])
+            if "SampleDescription" in json_data
             else None,
-            origin=SampleOrigin(json_data["Origin"]) if json_data.get("Origin") else None,
+            origin=SampleOrigin(json_data["Origin"]) if "Origin" in json_data else None,
             ethnicity=json_data.get("Ethnicity"),
             geographic_origin=json_data.get("GeographicOrigin"),
             tissue=json_data.get("Tissue"),
@@ -1147,23 +1329,23 @@ class SampleType:
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
             affected_status=AffectedStatus(json_data["AffectedStatus"])
-            if json_data.get("AffectedStatus")
+            if "AffectedStatus" in json_data
             else AffectedStatus.NOT_PROVIDED,
-            number_tested=int(json_data["NumberTested"]) if json_data.get("NumberTested") else None,
-            number_males=int(json_data["NumberMales"]) if json_data.get("NumberMales") else None,
+            number_tested=int(json_data["NumberTested"]) if "NumberTested" in json_data else None,
+            number_males=int(json_data["NumberMales"]) if "NumberMales" in json_data else None,
             number_females=int(json_data["NumberFemales"])
-            if json_data.get("NumberFemales")
+            if "NumberFemales" in json_data
             else None,
             number_chr_tested=int(json_data["NumberChrTested"])
-            if json_data.get("NumberChrTested")
+            if "NumberChrTested" in json_data
             else None,
-            gender=Gender(json_data["Gender"]) if json_data.get("Gender") else None,
+            gender=Gender(json_data["Gender"]) if "Gender" in json_data else None,
             family_data=FamilyInfo.from_json_data(json_data.get("FamilyData"))
-            if json_data.get("FamilyData")
+            if "FamilyData" in json_data
             else None,
             proband=json_data.get("Proband"),
             indication=Indication.from_json_data(json_data.get("Indication"))
-            if json_data.get("Indication")
+            if "Indication" in json_data
             else None,
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -1177,7 +1359,7 @@ class SampleType:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            source=SampleSource(json_data["SourceType"]) if json_data.get("SourceType") else None,
+            source=SampleSource(json_data["SourceType"]) if "SourceType" in json_data else None,
         )
 
 
@@ -1191,19 +1373,26 @@ class ObservationSet:
     all options are valid per study type, but these will not be validated in the xsd.
     """
 
-    sample: SampleType
-    method: typing.List[ObservationMethod] = attrs.field(factory=list)
+    #: Sample in observation
+    sample: Sample
+    #: List of observation methods
+    methods: typing.List[ObservationMethod] = attrs.field(factory=list)
+    #: List of observed data
     observed_data: typing.List[ObservedData] = attrs.field(factory=list)
-    cooccurrences: typing.List[Coocurrence] = attrs.field(factory=list)
+    #: List of co-occurrences
+    cooccurrences: typing.List[Cooccurrence] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ObservationSet":
-        return cls(
-            sample=SampleType.from_json_data(json_data["Sample"]),
-            method=[
+        return ObservationSet(
+            sample=Sample.from_json_data(json_data["Sample"]),
+            methods=[
                 ObservationMethod.from_the_wild(method["MethodType"])
                 for method in force_list(json_data.get("Method", []))
             ],
@@ -1212,7 +1401,7 @@ class ObservationSet:
                 for raw_observed_data in force_list(json_data.get("ObservedData", []))
             ],
             cooccurrences=[
-                Coocurrence.from_json_data(raw_cooccurrence)
+                Cooccurrence.from_json_data(raw_cooccurrence)
                 for raw_cooccurrence in force_list(json_data.get("Coocurrence", []))
             ],
             citations=[
@@ -1231,8 +1420,8 @@ class ObservationSet:
 
 
 @enum.unique
-class AssertionTypeAttr(enum.Enum):
-    """The assertion types for RCV records."""
+class AssertionType(enum.Enum):
+    """The assertion types for RCV records"""
 
     VARIATION_TO_DISEASE = "variation to disease"
     VARIATION_IN_MODIFIER_GENE_TO_DISEASE = "variation in modifier gene to disease"
@@ -1241,23 +1430,10 @@ class AssertionTypeAttr(enum.Enum):
     VARIANT_TO_NAMED_PROTEIN_EFFECT = "variant to named protein"
 
 
-@attrs.frozen(auto_attribs=True)
-class AssertionTypeRCV:
-    """Assertion is used to represent the type of relationship between the trait set and the
-    measure set.
-    """
-
-    type: AssertionTypeAttr
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "AssertionTypeRCV":
-        return cls(
-            type=AssertionTypeAttr(json_data["@Type"]),
-        )
-
-
 @enum.unique
 class MeasureSetAttributeType(enum.Enum):
+    """Type of an attribute in a measure set"""
+
     DESCRIPTION = "Description"
     MOLECULAR_CONSEQUENCE = "MolecularConsequence"
     HGVS = "HGVS"
@@ -1284,36 +1460,36 @@ class MeasureSetAttributeType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class MeasureSetAttribute:
+    """An attribute in a MeasureSet"""
+
+    #: Type of the attribute
     type: MeasureSetAttributeType
+    #: Value of the attribute
     value: str
+    #: Described change
     change: typing.Optional[str] = None
+    #: Whether the attribute is MANE select
     mane_select: typing.Optional[bool] = None
+    #: Whether the attribute is in MANE plus clinical
     mane_plus_clinical: typing.Optional[bool] = None
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "MeasureSetAttribute":
-        return cls(
-            type=MeasureSetAttributeType(json_data["@Type"]),
-            value=json_data["#text"],
-            change=json_data.get("@Change"),
-            mane_select=json_data["@ManeSelect"] == "yes" if json_data.get("@ManeSelect") else None,
-            mane_plus_clinical=json_data["@ManePlusClinical"] == "yes"
-            if json_data.get("@ManePlusClinical")
-            else None,
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class MeasureSetAttributeSet:
-    attribute: MeasureSetAttribute
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "MeasureSetAttributeSet":
+    def from_json_data(cls, json_data: dict) -> "MeasureSetAttribute":
+        attribute = json_data["Attribute"]
         return cls(
-            attribute=MeasureSetAttribute.from_json_data(json_data["Attribute"]),
+            type=MeasureSetAttributeType(attribute["@Type"]),
+            value=attribute["#text"],
+            change=attribute.get("@Change"),
+            mane_select=attribute["@ManeSelect"] == "yes" if "@ManeSelect" in attribute else None,
+            mane_plus_clinical=attribute["@ManePlusClinical"] == "yes"
+            if "@ManePlusClinical" in attribute
+            else None,
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -1331,6 +1507,8 @@ class MeasureSetAttributeSet:
 
 @enum.unique
 class MeasureTypeAttributeType(enum.Enum):
+    """Type of an attribute in a measure type"""
+
     HGVS_GENOMIC_TOP_LEVEL = "HGVS, genomic, top level"
     HGVS_GENOMIC_TOP_LEVEL_PREVIOUS = "HGVS, genomic, top level, previous"
     HGVS_GENOMIC_TOP_LEVEL_OTHER = "HGVS, genomic, top level, other"
@@ -1375,38 +1553,54 @@ class MeasureTypeAttributeType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class MeasureTypeAttribute:
+    """An attribute in a MeasureType"""
+
+    #: The type of the attribute
     type: MeasureTypeAttributeType
-    change: typing.Optional[str] = None
-    accession: typing.Optional[str] = None
-    version: typing.Optional[int] = None
-    mane_select: typing.Optional[bool] = None
-    mane_plus_clinical: typing.Optional[bool] = None
+    #: Value of the attribute
+    value: str
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureTypeAttribute":
-        return cls(
-            type=MeasureTypeAttributeType(json_data["@Type"]),
-            change=json_data.get("@Change"),
-            accession=json_data.get("@Accession"),
-            version=int(json_data["@Version"]) if json_data.get("@Version") else None,
-            mane_select=json_data["@ManeSelect"] == "true"
-            if json_data.get("@ManeSelect")
-            else None,
-            mane_plus_clinical=json_data["@ManePlusClinical"] == "true"
-            if json_data.get("@ManePlusClinical")
-            else None,
+        attribute = json_data["Attribute"]
+        return MeasureTypeAttribute(
+            type=MeasureTypeAttributeType(attribute["@Type"]),
+            value=attribute["#text"],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
         )
 
 
 @attrs.frozen(auto_attribs=True)
 class AlleleFrequency:
+    """Description of an allele frequency"""
+
+    #: AF value
     value: float
+    #: AF source
     source: str
+    #: URL
     url: typing.Optional[str] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "AlleleFrequency":
-        return cls(
+        return AlleleFrequency(
             value=float(json_data["@Value"]),
             source=json_data["@Source"],
             url=json_data.get("@URL"),
@@ -1415,14 +1609,20 @@ class AlleleFrequency:
 
 @attrs.frozen(auto_attribs=True)
 class GlobalMinorAlleleFrequency:
+    """Description of a global minor allele frequency"""
+
+    #: MAF value
     value: float
+    #: MAF source
     source: str
+    #: Minor allele string
     minor_allele: typing.Optional[str] = None
+    #: URL
     url: typing.Optional[str] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "GlobalMinorAlleleFrequency":
-        return cls(
+        return GlobalMinorAlleleFrequency(
             value=float(json_data["@Value"]),
             source=json_data["@Source"],
             minor_allele=json_data.get("@MinorAllele"),
@@ -1430,25 +1630,247 @@ class GlobalMinorAlleleFrequency:
         )
 
 
+@enum.unique
+class AssemblyStatus(enum.Enum):
+    """Status of an assembly"""
+
+    CURRENT = "current"
+    PREVIOUS = "previous"
+
+
 @attrs.frozen(auto_attribs=True)
-class MeasureType:
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    canonical_spdi: typing.Optional[str] = None
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[MeasureTypeAttribute] = attrs.field(factory=list)
-    allele_frequencies: typing.List[AlleleFrequency] = attrs.field(factory=list)
-    global_minor_allele_frequency: typing.Optional[GlobalMinorAlleleFrequency] = None
+class SequenceLocation:
+    """Description of a location on a sequence"""
+
+    #: Assembly of the location
+    assembly: str
+    #: Chromosome
+    chr: str
+    #: Accession
+    accession: typing.Optional[str] = None
+    #: Outer start position (1-based)
+    outer_start: typing.Optional[int] = None
+    #: Inner start position (1-based)
+    inner_start: typing.Optional[int] = None
+    #: Start position (1-based)
+    start: typing.Optional[int] = None
+    #: Stop position (1-based)
+    stop: typing.Optional[int] = None
+    #: Inner stop position (1-based)
+    inner_stop: typing.Optional[int] = None
+    #: Outer stop position (1-based)
+    outer_stop: typing.Optional[int] = None
+    #: Display start position (1-based)
+    display_start: typing.Optional[int] = None
+    #: Display stop position (1-based)
+    display_stop: typing.Optional[int] = None
+    #: Strand
+    strand: typing.Optional[str] = None
+    #: Variant length
+    variant_length: typing.Optional[int] = None
+    #: Reference allele
+    reference_allele: typing.Optional[str] = None
+    #: Alternate allele
+    alternate_allele: typing.Optional[str] = None
+    #: Assembly accession and version
+    assembly_accesion_version: typing.Optional[str] = None
+    #: Assembly status
+    assembly_status: typing.Optional[AssemblyStatus] = None
+    #: Position in VCF
+    position_vcf: typing.Optional[int] = None
+    #: Reference allele in VCF
+    reference_allele_vcf: typing.Optional[str] = None
+    #: Alternate allele in VCF
+    alternate_allele_vcf: typing.Optional[str] = None
+    #: Whether the location is for display length
+    for_display_length: typing.Optional[bool] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "MeasureType":
-        return cls(
+    def from_json_data(cls, json_data: dict) -> "SequenceLocation":
+        return SequenceLocation(
+            assembly=json_data["@Assembly"],
+            chr=json_data["@Chr"],
+            accession=json_data.get("@Accession"),
+            outer_start=int(json_data["@outerStart"]) if "@outerStart" in json_data else None,
+            inner_start=int(json_data["@innerStart"]) if "@innerStart" in json_data else None,
+            start=int(json_data["@start"]) if "@start" in json_data else None,
+            stop=int(json_data["@stop"]) if "@stop" in json_data else None,
+            inner_stop=int(json_data["@innerStop"]) if "@innerStop" in json_data else None,
+            outer_stop=int(json_data["@outerStop"]) if "@outerStop" in json_data else None,
+            display_start=int(json_data["@display_start"])
+            if "@display_start" in json_data
+            else None,
+            display_stop=int(json_data["@display_stop"]) if "@display_stop" in json_data else None,
+            strand=json_data.get("@Strand"),
+            variant_length=int(json_data["@variantLength"])
+            if "@variantLength" in json_data
+            else None,
+            reference_allele=json_data.get("@referenceAllele"),
+            alternate_allele=json_data.get("@alternateAllele"),
+            assembly_accesion_version=json_data.get("@AssemblyAccessionVersion"),
+            assembly_status=AssemblyStatus(json_data["@AssemblyStatus"])
+            if "@AssemblyStatus" in json_data
+            else None,
+            position_vcf=int(json_data["@positionVCF"]) if "@positionVCF" in json_data else None,
+            reference_allele_vcf=json_data.get("@referenceAlleleVCF"),
+            alternate_allele_vcf=json_data.get("@alternateAlleleVCF"),
+            for_display_length=json_data["@forDisplayLength"] == "true"
+            if "@forDisplayLength" in json_data
+            else None,
+        )
+
+
+@enum.unique
+class MeasureRelationshipAttributeType(enum.Enum):
+    """Type of an attribute in ``MeasureRelationship``"""
+
+    HGVS = "HGVS"
+    GENOTYPE = "genotype"
+    HAPLOINSUFFICIENCY = "Haploinsufficiency"
+    TRIPLOSENSITIVITY = "Triplosensitivity"
+    GENE_RELATIONSHIPS = "gene relationships"
+
+
+@attrs.frozen(auto_attribs=True)
+class MeasureRelationshipAttribute:
+    """Attribute of a measure releationship"""
+
+    #: The attribute's value
+    value: str
+    #: The attribute's type
+    type: MeasureRelationshipAttributeType
+    #: The optional integer value provided in ClinVar public XML
+    integer_value: typing.Optional[int] = None
+    #: The optional date value provided in ClinVar public XML
+    date_value: typing.Optional[datetime.date] = None
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "MeasureRelationship":
+        attribute = json_data["Attribute"]
+        return MeasureRelationshipAttribute(
+            # value of <Attribute> tag
+            value=attribute["#text"],
+            type=MeasureRelationshipAttributeType(attribute["@Type"]),
+            integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
+            date_value=parse_datetime(attribute["@dateValue"])
+            if "@dateValue" in attribute
+            else None,
+            # other data in lists
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class MeasureRelationship:
+    """Description of a measure relationship"""
+
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[MeasureRelationshipAttribute] = attrs.field(factory=list)
+    #: Sequence locations
+    sequence_locations: typing.List[SequenceLocation] = attrs.field(factory=list)
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "MeasureRelationship":
+        return MeasureRelationship(
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                AnnotatedTypedValue.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                MeasureRelationshipAttribute.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("Attribute", []))
+            ],
+            sequence_locations=[
+                SequenceLocation.from_json_data(raw_sequence_location)
+                for raw_sequence_location in force_list(json_data.get("SequenceLocation", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
+
+@attrs.frozen(auto_attribs=True)
+class Measure:
+    """Description of a measures"""
+
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: Canonical SPDI
+    canonical_spdi: typing.Optional[str] = None
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[MeasureTypeAttribute] = attrs.field(factory=list)
+    #: List of allele frequencies
+    allele_frequencies: typing.List[AlleleFrequency] = attrs.field(factory=list)
+    #: Global minor allele frequency
+    global_minor_allele_frequency: typing.Optional[GlobalMinorAlleleFrequency] = None
+    #: Cytogenic location
+    cytogenic_locations: typing.List[str] = attrs.field(factory=list)
+    #: Sequence location
+    sequence_location: typing.List[SequenceLocation] = attrs.field(factory=list)
+    #: Measure relationship
+    measure_relationship: typing.List[MeasureRelationship] = attrs.field(factory=list)
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+    #: List of sources
+    source: typing.List[Source] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "Measure":
+        return Measure(
+            names=[
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             canonical_spdi=json_data.get("CanonicalSPDI"),
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
@@ -1460,15 +1882,45 @@ class MeasureType:
                 for raw_allele_frequency in force_list(json_data.get("AlleleFrequency", []))
             ],
             global_minor_allele_frequency=GlobalMinorAlleleFrequency.from_json_data(
-                json_data.get("GlobalMinorAlleleFrequency")
+                json_data["GlobalMinorAlleleFrequency"]
             )
-            if json_data.get("GlobalMinorAlleleFrequency")
+            if "GlobalMinorAlleleFrequency" in json_data
             else None,
+            cytogenic_locations=[
+                raw_cytogenic_location["#text"]
+                for raw_cytogenic_location in force_list(json_data.get("CytogenicLocation", []))
+            ],
+            sequence_location=[
+                SequenceLocation.from_json_data(raw_sequence_location)
+                for raw_sequence_location in force_list(json_data.get("SequenceLocation", []))
+            ],
+            measure_relationship=[
+                MeasureRelationship.from_json_data(raw_measure_relationship)
+                for raw_measure_relationship in force_list(json_data.get("MeasureRelationship", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                XrefType.from_json_data(raw_xref)
+                for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+            source=[
+                Source.from_json_data(raw_source)
+                for raw_source in force_list(json_data.get("Source", []))
+            ],
         )
 
 
 @enum.unique
 class MeasureSetType(enum.Enum):
+    """Type of a measure set"""
+
     GENE = "Gene"
     VARIANT = "Variant"
     GENE_VARIANT = "gene-variant"
@@ -1483,13 +1935,17 @@ class MeasureSetType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class MeasureSet:
+    """A collection of ``Measure`` objects with further annotations"""
+
+    #: Type of the measure
     type: MeasureSetType
+    #: Accession of the measure
     acc: str
     version: typing.Optional[int] = None
-    measures: typing.List[MeasureType] = attrs.field(factory=list)
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[MeasureSetAttributeSet] = attrs.field(factory=list)
+    measures: typing.List[Measure] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
     citations: typing.List[Citation] = attrs.field(factory=list)
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
     comments: typing.List[Comment] = attrs.field(factory=list)
@@ -1498,24 +1954,24 @@ class MeasureSet:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureSet":
-        return cls(
+        return MeasureSet(
             type=MeasureSetType(json_data["@Type"]),
             acc=json_data.get("@Acc"),
             version=int(json_data["@Version"]) if json_data.get("@Version") else None,
             measures=[
-                MeasureType.from_json_data(raw_measure)
+                Measure.from_json_data(raw_measure)
                 for raw_measure in force_list(json_data.get("Measure", []))
             ],
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                MeasureSetAttributeSet.from_json_data(raw_attribute)
+                MeasureSetAttribute.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             citations=[
@@ -1547,9 +2003,9 @@ class GenotypeSetType(enum.Enum):
 class GenotypeSet:
     type: GenotypeSetType
     measures: typing.List[MeasureSet] = attrs.field(factory=list)
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
-    attributes: typing.List[MeasureSetAttributeSet] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
     citations: typing.List[Citation] = attrs.field(factory=list)
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
     comments: typing.List[Comment] = attrs.field(factory=list)
@@ -1565,15 +2021,15 @@ class GenotypeSet:
                 MeasureSet.from_json_data(raw_measure) for raw_measure in force_list(json_data)
             ],
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                MeasureSetAttributeSet.from_json_data(raw_attribute)
+                MeasureSetAttribute.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             citations=[
@@ -1645,10 +2101,10 @@ class TraitSetTypeType(enum.Enum):
 @attrs.frozen(auto_attribs=True)
 class TraitSetType:
     type: TraitSetTypeType
-    traits: typing.List[SetElementSetType] = attrs.field(factory=list)
+    traits: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     id: typing.Optional[int] = None
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     attributes: typing.List[TraitSetTypeAttributeSet] = attrs.field(factory=list)
     citations: typing.List[Citation] = attrs.field(factory=list)
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
@@ -1659,16 +2115,16 @@ class TraitSetType:
         return cls(
             type=TraitSetTypeType(json_data["@Type"]),
             traits=[
-                SetElementSetType.from_json_data(raw_trait)
+                AnnotatedTypedValue.from_json_data(raw_trait)
                 for raw_trait in force_list(json_data.get("Trait", []))
             ],
             id=int(json_data["@ID"]) if json_data.get("@ID") else None,
             names=[
-                SetElementSetType.from_json_data(raw_name)
+                AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
             ],
             symbols=[
-                SetElementSetType.from_json_data(raw_symbol)
+                AnnotatedTypedValue.from_json_data(raw_symbol)
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
@@ -1693,13 +2149,13 @@ class TraitSetType:
 @attrs.frozen(auto_attribs=True)
 class ReferenceClinVarAssertion:
     #: Accesion of the RCV record.
-    clinvar_accession: ClinVarAccession
+    clinvar_accession: ReferenceClinVarAccession
     #: Status of the record.
     record_status: RecordStatus
     #: Clinical significance summary of RCV record.
-    clinical_significance: ClinicalSignificance
+    clinical_significance: ClinicalSignificanceRCV
     #: The assertion RCV type.
-    assertion: AssertionTypeRCV
+    assertion: AssertionType
     #: Represents the public identifier a source may have for this record.
     external_ids: typing.List[XrefType] = attrs.field(factory=list)
     #: Attributes of the RCV record
@@ -1721,12 +2177,14 @@ class ReferenceClinVarAssertion:
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertion":
         return cls(
-            clinvar_accession=ClinVarAccession.from_json_data(json_data["ClinVarAccession"]),
+            clinvar_accession=ReferenceClinVarAccession.from_json_data(
+                json_data["ClinVarAccession"]
+            ),
             record_status=RecordStatus(json_data["RecordStatus"]),
-            clinical_significance=ClinicalSignificance.from_json_data(
+            clinical_significance=ClinicalSignificanceRCV.from_json_data(
                 json_data["ClinicalSignificance"]
             ),
-            assertion=AssertionTypeRCV.from_json_data(json_data["Assertion"]),
+            assertion=AssertionType(json_data["Assertion"]),
             external_ids=[
                 XrefType.from_json_data(raw_external_id)
                 for raw_external_id in force_list(json_data.get("ExternalID", []))
@@ -1768,7 +2226,7 @@ class ReferenceClinVarAssertion:
 
 @attrs.frozen(auto_attribs=True)
 class ClinVarSubmissionID:
-    """Corresponds to ``ClinVarSubmissionID`` in XML file."""
+    """Corresponds to ``ClinVarSubmissionID`` in XML file"""
 
     #: Of primary use to submitters, to facilitate identification of records corresponding to
     #: their submissions.  If not provided by a submitter, NCBI generates. If provided by
@@ -1803,7 +2261,7 @@ class ClinVarSubmissionID:
 
 @enum.unique
 class SubmitterType(enum.Enum):
-    """Enumeration with ``Submitter.type``."""
+    """Enumeration with ``Submitter.type``"""
 
     PRIMARY = "primary"
     SECONDARY = "secondary"
@@ -1847,7 +2305,7 @@ class ClinVarAssertionAccessionType(enum.Enum):
 
 @attrs.frozen(auto_attribs=True)
 class ClinVarAssertionAccession:
-    """Accession number for a ClinVar record in a ``ClinVarAssertion``."""
+    """Accession number for a ClinVar record in a ``ClinVarAssertion``"""
 
     #: The accession
     acc: str
@@ -1870,7 +2328,7 @@ class ClinVarAssertionAccession:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAccession":
-        return cls(
+        return ClinVarAssertionAccession(
             acc=json_data["@Acc"],
             version=int(json_data["@Version"]),
             type=ClinVarAssertionAccessionType(json_data["@Type"]),
@@ -1913,6 +2371,17 @@ class RecordHistory:
             comment=json_data.get("@Comment"),
             variation_id=int(json_data["@VariationID"]) if json_data.get("@VariationID") else None,
         )
+
+
+@enum.unique
+class ClinVarAssertionAttributeType(enum.Enum):
+    MODE_OF_INHERITANCE = "ModeOfInheritance"
+    PENETRANCE = "Penetrance"
+    AGE_OF_ONSET = "AgeOfOnset"
+    SEVERITY = "Severity"
+    CLINICAL_SIGNIFICANCE_HISTORY = "ClinicalSignificanceHistory"
+    SEVERITY_DESCRIPTION = "SeverityDescription"
+    ASSERTION_METHOD = "AssertionMethod"
 
 
 @attrs.frozen(auto_attribs=True)
@@ -1984,9 +2453,9 @@ class ClinAsserTraitSetTypeType(enum.Enum):
 class ClinAsserTraitSetType:
     type: ClinAsserTraitSetTypeType
     date_last_evaluated: datetime.date
-    traits: typing.List[ClinAsserTraitType] = attrs.field(factory=list)
-    names: typing.List[SetElementSetType] = attrs.field(factory=list)
-    symbols: typing.List[SetElementSetType] = attrs.field(factory=list)
+    traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     attributes: typing.List[ClinAsserTraitSetTypeAttribute] = attrs.field(factory=list)
     id: typing.Optional[int] = None
     multiple_condition_explanation: typing.Optional[str] = None
@@ -2016,7 +2485,7 @@ class ClinVarAssertion:
     #: The list of SCV accessions this SCV record has replaced.
     replaced_list: typing.List[RecordHistory] = attrs.field(factory=list)
     #: The clinical significance assertion.
-    clinical_significance: typing.List[ClinicalSignificanceSCV] = attrs.field(factory=list)
+    clinical_significance: typing.List[ClinicalSignificanceTypeSCV] = attrs.field(factory=list)
     #: XrefType is used to identify data source(s) and their identifiers. Optional because
     #: not all sources have an ID specific to the assertion.
     external_ids: typing.List[XrefType] = attrs.field(factory=list)
@@ -2063,7 +2532,7 @@ class ClinVarAssertion:
                 )
             ],
             clinical_significance=[
-                ClinicalSignificanceSCV.from_json_data(raw_clinical_significance)
+                ClinicalSignificanceTypeSCV.from_json_data(raw_clinical_significance)
                 for raw_clinical_significance in force_list(
                     json_data.get("ClinicalSignificance", [])
                 )

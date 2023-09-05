@@ -11,6 +11,10 @@ lint: flake8 isort-check black-check mypy
 test:
 	pytest .
 
+.PHONY: test-update-snapshots
+test-update-snapshots:
+	pytest . --snapshot-update
+
 .PHONY: black
 black:
 	black -l 100 .

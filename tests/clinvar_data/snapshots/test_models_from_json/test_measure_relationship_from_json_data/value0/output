@@ -1,0 +1,38 @@
+{
+  "names": [
+    {
+      "value": {
+        "type": "Preferred",
+        "value": "TGF-beta activated kinase 1 (MAP3K7) binding protein 2"
+      }
+    }
+  ],
+  "symbols": [
+    {
+      "value": {
+        "type": "Preferred",
+        "value": "TAB2"
+      }
+    }
+  ],
+  "sequence_locations": [
+    {
+      "assembly": "GRCh38",
+      "chr": "6",
+      "accession": "NC_000006.12",
+      "start": 149217926,
+      "stop": 149411607,
+      "display_start": 149217926,
+      "display_stop": 149411607,
+      "strand": "+",
+      "assembly_accesion_version": "GCF_000001405.38",
+      "assembly_status": "current"
+    }
+  ],
+  "xrefs": [
+    {
+      "db": "Gene",
+      "id": "23118"
+    }
+  ]
+}
