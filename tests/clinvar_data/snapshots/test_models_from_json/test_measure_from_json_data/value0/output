@@ -21,6 +21,12 @@
     }
   ],
   "canonical_spdi": "NC_000001.11:159205718:CCTGGCTGGCCTGTCCTGGC:CCTGGC",
+  "attributes": [
+    {
+      "type": "HGVS, coding, LRG",
+      "value": "LRG_801t1:c.286_299del"
+    }
+  ],
   "sequence_location": [
     {
       "assembly": "GRCh38",

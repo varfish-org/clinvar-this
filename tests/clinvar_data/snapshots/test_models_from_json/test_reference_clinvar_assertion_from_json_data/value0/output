@@ -75,6 +75,72 @@
           }
         ],
         "canonical_spdi": "NC_000020.11:10413072:G:A",
+        "attributes": [
+          {
+            "type": "HGVS, coding, RefSeq",
+            "value": "NM_018848.3:c.442C>T"
+          },
+          {
+            "type": "HGVS, coding, RefSeq",
+            "value": "NM_170784.3:c.442C>T"
+          },
+          {
+            "type": "HGVS, genomic, RefSeqGene",
+            "value": "NG_009109.2:g.26146C>T"
+          },
+          {
+            "type": "HGVS, genomic, top level",
+            "value": "NC_000020.11:g.10413073G>A"
+          },
+          {
+            "type": "HGVS, genomic, top level, previous",
+            "value": "NC_000020.10:g.10393721G>A"
+          },
+          {
+            "type": "HGVS, protein, RefSeq",
+            "value": "NP_061336.1:p.Gln148Ter"
+          },
+          {
+            "type": "HGVS, protein, RefSeq",
+            "value": "NP_740754.1:p.Gln148Ter"
+          },
+          {
+            "type": "MolecularConsequence",
+            "value": "nonsense",
+            "xrefs": [
+              {
+                "db": "Sequence Ontology",
+                "id": "SO:0001587"
+              },
+              {
+                "db": "RefSeq",
+                "id": "NM_018848.3:c.442C>T"
+              }
+            ]
+          },
+          {
+            "type": "MolecularConsequence",
+            "value": "nonsense",
+            "xrefs": [
+              {
+                "db": "Sequence Ontology",
+                "id": "SO:0001587"
+              },
+              {
+                "db": "RefSeq",
+                "id": "NM_170784.3:c.442C>T"
+              }
+            ]
+          },
+          {
+            "type": "ProteinChange1LetterCode",
+            "value": "Q148*"
+          },
+          {
+            "type": "ProteinChange3LetterCode",
+            "value": "GLN147TER"
+          }
+        ],
         "sequence_location": [
           {
             "assembly": "GRCh38",

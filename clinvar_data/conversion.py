@@ -109,7 +109,8 @@ def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
                 data = convert_clinvarset(json_cvs)
             except Exception as e:
                 print(f"Problem with data: {e} -- data follows", file=sys.stderr)
-                print(data, file=sys.stderr)
+                print(json_cvs, file=sys.stderr)
+                return True
             print(
                 json.dumps(cattrs.unstructure(data), default=json_default),
                 file=tmpf,
@@ -146,7 +147,8 @@ def convert(
                 data = convert_clinvarset(json_cvs)
             except Exception as e:
                 print(f"Problem with data: {e} -- data follows", file=sys.stderr)
-                print(data, file=sys.stderr)
+                print(json_cvs, file=sys.stderr)
+                return True
             print(
                 json.dumps(cattrs.unstructure(data), default=json_default),
                 file=outputf,

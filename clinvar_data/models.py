@@ -1576,7 +1576,7 @@ class MeasureTypeAttributeType(enum.Enum):
 
 
 @attrs.frozen(auto_attribs=True)
-class MeasureTypeAttribute:
+class MeasureAttribute:
     """An attribute in a MeasureType"""
 
     #: The type of the attribute
@@ -1591,9 +1591,9 @@ class MeasureTypeAttribute:
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "MeasureTypeAttribute":
+    def from_json_data(cls, json_data: dict) -> "MeasureAttribute":
         attribute = json_data["Attribute"]
-        return MeasureTypeAttribute(
+        return MeasureAttribute(
             type=MeasureTypeAttributeType(attribute["@Type"]),
             value=attribute["#text"],
             citations=[
@@ -1865,7 +1865,7 @@ class Measure:
     #: List of symbols
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     #: List of attributes
-    attributes: typing.List[MeasureTypeAttribute] = attrs.field(factory=list)
+    attributes: typing.List[MeasureAttribute] = attrs.field(factory=list)
     #: List of allele frequencies
     allele_frequencies: typing.List[AlleleFrequency] = attrs.field(factory=list)
     #: Global minor allele frequency
@@ -1898,8 +1898,8 @@ class Measure:
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                MeasureTypeAttribute.from_json_data(raw_attribute)
-                for raw_attribute in force_list(json_data.get("Attribute", []))
+                MeasureAttribute.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             allele_frequencies=[
                 AlleleFrequency.from_json_data(raw_allele_frequency)

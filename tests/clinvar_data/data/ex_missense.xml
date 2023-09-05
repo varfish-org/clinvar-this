@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+
+    <ClinVarSet ID="92160400">
+        <RecordStatus>current</RecordStatus>
+        <Title>NM_000490.5(AVP):c.143G&gt;T (p.Gly48Val) AND Neurohypophyseal diabetes insipidus</Title>
+        <ReferenceClinVarAssertion ID="70492" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+          <ClinVarAccession Acc="RCV000012989" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="24" Type="RCV"/>
+          <RecordStatus>current</RecordStatus>
+          <ClinicalSignificance DateLastEvaluated="1996-11-01">
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description>Pathogenic</Description>
+          </ClinicalSignificance>
+          <Assertion Type="variation to disease"/>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData ID="95534652">
+              <Attribute Type="Description">In a Dutch family in which autosomal dominant diabetes insipidus (125700) could be traced back for 5 generations, Bahnsen et al. (1992) identified a G-to-T transversion within the neurophysin-encoding exon B, which converted a highly conserved glycine (gly17 of neurophysin) to a valine residue.</Attribute>
+              <Citation Type="general">
+                <ID Source="PubMed">1740104</ID>
+              </Citation>
+            </ObservedData>
+            <ObservedData ID="95534652">
+              <Attribute Type="Description">Olias et al. (1996) examined whether this point mutation affects the processing and transport of the vasopressin-neurophysin precursor. They stably expressed the normal and mutant vasopressin cDNAs under the control of the cytomegalovirus promoter in the mouse pituitary cell line AtT20. The mutant precursor was synthesized, but processing and secretion were dramatically reduced compared to the normal. The mutant neurophysin staining was restricted to the endoplasmic reticulum and never reached the trans-Golgi network, whereas the normal neurophysin concentrated in the tips of the cell processes where secretory granules accumulate. These results suggested that the mutation alters the conformation of the precursor, impairs its intracellular transport, and triggers its retention.</Attribute>
+              <Citation Type="general">
+                <ID Source="PubMed">8945633</ID>
+              </Citation>
+            </ObservedData>
+          </ObservedIn>
+          <MeasureSet Type="Variant" ID="12205" Acc="VCV000012205" Version="1">
+            <Measure Type="single nucleotide variant" ID="27244">
+              <Name>
+                <ElementValue Type="Preferred">NM_000490.5(AVP):c.143G&gt;T (p.Gly48Val)</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">G17V</ElementValue>
+                <XRef Type="Allelic variant" ID="192340.0002" DB="OMIM"/>
+              </Name>
+              <CanonicalSPDI>NC_000020.11:3083155:C:A</CanonicalSPDI>
+              <AttributeSet>
+                <Attribute Accession="LRG_715t1" Change="c.143G&gt;T" Type="HGVS, coding, LRG">LRG_715t1:c.143G&gt;T</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="NM_000490" Version="5" Change="c.143G&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_000490.5:c.143G&gt;T</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="LRG_715" Change="g.6569G&gt;T" Type="HGVS, genomic, LRG">LRG_715:g.6569G&gt;T</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="NG_008663" Version="1" Change="g.6569G&gt;T" Type="HGVS, genomic, RefSeqGene">NG_008663.1:g.6569G&gt;T</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="NC_000020" Version="11" Change="g.3083156C&gt;A" Type="HGVS, genomic, top level" integerValue="38">NC_000020.11:g.3083156C&gt;A</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="NC_000020" Version="10" Change="g.3063802C&gt;A" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000020.10:g.3063802C&gt;A</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="LRG_715p1" Change="p.Gly48Val" Type="HGVS, protein">LRG_715p1:p.Gly48Val</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="P01185" Change="p.Gly48Val" Type="HGVS, protein">P01185:p.Gly48Val</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Accession="NP_000481" Version="2" Change="p.Gly48Val" Type="HGVS, protein, RefSeq">NP_000481.2:p.Gly48Val</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="MolecularConsequence">missense variant</Attribute>
+                <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+                <XRef ID="NM_000490.5:c.143G&gt;T" DB="RefSeq"/>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="ProteinChange1LetterCode">G48V</Attribute>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="ProteinChange3LetterCode">GLY17VAL</Attribute>
+              </AttributeSet>
+              <CytogeneticLocation>20p13</CytogeneticLocation>
+              <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="3083156" stop="3083156" display_start="3083156" display_stop="3083156" variantLength="1" positionVCF="3083156" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+              <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="3063802" stop="3063802" display_start="3063802" display_stop="3063802" variantLength="1" positionVCF="3063802" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+              <MeasureRelationship Type="within single gene">
+                <Name>
+                  <ElementValue Type="Preferred">arginine vasopressin</ElementValue>
+                </Name>
+                <Symbol>
+                  <ElementValue Type="Preferred">AVP</ElementValue>
+                </Symbol>
+                <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="3082556" stop="3084724" display_start="3082556" display_stop="3084724" Strand="-"/>
+                <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="3063201" stop="3065369" display_start="3063201" display_stop="3065369" variantLength="2169" Strand="-"/>
+                <XRef ID="551" DB="Gene"/>
+                <XRef Type="MIM" ID="192340" DB="OMIM"/>
+                <XRef ID="HGNC:894" DB="HGNC"/>
+              </MeasureRelationship>
+              <XRef ID="P01185#VAR_004984" DB="UniProtKB"/>
+              <XRef Type="Allelic variant" ID="192340.0002" DB="OMIM"/>
+              <XRef Type="rs" ID="121964883" DB="dbSNP"/>
+            </Measure>
+            <Name>
+              <ElementValue Type="Preferred">NM_000490.5(AVP):c.143G&gt;T (p.Gly48Val)</ElementValue>
+            </Name>
+            <XRef ID="CA121948" DB="ClinGen"/>
+          </MeasureSet>
+          <TraitSet Type="Disease" ID="8098">
+            <Trait ID="6476" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Neurohypophyseal diabetes insipidus</ElementValue>
+                <XRef ID="Neurogenic+diabetes+insipidus/5185" DB="Genetic Alliance"/>
+                <XRef ID="HP:0000863" DB="Human Phenotype Ontology"/>
+                <XRef ID="MONDO:0007450" DB="MONDO"/>
+                <XRef ID="45369008" DB="SNOMED CT"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Pituitary diabetes insipidus</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Diabetes insipidus cranial type</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Diabetes Insipidus, Neurogenic</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">DIABETES INSIPIDUS, PRIMARY CENTRAL</ElementValue>
+                <XRef Type="MIM" ID="125700" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Hereditary central diabetes insipidus</ElementValue>
+                <XRef ID="30925" DB="Orphanet"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">CDI</ElementValue>
+                <XRef Type="MIM" ID="125700" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="6015"/>
+                <XRef ID="6015" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <XRef ID="MONDO:0007450" DB="MONDO"/>
+              <XRef ID="C0342394" DB="MedGen"/>
+              <XRef ID="178029" DB="Orphanet"/>
+              <XRef ID="30925" DB="Orphanet"/>
+              <XRef Type="MIM" ID="125700" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ReferenceClinVarAssertion>
+        <ClinVarAssertion ID="33234">
+          <ClinVarSubmissionID localKey="192340.0002_DIABETES INSIPIDUS, NEUROHYPOPHYSEAL" submitter="OMIM" submitterDate="2012-03-02" title="AVP, GLY17VAL_DIABETES INSIPIDUS, NEUROHYPOPHYSEAL"/>
+          <ClinVarAccession Acc="SCV000033234" DateCreated="2013-04-04" DateUpdated="2013-04-04" Version="1" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+          <RecordStatus>current</RecordStatus>
+          <ClinicalSignificance DateLastEvaluated="1996-11-01">
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description>Pathogenic</Description>
+          </ClinicalSignificance>
+          <Assertion Type="variation to disease"/>
+          <ExternalID DB="OMIM" ID="192340.0002" Type="Allelic variant"/>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In a Dutch family in which autosomal dominant diabetes insipidus (125700) could be traced back for 5 generations, Bahnsen et al. (1992) identified a G-to-T transversion within the neurophysin-encoding exon B, which converted a highly conserved glycine (gly17 of neurophysin) to a valine residue.</Attribute>
+              <Citation>
+                <ID Source="PubMed">1740104</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="125700" Type="MIM"/>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="Description">Olias et al. (1996) examined whether this point mutation affects the processing and transport of the vasopressin-neurophysin precursor. They stably expressed the normal and mutant vasopressin cDNAs under the control of the cytomegalovirus promoter in the mouse pituitary cell line AtT20. The mutant precursor was synthesized, but processing and secretion were dramatically reduced compared to the normal. The mutant neurophysin staining was restricted to the endoplasmic reticulum and never reached the trans-Golgi network, whereas the normal neurophysin concentrated in the tips of the cell processes where secretory granules accumulate. These results suggested that the mutation alters the conformation of the precursor, impairs its intracellular transport, and triggers its retention.</Attribute>
+              <Citation>
+                <ID Source="PubMed">8945633</ID>
+              </Citation>
+            </ObservedData>
+          </ObservedIn>
+          <MeasureSet Type="Variant">
+            <Measure Type="Variation">
+              <Name>
+                <ElementValue Type="Preferred">AVP, GLY17VAL</ElementValue>
+              </Name>
+              <AttributeSet>
+                <Attribute Type="NonHGVS">GLY17VAL</Attribute>
+              </AttributeSet>
+              <MeasureRelationship Type="variant in gene">
+                <Symbol>
+                  <ElementValue Type="Preferred">AVP</ElementValue>
+                </Symbol>
+              </MeasureRelationship>
+              <XRef DB="OMIM" ID="192340.0002" Type="Allelic variant"/>
+            </Measure>
+          </MeasureSet>
+          <TraitSet Type="Disease">
+            <Trait Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">DIABETES INSIPIDUS, NEUROHYPOPHYSEAL</ElementValue>
+              </Name>
+            </Trait>
+          </TraitSet>
+        </ClinVarAssertion>
+      </ClinVarSet>
+
+
+</ReleaseSet>

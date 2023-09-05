@@ -1035,7 +1035,7 @@ def test_measure_set_attribute_from_json_data(value, expected):
     ],
 )
 def test_measure_type_attribute_from_json_data(value, expected):
-    obj = models.MeasureTypeAttribute.from_json_data(value)
+    obj = models.MeasureAttribute.from_json_data(value)
     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
     assert value == expected
 
@@ -1538,13 +1538,14 @@ def test_measure_set_from_json_data(value, snapshot):
                     {
                         "measures": [
                             {
+                                "attributes": [{"type": "HGVS", "value": "NM_000497.3:c.1024C>T"}],
                                 "measure_relationship": [
                                     {
                                         "symbols": [
                                             {"value": {"type": "Preferred", "value": "CYP11B1"}}
                                         ]
                                     }
-                                ]
+                                ],
                             }
                         ],
                         "type": "Variant",
@@ -1552,13 +1553,14 @@ def test_measure_set_from_json_data(value, snapshot):
                     {
                         "measures": [
                             {
+                                "attributes": [{"type": "HGVS", "value": "NM_000497.3:c.1012dup"}],
                                 "measure_relationship": [
                                     {
                                         "symbols": [
                                             {"value": {"type": "Preferred", "value": "CYP11B1"}}
                                         ]
                                     }
-                                ]
+                                ],
                             }
                         ],
                         "type": "Variant",
