@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92147970">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys) AND DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</Title>
+    <ReferenceClinVarAssertion ID="57512" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+      <ClinVarAccession Acc="RCV000000009" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="4" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2001-06-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData ID="97368581">
+          <Attribute Type="Description">Tournamille et al. (1998) and Olsson et al. (1998) described a Duffy allele, FYB-weak (FYB-WK), or FYX, in approximately 3.5% of the population that, because of an arg89-to-cys (R89C) substitution in the first cytoplasmic domain of DARC, results in reduced levels of protein, lower antigen expression, and reduced ability to bind chemokines. The phenotype is called Fy(bwk), Fy(x), or either Fy(a-b+(weak)) or Fy(a+b+(weak)). The R89C substitution results from a C-to-T change at nucleotide 286 of the DARC gene.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">9731074</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">9886340</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData ID="97368581">
+          <Attribute Type="Description">Parasol et al. (1998) noted that, in addition to West African blacks, the Duffy-null phenotype also occurs in non-Ashkenazi Jews, being found, for example, in approximately 20% of Jews from Yemen. They found that in some of these cases Fy(b-) individuals had the wildtype FY*B GATA but carried 271C-T and 304G-A mutations. The 271C-T substitution resulted in an R91C amino acid substitution (R89C in the predominant DARC isoform reported by Iwamoto et al. (1996)), which represented a considerable change of chemical nature, one that may affect the antigenic determinants of DARC, and thus may be of clinical significance. Parasol et al. (1998) noted that further studies were needed to determine whether erythrocytes carrying these mutations behave as Fy(bwk) variants.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">8547665</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">9746760</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData ID="97368581">
+          <Attribute Type="Description">Carrington et al. (1997) described a CCR5 (601373) allele that carries a single amino acid substitution (R60S; 601373.0008) in the first intracellular domain of the protein that in heterozygous state appears to protect against human immunodeficiency virus (HIV) infection (see 609423). Tamasauskas et al. (2001) showed that in both the CCR5 R60S and DARC R89C alleles, the loss of a positive charge from the intracellular loop leads to reduced surface expression, thereby identifying a novel mechanism that may be protective against disease: against malarial infection by Plasmodium vivax in the case of the DARC gene and against AIDS in the case of the CCR5 gene.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">11369664</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">9399903</ID>
+          </Citation>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="18396" Acc="VCV000018396" Version="1">
+        <Measure Type="single nucleotide variant" ID="33435">
+          <Name>
+            <ElementValue Type="Preferred">NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys)</ElementValue>
+          </Name>
+          <CanonicalSPDI>NC_000001.11:159205703:C:T</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="LRG_801t1" Type="HGVS, coding, LRG">LRG_801t1:c.265C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_002036" Version="4" Change="c.265C&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_002036.4:c.265C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_001122951" Version="3" Change="c.271C&gt;T" Type="HGVS, coding, RefSeq">NM_001122951.3:c.271C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_801" Type="HGVS, genomic, LRG">LRG_801:g.6692C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_011626" Version="3" Change="g.6692C&gt;T" Type="HGVS, genomic, RefSeqGene">NG_011626.3:g.6692C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="11" Change="g.159205704C&gt;T" Type="HGVS, genomic, top level" integerValue="38">NC_000001.11:g.159205704C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="10" Change="g.159175494C&gt;T" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000001.10:g.159175494C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="HGVS, protein"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_801p1" Change="p.Arg89Cys" Type="HGVS, protein">LRG_801p1:p.Arg89Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="Q16570" Change="p.Arg89Cys" Type="HGVS, protein">Q16570:p.Arg89Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_002027" Version="2" Change="p.Arg89Cys" Type="HGVS, protein, RefSeq">NP_002027.2:p.Arg89Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001116423" Version="1" Change="p.Arg91Cys" Type="HGVS, protein, RefSeq">NP_001116423.1:p.Arg91Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_001122951.3:c.271C&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_002036.4:c.265C&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">R89C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">R91C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange3LetterCode">ARG89CYS</Attribute>
+          </AttributeSet>
+          <AlleleFrequencyList>
+            <AlleleFrequency Value="0.01099" Source="NHLBI Exome Sequencing Project (ESP) Exome Variant Server"/>
+            <AlleleFrequency Value="0.00459" Source="1000 Genomes Project"/>
+            <AlleleFrequency Value="0.01072" Source="Exome Aggregation Consortium (ExAC)"/>
+            <AlleleFrequency Value="0.01089" Source="The Genome Aggregation Database (gnomAD)"/>
+            <AlleleFrequency Value="0.01124" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+            <AlleleFrequency Value="0.00936" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+          </AlleleFrequencyList>
+          <GlobalMinorAlleleFrequency Value="0.00459" Source="1000 Genomes Project" MinorAllele="T"/>
+          <CytogeneticLocation>1q23.2</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205704" stop="159205704" display_start="159205704" display_stop="159205704" variantLength="1" positionVCF="159205704" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175494" stop="159175494" display_start="159175494" display_stop="159175494" variantLength="1" positionVCF="159175494" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+          <MeasureRelationship Type="within single gene">
+            <Name>
+              <ElementValue Type="Preferred">atypical chemokine receptor 1 (Duffy blood group)</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">ACKR1</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" variantLength="2488" Strand="+"/>
+            <XRef ID="2532" DB="Gene"/>
+            <XRef Type="MIM" ID="613665" DB="OMIM"/>
+            <XRef ID="HGNC:4035" DB="HGNC"/>
+          </MeasureRelationship>
+          <XRef ID="Q16570#VAR_015068" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
+          <XRef Type="rs" ID="34599082" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys)</ElementValue>
+        </Name>
+        <XRef ID="CA113789" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="6213">
+        <Trait ID="15693" Type="BloodGroup">
+          <Name>
+            <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ElementValue>
+            <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="20152">
+      <ClinVarSubmissionID localKey="613665.0003_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" submitter="OMIM" submitterDate="2017-12-11" title="ACKR1, ARG89CYS_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE"/>
+      <ClinVarAccession Acc="SCV000020152" DateCreated="2013-04-04" DateUpdated="2017-12-15" Version="3" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2001-06-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="613665.0003" Type="Allelic variant"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">Tournamille et al. (1998) and Olsson et al. (1998) described a Duffy allele, FYB-weak (FYB-WK), or FYX, in approximately 3.5% of the population that, because of an arg89-to-cys (R89C) substitution in the first cytoplasmic domain of DARC, results in reduced levels of protein, lower antigen expression, and reduced ability to bind chemokines. The phenotype is called Fy(bwk), Fy(x), or either Fy(a-b+(weak)) or Fy(a+b+(weak)). The R89C substitution results from a C-to-T change at nucleotide 286 of the DARC gene.</Attribute>
+          <Citation>
+            <ID Source="PubMed">9731074</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">9886340</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="Description">Parasol et al. (1998) noted that, in addition to West African blacks, the Duffy-null phenotype also occurs in non-Ashkenazi Jews, being found, for example, in approximately 20% of Jews from Yemen. They found that in some of these cases Fy(b-) individuals had the wildtype FY*B GATA but carried 271C-T and 304G-A mutations. The 271C-T substitution resulted in an R91C amino acid substitution (R89C in the predominant DARC isoform reported by Iwamoto et al. (1996)), which represented a considerable change of chemical nature, one that may affect the antigenic determinants of DARC, and thus may be of clinical significance. Parasol et al. (1998) noted that further studies were needed to determine whether erythrocytes carrying these mutations behave as Fy(bwk) variants.</Attribute>
+          <Citation>
+            <ID Source="PubMed">9746760</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">8547665</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="Description">Carrington et al. (1997) described a CCR5 (601373) allele that carries a single amino acid substitution (R60S; 601373.0008) in the first intracellular domain of the protein that in heterozygous state appears to protect against human immunodeficiency virus (HIV) infection (see 609423). Tamasauskas et al. (2001) showed that in both the CCR5 R60S and DARC R89C alleles, the loss of a positive charge from the intracellular loop leads to reduced surface expression, thereby identifying a novel mechanism that may be protective against disease: against malarial infection by Plasmodium vivax in the case of the DARC gene and against AIDS in the case of the CCR5 gene.</Attribute>
+          <Citation>
+            <ID Source="PubMed">9399903</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">11369664</ID>
+          </Citation>
+          <XRef DB="OMIM" ID="601373" Type="MIM"/>
+          <XRef DB="OMIM" ID="609423" Type="MIM"/>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Preferred">ACKR1, ARG89CYS</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="NonHGVS">ARG89CYS</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">ACKR1</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="OMIM" ID="613665.0003" Type="Allelic variant"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ElementValue>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

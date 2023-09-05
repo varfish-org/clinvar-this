@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="116135670">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_001347721.2(DYRK1A):c.367G&gt;T (p.Glu123Ter) AND DYRK1A-related intellectual disability syndrome</Title>
+    <ReferenceClinVarAssertion ID="5040194" DateLastUpdated="2022-11-19" DateCreated="2022-10-08">
+      <ClinVarAccession Acc="RCV002287858" Version="2" Type="RCV" DateUpdated="2022-11-19" DateCreated="2022-10-08"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2022-09-27">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="ModeOfInheritance" integerValue="262">Autosomal dominant inheritance</Attribute>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>yes</AffectedStatus>
+          <NumberTested>1</NumberTested>
+        </Sample>
+        <Method>
+          <MethodType>clinical testing</MethodType>
+        </Method>
+        <ObservedData ID="114272930">
+          <Attribute integerValue="1" Type="VariantAlleles"/>
+        </ObservedData>
+        <ObservedData ID="114272930">
+          <Attribute Type="SampleLocalID">98837e1d-3e57-4dfc-ac83-3e3f547446a9</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="1708487" Acc="VCV001708487" Version="2">
+        <Measure Type="single nucleotide variant" ID="1706785">
+          <Name>
+            <ElementValue Type="Preferred">NM_001347721.2(DYRK1A):c.367G&gt;T (p.Glu123Ter)</ElementValue>
+          </Name>
+          <CanonicalSPDI>NC_000021.9:37480703:G:T</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="NM_001347723" Version="2" Change="c.280G&gt;T" Type="HGVS, coding, RefSeq">NM_001347723.2:c.280G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_001347721" Version="2" Change="c.367G&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_001347721.2:c.367G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_001347722" Version="2" Change="c.367G&gt;T" Type="HGVS, coding, RefSeq">NM_001347722.2:c.367G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_130436" Version="2" Change="c.367G&gt;T" Type="HGVS, coding, RefSeq">NM_130436.2:c.367G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_001396" Version="5" Change="c.394G&gt;T" Type="HGVS, coding, RefSeq">NM_001396.5:c.394G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_101395" Version="2" Change="c.394G&gt;T" Type="HGVS, coding, RefSeq">NM_101395.2:c.394G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_130438" Version="2" Change="c.394G&gt;T" Type="HGVS, coding, RefSeq">NM_130438.2:c.394G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_009366" Version="1" Change="g.118148G&gt;T" Type="HGVS, genomic, RefSeqGene">NG_009366.1:g.118148G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_009366" Version="2" Change="g.120133G&gt;T" Type="HGVS, genomic, RefSeqGene">NG_009366.2:g.120133G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000021" Version="9" Change="g.37480704G&gt;T" Type="HGVS, genomic, top level" integerValue="38">NC_000021.9:g.37480704G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000021" Version="8" Change="g.38853006G&gt;T" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000021.8:g.38853006G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001334650" Version="1" Change="p.Glu123Ter" Type="HGVS, protein, RefSeq">NP_001334650.1:p.Glu123Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001334651" Version="1" Change="p.Glu123Ter" Type="HGVS, protein, RefSeq">NP_001334651.1:p.Glu123Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_569120" Version="1" Change="p.Glu123Ter" Type="HGVS, protein, RefSeq">NP_569120.1:p.Glu123Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001387" Version="2" Change="p.Glu132Ter" Type="HGVS, protein, RefSeq">NP_001387.2:p.Glu132Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_567824" Version="1" Change="p.Glu132Ter" Type="HGVS, protein, RefSeq">NP_567824.1:p.Glu132Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_569122" Version="1" Change="p.Glu132Ter" Type="HGVS, protein, RefSeq">NP_569122.1:p.Glu132Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001334652" Version="1" Change="p.Glu94Ter" Type="HGVS, protein, RefSeq">NP_001334652.1:p.Glu94Ter</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_001347721.2:c.367G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_001347722.2:c.367G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_001347723.2:c.280G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_001396.5:c.394G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_101395.2:c.394G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_130436.2:c.367G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">nonsense</Attribute>
+            <XRef ID="SO:0001587" DB="Sequence Ontology"/>
+            <XRef ID="NM_130438.2:c.394G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">E123*</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">E132*</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">E94*</Attribute>
+          </AttributeSet>
+          <CytogeneticLocation>21q22.13</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="21" Accession="NC_000021.9" start="37480704" stop="37480704" display_start="37480704" display_stop="37480704" variantLength="1" positionVCF="37480704" referenceAlleleVCF="G" alternateAlleleVCF="T"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="21" Accession="NC_000021.8" start="38853006" stop="38853006" display_start="38853006" display_stop="38853006" variantLength="1" positionVCF="38853006" referenceAlleleVCF="G" alternateAlleleVCF="T"/>
+          <MeasureRelationship Type="within single gene">
+            <Name>
+              <ElementValue Type="Preferred">dual specificity tyrosine phosphorylation regulated kinase 1A</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">DYRK1A</ElementValue>
+            </Symbol>
+            <AttributeSet>
+              <Attribute dateValue="2020-12-16" Type="Haploinsufficiency">Sufficient evidence for dosage pathogenicity</Attribute>
+              <Citation>
+                <URL>https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=DYRK1A</URL>
+              </Citation>
+            </AttributeSet>
+            <AttributeSet>
+              <Attribute dateValue="2020-12-16" Type="Triplosensitivity">No evidence available</Attribute>
+              <Citation>
+                <URL>https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=DYRK1A</URL>
+              </Citation>
+            </AttributeSet>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="21" Accession="NC_000021.9" start="37365573" stop="37526358" display_start="37365573" display_stop="37526358" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="21" Accession="NC_000021.8" start="38739858" stop="38887678" display_start="38739858" display_stop="38887678" variantLength="147821" Strand="+"/>
+            <XRef ID="1859" DB="Gene"/>
+            <XRef Type="MIM" ID="600855" DB="OMIM"/>
+            <XRef ID="HGNC:3091" DB="HGNC"/>
+          </MeasureRelationship>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_001347721.2(DYRK1A):c.367G&gt;T (p.Glu123Ter)</ElementValue>
+        </Name>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="7564">
+        <Trait ID="16137" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">DYRK1A-related intellectual disability syndrome</ElementValue>
+            <XRef ID="MONDO:0013578" DB="MONDO"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">INTELLECTUAL DEVELOPMENTAL DISORDER, AUTOSOMAL DOMINANT 7</ElementValue>
+            <XRef Type="MIM" ID="614104" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="600855.0001" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="600855.0002" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="600855.0003" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="600855.0004" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="600855.0005" DB="OMIM"/>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">MRD7</ElementValue>
+            <XRef Type="MIM" ID="614104" DB="OMIM"/>
+          </Symbol>
+          <AttributeSet>
+            <Attribute Type="public definition">DYRK1A syndrome is characterized by intellectual disability including impaired speech development, autism spectrum disorder including anxious and/or stereotypic behavior problems, and microcephaly. Affected individuals often have a clinically recognizable phenotype including a typical facial gestalt, feeding problems, seizures, hypertonia, gait disturbances, and foot anomalies. The majority of affected individuals function in the moderate-to-severe range of intellectual disability; however, individuals with mild intellectual disability have also been reported. Other medical concerns relate to febrile seizures in infancy; the development of epilepsy with seizures of the atonic, absence, and generalized myoclonic types; short stature; and gastrointestinal problems. Ophthalmologic, urogenital, cardiac, and/or dental anomalies have been reported.</Attribute>
+            <XRef ID="NBK333438" DB="GeneReviews"/>
+          </AttributeSet>
+          <Citation Type="review" Abbrev="GeneReviews">
+            <ID Source="PubMed">26677511</ID>
+            <ID Source="BookShelf">NBK333438</ID>
+          </Citation>
+          <XRef ID="MONDO:0013578" DB="MONDO"/>
+          <XRef ID="C5568143" DB="MedGen"/>
+          <XRef Type="MIM" ID="614104" DB="OMIM"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="5039730" SubmissionName="SUB7643814">
+      <ClinVarSubmissionID localKey="1385490b-900e-4713-9a48-d901bca5d5cd" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="Institute for Medical Genetics and Human Genetics, Charité - Universitätsmedizin Berlin" submitterDate="2022-10-07"/>
+      <ClinVarAccession Acc="SCV002578125" Version="1" Type="SCV" OrgID="505735" OrganizationCategory="clinic" OrgType="primary" DateUpdated="2022-10-08" DateCreated="2022-10-08"/>
+      <AdditionalSubmitters>
+        <SubmitterDescription OrgID="507461" SubmitterName="CUBI - Core Unit Bioinformatics, Berlin Institute of Health" Type="secondary" category="laboratory"/>
+      </AdditionalSubmitters>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2022-09-27">
+        <ReviewStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">criteria provided, single submitter</ReviewStatus>
+        <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+        <Citation>
+          <ID Source="PubMed">25741868</ID>
+        </Citation>
+      </AttributeSet>
+      <AttributeSet>
+        <Attribute Type="ModeOfInheritance">Autosomal dominant inheritance</Attribute>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">germline</Origin>
+          <Tissue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Blood</Tissue>
+          <Species xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TaxonomyId="9606">human</Species>
+          <AffectedStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">yes</AffectedStatus>
+          <NumberTested xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">1</NumberTested>
+          <Gender xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">female</Gender>
+          <FamilyData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PedigreeID="f75f0449-c4ca-4d3e-bce2-b9bbcf6b606e"/>
+        </Sample>
+        <Method>
+          <MethodType>clinical testing</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="SingleHeterozygote" integerValue="1"/>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="SampleLocalID">98837e1d-3e57-4dfc-ac83-3e3f547446a9</Attribute>
+        </ObservedData>
+        <TraitSet Type="Finding">
+          <Trait ClinicalFeaturesAffectedStatus="present" Type="Finding">
+            <XRef DB="HP" ID="HP:0000252"/>
+          </Trait>
+          <Trait ClinicalFeaturesAffectedStatus="present" Type="Finding">
+            <XRef DB="HP" ID="HP:0000750"/>
+          </Trait>
+          <Trait ClinicalFeaturesAffectedStatus="present" Type="Finding">
+            <XRef DB="HP" ID="HP:0001263"/>
+          </Trait>
+          <Trait ClinicalFeaturesAffectedStatus="present" Type="Finding">
+            <XRef DB="HP" ID="HP:0003502"/>
+          </Trait>
+        </TraitSet>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <SequenceLocation Assembly="GRCh37" Chr="21" alternateAllele="T" referenceAllele="G" start="38853006" stop="38853006"/>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">DYRK1A</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <XRef DB="OMIM" ID="614104"/>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

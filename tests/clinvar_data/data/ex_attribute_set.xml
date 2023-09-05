@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92160111">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_000128.4(F11):c.1782C&gt;A (p.Ser594Arg) AND Hereditary factor XI deficiency disease</Title>
+    <ReferenceClinVarAssertion ID="70178" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+      <ClinVarAccession Acc="RCV000012675" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="19" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2019-02-01">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>unknown</Origin>
+          <Ethnicity>European</Ethnicity>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>yes</AffectedStatus>
+          <NumberTested>1</NumberTested>
+        </Sample>
+        <Method>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData ID="97096078">
+          <Attribute integerValue="1" Type="VariantAlleles"/>
+        </ObservedData>
+        <ObservedData ID="97096078">
+          <Attribute Type="SampleLocalID">TGP0217</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData ID="97500789">
+          <Attribute Type="Description">Mitchell et al. (1999) did molecular analysis of the F11 gene in a patient who suffered a hemorrhage following cervical erosion and had miscarried during her second trimester after experiencing pregnancy-associated bleeding (612416). They found a heterozygous C-to-A transversion in exon 15, resulting in a ser576-to-arg (S576R) substitution.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">10606881</ID>
+          </Citation>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="11900" Acc="VCV000011900" Version="3">
+        <Measure Type="single nucleotide variant" ID="26939">
+          <Name>
+            <ElementValue Type="Preferred">NM_000128.4(F11):c.1782C&gt;A (p.Ser594Arg)</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">F11, SER576ARG</ElementValue>
+            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">S576R</ElementValue>
+            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
+          </Name>
+          <CanonicalSPDI>NC_000004.12:186288517:C:A</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="LRG_583t1" Type="HGVS, coding, LRG">LRG_583t1:c.1782C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000128" Version="4" Change="c.1782C&gt;A" Type="HGVS, coding, RefSeq" MANESelect="true">NM_000128.4:c.1782C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_583" Type="HGVS, genomic, LRG">LRG_583:g.27555C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_008051" Version="1" Change="g.27555C&gt;A" Type="HGVS, genomic, RefSeqGene">NG_008051.1:g.27555C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000004" Version="12" Change="g.186288518C&gt;A" Type="HGVS, genomic, top level" integerValue="38">NC_000004.12:g.186288518C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000004" Version="11" Change="g.187209672C&gt;A" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000004.11:g.187209672C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NR_033900" Version="1" Change="n.976G&gt;T" Type="HGVS, non-coding">NR_033900.1:n.976G&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000128" Version="3" Change="c.1782C&gt;A" Type="HGVS, previous">NM_000128.3:c.1782C&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="HGVS, protein"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_583p1" Change="p.Ser594Arg" Type="HGVS, protein">LRG_583p1:p.Ser594Arg</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="P03951" Change="p.Ser594Arg" Type="HGVS, protein">P03951:p.Ser594Arg</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_000119" Version="1" Change="p.Ser594Arg" Type="HGVS, protein, RefSeq">NP_000119.1:p.Ser594Arg</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_000119" Version="1" Change="p.Ser594Arg" Type="HGVS, protein, RefSeq">NP_000119.1:p.Ser594Arg</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_000128.4:c.1782C&gt;A" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">non-coding transcript variant</Attribute>
+            <XRef ID="SO:0001619" DB="Sequence Ontology"/>
+            <XRef ID="NR_033900.1:n.976G&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">S594R</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange3LetterCode">SER576ARG</Attribute>
+          </AttributeSet>
+          <CytogeneticLocation>4q35.2</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186288518" stop="186288518" display_start="186288518" display_stop="186288518" variantLength="1" positionVCF="186288518" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187209672" stop="187209672" display_start="187209672" display_stop="187209672" variantLength="1" positionVCF="187209672" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">F11 antisense RNA 1</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">F11-AS1</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186286098" stop="186501058" display_start="186286098" display_stop="186501058" Strand="-"/>
+            <XRef ID="285441" DB="Gene"/>
+            <XRef ID="HGNC:27725" DB="HGNC"/>
+          </MeasureRelationship>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">coagulation factor XI</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">F11</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186266189" stop="186289681" display_start="186266189" display_stop="186289681" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187187117" stop="187210834" display_start="187187117" display_stop="187210834" variantLength="23718" Strand="+"/>
+            <XRef ID="2160" DB="Gene"/>
+            <XRef Type="MIM" ID="264900" DB="OMIM"/>
+            <XRef ID="HGNC:3529" DB="HGNC"/>
+          </MeasureRelationship>
+          <Citation Type="general">
+            <ID Source="PubMed">31064749</ID>
+          </Citation>
+          <XRef ID="P03951#VAR_012096" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
+          <XRef Type="rs" ID="28934609" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_000128.4(F11):c.1782C&gt;A (p.Ser594Arg)</ElementValue>
+        </Name>
+        <XRef ID="CA121761" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="3228">
+        <Trait ID="1269" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Hereditary factor XI deficiency disease</ElementValue>
+            <XRef ID="Hereditary+factor+XI+deficiency+disease/8518" DB="Genetic Alliance"/>
+            <XRef ID="49762007" DB="SNOMED CT"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Plasma thromboplastin antecedent deficiency</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">PTA deficiency</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Rosenthal syndrome</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Congenital factor XI deficiency</ElementValue>
+            <XRef ID="MONDO:0012897" DB="MONDO"/>
+          </Name>
+          <XRef ID="MONDO:0012897" DB="MONDO"/>
+          <XRef ID="D005173" DB="MeSH"/>
+          <XRef ID="C0015523" DB="MedGen"/>
+          <XRef ID="329" DB="Orphanet"/>
+          <XRef Type="MIM" ID="612416" DB="OMIM"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="32910">
+      <ClinVarSubmissionID localKey="264900.0011_FACTOR XI DEFICIENCY" submitter="OMIM" submitterDate="2016-09-19" title="F11, SER576ARG_FACTOR XI DEFICIENCY"/>
+      <ClinVarAccession Acc="SCV000032910" DateCreated="2013-04-04" DateUpdated="2015-10-11" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="1999-12-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="264900.0011" Type="Allelic variant"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">Mitchell et al. (1999) did molecular analysis of the F11 gene in a patient who suffered a hemorrhage following cervical erosion and had miscarried during her second trimester after experiencing pregnancy-associated bleeding (612416). They found a heterozygous C-to-A transversion in exon 15, resulting in a ser576-to-arg (S576R) substitution.</Attribute>
+          <Citation>
+            <ID Source="PubMed">10606881</ID>
+          </Citation>
+          <XRef DB="OMIM" ID="612416" Type="MIM"/>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Preferred">F11, SER576ARG</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="NonHGVS">SER576ARG</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">F11</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="OMIM" ID="264900.0011" Type="Allelic variant"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">FACTOR XI DEFICIENCY</ElementValue>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+    <ClinVarAssertion ID="1769249" SubmissionName="ThromboGenomics">
+      <ClinVarSubmissionID localKey="c.1782C&gt;A_612416" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="NIHR Bioresource Rare Diseases, University of Cambridge" submitterDate="2019-03-28"/>
+      <ClinVarAccession Acc="SCV000899559" DateCreated="2019-09-29" DateUpdated="2019-09-29" Version="1" Type="SCV" OrgID="505998" OrganizationCategory="consortium" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2019-02-01">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">31064749</ID>
+        </Citation>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+        <Citation>
+          <ID Source="PubMed">25741868</ID>
+        </Citation>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin>unknown</Origin>
+          <Ethnicity>European</Ethnicity>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>yes</AffectedStatus>
+          <NumberTested>1</NumberTested>
+          <Gender>male</Gender>
+        </Sample>
+        <Method>
+          <TypePlatform>Targeted sequencing</TypePlatform>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="SingleHeterozygote" integerValue="1"/>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="SampleLocalID">TGP0217</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_000128.3:c.1782C&gt;A</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">F11</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <XRef DB="OMIM" ID="612416" Type="MIM"/>
+        </Trait>
+      </TraitSet>
+      <Citation Type="general">
+        <ID Source="PubMed">31064749</ID>
+      </Citation>
+      <Citation Type="general">
+        <ID Source="PubMed">31064749</ID>
+      </Citation>
+      <StudyName>ThromboGenomics</StudyName>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92309685">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_003783.3(B3GALT2):c.367T&gt;G (p.Tyr123Asp) AND Hyperparathyroidism 2 with jaw tumors</Title>
+    <ReferenceClinVarAssertion ID="504531" DateLastUpdated="2022-04-23" DateCreated="2016-05-21">
+      <ClinVarAccession Acc="RCV000211442" DateUpdated="2022-04-23" DateCreated="2016-05-21" Version="2" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2015-03-11">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Likely benign</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="ModeOfInheritance" integerValue="262">Autosomal dominant inheritance</Attribute>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>unknown</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData ID="95797062">
+          <Attribute Type="Description">not provided</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="226036" Acc="VCV000226036" Version="2">
+        <Measure Type="single nucleotide variant" ID="227841">
+          <Name>
+            <ElementValue Type="Preferred">NM_003783.3(B3GALT2):c.367T&gt;G (p.Tyr123Asp)</ElementValue>
+          </Name>
+          <CanonicalSPDI>NC_000001.11:193181195:A:C</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="NM_003783" Version="3" Change="c.367T&gt;G" Type="HGVS, coding, RefSeq" MANESelect="true">NM_003783.3:c.367T&gt;G</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_024529" Version="5" Change="c.973-22599A&gt;C" Type="HGVS, coding, RefSeq" MANESelect="true">NM_024529.5:c.973-22599A&gt;C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_507" Type="HGVS, genomic, LRG">LRG_507:g.64239A&gt;C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_052990" Version="1" Change="g.10418T&gt;G" Type="HGVS, genomic, RefSeqGene">NG_052990.1:g.10418T&gt;G</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_012691" Version="1" Change="g.64239A&gt;C" Type="HGVS, genomic, RefSeqGene">NG_012691.1:g.64239A&gt;C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="11" Change="g.193181196A&gt;C" Type="HGVS, genomic, top level" integerValue="38">NC_000001.11:g.193181196A&gt;C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="10" Change="g.193150326A&gt;C" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000001.10:g.193150326A&gt;C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="HGVS, protein"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_003774" Version="1" Change="p.Tyr123Asp" Type="HGVS, protein, RefSeq">NP_003774.1:p.Tyr123Asp</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">intron variant</Attribute>
+            <XRef ID="SO:0001627" DB="Sequence Ontology"/>
+            <XRef ID="NM_024529.5:c.973-22599A&gt;C" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_003783.3:c.367T&gt;G" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">Y123D</Attribute>
+          </AttributeSet>
+          <AlleleFrequencyList>
+            <AlleleFrequency Value="0.00231" Source="NHLBI Exome Sequencing Project (ESP) Exome Variant Server"/>
+            <AlleleFrequency Value="0.00060" Source="1000 Genomes Project"/>
+            <AlleleFrequency Value="0.00118" Source="The Genome Aggregation Database (gnomAD)"/>
+            <AlleleFrequency Value="0.00192" Source="The Genome Aggregation Database (gnomAD)"/>
+            <AlleleFrequency Value="0.00198" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+            <AlleleFrequency Value="0.00173" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+          </AlleleFrequencyList>
+          <GlobalMinorAlleleFrequency Value="0.00060" Source="1000 Genomes Project" MinorAllele="C"/>
+          <CytogeneticLocation>1q31.2</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="193181196" stop="193181196" display_start="193181196" display_stop="193181196" variantLength="1" positionVCF="193181196" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="193150326" stop="193150326" display_start="193150326" display_stop="193150326" variantLength="1" positionVCF="193150326" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">beta-1,3-galactosyltransferase 2</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">B3GALT2</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="193178730" stop="193186613" display_start="193178730" display_stop="193186613" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="193147859" stop="193155742" display_start="193147859" display_stop="193155742" variantLength="7884" Strand="-"/>
+            <XRef ID="8707" DB="Gene"/>
+            <XRef Type="MIM" ID="603018" DB="OMIM"/>
+            <XRef ID="HGNC:917" DB="HGNC"/>
+          </MeasureRelationship>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">cell division cycle 73</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">CDC73</ElementValue>
+            </Symbol>
+            <AttributeSet>
+              <Attribute dateValue="2022-04-13" Type="Haploinsufficiency">Sufficient evidence for dosage pathogenicity</Attribute>
+              <Citation>
+                <URL>https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=CDC73</URL>
+              </Citation>
+            </AttributeSet>
+            <AttributeSet>
+              <Attribute dateValue="2022-04-13" Type="Triplosensitivity">No evidence available</Attribute>
+              <Citation>
+                <URL>https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=CDC73</URL>
+              </Citation>
+            </AttributeSet>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="193122031" stop="193254815" display_start="193122031" display_stop="193254815" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="193091087" stop="193223944" display_start="193091087" display_stop="193223944" variantLength="132858" Strand="+"/>
+            <XRef ID="79577" DB="Gene"/>
+            <XRef Type="MIM" ID="607393" DB="OMIM"/>
+            <XRef ID="HGNC:16783" DB="HGNC"/>
+          </MeasureRelationship>
+          <XRef Type="rs" ID="41265203" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_003783.3(B3GALT2):c.367T&gt;G (p.Tyr123Asp)</ElementValue>
+        </Name>
+        <XRef ID="CA1303641" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="833">
+        <Trait ID="5289" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Hyperparathyroidism 2 with jaw tumors</ElementValue>
+            <XRef ID="MONDO:0007768" DB="MONDO"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">HYPERPARATHYROIDISM, FAMILIAL PRIMARY, WITH MULTIPLE OSSIFYING JAW FIBROMAS</ElementValue>
+            <XRef Type="MIM" ID="145001" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">HYPERPARATHYROIDISM-JAW TUMOR SYNDROME, HEREDITARY</ElementValue>
+            <XRef Type="MIM" ID="145001" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Hyperparathyroidism 2</ElementValue>
+            <XRef ID="Hyperparathyroidism+2/8598" DB="Genetic Alliance"/>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Alternate">HPT-JT</ElementValue>
+            <XRef Type="MIM" ID="145001" DB="OMIM"/>
+          </Symbol>
+          <Symbol>
+            <ElementValue Type="Alternate">HRPT2</ElementValue>
+            <XRef Type="MIM" ID="145001" DB="OMIM"/>
+          </Symbol>
+          <AttributeSet>
+            <Attribute Type="public definition">The spectrum of CDC73-related disorders includes the following phenotypes: Hyperparathyroidism-jaw tumor (HPT-JT) syndrome. Primary hyperparathyroidism, the main finding of HPT-JT syndrome, occurs in up to 95% of affected individuals; onset is typically in late adolescence or early adulthood. HPT-JT-associated primary hyperparathyroidism is usually caused by a single parathyroid adenoma. In approximately 10%-15% of individuals, primary hyperparathyroidism is caused by parathyroid carcinoma. Ossifying fibromas of the mandible or maxilla, also known as cementifying fibromas and cemento-ossifying fibromas, occur in 30%-40% of individuals with HPT-JT syndrome. Although benign, these tumors can be locally aggressive and may continue to enlarge if not treated. Approximately 20% of individuals with HPT-JT syndrome have kidney lesions, most commonly cysts; renal hamartomas and (more rarely) Wilms tumor have also been reported. Benign and malignant uterine tumors appear to be common in women with HPT-JT syndrome. Parathyroid carcinoma. Most parathyroid carcinomas are functional, resulting in hyperparathyroidism and a high serum calcium level; however, nonfunctioning parathyroid carcinomas are also rarely described in individuals with a CDC73-related disorder. A germline CDC73 pathogenic variant has been identified in 20%-29% of individuals with apparently sporadic parathyroid carcinoma. Familial isolated hyperparathyroidism (FIHP). FIHP is characterized by primary hyperparathyroidism without other associated syndromic features. Individuals with CDC73-related FIHP tend to have a more severe clinical presentation and younger age of onset than individuals with FIHP in whom a CDC73 pathogenic variant has not been identified.</Attribute>
+            <XRef ID="NBK3789" DB="GeneReviews"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="keyword">CDC73-Related Disorders</Attribute>
+            <XRef ID="226120" DB="GeneReviews"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="GARD id" integerValue="10829"/>
+            <XRef ID="10829" DB="Office of Rare Diseases"/>
+          </AttributeSet>
+          <Citation Type="review" Abbrev="GeneReviews">
+            <ID Source="PubMed">20301471</ID>
+            <ID Source="BookShelf">NBK1294</ID>
+          </Citation>
+          <Citation Type="review" Abbrev="GeneReviews">
+            <ID Source="PubMed">20301744</ID>
+            <ID Source="BookShelf">NBK3789</ID>
+          </Citation>
+          <XRef ID="MONDO:0007768" DB="MONDO"/>
+          <XRef ID="C1704981" DB="MedGen"/>
+          <XRef ID="99880" DB="Orphanet"/>
+          <XRef Type="MIM" ID="145001" DB="OMIM"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="504204" SubmissionName="NEXT_V01_2">
+      <ClinVarSubmissionID localKey="UWMG_6788739|MedGen:C1704981" submittedAssembly="GRCh37" submitter="CSER _CC_NCGL, University of Washington" submitterDate="2015-03-11"/>
+      <ClinVarAccession Acc="SCV000212171" DateCreated="2016-05-21" DateUpdated="2016-05-21" Version="1" Type="SCV" OrgID="505295" OrganizationCategory="laboratory" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2015-03-11">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Likely benign</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="ModeOfInheritance">Autosomal dominant inheritance</Attribute>
+      </AttributeSet>
+      <AttributeSet>
+        <Attribute Type="AssertionMethod">Amendola et al. (Genome Res. 2015)</Attribute>
+        <Citation>
+          <ID Source="PubMed">25637381</ID>
+        </Citation>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>unknown</AffectedStatus>
+          <Indication Type="Indication">
+            <Trait Type="Finding">
+              <Name>
+                <ElementValue Type="Preferred">adults with personal and/or family history of colorectal cancer and/or polyps</ElementValue>
+              </Name>
+            </Trait>
+          </Indication>
+        </Sample>
+        <Method>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">not provided</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Alternate">NM_003783.3:c.367T&gt;G</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="HGVS">NC_000001.10:g.193150326A&gt;C</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">B3GALT2</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">CDC73</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="dbSNP" ID="41265203" Type="rsNumber"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Hyperparathyroidism-jaw tumor syndrome</ElementValue>
+          </Name>
+          <XRef DB="MedGen" ID="C1704981" Type="CUI"/>
+        </Trait>
+      </TraitSet>
+      <StudyName>CSER - NEXT Medicine variant annotation</StudyName>
+      <StudyDescription>Diagnostic and incidental finding variants identified by exome sequencing in participants having clinical genetic testing for hereditary colorectal cancer and/or polyps</StudyDescription>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

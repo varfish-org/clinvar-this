@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92168042">
+    <RecordStatus>current</RecordStatus>
+    <Replaces>RCV000114932</Replaces>
+    <Title>NM_000791.4(DHFR):c.458A&gt;T (p.Asp153Val) AND Constitutional megaloblastic anemia with severe neurologic disease</Title>
+    <ReferenceClinVarAssertion ID="80028" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+      <ClinVarAccession Acc="RCV000022525" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="25" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2011-02-11">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+          <NumberTested>1</NumberTested>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData ID="95523579">
+          <Attribute Type="Description">In 3 affected sibs, born of distantly related parents of European descent, with megaloblastic anemia due to dihydrofolate reductase deficiency (613839), Cario et al. (2011) identified a homozygous 458A-T transversion in exon 5 of the DHFR gene, resulting in an asp153-to-val (D153V) substitution. Both parents were heterozygous for the D153V mutation, which was not found in 120 control samples. The mutation was predicted to interrupt hydrogen bonding, affecting fold and conformational stability, resulting in decreased enzyme activity. Studies of patient lymphoblastoid cells showed that DHFR activity was reduced to about 10% of control levels. DHFR expression was similar to controls, but protein levels were severely decreased. Although 1 sib was essentially unaffected except for macrocytosis, the other 2 sibs developed childhood absence epilepsy with eyelid myoclonia in childhood. One had learning disabilities. Levels of 5-methyltetrahydrofolate (5-MTHF) in the CSF were low, but improved with folinic acid treatment.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">21310277</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData ID="95523579">
+          <Attribute Type="Description">not provided</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="29674" Acc="VCV000029674" Version="1">
+        <Measure Type="single nucleotide variant" ID="38629">
+          <Name>
+            <ElementValue Type="Preferred">NM_000791.4(DHFR):c.458A&gt;T (p.Asp153Val)</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFRc.458A&gt;T</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFRp.D153V</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFRp.Asp153Val</ElementValue>
+          </Name>
+          <CanonicalSPDI>NC_000005.10:80633903:T:A</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="NM_001290354" Version="2" Change="c.302A&gt;T" Type="HGVS, coding, RefSeq">NM_001290354.2:c.302A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_001290357" Version="2" Change="c.369+3979A&gt;T" Type="HGVS, coding, RefSeq">NM_001290357.2:c.369+3979A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000791" Version="4" Change="c.458A&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_000791.4:c.458A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_023304" Version="1" Change="g.26078A&gt;T" Type="HGVS, genomic, RefSeqGene">NG_023304.1:g.26078A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000005" Version="10" Change="g.80633904T&gt;A" Type="HGVS, genomic, top level" integerValue="38">NC_000005.10:g.80633904T&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000005" Version="9" Change="g.79929723T&gt;A" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000005.9:g.79929723T&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NR_110936" Version="2" Change="n.775A&gt;T" Type="HGVS, non-coding">NR_110936.2:n.775A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000791" Version="3" Change="c.458A&gt;T" Type="HGVS, previous">NM_000791.3:c.458A&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="P00374" Change="p.Asp153Val" Type="HGVS, protein">P00374:p.Asp153Val</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_001277283" Version="1" Change="p.Asp101Val" Type="HGVS, protein, RefSeq">NP_001277283.1:p.Asp101Val</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_000782" Version="1" Change="p.Asp153Val" Type="HGVS, protein, RefSeq">NP_000782.1:p.Asp153Val</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">intron variant</Attribute>
+            <XRef ID="SO:0001627" DB="Sequence Ontology"/>
+            <XRef ID="NM_001290357.2:c.369+3979A&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_000791.4:c.458A&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_001290354.2:c.302A&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">non-coding transcript variant</Attribute>
+            <XRef ID="SO:0001619" DB="Sequence Ontology"/>
+            <XRef ID="NR_110936.2:n.775A&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">D101V</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">D153V</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange3LetterCode">ASP153VAL</Attribute>
+          </AttributeSet>
+          <AlleleFrequencyList>
+            <AlleleFrequency Value="0.00000" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+          </AlleleFrequencyList>
+          <CytogeneticLocation>5q14.1</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="80633904" stop="80633904" display_start="80633904" display_stop="80633904" variantLength="1" positionVCF="80633904" referenceAlleleVCF="T" alternateAlleleVCF="A"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="79929723" stop="79929723" display_start="79929723" display_stop="79929723" variantLength="1" positionVCF="79929723" referenceAlleleVCF="T" alternateAlleleVCF="A"/>
+          <MeasureRelationship Type="within single gene">
+            <Name>
+              <ElementValue Type="Preferred">dihydrofolate reductase</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">DHFR</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="80626226" stop="80654983" display_start="80626226" display_stop="80654983" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="79922044" stop="79950799" display_start="79922044" display_stop="79950799" variantLength="28756" Strand="-"/>
+            <XRef ID="1719" DB="Gene"/>
+            <XRef Type="MIM" ID="126060" DB="OMIM"/>
+            <XRef ID="HGNC:2861" DB="HGNC"/>
+          </MeasureRelationship>
+          <Citation Type="general">
+            <ID Source="PubMed">1060915</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">1099447</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">6700662</ID>
+          </Citation>
+          <XRef ID="P00374#VAR_065819" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="126060.0002" DB="OMIM"/>
+          <XRef Type="rs" ID="121913223" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_000791.4(DHFR):c.458A&gt;T (p.Asp153Val)</ElementValue>
+        </Name>
+        <XRef ID="CA128553" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="7481">
+        <Trait ID="16058" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Constitutional megaloblastic anemia with severe neurologic disease</ElementValue>
+            <XRef ID="MONDO:0013456" DB="MONDO"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFR DEFICIENCY</ElementValue>
+            <XRef Type="MIM" ID="613839" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Megaloblastic anemia due to dihydrofolate reductase deficiency</ElementValue>
+            <XRef ID="Megaloblastic+anemia+due+to+dihydrofolate+reductase+deficiency/8802" DB="Genetic Alliance"/>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="public definition">Dihydrofolate reductase deficiency is an autosomal recessive metabolic disorder characterized by the hematologic findings of megaloblastic anemia and variable neurologic symptoms, ranging from severe developmental delay and generalized seizures in infancy (Banka et al., 2011) to childhood absence epilepsy with learning difficulties to lack of symptoms (Cario et al., 2011). Treatment with folinic acid can ameliorate some of the symptoms.</Attribute>
+            <XRef Type="MIM" ID="613839" DB="OMIM"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="GARD id" integerValue="11000"/>
+            <XRef ID="11000" DB="Office of Rare Diseases"/>
+          </AttributeSet>
+          <XRef ID="MONDO:0013456" DB="MONDO"/>
+          <XRef ID="C3151205" DB="MedGen"/>
+          <XRef ID="319651" DB="Orphanet"/>
+          <XRef Type="MIM" ID="613839" DB="OMIM"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="49070">
+      <ClinVarSubmissionID localKey="126060.0002_MEGALOBLASTIC ANEMIA DUE TO DIHYDROFOLATE REDUCTASE DEFICIENCY" submitter="OMIM" submitterDate="2016-08-04" title="DHFR, ASP153VAL_MEGALOBLASTIC ANEMIA DUE TO DIHYDROFOLATE REDUCTASE DEFICIENCY"/>
+      <ClinVarAccession Acc="SCV000043814" DateCreated="2013-04-04" DateUpdated="2016-08-22" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2011-02-11">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="126060.0002" Type="Allelic variant"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">In 3 affected sibs, born of distantly related parents of European descent, with megaloblastic anemia due to dihydrofolate reductase deficiency (613839), Cario et al. (2011) identified a homozygous 458A-T transversion in exon 5 of the DHFR gene, resulting in an asp153-to-val (D153V) substitution. Both parents were heterozygous for the D153V mutation, which was not found in 120 control samples. The mutation was predicted to interrupt hydrogen bonding, affecting fold and conformational stability, resulting in decreased enzyme activity. Studies of patient lymphoblastoid cells showed that DHFR activity was reduced to about 10% of control levels. DHFR expression was similar to controls, but protein levels were severely decreased. Although 1 sib was essentially unaffected except for macrocytosis, the other 2 sibs developed childhood absence epilepsy with eyelid myoclonia in childhood. One had learning disabilities. Levels of 5-methyltetrahydrofolate (5-MTHF) in the CSF were low, but improved with folinic acid treatment.</Attribute>
+          <Citation>
+            <ID Source="PubMed">21310277</ID>
+          </Citation>
+          <XRef DB="OMIM" ID="613839" Type="MIM"/>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Preferred">DHFR, ASP153VAL</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="NonHGVS">ASP153VAL</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">DHFR</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="OMIM" ID="126060.0002" Type="Allelic variant"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">MEGALOBLASTIC ANEMIA DUE TO DIHYDROFOLATE REDUCTASE DEFICIENCY</ElementValue>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+    <ClinVarAssertion ID="269026" SubmissionName="DHFR_variant_HC01">
+      <ClinVarSubmissionID localKey="DHFR_001" submitter="Clinic of Pediatric and Adolescent Medicine, University Hospital Ulm" submitterDate="2010-11-22"/>
+      <ClinVarAccession Acc="SCV000148827" DateCreated="2014-04-24" DateUpdated="2014-04-24" Version="1" Type="SCV" OrgID="504838" OrganizationCategory="laboratory" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance>
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>pathogenic</Description>
+        <Comment Type="ConvertedByNCBI">Converted during submission to Pathogenic.</Comment>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+          <NumberTested>1</NumberTested>
+        </Sample>
+        <Method>
+          <MethodType>not provided</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">not provided</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Alternate">DHFR c.458A&gt;T</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFR p.D153V</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">DHFR p.Asp153Val</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_000791.3:c.458A&gt;T</Attribute>
+          </AttributeSet>
+          <Citation Type="general">
+            <ID Source="PubMed">1060915</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">1099447</ID>
+          </Citation>
+          <Citation Type="general">
+            <ID Source="PubMed">6700662</ID>
+          </Citation>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">not provided</ElementValue>
+          </Name>
+          <XRef DB="OMIM" ID="126060" Status="under review" Type="MIM"/>
+        </Trait>
+      </TraitSet>
+      <Comment Type="public">dihydrofolate reductase (DHFR) deficiency. Causes macrocytic anemia and neurologic disease (atypical childhood absence epilepsy);variable phenotypic expression;treatment with follinic acid leads to normal blood counts and improvement of neurologic symptoms. Manuscript submitted for publication, therefore public release of this dbSNP submission only from the time of publication.</Comment>
+      <Comment DataSource="CuratedByNCBI" Type="public">Causes macrocytic anemia and neurologic disease (atypical childhood absence epilepsy);variable phenotypic expression; treatment with follinic acid leads to normal blood counts and improvement of neurologic symptoms.</Comment>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92148632">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_000130.5(F5):c.6304C&gt;T (p.Arg2102Cys) AND Factor V deficiency</Title>
+    <ReferenceClinVarAssertion ID="58191" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+      <ClinVarAccession Acc="RCV000000688" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="4" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2019-02-01">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Likely pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>unknown</Origin>
+          <Ethnicity>European</Ethnicity>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>yes</AffectedStatus>
+          <NumberTested>1</NumberTested>
+        </Sample>
+        <Method>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData ID="95562904">
+          <Attribute integerValue="1" Type="VariantAlleles"/>
+        </ObservedData>
+        <ObservedData ID="95562904">
+          <Attribute Type="SampleLocalID">TGP0330</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData ID="96713633">
+          <Attribute Type="Description">In a 22-year-old Italian woman in whom factor V deficiency (227400) was first diagnosed at the age of 10 years after abnormal coagulation screening tests were found preceding an operation for strabismus, Duga et al. (2003) identified a homozygous 6394C-T transition at in exon 23 of the F5 gene, resulting in an arg2074-to-cys (R2074C) change in the C2 domain of the protein. Functional studies showed that this substitution impaired both factor V secretion and its activity. The patient's menstruation was normal and her only bleeding symptom was easy bruising after minor trauma. Her parents, apparently nonconsanguineous, were asymptomatic and had factor V functional and antigen levels typical of heterozygotes.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">12393490</ID>
+          </Citation>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="654" Acc="VCV000000654" Version="3">
+        <Measure Type="single nucleotide variant" ID="15693">
+          <Name>
+            <ElementValue Type="Preferred">NM_000130.5(F5):c.6304C&gt;T (p.Arg2102Cys)</ElementValue>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">F5, ARG2074CYS</ElementValue>
+            <XRef Type="Allelic variant" ID="612309.0012" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">R2074C</ElementValue>
+            <XRef Type="Allelic variant" ID="612309.0012" DB="OMIM"/>
+          </Name>
+          <CanonicalSPDI>NC_000001.11:169518452:G:A</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="LRG_553t1" Type="HGVS, coding, LRG">LRG_553t1:c.6304C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000130" Version="5" Change="c.6304C&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_000130.5:c.6304C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_553" Type="HGVS, genomic, LRG">LRG_553:g.73079C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_011806" Version="1" Change="g.73079C&gt;T" Type="HGVS, genomic, RefSeqGene">NG_011806.1:g.73079C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="11" Change="g.169518453G&gt;A" Type="HGVS, genomic, top level" integerValue="38">NC_000001.11:g.169518453G&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000001" Version="10" Change="g.169487691G&gt;A" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000001.10:g.169487691G&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_000130" Version="4" Change="c.6304C&gt;T" Type="HGVS, previous">NM_000130.4:c.6304C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="HGVS, protein"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="LRG_553p1" Change="p.Arg2102Cys" Type="HGVS, protein">LRG_553p1:p.Arg2102Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="P12259" Change="p.Arg2102Cys" Type="HGVS, protein">P12259:p.Arg2102Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_000121" Version="2" Change="p.Arg2102Cys" Type="HGVS, protein, RefSeq">NP_000121.2:p.Arg2102Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_000121" Version="2" Change="p.Arg2102Cys" Type="HGVS, protein, RefSeq">NP_000121.2:p.Arg2102Cys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_000130.5:c.6304C&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">R2102C</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange3LetterCode">ARG2074CYS</Attribute>
+          </AttributeSet>
+          <AlleleFrequencyList>
+            <AlleleFrequency Value="0.00001" Source="Exome Aggregation Consortium (ExAC)"/>
+            <AlleleFrequency Value="0.00001" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+            <AlleleFrequency Value="0.00000" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+          </AlleleFrequencyList>
+          <CytogeneticLocation>1q24.2</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="169518453" stop="169518453" display_start="169518453" display_stop="169518453" variantLength="1" positionVCF="169518453" referenceAlleleVCF="G" alternateAlleleVCF="A"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="169487691" stop="169487691" display_start="169487691" display_stop="169487691" variantLength="1" positionVCF="169487691" referenceAlleleVCF="G" alternateAlleleVCF="A"/>
+          <MeasureRelationship Type="within single gene">
+            <Name>
+              <ElementValue Type="Preferred">coagulation factor V</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">F5</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="169511951" stop="169586481" display_start="169511951" display_stop="169586481" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="169481191" stop="169555768" display_start="169481191" display_stop="169555768" variantLength="74578" Strand="-"/>
+            <XRef ID="2153" DB="Gene"/>
+            <XRef Type="MIM" ID="612309" DB="OMIM"/>
+            <XRef ID="HGNC:3542" DB="HGNC"/>
+          </MeasureRelationship>
+          <Citation Type="general">
+            <ID Source="PubMed">31064749</ID>
+          </Citation>
+          <XRef ID="P12259#VAR_032701" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="612309.0012" DB="OMIM"/>
+          <XRef Type="rs" ID="118203910" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_000130.5(F5):c.6304C&gt;T (p.Arg2102Cys)</ElementValue>
+        </Name>
+        <XRef ID="CA251559" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="169">
+        <Trait ID="1267" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Factor V deficiency</ElementValue>
+            <XRef ID="Factor+V+Deficiency/2709" DB="Genetic Alliance"/>
+            <XRef ID="HP:0003225" DB="Human Phenotype Ontology"/>
+            <XRef ID="MONDO:0020586" DB="MONDO"/>
+            <XRef ID="4320005" DB="SNOMED CT"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">LABILE FACTOR DEFICIENCY</ElementValue>
+            <XRef Type="MIM" ID="227400" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">OWREN PARAHEMOPHILIA</ElementValue>
+            <XRef Type="MIM" ID="227400" DB="OMIM"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">PARAHEMOPHILIA</ElementValue>
+            <XRef Type="MIM" ID="227400" DB="OMIM"/>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="public definition">Factor V Leiden thrombophilia is characterized by a poor anticoagulant response to activated protein C (APC) and an increased risk for venous thromboembolism (VTE). Deep vein thrombosis (DVT) is the most common VTE, with the legs being the most common site. Thrombosis in unusual locations is less common. Evidence suggests that heterozygosity for the Leiden variant has at most a modest effect on risk for recurrent thrombosis after initial treatment of a first VTE. It is unlikely that factor V Leiden thrombophilia (i.e., heterozygosity or homozygosity for the Leiden variant) is a major factor contributing to pregnancy loss and other adverse pregnancy outcomes (preeclampsia, fetal growth restriction, and placental abruption). The clinical expression of factor V Leiden thrombophilia is influenced by the following: The number of Leiden variants (heterozygotes have a slightly increased risk for venous thrombosis; homozygotes have a much greater thrombotic risk). Coexisting genetic thrombophilic disorders, which have a supra-additive effect on overall thrombotic risk. Acquired thrombophilic disorders: antiphospholipid antibody (APLA) syndrome, paroxysmal nocturnal hemoglobinuria, myeloproliferative disorders, and increased levels of clotting factors. Circumstantial risk factors including but not limited to pregnancy, central venous catheters, travel, combined oral contraceptive (COC) use and other combined contraceptives, oral hormone replacement therapy (HRT), selective estrogen receptor modulators (SERMs), obesity, leg injury, and advancing age.</Attribute>
+            <XRef ID="NBK1368" DB="GeneReviews"/>
+          </AttributeSet>
+          <Citation Type="review" Abbrev="GeneReviews">
+            <ID Source="PubMed">20301542</ID>
+            <ID Source="BookShelf">NBK1368</ID>
+          </Citation>
+          <Citation Type="Position Statement" Abbrev="EGAPP, 2011">
+            <ID Source="PubMed">21150787</ID>
+          </Citation>
+          <Citation Type="practice guideline" Abbrev="ACMG, 2001">
+            <ID Source="pmc">3111091</ID>
+          </Citation>
+          <XRef ID="MONDO:0020586" DB="MONDO"/>
+          <XRef ID="C0015499" DB="MedGen"/>
+          <XRef ID="326" DB="Orphanet"/>
+          <XRef Type="MIM" ID="227400" DB="OMIM"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="20838">
+      <ClinVarSubmissionID localKey="612309.0012_FACTOR V DEFICIENCY" submitter="OMIM" submitterDate="2017-08-17" title="F5, ARG2074CYS_FACTOR V DEFICIENCY"/>
+      <ClinVarAccession Acc="SCV000020838" DateCreated="2013-04-04" DateUpdated="2017-08-20" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2003-01-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="612309.0012" Type="Allelic variant"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">In a 22-year-old Italian woman in whom factor V deficiency (227400) was first diagnosed at the age of 10 years after abnormal coagulation screening tests were found preceding an operation for strabismus, Duga et al. (2003) identified a homozygous 6394C-T transition at in exon 23 of the F5 gene, resulting in an arg2074-to-cys (R2074C) change in the C2 domain of the protein. Functional studies showed that this substitution impaired both factor V secretion and its activity. The patient's menstruation was normal and her only bleeding symptom was easy bruising after minor trauma. Her parents, apparently nonconsanguineous, were asymptomatic and had factor V functional and antigen levels typical of heterozygotes.</Attribute>
+          <Citation>
+            <ID Source="PubMed">12393490</ID>
+          </Citation>
+          <XRef DB="OMIM" ID="227400" Type="MIM"/>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Preferred">F5, ARG2074CYS</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="NonHGVS">ARG2074CYS</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">F5</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="OMIM" ID="612309.0012" Type="Allelic variant"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">FACTOR V DEFICIENCY</ElementValue>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+    <ClinVarAssertion ID="1769365" SubmissionName="ThromboGenomics">
+      <ClinVarSubmissionID localKey="c.6304C&gt;T_227400" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="NIHR Bioresource Rare Diseases, University of Cambridge" submitterDate="2019-03-28"/>
+      <ClinVarAccession Acc="SCV000899835" DateCreated="2019-09-29" DateUpdated="2019-09-29" Version="1" Type="SCV" OrgID="505998" OrganizationCategory="consortium" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="2019-02-01">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Likely pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">31064749</ID>
+        </Citation>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <AttributeSet>
+        <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+        <Citation>
+          <ID Source="PubMed">25741868</ID>
+        </Citation>
+      </AttributeSet>
+      <ObservedIn>
+        <Sample>
+          <Origin>unknown</Origin>
+          <Ethnicity>European</Ethnicity>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>yes</AffectedStatus>
+          <NumberTested>1</NumberTested>
+          <Gender>male</Gender>
+        </Sample>
+        <Method>
+          <TypePlatform>Targeted sequencing</TypePlatform>
+          <MethodType>research</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="CompoundHeterozygote" integerValue="1"/>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="SampleLocalID">TGP0330</Attribute>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_000130.4:c.6304C&gt;T</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">F5</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <XRef DB="OMIM" ID="227400" Type="MIM"/>
+        </Trait>
+      </TraitSet>
+      <Citation Type="general">
+        <ID Source="PubMed">31064749</ID>
+      </Citation>
+      <Citation Type="general">
+        <ID Source="PubMed">31064749</ID>
+      </Citation>
+      <StudyName>ThromboGenomics</StudyName>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

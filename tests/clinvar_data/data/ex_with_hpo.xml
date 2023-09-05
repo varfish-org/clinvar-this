@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+  <ClinVarSet ID="92155604">
+    <RecordStatus>current</RecordStatus>
+    <Title>NM_002281.4(KRT81):c.1237G&gt;A (p.Glu413Lys) AND Beaded hair</Title>
+    <ReferenceClinVarAssertion ID="65433" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
+      <ClinVarAccession Acc="RCV000007930" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="4" Type="RCV"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="1997-12-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species TaxonomyId="9606">human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData ID="95826855">
+          <Attribute Type="Description">In both affected members of a 3-generation Canadian family with monilethrix (158000), Winter et al. (1997) identified a G-to-A transition in the HB1 gene product, resulting in a change of glutamic acid to lysine at codon 413. The mutation was also detected in one apparently unaffected individual.</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">9402962</ID>
+          </Citation>
+        </ObservedData>
+        <ObservedData ID="95826855">
+          <Attribute Type="Description">This mutation was originally designated GLU403LYS because of a mistake in the numbering of the amino acids of hair keratin HB1 between residues 305 and 325 (Rogers et al., 1995).</Attribute>
+          <Citation Type="general">
+            <ID Source="PubMed">7556444</ID>
+          </Citation>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant" ID="7501" Acc="VCV000007501" Version="1">
+        <Measure Type="single nucleotide variant" ID="22540">
+          <Name>
+            <ElementValue Type="Preferred">NM_002281.4(KRT81):c.1237G&gt;A (p.Glu413Lys)</ElementValue>
+          </Name>
+          <CanonicalSPDI>NC_000012.12:52287111:C:T</CanonicalSPDI>
+          <AttributeSet>
+            <Attribute Accession="NM_001320198" Version="2" Change="c.-5+11166C&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_001320198.2:c.-5+11166C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_002281" Version="4" Change="c.1237G&gt;A" Type="HGVS, coding, RefSeq" MANESelect="true">NM_002281.4:c.1237G&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_008086" Version="2" Change="g.17468C&gt;T" Type="HGVS, genomic, RefSeqGene">NG_008086.2:g.17468C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NG_008184" Version="1" Change="g.9404G&gt;A" Type="HGVS, genomic, RefSeqGene">NG_008184.1:g.9404G&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000012" Version="12" Change="g.52287112C&gt;T" Type="HGVS, genomic, top level" integerValue="38">NC_000012.12:g.52287112C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NC_000012" Version="11" Change="g.52680896C&gt;T" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000012.11:g.52680896C&gt;T</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NM_002281" Version="3" Change="c.1237G&gt;A" Type="HGVS, previous">NM_002281.3:c.1237G&gt;A</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="Q14533" Change="p.Glu413Lys" Type="HGVS, protein">Q14533:p.Glu413Lys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Accession="NP_002272" Version="2" Change="p.Glu413Lys" Type="HGVS, protein, RefSeq">NP_002272.2:p.Glu413Lys</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">intron variant</Attribute>
+            <XRef ID="SO:0001627" DB="Sequence Ontology"/>
+            <XRef ID="NM_001320198.2:c.-5+11166C&gt;T" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="MolecularConsequence">missense variant</Attribute>
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_002281.4:c.1237G&gt;A" DB="RefSeq"/>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange1LetterCode">E413K</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="ProteinChange3LetterCode">GLU413LYS</Attribute>
+          </AttributeSet>
+          <AlleleFrequencyList>
+            <AlleleFrequency Value="0.00001" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+            <AlleleFrequency Value="0.00001" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+            <AlleleFrequency Value="0.00000" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+          </AlleleFrequencyList>
+          <CytogeneticLocation>12q13.13</CytogeneticLocation>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="12" Accession="NC_000012.12" start="52287112" stop="52287112" display_start="52287112" display_stop="52287112" variantLength="1" positionVCF="52287112" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="12" Accession="NC_000012.11" start="52680896" stop="52680896" display_start="52680896" display_stop="52680896" variantLength="1" positionVCF="52680896" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">keratin 81</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">KRT81</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="12" Accession="NC_000012.12" start="52285913" stop="52308624" display_start="52285913" display_stop="52308624" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="12" Accession="NC_000012.11" start="52679696" stop="52685298" display_start="52679696" display_stop="52685298" variantLength="5603" Strand="-"/>
+            <XRef ID="3887" DB="Gene"/>
+            <XRef Type="MIM" ID="602153" DB="OMIM"/>
+            <XRef ID="HGNC:6458" DB="HGNC"/>
+          </MeasureRelationship>
+          <MeasureRelationship Type="within multiple genes by overlap">
+            <Name>
+              <ElementValue Type="Preferred">keratin 86</ElementValue>
+            </Name>
+            <Symbol>
+              <ElementValue Type="Preferred">KRT86</ElementValue>
+            </Symbol>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="12" Accession="NC_000012.12" start="52274645" stop="52309163" display_start="52274645" display_stop="52309163" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="12" Accession="NC_000012.11" start="52695648" stop="52702946" display_start="52695648" display_stop="52702946" variantLength="7299" Strand="+"/>
+            <XRef ID="3892" DB="Gene"/>
+            <XRef Type="MIM" ID="601928" DB="OMIM"/>
+            <XRef ID="HGNC:6463" DB="HGNC"/>
+          </MeasureRelationship>
+          <XRef ID="Q14533#VAR_018117" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="602153.0001" DB="OMIM"/>
+          <XRef Type="rs" ID="57419521" DB="dbSNP"/>
+        </Measure>
+        <Name>
+          <ElementValue Type="Preferred">NM_002281.4(KRT81):c.1237G&gt;A (p.Glu413Lys)</ElementValue>
+        </Name>
+        <Name>
+          <ElementValue Type="Preferred">NM_002281.4(KRT81):c.1237G&gt;A (p.Glu413Lys)</ElementValue>
+        </Name>
+        <XRef ID="CA118850" DB="ClinGen"/>
+      </MeasureSet>
+      <TraitSet Type="Disease" ID="1885">
+        <Trait ID="3214" Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">Beaded hair</ElementValue>
+            <XRef ID="Beaded+hair/7805" DB="Genetic Alliance"/>
+            <XRef ID="69488000" DB="SNOMED CT"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Monilethrix</ElementValue>
+            <XRef ID="MONDO:0008009" DB="MONDO"/>
+          </Name>
+          <Name>
+            <ElementValue Type="Alternate">Nodose hair</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">MNLIX</ElementValue>
+            <XRef Type="MIM" ID="158000" DB="OMIM"/>
+          </Symbol>
+          <AttributeSet>
+            <Attribute Type="keyword">Neoplasm</Attribute>
+          </AttributeSet>
+          <AttributeSet>
+            <Attribute Type="GARD id" integerValue="93"/>
+            <XRef ID="93" DB="Office of Rare Diseases"/>
+          </AttributeSet>
+          <XRef ID="MONDO:0008009" DB="MONDO"/>
+          <XRef ID="C0546966" DB="MedGen"/>
+          <XRef ID="573" DB="Orphanet"/>
+          <XRef Type="MIM" ID="158000" DB="OMIM"/>
+          <XRef Type="primary" ID="HP:0032470" DB="Human Phenotype Ontology"/>
+        </Trait>
+      </TraitSet>
+    </ReferenceClinVarAssertion>
+    <ClinVarAssertion ID="28135">
+      <ClinVarSubmissionID localKey="602153.0001_MONILETHRIX" submitter="OMIM" submitterDate="2017-11-02" title="KRT81, GLU413LYS_MONILETHRIX"/>
+      <ClinVarAccession Acc="SCV000028135" DateCreated="2013-04-04" DateUpdated="2017-11-05" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
+      <RecordStatus>current</RecordStatus>
+      <ClinicalSignificance DateLastEvaluated="1997-12-01">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+      </ClinicalSignificance>
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="602153.0001" Type="Allelic variant"/>
+      <ObservedIn>
+        <Sample>
+          <Origin>germline</Origin>
+          <Species>human</Species>
+          <AffectedStatus>not provided</AffectedStatus>
+        </Sample>
+        <Method>
+          <MethodType>literature only</MethodType>
+        </Method>
+        <ObservedData>
+          <Attribute Type="Description">In both affected members of a 3-generation Canadian family with monilethrix (158000), Winter et al. (1997) identified a G-to-A transition in the HB1 gene product, resulting in a change of glutamic acid to lysine at codon 413. The mutation was also detected in one apparently unaffected individual.</Attribute>
+          <Citation>
+            <ID Source="PubMed">9402962</ID>
+          </Citation>
+          <XRef DB="OMIM" ID="158000" Type="MIM"/>
+        </ObservedData>
+        <ObservedData>
+          <Attribute Type="Description">This mutation was originally designated GLU403LYS because of a mistake in the numbering of the amino acids of hair keratin HB1 between residues 305 and 325 (Rogers et al., 1995).</Attribute>
+          <Citation>
+            <ID Source="PubMed">7556444</ID>
+          </Citation>
+        </ObservedData>
+      </ObservedIn>
+      <MeasureSet Type="Variant">
+        <Measure Type="Variation">
+          <Name>
+            <ElementValue Type="Preferred">KRT81, GLU413LYS</ElementValue>
+          </Name>
+          <AttributeSet>
+            <Attribute Type="NonHGVS">GLU413LYS</Attribute>
+          </AttributeSet>
+          <MeasureRelationship Type="variant in gene">
+            <Symbol>
+              <ElementValue Type="Preferred">KRT81</ElementValue>
+            </Symbol>
+          </MeasureRelationship>
+          <XRef DB="OMIM" ID="602153.0001" Type="Allelic variant"/>
+        </Measure>
+      </MeasureSet>
+      <TraitSet Type="Disease">
+        <Trait Type="Disease">
+          <Name>
+            <ElementValue Type="Preferred">MONILETHRIX</ElementValue>
+          </Name>
+        </Trait>
+      </TraitSet>
+    </ClinVarAssertion>
+  </ClinVarSet>
+</ReleaseSet>

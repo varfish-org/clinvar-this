@@ -1,0 +1,116 @@
+{
+  "type": "Variant",
+  "acc": "VCV000018397",
+  "version": 1,
+  "measures": [
+    {
+      "names": [
+        {
+          "value": {
+            "type": "Preferred",
+            "value": "NM_002036.4(ACKR1):c.286_299del (p.Trp96fs)"
+          }
+        },
+        {
+          "value": {
+            "type": "Alternate",
+            "value": "ACKR1, 14-BP DEL, NT286"
+          },
+          "xrefs": [
+            {
+              "db": "OMIM",
+              "id": "613665.0004",
+              "type": "Allelic variant"
+            }
+          ]
+        }
+      ],
+      "canonical_spdi": "NC_000001.11:159205718:CCTGGCTGGCCTGTCCTGGC:CCTGGC",
+      "attributes": [
+        {
+          "type": "HGVS, coding, LRG",
+          "value": "LRG_801t1:c.286_299del"
+        }
+      ],
+      "sequence_location": [
+        {
+          "assembly": "GRCh38",
+          "chr": "1",
+          "accession": "NC_000001.11",
+          "start": 159205719,
+          "stop": 159205732,
+          "display_start": 159205719,
+          "display_stop": 159205732,
+          "variant_length": 14,
+          "assembly_accesion_version": "GCF_000001405.38",
+          "assembly_status": "current",
+          "position_vcf": 159205718,
+          "reference_allele_vcf": "CCCTGGCTGGCCTGT",
+          "alternate_allele_vcf": "C"
+        }
+      ],
+      "measure_relationship": [
+        {
+          "names": [
+            {
+              "value": {
+                "type": "Preferred",
+                "value": "atypical chemokine receptor 1 (Duffy blood group)"
+              }
+            }
+          ],
+          "symbols": [
+            {
+              "value": {
+                "type": "Preferred",
+                "value": "ACKR1"
+              }
+            }
+          ],
+          "sequence_locations": [
+            {
+              "assembly": "GRCh38",
+              "chr": "1",
+              "accession": "NC_000001.11",
+              "start": 159204875,
+              "stop": 159206500,
+              "display_start": 159204875,
+              "display_stop": 159206500,
+              "strand": "+",
+              "assembly_accesion_version": "GCF_000001405.38",
+              "assembly_status": "current"
+            }
+          ],
+          "xrefs": [
+            {
+              "db": "Gene",
+              "id": "2532"
+            }
+          ]
+        }
+      ],
+      "xrefs": [
+        {
+          "db": "OMIM",
+          "id": "613665.0004",
+          "type": "Allelic variant"
+        }
+      ]
+    }
+  ],
+  "names": [
+    {
+      "value": {
+        "type": "Preferred",
+        "value": "NM_002036.4(ACKR1):c.286_299del (p.Trp96fs)"
+      }
+    }
+  ],
+  "xrefs": [
+    {
+      "db": "ClinGen",
+      "id": "CA113791"
+    }
+  ],
+  "id": 18397
+}

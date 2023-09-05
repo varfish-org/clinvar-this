@@ -1,0 +1,294 @@
+{
+  "clinvar_accession": {
+    "acc": "RCV000005643",
+    "version": 4,
+    "type": "RCV",
+    "date_updated": "2022-04-23",
+    "date_created": "2013-04-04"
+  },
+  "record_status": "current",
+  "clinical_significance": {
+    "review_status": "no assertion criteria provided",
+    "description": "pathogenic",
+    "date_last_evaluated": "2001-09-21"
+  },
+  "assertion": "variation to disease",
+  "observed_in": [
+    {
+      "sample": {
+        "origin": "germline",
+        "species": {
+          "value": "human",
+          "taxonomy_id": 9606
+        },
+        "affected_status": "not provided"
+      },
+      "methods": [
+        "literature only"
+      ],
+      "observed_data": [
+        {
+          "attribute": {
+            "type": "Description",
+            "value": "In a patient carrying 2 different termination codons in the BBS2 gene (606151.0003, 606151.0004), Katsanis et al. (2001) identified a nonsense mutation in the BBS6 gene, a glutamine-to-termination substitution at codon 147."
+          },
+          "citations": [
+            {
+              "ids": [
+                {
+                  "source": "PubMed",
+                  "value": "11567139"
+                }
+              ],
+              "type": "general"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "measure_set": {
+    "type": "Variant",
+    "acc": "VCV000005318",
+    "version": 1,
+    "measures": [
+      {
+        "names": [
+          {
+            "value": {
+              "type": "Preferred",
+              "value": "NM_170784.3(MKKS):c.442C>T (p.Gln148Ter)"
+            }
+          },
+          {
+            "value": {
+              "type": "Alternate",
+              "value": "Q147*"
+            },
+            "xrefs": [
+              {
+                "db": "OMIM",
+                "id": "604896.0012",
+                "type": "Allelic variant"
+              }
+            ]
+          }
+        ],
+        "canonical_spdi": "NC_000020.11:10413072:G:A",
+        "attributes": [
+          {
+            "type": "HGVS, coding, RefSeq",
+            "value": "NM_018848.3:c.442C>T"
+          },
+          {
+            "type": "HGVS, coding, RefSeq",
+            "value": "NM_170784.3:c.442C>T"
+          },
+          {
+            "type": "HGVS, genomic, RefSeqGene",
+            "value": "NG_009109.2:g.26146C>T"
+          },
+          {
+            "type": "HGVS, genomic, top level",
+            "value": "NC_000020.11:g.10413073G>A"
+          },
+          {
+            "type": "HGVS, genomic, top level, previous",
+            "value": "NC_000020.10:g.10393721G>A"
+          },
+          {
+            "type": "HGVS, protein, RefSeq",
+            "value": "NP_061336.1:p.Gln148Ter"
+          },
+          {
+            "type": "HGVS, protein, RefSeq",
+            "value": "NP_740754.1:p.Gln148Ter"
+          },
+          {
+            "type": "MolecularConsequence",
+            "value": "nonsense",
+            "xrefs": [
+              {
+                "db": "Sequence Ontology",
+                "id": "SO:0001587"
+              },
+              {
+                "db": "RefSeq",
+                "id": "NM_018848.3:c.442C>T"
+              }
+            ]
+          },
+          {
+            "type": "MolecularConsequence",
+            "value": "nonsense",
+            "xrefs": [
+              {
+                "db": "Sequence Ontology",
+                "id": "SO:0001587"
+              },
+              {
+                "db": "RefSeq",
+                "id": "NM_170784.3:c.442C>T"
+              }
+            ]
+          },
+          {
+            "type": "ProteinChange1LetterCode",
+            "value": "Q148*"
+          },
+          {
+            "type": "ProteinChange3LetterCode",
+            "value": "GLN147TER"
+          }
+        ],
+        "sequence_location": [
+          {
+            "assembly": "GRCh38",
+            "chr": "20",
+            "accession": "NC_000020.11",
+            "start": 10413073,
+            "stop": 10413073,
+            "display_start": 10413073,
+            "display_stop": 10413073,
+            "variant_length": 1,
+            "assembly_accesion_version": "GCF_000001405.38",
+            "assembly_status": "current",
+            "position_vcf": 10413073,
+            "reference_allele_vcf": "G",
+            "alternate_allele_vcf": "A"
+          },
+          {
+            "assembly": "GRCh37",
+            "chr": "20",
+            "accession": "NC_000020.10",
+            "start": 10393721,
+            "stop": 10393721,
+            "display_start": 10393721,
+            "display_stop": 10393721,
+            "variant_length": 1,
+            "assembly_accesion_version": "GCF_000001405.25",
+            "assembly_status": "previous",
+            "position_vcf": 10393721,
+            "reference_allele_vcf": "G",
+            "alternate_allele_vcf": "A"
+          }
+        ],
+        "measure_relationship": [
+          {
+            "names": [
+              {
+                "value": {
+                  "type": "Preferred",
+                  "value": "MKKS centrosomal shuttling protein"
+                }
+              }
+            ],
+            "symbols": [
+              {
+                "value": {
+                  "type": "Preferred",
+                  "value": "MKKS"
+                }
+              }
+            ],
+            "sequence_locations": [
+              {
+                "assembly": "GRCh38",
+                "chr": "20",
+                "accession": "NC_000020.11",
+                "start": 10401009,
+                "stop": 10434222,
+                "display_start": 10401009,
+                "display_stop": 10434222,
+                "strand": "-",
+                "assembly_accesion_version": "GCF_000001405.38",
+                "assembly_status": "current"
+              },
+              {
+                "assembly": "GRCh37",
+                "chr": "20",
+                "accession": "NC_000020.10",
+                "start": 10385427,
+                "stop": 10414886,
+                "display_start": 10385427,
+                "display_stop": 10414886,
+                "strand": "-",
+                "variant_length": 29460,
+                "assembly_accesion_version": "GCF_000001405.25",
+                "assembly_status": "previous"
+              }
+            ],
+            "xrefs": [
+              {
+                "db": "Gene",
+                "id": "8195"
+              },
+              {
+                "db": "OMIM",
+                "id": "604896",
+                "type": "MIM"
+              },
+              {
+                "db": "HGNC",
+                "id": "HGNC:7108"
+              }
+            ]
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "OMIM",
+            "id": "604896.0012",
+            "type": "Allelic variant"
+          },
+          {
+            "db": "dbSNP",
+            "id": "137853154",
+            "type": "rs"
+          }
+        ]
+      }
+    ],
+    "names": [
+      {
+        "value": {
+          "type": "Preferred",
+          "value": "NM_170784.3(MKKS):c.442C>T (p.Gln148Ter)"
+        }
+      }
+    ],
+    "xrefs": [
+      {
+        "db": "ClinGen",
+        "id": "CA117400"
+      }
+    ],
+    "id": 5318
+  },
+  "trait_set": {
+    "type": "Disease",
+    "traits": [
+      {
+        "type": "Disease",
+        "names": [
+          {
+            "value": {
+              "type": "Preferred",
+              "value": "Bardet-biedl syndrome 2/6, digenic"
+            }
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "MedGen",
+            "id": "C4016908"
+          }
+        ]
+      }
+    ],
+    "id": 19803
+  },
+  "date_created": "2013-04-04",
+  "date_last_updated": "2022-04-23",
+  "id": 63146
+}
