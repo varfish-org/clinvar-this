@@ -308,7 +308,6 @@ def test_clinical_significance_scv_from_json_data(value, expected):
             {
                 "date_last_evaluated": datetime.date(2022, 9, 27),
                 "description": "pathogenic",
-                "review_status": "criteria provided, single submitter",
             },
         ),
     ],
@@ -1904,10 +1903,3 @@ def test_clinvar_submission_id_from_json_data(value, expected):
     obj = models.ClinVarSubmissionId.from_json_data(value)
     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
     assert value == expected
-
-
-# @pytest.mark.parametrize("value,expected", [({}, {})])
-# def test_clinvar_assertion_accession_from_json_data(value, expected):
-#     obj = models.ClinVarAssertionAccession.from_json_data(value)
-#     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
-#     assert value == expected

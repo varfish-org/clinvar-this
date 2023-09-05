@@ -5,6 +5,7 @@ import gzip
 import io
 import json
 import multiprocessing
+import sys
 import typing
 
 import cattrs
@@ -88,9 +89,9 @@ def json_default(obj):
         raise TypeError("Type not serializable")
 
 
-def convert_clinvarset(json_cv: dict) -> models.PublicSetType:
+def convert_clinvarset(json_cv: dict) -> models.ClinVarSet:
     """Convert a ClinVarSet from JSON dict."""
-    return models.PublicSetType.from_json(json_cv)
+    return models.ClinVarSet.from_json_data(json_cv)
 
 
 def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
@@ -104,8 +105,13 @@ def run_thread(work: typing.Tuple[io.BytesIO, int, str]):
     with open(path_out, "wt") as tmpf:
 
         def handle_local(_, json_cvs: dict):
+            try:
+                data = convert_clinvarset(json_cvs)
+            except Exception as e:
+                print(f"Problem with data: {e} -- data follows", file=sys.stderr)
+                print(data, file=sys.stderr)
             print(
-                json.dumps(cattrs.unstructure(convert_clinvarset(json_cvs)), default=json_default),
+                json.dumps(cattrs.unstructure(data), default=json_default),
                 file=tmpf,
             )
             return True
@@ -136,9 +142,13 @@ def convert(
     def run_sequential():
         def handle_clinvarset(_, json_cvs: dict):
             """Handle single ClinVarSet entry after parsing by ``xmltodict``."""
+            try:
+                data = convert_clinvarset(json_cvs)
+            except Exception as e:
+                print(f"Problem with data: {e} -- data follows", file=sys.stderr)
+                print(data, file=sys.stderr)
             print(
-                # json.dumps(cattrs.unstructure(convert_clinvarset(json_cvs)), default=json_default),
-                json.dumps(json_cvs, default=json_default),
+                json.dumps(cattrs.unstructure(data), default=json_default),
                 file=outputf,
             )
             return True

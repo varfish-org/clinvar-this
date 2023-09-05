@@ -10,6 +10,16 @@ from dateutil.parser import parse as parse_datetime
 T = typing.TypeVar("T")
 
 
+def extract_text(element: typing.Any) -> str:
+    """Extract text from a string or dict with ``#text`` key"""
+    if element is None:
+        return element
+    elif isinstance(element, str):
+        return element
+    else:
+        return element["#text"]
+
+
 def force_list(value: typing.Union[T, typing.List[T]]) -> typing.List[T]:
     """Helper value that wraps atomic values in a list"""
     if isinstance(value, list):
@@ -286,20 +296,14 @@ class ClinicalSignificanceTypeSCV:
         #     <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         review_status = None
         if "ReviewStatus" in json_data:
-            if isinstance(json_data["ReviewStatus"], str):
-                review_status = json_data["ReviewStatus"]
-            else:
-                review_status = json_data["ReviewStatus"]["#text"]
+            review_status = extract_text(json_data["ReviewStatus"])
 
         # Same for the descriptions.
         descriptions = []
         for raw_description in force_list(json_data.get("Description", [])):
-            if isinstance(raw_description, str):
-                value = raw_description
-            else:
-                value = raw_description.get("#text")
+            value = extract_text(raw_description)
             if value:
-                descriptions.append(ClinicalSignificanceDescription(value.lower()))
+                descriptions.append(ClinicalSignificanceDescription.from_the_wild(value.lower()))
 
         return ClinicalSignificanceTypeSCV(
             review_status=review_status,
@@ -371,17 +375,13 @@ class ClinicalSignificanceRCV:
         review_status = None
         if "ReviewStatus" in json_data:
             if isinstance(json_data["ReviewStatus"], str):
-                review_status = json_data["ReviewStatus"]
-            else:
-                review_status = json_data["ReviewStatus"]["#text"]
+                review_status = extract_text(json_data["ReviewStatus"])
 
         # Same for the optional description.
         raw_description = json_data.get("Description", None)
-        description = None
-        if isinstance(raw_description, str):
-            description = ClinicalSignificanceDescription(raw_description.lower())
-        elif raw_description:
-            description = ClinicalSignificanceDescription(raw_description.get("#text").lower())
+        description = ClinicalSignificanceDescription.from_the_wild(
+            extract_text(raw_description).lower()
+        )
 
         return ClinicalSignificanceRCV(
             review_status=review_status,
@@ -774,9 +774,20 @@ class SampleOrigin(enum.Enum):
     PATERNAL = "paternal"
     BIPARENTAL = "biparental"
     NOT_REPORTED = "not reported"
-    TESTED_INCONCLUSIVE = "tested-inconclusive"
+    TESTED_INCONCLUSIVE = "tested inconclusive"
     NOT_APPLICABLE = "not applicable"
     EXPERIMENTALLY_GENERATED = "experimentally generated"
+
+    @classmethod
+    def from_the_wild(cls, s: str) -> "SampleOrigin":
+        """Convert values "from the wild" where sometimes invalid values are used.
+
+        These are converted to ``Other``.
+        """
+        try:
+            return SampleOrigin(s.replace("-", " ").lower())
+        except ValueError:
+            return SampleOrigin.UNKNOWN
 
 
 @attrs.frozen(auto_attribs=True)
@@ -865,13 +876,13 @@ class TypedValue:
     #: The type description
     type: str
     #: The value
-    value: str
+    value: typing.Optional[str] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "TypedValue":
         return TypedValue(
             type=json_data["@Type"],
-            value=json_data["#text"],
+            value=json_data.get("#text"),
         )
 
 
@@ -890,8 +901,14 @@ class AnnotatedTypedValue:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "AnnotatedTypedValue":
+        if "ElementValue" in json_data:
+            value = TypedValue.from_json_data(json_data["ElementValue"])
+        elif "Attribute" in json_data:
+            value = TypedValue.from_json_data(json_data["Attribute"])
+        else:
+            raise TypeError(f"Expected ElementValue or Attribute in {json_data}")
         return AnnotatedTypedValue(
-            value=TypedValue.from_json_data(json_data["ElementValue"]),
+            value=value,
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -1316,30 +1333,37 @@ class Sample:
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Sample":
+        origin = None
+        if "Origin" in json_data:
+            origin = SampleOrigin.from_the_wild(extract_text(json_data["Origin"]))
         return Sample(
             description=SampleDescription.from_json_data(json_data["SampleDescription"])
             if "SampleDescription" in json_data
             else None,
-            origin=SampleOrigin(json_data["Origin"]) if "Origin" in json_data else None,
+            origin=origin,
             ethnicity=json_data.get("Ethnicity"),
             geographic_origin=json_data.get("GeographicOrigin"),
-            tissue=json_data.get("Tissue"),
-            cell_line=json_data.get("CellLine"),
+            tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
+            cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
             species=Species.from_json_data(json_data.get("Species")),
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
-            affected_status=AffectedStatus(json_data["AffectedStatus"])
+            affected_status=AffectedStatus(extract_text(json_data["AffectedStatus"]))
             if "AffectedStatus" in json_data
             else AffectedStatus.NOT_PROVIDED,
-            number_tested=int(json_data["NumberTested"]) if "NumberTested" in json_data else None,
-            number_males=int(json_data["NumberMales"]) if "NumberMales" in json_data else None,
-            number_females=int(json_data["NumberFemales"])
+            number_tested=int(extract_text(json_data["NumberTested"]))
+            if "NumberTested" in json_data
+            else None,
+            number_males=int(extract_text(json_data["NumberMales"]))
+            if "NumberMales" in json_data
+            else None,
+            number_females=int(extract_text(json_data["NumberFemales"]))
             if "NumberFemales" in json_data
             else None,
-            number_chr_tested=int(json_data["NumberChrTested"])
+            number_chr_tested=int(extract_text(json_data["NumberChrTested"]))
             if "NumberChrTested" in json_data
             else None,
-            gender=Gender(json_data["Gender"]) if "Gender" in json_data else None,
+            gender=Gender(extract_text(json_data["Gender"])) if "Gender" in json_data else None,
             family_data=FamilyInfo.from_json_data(json_data.get("FamilyData"))
             if "FamilyData" in json_data
             else None,
@@ -2212,6 +2236,9 @@ class ReferenceClinVarAssertion:
             genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
             if json_data.get("GenotypeSet")
             else None,
+            trait_set=TraitSet.from_json_data(json_data["TraitSet"])
+            if "TraitSet" in json_data
+            else None,
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -2578,11 +2605,8 @@ class ClinVarAssertion:
 
 
 @attrs.frozen(auto_attribs=True)
-class PublicSetType:
-    """Used both for SCV and RCV accessions.
-
-    Represents a ``ClinVarSet`` in the XML file.
-    """
+class ClinVarSet:
+    """A ``<ClinVarSet>`` in the ClinVar public XML file"""
 
     #: The reference clinvar assertion as used in RCV records
     reference_clinvar_assertion: ReferenceClinVarAssertion
@@ -2596,10 +2620,10 @@ class PublicSetType:
     clinvar_assertions: typing.List[ClinVarAssertion] = attrs.field(factory=list)
 
     @classmethod
-    def from_json(cls, json_data: dict) -> "PublicSetType":
+    def from_json_data(cls, json_data: dict) -> "ClinVarSet":
         raw_clinvar_assertions = force_list(json_data["ClinVarAssertion"])
 
-        result = PublicSetType(
+        result = ClinVarSet(
             record_status=RecordStatus(json_data["RecordStatus"]),
             title=json_data.get("Title"),
             replaces=force_list(json_data.get("Replaces", [])),

@@ -199,6 +199,29 @@
     ],
     "id": 5318
   },
+  "trait_set": {
+    "type": "Disease",
+    "traits": [
+      {
+        "type": "Disease",
+        "names": [
+          {
+            "value": {
+              "type": "Preferred",
+              "value": "Bardet-biedl syndrome 2/6, digenic"
+            }
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "MedGen",
+            "id": "C4016908"
+          }
+        ]
+      }
+    ],
+    "id": 19803
+  },
   "date_created": "2013-04-04",
   "date_last_updated": "2022-04-23",
   "id": 63146
