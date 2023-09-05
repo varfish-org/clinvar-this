@@ -1487,3 +1487,427 @@ def test_measure_set_from_json_data(value, snapshot):
     obj = models.MeasureSet.from_json_data(value)
     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
     snapshot.assert_match(json.dumps(value, indent=2), "output")
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        (
+            {
+                "@Type": "CompoundHeterozygote",
+                "MeasureSet": [
+                    {
+                        "@Type": "Variant",
+                        "Measure": {
+                            "@Type": "Variation",
+                            "AttributeSet": {
+                                "Attribute": {"@Type": "HGVS", "#text": "NM_000497.3:c.1024C>T"}
+                            },
+                            "MeasureRelationship": {
+                                "@Type": "variant in gene",
+                                "Symbol": {
+                                    "ElementValue": {"@Type": "Preferred", "#text": "CYP11B1"}
+                                },
+                            },
+                        },
+                    },
+                    {
+                        "@Type": "Variant",
+                        "Measure": {
+                            "@Type": "Variation",
+                            "AttributeSet": {
+                                "Attribute": {"@Type": "HGVS", "#text": "NM_000497.3:c.1012dup"}
+                            },
+                            "MeasureRelationship": {
+                                "@Type": "variant in gene",
+                                "Symbol": {
+                                    "ElementValue": {"@Type": "Preferred", "#text": "CYP11B1"}
+                                },
+                            },
+                        },
+                    },
+                ],
+                "Name": {
+                    "ElementValue": {
+                        "@Type": "Preferred",
+                        "#text": "NM_000497.3:c.[1024C>T];[1012dup]",
+                    }
+                },
+            },
+            {
+                "measures": [
+                    {
+                        "measures": [
+                            {
+                                "measure_relationship": [
+                                    {
+                                        "symbols": [
+                                            {"value": {"type": "Preferred", "value": "CYP11B1"}}
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "Variant",
+                    },
+                    {
+                        "measures": [
+                            {
+                                "measure_relationship": [
+                                    {
+                                        "symbols": [
+                                            {"value": {"type": "Preferred", "value": "CYP11B1"}}
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "Variant",
+                    },
+                ],
+                "names": [
+                    {"value": {"type": "Preferred", "value": "NM_000497.3:c.[1024C>T];[1012dup]"}}
+                ],
+                "type": "CompoundHeterozygote",
+            },
+        )
+    ],
+)
+def test_genotype_set_from_json_data(value, expected):
+    obj = models.GenotypeSet.from_json_data(value)
+    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    assert value == expected
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        (
+            {
+                "@Type": "Disease",
+                "Trait": {
+                    "@Type": "Disease",
+                    "Name": {
+                        "ElementValue": {
+                            "@Type": "Preferred",
+                            "#text": "BARDET-BIEDL SYNDROME 2/6, DIGENIC",
+                        }
+                    },
+                },
+            },
+            {
+                "traits": [
+                    {
+                        "names": [
+                            {
+                                "value": {
+                                    "type": "Preferred",
+                                    "value": "BARDET-BIEDL SYNDROME 2/6, " "DIGENIC",
+                                }
+                            }
+                        ],
+                        "type": "Disease",
+                    }
+                ],
+                "type": "Disease",
+            },
+        )
+    ],
+)
+def test_trait_set_from_json_data(value, expected):
+    obj = models.TraitSet.from_json_data(value)
+    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    assert value == expected
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        {
+            "@ID": "63146",
+            "@DateLastUpdated": "2022-04-23",
+            "@DateCreated": "2013-04-04",
+            "ClinVarAccession": {
+                "@Acc": "RCV000005643",
+                "@DateUpdated": "2022-04-23",
+                "@DateCreated": "2013-04-04",
+                "@Version": "4",
+                "@Type": "RCV",
+            },
+            "RecordStatus": "current",
+            "ClinicalSignificance": {
+                "@DateLastEvaluated": "2001-09-21",
+                "ReviewStatus": "no assertion criteria provided",
+                "Description": "Pathogenic",
+            },
+            "Assertion": {"@Type": "variation to disease"},
+            "ObservedIn": {
+                "Sample": {
+                    "Origin": "germline",
+                    "Species": {"@TaxonomyId": "9606", "#text": "human"},
+                    "AffectedStatus": "not provided",
+                },
+                "Method": {"MethodType": "literature only"},
+                "ObservedData": {
+                    "@ID": "96578166",
+                    "Attribute": {
+                        "@Type": "Description",
+                        "#text": "In a patient carrying 2 different termination codons in the BBS2 gene (606151.0003, 606151.0004), Katsanis et al. (2001) identified a nonsense mutation in the BBS6 gene, a glutamine-to-termination substitution at codon 147.",
+                    },
+                    "Citation": {
+                        "@Type": "general",
+                        "ID": {"@Source": "PubMed", "#text": "11567139"},
+                    },
+                },
+            },
+            "MeasureSet": {
+                "@Type": "Variant",
+                "@ID": "5318",
+                "@Acc": "VCV000005318",
+                "@Version": "1",
+                "Measure": {
+                    "@Type": "single nucleotide variant",
+                    "@ID": "20357",
+                    "Name": [
+                        {
+                            "ElementValue": {
+                                "@Type": "Preferred",
+                                "#text": "NM_170784.3(MKKS):c.442C>T (p.Gln148Ter)",
+                            }
+                        },
+                        {
+                            "ElementValue": {"@Type": "Alternate", "#text": "Q147*"},
+                            "XRef": {
+                                "@Type": "Allelic variant",
+                                "@ID": "604896.0012",
+                                "@DB": "OMIM",
+                            },
+                        },
+                    ],
+                    "CanonicalSPDI": "NC_000020.11:10413072:G:A",
+                    "AttributeSet": [
+                        {
+                            "Attribute": {
+                                "@Accession": "NM_018848",
+                                "@Version": "3",
+                                "@Change": "c.442C>T",
+                                "@Type": "HGVS, coding, RefSeq",
+                                "#text": "NM_018848.3:c.442C>T",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NM_170784",
+                                "@Version": "3",
+                                "@Change": "c.442C>T",
+                                "@Type": "HGVS, coding, RefSeq",
+                                "@MANESelect": "true",
+                                "#text": "NM_170784.3:c.442C>T",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NG_009109",
+                                "@Version": "2",
+                                "@Change": "g.26146C>T",
+                                "@Type": "HGVS, genomic, RefSeqGene",
+                                "#text": "NG_009109.2:g.26146C>T",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NC_000020",
+                                "@Version": "11",
+                                "@Change": "g.10413073G>A",
+                                "@Type": "HGVS, genomic, top level",
+                                "@integerValue": "38",
+                                "#text": "NC_000020.11:g.10413073G>A",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NC_000020",
+                                "@Version": "10",
+                                "@Change": "g.10393721G>A",
+                                "@Type": "HGVS, genomic, top level, previous",
+                                "@integerValue": "37",
+                                "#text": "NC_000020.10:g.10393721G>A",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NP_061336",
+                                "@Version": "1",
+                                "@Change": "p.Gln148Ter",
+                                "@Type": "HGVS, protein, RefSeq",
+                                "#text": "NP_061336.1:p.Gln148Ter",
+                            }
+                        },
+                        {
+                            "Attribute": {
+                                "@Accession": "NP_740754",
+                                "@Version": "1",
+                                "@Change": "p.Gln148Ter",
+                                "@Type": "HGVS, protein, RefSeq",
+                                "#text": "NP_740754.1:p.Gln148Ter",
+                            }
+                        },
+                        {
+                            "Attribute": {"@Type": "MolecularConsequence", "#text": "nonsense"},
+                            "XRef": [
+                                {"@ID": "SO:0001587", "@DB": "Sequence Ontology"},
+                                {"@ID": "NM_018848.3:c.442C>T", "@DB": "RefSeq"},
+                            ],
+                        },
+                        {
+                            "Attribute": {"@Type": "MolecularConsequence", "#text": "nonsense"},
+                            "XRef": [
+                                {"@ID": "SO:0001587", "@DB": "Sequence Ontology"},
+                                {"@ID": "NM_170784.3:c.442C>T", "@DB": "RefSeq"},
+                            ],
+                        },
+                        {"Attribute": {"@Type": "ProteinChange1LetterCode", "#text": "Q148*"}},
+                        {"Attribute": {"@Type": "ProteinChange3LetterCode", "#text": "GLN147TER"}},
+                    ],
+                    "CytogeneticLocation": "20p12.2",
+                    "SequenceLocation": [
+                        {
+                            "@Assembly": "GRCh38",
+                            "@AssemblyAccessionVersion": "GCF_000001405.38",
+                            "@AssemblyStatus": "current",
+                            "@Chr": "20",
+                            "@Accession": "NC_000020.11",
+                            "@start": "10413073",
+                            "@stop": "10413073",
+                            "@display_start": "10413073",
+                            "@display_stop": "10413073",
+                            "@variantLength": "1",
+                            "@positionVCF": "10413073",
+                            "@referenceAlleleVCF": "G",
+                            "@alternateAlleleVCF": "A",
+                        },
+                        {
+                            "@Assembly": "GRCh37",
+                            "@AssemblyAccessionVersion": "GCF_000001405.25",
+                            "@AssemblyStatus": "previous",
+                            "@Chr": "20",
+                            "@Accession": "NC_000020.10",
+                            "@start": "10393721",
+                            "@stop": "10393721",
+                            "@display_start": "10393721",
+                            "@display_stop": "10393721",
+                            "@variantLength": "1",
+                            "@positionVCF": "10393721",
+                            "@referenceAlleleVCF": "G",
+                            "@alternateAlleleVCF": "A",
+                        },
+                    ],
+                    "MeasureRelationship": {
+                        "@Type": "within single gene",
+                        "Name": {
+                            "ElementValue": {
+                                "@Type": "Preferred",
+                                "#text": "MKKS centrosomal shuttling protein",
+                            }
+                        },
+                        "Symbol": {"ElementValue": {"@Type": "Preferred", "#text": "MKKS"}},
+                        "SequenceLocation": [
+                            {
+                                "@Assembly": "GRCh38",
+                                "@AssemblyAccessionVersion": "GCF_000001405.38",
+                                "@AssemblyStatus": "current",
+                                "@Chr": "20",
+                                "@Accession": "NC_000020.11",
+                                "@start": "10401009",
+                                "@stop": "10434222",
+                                "@display_start": "10401009",
+                                "@display_stop": "10434222",
+                                "@Strand": "-",
+                            },
+                            {
+                                "@Assembly": "GRCh37",
+                                "@AssemblyAccessionVersion": "GCF_000001405.25",
+                                "@AssemblyStatus": "previous",
+                                "@Chr": "20",
+                                "@Accession": "NC_000020.10",
+                                "@start": "10385427",
+                                "@stop": "10414886",
+                                "@display_start": "10385427",
+                                "@display_stop": "10414886",
+                                "@variantLength": "29460",
+                                "@Strand": "-",
+                            },
+                        ],
+                        "XRef": [
+                            {"@ID": "8195", "@DB": "Gene"},
+                            {"@Type": "MIM", "@ID": "604896", "@DB": "OMIM"},
+                            {"@ID": "HGNC:7108", "@DB": "HGNC"},
+                        ],
+                    },
+                    "XRef": [
+                        {"@Type": "Allelic variant", "@ID": "604896.0012", "@DB": "OMIM"},
+                        {"@Type": "rs", "@ID": "137853154", "@DB": "dbSNP"},
+                    ],
+                },
+                "Name": {
+                    "ElementValue": {
+                        "@Type": "Preferred",
+                        "#text": "NM_170784.3(MKKS):c.442C>T (p.Gln148Ter)",
+                    }
+                },
+                "XRef": {"@ID": "CA117400", "@DB": "ClinGen"},
+            },
+            "TraitSet": {
+                "@Type": "Disease",
+                "@ID": "19803",
+                "Trait": {
+                    "@ID": "32093",
+                    "@Type": "Disease",
+                    "Name": {
+                        "ElementValue": {
+                            "@Type": "Preferred",
+                            "#text": "Bardet-biedl syndrome 2/6, digenic",
+                        }
+                    },
+                    "XRef": {"@ID": "C4016908", "@DB": "MedGen"},
+                },
+            },
+        }
+    ],
+)
+def test_reference_clinvar_assertion_from_json_data(value, snapshot):
+    obj = models.ReferenceClinVarAssertion.from_json_data(value)
+    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    snapshot.assert_match(json.dumps(value, indent=2, default=conversion.json_default), "output")
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        (
+            {
+                "@localKey": "604896.0012_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
+                "@submitter": "OMIM",
+                "@submitterDate": "2017-12-13",
+                "@title": "MKKS, GLN147TER_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
+            },
+            {
+                "local_key": "604896.0012_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
+                "submitter": "OMIM",
+                "submitter_date": datetime.date(2017, 12, 13),
+                "title": "MKKS, GLN147TER_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
+            },
+        ),
+    ],
+)
+def test_clinvar_submission_id_from_json_data(value, expected):
+    obj = models.ClinVarSubmissionId.from_json_data(value)
+    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    assert value == expected
+
+
+# @pytest.mark.parametrize("value,expected", [({}, {})])
+# def test_clinvar_assertion_accession_from_json_data(value, expected):
+#     obj = models.ClinVarAssertionAccession.from_json_data(value)
+#     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+#     assert value == expected

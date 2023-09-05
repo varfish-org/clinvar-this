@@ -1482,7 +1482,7 @@ class MeasureSetAttribute:
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureSetAttribute":
         attribute = json_data["Attribute"]
-        return cls(
+        return MeasureSetAttribute(
             type=MeasureSetAttributeType(attribute["@Type"]),
             value=attribute["#text"],
             change=attribute.get("@Change"),
@@ -1941,15 +1941,25 @@ class MeasureSet:
     type: MeasureSetType
     #: Accession of the measure
     acc: str
+    #: Version of the measure
     version: typing.Optional[int] = None
+    #: List of measures
     measures: typing.List[Measure] = attrs.field(factory=list)
+    #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
     attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: Number of chromosomes
     number_of_chromosomes: typing.Optional[int] = None
+    #: Optional identifier
     id: typing.Optional[int] = None
 
     @classmethod
@@ -1995,30 +2005,46 @@ class MeasureSet:
 
 @enum.unique
 class GenotypeSetType(enum.Enum):
+    """Type for a genotype set"""
+
     COMPOUND_HETEROZYGOTE = "CompoundHeterozygote"
     DIPLOTYPE = "Diplotype"
 
 
 @attrs.frozen(auto_attribs=True)
 class GenotypeSet:
+    """Genotype set description (compound heterozygote or diplotype)"""
+
+    #: Type of the genotype set
     type: GenotypeSetType
+    #: List of measures
     measures: typing.List[MeasureSet] = attrs.field(factory=list)
+    #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
     attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: Optional identifier
     id: typing.Optional[int] = None
+    #: Optional accession
     acc: typing.Optional[str] = None
+    #: Optional version
     version: typing.Optional[str] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "GenotypeSet":
-        return cls(
+        return GenotypeSet(
             type=GenotypeSetType(json_data["@Type"]),
             measures=[
-                MeasureSet.from_json_data(raw_measure) for raw_measure in force_list(json_data)
+                MeasureSet.from_json_data(raw_measure)
+                for raw_measure in force_list(json_data.get("MeasureSet", []))
             ],
             names=[
                 AnnotatedTypedValue.from_json_data(raw_name)
@@ -2050,47 +2076,10 @@ class GenotypeSet:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class TraitSetTypeAttribute:
-    type: str
-    value: str
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "TraitSetTypeAttribute":
-        return cls(
-            type=json_data["@Type"],
-            value=json_data["#text"],
-        )
-
-
-@attrs.frozen(auto_attribs=True)
-class TraitSetTypeAttributeSet:
-    attribute: TraitSetTypeAttribute
-    citations: typing.List[Citation] = attrs.field(factory=list)
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
-    comments: typing.List[Comment] = attrs.field(factory=list)
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "TraitSetTypeAttributeSet":
-        return cls(
-            attribute=TraitSetTypeAttribute.from_json_data(json_data["Attribute"]),
-            citations=[
-                Citation.from_json_data(raw_citation)
-                for raw_citation in force_list(json_data.get("Citation", []))
-            ],
-            xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
-            ],
-            comments=[
-                Comment.from_json_data(raw_comment)
-                for raw_comment in force_list(json_data.get("Comment", []))
-            ],
-        )
-
-
 @enum.unique
-class TraitSetTypeType(enum.Enum):
+class TraitSetType(enum.Enum):
+    """Type of a trait set"""
+
     DISEASE = "Disease"
     DRUG_RESPONSE = "DrugResponse"
     FINDING = "Finding"
@@ -2099,23 +2088,34 @@ class TraitSetTypeType(enum.Enum):
 
 
 @attrs.frozen(auto_attribs=True)
-class TraitSetType:
-    type: TraitSetTypeType
-    traits: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+class TraitSet:
+    """Description of a trait set"""
+
+    #: Type of the trait set
+    type: TraitSetType
+    #: List of traits
+    traits: typing.List[Trait] = attrs.field(factory=list)
+    #: Optional identifier
     id: typing.Optional[int] = None
+    #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    attributes: typing.List[TraitSetTypeAttributeSet] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
     xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "TraitSetType":
+    def from_json_data(cls, json_data: dict) -> "TraitSet":
         return cls(
-            type=TraitSetTypeType(json_data["@Type"]),
+            type=TraitSetType(json_data["@Type"]),
             traits=[
-                AnnotatedTypedValue.from_json_data(raw_trait)
+                Trait.from_json_data(raw_trait)
                 for raw_trait in force_list(json_data.get("Trait", []))
             ],
             id=int(json_data["@ID"]) if json_data.get("@ID") else None,
@@ -2128,7 +2128,7 @@ class TraitSetType:
                 for raw_symbol in force_list(json_data.get("Symbol", []))
             ],
             attributes=[
-                TraitSetTypeAttributeSet.from_json_data(raw_attribute)
+                AnnotatedTypedValue.from_json_data(raw_attribute)
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             citations=[
@@ -2148,6 +2148,8 @@ class TraitSetType:
 
 @attrs.frozen(auto_attribs=True)
 class ReferenceClinVarAssertion:
+    """The reference ClinVar assertion"""
+
     #: Accesion of the RCV record.
     clinvar_accession: ReferenceClinVarAccession
     #: Status of the record.
@@ -2166,17 +2168,24 @@ class ReferenceClinVarAssertion:
     measure_set: typing.Optional[MeasureSet] = None
     #: Genotyping information, mutually exlusive with ``measure_set``.
     genotype_set: typing.Optional[GenotypeSet] = None
-    trait_set: typing.Optional[TraitSetType] = None
+    #: List of traits
+    trait_set: typing.Optional[TraitSet] = None
+    #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: Date created
     date_created: typing.Optional[datetime.date] = None
+    #: Date last updated
     date_last_updated: typing.Optional[datetime.date] = None
+    #: Submission date
     submission_date: typing.Optional[datetime.date] = None
+    #: Optional identifier
     id: typing.Optional[int] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertion":
-        return cls(
+        return ReferenceClinVarAssertion(
             clinvar_accession=ReferenceClinVarAccession.from_json_data(
                 json_data["ClinVarAccession"]
             ),
@@ -2184,7 +2193,7 @@ class ReferenceClinVarAssertion:
             clinical_significance=ClinicalSignificanceRCV.from_json_data(
                 json_data["ClinicalSignificance"]
             ),
-            assertion=AssertionType(json_data["Assertion"]),
+            assertion=AssertionType(json_data["Assertion"]["@Type"]),
             external_ids=[
                 XrefType.from_json_data(raw_external_id)
                 for raw_external_id in force_list(json_data.get("ExternalID", []))
@@ -2225,7 +2234,7 @@ class ReferenceClinVarAssertion:
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinVarSubmissionID:
+class ClinVarSubmissionId:
     """Corresponds to ``ClinVarSubmissionID`` in XML file"""
 
     #: Of primary use to submitters, to facilitate identification of records corresponding to
@@ -2244,8 +2253,8 @@ class ClinVarSubmissionID:
     local_key_is_submitted: typing.Optional[bool] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinVarSubmissionID":
-        return cls(
+    def from_json_data(cls, json_data: dict) -> "ClinVarSubmissionId":
+        return ClinVarSubmissionId(
             local_key=json_data["@localKey"],
             submitter=json_data.get("@submitter"),
             title=json_data.get("@title"),
@@ -2472,7 +2481,7 @@ class ClinVarAssertion:
     #: The submission's ID.
     id: int
     #: More detaield submission information.
-    clinvar_submission_id: ClinVarSubmissionID
+    clinvar_submission_id: ClinVarSubmissionId
     #: The ClinVar accession number.
     clinvar_accession: ClinVarAssertionAccession
     #: The assertion type.
@@ -2512,7 +2521,7 @@ class ClinVarAssertion:
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertion":
         return ClinVarAssertion(
             id=int(json_data["@ID"]),
-            clinvar_submission_id=ClinVarSubmissionID.from_json_data(
+            clinvar_submission_id=ClinVarSubmissionId.from_json_data(
                 json_data["ClinVarSubmissionID"]
             ),
             clinvar_accession=ClinVarAssertionAccession.from_json_data(
