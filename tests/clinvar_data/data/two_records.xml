@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet Dated="2023-07-30" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
   <ClinVarSet ID="92147970">
     <RecordStatus>current</RecordStatus>
     <Title>NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys) AND DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</Title>
     <ReferenceClinVarAssertion ID="57512" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
-      <ClinVarAccession Acc="RCV000000009" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="4" Type="RCV" />
+      <ClinVarAccession Acc="RCV000000009" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="4" Type="RCV"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2001-06-01">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
+      <Assertion Type="variation to disease"/>
       <ObservedIn>
         <Sample>
           <Origin>germline</Origin>
@@ -76,7 +76,7 @@
             <Attribute Accession="NC_000001" Version="10" Change="g.159175494C&gt;T" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000001.10:g.159175494C&gt;T</Attribute>
           </AttributeSet>
           <AttributeSet>
-            <Attribute Type="HGVS, protein" />
+            <Attribute Type="HGVS, protein"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Accession="LRG_801p1" Change="p.Arg89Cys" Type="HGVS, protein">LRG_801p1:p.Arg89Cys</Attribute>
@@ -92,13 +92,13 @@
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology" />
-            <XRef ID="NM_001122951.3:c.271C&gt;T" DB="RefSeq" />
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_001122951.3:c.271C&gt;T" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology" />
-            <XRef ID="NM_002036.4:c.265C&gt;T" DB="RefSeq" />
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_002036.4:c.265C&gt;T" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="ProteinChange1LetterCode">R89C</Attribute>
@@ -110,17 +110,17 @@
             <Attribute Type="ProteinChange3LetterCode">ARG89CYS</Attribute>
           </AttributeSet>
           <AlleleFrequencyList>
-            <AlleleFrequency Value="0.01099" Source="NHLBI Exome Sequencing Project (ESP) Exome Variant Server" />
-            <AlleleFrequency Value="0.00459" Source="1000 Genomes Project" />
-            <AlleleFrequency Value="0.01072" Source="Exome Aggregation Consortium (ExAC)" />
-            <AlleleFrequency Value="0.01089" Source="The Genome Aggregation Database (gnomAD)" />
-            <AlleleFrequency Value="0.01124" Source="The Genome Aggregation Database (gnomAD), exomes" />
-            <AlleleFrequency Value="0.00936" Source="Trans-Omics for Precision Medicine (TOPMed)" />
+            <AlleleFrequency Value="0.01099" Source="NHLBI Exome Sequencing Project (ESP) Exome Variant Server"/>
+            <AlleleFrequency Value="0.00459" Source="1000 Genomes Project"/>
+            <AlleleFrequency Value="0.01072" Source="Exome Aggregation Consortium (ExAC)"/>
+            <AlleleFrequency Value="0.01089" Source="The Genome Aggregation Database (gnomAD)"/>
+            <AlleleFrequency Value="0.01124" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+            <AlleleFrequency Value="0.00936" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
           </AlleleFrequencyList>
-          <GlobalMinorAlleleFrequency Value="0.00459" Source="1000 Genomes Project" MinorAllele="T" />
+          <GlobalMinorAlleleFrequency Value="0.00459" Source="1000 Genomes Project" MinorAllele="T"/>
           <CytogeneticLocation>1q23.2</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205704" stop="159205704" display_start="159205704" display_stop="159205704" variantLength="1" positionVCF="159205704" referenceAlleleVCF="C" alternateAlleleVCF="T" />
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175494" stop="159175494" display_start="159175494" display_stop="159175494" variantLength="1" positionVCF="159175494" referenceAlleleVCF="C" alternateAlleleVCF="T" />
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205704" stop="159205704" display_start="159205704" display_stop="159205704" variantLength="1" positionVCF="159205704" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175494" stop="159175494" display_start="159175494" display_stop="159175494" variantLength="1" positionVCF="159175494" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
           <MeasureRelationship Type="within single gene">
             <Name>
               <ElementValue Type="Preferred">atypical chemokine receptor 1 (Duffy blood group)</ElementValue>
@@ -128,40 +128,40 @@
             <Symbol>
               <ElementValue Type="Preferred">ACKR1</ElementValue>
             </Symbol>
-            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+" />
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" variantLength="2488" Strand="+" />
-            <XRef ID="2532" DB="Gene" />
-            <XRef Type="MIM" ID="613665" DB="OMIM" />
-            <XRef ID="HGNC:4035" DB="HGNC" />
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" variantLength="2488" Strand="+"/>
+            <XRef ID="2532" DB="Gene"/>
+            <XRef Type="MIM" ID="613665" DB="OMIM"/>
+            <XRef ID="HGNC:4035" DB="HGNC"/>
           </MeasureRelationship>
-          <XRef ID="Q16570#VAR_015068" DB="UniProtKB" />
-          <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM" />
-          <XRef Type="rs" ID="34599082" DB="dbSNP" />
+          <XRef ID="Q16570#VAR_015068" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
+          <XRef Type="rs" ID="34599082" DB="dbSNP"/>
         </Measure>
         <Name>
           <ElementValue Type="Preferred">NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys)</ElementValue>
         </Name>
-        <XRef ID="CA113789" DB="ClinGen" />
+        <XRef ID="CA113789" DB="ClinGen"/>
       </MeasureSet>
       <TraitSet Type="Disease" ID="6213">
         <Trait ID="15693" Type="BloodGroup">
           <Name>
             <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ElementValue>
-            <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM" />
+            <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
           </Name>
         </Trait>
       </TraitSet>
     </ReferenceClinVarAssertion>
     <ClinVarAssertion ID="20152">
-      <ClinVarSubmissionID localKey="613665.0003_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" submitter="OMIM" submitterDate="2017-12-11" title="ACKR1, ARG89CYS_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" />
-      <ClinVarAccession Acc="SCV000020152" DateCreated="2013-04-04" DateUpdated="2017-12-15" Version="3" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary" />
+      <ClinVarSubmissionID localKey="613665.0003_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" submitter="OMIM" submitterDate="2017-12-11" title="ACKR1, ARG89CYS_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE"/>
+      <ClinVarAccession Acc="SCV000020152" DateCreated="2013-04-04" DateUpdated="2017-12-15" Version="3" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2001-06-01">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
-      <ExternalID DB="OMIM" ID="613665.0003" Type="Allelic variant" />
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="613665.0003" Type="Allelic variant"/>
       <ObservedIn>
         <Sample>
           <Origin>germline</Origin>
@@ -197,8 +197,8 @@
           <Citation>
             <ID Source="PubMed">11369664</ID>
           </Citation>
-          <XRef DB="OMIM" ID="601373" Type="MIM" />
-          <XRef DB="OMIM" ID="609423" Type="MIM" />
+          <XRef DB="OMIM" ID="601373" Type="MIM"/>
+          <XRef DB="OMIM" ID="609423" Type="MIM"/>
         </ObservedData>
       </ObservedIn>
       <MeasureSet Type="Variant">
@@ -214,7 +214,7 @@
               <ElementValue Type="Preferred">ACKR1</ElementValue>
             </Symbol>
           </MeasureRelationship>
-          <XRef DB="OMIM" ID="613665.0003" Type="Allelic variant" />
+          <XRef DB="OMIM" ID="613665.0003" Type="Allelic variant"/>
         </Measure>
       </MeasureSet>
       <TraitSet Type="Disease">
@@ -230,13 +230,13 @@
     <RecordStatus>current</RecordStatus>
     <Title>NM_002036.4(ACKR1):c.286_299del (p.Trp96fs) AND DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE</Title>
     <ReferenceClinVarAssertion ID="57513" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
-      <ClinVarAccession Acc="RCV000000010" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="3" Type="RCV" />
+      <ClinVarAccession Acc="RCV000000010" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="3" Type="RCV"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2000-04-01">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
+      <Assertion Type="variation to disease"/>
       <ObservedIn>
         <Sample>
           <Origin>germline</Origin>
@@ -272,7 +272,7 @@
           </Name>
           <Name>
             <ElementValue Type="Alternate">ACKR1, 14-BP DEL, NT286</ElementValue>
-            <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM" />
+            <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM"/>
           </Name>
           <CanonicalSPDI>NC_000001.11:159205718:CCTGGCTGGCCTGTCCTGGC:CCTGGC</CanonicalSPDI>
           <AttributeSet>
@@ -300,7 +300,7 @@
             <Attribute Accession="NM_002036" Version="3" Change="c.286_299del" Type="HGVS, previous">NM_002036.3:c.286_299del</Attribute>
           </AttributeSet>
           <AttributeSet>
-            <Attribute Type="HGVS, protein" />
+            <Attribute Type="HGVS, protein"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Accession="LRG_801p1" Change="p.Trp96fs" Type="HGVS, protein">LRG_801p1:p.Trp96fs</Attribute>
@@ -313,13 +313,13 @@
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology" />
-            <XRef ID="NM_001122951.3:c.292_305del" DB="RefSeq" />
+            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
+            <XRef ID="NM_001122951.3:c.292_305del" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology" />
-            <XRef ID="NM_002036.4:c.286_299del" DB="RefSeq" />
+            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
+            <XRef ID="NM_002036.4:c.286_299del" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="ProteinChange1LetterCode">W96fs</Attribute>
@@ -328,8 +328,8 @@
             <Attribute Type="ProteinChange1LetterCode">W98fs</Attribute>
           </AttributeSet>
           <CytogeneticLocation>1q23.2</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205719" stop="159205732" display_start="159205719" display_stop="159205732" variantLength="14" positionVCF="159205718" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C" />
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175509" stop="159175522" display_start="159175509" display_stop="159175522" variantLength="14" positionVCF="159175508" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C" />
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205719" stop="159205732" display_start="159205719" display_stop="159205732" variantLength="14" positionVCF="159205718" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175509" stop="159175522" display_start="159175509" display_stop="159175522" variantLength="14" positionVCF="159175508" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C"/>
           <MeasureRelationship Type="within single gene">
             <Name>
               <ElementValue Type="Preferred">atypical chemokine receptor 1 (Duffy blood group)</ElementValue>
@@ -337,26 +337,26 @@
             <Symbol>
               <ElementValue Type="Preferred">ACKR1</ElementValue>
             </Symbol>
-            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+" />
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" variantLength="2488" Strand="+" />
-            <XRef ID="2532" DB="Gene" />
-            <XRef Type="MIM" ID="613665" DB="OMIM" />
-            <XRef ID="HGNC:4035" DB="HGNC" />
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" variantLength="2488" Strand="+"/>
+            <XRef ID="2532" DB="Gene"/>
+            <XRef Type="MIM" ID="613665" DB="OMIM"/>
+            <XRef ID="HGNC:4035" DB="HGNC"/>
           </MeasureRelationship>
-          <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM" />
-          <XRef Type="rs" ID="587776507" DB="dbSNP" />
+          <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM"/>
+          <XRef Type="rs" ID="587776507" DB="dbSNP"/>
         </Measure>
         <Name>
           <ElementValue Type="Preferred">NM_002036.4(ACKR1):c.286_299del (p.Trp96fs)</ElementValue>
         </Name>
-        <XRef ID="CA113791" DB="ClinGen" />
+        <XRef ID="CA113791" DB="ClinGen"/>
       </MeasureSet>
       <TraitSet Type="Disease" ID="6212">
         <Trait ID="15692" Type="BloodGroup">
           <Name>
             <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE</ElementValue>
-            <XRef Type="Allelic variant" ID="613665.0002" DB="OMIM" />
-            <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM" />
+            <XRef Type="Allelic variant" ID="613665.0002" DB="OMIM"/>
+            <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM"/>
           </Name>
           <Name>
             <ElementValue Type="Alternate">DUFFY NULL; Fy(a-b-)</ElementValue>
@@ -365,15 +365,15 @@
       </TraitSet>
     </ReferenceClinVarAssertion>
     <ClinVarAssertion ID="20153">
-      <ClinVarSubmissionID localKey="613665.0004_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" submitter="OMIM" submitterDate="2015-08-10" title="ACKR1, 14-BP DEL, NT286_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" />
-      <ClinVarAccession Acc="SCV000020153" DateCreated="2013-04-04" DateUpdated="2015-08-12" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary" />
+      <ClinVarSubmissionID localKey="613665.0004_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" submitter="OMIM" submitterDate="2015-08-10" title="ACKR1, 14-BP DEL, NT286_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE"/>
+      <ClinVarAccession Acc="SCV000020153" DateCreated="2013-04-04" DateUpdated="2015-08-12" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2000-04-01">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
-      <ExternalID DB="OMIM" ID="613665.0004" Type="Allelic variant" />
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="613665.0004" Type="Allelic variant"/>
       <ObservedIn>
         <Sample>
           <Origin>germline</Origin>
@@ -415,7 +415,7 @@
               <ElementValue Type="Preferred">ACKR1</ElementValue>
             </Symbol>
           </MeasureRelationship>
-          <XRef DB="OMIM" ID="613665.0004" Type="Allelic variant" />
+          <XRef DB="OMIM" ID="613665.0004" Type="Allelic variant"/>
         </Measure>
       </MeasureSet>
       <TraitSet Type="Disease">

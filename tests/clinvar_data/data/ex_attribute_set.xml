@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet Dated="2023-07-30" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
   <ClinVarSet ID="92160111">
     <RecordStatus>current</RecordStatus>
     <Title>NM_000128.4(F11):c.1782C&gt;A (p.Ser594Arg) AND Hereditary factor XI deficiency disease</Title>
     <ReferenceClinVarAssertion ID="70178" DateLastUpdated="2022-04-23" DateCreated="2013-04-04">
-      <ClinVarAccession Acc="RCV000012675" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="19" Type="RCV" />
+      <ClinVarAccession Acc="RCV000012675" DateUpdated="2022-04-23" DateCreated="2013-04-04" Version="19" Type="RCV"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2019-02-01">
         <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
+      <Assertion Type="variation to disease"/>
       <ObservedIn>
         <Sample>
           <Origin>unknown</Origin>
@@ -23,7 +23,7 @@
           <MethodType>research</MethodType>
         </Method>
         <ObservedData ID="97096078">
-          <Attribute integerValue="1" Type="VariantAlleles" />
+          <Attribute integerValue="1" Type="VariantAlleles"/>
         </ObservedData>
         <ObservedData ID="97096078">
           <Attribute Type="SampleLocalID">TGP0217</Attribute>
@@ -52,11 +52,11 @@
           </Name>
           <Name>
             <ElementValue Type="Alternate">F11, SER576ARG</ElementValue>
-            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM" />
+            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
           </Name>
           <Name>
             <ElementValue Type="Alternate">S576R</ElementValue>
-            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM" />
+            <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
           </Name>
           <CanonicalSPDI>NC_000004.12:186288517:C:A</CanonicalSPDI>
           <AttributeSet>
@@ -84,7 +84,7 @@
             <Attribute Accession="NM_000128" Version="3" Change="c.1782C&gt;A" Type="HGVS, previous">NM_000128.3:c.1782C&gt;A</Attribute>
           </AttributeSet>
           <AttributeSet>
-            <Attribute Type="HGVS, protein" />
+            <Attribute Type="HGVS, protein"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Accession="LRG_583p1" Change="p.Ser594Arg" Type="HGVS, protein">LRG_583p1:p.Ser594Arg</Attribute>
@@ -100,13 +100,13 @@
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology" />
-            <XRef ID="NM_000128.4:c.1782C&gt;A" DB="RefSeq" />
+            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
+            <XRef ID="NM_000128.4:c.1782C&gt;A" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="MolecularConsequence">non-coding transcript variant</Attribute>
-            <XRef ID="SO:0001619" DB="Sequence Ontology" />
-            <XRef ID="NR_033900.1:n.976G&gt;T" DB="RefSeq" />
+            <XRef ID="SO:0001619" DB="Sequence Ontology"/>
+            <XRef ID="NR_033900.1:n.976G&gt;T" DB="RefSeq"/>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="ProteinChange1LetterCode">S594R</Attribute>
@@ -115,8 +115,8 @@
             <Attribute Type="ProteinChange3LetterCode">SER576ARG</Attribute>
           </AttributeSet>
           <CytogeneticLocation>4q35.2</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186288518" stop="186288518" display_start="186288518" display_stop="186288518" variantLength="1" positionVCF="186288518" referenceAlleleVCF="C" alternateAlleleVCF="A" />
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187209672" stop="187209672" display_start="187209672" display_stop="187209672" variantLength="1" positionVCF="187209672" referenceAlleleVCF="C" alternateAlleleVCF="A" />
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186288518" stop="186288518" display_start="186288518" display_stop="186288518" variantLength="1" positionVCF="186288518" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187209672" stop="187209672" display_start="187209672" display_stop="187209672" variantLength="1" positionVCF="187209672" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
           <MeasureRelationship Type="within multiple genes by overlap">
             <Name>
               <ElementValue Type="Preferred">F11 antisense RNA 1</ElementValue>
@@ -124,9 +124,9 @@
             <Symbol>
               <ElementValue Type="Preferred">F11-AS1</ElementValue>
             </Symbol>
-            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186286098" stop="186501058" display_start="186286098" display_stop="186501058" Strand="-" />
-            <XRef ID="285441" DB="Gene" />
-            <XRef ID="HGNC:27725" DB="HGNC" />
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186286098" stop="186501058" display_start="186286098" display_stop="186501058" Strand="-"/>
+            <XRef ID="285441" DB="Gene"/>
+            <XRef ID="HGNC:27725" DB="HGNC"/>
           </MeasureRelationship>
           <MeasureRelationship Type="within multiple genes by overlap">
             <Name>
@@ -135,30 +135,30 @@
             <Symbol>
               <ElementValue Type="Preferred">F11</ElementValue>
             </Symbol>
-            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186266189" stop="186289681" display_start="186266189" display_stop="186289681" Strand="+" />
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187187117" stop="187210834" display_start="187187117" display_stop="187210834" variantLength="23718" Strand="+" />
-            <XRef ID="2160" DB="Gene" />
-            <XRef Type="MIM" ID="264900" DB="OMIM" />
-            <XRef ID="HGNC:3529" DB="HGNC" />
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="186266189" stop="186289681" display_start="186266189" display_stop="186289681" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="187187117" stop="187210834" display_start="187187117" display_stop="187210834" variantLength="23718" Strand="+"/>
+            <XRef ID="2160" DB="Gene"/>
+            <XRef Type="MIM" ID="264900" DB="OMIM"/>
+            <XRef ID="HGNC:3529" DB="HGNC"/>
           </MeasureRelationship>
           <Citation Type="general">
             <ID Source="PubMed">31064749</ID>
           </Citation>
-          <XRef ID="P03951#VAR_012096" DB="UniProtKB" />
-          <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM" />
-          <XRef Type="rs" ID="28934609" DB="dbSNP" />
+          <XRef ID="P03951#VAR_012096" DB="UniProtKB"/>
+          <XRef Type="Allelic variant" ID="264900.0011" DB="OMIM"/>
+          <XRef Type="rs" ID="28934609" DB="dbSNP"/>
         </Measure>
         <Name>
           <ElementValue Type="Preferred">NM_000128.4(F11):c.1782C&gt;A (p.Ser594Arg)</ElementValue>
         </Name>
-        <XRef ID="CA121761" DB="ClinGen" />
+        <XRef ID="CA121761" DB="ClinGen"/>
       </MeasureSet>
       <TraitSet Type="Disease" ID="3228">
         <Trait ID="1269" Type="Disease">
           <Name>
             <ElementValue Type="Preferred">Hereditary factor XI deficiency disease</ElementValue>
-            <XRef ID="Hereditary+factor+XI+deficiency+disease/8518" DB="Genetic Alliance" />
-            <XRef ID="49762007" DB="SNOMED CT" />
+            <XRef ID="Hereditary+factor+XI+deficiency+disease/8518" DB="Genetic Alliance"/>
+            <XRef ID="49762007" DB="SNOMED CT"/>
           </Name>
           <Name>
             <ElementValue Type="Alternate">Plasma thromboplastin antecedent deficiency</ElementValue>
@@ -171,26 +171,26 @@
           </Name>
           <Name>
             <ElementValue Type="Alternate">Congenital factor XI deficiency</ElementValue>
-            <XRef ID="MONDO:0012897" DB="MONDO" />
+            <XRef ID="MONDO:0012897" DB="MONDO"/>
           </Name>
-          <XRef ID="MONDO:0012897" DB="MONDO" />
-          <XRef ID="D005173" DB="MeSH" />
-          <XRef ID="C0015523" DB="MedGen" />
-          <XRef ID="329" DB="Orphanet" />
-          <XRef Type="MIM" ID="612416" DB="OMIM" />
+          <XRef ID="MONDO:0012897" DB="MONDO"/>
+          <XRef ID="D005173" DB="MeSH"/>
+          <XRef ID="C0015523" DB="MedGen"/>
+          <XRef ID="329" DB="Orphanet"/>
+          <XRef Type="MIM" ID="612416" DB="OMIM"/>
         </Trait>
       </TraitSet>
     </ReferenceClinVarAssertion>
     <ClinVarAssertion ID="32910">
-      <ClinVarSubmissionID localKey="264900.0011_FACTOR XI DEFICIENCY" submitter="OMIM" submitterDate="2016-09-19" title="F11, SER576ARG_FACTOR XI DEFICIENCY" />
-      <ClinVarAccession Acc="SCV000032910" DateCreated="2013-04-04" DateUpdated="2015-10-11" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary" />
+      <ClinVarSubmissionID localKey="264900.0011_FACTOR XI DEFICIENCY" submitter="OMIM" submitterDate="2016-09-19" title="F11, SER576ARG_FACTOR XI DEFICIENCY"/>
+      <ClinVarAccession Acc="SCV000032910" DateCreated="2013-04-04" DateUpdated="2015-10-11" Version="2" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="1999-12-01">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
-      <ExternalID DB="OMIM" ID="264900.0011" Type="Allelic variant" />
+      <Assertion Type="variation to disease"/>
+      <ExternalID DB="OMIM" ID="264900.0011" Type="Allelic variant"/>
       <ObservedIn>
         <Sample>
           <Origin>germline</Origin>
@@ -205,7 +205,7 @@
           <Citation>
             <ID Source="PubMed">10606881</ID>
           </Citation>
-          <XRef DB="OMIM" ID="612416" Type="MIM" />
+          <XRef DB="OMIM" ID="612416" Type="MIM"/>
         </ObservedData>
       </ObservedIn>
       <MeasureSet Type="Variant">
@@ -221,7 +221,7 @@
               <ElementValue Type="Preferred">F11</ElementValue>
             </Symbol>
           </MeasureRelationship>
-          <XRef DB="OMIM" ID="264900.0011" Type="Allelic variant" />
+          <XRef DB="OMIM" ID="264900.0011" Type="Allelic variant"/>
         </Measure>
       </MeasureSet>
       <TraitSet Type="Disease">
@@ -233,8 +233,8 @@
       </TraitSet>
     </ClinVarAssertion>
     <ClinVarAssertion ID="1769249" SubmissionName="ThromboGenomics">
-      <ClinVarSubmissionID localKey="c.1782C&gt;A_612416" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="NIHR Bioresource Rare Diseases, University of Cambridge" submitterDate="2019-03-28" />
-      <ClinVarAccession Acc="SCV000899559" DateCreated="2019-09-29" DateUpdated="2019-09-29" Version="1" Type="SCV" OrgID="505998" OrganizationCategory="consortium" OrgType="primary" />
+      <ClinVarSubmissionID localKey="c.1782C&gt;A_612416" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="NIHR Bioresource Rare Diseases, University of Cambridge" submitterDate="2019-03-28"/>
+      <ClinVarAccession Acc="SCV000899559" DateCreated="2019-09-29" DateUpdated="2019-09-29" Version="1" Type="SCV" OrgID="505998" OrganizationCategory="consortium" OrgType="primary"/>
       <RecordStatus>current</RecordStatus>
       <ClinicalSignificance DateLastEvaluated="2019-02-01">
         <ReviewStatus>criteria provided, single submitter</ReviewStatus>
@@ -243,7 +243,7 @@
           <ID Source="PubMed">31064749</ID>
         </Citation>
       </ClinicalSignificance>
-      <Assertion Type="variation to disease" />
+      <Assertion Type="variation to disease"/>
       <AttributeSet>
         <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
         <Citation>
@@ -264,7 +264,7 @@
           <MethodType>research</MethodType>
         </Method>
         <ObservedData>
-          <Attribute Type="SingleHeterozygote" integerValue="1" />
+          <Attribute Type="SingleHeterozygote" integerValue="1"/>
         </ObservedData>
         <ObservedData>
           <Attribute Type="SampleLocalID">TGP0217</Attribute>
@@ -284,7 +284,7 @@
       </MeasureSet>
       <TraitSet Type="Disease">
         <Trait Type="Disease">
-          <XRef DB="OMIM" ID="612416" Type="MIM" />
+          <XRef DB="OMIM" ID="612416" Type="MIM"/>
         </Trait>
       </TraitSet>
       <Citation Type="general">
