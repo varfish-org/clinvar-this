@@ -5,7 +5,7 @@ import typing
 import attrs
 import click
 
-from clinvar_data import conversion, gene_impact, phenotype_link
+from clinvar_data import class_by_freq, conversion, gene_impact, phenotype_link
 from clinvar_this import batches, exceptions
 from clinvar_this.config import Config, dump_config, load_config, save_config
 
@@ -239,3 +239,20 @@ def gene_phenotype_links(
     """Create links between gene and phenotype."""
     _ = ctx
     phenotype_link.run_report(input_file, output_file, needs_hpo_terms=needs_hpo_terms)
+
+
+@data.command("acmg-class-by-freq")
+@click.argument("input_file")
+@click.argument("output_file")
+@click.option(
+    "--thresholds",
+    type=str,
+    default=",".join(map(str, class_by_freq.DEFAULT_THRESHOLDS)),
+    help="Whether to filter to rows with HPO terms (default: true)",
+)
+@click.pass_context
+def acmg_class_by_freq(ctx: click.Context, input_file: str, output_file: str, thresholds: str):
+    """Create links between gene and phenotype."""
+    _ = ctx
+    thresholds_float = list(map(float, thresholds.split(",")))
+    class_by_freq.run_report(input_file, output_file, thresholds=thresholds_float)
