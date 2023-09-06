@@ -4,10 +4,10 @@ include CHANGELOG.md
 include LICENSE
 include README.md
 
-recursive-include tests *
 recursive-include requirements *.txt
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+recursive-exclude tests *
 
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
 include clinvar_this/_version.py
