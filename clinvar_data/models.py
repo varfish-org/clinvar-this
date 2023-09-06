@@ -2479,6 +2479,24 @@ class ClinAsserTraitSetTypeAttribute:
     xrefs: typing.List[Xref] = attrs.field(factory=list)
     comments: typing.List[Comment] = attrs.field(factory=list)
 
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitSetTypeAttribute":
+        return cls(
+            value=json_data["#text"],
+            type=json_data["@Type"],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
 
 @enum.unique
 class ClinAsserTraitSetTypeType(enum.Enum):
@@ -2499,6 +2517,33 @@ class ClinAsserTraitSetType:
     attributes: typing.List[ClinAsserTraitSetTypeAttribute] = attrs.field(factory=list)
     id: typing.Optional[int] = None
     multiple_condition_explanation: typing.Optional[str] = None
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitSetType":
+        return cls(
+            type=ClinAsserTraitSetTypeType(json_data["@Type"]),
+            date_last_evaluated=parse_datetime(json_data["@DateLastEvaluated"]).date()
+            if json_data.get("@DateLastEvaluated")
+            else None,
+            traits=[
+                ClinVarAssertionTrait.from_json_data(raw_trait)
+                for raw_trait in force_list(json_data.get("Trait", []))
+            ],
+            names=[
+                AnnotatedTypedValue.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                AnnotatedTypedValue.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                ClinAsserTraitSetTypeAttribute.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
+            ],
+            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
+            multiple_condition_explanation=json_data.get("MultipleConditionExplanation"),
+        )
 
 
 @attrs.frozen(auto_attribs=True)
@@ -2595,6 +2640,10 @@ class ClinVarAssertion:
             genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
             if json_data.get("GenotypeSet")
             else None,
+            trait_set=[
+                ClinAsserTraitSetType.from_json_data(raw_trait_set)
+                for raw_trait_set in force_list(json_data.get("TraitSet", []))
+            ],
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
