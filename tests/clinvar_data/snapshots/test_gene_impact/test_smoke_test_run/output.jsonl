@@ -1,0 +1,5 @@
+{"hgnc": "HGNC:5163", "counts": {"5_prime_UTR_variant": [0, 0, 0, 0, 1]}}
+{"hgnc": "HGNC:7108", "counts": {"frameshift_variant": [0, 0, 0, 0, 2], "stop_gained": [0, 0, 0, 0, 2]}}
+{"hgnc": "HGNC:11276", "counts": {"inframe_indel": [0, 0, 0, 0, 1], "missense_variant": [0, 0, 0, 0, 1]}}
+{"hgnc": "HGNC:11582", "counts": {"5_prime_UTR_variant": [0, 0, 0, 0, 1]}}
+{"hgnc": "HGNC:27570", "counts": {"missense_variant": [0, 0, 0, 0, 1]}}

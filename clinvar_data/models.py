@@ -133,6 +133,26 @@ class ClinicalSignificanceDescription(enum.Enum):
     PROTECTIVE = "protective"
     RISK_FACTOR = "risk factor"
 
+    @property
+    def is_canonical_acmg(self) -> bool:
+        return self in (
+            ClinicalSignificanceDescription.BENIGN,
+            ClinicalSignificanceDescription.LIKELY_BENIGN,
+            ClinicalSignificanceDescription.UNCERTAIN_SIGNIFICANCE,
+            ClinicalSignificanceDescription.LIKELY_PATHOGENIC,
+            ClinicalSignificanceDescription.PATHOGENIC,
+        )
+
+    @property
+    def acmg_code(self) -> typing.Optional[int]:
+        return {
+            ClinicalSignificanceDescription.BENIGN: 1,
+            ClinicalSignificanceDescription.LIKELY_BENIGN: 2,
+            ClinicalSignificanceDescription.UNCERTAIN_SIGNIFICANCE: 3,
+            ClinicalSignificanceDescription.LIKELY_PATHOGENIC: 4,
+            ClinicalSignificanceDescription.PATHOGENIC: 5,
+        }.get(self)
+
     @classmethod
     def from_the_wild(cls, str) -> "ClinicalSignificanceDescription":
         """Convert values "from the wild" where sometimes invalid values are used.
@@ -1347,7 +1367,7 @@ class Sample:
             tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
             cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
             species=Species.from_json_data(json_data["Species"])
-            if "Species" in json_data
+            if "Species" in json_data and json_data.get("Species")
             else None,
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
@@ -1533,7 +1553,7 @@ class MeasureSetAttribute:
 
 
 @enum.unique
-class MeasureTypeAttributeType(enum.Enum):
+class MeasureAttributeType(enum.Enum):
     """Type of an attribute in a measure type"""
 
     HGVS_GENOMIC_TOP_LEVEL = "HGVS, genomic, top level"
@@ -1584,9 +1604,9 @@ class MeasureAttribute:
     """An attribute in a MeasureType"""
 
     #: The type of the attribute
-    type: MeasureTypeAttributeType
+    type: MeasureAttributeType
     #: Value of the attribute
-    value: typing.Optional[str]
+    value: typing.Optional[str] = None
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
@@ -1598,7 +1618,7 @@ class MeasureAttribute:
     def from_json_data(cls, json_data: dict) -> "MeasureAttribute":
         attribute = json_data["Attribute"]
         return MeasureAttribute(
-            type=MeasureTypeAttributeType(attribute["@Type"]),
+            type=MeasureAttributeType(attribute["@Type"]),
             value=attribute.get("#text"),
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -1968,7 +1988,7 @@ class MeasureSet:
     #: Type of the measure
     type: MeasureSetType
     #: Accession of the measure
-    acc: typing.Optional[str]
+    acc: typing.Optional[str] = None
     #: Version of the measure
     version: typing.Optional[int] = None
     #: List of measures
@@ -2492,7 +2512,7 @@ class ClinAsserTraitSetTypeType(enum.Enum):
 @attrs.frozen(auto_attribs=True)
 class ClinAsserTraitSetType:
     type: ClinAsserTraitSetTypeType
-    date_last_evaluated: datetime.date
+    date_last_evaluated: typing.Optional[datetime.date] = None
     traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
