@@ -143,6 +143,16 @@ class ClinicalSignificanceDescription(enum.Enum):
             ClinicalSignificanceDescription.PATHOGENIC,
         )
 
+    @property
+    def acmg_code(self) -> typing.Optional[int]:
+        return {
+            ClinicalSignificanceDescription.BENIGN: 1,
+            ClinicalSignificanceDescription.LIKELY_BENIGN: 2,
+            ClinicalSignificanceDescription.UNCERTAIN_SIGNIFICANCE: 3,
+            ClinicalSignificanceDescription.LIKELY_PATHOGENIC: 4,
+            ClinicalSignificanceDescription.PATHOGENIC: 5,
+        }.get(self)
+
     @classmethod
     def from_the_wild(cls, str) -> "ClinicalSignificanceDescription":
         """Convert values "from the wild" where sometimes invalid values are used.
@@ -1357,7 +1367,7 @@ class Sample:
             tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
             cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
             species=Species.from_json_data(json_data["Species"])
-            if "Species" in json_data
+            if "Species" in json_data and json_data.get("Species")
             else None,
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),

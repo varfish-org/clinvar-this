@@ -26,8 +26,6 @@ def test_cli_xml_to_json(tmp_path, snapshot):
     conversion.convert(
         in_path,
         out_path,
-        threads=0,
-        chunk_size=1000,
         use_click=False,
     )
 

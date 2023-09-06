@@ -203,17 +203,14 @@ def data():
 @data.command("xml-to-jsonl")
 @click.argument("input_file")
 @click.argument("output_file")
-@click.option("--threads", default=0, help="Number of threads to use")
-@click.option("--chunk-size", default=100, help="Chunk size to use")
+@click.option(
+    "--max-records", required=False, default=0, help="Maximum number of records to convert"
+)
 @click.pass_context
-def xml_to_jsonl(
-    ctx: click.Context, input_file: str, output_file: str, threads: int, chunk_size: int
-):
+def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str, max_records: int):
     """Convert XML to JSONL"""
     _ = ctx
-    conversion.convert(
-        input_file, output_file, threads=threads, chunk_size=chunk_size, use_click=True
-    )
+    conversion.convert(input_file, output_file, max_records=max_records, use_click=True)
 
 
 @data.command("gene-variant-report")
