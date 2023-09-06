@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/bihealth/clinvar-this/compare/v0.4.0...v0.4.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* adding clinvar_data to built package ([#114](https://www.github.com/bihealth/clinvar-this/issues/114)) ([4a78256](https://www.github.com/bihealth/clinvar-this/commit/4a78256a9a2f04a88472aa9b9617601e1b5c61f0))
+
 ## [0.4.0](https://www.github.com/bihealth/clinvar-this/compare/v0.3.0...v0.4.0) (2023-09-06)
 
 
