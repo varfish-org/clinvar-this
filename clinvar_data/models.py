@@ -60,7 +60,7 @@ class Status(enum.Enum):
 
 
 @attrs.frozen(auto_attribs=True)
-class XrefType:
+class Xref:
     """This structure is used to represent how an object described in the submission relates to
     objects in other databases.
     """
@@ -77,8 +77,8 @@ class XrefType:
     status: typing.Optional[Status] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "XrefType":
-        return XrefType(
+    def from_json_data(cls, json_data: dict) -> "Xref":
+        return Xref(
             db=json_data["@DB"],
             id=json_data["@ID"],
             type=json_data.get("@Type"),
@@ -296,7 +296,7 @@ class ClinicalSignificanceTypeSCV:
     #: Custom asertion scores.
     custom_assertion_score: typing.List[CustomAssertionScore] = attrs.field(factory=list)
     #: Cross-references.
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: Citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: Comments.
@@ -341,8 +341,7 @@ class ClinicalSignificanceTypeSCV:
                 if "#text" in raw_score
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -375,7 +374,7 @@ class ClinicalSignificanceRCV:
     #: Explanation for interpretation.
     explanation_of_interpretation: typing.Optional[str] = None
     #: Cross-references.
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: Citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: Comments.
@@ -411,8 +410,7 @@ class ClinicalSignificanceRCV:
             else None,
             explanation_of_interpretation=json_data.get("ExplanationOfInterpretation"),
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -485,7 +483,7 @@ class ReferenceClinVarAssertionAttribute:
     #: Optional list of citations for this attribute
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: Optional list of cross-references for this attribute
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: Optional list of comments for this attribute
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -506,8 +504,7 @@ class ReferenceClinVarAssertionAttribute:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -693,7 +690,7 @@ class ObservedData:
     #: Optional list of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: Optional list of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: Optional list of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -707,8 +704,7 @@ class ObservedData:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -915,7 +911,7 @@ class AnnotatedTypedValue:
     #: Optional list of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: Optional list of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: Optional list of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -934,8 +930,7 @@ class AnnotatedTypedValue:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1015,7 +1010,7 @@ class TraitRelationship:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     source: typing.List[Source] = attrs.field(factory=list)
 
@@ -1041,8 +1036,7 @@ class TraitRelationship:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             source=[
                 Source.from_json_data(raw_source)
@@ -1064,7 +1058,7 @@ class ClinVarAssertionTraitRelationship:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
@@ -1090,8 +1084,7 @@ class ClinVarAssertionTraitRelationship:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1119,7 +1112,7 @@ class ClinVarAssertionTrait:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
@@ -1149,8 +1142,7 @@ class ClinVarAssertionTrait:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1192,7 +1184,7 @@ class Trait:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
@@ -1223,8 +1215,7 @@ class Trait:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1259,7 +1250,7 @@ class Indication:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comment: typing.Optional[Comment] = None
     #: The type of the indication
@@ -1290,8 +1281,7 @@ class Indication:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comment=Comment.from_json_data(json_data["Comment"])
             if "Comment" in json_data
@@ -1345,7 +1335,7 @@ class Sample:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: Sample source
@@ -1400,8 +1390,7 @@ class Sample:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1432,7 +1421,7 @@ class ObservationSet:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -1457,8 +1446,7 @@ class ObservationSet:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1523,7 +1511,7 @@ class MeasureSetAttribute:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -1543,8 +1531,7 @@ class MeasureSetAttribute:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1611,7 +1598,7 @@ class MeasureAttribute:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -1626,8 +1613,7 @@ class MeasureAttribute:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1795,7 +1781,7 @@ class MeasureRelationshipAttribute:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -1816,8 +1802,7 @@ class MeasureRelationshipAttribute:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1841,7 +1826,7 @@ class MeasureRelationship:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -1869,8 +1854,7 @@ class MeasureRelationship:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -1904,7 +1888,7 @@ class Measure:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
@@ -1952,8 +1936,7 @@ class Measure:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -2003,7 +1986,7 @@ class MeasureSet:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: Number of chromosomes
@@ -2038,8 +2021,7 @@ class MeasureSet:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -2077,7 +2059,7 @@ class GenotypeSet:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: Optional identifier
@@ -2112,8 +2094,7 @@ class GenotypeSet:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -2155,7 +2136,7 @@ class TraitSet:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of cross-references
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -2185,8 +2166,7 @@ class TraitSet:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -2208,7 +2188,7 @@ class ReferenceClinVarAssertion:
     #: The assertion RCV type.
     assertion: AssertionType
     #: Represents the public identifier a source may have for this record.
-    external_ids: typing.List[XrefType] = attrs.field(factory=list)
+    external_ids: typing.List[Xref] = attrs.field(factory=list)
     #: Attributes of the RCV record
     attributes: typing.List[ReferenceClinVarAssertionAttribute] = attrs.field(factory=list)
     #: Observations.
@@ -2244,7 +2224,7 @@ class ReferenceClinVarAssertion:
             ),
             assertion=AssertionType(json_data["Assertion"]["@Type"]),
             external_ids=[
-                XrefType.from_json_data(raw_external_id)
+                Xref.from_json_data(raw_external_id)
                 for raw_external_id in force_list(json_data.get("ExternalID", []))
             ],
             attributes=[
@@ -2469,7 +2449,7 @@ class ClinVarAssertionAttributeSet:
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of Xrefs
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
 
@@ -2482,8 +2462,7 @@ class ClinVarAssertionAttributeSet:
                 for raw_citation in force_list(json_data.get("Citation", []))
             ],
             xrefs=[
-                XrefType.from_json_data(raw_xref)
-                for raw_xref in force_list(json_data.get("XRef", []))
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
             comments=[
                 Comment.from_json_data(raw_comment)
@@ -2497,7 +2476,7 @@ class ClinAsserTraitSetTypeAttribute:
     value: str
     type: str
     citations: typing.List[Citation] = attrs.field(factory=list)
-    xrefs: typing.List[XrefType] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
     comments: typing.List[Comment] = attrs.field(factory=list)
 
 
@@ -2549,7 +2528,7 @@ class ClinVarAssertion:
     clinical_significance: typing.List[ClinicalSignificanceTypeSCV] = attrs.field(factory=list)
     #: XrefType is used to identify data source(s) and their identifiers. Optional because
     #: not all sources have an ID specific to the assertion.
-    external_ids: typing.List[XrefType] = attrs.field(factory=list)
+    external_ids: typing.List[Xref] = attrs.field(factory=list)
     #: Additional attribute sets.
     attributes: typing.List[ClinVarAssertionAttributeSet] = attrs.field(factory=list)
     #: Observation information.
@@ -2599,7 +2578,7 @@ class ClinVarAssertion:
                 )
             ],
             external_ids=[
-                XrefType.from_json_data(raw_xref)
+                Xref.from_json_data(raw_xref)
                 for raw_xref in force_list(json_data.get("ExternalID", []))
             ],
             attributes=[

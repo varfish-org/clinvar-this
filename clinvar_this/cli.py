@@ -5,7 +5,7 @@ import typing
 import attrs
 import click
 
-from clinvar_data import conversion, gene_impact
+from clinvar_data import conversion, gene_impact, phenotype_link
 from clinvar_this import batches, exceptions
 from clinvar_this.config import Config, dump_config, load_config, save_config
 
@@ -221,3 +221,21 @@ def gene_impact_report(ctx: click.Context, input_file: str, output_file: str):
     """Create a gene variant summary report."""
     _ = ctx
     gene_impact.run_report(input_file, output_file)
+
+
+@data.command("gene-phenotype-links")
+@click.argument("input_file")
+@click.argument("output_file")
+@click.option(
+    "--needs-hpo-terms/--no-needs-hpo-terms",
+    type=bool,
+    default=True,
+    help="Whether to filter to rows with HPO terms (default: true)",
+)
+@click.pass_context
+def gene_phenotype_links(
+    ctx: click.Context, input_file: str, output_file: str, needs_hpo_terms: bool
+):
+    """Create links between gene and phenotype."""
+    _ = ctx
+    phenotype_link.run_report(input_file, output_file, needs_hpo_terms=needs_hpo_terms)

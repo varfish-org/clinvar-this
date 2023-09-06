@@ -38,7 +38,7 @@ def test_force_list_lst():
     ],
 )
 def test_xref_type_from_json_data(input, expected):
-    obj = models.XrefType.from_json_data(input)
+    obj = models.Xref.from_json_data(input)
     value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
     assert value == expected
 
