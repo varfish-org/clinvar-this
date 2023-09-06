@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/bihealth/clinvar-this/compare/v0.3.0...v0.4.0) (2023-09-06)
+
+
+### Features
+
+* add command to extract gene-to-phenotype links ([#104](https://www.github.com/bihealth/clinvar-this/issues/104)) ([#106](https://www.github.com/bihealth/clinvar-this/issues/106)) ([b3b323a](https://www.github.com/bihealth/clinvar-this/commit/b3b323a2e440d4e4e34c9895f7e0b39b5425fdd7))
+* adding --version option ([#110](https://www.github.com/bihealth/clinvar-this/issues/110)) ([7f3b091](https://www.github.com/bihealth/clinvar-this/commit/7f3b0917e39144b0b2fbbf760337ac16299500af))
+* adding command to generate per-gene impact report ([#102](https://www.github.com/bihealth/clinvar-this/issues/102)) ([#103](https://www.github.com/bihealth/clinvar-this/issues/103)) ([c86a5c7](https://www.github.com/bihealth/clinvar-this/commit/c86a5c721ac5b089d63301a7ce40c0eea552b209))
+* adding missing clinvar measure set ([#109](https://www.github.com/bihealth/clinvar-this/issues/109)) ([f0f64e0](https://www.github.com/bihealth/clinvar-this/commit/f0f64e0036a8b73eb6add02f81fcb54768b0b35f))
+* adding support for parsing ClinVar XML ([#99](https://www.github.com/bihealth/clinvar-this/issues/99)) ([#100](https://www.github.com/bihealth/clinvar-this/issues/100)) ([c673f7d](https://www.github.com/bihealth/clinvar-this/commit/c673f7db8d94f0c05c1acd4c413e060db54a8649))
+* command to extract variants per ACMG class and freq. ([#107](https://www.github.com/bihealth/clinvar-this/issues/107)) ([#108](https://www.github.com/bihealth/clinvar-this/issues/108)) ([c623f6d](https://www.github.com/bihealth/clinvar-this/commit/c623f6d804e7f9579b0cd8f15b086b066aef6338))
+
+
+### Bug Fixes
+
+* making conversion more robust, indicate errors ([#105](https://www.github.com/bihealth/clinvar-this/issues/105)) ([8333aea](https://www.github.com/bihealth/clinvar-this/commit/8333aea26cdc07b4467fa9ca56ea86eda642dd30))
+
 ## [0.3.0](https://www.github.com/bihealth/clinvar-this/compare/v0.2.1...v0.3.0) (2023-09-04)
 
 
