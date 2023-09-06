@@ -338,6 +338,7 @@ class ClinicalSignificanceTypeSCV:
                     type=raw_score.get("@Type"),
                 )
                 for raw_score in force_list(json_data.get("CustomAssertionScore", []))
+                if "#text" in raw_score
             ],
             xrefs=[
                 XrefType.from_json_data(raw_xref)
@@ -1367,7 +1368,7 @@ class Sample:
             tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
             cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
             species=Species.from_json_data(json_data["Species"])
-            if "Species" in json_data and json_data.get("Species")
+            if ("Species" in json_data and json_data.get("Species"))
             else None,
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
