@@ -209,8 +209,8 @@ def data():
 @click.pass_context
 def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str, max_records: int):
     """Convert XML to JSONL"""
-    _ = ctx
-    conversion.convert(input_file, output_file, max_records=max_records, use_click=True)
+    retcode = conversion.convert(input_file, output_file, max_records=max_records, use_click=True)
+    ctx.exit(retcode)
 
 
 @data.command("gene-variant-report")

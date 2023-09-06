@@ -53,7 +53,9 @@ def convert_clinvarset(json_cv: dict) -> models.ClinVarSet:
     return models.ClinVarSet.from_json_data(json_cv)
 
 
-def convert(input_file: str, output_file: str, max_records: int = 0, use_click: bool = False):
+def convert(
+    input_file: str, output_file: str, max_records: int = 0, use_click: bool = False
+) -> int:
     """Run conversion from ClinVar XML to JSONL"""
     if input_file.endswith((".gz", ".bgz")):
         inputf: typing.Union[typing.BinaryIO, gzip.GzipFile] = gzip.open(input_file, "rb")
@@ -71,12 +73,15 @@ def convert(input_file: str, output_file: str, max_records: int = 0, use_click: 
 
     pb = tqdm.tqdm(desc="parsing", unit=" ClinVarSet records", smoothing=1.0)
     records_written = 0
+    errors = 0
 
     def handle_clinvarset(_, json_cvs: dict):
         """Handle single ClinVarSet entry after parsing by ``xmltodict``."""
         try:
             data = convert_clinvarset(json_cvs)
         except Exception:  # pragma: no cover
+            nonlocal errors
+            errors += 1
             print("Problem with data: exception and data follow", file=sys.stderr)
             traceback.print_exc()
             print(json_cvs, file=sys.stderr)
@@ -99,3 +104,9 @@ def convert(input_file: str, output_file: str, max_records: int = 0, use_click: 
         xmltodict.parse(inputf, item_depth=2, item_callback=handle_clinvarset)
     except xmltodict.ParsingInterrupted:  # pragma: no cover
         print(f"stopping after parsing {records_written} records", file=sys.stderr)
+
+    if errors == 0:
+        return 0
+    else:
+        print(f"a total of {errors} errors occurred", file=sys.stderr)
+        return 1
