@@ -62,7 +62,14 @@ setup(
     keywords="clinvar",
     name="clinvar-this",
     packages=find_packages(
-        include=["clinvar_this", "clinvar_this.*", "clinvar_api", "clinvar_api.*"]
+        include=[
+            "clinvar_this",
+            "clinvar_this.*",
+            "clinvar_api",
+            "clinvar_api.*",
+            "clinvar_data",
+            "clinvar_data.*",
+        ]
     ),
     test_suite="tests",
     tests_require=test_requirements,
