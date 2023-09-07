@@ -16,6 +16,10 @@ from clinvar_data.cattrs_helpers import CONVERTER
 class GenePhenotypeRecord:
     #: RCV accession
     rcv: str
+    #: SCV accession
+    scv: str
+    #: Submitter
+    submitter: typing.Optional[str]
     #: Gene HGNC ID
     hgnc_ids: typing.List[str]
     #: Linked OMIM terms
@@ -39,7 +43,7 @@ class TermCollector:
     def add_xref(self, xref: models.Xref):
         if xref.db == "OMIM":
             self.omim_terms.add(xref.id)
-        elif xref.db == "Human Phenotype Ontology":
+        elif xref.db in ("Human Phenotype Ontology", "HP"):
             self.hpo_terms.add(xref.id)
         elif xref.db == "MONDO":
             self.mondo_terms.add(xref.id)
@@ -66,40 +70,37 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
             dict_value = json.loads(line)
             clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
             rca = clinvar_set.reference_clinvar_assertion
-
-            if not rca.measure_set:  # pragma: no cover
-                continue
-
             rcv = rca.clinvar_accession.acc
 
             hgnc_ids = set()
-            for measure in rca.measure_set.measures:
-                for measure_relationship in measure.measure_relationship:
-                    hgnc_ids |= {
-                        xref.id for xref in measure_relationship.xrefs if xref.db == "HGNC"
-                    }
+            if rca.measures:
+                for measure in rca.measures.measures or []:
+                    for measure_relationship in measure.measure_relationship:
+                        hgnc_ids |= {
+                            xref.id for xref in measure_relationship.xrefs if xref.db == "HGNC"
+                        }
 
-            terms = TermCollector()
-            if rca.trait_set:
-                for trait in rca.trait_set.traits or []:
-                    for name in trait.names:
-                        for xref in name.xrefs:
-                            terms.add_xref(xref)
-                    for symbol in trait.symbols:
-                        for xref in symbol.xrefs:
-                            terms.add_xref(xref)
-                    for xref in trait.xrefs:
-                        terms.add_xref(xref)
+            for ca in clinvar_set.clinvar_assertions or []:
+                scv = ca.clinvar_accession.acc
 
-            if needs_hpo_terms and not terms.hpo_terms or not terms.has_link():
-                continue
+                terms = TermCollector()
+                for observed_in in ca.observed_in or []:
+                    if observed_in.traits:
+                        for trait in observed_in.traits.traits or []:
+                            for xref in trait.xrefs:
+                                terms.add_xref(xref)
 
-            record = GenePhenotypeRecord(
-                rcv=rcv,
-                hgnc_ids=list(sorted(hgnc_ids)),
-                omim_terms=list(sorted(clean_omim(terms.omim_terms))),
-                mondo_terms=list(sorted(terms.mondo_terms)),
-                hpo_terms=list(sorted(terms.hpo_terms)),
-            )
+                if needs_hpo_terms and not terms.hpo_terms or not terms.has_link():
+                    continue
 
-            print(json.dumps(cattrs.unstructure(record)), file=outputf)
+                record = GenePhenotypeRecord(
+                    rcv=rcv,
+                    scv=scv,
+                    submitter=ca.submission_id.submitter,
+                    hgnc_ids=list(sorted(hgnc_ids)),
+                    omim_terms=list(sorted(clean_omim(terms.omim_terms))),
+                    mondo_terms=list(sorted(terms.mondo_terms)),
+                    hpo_terms=list(sorted(terms.hpo_terms)),
+                )
+
+                print(json.dumps(cattrs.unstructure(record)), file=outputf)
