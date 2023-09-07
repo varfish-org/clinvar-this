@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://www.github.com/bihealth/clinvar-this/compare/v0.6.0...v0.7.0) (2023-09-07)
+
+
+### Features
+
+* writing out clinical significance in gene-to-phenotype link ([#121](https://www.github.com/bihealth/clinvar-this/issues/121)) ([1c65fc6](https://www.github.com/bihealth/clinvar-this/commit/1c65fc6b9599a41810da4d020a84704e9a3f8c8c))
+
 ## [0.6.0](https://www.github.com/bihealth/clinvar-this/compare/v0.5.0...v0.6.0) (2023-09-07)
 
 
