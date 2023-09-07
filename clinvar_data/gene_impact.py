@@ -1,6 +1,7 @@
 """Generate a report for each gene with variant count per impact and pathogenicity"""
 
 import enum
+import gzip
 import json
 import sys
 import typing
@@ -73,7 +74,13 @@ def zero_counts() -> typing.Dict[typing.Tuple[Impact, models.ClinicalSignificanc
 
 def write_report(counts: dict, path_output: str):
     """Write report to output."""
-    with open(path_output, "wt") as outputf:
+
+    if path_output.endswith(".gz"):
+        outputf = gzip.open(path_output, "wt")
+    else:
+        outputf = open(path_output, "wt")
+
+    with outputf:
         for hgnc, counts in sorted(counts.items(), key=lambda x: int(x[0][5:])):
             counts_out = {}
             for impact in Impact:
@@ -92,7 +99,12 @@ def generate_counts(path_input: str) -> dict:
     """Count occurrences of each impact for each gene."""
     counts = {}
 
-    with open(path_input, "rt") as inputf:
+    if path_input.endswith(".gz"):
+        inputf = gzip.open(path_input, "rt")
+    else:
+        inputf = open(path_input, "rt")
+
+    with inputf:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
             dict_value = json.loads(line)
             clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
