@@ -1,5 +1,6 @@
 """Generate JSONL with gene to phenotype/disease links"""
 
+import gzip
 import json
 import typing
 
@@ -50,7 +51,17 @@ class TermCollector:
 def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
     """Read in file at path_input and generate link records to path_output."""
 
-    with open(path_input, "rt") as inputf, open(path_output, "wt") as outputf:
+    if path_input.endswith(".gz"):
+        inputf = gzip.open(path_input, "rt")
+    else:
+        inputf = open(path_input, "rt")
+
+    if path_output.endswith(".gz"):
+        outputf = gzip.open(path_output, "wt")
+    else:
+        outputf = open(path_output, "wt")
+
+    with inputf, outputf:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
             dict_value = json.loads(line)
             clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
