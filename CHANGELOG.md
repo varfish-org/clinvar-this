@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/bihealth/clinvar-this/compare/v0.5.0...v0.6.0) (2023-09-07)
+
+
+### Features
+
+* write out organisation and local key to phenotype gene link ([#119](https://www.github.com/bihealth/clinvar-this/issues/119)) ([f87facc](https://www.github.com/bihealth/clinvar-this/commit/f87facc5b2e2754d5a4825ea8af3528ab0b4b0fe))
+
 ## [0.5.0](https://www.github.com/bihealth/clinvar-this/compare/v0.4.1...v0.5.0) (2023-09-07)
 
 
