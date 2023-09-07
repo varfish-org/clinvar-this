@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/bihealth/clinvar-this/compare/v0.4.1...v0.5.0) (2023-09-07)
+
+
+### Features
+
+* allow read/write .gz everywhere ([#116](https://www.github.com/bihealth/clinvar-this/issues/116)) ([d3b658e](https://www.github.com/bihealth/clinvar-this/commit/d3b658e820953c38f7bc2b0727924490fc19ad8f))
+
 ### [0.4.1](https://www.github.com/bihealth/clinvar-this/compare/v0.4.0...v0.4.1) (2023-09-06)
 
 
