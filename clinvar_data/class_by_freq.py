@@ -78,15 +78,15 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                 clinvar_set.reference_clinvar_assertion.clinical_significance.description
             )
 
-            if not clinvar_set.reference_clinvar_assertion.measure_set:
+            if not clinvar_set.reference_clinvar_assertion.measures:
                 continue
             freq = None
-            for measure in clinvar_set.reference_clinvar_assertion.measure_set.measures:
+            for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
                 if measure.global_minor_allele_frequency:
                     freq = measure.global_minor_allele_frequency.value
 
             hgnc = None
-            for measure in clinvar_set.reference_clinvar_assertion.measure_set.measures:
+            for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
                 for measure_relationship in measure.measure_relationship:
                     for xref in measure_relationship.xrefs:
                         if xref.db == "HGNC":

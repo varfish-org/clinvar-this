@@ -115,11 +115,11 @@ def generate_counts(path_input: str) -> dict:
             if not pathogenicity or not pathogenicity.is_canonical_acmg:
                 continue  # skip not ACMG 1-5
 
-            if not clinvar_set.reference_clinvar_assertion.measure_set:
+            if not clinvar_set.reference_clinvar_assertion.measures:
                 continue
 
             csq = None
-            for measure in clinvar_set.reference_clinvar_assertion.measure_set.measures:
+            for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
                 for attribute in measure.attributes:
                     if attribute.type == models.MeasureAttributeType.MOLECULAR_CONSEQUENCE:
                         csq = attribute.value
@@ -131,7 +131,7 @@ def generate_counts(path_input: str) -> dict:
                 continue
 
             hgnc = None
-            for measure in clinvar_set.reference_clinvar_assertion.measure_set.measures:
+            for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
                 for measure_relationship in measure.measure_relationship:
                     for xref in measure_relationship.xrefs:
                         if xref.db == "HGNC":

@@ -1400,6 +1400,75 @@ class Sample:
         )
 
 
+@enum.unique
+class TraitSetType(enum.Enum):
+    """Type of a trait set"""
+
+    DISEASE = "Disease"
+    DRUG_RESPONSE = "DrugResponse"
+    FINDING = "Finding"
+    PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
+    TRAIT_CHOICE = "TraitChoice"
+
+
+@attrs.frozen(auto_attribs=True)
+class TraitSet:
+    """Description of a trait set"""
+
+    #: Type of the trait set
+    type: TraitSetType
+    #: List of traits
+    traits: typing.List[Trait] = attrs.field(factory=list)
+    #: Optional identifier
+    id: typing.Optional[int] = None
+    #: List of names
+    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of symbols
+    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of attributes
+    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    #: List of citations
+    citations: typing.List[Citation] = attrs.field(factory=list)
+    #: List of cross-references
+    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    #: List of comments
+    comments: typing.List[Comment] = attrs.field(factory=list)
+
+    @classmethod
+    def from_json_data(cls, json_data: dict) -> "TraitSet":
+        return cls(
+            type=TraitSetType(json_data["@Type"]),
+            traits=[
+                Trait.from_json_data(raw_trait)
+                for raw_trait in force_list(json_data.get("Trait", []))
+            ],
+            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
+            names=[
+                AnnotatedTypedValue.from_json_data(raw_name)
+                for raw_name in force_list(json_data.get("Name", []))
+            ],
+            symbols=[
+                AnnotatedTypedValue.from_json_data(raw_symbol)
+                for raw_symbol in force_list(json_data.get("Symbol", []))
+            ],
+            attributes=[
+                AnnotatedTypedValue.from_json_data(raw_attribute)
+                for raw_attribute in force_list(json_data.get("AttributeSet", []))
+            ],
+            citations=[
+                Citation.from_json_data(raw_citation)
+                for raw_citation in force_list(json_data.get("Citation", []))
+            ],
+            xrefs=[
+                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
+            ],
+            comments=[
+                Comment.from_json_data(raw_comment)
+                for raw_comment in force_list(json_data.get("Comment", []))
+            ],
+        )
+
+
 @attrs.frozen(auto_attribs=True)
 class ObservationSet:
     """Documents in what populations or samples an allele or genotype has been observed
@@ -1416,6 +1485,8 @@ class ObservationSet:
     methods: typing.List[ObservationMethod] = attrs.field(factory=list)
     #: List of observed data
     observed_data: typing.List[ObservedData] = attrs.field(factory=list)
+    #: Traits
+    traits: typing.Optional[TraitSet] = None
     #: List of co-occurrences
     cooccurrences: typing.List[Cooccurrence] = attrs.field(factory=list)
     #: List of citations
@@ -1437,6 +1508,9 @@ class ObservationSet:
                 ObservedData.from_json_data(raw_observed_data)
                 for raw_observed_data in force_list(json_data.get("ObservedData", []))
             ],
+            traits=TraitSet.from_json_data(json_data["TraitSet"])
+            if "TraitSet" in json_data
+            else None,
             cooccurrences=[
                 Cooccurrence.from_json_data(raw_cooccurrence)
                 for raw_cooccurrence in force_list(json_data.get("Coocurrence", []))
@@ -2106,75 +2180,6 @@ class GenotypeSet:
         )
 
 
-@enum.unique
-class TraitSetType(enum.Enum):
-    """Type of a trait set"""
-
-    DISEASE = "Disease"
-    DRUG_RESPONSE = "DrugResponse"
-    FINDING = "Finding"
-    PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
-    TRAIT_CHOICE = "TraitChoice"
-
-
-@attrs.frozen(auto_attribs=True)
-class TraitSet:
-    """Description of a trait set"""
-
-    #: Type of the trait set
-    type: TraitSetType
-    #: List of traits
-    traits: typing.List[Trait] = attrs.field(factory=list)
-    #: Optional identifier
-    id: typing.Optional[int] = None
-    #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
-    #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
-    #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
-
-    @classmethod
-    def from_json_data(cls, json_data: dict) -> "TraitSet":
-        return cls(
-            type=TraitSetType(json_data["@Type"]),
-            traits=[
-                Trait.from_json_data(raw_trait)
-                for raw_trait in force_list(json_data.get("Trait", []))
-            ],
-            id=int(json_data["@ID"]) if json_data.get("@ID") else None,
-            names=[
-                AnnotatedTypedValue.from_json_data(raw_name)
-                for raw_name in force_list(json_data.get("Name", []))
-            ],
-            symbols=[
-                AnnotatedTypedValue.from_json_data(raw_symbol)
-                for raw_symbol in force_list(json_data.get("Symbol", []))
-            ],
-            attributes=[
-                AnnotatedTypedValue.from_json_data(raw_attribute)
-                for raw_attribute in force_list(json_data.get("AttributeSet", []))
-            ],
-            citations=[
-                Citation.from_json_data(raw_citation)
-                for raw_citation in force_list(json_data.get("Citation", []))
-            ],
-            xrefs=[
-                Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
-            ],
-            comments=[
-                Comment.from_json_data(raw_comment)
-                for raw_comment in force_list(json_data.get("Comment", []))
-            ],
-        )
-
-
 @attrs.frozen(auto_attribs=True)
 class ReferenceClinVarAssertion:
     """The reference ClinVar assertion"""
@@ -2193,12 +2198,12 @@ class ReferenceClinVarAssertion:
     attributes: typing.List[ReferenceClinVarAssertionAttribute] = attrs.field(factory=list)
     #: Observations.
     observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
-    #: Measurement information, mutually exlusive with ``genotype_set``.
-    measure_set: typing.Optional[MeasureSet] = None
-    #: Genotyping information, mutually exlusive with ``measure_set``.
-    genotype_set: typing.Optional[GenotypeSet] = None
+    #: Measurement information, mutually exlusive with ``genotypes``.
+    measures: typing.Optional[MeasureSet] = None
+    #: Genotyping information, mutually exlusive with ``measures``.
+    genotypes: typing.Optional[GenotypeSet] = None
     #: List of traits
-    trait_set: typing.Optional[TraitSet] = None
+    traits: typing.Optional[TraitSet] = None
     #: List of citations
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: List of comments
@@ -2232,16 +2237,16 @@ class ReferenceClinVarAssertion:
                 for raw_attribute in force_list(json_data.get("Attribute", []))
             ],
             observed_in=[
-                ObservationSet.from_json_data(raw_observation_set)
-                for raw_observation_set in force_list(json_data.get("ObservedIn", []))
+                ObservationSet.from_json_data(raw_observations)
+                for raw_observations in force_list(json_data.get("ObservedIn", []))
             ],
-            measure_set=MeasureSet.from_json_data(json_data["MeasureSet"])
+            measures=MeasureSet.from_json_data(json_data["MeasureSet"])
             if json_data.get("MeasureSet")
             else None,
-            genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
+            genotypes=GenotypeSet.from_json_data(json_data["GenotypeSet"])
             if json_data.get("GenotypeSet")
             else None,
-            trait_set=TraitSet.from_json_data(json_data["TraitSet"])
+            traits=TraitSet.from_json_data(json_data["TraitSet"])
             if "TraitSet" in json_data
             else None,
             citations=[
@@ -2499,7 +2504,7 @@ class ClinAsserTraitSetTypeAttribute:
 
 
 @enum.unique
-class ClinAsserTraitSetTypeType(enum.Enum):
+class ClinVarAssertionTraitSetType(enum.Enum):
     DISEASE = "Disease"
     DRUG_RESPONSE = "DrugResponse"
     FINDING = "Finding"
@@ -2508,8 +2513,8 @@ class ClinAsserTraitSetTypeType(enum.Enum):
 
 
 @attrs.frozen(auto_attribs=True)
-class ClinAsserTraitSetType:
-    type: ClinAsserTraitSetTypeType
+class ClinVarAssertionTraitSet:
+    type: ClinVarAssertionTraitSetType
     date_last_evaluated: typing.Optional[datetime.date] = None
     traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
@@ -2519,9 +2524,9 @@ class ClinAsserTraitSetType:
     multiple_condition_explanation: typing.Optional[str] = None
 
     @classmethod
-    def from_json_data(cls, json_data: dict) -> "ClinAsserTraitSetType":
+    def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTraitSet":
         return cls(
-            type=ClinAsserTraitSetTypeType(json_data["@Type"]),
+            type=ClinVarAssertionTraitSetType(json_data["@Type"]),
             date_last_evaluated=parse_datetime(json_data["@DateLastEvaluated"]).date()
             if json_data.get("@DateLastEvaluated")
             else None,
@@ -2557,7 +2562,7 @@ class ClinVarAssertion:
     #: The submission's ID.
     id: int
     #: More detaield submission information.
-    clinvar_submission_id: ClinVarSubmissionId
+    submission_id: ClinVarSubmissionId
     #: The ClinVar accession number.
     clinvar_accession: ClinVarAssertionAccession
     #: The assertion type.
@@ -2578,12 +2583,12 @@ class ClinVarAssertion:
     attributes: typing.List[ClinVarAssertionAttributeSet] = attrs.field(factory=list)
     #: Observation information.
     observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
-    #: Measurement information, mutually exlusive with ``genotype_set``.
-    measure_set: typing.Optional[MeasureSet] = None
-    #: Genotyping information, mutually exlusive with ``measure_set``.
-    genotype_set: typing.Optional[GenotypeSet] = None
+    #: Measurement information, mutually exlusive with ``genotype``.
+    measures: typing.Optional[MeasureSet] = None
+    #: Genotyping information, mutually exlusive with ``measure``.
+    genotypes: typing.Optional[GenotypeSet] = None
     #: Traits associated with the disease.
-    trait_set: typing.List[ClinAsserTraitSetType] = attrs.field(factory=list)
+    traits: typing.Optional[ClinVarAssertionTraitSet] = None
     #: Citations for the variant.
     citations: typing.List[Citation] = attrs.field(factory=list)
     #: An optional study name.
@@ -2597,9 +2602,7 @@ class ClinVarAssertion:
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertion":
         return ClinVarAssertion(
             id=int(json_data["@ID"]),
-            clinvar_submission_id=ClinVarSubmissionId.from_json_data(
-                json_data["ClinVarSubmissionID"]
-            ),
+            submission_id=ClinVarSubmissionId.from_json_data(json_data["ClinVarSubmissionID"]),
             clinvar_accession=ClinVarAssertionAccession.from_json_data(
                 json_data["ClinVarAccession"]
             ),
@@ -2631,19 +2634,18 @@ class ClinVarAssertion:
                 for raw_attribute in force_list(json_data.get("AttributeSet", []))
             ],
             observed_in=[
-                ObservationSet.from_json_data(raw_observation_set)
-                for raw_observation_set in force_list(json_data.get("ObservedIn", []))
+                ObservationSet.from_json_data(raw_observations)
+                for raw_observations in force_list(json_data.get("ObservedIn", []))
             ],
-            measure_set=MeasureSet.from_json_data(json_data["MeasureSet"])
+            measures=MeasureSet.from_json_data(json_data["MeasureSet"])
             if json_data.get("MeasureSet")
             else None,
-            genotype_set=GenotypeSet.from_json_data(json_data["GenotypeSet"])
+            genotypes=GenotypeSet.from_json_data(json_data["GenotypeSet"])
             if json_data.get("GenotypeSet")
             else None,
-            trait_set=[
-                ClinAsserTraitSetType.from_json_data(raw_trait_set)
-                for raw_trait_set in force_list(json_data.get("TraitSet", []))
-            ],
+            traits=ClinVarAssertionTraitSet.from_json_data(json_data["TraitSet"])
+            if "TraitSet" in json_data
+            else None,
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))

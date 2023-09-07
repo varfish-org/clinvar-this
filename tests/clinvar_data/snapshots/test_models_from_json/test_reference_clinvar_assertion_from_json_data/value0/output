@@ -47,7 +47,7 @@
       ]
     }
   ],
-  "measure_set": {
+  "measures": {
     "type": "Variant",
     "acc": "VCV000005318",
     "version": 1,
@@ -265,7 +265,7 @@
     ],
     "id": 5318
   },
-  "trait_set": {
+  "traits": {
     "type": "Disease",
     "traits": [
       {
