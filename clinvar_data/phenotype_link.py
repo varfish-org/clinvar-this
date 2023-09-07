@@ -18,6 +18,8 @@ class GenePhenotypeRecord:
     rcv: str
     #: SCV accession
     scv: str
+    #: Clinical significance
+    clinsig: typing.Optional[models.ClinicalSignificanceDescription]
     #: Submitter
     submitter: typing.Optional[str]
     #: Gene HGNC ID
@@ -81,6 +83,16 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                         }
 
             for ca in clinvar_set.clinvar_assertions or []:
+                clinsig = None
+                for clinical_significance in ca.clinical_significance:
+                    for description in clinical_significance.descriptions:
+                        if description in (
+                            models.ClinicalSignificanceDescription.PATHOGENIC,
+                            models.ClinicalSignificanceDescription.LIKELY_PATHOGENIC,
+                        ):
+                            clinsig = description
+                            break
+
                 scv = ca.clinvar_accession.acc
 
                 terms = TermCollector()
@@ -96,6 +108,7 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                 record = GenePhenotypeRecord(
                     rcv=rcv,
                     scv=scv,
+                    clinsig=clinsig,
                     submitter=ca.submission_id.submitter,
                     hgnc_ids=list(sorted(hgnc_ids)),
                     omim_terms=list(sorted(clean_omim(terms.omim_terms))),
