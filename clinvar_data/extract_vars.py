@@ -9,7 +9,6 @@ import typing
 
 import attrs
 import cattrs
-from logzero import logger
 import tqdm
 
 from clinvar_data import models
@@ -21,7 +20,7 @@ class OutputFilesHandler:
     def __init__(self, output_dir: str, gzip_output: bool):
         self.output_dir = output_dir
         self.gzip_output = gzip_output
-        self.suffix = "tsv.gz" if self.gzip_output else "tsv"
+        self.suffix = "jsonl.gz" if self.gzip_output else "jsonl"
         self.files: typing.Dict[typing.Tuple[str, str], typing.TextIO] = {}
 
     def get_file(self, stack: contextlib.ExitStack, assembly: str, variant_size: str):
@@ -75,6 +74,8 @@ class VariantType(enum.Enum):
 class VariantRecord:
     rcv: str
     variant_type: VariantType
+    clinical_significance: typing.Optional[models.ClinicalSignificanceDescription]
+    review_status: typing.Optional[models.ReviewStatus]
     sequence_location: models.SequenceLocation
     absolute_copy_number: typing.Union[None, str, int, float] = None
     reference_copy_number: typing.Union[None, str, int, float] = None
@@ -99,7 +100,6 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
 
             if rca.measures:
                 for measure in rca.measures.measures or []:
-                    # print(measure.sequence_locations)
                     if not measure.sequence_locations:
                         continue
 
@@ -115,11 +115,19 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         elif attribute.type == MeasureAttributeType.COPY_NUMBER_TUPLE:
                             copy_number_tuple = value
 
+                    if rca.clinical_significance and rca.clinical_significance.description:
+                        clinical_significance = rca.clinical_significance.description
+                        review_status = rca.clinical_significance.review_status
+                    else:
+                        clinical_significance = None
+                        review_status = None
+
                     # The structural variants that we saw had the sequence location directly on the measure.
                     for sequence_location in measure.sequence_locations:
-                        logger.info("%s", sequence_location)
                         record = VariantRecord(
                             rcv=rca.clinvar_accession.acc,
+                            clinical_significance=clinical_significance,
+                            review_status=review_status,
                             variant_type=VariantType.from_measure_type(measure.type),
                             sequence_location=sequence_location,
                             absolute_copy_number=absolute_copy_number,
