@@ -36,19 +36,19 @@ class Impact(enum.Enum):
 
 #: Mapping from strings used in ClinVar XML to ``IMPACT``.
 GENE_IMPACT_MAP = {
-    "3 prime UTR variant": Impact.THREE_PRIME_UTR_VARIANT,
-    "5 prime UTR variant": Impact.FIVE_PRIME_UTR_VARIANT,
+    "3 prime utr variant": Impact.THREE_PRIME_UTR_VARIANT,
+    "5 prime utr variant": Impact.FIVE_PRIME_UTR_VARIANT,
     "downstream transcript variant": Impact.DOWNSTREAM_TRANSCRIPT_VARIANT,
     "frameshift variant": Impact.FRAMESHIFT_VARIANT,
     "genic downstream transcript variant": Impact.DOWNSTREAM_TRANSCRIPT_VARIANT,
     "genic upstream transcript variant": Impact.UPSTREAM_TRANSCRIPT_VARIANT,
-    "inframe_deletion": Impact.INFRAME_INDEL,
-    "inframe_indel": Impact.INFRAME_INDEL,
-    "inframe_insertion": Impact.INFRAME_INDEL,
+    "inframe deletion": Impact.INFRAME_INDEL,
+    "inframe indel": Impact.INFRAME_INDEL,
+    "inframe insertion": Impact.INFRAME_INDEL,
     "initiatior codon variant": Impact.START_LOST,
     "intron variant": Impact.INTRON_VARIANT,
     "missense variant": Impact.MISSENSE_VARIANT,
-    "non-coding transcript variant": Impact.NON_CODING_TRANSCRIPT_VARIANT,
+    "non coding transcript variant": Impact.NON_CODING_TRANSCRIPT_VARIANT,
     "nonsense": Impact.STOP_GAINED,
     "no sequence alteration": Impact.NO_SEQUENCE_ALTERATION,
     "splice acceptor variant": Impact.SPLICE_ACCEPTOR_VARIANT,
@@ -126,9 +126,11 @@ def generate_counts(path_input: str) -> dict:
                         break
             if not csq:
                 continue  # skip, no molecular consequence
-            elif csq not in GENE_IMPACT_MAP:
-                print(f"WARNING: unknown molecular consequence {csq}", file=sys.stderr)
-                continue
+            else:
+                csq = csq.lower().replace("_", " ").replace("-", " ")
+                if csq not in GENE_IMPACT_MAP:
+                    print(f"WARNING: unknown molecular consequence {csq}", file=sys.stderr)
+                    continue
 
             hgnc = None
             for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
