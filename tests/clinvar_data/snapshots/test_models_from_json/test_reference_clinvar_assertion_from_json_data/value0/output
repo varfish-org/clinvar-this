@@ -144,6 +144,9 @@
             "value": "GLN147TER"
           }
         ],
+        "cytogenic_locations": [
+          "20p12.2"
+        ],
         "sequence_locations": [
           {
             "assembly": "GRCh38",
@@ -178,6 +181,7 @@
         ],
         "measure_relationship": [
           {
+            "type": "within single gene",
             "names": [
               {
                 "value": {

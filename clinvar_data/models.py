@@ -1893,10 +1893,24 @@ class MeasureRelationshipAttribute:
         )
 
 
+@enum.unique
+class MeasureRelationshipType(enum.Enum):
+    VARIANT_IN_GENE = "variant in gene"
+    COOCURRING_VARIANT = "co-occurring variant"
+    WITHIN_SNIGLE_GENE = "within single gene"
+    WITHIN_MULTIPLE_GENES_BY_OVERLAP = "within multiple genes by overlap"
+    GENES_OVERLAPPED_BY_VARIANT = "genes overlapped by variant"
+    NEAR_GENE_UPSTREAM = "near gene, upstream"
+    NEAR_GENE_DOWNSTREAM = "near gene, downstream"
+    ASSERTED_BUT_NOT_COMPUTED = "asserted, but not computed"
+
+
 @attrs.frozen(auto_attribs=True)
 class MeasureRelationship:
     """Description of a measure relationship"""
 
+    #: Type of the measure relationship
+    type: typing.Optional[MeasureRelationshipType] = None
     #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     #: List of symbols
@@ -1915,6 +1929,7 @@ class MeasureRelationship:
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureRelationship":
         return MeasureRelationship(
+            type=MeasureRelationshipType(json_data["@Type"]) if "@Type" in json_data else None,
             names=[
                 AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
@@ -2042,8 +2057,8 @@ class Measure:
             if "GlobalMinorAlleleFrequency" in json_data
             else None,
             cytogenic_locations=[
-                raw_cytogenic_location["#text"]
-                for raw_cytogenic_location in force_list(json_data.get("CytogenicLocation", []))
+                raw_cytogenic_location
+                for raw_cytogenic_location in force_list(json_data.get("CytogeneticLocation", []))
             ],
             sequence_locations=[
                 SequenceLocation.from_json_data(raw_sequence_location)

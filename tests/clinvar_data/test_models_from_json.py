@@ -1544,7 +1544,8 @@ def test_measure_set_from_json_data(value, snapshot):
                                     {
                                         "symbols": [
                                             {"value": {"type": "Preferred", "value": "CYP11B1"}}
-                                        ]
+                                        ],
+                                        "type": "variant in " "gene",
                                     }
                                 ],
                                 "type": "variation",
@@ -1560,7 +1561,8 @@ def test_measure_set_from_json_data(value, snapshot):
                                     {
                                         "symbols": [
                                             {"value": {"type": "Preferred", "value": "CYP11B1"}}
-                                        ]
+                                        ],
+                                        "type": "variant in " "gene",
                                     }
                                 ],
                                 "type": "variation",
