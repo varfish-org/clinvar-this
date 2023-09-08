@@ -1675,6 +1675,10 @@ class MeasureAttribute:
     xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: The optional integer value provided in ClinVar public XML
+    integer_value: typing.Optional[int] = None
+    #: The optional date value provided in ClinVar public XML
+    date_value: typing.Optional[datetime.date] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureAttribute":
@@ -1693,6 +1697,10 @@ class MeasureAttribute:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
+            integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
+            date_value=parse_datetime(attribute["@dateValue"])
+            if "@dateValue" in attribute
+            else None,
         )
 
 
@@ -1942,9 +1950,9 @@ class MeasureType(enum.Enum):
     GENE = "gene"
     VARIATION = "variation"
     INSERTION = "insertion"
-    DELETION = "Deletion"
+    DELETION = "deletion"
     SNV = "single nucleotide variant"
-    INDEL = "Indel"
+    INDEL = "indel"
     DUPLICATION = "duplication"
     TANDEM_DUPLICATION = "tandem duplication"
     STRUCTURAL_VARIANT = "structural variant"
@@ -1992,7 +2000,7 @@ class Measure:
     #: Cytogenic location
     cytogenic_locations: typing.List[str] = attrs.field(factory=list)
     #: Sequence location
-    sequence_location: typing.List[SequenceLocation] = attrs.field(factory=list)
+    sequence_locations: typing.List[SequenceLocation] = attrs.field(factory=list)
     #: Measure relationship
     measure_relationship: typing.List[MeasureRelationship] = attrs.field(factory=list)
     #: List of citations
@@ -2037,7 +2045,7 @@ class Measure:
                 raw_cytogenic_location["#text"]
                 for raw_cytogenic_location in force_list(json_data.get("CytogenicLocation", []))
             ],
-            sequence_location=[
+            sequence_locations=[
                 SequenceLocation.from_json_data(raw_sequence_location)
                 for raw_sequence_location in force_list(json_data.get("SequenceLocation", []))
             ],
