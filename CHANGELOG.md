@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.9.0](https://www.github.com/bihealth/clinvar-this/compare/v0.8.0...v0.9.0) (2023-09-08)
+
+
+### Features
+
+* write assessment to extract variants ([#128](https://www.github.com/bihealth/clinvar-this/issues/128)) ([dd72c90](https://www.github.com/bihealth/clinvar-this/commit/dd72c90a68f0e2cbd0306301de77985c0acb521e))
+
+
+### Bug Fixes
+
+* normalizing molecular consequence ([#126](https://www.github.com/bihealth/clinvar-this/issues/126)) ([c2a72cf](https://www.github.com/bihealth/clinvar-this/commit/c2a72cfcaea94752fdb8e278bc0a6d48748650a6))
+
 ## [0.8.0](https://www.github.com/bihealth/clinvar-this/compare/v0.7.0...v0.8.0) (2023-09-08)
 
 
