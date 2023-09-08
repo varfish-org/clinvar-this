@@ -4,6 +4,7 @@
   "version": 1,
   "measures": [
     {
+      "type": "deletion",
       "names": [
         {
           "value": {
@@ -32,7 +33,7 @@
           "value": "LRG_801t1:c.286_299del"
         }
       ],
-      "sequence_location": [
+      "sequence_locations": [
         {
           "assembly": "GRCh38",
           "chr": "1",
@@ -95,7 +96,8 @@
           "id": "613665.0004",
           "type": "Allelic variant"
         }
-      ]
+      ],
+      "id": 33436
     }
   ],
   "names": [

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
+<ClinVarSet ID="92340772">
+  <RecordStatus>current</RecordStatus>
+  <Title>GRCh37/hg19 2p11.2(chr2:86269067-86509326)x3 AND See cases</Title>
+  <ReferenceClinVarAssertion ID="579272" DateLastUpdated="2022-04-23" DateCreated="2016-09-04">
+    <ClinVarAccession Acc="RCV000240383" DateUpdated="2022-04-23" DateCreated="2016-09-04" Version="1" Type="RCV"/>
+    <RecordStatus>current</RecordStatus>
+    <ClinicalSignificance DateLastEvaluated="2016-01-20">
+      <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+      <Description>Uncertain significance</Description>
+    </ClinicalSignificance>
+    <Assertion Type="variation to disease"/>
+    <ObservedIn>
+      <Sample>
+        <Origin>unknown</Origin>
+        <Species TaxonomyId="9606">human</Species>
+        <AffectedStatus>yes</AffectedStatus>
+      </Sample>
+      <Method>
+        <MethodType>clinical testing</MethodType>
+      </Method>
+      <ObservedData ID="96470062">
+        <Attribute Type="Description">not provided</Attribute>
+      </ObservedData>
+    </ObservedIn>
+    <MeasureSet Type="Variant" ID="253751" Acc="VCV000253751" Version="1">
+      <Measure Type="copy number gain" ID="248199">
+        <Name>
+          <ElementValue Type="Preferred">GRCh37/hg19 2p11.2(chr2:86269067-86509326)x3</ElementValue>
+        </Name>
+        <AttributeSet>
+          <Attribute Type="AbsoluteCopyNumber" integerValue="3"/>
+          <XRef ID="GDX_2857494" DB="GeneDx"/>
+        </AttributeSet>
+        <CytogeneticLocation>2p11.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" innerStart="86269067" innerStop="86509326" display_start="86269067" display_stop="86509326"/>
+        <MeasureRelationship Type="genes overlapped by variant">
+          <Name>
+            <ElementValue Type="Preferred">RNA polymerase I subunit A</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">POLR1A</ElementValue>
+          </Symbol>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="86020216" stop="86105886" display_start="86020216" display_stop="86105886" Strand="-"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="86253450" stop="86333277" display_start="86253450" display_stop="86333277" variantLength="79828" Strand="-"/>
+          <XRef ID="25885" DB="Gene"/>
+          <XRef Type="MIM" ID="616404" DB="OMIM"/>
+          <XRef ID="HGNC:17264" DB="HGNC"/>
+        </MeasureRelationship>
+        <MeasureRelationship Type="genes overlapped by variant">
+          <Name>
+            <ElementValue Type="Preferred">inner membrane mitochondrial protein</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">IMMT</ElementValue>
+          </Symbol>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="86143936" stop="86195462" display_start="86143936" display_stop="86195462" Strand="-"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="86371054" stop="86422892" display_start="86371054" display_stop="86422892" variantLength="51839" Strand="-"/>
+          <XRef ID="10989" DB="Gene"/>
+          <XRef Type="MIM" ID="600378" DB="OMIM"/>
+          <XRef ID="HGNC:6047" DB="HGNC"/>
+        </MeasureRelationship>
+        <MeasureRelationship Type="genes overlapped by variant">
+          <Name>
+            <ElementValue Type="Preferred">mitochondrial ribosomal protein L35</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">MRPL35</ElementValue>
+          </Symbol>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="86199433" stop="86213794" display_start="86199433" display_stop="86213794" Strand="+"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="86426555" stop="86440476" display_start="86426555" display_stop="86440476" variantLength="13922" Strand="+"/>
+          <XRef ID="51318" DB="Gene"/>
+          <XRef Type="MIM" ID="611841" DB="OMIM"/>
+          <XRef ID="HGNC:14489" DB="HGNC"/>
+        </MeasureRelationship>
+        <MeasureRelationship Type="genes overlapped by variant">
+          <Name>
+            <ElementValue Type="Preferred">pentatricopeptide repeat domain 3</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">PTCD3</ElementValue>
+          </Symbol>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="86106235" stop="86142157" display_start="86106235" display_stop="86142157" Strand="+"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="86333304" stop="86369279" display_start="86333304" display_stop="86369279" variantLength="35976" Strand="+"/>
+          <XRef ID="55037" DB="Gene"/>
+          <XRef Type="MIM" ID="614918" DB="OMIM"/>
+          <XRef ID="HGNC:24717" DB="HGNC"/>
+        </MeasureRelationship>
+        <MeasureRelationship Type="genes overlapped by variant">
+          <Name>
+            <ElementValue Type="Preferred">receptor accessory protein 1</ElementValue>
+          </Name>
+          <Symbol>
+            <ElementValue Type="Preferred">REEP1</ElementValue>
+          </Symbol>
+          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="86213993" stop="86338083" display_start="86213993" display_stop="86338083" Strand="-"/>
+          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="86441115" stop="86565205" display_start="86441115" display_stop="86565205" variantLength="124091" Strand="-"/>
+          <XRef ID="65055" DB="Gene"/>
+          <XRef Type="MIM" ID="609139" DB="OMIM"/>
+          <XRef ID="HGNC:25786" DB="HGNC"/>
+        </MeasureRelationship>
+      </Measure>
+      <Name>
+        <ElementValue Type="Preferred">GRCh37/hg19 2p11.2(chr2:86269067-86509326)x3</ElementValue>
+      </Name>
+    </MeasureSet>
+    <TraitSet Type="PhenotypeInstruction" ID="16994">
+      <Trait ID="18728" Type="PhenotypeInstruction">
+        <Name>
+          <ElementValue Type="Preferred">See cases</ElementValue>
+        </Name>
+      </Trait>
+    </TraitSet>
+  </ReferenceClinVarAssertion>
+  <ClinVarAssertion ID="578243">
+    <ClinVarSubmissionID localKey="GDX_L_37834" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="GeneDx" submitterDate="2016-07-13"/>
+    <ClinVarAccession Acc="SCV000298786" DateCreated="2016-09-04" DateUpdated="2016-09-04" OrgID="26957" OrgType="primary" OrganizationCategory="laboratory" Type="SCV" Version="1"/>
+    <RecordStatus>current</RecordStatus>
+    <ClinicalSignificance DateLastEvaluated="2016-01-20">
+      <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+      <Description>Uncertain significance</Description>
+    </ClinicalSignificance>
+    <Assertion Type="variation to disease"/>
+    <ExternalID DB="GeneDx" ID="GDX_2857494"/>
+    <AttributeSet>
+      <Attribute Type="AssertionMethod">GeneDx Variant Classification (06012015)</Attribute>
+      <Citation Type="general">
+        <URL>https://submit.ncbi.nlm.nih.gov/ft/byid/dhtz9flo/genedx_interprules_final_061215.pdf</URL>
+      </Citation>
+    </AttributeSet>
+    <ObservedIn>
+      <Sample>
+        <Origin>unknown</Origin>
+        <Species TaxonomyId="9606">human</Species>
+        <AffectedStatus>yes</AffectedStatus>
+        <Gender>female</Gender>
+      </Sample>
+      <Method>
+        <MethodType>clinical testing</MethodType>
+        <MethodAttribute>
+          <Attribute Type="StructVarMethodType">Oligo array</Attribute>
+        </MethodAttribute>
+      </Method>
+      <ObservedData>
+        <Attribute Type="Description">not provided</Attribute>
+      </ObservedData>
+      <TraitSet Type="Finding">
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Specific learning disability</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0001328"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Intellectual disability</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0001249"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Delayed speech and language development</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0000750"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Dystonia</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0001332"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Muscular hypotonia</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0001252"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Delayed gross motor development</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0002194"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Constipation</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0002019"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Seizures</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0001250"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Delayed fine motor development</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0010862"/>
+        </Trait>
+        <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+          <Name>
+            <ElementValue Type="Preferred">Epileptic spasms</ElementValue>
+          </Name>
+          <XRef DB="HP" ID="HP:0011097"/>
+        </Trait>
+      </TraitSet>
+    </ObservedIn>
+    <MeasureSet Type="Variant">
+      <Measure Type="copy number gain">
+        <AttributeSet>
+          <Attribute Type="AbsoluteCopyNumber">3</Attribute>
+        </AttributeSet>
+        <SequenceLocation Assembly="GRCh37" Chr="2" innerStart="86269067" innerStop="86509326"/>
+      </Measure>
+    </MeasureSet>
+    <TraitSet Type="Finding">
+      <Trait Type="PhenotypeInstruction">
+        <Name>
+          <ElementValue Type="Preferred">See Cases</ElementValue>
+        </Name>
+      </Trait>
+    </TraitSet>
+  </ClinVarAssertion>
+</ClinVarSet>
+
+</ReleaseSet>

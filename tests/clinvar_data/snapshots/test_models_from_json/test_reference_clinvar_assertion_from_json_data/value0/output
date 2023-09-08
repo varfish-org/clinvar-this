@@ -53,6 +53,7 @@
     "version": 1,
     "measures": [
       {
+        "type": "single nucleotide variant",
         "names": [
           {
             "value": {
@@ -90,11 +91,13 @@
           },
           {
             "type": "HGVS, genomic, top level",
-            "value": "NC_000020.11:g.10413073G>A"
+            "value": "NC_000020.11:g.10413073G>A",
+            "integer_value": 38
           },
           {
             "type": "HGVS, genomic, top level, previous",
-            "value": "NC_000020.10:g.10393721G>A"
+            "value": "NC_000020.10:g.10393721G>A",
+            "integer_value": 37
           },
           {
             "type": "HGVS, protein, RefSeq",
@@ -141,7 +144,7 @@
             "value": "GLN147TER"
           }
         ],
-        "sequence_location": [
+        "sequence_locations": [
           {
             "assembly": "GRCh38",
             "chr": "20",
@@ -246,7 +249,8 @@
             "id": "137853154",
             "type": "rs"
           }
-        ]
+        ],
+        "id": 20357
       }
     ],
     "names": [

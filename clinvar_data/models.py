@@ -1675,6 +1675,10 @@ class MeasureAttribute:
     xrefs: typing.List[Xref] = attrs.field(factory=list)
     #: List of comments
     comments: typing.List[Comment] = attrs.field(factory=list)
+    #: The optional integer value provided in ClinVar public XML
+    integer_value: typing.Optional[int] = None
+    #: The optional date value provided in ClinVar public XML
+    date_value: typing.Optional[datetime.date] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureAttribute":
@@ -1693,6 +1697,10 @@ class MeasureAttribute:
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
+            integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
+            date_value=parse_datetime(attribute["@dateValue"])
+            if "@dateValue" in attribute
+            else None,
         )
 
 
@@ -1937,10 +1945,46 @@ class MeasureRelationship:
         )
 
 
+@enum.unique
+class MeasureType(enum.Enum):
+    GENE = "gene"
+    VARIATION = "variation"
+    INSERTION = "insertion"
+    DELETION = "deletion"
+    SNV = "single nucleotide variant"
+    INDEL = "indel"
+    DUPLICATION = "duplication"
+    TANDEM_DUPLICATION = "tandem duplication"
+    STRUCTURAL_VARIANT = "structural variant"
+    COPY_NUMBER_GAIN = "copy number gain"
+    COPY_NUMBER_LOSS = "copy number loss"
+    PROTEIN_ONLY = "protein only"
+    MICROSATELLITE = "microsatellite"
+    FUSION = "fusion"
+    INVERSION = "inversion"
+    TRANSLOCATION = "translocation"
+    QTL = "qtl"
+    COMPLEX = "complex"
+    OTHER = "other"
+
+    @classmethod
+    def from_the_wild(cls, value: str) -> "MeasureType":
+        """Convert values "from the wild" where sometimes invalid values are used.
+
+        These are converted to ``Other``.
+        """
+        try:
+            return MeasureType(value.lower().replace("-", " "))
+        except ValueError:
+            return MeasureType.OTHER
+
+
 @attrs.frozen(auto_attribs=True)
 class Measure:
     """Description of a measures"""
 
+    #: Type of the measure
+    type: typing.Optional[MeasureType] = None
     #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     #: Canonical SPDI
@@ -1956,7 +2000,7 @@ class Measure:
     #: Cytogenic location
     cytogenic_locations: typing.List[str] = attrs.field(factory=list)
     #: Sequence location
-    sequence_location: typing.List[SequenceLocation] = attrs.field(factory=list)
+    sequence_locations: typing.List[SequenceLocation] = attrs.field(factory=list)
     #: Measure relationship
     measure_relationship: typing.List[MeasureRelationship] = attrs.field(factory=list)
     #: List of citations
@@ -1967,10 +2011,14 @@ class Measure:
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
     source: typing.List[Source] = attrs.field(factory=list)
+    #: Optional identifier
+    id: typing.Optional[int] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Measure":
         return Measure(
+            type=MeasureType.from_the_wild(json_data["@Type"]) if "@Type" in json_data else None,
+            id=int(json_data["@ID"]) if "@ID" in json_data else None,
             names=[
                 AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))
@@ -1997,7 +2045,7 @@ class Measure:
                 raw_cytogenic_location["#text"]
                 for raw_cytogenic_location in force_list(json_data.get("CytogenicLocation", []))
             ],
-            sequence_location=[
+            sequence_locations=[
                 SequenceLocation.from_json_data(raw_sequence_location)
                 for raw_sequence_location in force_list(json_data.get("SequenceLocation", []))
             ],

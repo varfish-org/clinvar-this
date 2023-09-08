@@ -5,7 +5,13 @@ import typing
 import attrs
 import click
 
-from clinvar_data import class_by_freq, conversion, gene_impact, phenotype_link
+from clinvar_data import (
+    class_by_freq,
+    conversion,
+    extract_vars,
+    gene_impact,
+    phenotype_link,
+)
 from clinvar_this import _version, batches, exceptions
 from clinvar_this.config import Config, dump_config, load_config, save_config
 
@@ -257,3 +263,16 @@ def acmg_class_by_freq(ctx: click.Context, input_file: str, output_file: str, th
     _ = ctx
     thresholds_float = list(map(float, thresholds.split(",")))
     class_by_freq.run_report(input_file, output_file, thresholds=thresholds_float)
+
+
+@data.command("extract-vars")
+@click.argument("path_input")
+@click.argument("path_output_dir")
+@click.option(
+    "--gzip-output/--no-gzip-output", default=True, help="Whether to gzip output (default: true)"
+)
+@click.pass_context
+def cli_extract_vars(ctx: click.Context, path_input: str, path_output_dir: str, gzip_output: bool):
+    """Write out variants from RCV records."""
+    _ = ctx
+    extract_vars.run(path_input, path_output_dir, gzip_output)
