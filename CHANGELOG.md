@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://www.github.com/bihealth/clinvar-this/compare/v0.7.0...v0.8.0) (2023-09-08)
+
+
+### Features
+
+* variant extraction ([#124](https://www.github.com/bihealth/clinvar-this/issues/124)) ([c7bb7c9](https://www.github.com/bihealth/clinvar-this/commit/c7bb7c9a2376d37b512b494631cf62dfcc23b19b))
+
 ## [0.7.0](https://www.github.com/bihealth/clinvar-this/compare/v0.6.0...v0.7.0) (2023-09-07)
 
 
