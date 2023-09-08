@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.8.1](https://www.github.com/bihealth/clinvar-this/compare/v0.8.0...v0.8.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* normalizing molecular consequence ([#126](https://www.github.com/bihealth/clinvar-this/issues/126)) ([c2a72cf](https://www.github.com/bihealth/clinvar-this/commit/c2a72cfcaea94752fdb8e278bc0a6d48748650a6))
+
 ## [0.8.0](https://www.github.com/bihealth/clinvar-this/compare/v0.7.0...v0.8.0) (2023-09-08)
 
 
