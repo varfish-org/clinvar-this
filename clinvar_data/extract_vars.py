@@ -77,6 +77,7 @@ class VariantRecord:
     clinical_significance: typing.Optional[models.ClinicalSignificanceDescription]
     review_status: typing.Optional[models.ReviewStatus]
     sequence_location: models.SequenceLocation
+    hgnc_ids: typing.List[str]
     absolute_copy_number: typing.Union[None, str, int, float] = None
     reference_copy_number: typing.Union[None, str, int, float] = None
     copy_number_tuple: typing.Union[None, str, int, float] = None
@@ -102,6 +103,13 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                 for measure in rca.measures.measures or []:
                     if not measure.sequence_locations:
                         continue
+
+                    hgnc_ids_set = set()
+                    for measure_relationship in measure.measure_relationship or []:
+                        for xref in measure_relationship.xrefs:
+                            if xref.db == "HGNC":
+                                hgnc_ids_set.add(xref.id)
+                    hgnc_ids = list(sorted(hgnc_ids_set))
 
                     absolute_copy_number = None
                     reference_copy_number = None
@@ -130,6 +138,7 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                             review_status=review_status,
                             variant_type=VariantType.from_measure_type(measure.type),
                             sequence_location=sequence_location,
+                            hgnc_ids=hgnc_ids,
                             absolute_copy_number=absolute_copy_number,
                             reference_copy_number=reference_copy_number,
                             copy_number_tuple=copy_number_tuple,

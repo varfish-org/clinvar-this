@@ -33,6 +33,9 @@
           "value": "LRG_801t1:c.286_299del"
         }
       ],
+      "cytogenic_locations": [
+        "1q23.2"
+      ],
       "sequence_locations": [
         {
           "assembly": "GRCh38",
@@ -52,6 +55,7 @@
       ],
       "measure_relationship": [
         {
+          "type": "within single gene",
           "names": [
             {
               "value": {
