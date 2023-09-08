@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://www.github.com/bihealth/clinvar-this/compare/v0.9.0...v0.10.0) (2023-09-08)
+
+
+### Features
+
+* write out HGNC identifier with variants ([#130](https://www.github.com/bihealth/clinvar-this/issues/130)) ([#131](https://www.github.com/bihealth/clinvar-this/issues/131)) ([ea33100](https://www.github.com/bihealth/clinvar-this/commit/ea33100e4af3329fb7e3018be0a2c8d215678924))
+
 ## [0.9.0](https://www.github.com/bihealth/clinvar-this/compare/v0.8.0...v0.9.0) (2023-09-08)
 
 
