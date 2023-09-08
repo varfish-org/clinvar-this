@@ -1,4 +1,5 @@
 {
+  "type": "other",
   "names": [
     {
       "value": {
@@ -90,5 +91,6 @@
       "id": "613665.0004",
       "type": "Allelic variant"
     }
-  ]
+  ],
+  "id": 33436
 }

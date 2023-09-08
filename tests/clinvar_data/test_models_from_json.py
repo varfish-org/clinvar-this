@@ -1547,6 +1547,7 @@ def test_measure_set_from_json_data(value, snapshot):
                                         ]
                                     }
                                 ],
+                                "type": "variation",
                             }
                         ],
                         "type": "Variant",
@@ -1562,6 +1563,7 @@ def test_measure_set_from_json_data(value, snapshot):
                                         ]
                                     }
                                 ],
+                                "type": "variation",
                             }
                         ],
                         "type": "Variant",

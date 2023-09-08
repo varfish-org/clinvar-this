@@ -53,6 +53,7 @@
     "version": 1,
     "measures": [
       {
+        "type": "single nucleotide variant",
         "names": [
           {
             "value": {
@@ -246,7 +247,8 @@
             "id": "137853154",
             "type": "rs"
           }
-        ]
+        ],
+        "id": 20357
       }
     ],
     "names": [

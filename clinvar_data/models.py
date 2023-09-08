@@ -1937,10 +1937,46 @@ class MeasureRelationship:
         )
 
 
+@enum.unique
+class MeasureType(enum.Enum):
+    GENE = "gene"
+    VARIATION = "variation"
+    INSERTION = "insertion"
+    DELETION = "Deletion"
+    SNV = "single nucleotide variant"
+    INDEL = "Indel"
+    DUPLICATION = "duplication"
+    TANDEM_DUPLICATION = "tandem duplication"
+    STRUCTURAL_VARIANT = "structural variant"
+    COPY_NUMBER_GAIN = "copy number gain"
+    COPY_NUMBER_LOSS = "copy number loss"
+    PROTEIN_ONLY = "protein only"
+    MICROSATELLITE = "microsatellite"
+    FUSION = "fusion"
+    INVERSION = "inversion"
+    TRANSLOCATION = "translocation"
+    QTL = "qtl"
+    COMPLEX = "complex"
+    OTHER = "other"
+
+    @classmethod
+    def from_the_wild(cls, value: str) -> "MeasureType":
+        """Convert values "from the wild" where sometimes invalid values are used.
+
+        These are converted to ``Other``.
+        """
+        try:
+            return MeasureType(value.lower().replace("-", " "))
+        except ValueError:
+            return MeasureType.OTHER
+
+
 @attrs.frozen(auto_attribs=True)
 class Measure:
     """Description of a measures"""
 
+    #: Type of the measure
+    type: typing.Optional[MeasureType] = None
     #: List of names
     names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
     #: Canonical SPDI
@@ -1967,10 +2003,14 @@ class Measure:
     comments: typing.List[Comment] = attrs.field(factory=list)
     #: List of sources
     source: typing.List[Source] = attrs.field(factory=list)
+    #: Optional identifier
+    id: typing.Optional[int] = None
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Measure":
         return Measure(
+            type=MeasureType.from_the_wild(json_data["@Type"]) if "@Type" in json_data else None,
+            id=int(json_data["@ID"]) if "@ID" in json_data else None,
             names=[
                 AnnotatedTypedValue.from_json_data(raw_name)
                 for raw_name in force_list(json_data.get("Name", []))

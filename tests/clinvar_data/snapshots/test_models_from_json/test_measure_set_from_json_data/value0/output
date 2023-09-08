@@ -4,6 +4,7 @@
   "version": 1,
   "measures": [
     {
+      "type": "other",
       "names": [
         {
           "value": {
@@ -95,7 +96,8 @@
           "id": "613665.0004",
           "type": "Allelic variant"
         }
-      ]
+      ],
+      "id": 33436
     }
   ],
   "names": [

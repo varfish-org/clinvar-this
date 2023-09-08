@@ -53,6 +53,7 @@ def test_cli_xml_to_json_stdin_stdout(snapshot):
         "ex_study_description.xml",
         "ex_with_ethnicity.xml",
         "ex_with_hpo.xml",
+        "record_with_submitter.xml",
     ],
 )
 def test_convert_snapshot_to_jsonl(fname_in, tmp_path, snapshot):
