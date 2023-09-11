@@ -1790,7 +1790,7 @@ class SequenceLocation:
     #: Alternate allele
     alternate_allele: typing.Optional[str] = None
     #: Assembly accession and version
-    assembly_accesion_version: typing.Optional[str] = None
+    assembly_accession_version: typing.Optional[str] = None
     #: Assembly status
     assembly_status: typing.Optional[AssemblyStatus] = None
     #: Position in VCF
@@ -1824,7 +1824,7 @@ class SequenceLocation:
             else None,
             reference_allele=json_data.get("@referenceAllele"),
             alternate_allele=json_data.get("@alternateAllele"),
-            assembly_accesion_version=json_data.get("@AssemblyAccessionVersion"),
+            assembly_accession_version=json_data.get("@AssemblyAccessionVersion"),
             assembly_status=AssemblyStatus(json_data["@AssemblyStatus"])
             if "@AssemblyStatus" in json_data
             else None,

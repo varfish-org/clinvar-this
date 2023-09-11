@@ -41,7 +41,7 @@
       "display_start": 159205719,
       "display_stop": 159205732,
       "variant_length": 14,
-      "assembly_accesion_version": "GCF_000001405.38",
+      "assembly_accession_version": "GCF_000001405.38",
       "assembly_status": "current",
       "position_vcf": 159205718,
       "reference_allele_vcf": "CCCTGGCTGGCCTGT",
@@ -77,7 +77,7 @@
           "display_start": 159204875,
           "display_stop": 159206500,
           "strand": "+",
-          "assembly_accesion_version": "GCF_000001405.38",
+          "assembly_accession_version": "GCF_000001405.38",
           "assembly_status": "current"
         }
       ],
