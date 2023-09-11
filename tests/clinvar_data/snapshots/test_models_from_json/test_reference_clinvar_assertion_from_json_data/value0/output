@@ -157,7 +157,7 @@
             "display_start": 10413073,
             "display_stop": 10413073,
             "variant_length": 1,
-            "assembly_accesion_version": "GCF_000001405.38",
+            "assembly_accession_version": "GCF_000001405.38",
             "assembly_status": "current",
             "position_vcf": 10413073,
             "reference_allele_vcf": "G",
@@ -172,7 +172,7 @@
             "display_start": 10393721,
             "display_stop": 10393721,
             "variant_length": 1,
-            "assembly_accesion_version": "GCF_000001405.25",
+            "assembly_accession_version": "GCF_000001405.25",
             "assembly_status": "previous",
             "position_vcf": 10393721,
             "reference_allele_vcf": "G",
@@ -208,7 +208,7 @@
                 "display_start": 10401009,
                 "display_stop": 10434222,
                 "strand": "-",
-                "assembly_accesion_version": "GCF_000001405.38",
+                "assembly_accession_version": "GCF_000001405.38",
                 "assembly_status": "current"
               },
               {
@@ -221,7 +221,7 @@
                 "display_stop": 10414886,
                 "strand": "-",
                 "variant_length": 29460,
-                "assembly_accesion_version": "GCF_000001405.25",
+                "assembly_accession_version": "GCF_000001405.25",
                 "assembly_status": "previous"
               }
             ],

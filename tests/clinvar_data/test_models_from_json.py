@@ -1137,7 +1137,7 @@ def test_clinvar_assertion_accession_from_json_data(value, expected):
             {
                 "accession": "NC_000016.10",
                 "assembly": "GRCh38",
-                "assembly_accesion_version": "GCF_000001405.38",
+                "assembly_accession_version": "GCF_000001405.38",
                 "assembly_status": "current",
                 "chr": "16",
                 "display_start": 50742086,
@@ -1167,7 +1167,7 @@ def test_clinvar_assertion_accession_from_json_data(value, expected):
                 "accession": "NC_000006.11",
                 "alternate_allele_vcf": "T",
                 "assembly": "GRCh37",
-                "assembly_accesion_version": "GCF_000001405.25",
+                "assembly_accession_version": "GCF_000001405.25",
                 "assembly_status": "previous",
                 "chr": "6",
                 "display_start": 41129260,
