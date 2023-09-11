@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.10.2](https://www.github.com/bihealth/clinvar-this/compare/v0.10.1...v0.10.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* typo accession => accession ([#135](https://www.github.com/bihealth/clinvar-this/issues/135)) ([9ac72a2](https://www.github.com/bihealth/clinvar-this/commit/9ac72a283873ba446d468cad597854e53a64689e))
+
 ### [0.10.1](https://www.github.com/bihealth/clinvar-this/compare/v0.10.0...v0.10.1) (2023-09-11)
 
 
