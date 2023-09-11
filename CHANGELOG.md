@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.10.1](https://www.github.com/bihealth/clinvar-this/compare/v0.10.0...v0.10.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* properly write out variants to JSONL ([#133](https://www.github.com/bihealth/clinvar-this/issues/133)) ([17b7e5c](https://www.github.com/bihealth/clinvar-this/commit/17b7e5c7250a16edbf361c721a9af4ff58c1402e))
+
 ## [0.10.0](https://www.github.com/bihealth/clinvar-this/compare/v0.9.0...v0.10.0) (2023-09-08)
 
 
