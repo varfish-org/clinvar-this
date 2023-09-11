@@ -158,4 +158,4 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         dest = output_files.get_file(
                             stack, sequence_location.assembly.lower(), variant_size
                         )
-                        print(cattrs.unstructure(record), file=dest)
+                        print(json.dumps(cattrs.unstructure(record)), file=dest)
