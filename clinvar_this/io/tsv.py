@@ -109,6 +109,8 @@ class StrucVarTsvRecord:
     clinical_significance_comment: typing.Optional[str] = None
     #: HPO terms for clinical features
     hpo_terms: typing.Optional[typing.List[str]] = None
+    #: Pubmed PMID for literature references
+    pmids: typing.Optional[typing.List[str]] = None
 
 
 @attrs.frozen
@@ -372,6 +374,13 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         required=False,
         converter=_str_list,
         extractor=lambda r: _join_list(r.omim),
+    ),
+    StrucVarHeaderColumn(
+        header_names=("PMID",),
+        key="hpo_terms",
+        required=False,
+        converter=_str_list,
+        extractor=lambda r: _join_list(r.pmids or []),
     ),
 )
 
@@ -965,6 +974,10 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
         else:
             return None
 
+    def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+        if citations := submission.clinical_significance.citation:
+            return [c.id for c in citations if c.db == CitationDb.PUBMED]
+
     def submission_to_struc_var_tsv_record(
         submission: SubmissionClinvarSubmission,
     ) -> typing.Optional[StrucVarTsvRecord]:
@@ -1020,6 +1033,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             stop=chromosome_coordinates.stop,
             sv_type=variant_type,
             omim=_condition(submission),
+            pmids=_pmids(submission),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             local_key=submission.local_key or "",
