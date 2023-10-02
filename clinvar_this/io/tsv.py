@@ -26,6 +26,7 @@ from clinvar_api.models import (
     ReleaseStatus,
     SubmissionAssertionCriteria,
     SubmissionChromosomeCoordinates,
+    SubmissionCitation,
     SubmissionClinicalSignificance,
     SubmissionClinvarSubmission,
     SubmissionCondition,
@@ -74,6 +75,8 @@ class SeqVarTsvRecord:
     clinical_significance_comment: typing.Optional[str] = None
     #: HPO terms for clinical features
     hpo_terms: typing.Optional[typing.List[str]] = None
+    #: Pubmed PMID for literature references
+    pmids: typing.Optional[typing.List[str]] = None
 
 
 @attrs.frozen
@@ -274,6 +277,13 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         required=False,
         converter=_str_list,
         extractor=lambda r: _join_list(r.hpo_terms or []),
+    ),
+    SeqVarHeaderColumn(
+        header_names=("PMID",),
+        key="pmids",
+        required=False,
+        converter=_str_list,
+        extractor=lambda r: _join_list(r.pmids or []),
     ),
 )
 
@@ -662,6 +672,18 @@ def seq_var_tsv_records_to_submission_container(
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
 
+    def record_pubmed_citations(
+        record: SeqVarTsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionCitation]]:
+        if record.pmids:
+            return [
+                SubmissionCitation(
+                    db=CitationDb.PUBMED,
+                    id=pmid,
+                )
+                for pmid in record.pmids
+            ]
+
     def record_clinical_features(
         record: SeqVarTsvRecord,
     ) -> typing.Optional[typing.List[SubmissionClinicalFeature]]:
@@ -709,6 +731,7 @@ def seq_var_tsv_records_to_submission_container(
                 clinical_significance=SubmissionClinicalSignificance(
                     clinical_significance_description=record.clinical_significance_description,
                     mode_of_inheritance=record.inheritance,
+                    citation=record_pubmed_citations(record),
                 ),
                 record_status=RecordStatus.NOVEL,
                 variant_set=SubmissionVariantSet(
@@ -843,6 +866,10 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
         return result
 
+    def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+        if citations := submission.clinical_significance.citation:
+            return [c.id for c in citations if c.db == CitationDb.PUBMED]
+
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
     ) -> typing.Optional[SeqVarTsvRecord]:
@@ -897,6 +924,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             omim=_condition(submission),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
+            pmids=_pmids(submission),
             local_key=submission.local_key or "",
             extra_data=extra_data,
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
