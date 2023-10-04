@@ -692,7 +692,8 @@ def seq_var_tsv_records_to_submission_container(
                 )
                 for pmid in record.pmids
             ]
-        return None
+        else:
+            return None
 
     def record_clinical_features(
         record: SeqVarTsvRecord,
@@ -778,6 +779,20 @@ def struc_var_tsv_records_to_submission_container(
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
 
+    def record_pubmed_citations(
+        record: StrucVarTsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionCitation]]:
+        if record.pmids:
+            return [
+                SubmissionCitation(
+                    db=CitationDb.PUBMED,
+                    id=pmid,
+                )
+                for pmid in record.pmids
+            ]
+        else:
+            return None
+
     def record_clinical_features(
         record: StrucVarTsvRecord,
     ) -> typing.Optional[typing.List[SubmissionClinicalFeature]]:
@@ -825,6 +840,7 @@ def struc_var_tsv_records_to_submission_container(
                 clinical_significance=SubmissionClinicalSignificance(
                     clinical_significance_description=record.clinical_significance_description,
                     mode_of_inheritance=record.inheritance,
+                    citation=record_pubmed_citations(record),
                 ),
                 record_status=RecordStatus.NOVEL,
                 variant_set=SubmissionVariantSet(
@@ -879,7 +895,8 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
     def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
         if citations := submission.clinical_significance.citation:
             return [c.id for c in citations if c.db == CitationDb.PUBMED and c.id]
-        return None
+        else:
+            return None
 
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
@@ -979,7 +996,8 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
     def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
         if citations := submission.clinical_significance.citation:
             return [c.id for c in citations if c.db == CitationDb.PUBMED and c.id]
-        return None
+        else:
+            return None
 
     def submission_to_struc_var_tsv_record(
         submission: SubmissionClinvarSubmission,
