@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.10.3](https://www.github.com/bihealth/clinvar-this/compare/v0.10.2...v0.10.3) (2023-10-04)
+
+
+### Bug Fixes
+
+* mypy linting of tests ([#144](https://www.github.com/bihealth/clinvar-this/issues/144)) ([ee1fc5d](https://www.github.com/bihealth/clinvar-this/commit/ee1fc5d98026c4c5c3c248eca4e0907f21d45f0e))
+
 ### [0.10.2](https://www.github.com/bihealth/clinvar-this/compare/v0.10.1...v0.10.2) (2023-09-11)
 
 
