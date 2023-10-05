@@ -26,6 +26,7 @@ def test_read_seq_var_tsv_path():
     actual = read_seq_var_tsv(path=DATA_DIR / "example.tsv")
     assert actual == [
         SeqVarTsvRecord(
+            accession="SCV1",
             assembly=Assembly.GRCH37,
             chromosome=Chromosome.CHR10,
             pos=115614632,
@@ -44,6 +45,7 @@ def test_read_struc_var_tsv_path():
     actual = read_struc_var_tsv(path=DATA_DIR / "example_sv.tsv")
     assert actual == [
         StrucVarTsvRecord(
+            accession="SCV1",
             assembly=Assembly.GRCH38,
             chromosome=Chromosome.CHR1,
             start=844347,
@@ -62,6 +64,7 @@ def test_read_seq_var_tsv_file():
         actual = read_seq_var_tsv(file=inputf)
     assert actual == [
         SeqVarTsvRecord(
+            accession="SCV1",
             assembly=Assembly.GRCH37,
             chromosome=Chromosome.CHR10,
             pos=115614632,
@@ -81,6 +84,7 @@ def test_read_struc_var_tsv_file():
         actual = read_struc_var_tsv(file=inputf)
     assert actual == [
         StrucVarTsvRecord(
+            accession="SCV1",
             assembly=Assembly.GRCH38,
             chromosome=Chromosome.CHR1,
             start=844347,
