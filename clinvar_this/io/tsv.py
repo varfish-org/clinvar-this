@@ -59,8 +59,8 @@ class SeqVarTsvRecord:
     ref: str
     #: Alternative allele bases
     alt: str
-    #: OMIM ID
-    omim: typing.List[str]
+    # condition IDs, multiple types supported
+    condition: typing.List[str]
     #: Mode of inheritance
     inheritance: typing.Optional[ModeOfInheritance]
     #: Clinical significance
@@ -91,8 +91,8 @@ class StrucVarTsvRecord:
     stop: int
     #: Variant type
     sv_type: VariantType
-    #: OMIM ID
-    omim: typing.List[str]
+    # condition IDs, multiple types supported
+    condition: typing.List[str]
     #: Mode of inheritance
     inheritance: typing.Optional[ModeOfInheritance]
     #: Clinical significance
@@ -228,11 +228,11 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         extractor=lambda r: str(r.alt),
     ),
     SeqVarHeaderColumn(
-        header_names=("OMIM",),
-        key="omim",
+        header_names=("CONDITION",),
+        key="condition",
         required=True,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.condition),
     ),
     SeqVarHeaderColumn(
         header_names=("MOI",),
@@ -316,11 +316,11 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         extractor=lambda r: _enum_value_or_empty(r.sv_type),
     ),
     StrucVarHeaderColumn(
-        header_names=("OMIM",),
-        key="omim",
+        header_names=("CONDITION",),
+        key="condition",
         required=True,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.condition),
     ),
     StrucVarHeaderColumn(
         header_names=("MOI",),
@@ -362,7 +362,7 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         key="hpo_terms",
         required=False,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.hpo_terms or []),
     ),
 )
 
@@ -703,7 +703,7 @@ def record_conditions(
     record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord]
 ) -> typing.List[SubmissionCondition]:
     """Construct ``SubmissionCondition`` from ``TsvRecord``."""
-    if not record.omim or record.omim == ["not provided"]:
+    if not record.condition or record.condition == ["not provided"]:
         return [SubmissionCondition(name="not provided")]
     else:
         explanation_values = [c.value for c in MultipleConditionExplanation]
@@ -711,7 +711,7 @@ def record_conditions(
             SubmissionCondition(
                 db=select_condition_db(condition_id), id=get_condition_id_fmt(condition_id)
             )
-            for condition_id in record.omim
+            for condition_id in record.condition
             if condition_id not in explanation_values
         ]
 
@@ -720,7 +720,7 @@ def record_condition_explanation(
     record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord],
 ) -> typing.Optional[MultipleConditionExplanation]:
     explanation_values = [c.value for c in MultipleConditionExplanation]
-    for condition_id in record.omim:
+    for condition_id in record.condition:
         if condition_id in explanation_values:
             return MultipleConditionExplanation(condition_id)
     return None
@@ -899,6 +899,14 @@ def format_conditions(condition_set: SubmissionConditionSet) -> typing.List[str]
     return fmt_conditions
 
 
+def format_hpo_terms(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+    clinical_features = submission.observed_in[0].clinical_features
+    result = None
+    if clinical_features:
+        result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
+    return result
+
+
 def submission_container_to_seq_var_tsv_records(  # noqa: C901
     submission_container: SubmissionContainer,
 ) -> typing.List[SeqVarTsvRecord]:
@@ -907,13 +915,6 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             return submission.clinical_significance.mode_of_inheritance
         else:
             return None
-
-    def _hpo_terms(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
-        clinical_features = submission.observed_in[0].clinical_features
-        result = None
-        if clinical_features:
-            result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
-        return result
 
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
@@ -966,7 +967,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             pos=chromosome_coordinates.start,
             ref=chromosome_coordinates.reference_allele,
             alt=chromosome_coordinates.alternate_allele,
-            omim=format_conditions(submission.condition_set),
+            condition=format_conditions(submission.condition_set),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             local_key=submission.local_key or "",
@@ -974,7 +975,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
             or "",
             clinical_significance_comment=submission.clinical_significance.comment or "",
-            hpo_terms=_hpo_terms(submission),
+            hpo_terms=format_hpo_terms(submission),
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []
@@ -1050,7 +1051,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             start=chromosome_coordinates.start,
             stop=chromosome_coordinates.stop,
             sv_type=variant_type,
-            omim=format_conditions(submission.condition_set),
+            condition=format_conditions(submission.condition_set),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             local_key=submission.local_key or "",
@@ -1058,6 +1059,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
             or "",
             clinical_significance_comment=submission.clinical_significance.comment or "",
+            hpo_terms=format_hpo_terms(submission),
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []

@@ -38,7 +38,7 @@ def _create_struc_tsv_fake(overrides: dict) -> StringIO:
         "START": "123456",
         "STOP": "654321",
         "SV_TYPE": "Deletion",
-        "OMIM": "",
+        "CONDITION": "",
         "MOI": "Autosomal recessive inheritance",
         "CLIN_SIG": "not provided",
     }
@@ -57,7 +57,7 @@ def _create_seq_tsv_fake(overrides: dict) -> StringIO:
         "POS": "123456",
         "REF": "A",
         "ALT": "G",
-        "OMIM": "",
+        "CONDITION": "",
         "MOI": "Autosomal recessive inheritance",
         "CLIN_SIG": "not provided",
     }
@@ -78,7 +78,7 @@ def test_read_seq_var_tsv_path():
             pos=115614632,
             ref="A",
             alt="G",
-            omim=["OMIM:618278"],
+            condition=["OMIM:618278"],
             inheritance=ModeOfInheritance.AUTOSOMAL_RECESSIVE_INHERITANCE,
             clinical_significance_description=ClinicalSignificanceDescription.NOT_PROVIDED,
             local_key="KEY",
@@ -96,7 +96,7 @@ def test_read_struc_var_tsv_path():
             start=844347,
             stop=4398122,
             sv_type=VariantType.DELETION,
-            omim=[],
+            condition=[],
             inheritance=ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
             clinical_significance_description=ClinicalSignificanceDescription.NOT_PROVIDED,
             hpo_terms=["HP:0001263"],
@@ -114,7 +114,7 @@ def test_read_seq_var_tsv_file():
             pos=115614632,
             ref="A",
             alt="G",
-            omim=["OMIM:618278"],
+            condition=["OMIM:618278"],
             inheritance=ModeOfInheritance.AUTOSOMAL_RECESSIVE_INHERITANCE,
             clinical_significance_description=ClinicalSignificanceDescription.NOT_PROVIDED,
             local_key="KEY",
@@ -133,7 +133,7 @@ def test_read_struc_var_tsv_file():
             start=844347,
             stop=4398122,
             sv_type=VariantType.DELETION,
-            omim=[],
+            condition=[],
             inheritance=ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
             clinical_significance_description=ClinicalSignificanceDescription.NOT_PROVIDED,
             hpo_terms=["HP:0001263"],
@@ -226,7 +226,7 @@ class TestConditionDefinition:
             "pos": 123,
             "ref": "A",
             "alt": "G",
-            "omim": ["not provided"],
+            "condition": ["not provided"],
             "inheritance": ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
             "clinical_significance_description": ClinicalSignificanceDescription.NOT_PROVIDED,
             "hpo_terms": ["HP:0001263"],
@@ -242,7 +242,7 @@ class TestConditionDefinition:
             "start": 123,
             "stop": 543,
             "sv_type": VariantType.DELETION,
-            "omim": ["not provided"],
+            "condition": ["not provided"],
             "inheritance": ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
             "clinical_significance_description": ClinicalSignificanceDescription.NOT_PROVIDED,
             "hpo_terms": ["HP:0001263"],
@@ -253,47 +253,49 @@ class TestConditionDefinition:
 
     def test_seq_vars_read(self):
         for condition in self.condition_strings:
-            result = read_seq_var_tsv(file=_create_seq_tsv_fake({"OMIM": condition["raw"]}))
+            result = read_seq_var_tsv(file=_create_seq_tsv_fake({"CONDITION": condition["raw"]}))
             assert len(result) == 1
-            assert result[0].omim == condition["expected"]
+            assert result[0].condition == condition["expected"]
 
     def test_struc_vars_read(self):
         for condition in self.condition_strings:
-            result = read_struc_var_tsv(file=_create_struc_tsv_fake({"OMIM": condition["raw"]}))
+            result = read_struc_var_tsv(
+                file=_create_struc_tsv_fake({"CONDITION": condition["raw"]})
+            )
             assert len(result) == 1
-            assert result[0].omim == condition["expected"]
+            assert result[0].condition == condition["expected"]
 
     def test_seq_vars_parse(self):
         metadata = BatchMetadata()
         for condition in self.condition_strings:
-            record = self._create_seq_record(omim=condition["expected"])
+            record = self._create_seq_record(condition=condition["expected"])
             container = seq_var_tsv_records_to_submission_container([record], metadata)
             assert container.clinvar_submission[0].condition_set == condition["parsed"]
 
     def test_struc_vars_parse(self):
         metadata = BatchMetadata()
         for condition in self.condition_strings:
-            record = self._create_struc_record(omim=condition["expected"])
+            record = self._create_struc_record(condition=condition["expected"])
             container = struc_var_tsv_records_to_submission_container([record], metadata)
             assert container.clinvar_submission[0].condition_set == condition["parsed"]
 
     def test_seq_vars_dump(self):
         metadata = BatchMetadata()
         for condition in self.condition_strings:
-            record = self._create_seq_record(omim=condition["expected"])
+            record = self._create_seq_record(condition=condition["expected"])
             container = seq_var_tsv_records_to_submission_container([record], metadata)
             reconverted = submission_container_to_seq_var_tsv_records(container)
             assert len(reconverted) == 1
-            assert record.omim == reconverted[0].omim
+            assert record.condition == reconverted[0].condition
 
     def test_struc_vars_dump(self):
         metadata = BatchMetadata()
         for condition in self.condition_strings:
-            record = self._create_struc_record(omim=condition["expected"])
+            record = self._create_struc_record(condition=condition["expected"])
             container = struc_var_tsv_records_to_submission_container([record], metadata)
             reconverted = submission_container_to_struc_var_tsv_records(container)
             assert len(reconverted) == 1
-            assert record.omim == reconverted[0].omim
+            assert record.condition == reconverted[0].condition
 
 
 def test_read_seq_var_tsv_path_bad():
