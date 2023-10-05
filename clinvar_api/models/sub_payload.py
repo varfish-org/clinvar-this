@@ -21,6 +21,7 @@ from clinvar_api.msg.sub_payload import (
     CollectionMethod,
     ConditionDb,
     ModeOfInheritance,
+    MultipleConditionExplanation,
     RecordStatus,
     ReleaseStatus,
     StructVarMethodType,
@@ -310,6 +311,7 @@ class SubmissionDrugResponse:
 class SubmissionConditionSet:
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
     drug_response: typing.Optional[typing.List[SubmissionDrugResponse]] = None
+    multiple_condition_explanation: typing.Optional[MultipleConditionExplanation] = None
 
     def to_msg(self) -> msg.SubmissionConditionSet:
         condition = None
@@ -321,6 +323,7 @@ class SubmissionConditionSet:
         return msg.SubmissionConditionSet(
             condition=condition,
             drugResponse=drug_response,
+            multipleConditionExplanation=self.multiple_condition_explanation,
         )
 
 

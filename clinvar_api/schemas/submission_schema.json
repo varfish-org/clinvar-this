@@ -237,6 +237,15 @@
               "drugResponse": {
                 "description": "The drug Response evaluated specified by database ID or drug name, but not both",
                 "$ref": "#/definitions/drugResponseType"
+              },
+              "multipleConditionExplanation": {
+                "type": "string",
+                "description": "Variants in ClinVar are typically classified for a single condition (disease or drug response). If more than one condition is provided  in the conditionSet, this field is required and explains why multiple conditions are valid. Options are \"Novel disease\" when a new disease is unnamed and only described by a set of clinical features (HPO ids); \"Uncertain\" when a variant is classified for several related diseases and it may be uncertain whether the variant causes one or several of them; and \"Co-occurring\" when a variant causes more than one disease in the same individual (this is expected to be rare).",
+                "enum": [
+                  "Novel disease",
+                  "Uncertain",
+                  "Co-occurring"
+                ]
               }
             },
             "additionalProperties": false,

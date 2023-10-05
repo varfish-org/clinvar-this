@@ -76,6 +76,12 @@ class ConditionDb(Enum):
     MONDO = "MONDO"
 
 
+class MultipleConditionExplanation(Enum):
+    NOVEL_DISEASE = "Novel disease"
+    UNCERTAIN = "Uncertain"
+    CO_OCCURING = "Co-occurring"
+
+
 class AffectedStatus(Enum):
     YES = "yes"
     NO = "no"
@@ -326,6 +332,7 @@ class SubmissionDrugResponse:
 class SubmissionConditionSet:
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
     drugResponse: typing.Optional[typing.List[SubmissionDrugResponse]] = None
+    multipleConditionExplanation: typing.Optional[MultipleConditionExplanation] = None
 
 
 @attrs.define(frozen=True)
