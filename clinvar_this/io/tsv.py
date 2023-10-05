@@ -26,6 +26,7 @@ from clinvar_api.models import (
     ReleaseStatus,
     SubmissionAssertionCriteria,
     SubmissionChromosomeCoordinates,
+    SubmissionCitation,
     SubmissionClinicalSignificance,
     SubmissionClinvarSubmission,
     SubmissionCondition,
@@ -74,6 +75,8 @@ class SeqVarTsvRecord:
     clinical_significance_comment: typing.Optional[str] = None
     #: HPO terms for clinical features
     hpo_terms: typing.Optional[typing.List[str]] = None
+    #: Pubmed PMID for literature references
+    pmids: typing.Optional[typing.List[str]] = None
     #: Existing ClinVar SCV accession
     accession: typing.Optional[str] = None
 
@@ -108,6 +111,8 @@ class StrucVarTsvRecord:
     clinical_significance_comment: typing.Optional[str] = None
     #: HPO terms for clinical features
     hpo_terms: typing.Optional[typing.List[str]] = None
+    #: Pubmed PMID for literature references
+    pmids: typing.Optional[typing.List[str]] = None
     #: Existing ClinVar SCV accession
     accession: typing.Optional[str] = None
 
@@ -280,6 +285,13 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         extractor=lambda r: _join_list(r.hpo_terms or []),
     ),
     SeqVarHeaderColumn(
+        header_names=("PMID",),
+        key="pmids",
+        required=False,
+        converter=_str_list,
+        extractor=lambda r: _join_list(r.pmids or []),
+    ),
+    SeqVarHeaderColumn(
         header_names=("ACCESSION",),
         key="accession",
         required=False,
@@ -373,6 +385,13 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         required=False,
         converter=_str_list,
         extractor=lambda r: _join_list(r.omim),
+    ),
+    StrucVarHeaderColumn(
+        header_names=("PMID",),
+        key="hpo_terms",
+        required=False,
+        converter=_str_list,
+        extractor=lambda r: _join_list(r.pmids or []),
     ),
     StrucVarHeaderColumn(
         header_names=("ACCESSION",),
@@ -680,6 +699,20 @@ def seq_var_tsv_records_to_submission_container(
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
 
+    def record_pubmed_citations(
+        record: SeqVarTsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionCitation]]:
+        if record.pmids:
+            return [
+                SubmissionCitation(
+                    db=CitationDb.PUBMED,
+                    id=pmid,
+                )
+                for pmid in record.pmids
+            ]
+        else:
+            return None
+
     def record_clinical_features(
         record: SeqVarTsvRecord,
     ) -> typing.Optional[typing.List[SubmissionClinicalFeature]]:
@@ -728,6 +761,7 @@ def seq_var_tsv_records_to_submission_container(
                 clinical_significance=SubmissionClinicalSignificance(
                     clinical_significance_description=record.clinical_significance_description,
                     mode_of_inheritance=record.inheritance,
+                    citation=record_pubmed_citations(record),
                 ),
                 record_status=RecordStatus.NOVEL,
                 variant_set=SubmissionVariantSet(
@@ -763,6 +797,20 @@ def struc_var_tsv_records_to_submission_container(
             return SubmissionCondition(name="not provided")
         else:
             return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
+
+    def record_pubmed_citations(
+        record: StrucVarTsvRecord,
+    ) -> typing.Optional[typing.List[SubmissionCitation]]:
+        if record.pmids:
+            return [
+                SubmissionCitation(
+                    db=CitationDb.PUBMED,
+                    id=pmid,
+                )
+                for pmid in record.pmids
+            ]
+        else:
+            return None
 
     def record_clinical_features(
         record: StrucVarTsvRecord,
@@ -812,6 +860,7 @@ def struc_var_tsv_records_to_submission_container(
                 clinical_significance=SubmissionClinicalSignificance(
                     clinical_significance_description=record.clinical_significance_description,
                     mode_of_inheritance=record.inheritance,
+                    citation=record_pubmed_citations(record),
                 ),
                 record_status=RecordStatus.NOVEL,
                 variant_set=SubmissionVariantSet(
@@ -862,6 +911,12 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
         if clinical_features:
             result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
         return result
+
+    def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+        if citations := submission.clinical_significance.citation:
+            return [c.id for c in citations if c.db == CitationDb.PUBMED and c.id]
+        else:
+            return None
 
     def submission_to_seq_var_tsv_record(
         submission: SubmissionClinvarSubmission,
@@ -916,6 +971,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             omim=_condition(submission),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
+            pmids=_pmids(submission),
             local_key=submission.local_key or "",
             extra_data=extra_data,
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
@@ -953,6 +1009,12 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
     def _inheritance(submission: SubmissionClinvarSubmission) -> typing.Optional[ModeOfInheritance]:
         if submission.clinical_significance.mode_of_inheritance:
             return submission.clinical_significance.mode_of_inheritance
+        else:
+            return None
+
+    def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+        if citations := submission.clinical_significance.citation:
+            return [c.id for c in citations if c.db == CitationDb.PUBMED and c.id]
         else:
             return None
 
@@ -1010,6 +1072,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             stop=chromosome_coordinates.stop,
             sv_type=variant_type,
             omim=_condition(submission),
+            pmids=_pmids(submission),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             local_key=submission.local_key or "",
