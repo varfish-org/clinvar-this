@@ -22,7 +22,7 @@ Clinvar-this will recognize the TSV file format based on these headers.
 - ``POS`` - the 1-based position of the first base in ``REF`` column
 - ``REF`` - the reference allele of your variant
 - ``ALT`` - the alternative allele of your variant
-- ``OMIM`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``.
+- ``CONDITION`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``, alternatively also MONDO, ORPHA and HPO-Terms are supported, if multiple conditions are given, a multiple condition qualifier (``Co-occurring``, ``Uncertain``, ``Novel disease``) should also be given as an additional term.
   Leave empty or use ``not provided`` if you have no OMIM ID.
 - ``MOI`` - mode of inheritance, e.g., ``Autosomal dominant inheritance`` or ``Autosomal recessive inheritance``
 - ``CLIN_SIG`` - clinical significance, e.g. ``Pathogenic``, or ``Likely benign``
@@ -65,8 +65,7 @@ Clinvar-this will recognize the TSV file format based on these headers.
 - ``SV_TYPE`` - the type of the structural variant; one of ``Insertion``, ``Deletion``, ``Duplication``, ``Tandem duplication``, ``copy number loss``, ``copy number gain``, ``Inversion``, ``Translocation``, ``Complex``.
   Note that ClinVar does not allow you to specify the second end of a non-linear event (e.g., a fusion with another chromosome).
   We suggest that you submit a second SV entry with the coordinate and link the two events in ``CLIN_COMMENT``.
-- ``OMIM`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``.
-  Leave empty or use ``not provided`` if you have no OMIM ID.
+- ``CONDITION`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``, alternatively also MONDO, ORPHA and HPO-Terms are supported, if multiple conditions are given, a multiple condition qualifier (``Co-occurring``, ``Uncertain``, ``Novel disease``) should also be given as an additional term.
 - ``MOI`` - mode of inheritance, e.g., ``Autosomal dominant inheritance`` or ``Autosomal recessive inheritance``
 - ``CLIN_SIG`` - clinical significance, e.g. ``Pathogenic``, or ``Likely benign``
 
