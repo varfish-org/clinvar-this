@@ -77,6 +77,8 @@ class SeqVarTsvRecord:
     hpo_terms: typing.Optional[typing.List[str]] = None
     #: Pubmed PMID for literature references
     pmids: typing.Optional[typing.List[str]] = None
+    #: Existing ClinVar SCV accession
+    accession: typing.Optional[str] = None
 
 
 @attrs.frozen
@@ -111,6 +113,8 @@ class StrucVarTsvRecord:
     hpo_terms: typing.Optional[typing.List[str]] = None
     #: Pubmed PMID for literature references
     pmids: typing.Optional[typing.List[str]] = None
+    #: Existing ClinVar SCV accession
+    accession: typing.Optional[str] = None
 
 
 @attrs.frozen
@@ -287,6 +291,13 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         converter=_str_list,
         extractor=lambda r: _join_list(r.pmids or []),
     ),
+    SeqVarHeaderColumn(
+        header_names=("ACCESSION",),
+        key="accession",
+        required=False,
+        converter=str,
+        extractor=lambda r: str(r.accession or ""),
+    ),
 )
 
 #: The header columns for structural variant TSV files.
@@ -381,6 +392,13 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         required=False,
         converter=_str_list,
         extractor=lambda r: _join_list(r.pmids or []),
+    ),
+    StrucVarHeaderColumn(
+        header_names=("ACCESSION",),
+        key="accession",
+        required=False,
+        converter=str,
+        extractor=lambda r: str(r.accession or ""),
     ),
 )
 
@@ -728,6 +746,7 @@ def seq_var_tsv_records_to_submission_container(
         clinvar_submission_release_status=release_status,
         clinvar_submission=[
             SubmissionClinvarSubmission(
+                clinvar_accession=record.accession,
                 local_id=str(_uuid4_if_falsy()),
                 local_key=record.local_key,
                 condition_set=SubmissionConditionSet(condition=[record_condition(record)]),
@@ -826,6 +845,7 @@ def struc_var_tsv_records_to_submission_container(
         clinvar_submission_release_status=release_status,
         clinvar_submission=[
             SubmissionClinvarSubmission(
+                clinvar_accession=record.accession,
                 local_id=str(_uuid4_if_falsy()),
                 local_key=record.local_key,
                 condition_set=SubmissionConditionSet(condition=[record_condition(record)]),
@@ -938,12 +958,11 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             )
 
         extra_data = {}
-        if submission.clinvar_accession:
-            extra_data["clinvar_accession"] = submission.clinvar_accession  # XXX
         if submission.extra_data:
             extra_data.update(submission.extra_data)
 
         return SeqVarTsvRecord(
+            accession=submission.clinvar_accession,
             assembly=chromosome_coordinates.assembly,
             chromosome=chromosome_coordinates.chromosome,
             pos=chromosome_coordinates.start,
@@ -1042,12 +1061,11 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             )
 
         extra_data = {}
-        if submission.clinvar_accession:
-            extra_data["clinvar_accession"] = submission.clinvar_accession  # XXX
         if submission.extra_data:
             extra_data.update(submission.extra_data)
 
         return StrucVarTsvRecord(
+            accession=submission.clinvar_accession,
             assembly=chromosome_coordinates.assembly,
             chromosome=chromosome_coordinates.chromosome,
             start=chromosome_coordinates.start,

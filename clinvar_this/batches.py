@@ -88,8 +88,10 @@ def _merge_submission_container(
         base: models.SubmissionClinvarSubmission,
         patch: models.SubmissionClinvarSubmission,
     ) -> models.SubmissionClinvarSubmission:
+        clinvar_accession = base.clinvar_accession or patch.clinvar_accession
         return evolve(
             base,
+            clinvar_accession=clinvar_accession,
             condition_set=patch.condition_set,
             clinical_significance=patch.clinical_significance,
             observed_in=patch.observed_in,
@@ -248,7 +250,7 @@ def _retrieve_store_response(
         submissions = summary_response.submissions or []
         for submission in submissions:
             local_key_to_accession[
-                submission.identifiers.local_key
+                submission.identifiers.local_key or submission.identifiers.clinvar_local_key
             ] = submission.identifiers.clinvar_accession
             errors = [
                 error_inner.user_message
