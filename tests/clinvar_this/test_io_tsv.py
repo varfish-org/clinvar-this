@@ -136,7 +136,7 @@ def test_read_seq_var_tsv_file_citation():
             pos=115614632,
             ref="A",
             alt="G",
-            omim=["OMIM:618278"],
+            condition=["OMIM:618278"],
             inheritance=ModeOfInheritance.AUTOSOMAL_RECESSIVE_INHERITANCE,
             clinical_significance_description=ClinicalSignificanceDescription.NOT_PROVIDED,
             local_key="KEY",
