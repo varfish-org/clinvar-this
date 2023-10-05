@@ -37,6 +37,9 @@ The following headers are optional:
   Filled automatically with a UUID if missing, recommeded to leave empty.
 - ``HPO`` - List of HPO terms separated by comma or semicolon, any space will be stripped.
   E.g., ``HP:0004322; HP:0001263``.
+- ``PMID`` - List of Pubmed IDs separated by a comma or semicolon, any space
+  will be stripped.
+  E.g., ``31859447‚29474920``.
 - ``$remove_from_batch`` - you can use this for removing a previously added variant from the given batch; one of ``true`` and ``false``, defaults to ``false``.
 
 Any further header will be imported into the local repository into an ``extra_data`` field.
@@ -87,6 +90,9 @@ The following headers are optional:
   Filled automatically with a UUID if missing, recommeded to leave empty.
 - ``HPO`` - List of HPO terms separated by comma or semicolon, any space will be stripped.
   E.g., ``HP:0004322; HP:0001263``.
+- ``PMID`` - List of Pubmed IDs separated by a comma or semicolon, any space
+  will be stripped.
+  E.g., ``31859447‚29474920``.
 - ``$remove_from_batch`` - you can use this for removing a previously added variant from the given batch; one of ``true`` and ``false``, defaults to ``false``.
 
 Any further header will be imported into the local repository into an ``extra_data`` field.
