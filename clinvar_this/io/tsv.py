@@ -22,6 +22,7 @@ from clinvar_api.models import (
     CollectionMethod,
     ConditionDb,
     ModeOfInheritance,
+    MultipleConditionExplanation,
     RecordStatus,
     ReleaseStatus,
     SubmissionAssertionCriteria,
@@ -59,8 +60,8 @@ class SeqVarTsvRecord:
     ref: str
     #: Alternative allele bases
     alt: str
-    #: OMIM ID
-    omim: typing.List[str]
+    # condition IDs, multiple types supported
+    condition: typing.List[str]
     #: Mode of inheritance
     inheritance: typing.Optional[ModeOfInheritance]
     #: Clinical significance
@@ -95,8 +96,8 @@ class StrucVarTsvRecord:
     stop: int
     #: Variant type
     sv_type: VariantType
-    #: OMIM ID
-    omim: typing.List[str]
+    # condition IDs, multiple types supported
+    condition: typing.List[str]
     #: Mode of inheritance
     inheritance: typing.Optional[ModeOfInheritance]
     #: Clinical significance
@@ -236,11 +237,11 @@ SEQ_VAR_HEADER_COLUMNS: typing.Tuple[SeqVarHeaderColumn, ...] = (
         extractor=lambda r: str(r.alt),
     ),
     SeqVarHeaderColumn(
-        header_names=("OMIM",),
-        key="omim",
+        header_names=("CONDITION",),
+        key="condition",
         required=True,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.condition),
     ),
     SeqVarHeaderColumn(
         header_names=("MOI",),
@@ -338,11 +339,11 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         extractor=lambda r: _enum_value_or_empty(r.sv_type),
     ),
     StrucVarHeaderColumn(
-        header_names=("OMIM",),
-        key="omim",
+        header_names=("CONDITION",),
+        key="condition",
         required=True,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.condition),
     ),
     StrucVarHeaderColumn(
         header_names=("MOI",),
@@ -384,7 +385,7 @@ STRUC_VAR_HEADER_COLUMNS: typing.Tuple[StrucVarHeaderColumn, ...] = (
         key="hpo_terms",
         required=False,
         converter=_str_list,
-        extractor=lambda r: _join_list(r.omim),
+        extractor=lambda r: _join_list(r.hpo_terms or []),
     ),
     StrucVarHeaderColumn(
         header_names=("PMID",),
@@ -686,18 +687,97 @@ def batch_metadata_from_mapping(
     return BatchMetadata(**kwargs)
 
 
+def select_condition_db(condition_id):
+    if "OMIM" in condition_id:
+        return ConditionDb.OMIM
+    elif "ORPHA" in condition_id:
+        return ConditionDb.ORPHANET
+    elif "MONDO" in condition_id:
+        return ConditionDb.MONDO
+    elif "HP" in condition_id:
+        return ConditionDb.HP
+    else:
+        raise TypeError(
+            f"Failed to match condition to supported condition types: OMIM, ORPHA, MONDO for {condition_id}"
+        )
+
+
+def get_condition_id_fmt(condition_id: str) -> str:
+    condition_db = select_condition_db(condition_id)
+    if condition_db == ConditionDb.OMIM:
+        return condition_id.split(":")[1].strip()
+    elif condition_db == ConditionDb.MONDO:
+        return condition_id
+    elif condition_db == ConditionDb.ORPHANET:
+        return "ORPHA" + condition_id.split(":")[1].strip()
+    elif condition_db == ConditionDb.HP:
+        return condition_id
+    else:
+        raise TypeError(
+            f"Failed to match condition to supported condition types: OMIM, ORPHA, MONDO for {condition_id}"
+        )
+
+
+def condition_to_fmt_string(condition: SubmissionCondition) -> str:
+    condition_id = condition.id or ""
+    if condition.db == ConditionDb.OMIM:
+        return f"OMIM:{condition.id}"
+    elif condition.db == ConditionDb.MONDO:
+        return condition_id
+    elif condition.db == ConditionDb.HP:
+        return condition_id
+    elif condition.db == ConditionDb.ORPHANET:
+        return f"ORPHA:{condition_id.replace('ORPHA', '')}"
+    elif condition.name == "not provided":
+        return ""
+    else:
+        raise TypeError(
+            f"Failed to match condition to supported condition types: OMIM, ORPHA, MONDO for {condition.db}"
+        )
+
+
+def record_conditions(
+    record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord]
+) -> typing.List[SubmissionCondition]:
+    """Construct ``SubmissionCondition`` from ``TsvRecord``."""
+    if not record.condition or record.condition == ["not provided"]:
+        return [SubmissionCondition(name="not provided")]
+    else:
+        explanation_values = [c.value for c in MultipleConditionExplanation]
+        return [
+            SubmissionCondition(
+                db=select_condition_db(condition_id), id=get_condition_id_fmt(condition_id)
+            )
+            for condition_id in record.condition
+            if condition_id not in explanation_values
+        ]
+
+
+def record_condition_explanation(
+    record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord],
+) -> typing.Optional[MultipleConditionExplanation]:
+    explanation_values = [c.value for c in MultipleConditionExplanation]
+    for condition_id in record.condition:
+        if condition_id in explanation_values:
+            return MultipleConditionExplanation(condition_id)
+    return None
+
+
+def record_condition_set(
+    record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord]
+) -> SubmissionConditionSet:
+    conditions = record_conditions(record)
+    multiple_condition_explanation = record_condition_explanation(record)
+    return SubmissionConditionSet(
+        condition=conditions, multiple_condition_explanation=multiple_condition_explanation
+    )
+
+
 def seq_var_tsv_records_to_submission_container(
     tsv_records: typing.List[SeqVarTsvRecord],
     batch_metadata: BatchMetadata,
 ) -> SubmissionContainer:
     """Convert seq. var. TSV records to submission container data structure."""
-
-    def record_condition(record: SeqVarTsvRecord) -> SubmissionCondition:
-        """Construct ``SubmissionCondition`` from ``TsvRecord``."""
-        if not record.omim or record.omim == ["not provided"]:
-            return SubmissionCondition(name="not provided")
-        else:
-            return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
 
     def record_pubmed_citations(
         record: SeqVarTsvRecord,
@@ -729,7 +809,7 @@ def seq_var_tsv_records_to_submission_container(
         else:
             return None
 
-    allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["batch_metadata"]
+    allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["allele_origin"]
     collection_method = (
         batch_metadata.collection_method or BATCH_METADATA_DEFAULTS["collection_method"]
     )
@@ -749,7 +829,7 @@ def seq_var_tsv_records_to_submission_container(
                 clinvar_accession=record.accession,
                 local_id=str(_uuid4_if_falsy()),
                 local_key=record.local_key,
-                condition_set=SubmissionConditionSet(condition=[record_condition(record)]),
+                condition_set=record_condition_set(record),
                 observed_in=[
                     SubmissionObservedIn(
                         affected_status=AffectedStatus.YES,
@@ -791,13 +871,6 @@ def struc_var_tsv_records_to_submission_container(
 ) -> SubmissionContainer:
     """Convert struc. var. TSV records to submission container data structure."""
 
-    def record_condition(record: StrucVarTsvRecord) -> SubmissionCondition:
-        """Construct ``SubmissionCondition`` from ``TsvRecord``."""
-        if not record.omim or record.omim == ["not provided"]:
-            return SubmissionCondition(name="not provided")
-        else:
-            return SubmissionCondition(db=ConditionDb.OMIM, id=record.omim[0])
-
     def record_pubmed_citations(
         record: StrucVarTsvRecord,
     ) -> typing.Optional[typing.List[SubmissionCitation]]:
@@ -828,7 +901,7 @@ def struc_var_tsv_records_to_submission_container(
         else:
             return None
 
-    allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["batch_metadata"]
+    allele_origin = batch_metadata.allele_origin or BATCH_METADATA_DEFAULTS["allele_origin"]
     collection_method = (
         batch_metadata.collection_method or BATCH_METADATA_DEFAULTS["collection_method"]
     )
@@ -848,7 +921,7 @@ def struc_var_tsv_records_to_submission_container(
                 clinvar_accession=record.accession,
                 local_id=str(_uuid4_if_falsy()),
                 local_key=record.local_key,
-                condition_set=SubmissionConditionSet(condition=[record_condition(record)]),
+                condition_set=record_condition_set(record),
                 observed_in=[
                     SubmissionObservedIn(
                         affected_status=AffectedStatus.YES,
@@ -883,34 +956,34 @@ def struc_var_tsv_records_to_submission_container(
     )
 
 
+def format_conditions(condition_set: SubmissionConditionSet) -> typing.List[str]:
+    conditions = condition_set.condition
+    fmt_conditions = []
+    if conditions:
+        for condition in conditions:
+            if c := condition_to_fmt_string(condition):
+                fmt_conditions.append(c)
+    if condition_set.multiple_condition_explanation:
+        fmt_conditions.append(condition_set.multiple_condition_explanation.value)
+    return fmt_conditions
+
+
+def format_hpo_terms(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
+    clinical_features = submission.observed_in[0].clinical_features
+    result = None
+    if clinical_features:
+        result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
+    return result
+
+
 def submission_container_to_seq_var_tsv_records(  # noqa: C901
     submission_container: SubmissionContainer,
 ) -> typing.List[SeqVarTsvRecord]:
-    def _condition(submission: SubmissionClinvarSubmission) -> typing.List[str]:
-        if not submission.condition_set.condition:
-            raise exceptions.ClinvarThisException(
-                "Problem with internal data structure - condition cannot be empty"
-            )
-        if submission.condition_set.condition[0].name:
-            return []  # not provided
-        else:
-            if submission.condition_set.condition[0].id:
-                return [submission.condition_set.condition[0].id]
-            else:
-                return []
-
     def _inheritance(submission: SubmissionClinvarSubmission) -> typing.Optional[ModeOfInheritance]:
         if submission.clinical_significance.mode_of_inheritance:
             return submission.clinical_significance.mode_of_inheritance
         else:
             return None
-
-    def _hpo_terms(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
-        clinical_features = submission.observed_in[0].clinical_features
-        result = None
-        if clinical_features:
-            result = [hpo_term.id for hpo_term in clinical_features if hpo_term.id]
-        return result
 
     def _pmids(submission: SubmissionClinvarSubmission) -> typing.Optional[typing.List[str]]:
         if citations := submission.clinical_significance.citation:
@@ -968,7 +1041,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             pos=chromosome_coordinates.start,
             ref=chromosome_coordinates.reference_allele,
             alt=chromosome_coordinates.alternate_allele,
-            omim=_condition(submission),
+            condition=format_conditions(submission.condition_set),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
             pmids=_pmids(submission),
@@ -977,7 +1050,7 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
             or "",
             clinical_significance_comment=submission.clinical_significance.comment or "",
-            hpo_terms=_hpo_terms(submission),
+            hpo_terms=format_hpo_terms(submission),
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []
@@ -993,19 +1066,6 @@ def submission_container_to_seq_var_tsv_records(  # noqa: C901
 def submission_container_to_struc_var_tsv_records(  # noqa: C901
     submission_container: SubmissionContainer,
 ) -> typing.List[StrucVarTsvRecord]:
-    def _condition(submission: SubmissionClinvarSubmission) -> typing.List[str]:
-        if not submission.condition_set.condition:
-            raise exceptions.ClinvarThisException(
-                "Problem with internal data structure - condition cannot be empty"
-            )
-        if submission.condition_set.condition[0].name:
-            return []  # not provided
-        else:
-            if submission.condition_set.condition[0].id:
-                return [submission.condition_set.condition[0].id]
-            else:
-                return []
-
     def _inheritance(submission: SubmissionClinvarSubmission) -> typing.Optional[ModeOfInheritance]:
         if submission.clinical_significance.mode_of_inheritance:
             return submission.clinical_significance.mode_of_inheritance
@@ -1071,7 +1131,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             start=chromosome_coordinates.start,
             stop=chromosome_coordinates.stop,
             sv_type=variant_type,
-            omim=_condition(submission),
+            condition=format_conditions(submission.condition_set),
             pmids=_pmids(submission),
             inheritance=_inheritance(submission),
             clinical_significance_description=submission.clinical_significance.clinical_significance_description,
@@ -1080,6 +1140,7 @@ def submission_container_to_struc_var_tsv_records(  # noqa: C901
             clinical_significance_date_last_evaluated=submission.clinical_significance.date_last_evaluated
             or "",
             clinical_significance_comment=submission.clinical_significance.comment or "",
+            hpo_terms=format_hpo_terms(submission),
         )
 
     clinvar_submissions = submission_container.clinvar_submission or []

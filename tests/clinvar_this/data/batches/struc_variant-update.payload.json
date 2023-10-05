@@ -26,7 +26,8 @@
             "name": "not provided"
           }
         ],
-        "drug_response": null
+        "drug_response": null,
+        "multiple_condition_explanation": null
       },
       "observed_in": [
         {

@@ -268,9 +268,9 @@ def test_export_seq_variant_tsv(fs, app_config, exists, force):
     if not exists or force:
         expected = "\n".join(
             [
-                "ASSEMBLY\tCHROM\tPOS\tREF\tALT\tOMIM\tMOI\tCLIN_SIG\tCLIN_EVAL\tCLIN_COMMENT\tKEY\tHPO\tPMID\tACCESSION",
+                "ASSEMBLY\tCHROM\tPOS\tREF\tALT\tCONDITION\tMOI\tCLIN_SIG\tCLIN_EVAL\tCLIN_COMMENT\tKEY\tHPO\tPMID\tACCESSION",
                 (
-                    "GRCh37\t19\t48183936\tC\tCA\t619325\tAutosomal dominant inheritance\t"
+                    "GRCh37\t19\t48183936\tC\tCA\tOMIM:619325\tAutosomal dominant inheritance\t"
                     "Likely pathogenic\t\t\t\tHP:0004322,HP:0001263\t\t\n"
                 ),
             ]
@@ -318,12 +318,12 @@ def test_export_structural_variant_tsv(fs, app_config, exists, force):
         expected = "\n".join(
             [
                 (
-                    "ASSEMBLY\tCHROM\tSTART\tSTOP\tSV_TYPE\tOMIM\tMOI\tCLIN_SIG\tCLIN_EVAL\t"
+                    "ASSEMBLY\tCHROM\tSTART\tSTOP\tSV_TYPE\tCONDITION\tMOI\tCLIN_SIG\tCLIN_EVAL\t"
                     "CLIN_COMMENT\tKEY\tHPO\tPMID\tACCESSION"
                 ),
                 (
                     "GRCh38\t1\t844347\t4398122\tDeletion\t\tAutosomal dominant inheritance\t"
-                    "not provided\t\t\t\t\t\t\n"
+                    "not provided\t\t\t\tHP:0001263\t\t\n"
                 ),
             ]
         )
