@@ -40,6 +40,9 @@ The following headers are optional:
 - ``PMID`` - List of Pubmed IDs separated by a comma or semicolon, any space
   will be stripped.
   E.g., ``31859447‚29474920``.
+- ``ACCESSION`` - Existing clinvar SCV for this variant. This should only be set
+  if the submitters organization has already uploaded the variant for the same
+  condition before.
 - ``$remove_from_batch`` - you can use this for removing a previously added variant from the given batch; one of ``true`` and ``false``, defaults to ``false``.
 
 Any further header will be imported into the local repository into an ``extra_data`` field.
@@ -49,8 +52,8 @@ The following shows an example.
 
 .. code-block:: text
 
-    ASSEMBLY	CHROM	POS	REF	ALT	OMIM	MOI	CLIN_SIG	HPO
-    GRCh37	19	48183936	C	CA	619325	Autosomal	dominant	inheritance	Likely	pathogenic	HP:0004322;HP:0001263
+    ASSEMBLY	CHROM	POS	REF	ALT	CONDITION	MOI	CLIN_SIG	HPO
+    GRCh37	19	48183936	C	CA	OMIM:619325	Autosomal	dominant	inheritance	Likely	pathogenic	HP:0004322;HP:0001263
 
 Note that you cannot submission TSV imports with batches that contain removals already.
 
@@ -68,7 +71,7 @@ Clinvar-this will recognize the TSV file format based on these headers.
 - ``SV_TYPE`` - the type of the structural variant; one of ``Insertion``, ``Deletion``, ``Duplication``, ``Tandem duplication``, ``copy number loss``, ``copy number gain``, ``Inversion``, ``Translocation``, ``Complex``.
   Note that ClinVar does not allow you to specify the second end of a non-linear event (e.g., a fusion with another chromosome).
   We suggest that you submit a second SV entry with the coordinate and link the two events in ``CLIN_COMMENT``.
-- ``CONDITION`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``, alternatively also MONDO, ORPHA and HPO-Terms are supported, if multiple conditions are given, a multiple condition qualifier (``Co-occurring``, ``Uncertain``, ``Novel disease``) should also be given as an additional term.
+- ``CONDITION`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``OMIM:619325``, alternatively also MONDO, ORPHA and HPO-Terms are supported, if multiple conditions are given, a multiple condition qualifier (``Co-occurring``, ``Uncertain``, ``Novel disease``) should also be given as an additional term.
 - ``MOI`` - mode of inheritance, e.g., ``Autosomal dominant inheritance`` or ``Autosomal recessive inheritance``
 - ``CLIN_SIG`` - clinical significance, e.g. ``Pathogenic``, or ``Likely benign``
 
@@ -82,7 +85,7 @@ You have to provide all of them and cannot provide them together with ``START`` 
 
 The following headers are optional:
 
-- ``clinvar_accession`` - ClinVar SCV accession if any exists yet.
+- ``ACCESSION`` - ClinVar SCV accession if any exists yet.
   When this is set then this variant will be updated in the batch rather than added as a novel variant.
 - ``CLIN_EVAL`` - date of late clinical evaluation, e.g. ``2022-12-02``, leave empty to fill with the date of today
 - ``CLIN_COMMENT`` - a comment on the clinical significance, e.g., ``ACMG Class IV; PS3, PM2_sup, PP4``
@@ -102,7 +105,7 @@ The following shows an example.
 
 .. code-block:: text
 
-    ASSEMBLY	CHROM	START	STOP	SV_TYPE	OMIM	MOI	CLIN_SIG	HPO
+    ASSEMBLY	CHROM	START	STOP	SV_TYPE	CONDITION	MOI	CLIN_SIG	HPO
     GRCh38	chr1	844347	4398122	Deletion	not provided	Autosomal dominant inheritance	HP:0001263
 
 Note that you cannot submission TSV imports with batches that contain removals already.

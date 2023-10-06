@@ -73,30 +73,39 @@ Check that this worked:
 Prepare a clinvar-this TSV file
 -------------------------------
 
-You will need the following header in the first line
+You will need the following header in the first line. Mandatory columns have
+been marked with a (*). See :doc:`file_formats` for further format details and instructions for
+structural variants.
 
-- ``ASSEMBLY`` - the assembly used, e.g., ``GRCh37``, ``hg19``, ``GRCh38``, ``hg38``
-- ``CHROM`` - the chromosomal position without ``chr`` prefix, e.g., ``1``
-- ``POS`` - the 1-based position of the first base in ``REF`` column
-- ``REF`` - the reference allele of your variant
-- ``ALT`` - the alternative allele of your variant
-- ``OMIM`` - the OMIM id of the carrier's condition (not the OMIM gene ID), e.g., ``619325``.
-  Leave empty or use ``not provided`` if you have no OMIM ID.
-- ``MOI`` - mode of inheritance, e.g., ``Autosomal dominant inheritance`` or ``Autosomal recessive inheritance``
-- ``CLIN_SIG`` - clinical significance, e.g. ``Pathogenic``, or ``Likely benign``
+- ``ASSEMBLY`` * - the assembly used, e.g., ``GRCh37``, ``hg19``, ``GRCh38``, ``hg38``
+- ``CHROM`` * - the chromosomal position without ``chr`` prefix, e.g., ``1``
+- ``POS`` * - the 1-based position of the first base in ``REF`` column
+- ``REF`` * - the reference allele of your variant
+- ``ALT`` * - the alternative allele of your variant
+- ``CONDITION`` * - ids for the carrier's condition, currently OMIM, ORPHA, MONDO
+  ids are supported, give these as ``OMIM|ORPHA|MONDO:123456``, e.g.
+  ``OMIM:123456`` is a valid id, ``ORPHA12345`` is not. Can be left empty or use
+  ``not provided`` if no condition should be published.
+- ``MOI`` * - mode of inheritance, e.g., ``Autosomal dominant inheritance`` or ``Autosomal recessive inheritance``
+- ``CLIN_SIG`` * - clinical significance, e.g. ``Pathogenic``, or ``Likely benign``
 - ``CLIN_EVAL`` - optional, date of late clinical evaluation, e.g. ``2022-12-02``, leave empty to fill with the date of today
 - ``CLIN_COMMENT`` - optional, a comment on the clinical significance, e.g., ``ACMG Class IV; PS3, PM2_sup, PP4``
 - ``KEY`` - optional, a local key to identify the variant/condition pair.
-  Filled automatically with a UUID if missing, recommeded to leave empty.
+  Filled automatically with a UUID if missing, recommended to leave empty.
 - ``HPO`` - List of HPO terms separated by comma or semicolon, any space will be stripped.
   E.g., ``HP:0004322; HP:0001263``.
+- ``PMID`` - List of literature references, give these as multiple numbers
+  separated by either ``,`` or ``;``. These will be listed as literature
+  references for the variant interpretation.
+- ``ACCESSION`` - Give an SCV-identifier, if this variant has already been
+  previously uploaded by this institution and should be updated.
 
 The following shows an example.
 
 .. code-block:: text
 
-    ASSEMBLY	CHROM	POS	REF	ALT	OMIM	MOI	CLIN_SIG	HPO
-    GRCh37	19	48183936	C	CA	619325	Autosomal	dominant	inheritance	Likely	pathogenic	HP:0004322;HP:0001263
+    ASSEMBLY	CHROM	POS	REF	ALT	CONDITION	MOI	CLIN_SIG	HPO
+    GRCh37	19	48183936	C	CA	OMIM:619325	Autosomal	dominant	inheritance	Likely	pathogenic	HP:0004322;HP:0001263
 
 Note that you must use TAB characters (``\t``) for separating the file.
 
