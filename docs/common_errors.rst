@@ -33,7 +33,7 @@ Explanation
 
 Resolution
     You can either submit a revision of your interpretation, (or, e.g., extend the "observed in" information), or leave it as is.
-    Revisions are coded by providing the ``clinvar_accession`` header in the TSV file.
+    Revisions are coded by providing the ``ACCESSION`` header in the TSV file.
 
 ----------------------------------
 Submission Names Cannot be Changed
@@ -54,3 +54,23 @@ Resolution
     Remove the old variant and add a new variant instead.
     Note that ClinVar will store your "local variant ID".
     If you resubmit a new record, make sure that this is changed or cleared such that ClinVar does not link your new request to your old submission and thinks you want to change your variant coordinates.
+
+-----------------------------------------------------------
+Multiple Conditions have been submitted without explanation
+-----------------------------------------------------------
+
+Message
+    You provided multiple diseases as the condition for the classification. If they
+    represent related diseases along a spectrum, provide ``uncertain`` for
+    multipleConditionExplanation. If they represent diseases that occur together in
+    an individual with the variant (this case is rare), provide ``co-occurring`` for
+    multipleConditionExplanation."
+
+Explanation
+    Multiple Condition IDs have been submitted for single variant. Check if this
+    has been intentional. If multiple conditions are to be submitted, a reason
+    needs to be included with the submission.
+
+Resolution
+    Explicitly add either ``Uncertain``, ``Co-occurring`` or ``Novel disease``
+    to the list of ``CONDITIONS``.
