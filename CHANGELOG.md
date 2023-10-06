@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.11.0](https://www.github.com/bihealth/clinvar-this/compare/v0.10.2...v0.11.0) (2023-10-06)
+
+
+### Features
+
+* Adding Clinvar Accession to TSV input ([#146](https://www.github.com/bihealth/clinvar-this/issues/146)) ([1ef8b8f](https://www.github.com/bihealth/clinvar-this/commit/1ef8b8f7784c729a1247a8b7e0522a4e262657c8))
+* Implement Pubmed IDs in tsv import format ([#143](https://www.github.com/bihealth/clinvar-this/issues/143)) ([9473380](https://www.github.com/bihealth/clinvar-this/commit/9473380191290edea046bd42d72df9b7c905f9e0))
+* Support multiple condition types and multiple conditions ([#147](https://www.github.com/bihealth/clinvar-this/issues/147)) ([f972356](https://www.github.com/bihealth/clinvar-this/commit/f972356c11a94a03d7545bfb9d1ffb889cef112b))
+
+
+### Bug Fixes
+
+* mypy linting of tests ([#144](https://www.github.com/bihealth/clinvar-this/issues/144)) ([ee1fc5d](https://www.github.com/bihealth/clinvar-this/commit/ee1fc5d98026c4c5c3c248eca4e0907f21d45f0e))
+
+
+### Documentation
+
+* Update docs on file formats and fixing errors ([#150](https://www.github.com/bihealth/clinvar-this/issues/150)) ([0b9efc6](https://www.github.com/bihealth/clinvar-this/commit/0b9efc6640ffd4a814b1b5f8814589a9c6b65048))
+
 ### [0.10.2](https://www.github.com/bihealth/clinvar-this/compare/v0.10.1...v0.10.2) (2023-09-11)
 
 
