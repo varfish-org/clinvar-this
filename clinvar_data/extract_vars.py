@@ -73,6 +73,8 @@ class VariantType(enum.Enum):
 @attrs.frozen(auto_attribs=True)
 class VariantRecord:
     rcv: str
+    vcv: str
+    title: str
     variant_type: VariantType
     clinical_significance: typing.Optional[models.ClinicalSignificanceDescription]
     review_status: typing.Optional[models.ReviewStatus]
@@ -134,6 +136,8 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                     for sequence_location in measure.sequence_locations:
                         record = VariantRecord(
                             rcv=rca.clinvar_accession.acc,
+                            vcv=rca.measures.acc or "__MISSING__",
+                            title=clinvar_set.title or "__MISSING__",
                             clinical_significance=clinical_significance,
                             review_status=review_status,
                             variant_type=VariantType.from_measure_type(measure.type),
