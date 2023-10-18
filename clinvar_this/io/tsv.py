@@ -678,7 +678,9 @@ def batch_metadata_from_mapping(
         key, value = key_value.split("=")
         if key in field_types:
             try:
-                kwargs[key] = cattrs.structure(value, field_types[key])
+                # We need to ignore types as mypy 1.6.0 warns for "expected type[any] but
+                # found "type[any] | None".
+                kwargs[key] = cattrs.structure(value, field_types[key])  # type: ignore
             except ValueError:
                 raise exceptions.ArgumentsError(f"Failed to parse {value} as for key {key}")
     if use_defaults:
