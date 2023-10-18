@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://www.github.com/bihealth/clinvar-this/compare/v0.11.0...v0.12.0) (2023-10-18)
+
+
+### Features
+
+* include VCV and title in "clinvar-data extract-vars" ([#152](https://www.github.com/bihealth/clinvar-this/issues/152)) ([c3e1bf2](https://www.github.com/bihealth/clinvar-this/commit/c3e1bf212643993ef0898f8ef28f4d0a973fcf7f))
+
 ## [0.11.0](https://www.github.com/bihealth/clinvar-this/compare/v0.10.2...v0.11.0) (2023-10-06)
 
 
