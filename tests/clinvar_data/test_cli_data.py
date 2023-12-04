@@ -46,6 +46,7 @@ def test_cli_xml_to_json_stdin_stdout(snapshot):
         "ex_additional_submitters.xml",
         "ex_attribute_set.xml",
         "ex_custom_score.xml",
+        "ex_flagged_submission.xml",
         "ex_indication.xml",
         "ex_missense.xml",
         "ex_replaces.xml",
@@ -61,7 +62,7 @@ def test_convert_snapshot_to_jsonl(fname_in, tmp_path, snapshot):
     in_path = os.path.dirname(__file__) + f"/data/{fname_in}"
     out_path = f"{tmp_path}/out.jsonl"
     result = runner.invoke(cli.cli, ["data", "xml-to-jsonl", in_path, out_path])
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.stdout
 
     with open(out_path, "rt") as output_f:
         snapshot.assert_match(output_f.read(), "out.jsonl")
