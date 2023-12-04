@@ -92,11 +92,13 @@ class ReviewStatus(enum.Enum):
     """The values of review status are used to build the 'star ratings' displayed on the
     ClinVar public site.
 
-    - 0 stars:  a conflict or not classified by submitter
+    - 0 stars: a conflict or not classified by submitter
     - 1 star: classified by single submitter
     - 2 stars: classified by multiple submitters
     - 3 stars: reviewed by expert panel
     - 4 stars: reviewed by professional society
+
+    In the case that a submission was flagged as duplicate, `FLAGGED_SUBMISSION` is used.
     """
 
     NO_ASSERTION_PROVIDED = "no assertion provided"
@@ -106,6 +108,7 @@ class ReviewStatus(enum.Enum):
     CRITERIA_PROVIDED_CONFLICTING_INTERPRETATIONS = "criteria provided, conflicting interpretations"
     REVIEWED_BY_EXPERT_PANEL = "reviewed by expert panel"
     PRACTICE_GUIDELINE = "practice guideline"
+    FLAGGED_SUBMISSION = "flagged submission"
 
 
 @enum.unique
@@ -179,6 +182,7 @@ class CommentType(enum.Enum):
     ASSEMBLY_SPECIFIC_ALLELE_DEFINITON = "AssemblySpecificAlleleDefinition"
     ALIGNMENT_GAP_MAKES_APPEAR_INCONSISTENT = "AlignmentGapMakesAppearInconsistent"
     EXPLANATION_OF_INTERPRETATION = "ExplanationOfInterpretation"
+    FLAGGED_COMMENT = "FlaggedComment"
 
 
 @attrs.frozen(auto_attribs=True)
