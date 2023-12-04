@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://www.github.com/bihealth/clinvar-this/compare/v0.12.0...v0.13.0) (2023-12-04)
+
+
+### Features
+
+* adapt to ClinVar public XML update ([#162](https://www.github.com/bihealth/clinvar-this/issues/162)) ([8d90a36](https://www.github.com/bihealth/clinvar-this/commit/8d90a36fd4acfca0fd11fcfb0673f16efbce56b3))
+
 ## [0.12.0](https://www.github.com/bihealth/clinvar-this/compare/v0.11.0...v0.12.0) (2023-10-18)
 
 
