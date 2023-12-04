@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.13.1](https://www.github.com/bihealth/clinvar-this/compare/v0.13.0...v0.13.1) (2023-12-04)
+
+
+### Bug Fixes
+
+* pinning python to 3.11 in release for setuptools ([#164](https://www.github.com/bihealth/clinvar-this/issues/164)) ([afb6035](https://www.github.com/bihealth/clinvar-this/commit/afb60355e347449f107490d5eab351e8291e6d7a))
+
 ## [0.13.0](https://www.github.com/bihealth/clinvar-this/compare/v0.12.0...v0.13.0) (2023-12-04)
 
 
