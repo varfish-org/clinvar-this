@@ -8,8 +8,8 @@ import re
 import typing
 import uuid
 
-import attrs
-import cattrs
+from pydantic import BaseModel, SecretStr
+from pydantic.config import ConfigDict
 from logzero import logger
 
 from clinvar_api.models import (
@@ -46,9 +46,10 @@ from clinvar_api.msg.sub_payload import (
 from clinvar_this import exceptions
 
 
-@attrs.frozen
-class SeqVarTsvRecord:
+class SeqVarTsvRecord(BaseModel):
     """Record for reading sequence variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Assembly
     assembly: Assembly
@@ -69,7 +70,7 @@ class SeqVarTsvRecord:
     #: Local identifier of variant-condition pair.
     local_key: typing.Optional[str] = None
     #: Additional columns
-    extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
+    extra_data: typing.Dict[str, str] = {}
     #: Date of last evaluation of clinical significance
     clinical_significance_date_last_evaluated: typing.Optional[str] = None
     #: Additional comment of clinical significance
@@ -82,9 +83,10 @@ class SeqVarTsvRecord:
     accession: typing.Optional[str] = None
 
 
-@attrs.frozen
-class StrucVarTsvRecord:
+class StrucVarTsvRecord(BaseModel):
     """Record for reading structural variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Assembly
     assembly: Assembly
@@ -105,7 +107,7 @@ class StrucVarTsvRecord:
     #: Local identifier of variant-condition pair.
     local_key: typing.Optional[str] = None
     #: Additional columns
-    extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
+    extra_data: typing.Dict[str, str] = {}
     #: Date of last evaluation of clinical significance
     clinical_significance_date_last_evaluated: typing.Optional[str] = None
     #: Additional comment of clinical significance
@@ -118,9 +120,10 @@ class StrucVarTsvRecord:
     accession: typing.Optional[str] = None
 
 
-@attrs.frozen
-class SeqVarHeaderColumn:
+class SeqVarHeaderColumn(BaseModel):
     """Header column of sequence variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Interpreted header names from TSV
     header_names: typing.Tuple[str]
@@ -139,9 +142,10 @@ class SeqVarHeaderColumn:
         return self.header_names[0]
 
 
-@attrs.frozen
-class StrucVarHeaderColumn:
+class StrucVarHeaderColumn(BaseModel):
     """Header column of structural variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Interpreted header names from TSV
     header_names: typing.Tuple[str]
@@ -502,8 +506,8 @@ def _read_seq_var_tsv_file(inputf: typing.TextIO) -> typing.List[SeqVarTsvRecord
                     raw_record[header.key] = header.converter(value)
                 else:
                     extra_data[header_name] = value
-            record = cattrs.structure(raw_record, SeqVarTsvRecord)
-            result.append(attrs.evolve(record, extra_data=extra_data))
+            record = SeqVarTsvRecord.model_validate(raw_record)
+            result.append(record.model_copy({"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_seq_var_header(row)
@@ -534,8 +538,8 @@ def _read_struc_var_tsv_file(inputf: typing.TextIO) -> typing.List[StrucVarTsvRe
                     raw_record[header.key] = header.converter(value)
                 else:
                     extra_data[header_name] = value
-            record = cattrs.structure(raw_record, StrucVarTsvRecord)
-            result.append(attrs.evolve(record, extra_data=extra_data))
+            record = SeqVarTsvRecord.model_validate(raw_record)
+            result.append(record.model_copy({"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_struc_var_header(row)
@@ -640,7 +644,6 @@ def write_struc_var_tsv(
         raise TypeError("You have to provide either file or path")
 
 
-@attrs.define(frozen=True)
 class BatchMetadata:
     """Batch-wide settings for TSV import.
 

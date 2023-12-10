@@ -3,10 +3,10 @@
 import json
 import typing
 
-import attrs
-import cattrs
 from jsonschema import ValidationError
 from logzero import logger
+from pydantic import BaseModel, SecretStr
+from pydantic.config import ConfigDict
 import requests
 
 from clinvar_api import common, exceptions, models, msg, schemas
@@ -21,20 +21,13 @@ ENDPOINT_URL_TEST = "https://submit.ncbi.nlm.nih.gov/apitest/v1/submissions/"
 SUFFIX_DRYRUN = "?dry-run=true"
 
 
-def _obfuscate_repr(s):
-    """Helper function for obfustating passwords"""
-    if len(s) < 5:
-        return repr("*" * len(s))
-    else:
-        return repr(s[:5] + "*" * (len(s) - 5))
-
-
-@attrs.define(frozen=True)
-class Config:
+class Config(BaseModel):
     """Configuration for the ``Client`` class."""
 
+    model_config = ConfigDict(frozen=True)
+
     #: Token to use for authentication.
-    auth_token: str = attrs.field(repr=_obfuscate_repr)
+    auth_token: SecretStr
 
     #: Whether to use the test endpoint.
     use_testing: bool = False
@@ -67,7 +60,7 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
         "SP-API-KEY": config.auth_token,
     }
 
-    payload = cattrs.unstructure(submission_container.to_msg())
+    payload = submission_container.to_msg().model_dump(mode="json")
     logger.debug("Payload data is %s", json.dumps(payload, indent=2))
     cleaned_payload = common.clean_for_json(payload)
     logger.debug("Cleaned payload data is %s", json.dumps(cleaned_payload, indent=2))
@@ -108,9 +101,10 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
             raise exceptions.SubmissionFailed(f"ClinVar submission failed: {error_obj.message}")
 
 
-@attrs.define(frozen=True)
-class RetrieveStatusResult:
+class RetrieveStatusResult(BaseModel):
     """Result type for ``retrieve_status`` function."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The submission status.
     status: models.SubmissionStatus
@@ -132,7 +126,7 @@ def _retrieve_status_summary(
             except ValidationError as e:
                 logger.warning("Response summary validation JSON is invalid: %s", e)
             logger.debug("... done validating status summary response")
-        sr_msg = cattrs.structure(response.json(), msg.SummaryResponse)
+        sr_msg = msg.SummaryResponse.model_validate(response.json())
         return models.SummaryResponse.from_msg(sr_msg)
     else:
         raise exceptions.QueryFailed(

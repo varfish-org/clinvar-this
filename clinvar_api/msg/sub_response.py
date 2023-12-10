@@ -3,7 +3,8 @@
 from enum import Enum
 import typing
 
-import attrs
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 
 class BatchProcessingStatus(Enum):
@@ -19,53 +20,61 @@ class BatchReleaseStatus(Enum):
     NOT_RELEASED = "Not released"
 
 
-@attrs.define(frozen=True)
-class Created:
+class Created(BaseModel):
     """Representation of successful creation."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The submission ID.
     id: str
 
 
-@attrs.define(frozen=True)
-class Error:
+class Error(BaseModel):
     """Representation of server's response in case of failure."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The error response's message.
     message: str
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorInput:
+class SummaryResponseErrorInput(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     value: typing.Optional[str] = None
     field: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorOutputError:
+class SummaryResponseErrorOutputError(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     userMessage: str
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorOutput:
+class SummaryResponseErrorOutput(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     errors: typing.List[SummaryResponseErrorOutputError]
 
 
-@attrs.define(frozen=True)
-class SummaryResponseError:
+class SummaryResponseError(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     # NB: docs and schema say required but examples do not show
     input: typing.List[SummaryResponseErrorInput]
     output: SummaryResponseErrorOutput
 
 
-@attrs.define(frozen=True)
-class SummaryResponseDeletionIdentifier:
+class SummaryResponseDeletionIdentifier(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinvarAccession: str
     clinvarLocalKey: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SummaryResponseDeletion:
+class SummaryResponseDeletion(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     identifiers: SummaryResponseDeletionIdentifier
     processingStatus: str
     deleteDate: typing.Optional[str] = None
@@ -73,16 +82,18 @@ class SummaryResponseDeletion:
     errors: typing.Optional[typing.List[SummaryResponseError]] = None
 
 
-@attrs.define(frozen=True)
-class SummaryResponseSubmissionIdentifiers:
+class SummaryResponseSubmissionIdentifiers(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinvarLocalKey: str
     clinvarAccession: typing.Optional[str] = None
     localID: typing.Optional[str] = None
     localKey: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SummaryResponseSubmission:
+class SummaryResponseSubmission(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     identifiers: SummaryResponseSubmissionIdentifiers
     processingStatus: str
     clinvarAccessionVersion: typing.Optional[str] = None
@@ -91,9 +102,10 @@ class SummaryResponseSubmission:
     releaseStatus: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SummaryResponse:
+class SummaryResponse(BaseModel):
     """Represetation of server's response to a submission."""
+
+    model_config = ConfigDict(frozen=True)
 
     batchProcessingStatus: BatchProcessingStatus
     batchReleaseStatus: BatchReleaseStatus

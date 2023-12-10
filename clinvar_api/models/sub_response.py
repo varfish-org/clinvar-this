@@ -2,7 +2,8 @@
 
 import typing
 
-import attrs
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 from clinvar_api import msg
 
@@ -12,8 +13,9 @@ from clinvar_api import msg
 from clinvar_api.msg.sub_response import BatchProcessingStatus, BatchReleaseStatus
 
 
-@attrs.define(frozen=True)
-class Created:
+class Created(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: The submission ID.
     id: str
 
@@ -22,8 +24,9 @@ class Created:
         return Created(id=other.id)
 
 
-@attrs.define(frozen=True)
-class Error:
+class Error(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: The error response's message.
     message: str
 
@@ -32,8 +35,9 @@ class Error:
         return Error(message=other.message)
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorInput:
+class SummaryResponseErrorInput(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     value: typing.Optional[str] = None
     field: typing.Optional[str] = None
 
@@ -45,8 +49,9 @@ class SummaryResponseErrorInput:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorOutputError:
+class SummaryResponseErrorOutputError(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     user_message: str
 
     @classmethod
@@ -56,8 +61,9 @@ class SummaryResponseErrorOutputError:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseErrorOutput:
+class SummaryResponseErrorOutput(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     errors: typing.List[SummaryResponseErrorOutputError]
 
     @classmethod
@@ -69,8 +75,9 @@ class SummaryResponseErrorOutput:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseError:
+class SummaryResponseError(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     input: typing.List[SummaryResponseErrorInput]
     output: SummaryResponseErrorOutput
 
@@ -82,8 +89,9 @@ class SummaryResponseError:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseDeletionIdentifier:
+class SummaryResponseDeletionIdentifier(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinvar_accession: str
     clinvar_local_key: typing.Optional[str] = None
 
@@ -95,8 +103,9 @@ class SummaryResponseDeletionIdentifier:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseDeletion:
+class SummaryResponseDeletion(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     identifiers: SummaryResponseDeletionIdentifier
     processing_status: str
     delete_date: typing.Optional[str] = None
@@ -117,8 +126,9 @@ class SummaryResponseDeletion:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseSubmissionIdentifiers:
+class SummaryResponseSubmissionIdentifiers(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinvar_local_key: str
     clinvar_accession: typing.Optional[str] = None
     local_id: typing.Optional[str] = None
@@ -134,8 +144,9 @@ class SummaryResponseSubmissionIdentifiers:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponseSubmission:
+class SummaryResponseSubmission(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     identifiers: SummaryResponseSubmissionIdentifiers
     processing_status: str
     clinvar_accession_version: typing.Optional[str] = None
@@ -160,9 +171,10 @@ class SummaryResponseSubmission:
         )
 
 
-@attrs.define(frozen=True)
-class SummaryResponse:
+class SummaryResponse(BaseModel):
     """Represetation of server's response to a submission."""
+
+    model_config = ConfigDict(frozen=True)
 
     batch_processing_status: BatchProcessingStatus
     batch_release_status: BatchReleaseStatus

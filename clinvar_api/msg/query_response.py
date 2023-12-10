@@ -4,7 +4,8 @@ import datetime
 from enum import Enum
 import typing
 
-import attrs
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 
 class ErrorCode(Enum):
@@ -18,17 +19,19 @@ class ProcessingStatus(Enum):
     SUCCESS = "Success"
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusFile:
+class SubmissionStatusFile(BaseModel):
     """Type for ``SubmissionStatus`` entry ``actions[*].response[*].files[*]``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: File URL
     url: str
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusObjectContent:
+class SubmissionStatusObjectContent(BaseModel):
     """type for ``SubmissionStatusObjectContent`` entry in ``actions[*].response[*].objects[*].content``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Processing status
     clinvarProcessingStatus: str
@@ -36,9 +39,10 @@ class SubmissionStatusObjectContent:
     clinvarReleaseStatus: str
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusObject:
+class SubmissionStatusObject(BaseModel):
     """Type for ``SubmissionStatusObject`` entry in ``actions[*].response[*].objects[*]``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Optional object accession.
     accession: typing.Optional[str]
@@ -48,9 +52,10 @@ class SubmissionStatusObject:
     targetDb: str
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusResponseMessage:
+class SubmissionStatusResponseMessage(BaseModel):
     """Type for ``SubmissionStatusResponseMessage`` entry in ``actions[*].response[*].message``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The error code.
     errorCode: typing.Optional[ErrorCode]
@@ -60,9 +65,10 @@ class SubmissionStatusResponseMessage:
     text: str
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusResponse:
+class SubmissionStatusResponse(BaseModel):
     """Type for ``SubmissionStatus`` entry ``actions[*].response[*]``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Status, one of "processing", "processed", "error",
     status: str
@@ -74,9 +80,10 @@ class SubmissionStatusResponse:
     objects: typing.List[SubmissionStatusObject]
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusActions:
+class SubmissionStatusActions(BaseModel):
     """Type for ``SubmissionStatus`` entry ``actions[*]``."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Identifier of the submission
     id: str
@@ -90,9 +97,10 @@ class SubmissionStatusActions:
     updated: datetime.datetime
 
 
-@attrs.define(frozen=True)
-class SubmissionStatus:
+class SubmissionStatus(BaseModel):
     """Representation of server's response to a submission status query."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The list of actions (one element only by the docs).
     actions: typing.List[SubmissionStatusActions]

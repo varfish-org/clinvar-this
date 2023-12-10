@@ -3,14 +3,16 @@
 import datetime
 import typing
 
-import attrs
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 from clinvar_api import msg
 from clinvar_api.msg import ErrorCode
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusFile:
+class SubmissionStatusFile(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     url: str
 
     @classmethod
@@ -18,8 +20,9 @@ class SubmissionStatusFile:
         return SubmissionStatusFile(url=other.url)
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusObjectContent:
+class SubmissionStatusObjectContent(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: Processing status
     clinvar_processing_status: str
     #: Release status
@@ -33,8 +36,9 @@ class SubmissionStatusObjectContent:
         )
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusObject:
+class SubmissionStatusObject(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: Optional object accession.
     accession: typing.Optional[str]
     #: Object content.
@@ -51,8 +55,9 @@ class SubmissionStatusObject:
         )
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusResponseMessage:
+class SubmissionStatusResponseMessage(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: The error code.
     error_code: typing.Optional[ErrorCode]
     #: The message severity.
@@ -67,8 +72,9 @@ class SubmissionStatusResponseMessage:
         )
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusResponse:
+class SubmissionStatusResponse(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: Status, one of "processing", "processed", "error",
     status: str
     #: Files in the response.
@@ -92,8 +98,9 @@ class SubmissionStatusResponse:
         )
 
 
-@attrs.define(frozen=True)
-class SubmissionStatusActions:
+class SubmissionStatusActions(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: Identifier of the submission
     id: str
     #: Entries in ``actions[*].responses``, only one entry per the docs.
@@ -116,9 +123,10 @@ class SubmissionStatusActions:
         )
 
 
-@attrs.define(frozen=True)
-class SubmissionStatus:
+class SubmissionStatus(BaseModel):
     """Internal submission status."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The list of actions (one element only by the docs).
     actions: typing.List[SubmissionStatusActions]
