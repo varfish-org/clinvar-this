@@ -1,5 +1,7 @@
 """REST API client code for communicating with server endpoints."""
 
+import asyncio
+import contextlib
 import json
 import typing
 
@@ -106,7 +108,7 @@ class _SubmitData:
 
 
 def submit_data(submission_container: models.SubmissionContainer, config: Config) -> models.Created:
-    """Submit new data to ClinVar API.
+    """Submit new data to ClinVar API (sync).
 
     :param submission_container: The submission data.
     :param config: The connfiguration to use.
@@ -122,7 +124,7 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
 async def async_submit_data(
     submission_container: models.SubmissionContainer, config: Config
 ) -> models.Created:
-    """Submit new data to ClinVar API via async API.
+    """Submit new data to ClinVar API via async API (async).
 
     :param submission_container: The submission data.
     :param config: The connfiguration to use.
@@ -262,8 +264,44 @@ def retrieve_status(
         return helper.after_first_get_failure(response)
 
 
+async def async_retrieve_status(
+    submission_id: str,
+    config: Config,
+) -> RetrieveStatusResult:
+    """Retrieve submission status from API.
+
+    :param submission_id: The identifier of the submission as returned earlier from API.
+    :param config: The connfiguration to use.
+    :return: The information about the created submission.
+    :raises exceptions.QueryFailed: on problems with the communication to the server.
+    """
+    helper = _RetrieveStatus(submission_id, config)
+    url, headers = helper.before_first_get()
+    async with httpx.AsyncClient(verify=config.verify_ssl) as client:
+        response = await client.get(url, headers=headers)
+    if httpx.codes.is_success(response.status_code):
+        more_urls, status_obj = helper.after_first_get_success(response)
+
+        async with contextlib.AsyncExitStack() as stack:
+            tasks: typing.Dict[str, typing.Awaitable[httpx.Response]] = {}
+            for url in more_urls:
+                logger.info(" - fetching %s", url)
+                client = await stack.enter_async_context(
+                    httpx.AsyncClient(verify=config.verify_ssl)
+                )
+                tasks[url] = client.get(url)
+
+            more_results: typing.Dict[str, httpx.Response] = dict(
+                zip(tasks.keys(), await asyncio.gather(*tasks.values()))
+            )
+
+        return helper.after_get_more_urls(status_obj, more_results)
+    else:
+        return helper.after_first_get_failure(response)
+
+
 class Client:
-    """NCBI ClinVar REST API client."""
+    """NCBI ClinVar REST API client (sync)."""
 
     def __init__(self, config: Config):
         self.config = config
@@ -285,3 +323,28 @@ class Client:
         :raises exceptions.QueryFailed: on problems with the communication to the server.
         """
         return retrieve_status(submission_id, self.config)
+
+
+class AsyncClient:
+    """NCBI ClinVar REST API client (async)."""
+
+    def __init__(self, config: Config):
+        self.config = config
+
+    async def submit_data(self, payload: models.SubmissionContainer) -> models.Created:
+        """Submit new data to ClinVar API.
+
+        :param payload: The submission data.
+        :return: The information about the created submission.
+        :raises exceptions.SubmissionFailed: on problems with the submission.
+        """
+        return await async_submit_data(payload, self.config)
+
+    async def retrieve_status(self, submission_id: str) -> RetrieveStatusResult:
+        """Retrieve submission status from API.
+
+        :param submission_id: The identifier of the submission as returned earlier from API.
+        :return: The information about the created submission.
+        :raises exceptions.QueryFailed: on problems with the communication to the server.
+        """
+        return await async_retrieve_status(submission_id, self.config)
