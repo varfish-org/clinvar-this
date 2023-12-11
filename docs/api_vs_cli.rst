@@ -15,7 +15,7 @@ Application Programmable Interface (API)
 A Python module ``clinvar_api`` that you can use for making calls to the ClinVar submission API.
 **If you want to integrate ClinVar API submission into your Python software, this is for you.**
 
-The module provides a "Pythonic" API based on `python-attrs <https://www.attrs.org/en/stable/>`__ with ``snake_case`` syntax that has full Python type annotations.
+The module provides a "Pythonic" API based on `pydantic <https://pydantic.dev/>`__ with ``snake_case`` syntax that has full Python type annotations.
 Of course, you could just roll your own JSON based submission based on Python requests but using the module has some advantages:
 
 * ``clinvar_api`` is fully typed so you can work with Python data types and all advantages that come this this (linting, editor completion, ...)

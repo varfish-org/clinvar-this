@@ -8,9 +8,9 @@ import re
 import typing
 import uuid
 
+from logzero import logger
 from pydantic import BaseModel, SecretStr
 from pydantic.config import ConfigDict
-from logzero import logger
 
 from clinvar_api.models import (
     AffectedStatus,
@@ -507,7 +507,7 @@ def _read_seq_var_tsv_file(inputf: typing.TextIO) -> typing.List[SeqVarTsvRecord
                 else:
                     extra_data[header_name] = value
             record = SeqVarTsvRecord.model_validate(raw_record)
-            result.append(record.model_copy({"extra_data": extra_data}))
+            result.append(record.model_copy(update={"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_seq_var_header(row)
@@ -538,8 +538,8 @@ def _read_struc_var_tsv_file(inputf: typing.TextIO) -> typing.List[StrucVarTsvRe
                     raw_record[header.key] = header.converter(value)
                 else:
                     extra_data[header_name] = value
-            record = SeqVarTsvRecord.model_validate(raw_record)
-            result.append(record.model_copy({"extra_data": extra_data}))
+            record = StrucVarTsvRecord.model_validate(raw_record)
+            result.append(record.model_copy(update={"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_struc_var_header(row)
@@ -644,11 +644,13 @@ def write_struc_var_tsv(
         raise TypeError("You have to provide either file or path")
 
 
-class BatchMetadata:
+class BatchMetadata(BaseModel):
     """Batch-wide settings for TSV import.
 
     The properties will be assigned to all variants/samples in the batch.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The collection method
     collection_method: typing.Optional[CollectionMethod] = None
@@ -673,7 +675,7 @@ def batch_metadata_from_mapping(
 
     Default values can be used (should be on import but not on update).
     """
-    field_types = {f.name: f.type for f in attrs.fields(BatchMetadata)}
+    field_types = {name: value for (name, value) in typing.get_type_hints(BatchMetadata).items()}
     kwargs = {}
     for key_value in keys_values:
         if "=" not in key_value:
@@ -683,7 +685,7 @@ def batch_metadata_from_mapping(
             try:
                 # We need to ignore types as mypy 1.6.0 warns for "expected type[any] but
                 # found "type[any] | None".
-                kwargs[key] = cattrs.structure(value, field_types[key])  # type: ignore
+                kwargs[key] = field_types[key].model_validate(value)  # type: ignore
             except ValueError:
                 raise exceptions.ArgumentsError(f"Failed to parse {value} as for key {key}")
     if use_defaults:

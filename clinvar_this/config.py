@@ -11,14 +11,6 @@ import toml
 from clinvar_this import exceptions
 
 
-def _obfuscate_repr(s):
-    """Helper function for obfustating passwords"""
-    if len(s) < 5:
-        return repr("*" * len(s))
-    else:
-        return repr(s[:5] + "*" * (len(s) - 5))
-
-
 class Config(BaseModel):
     """Configuration for the ``clinvar-this`` app."""
 
@@ -81,6 +73,7 @@ def save_config(config: Config, profile: str = "default"):
     all_config[profile] = {
         k: v for k, v in config.model_dump(mode="json").items() if k != "profile"
     }
+    all_config[profile]["auth_token"] = config.auth_token.get_secret_value()
 
     with config_path.open("wt") as configf:
         toml.dump(all_config, configf)

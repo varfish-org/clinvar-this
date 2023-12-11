@@ -7,12 +7,10 @@ import json
 import os
 import typing
 
-import attrs
-import cattrs
+from pydantic import BaseModel, ConfigDict
 import tqdm
 
 from clinvar_data import models
-from clinvar_data.cattrs_helpers import CONVERTER
 from clinvar_data.models import MeasureAttributeType
 
 
@@ -70,8 +68,9 @@ class VariantType(enum.Enum):
         return mapping.get(mt, VariantType.OTHER)
 
 
-@attrs.frozen(auto_attribs=True)
-class VariantRecord:
+class VariantRecord(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     rcv: str
     vcv: str
     title: str
@@ -97,8 +96,7 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
 
     with inputf, contextlib.ExitStack() as stack:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-            dict_value = json.loads(line)
-            clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
+            clinvar_set = models.ClinVarSet.model_validate_json(line)
             rca = clinvar_set.reference_clinvar_assertion
 
             if rca.measures:
@@ -162,4 +160,4 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         dest = output_files.get_file(
                             stack, sequence_location.assembly.lower(), variant_size
                         )
-                        print(json.dumps(cattrs.unstructure(record)), file=dest)
+                        print(record.model_dump_json(), file=dest)

@@ -57,7 +57,7 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
     url = f"{url_prefix}{url_suffix}"
     logger.debug("Will submit to URL %s", url)
     headers = {
-        "SP-API-KEY": config.auth_token,
+        "SP-API-KEY": config.auth_token.get_secret_value(),
     }
 
     payload = submission_container.to_msg().model_dump(mode="json")
@@ -86,11 +86,11 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
             logger.info("Server returned '204: No Content', constructing fake created message.")
             return models.Created(id="--NONE--dry-run-result--")
         else:
-            created_msg = common.CONVERTER.structure(response.json(), msg.Created)
+            created_msg = msg.Created.model_validate_json(response.content)
             return models.Created.from_msg(created_msg)
     else:
         logger.warning("API returned an error - %s: %s", response.status_code, response.reason)
-        error_msg = common.CONVERTER.structure(response.json(), msg.Error)
+        error_msg = msg.Error.model_validate_json(response.content)
         error_obj = models.Error.from_msg(error_msg)
         logger.debug("Full server response is %s", response.json())
         if hasattr(error_obj, "errors"):
@@ -126,7 +126,7 @@ def _retrieve_status_summary(
             except ValidationError as e:
                 logger.warning("Response summary validation JSON is invalid: %s", e)
             logger.debug("... done validating status summary response")
-        sr_msg = msg.SummaryResponse.model_validate(response.json())
+        sr_msg = msg.SummaryResponse.model_validate_json(response.content)
         return models.SummaryResponse.from_msg(sr_msg)
     else:
         raise exceptions.QueryFailed(
@@ -149,17 +149,17 @@ def retrieve_status(
     url_suffix = SUFFIX_DRYRUN if config.use_dryrun else ""
     url = f"{url_prefix}{submission_id}/actions/{url_suffix}"
     headers = {
-        "SP-API-KEY": config.auth_token,
+        "SP-API-KEY": config.auth_token.get_secret_value(),
     }
     logger.debug("Will query URL %s", url)
     response = requests.get(url, headers=headers)
     if response.ok:
         logger.info("API returned OK - %s: %s", response.status_code, response.reason)
         logger.debug("Structuring response ...")
-        status_msg = common.CONVERTER.structure(response.json(), msg.SubmissionStatus)
+        status_msg = msg.SubmissionStatus.model_validate_json(response.content)
         logger.debug(
             "structured response is %s",
-            json.dumps(common.CONVERTER.unstructure(status_msg), indent=2),
+            status_msg.model_dump_json(indent=2),
         )
         logger.debug("... done structuring response")
         status_obj = models.SubmissionStatus.from_msg(status_msg)

@@ -1,7 +1,6 @@
 import datetime
 import json
 
-import cattrs
 import pytest
 
 from clinvar_data import conversion, models
@@ -39,7 +38,7 @@ def test_force_list_lst():
 )
 def test_xref_type_from_json_data(input, expected):
     obj = models.Xref.from_json_data(input)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -68,7 +67,7 @@ def test_clinical_significance_description_from_the_wild(value, expected):
 )
 def test_comment_from_json_data(value, expected):
     obj = models.Comment.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -81,7 +80,7 @@ def test_comment_from_json_data(value, expected):
 )
 def test_citation_identifier_from_json_data(value, expected):
     obj = models.CitationIdentifier.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -119,7 +118,7 @@ def test_citation_identifier_from_json_data(value, expected):
 )
 def test_citation_from_json_data(value, expected):
     obj = models.Citation.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -139,7 +138,7 @@ def test_citation_from_json_data(value, expected):
 )
 def test_custom_assertion_score_from_json_data(value, expected):
     obj = models.CustomAssertionScore.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -153,7 +152,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
                 "Description": "Pathogenic",
             },
             {
-                "date_last_evaluated": datetime.date(2010, 9, 9),
+                "date_last_evaluated": "2010-09-09",
                 "descriptions": ["pathogenic"],
                 "review_status": "no assertion criteria provided",
             },
@@ -167,7 +166,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
             },
             {
                 "comments": [{"text": "comment text"}],
-                "date_last_evaluated": datetime.date(2020, 1, 6),
+                "date_last_evaluated": "2020-01-06",
                 "descriptions": ["benign"],
                 "review_status": "no assertion criteria provided",
             },
@@ -183,7 +182,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
                 "citations": [
                     {"ids": [{"source": "PubMed", "value": "32576985"}], "type": "general"}
                 ],
-                "date_last_evaluated": datetime.date(2020, 4, 16),
+                "date_last_evaluated": "2020-04-16",
                 "descriptions": ["pathogenic"],
                 "review_status": "no assertion criteria provided",
             },
@@ -196,7 +195,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
                 "ExplanationOfInterpretation": "explanation text",
             },
             {
-                "date_last_evaluated": datetime.date(2016, 5, 1),
+                "date_last_evaluated": "2016-05-01",
                 "descriptions": ["other", "other"],
                 "explanation_of_interpretation": "explanation text",
                 "review_status": "no assertion criteria provided",
@@ -221,7 +220,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
                 ],
             },
             {
-                "date_last_evaluated": datetime.date(2022, 9, 27),
+                "date_last_evaluated": "2022-09-27",
                 "descriptions": ["pathogenic", "pathogenic"],
                 "review_status": "criteria provided, single submitter",
             },
@@ -230,7 +229,7 @@ def test_custom_assertion_score_from_json_data(value, expected):
 )
 def test_clinical_significance_scv_from_json_data(value, expected):
     obj = models.ClinicalSignificanceTypeSCV.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -244,7 +243,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
                 "Description": "Pathogenic",
             },
             {
-                "date_last_evaluated": datetime.date(2010, 9, 9),
+                "date_last_evaluated": "2010-09-09",
                 "description": "pathogenic",
                 "review_status": "no assertion criteria provided",
             },
@@ -258,7 +257,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
             },
             {
                 "comments": [{"text": "comment text"}],
-                "date_last_evaluated": datetime.date(2020, 1, 6),
+                "date_last_evaluated": "2020-01-06",
                 "description": "benign",
                 "review_status": "no assertion criteria provided",
             },
@@ -274,7 +273,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
                 "citations": [
                     {"ids": [{"source": "PubMed", "value": "32576985"}], "type": "general"}
                 ],
-                "date_last_evaluated": datetime.date(2020, 4, 16),
+                "date_last_evaluated": "2020-04-16",
                 "description": "pathogenic",
                 "review_status": "no assertion criteria provided",
             },
@@ -287,7 +286,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
                 "ExplanationOfInterpretation": "explanation text",
             },
             {
-                "date_last_evaluated": datetime.date(2016, 5, 1),
+                "date_last_evaluated": "2016-05-01",
                 "description": "other",
                 "explanation_of_interpretation": "explanation text",
                 "review_status": "no assertion criteria provided",
@@ -306,7 +305,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
                 },
             },
             {
-                "date_last_evaluated": datetime.date(2022, 9, 27),
+                "date_last_evaluated": "2022-09-27",
                 "description": "pathogenic",
                 "review_status": "criteria provided, single submitter",
             },
@@ -315,7 +314,7 @@ def test_clinical_significance_scv_from_json_data(value, expected):
 )
 def test_clinical_significance_rcv_from_json_data(value, expected):
     obj = models.ClinicalSignificanceRCV.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -332,8 +331,8 @@ def test_clinical_significance_rcv_from_json_data(value, expected):
             },
             {
                 "acc": "RCV000000009",
-                "date_created": datetime.date(2013, 4, 4),
-                "date_updated": datetime.date(2022, 4, 23),
+                "date_created": "2013-04-04",
+                "date_updated": "2022-04-23",
                 "type": "RCV",
                 "version": 4,
             },
@@ -342,7 +341,7 @@ def test_clinical_significance_rcv_from_json_data(value, expected):
 )
 def test_reference_clinvar_accession_from_json_data(value, expected):
     obj = models.ReferenceClinVarAccession.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -386,7 +385,7 @@ def test_reference_clinvar_accession_from_json_data(value, expected):
 )
 def test_clinvar_accession_from_json_data(value, expected):
     obj = models.ReferenceClinVarAssertionAttribute.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -413,7 +412,7 @@ def test_clinvar_accession_from_json_data(value, expected):
 )
 def test_allele_description_from_json_data(value, expected):
     obj = models.AlleleDescription.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -453,7 +452,7 @@ def test_allele_description_from_json_data(value, expected):
 )
 def test_cooccurrence_from_json_data(value, expected):
     obj = models.Cooccurrence.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -480,7 +479,7 @@ def test_observation_method_from_the_wild(value, expected):
 )
 def test_observed_data_attribute_from_json_data(value, expected):
     obj = models.ObservedDataAttribute.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -535,7 +534,7 @@ def test_observed_data_attribute_from_json_data(value, expected):
 )
 def test_observed_data_from_json_data(value, expected):
     obj = models.ObservedData.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -555,7 +554,7 @@ def test_observed_data_from_json_data(value, expected):
 )
 def test_sample_description_from_json_data(value, expected):
     obj = models.SampleDescription.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -582,7 +581,7 @@ def test_sample_description_from_json_data(value, expected):
 )
 def test_family_info_from_json_data(value, expected):
     obj = models.FamilyInfo.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -601,7 +600,7 @@ def test_family_info_from_json_data(value, expected):
 )
 def test_species_from_json_data(value, expected):
     obj = models.Species.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -624,7 +623,7 @@ def test_species_from_json_data(value, expected):
 )
 def test_age_from_json_data(value, expected):
     obj = models.Age.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -647,7 +646,7 @@ def test_age_from_json_data(value, expected):
 )
 def test_typed_value_from_json_data(value, expected):
     obj = models.TypedValue.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -674,7 +673,7 @@ def test_typed_value_from_json_data(value, expected):
 )
 def test_annotated_typed_value_from_json_data(value, expected):
     obj = models.AnnotatedTypedValue.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -693,7 +692,7 @@ def test_annotated_typed_value_from_json_data(value, expected):
 )
 def test_source_from_json_data(value, expected):
     obj = models.Source.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -722,7 +721,7 @@ def test_source_from_json_data(value, expected):
 )
 def test_trait_relationship_from_json_data(value, expected):
     obj = models.TraitRelationship.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -737,7 +736,7 @@ def test_trait_relationship_from_json_data(value, expected):
 )
 def test_clinvar_assertion_trait_relationship_from_json_data(value, expected):
     obj = models.ClinVarAssertionTraitRelationship.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -752,7 +751,7 @@ def test_clinvar_assertion_trait_relationship_from_json_data(value, expected):
 )
 def test_clinvar_assertion_trait_from_json_data(value, expected):
     obj = models.ClinVarAssertionTrait.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -788,7 +787,7 @@ def test_clinvar_assertion_trait_from_json_data(value, expected):
 )
 def test_trait_from_json_data(value, expected):
     obj = models.Trait.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -827,7 +826,7 @@ def test_trait_from_json_data(value, expected):
 )
 def test_indication_from_json_data(value, expected):
     obj = models.Indication.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -868,7 +867,7 @@ def test_indication_from_json_data(value, expected):
 )
 def test_sample_from_json_data(value, expected):
     obj = models.Sample.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -950,7 +949,7 @@ def test_sample_from_json_data(value, expected):
 )
 def test_observation_set_from_json_data(value, expected):
     obj = models.ObservationSet.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1003,7 +1002,7 @@ def test_observation_set_from_json_data(value, expected):
 )
 def test_measure_set_attribute_from_json_data(value, expected):
     obj = models.MeasureSetAttribute.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1037,7 +1036,7 @@ def test_measure_set_attribute_from_json_data(value, expected):
 )
 def test_measure_type_attribute_from_json_data(value, expected):
     obj = models.MeasureAttribute.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1062,7 +1061,7 @@ def test_measure_type_attribute_from_json_data(value, expected):
 )
 def test_allele_frequency_from_json_data(value, expected):
     obj = models.AlleleFrequency.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1081,7 +1080,7 @@ def test_allele_frequency_from_json_data(value, expected):
 )
 def test_global_minor_allele_frequency_from_json_data(value, expected):
     obj = models.GlobalMinorAlleleFrequency.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1101,8 +1100,8 @@ def test_global_minor_allele_frequency_from_json_data(value, expected):
             },
             {
                 "acc": "SCV000020152",
-                "date_created": datetime.date(2013, 4, 4),
-                "date_updated": datetime.date(2017, 12, 15),
+                "date_created": "2013-04-04",
+                "date_updated": "2017-12-15",
                 "org_category": "resource",
                 "org_id": "3",
                 "org_type": "primary",
@@ -1114,7 +1113,7 @@ def test_global_minor_allele_frequency_from_json_data(value, expected):
 )
 def test_clinvar_assertion_accession_from_json_data(value, expected):
     obj = models.ClinVarAssertionAccession.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1183,7 +1182,7 @@ def test_clinvar_assertion_accession_from_json_data(value, expected):
 )
 def test_sequence_location_from_json_data(value, expected):
     obj = models.SequenceLocation.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1207,7 +1206,7 @@ def test_sequence_location_from_json_data(value, expected):
                         "url": "https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=TAB2"
                     }
                 ],
-                "date_value": datetime.datetime(2020, 5, 27, 0, 0),
+                "date_value": "2020-05-27",
                 "type": "Haploinsufficiency",
                 "value": "Little evidence for dosage pathogenicity",
             },
@@ -1229,7 +1228,7 @@ def test_sequence_location_from_json_data(value, expected):
                         "url": "https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=TAB2"
                     }
                 ],
-                "date_value": datetime.datetime(2020, 5, 27, 0, 0),
+                "date_value": "2020-05-27",
                 "type": "Triplosensitivity",
                 "value": "No evidence available",
             },
@@ -1238,7 +1237,7 @@ def test_sequence_location_from_json_data(value, expected):
 )
 def test_measure_relationship_attribute_from_json_data(value, expected):
     obj = models.MeasureRelationshipAttribute.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1298,7 +1297,7 @@ def test_measure_relationship_attribute_from_json_data(value, expected):
 )
 def test_measure_relationship_from_json_data(value, snapshot):
     obj = models.MeasureRelationship.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     # NB: the input/expect output value pairs do not fit on one screen any more for
     # this test, so we use snapshot testing
     snapshot.assert_match(json.dumps(value, indent=2), "output")
@@ -1385,7 +1384,7 @@ def test_measure_relationship_from_json_data(value, snapshot):
 )
 def test_measure_from_json_data(value, snapshot):
     obj = models.Measure.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     # NB: the input/expect output value pairs do not fit on one screen any more for
     # this test, so we use snapshot testing
     snapshot.assert_match(json.dumps(value, indent=2), "output")
@@ -1485,7 +1484,7 @@ def test_measure_from_json_data(value, snapshot):
 )
 def test_measure_set_from_json_data(value, snapshot):
     obj = models.MeasureSet.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     snapshot.assert_match(json.dumps(value, indent=2), "output")
 
 
@@ -1581,7 +1580,7 @@ def test_measure_set_from_json_data(value, snapshot):
 )
 def test_genotype_set_from_json_data(value, expected):
     obj = models.GenotypeSet.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1622,7 +1621,7 @@ def test_genotype_set_from_json_data(value, expected):
 )
 def test_trait_set_from_json_data(value, expected):
     obj = models.TraitSet.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected
 
 
@@ -1883,7 +1882,7 @@ def test_trait_set_from_json_data(value, expected):
 )
 def test_reference_clinvar_assertion_from_json_data(value, snapshot):
     obj = models.ReferenceClinVarAssertion.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     snapshot.assert_match(json.dumps(value, indent=2, default=conversion.json_default), "output")
 
 
@@ -1900,7 +1899,7 @@ def test_reference_clinvar_assertion_from_json_data(value, snapshot):
             {
                 "local_key": "604896.0012_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
                 "submitter": "OMIM",
-                "submitter_date": datetime.date(2017, 12, 13),
+                "submitter_date": "2017-12-13",
                 "title": "MKKS, GLN147TER_BARDET-BIEDL SYNDROME 2/6, DIGENIC",
             },
         ),
@@ -1908,5 +1907,5 @@ def test_reference_clinvar_assertion_from_json_data(value, snapshot):
 )
 def test_clinvar_submission_id_from_json_data(value, expected):
     obj = models.ClinVarSubmissionId.from_json_data(value)
-    value = conversion.remove_empties_from_containers(cattrs.unstructure(obj))
+    value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
     assert value == expected

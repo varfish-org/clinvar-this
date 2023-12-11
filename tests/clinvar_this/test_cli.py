@@ -1,6 +1,7 @@
 from unittest.mock import MagicMock, patch
 
 from click.testing import CliRunner
+from pydantic import SecretStr
 import pytest
 
 from clinvar_this import batches, cli, config, exceptions
@@ -108,8 +109,8 @@ def test_call_batch_export(fs_config, monkeypatch, force, struc_var):
     assert len(mock_export.call_args.args) == 5
     assert len(mock_export.call_args.kwargs) == 0
     assert (
-        str(mock_export.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+        repr(mock_export.call_args.args[0])
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
     )
     assert mock_export.call_args.args[1] == "batch-name"
     assert mock_export.call_args.args[2] == "out-tsv"
@@ -151,8 +152,8 @@ def test_call_batch_import(fs_config, monkeypatch, name, metadata):
     assert len(mock_import.call_args.args) == 4
     assert len(mock_import.call_args.kwargs) == 0
     assert (
-        str(mock_import.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+        repr(mock_import.call_args.args[0])
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
     )
     assert mock_import.call_args.args[1] == (name if name else "generated")
     assert mock_import.call_args.args[2] == "input-tsv"
@@ -183,8 +184,8 @@ def test_call_batch_update_metadata(fs_config, monkeypatch, name, metadata):
     assert len(mock_update_metadata.call_args.args) == 3
     assert len(mock_update_metadata.call_args.kwargs) == 0
     assert (
-        str(mock_update_metadata.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+        repr(mock_update_metadata.call_args.args[0])
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
     )
     assert mock_update_metadata.call_args.args[1] == name
     assert mock_update_metadata.call_args.args[2] == (metadata if metadata else ())
@@ -217,8 +218,8 @@ def test_call_batch_submit(fs_config, monkeypatch, dry_run, use_testing):
     assert len(mock_submit.call_args.args) == 2
     assert len(mock_submit.call_args.kwargs) == 2
     assert (
-        str(mock_submit.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+        repr(mock_submit.call_args.args[0])
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
     )
     assert mock_submit.call_args.args[1] == "name"
     assert mock_submit.call_args.kwargs == {"dry_run": dry_run, "use_testing": use_testing}
@@ -245,8 +246,8 @@ def test_call_batch_retrieve(fs_config, monkeypatch, use_testing):
     assert len(mock_retrieve.call_args.args) == 2
     assert len(mock_retrieve.call_args.kwargs) == 1
     assert (
-        str(mock_retrieve.call_args.args[0])
-        == "Config(profile='default', auth_token='****', verify_ssl=True)"
+        repr(mock_retrieve.call_args.args[0])
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
     )
     assert mock_retrieve.call_args.args[1] == "name"
     assert mock_retrieve.call_args.kwargs == {"use_testing": use_testing}
