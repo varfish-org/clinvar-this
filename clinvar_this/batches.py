@@ -1,7 +1,6 @@
 """Management of batches."""
 
 import datetime
-import json
 import pathlib
 import typing
 

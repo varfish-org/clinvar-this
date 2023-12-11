@@ -9,7 +9,7 @@ import typing
 import uuid
 
 from logzero import logger
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel
 from pydantic.config import ConfigDict
 
 from clinvar_api.models import (

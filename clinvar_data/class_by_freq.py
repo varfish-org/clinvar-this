@@ -111,7 +111,7 @@ def write_report(counts: dict, path_output: str):
     with outputf:
         for hgnc, counts in sorted(counts.items(), key=lambda x: int(x[0][5:])):
             print(
-                json.dumps({"hgnc": hgnc, "counts": counts.model_dump(mode="json")}),
+                json.dumps({"hgnc": hgnc, "counts": counts.model_dump(mode="json")}),  # type: ignore
                 file=outputf,
             )
 

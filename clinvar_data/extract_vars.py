@@ -3,7 +3,6 @@
 import contextlib
 import enum
 import gzip
-import json
 import os
 import typing
 

@@ -51,7 +51,7 @@ def config_set(ctx: click.Context, name: str, value: str):
     try:
         config_obj = load_config(profile)
     except exceptions.ConfigFileMissingException:
-        config_obj = Config(profile=profile, auth_token="")  # swallow, will recreate
+        config_obj = Config(profile=profile, auth_token=SecretStr(""))  # swallow, will recreate
     allowed_names = ["auth_token"]
     if name not in allowed_names:
         raise click.ClickException(f"Invalid value {name}, must be one of {allowed_names}")
