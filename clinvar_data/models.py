@@ -99,7 +99,8 @@ class ReviewStatus(enum.Enum):
     - 3 stars: reviewed by expert panel
     - 4 stars: reviewed by professional society
 
-    In the case that a submission was flagged as duplicate, `FLAGGED_SUBMISSION` is used.
+    In the case that a submission was flagged as duplicate, ``FLAGGED_SUBMISSION`` is used.
+    When no unflagged submission is found, ``NO_UNFLAGGED_CLASSIFICATION`` is used.
     """
 
     NO_ASSERTION_PROVIDED = "no assertion provided"
@@ -110,6 +111,7 @@ class ReviewStatus(enum.Enum):
     REVIEWED_BY_EXPERT_PANEL = "reviewed by expert panel"
     PRACTICE_GUIDELINE = "practice guideline"
     FLAGGED_SUBMISSION = "flagged submission"
+    NO_UNFLAGGED_CLASSIFICATION = "no classifications from unflagged records"
 
 
 @enum.unique
