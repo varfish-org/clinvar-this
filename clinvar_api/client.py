@@ -3,11 +3,11 @@
 import json
 import typing
 
+import httpx
 from jsonschema import ValidationError
 from logzero import logger
 from pydantic import BaseModel, SecretStr
 from pydantic.config import ConfigDict
-import requests
 
 from clinvar_api import common, exceptions, models, msg, schemas
 
@@ -78,10 +78,10 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
     }
     logger.debug("Overall POST payload is %s", post_data)
 
-    response = requests.post(url, headers=headers, json=post_data, verify=config.verify_ssl)
+    response = httpx.post(url, headers=headers, json=post_data, verify=config.verify_ssl)
 
-    if response.ok:
-        logger.info("API returned OK - %s:  %s", response.status_code, response.reason)
+    if response.status_code == httpx.codes.ok:
+        logger.info("API returned OK - %s", response.status_code)
         if response.status_code == 204:  # no content, on dry-run
             logger.info("Server returned '204: No Content', constructing fake created message.")
             return models.Created(id="--NONE--dry-run-result--")
@@ -89,7 +89,7 @@ def submit_data(submission_container: models.SubmissionContainer, config: Config
             created_msg = msg.Created.model_validate_json(response.content)
             return models.Created.from_msg(created_msg)
     else:
-        logger.warning("API returned an error - %s: %s", response.status_code, response.reason)
+        logger.warning("API returned an error - %s", response.status_code)
         error_msg = msg.Error.model_validate_json(response.content)
         error_obj = models.Error.from_msg(error_msg)
         logger.debug("Full server response is %s", response.json())
@@ -116,8 +116,8 @@ def _retrieve_status_summary(
     url: str, validate_response_json: bool = True
 ) -> models.SummaryResponse:
     """Retrieve status summary from the given URL."""
-    response = requests.get(url)
-    if response.ok:
+    response = httpx.get(url)
+    if response.status_code == httpx.codes.ok:
         response_json = response.json()
         if validate_response_json:
             logger.debug("Validating status summary response ...")
@@ -129,9 +129,7 @@ def _retrieve_status_summary(
         sr_msg = msg.SummaryResponse.model_validate_json(response.content)
         return models.SummaryResponse.from_msg(sr_msg)
     else:
-        raise exceptions.QueryFailed(
-            f"Could not perform query: {response.status_code} {response.reason}"
-        )
+        raise exceptions.QueryFailed(f"Could not perform query: {response.status_code}")
 
 
 def retrieve_status(
@@ -152,9 +150,9 @@ def retrieve_status(
         "SP-API-KEY": config.auth_token.get_secret_value(),
     }
     logger.debug("Will query URL %s", url)
-    response = requests.get(url, headers=headers)
-    if response.ok:
-        logger.info("API returned OK - %s: %s", response.status_code, response.reason)
+    response = httpx.get(url, headers=headers)
+    if response.status_code == httpx.codes.ok:
+        logger.info("API returned OK - %s", response.status_code)
         logger.debug("Structuring response ...")
         status_msg = msg.SubmissionStatus.model_validate_json(response.content)
         logger.debug(
@@ -183,7 +181,7 @@ def retrieve_status(
         logger.info("... done fetching status summary files")
         return RetrieveStatusResult(status=status_obj, summaries=summaries)
     else:
-        logger.info("API returned an error %s: %s", response.status_code, response.reason)
+        logger.info("API returned an error %s", response.status_code, response)
         response_json = response.json()
         raise exceptions.QueryFailed(f"ClinVar query failed: {response_json}")
 

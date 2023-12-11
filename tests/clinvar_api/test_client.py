@@ -23,13 +23,12 @@ def test_config_short_token():
     )
 
 
-def test_submit_data_success(requests_mock):
-    requests_mock.register_uri(
-        "POST",
-        "https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
-        request_headers=FAKE_HEADERS,
+def test_submit_data_success(httpx_mock):
+    httpx_mock.add_response(
+        method="POST",
+        url="https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json={"id": "SUB999999"},
     )
     result = client.submit_data(
@@ -39,13 +38,12 @@ def test_submit_data_success(requests_mock):
     assert repr(result) == "Created(id='SUB999999')"
 
 
-def test_submit_data_failed(requests_mock):
-    requests_mock.register_uri(
-        "POST",
-        "https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
-        request_headers=FAKE_HEADERS,
+def test_submit_data_failed(httpx_mock):
+    httpx_mock.add_response(
+        method="POST",
+        url="https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
+        match_headers=FAKE_HEADERS,
         status_code=400,
-        reason="Bad request",
         json={"message": "Submission is incorrect"},
     )
     with pytest.raises(exceptions.SubmissionFailed):
@@ -65,13 +63,12 @@ def test_retrieve_status_result():
     )
 
 
-def test_retrieve_status_success_no_extra_file(requests_mock, data_submission_submitted):
-    requests_mock.register_uri(
-        "GET",
-        f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
-        request_headers=FAKE_HEADERS,
+def test_retrieve_status_success_no_extra_file(httpx_mock, data_submission_submitted):
+    httpx_mock.add_response(
+        method="GET",
+        url=f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json=data_submission_submitted,
     )
     result = client.retrieve_status(
@@ -85,24 +82,22 @@ def test_retrieve_status_success_no_extra_file(requests_mock, data_submission_su
 
 
 def test_retrieve_status_success_with_extra_files(
-    requests_mock, data_submission_processed, data_summary_response_processed
+    httpx_mock, data_submission_processed, data_summary_response_processed
 ):
-    requests_mock.register_uri(
-        "GET",
-        f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
-        request_headers=FAKE_HEADERS,
+    httpx_mock.add_response(
+        method="GET",
+        url=f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json=data_submission_processed,
     )
-    requests_mock.register_uri(
-        "GET",
-        (
+    httpx_mock.add_response(
+        method="GET",
+        url=(
             "https://dsubmit.ncbi.nlm.nih.gov/api/2.0/files/xxxxxxxx"
             "/sub999999-summary-report.json/?format=attachment"
         ),
         status_code=200,
-        reason="OK",
         json=data_summary_response_processed,
     )
     result = client.retrieve_status(
@@ -140,13 +135,12 @@ def test_retrieve_status_success_with_extra_files(
     )
 
 
-def test_retrieve_status_failed_initial_request(requests_mock):
-    requests_mock.register_uri(
-        "GET",
-        f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
-        request_headers=FAKE_HEADERS,
+def test_retrieve_status_failed_initial_request(httpx_mock):
+    httpx_mock.add_response(
+        method="GET",
+        url=f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
+        match_headers=FAKE_HEADERS,
         status_code=401,
-        reason="Unauthorized",
         json={"message": "No valid API key provided"},
     )
 
@@ -156,23 +150,21 @@ def test_retrieve_status_failed_initial_request(requests_mock):
         )
 
 
-def test_retrieve_status_failed_extra_request(requests_mock, data_submission_processed):
-    requests_mock.register_uri(
-        "GET",
-        f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
-        request_headers=FAKE_HEADERS,
+def test_retrieve_status_failed_extra_request(httpx_mock, data_submission_processed):
+    httpx_mock.add_response(
+        method="GET",
+        url=f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json=data_submission_processed,
     )
-    requests_mock.register_uri(
-        "GET",
-        (
+    httpx_mock.add_response(
+        method="GET",
+        url=(
             "https://dsubmit.ncbi.nlm.nih.gov/api/2.0/files/xxxxxxxx"
             "/sub999999-summary-report.json/?format=attachment"
         ),
         status_code=404,
-        reason="Not Found",
     )
 
     with pytest.raises(exceptions.QueryFailed):
@@ -181,13 +173,12 @@ def test_retrieve_status_failed_extra_request(requests_mock, data_submission_pro
         )
 
 
-def test_client_submit_success(requests_mock):
-    requests_mock.register_uri(
-        "POST",
-        "https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
-        request_headers=FAKE_HEADERS,
+def test_client_submit_success(httpx_mock):
+    httpx_mock.add_response(
+        method="POST",
+        url="https://submit.ncbi.nlm.nih.gov/api/v1/submissions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json={"id": "SUB999999"},
     )
     client_obj = client.Client(
@@ -197,13 +188,12 @@ def test_client_submit_success(requests_mock):
     assert repr(result) == "Created(id='SUB999999')"
 
 
-def test_client_retrieve_status_success_no_extra_file(requests_mock, data_submission_submitted):
-    requests_mock.register_uri(
-        "GET",
-        f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
-        request_headers=FAKE_HEADERS,
+def test_client_retrieve_status_success_no_extra_file(httpx_mock, data_submission_submitted):
+    httpx_mock.add_response(
+        method="GET",
+        url=f"https://submit.ncbi.nlm.nih.gov/api/v1/submissions/{FAKE_ID}/actions/",
+        match_headers=FAKE_HEADERS,
         status_code=200,
-        reason="OK",
         json=data_submission_submitted,
     )
     client_obj = client.Client(
