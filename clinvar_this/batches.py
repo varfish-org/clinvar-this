@@ -1,15 +1,13 @@
 """Management of batches."""
 
 import datetime
-import json
 import pathlib
 import typing
 
-from attrs import evolve
 from logzero import logger
 from tabulate import tabulate
 
-from clinvar_api import client, common, models
+from clinvar_api import client, models
 from clinvar_this import config, exceptions
 from clinvar_this.io import tsv
 
@@ -63,7 +61,7 @@ def _write_payload(submission_container: models.SubmissionContainer, profile: st
     # Write out payload.
     timestamp = datetime.datetime.now().strftime(FORMAT_STR)
     payload_path = batch_dir / f"payload.{timestamp}.json"
-    payload_json = json.dumps(common.CONVERTER.unstructure(submission_container), indent=2)
+    payload_json = submission_container.model_dump_json(indent=2)
     with payload_path.open("wt") as outputf:
         outputf.write(payload_json)
         outputf.write("\n")
@@ -89,12 +87,13 @@ def _merge_submission_container(
         patch: models.SubmissionClinvarSubmission,
     ) -> models.SubmissionClinvarSubmission:
         clinvar_accession = base.clinvar_accession or patch.clinvar_accession
-        return evolve(
-            base,
-            clinvar_accession=clinvar_accession,
-            condition_set=patch.condition_set,
-            clinical_significance=patch.clinical_significance,
-            observed_in=patch.observed_in,
+        return base.model_copy(
+            update={
+                "clinvar_accession": clinvar_accession,
+                "condition_set": patch.condition_set,
+                "clinical_significance": patch.clinical_significance,
+                "observed_in": patch.observed_in,
+            }
         )
 
     patch_clinvar_submission = {
@@ -109,7 +108,7 @@ def _merge_submission_container(
             )
         else:
             clinvar_submissions.append(submission)
-    result = evolve(base, clinvar_submission=clinvar_submissions)
+    result = base.model_copy(update={"clinvar_submission": clinvar_submissions})
     logger.info("... done merging submission information")
     return result
 
@@ -158,8 +157,7 @@ def _load_latest_payload(profile: str, name: str):
     payload_path = submission_path / payload_paths[-1]
     with payload_path.open("rt") as inputf:
         payload_json = inputf.read()
-    payload_unstructured = json.loads(payload_json)
-    return common.CONVERTER.structure(payload_unstructured, models.SubmissionContainer)
+    return models.SubmissionContainer.model_validate_json(payload_json)
 
 
 def export(
@@ -218,10 +216,10 @@ def submit(config: config.Config, name: str, *, use_testing: bool = False, dry_r
     response_path = (
         get_share_dir() / config.profile / name / f"submission-response.{timestamp}.json"
     )
-    response_data = common.CONVERTER.unstructure(client_res)
+
     logger.info("Writing out server response to %s", response_path)
     with response_path.open("wt") as outputf:
-        json.dump(response_data, outputf)
+        print(client_res.model_dump_json(), file=outputf)
     logger.info(
         "The ClinVar API has accepted your submission and will perform additional checks in the background."
     )
@@ -263,22 +261,23 @@ def _retrieve_store_response(
     payload = _load_latest_payload(config.profile, name)
     logger.debug("Updating local payload")
     clinvar_submission = [
-        evolve(
-            submission,
-            clinvar_accession=local_key_to_accession.get(
-                submission.local_key, submission.clinvar_accession
-            ),
-            record_status=models.RecordStatus.UPDATE
-            if submission.local_key in local_key_to_accession
-            else models.RecordStatus.NOVEL,
-            extra_data={
-                **(submission.extra_data or {}),
-                "error_msg": local_id_to_error.get(submission.local_id, ""),
-            },
+        submission.model_copy(
+            update={
+                "clinvar_accession": local_key_to_accession.get(
+                    submission.local_key, submission.clinvar_accession
+                ),
+                "record_status": models.RecordStatus.UPDATE
+                if submission.local_key in local_key_to_accession
+                else models.RecordStatus.NOVEL,
+                "extra_data": {
+                    **(submission.extra_data or {}),
+                    "error_msg": local_id_to_error.get(submission.local_id, ""),
+                },
+            }
         )
         for submission in payload.clinvar_submission
     ]
-    updated_payload = evolve(payload, clinvar_submission=clinvar_submission)
+    updated_payload = payload.model_copy(update={"clinvar_submission": clinvar_submission})
     logger.debug("Write out updated payload")
     _write_payload(updated_payload, config.profile, name)
     logger.debug("... done updating local payload from retrieve status response")
@@ -300,8 +299,8 @@ def retrieve(config: config.Config, name: str, *, use_testing: bool = False):
 
     submission_response_path = submission_path / submission_response_paths[-1]
     logger.info("Loading response from %s", submission_response_path)
-    with submission_response_path.open("rt") as inputf:
-        created = common.CONVERTER.structure(json.load(inputf), models.Created)
+    with submission_response_path.open("rb") as inputf:
+        created = models.Created.model_validate_json(inputf.read())
     logger.info("Submission ID is %s", created.id)
 
     logger.info("Initiating fetching of status from ClinVar API")
@@ -310,7 +309,7 @@ def retrieve(config: config.Config, name: str, *, use_testing: bool = False):
     retrieve_response_path = submission_path / f"retrieve-response.{timestamp}.json"
     logger.debug("Writing out response to %s", retrieve_response_path)
     with retrieve_response_path.open("wt") as outputf:
-        json.dump(common.CONVERTER.unstructure(status_result), outputf, indent=2)
+        print(status_result.model_dump_json(indent=2), file=outputf)
 
     status_str = status_result.status.actions[0].status
     if status_str in ["submitted", "processing"]:

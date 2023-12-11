@@ -8,9 +8,9 @@ import re
 import typing
 import uuid
 
-import attrs
-import cattrs
 from logzero import logger
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 from clinvar_api.models import (
     AffectedStatus,
@@ -46,9 +46,10 @@ from clinvar_api.msg.sub_payload import (
 from clinvar_this import exceptions
 
 
-@attrs.frozen
-class SeqVarTsvRecord:
+class SeqVarTsvRecord(BaseModel):
     """Record for reading sequence variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Assembly
     assembly: Assembly
@@ -69,7 +70,7 @@ class SeqVarTsvRecord:
     #: Local identifier of variant-condition pair.
     local_key: typing.Optional[str] = None
     #: Additional columns
-    extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
+    extra_data: typing.Dict[str, str] = {}
     #: Date of last evaluation of clinical significance
     clinical_significance_date_last_evaluated: typing.Optional[str] = None
     #: Additional comment of clinical significance
@@ -82,9 +83,10 @@ class SeqVarTsvRecord:
     accession: typing.Optional[str] = None
 
 
-@attrs.frozen
-class StrucVarTsvRecord:
+class StrucVarTsvRecord(BaseModel):
     """Record for reading structural variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Assembly
     assembly: Assembly
@@ -105,7 +107,7 @@ class StrucVarTsvRecord:
     #: Local identifier of variant-condition pair.
     local_key: typing.Optional[str] = None
     #: Additional columns
-    extra_data: typing.Dict[str, str] = attrs.field(factory=dict)
+    extra_data: typing.Dict[str, str] = {}
     #: Date of last evaluation of clinical significance
     clinical_significance_date_last_evaluated: typing.Optional[str] = None
     #: Additional comment of clinical significance
@@ -118,9 +120,10 @@ class StrucVarTsvRecord:
     accession: typing.Optional[str] = None
 
 
-@attrs.frozen
-class SeqVarHeaderColumn:
+class SeqVarHeaderColumn(BaseModel):
     """Header column of sequence variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Interpreted header names from TSV
     header_names: typing.Tuple[str]
@@ -139,9 +142,10 @@ class SeqVarHeaderColumn:
         return self.header_names[0]
 
 
-@attrs.frozen
-class StrucVarHeaderColumn:
+class StrucVarHeaderColumn(BaseModel):
     """Header column of structural variant TSV."""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Interpreted header names from TSV
     header_names: typing.Tuple[str]
@@ -502,8 +506,8 @@ def _read_seq_var_tsv_file(inputf: typing.TextIO) -> typing.List[SeqVarTsvRecord
                     raw_record[header.key] = header.converter(value)
                 else:
                     extra_data[header_name] = value
-            record = cattrs.structure(raw_record, SeqVarTsvRecord)
-            result.append(attrs.evolve(record, extra_data=extra_data))
+            record = SeqVarTsvRecord.model_validate(raw_record)
+            result.append(record.model_copy(update={"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_seq_var_header(row)
@@ -534,8 +538,8 @@ def _read_struc_var_tsv_file(inputf: typing.TextIO) -> typing.List[StrucVarTsvRe
                     raw_record[header.key] = header.converter(value)
                 else:
                     extra_data[header_name] = value
-            record = cattrs.structure(raw_record, StrucVarTsvRecord)
-            result.append(attrs.evolve(record, extra_data=extra_data))
+            record = StrucVarTsvRecord.model_validate(raw_record)
+            result.append(record.model_copy(update={"extra_data": extra_data}))
         else:
             header_row = row
             headers = _map_struc_var_header(row)
@@ -640,12 +644,13 @@ def write_struc_var_tsv(
         raise TypeError("You have to provide either file or path")
 
 
-@attrs.define(frozen=True)
-class BatchMetadata:
+class BatchMetadata(BaseModel):
     """Batch-wide settings for TSV import.
 
     The properties will be assigned to all variants/samples in the batch.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The collection method
     collection_method: typing.Optional[CollectionMethod] = None
@@ -670,7 +675,7 @@ def batch_metadata_from_mapping(
 
     Default values can be used (should be on import but not on update).
     """
-    field_types = {f.name: f.type for f in attrs.fields(BatchMetadata)}
+    field_types = {name: value for (name, value) in typing.get_type_hints(BatchMetadata).items()}
     kwargs = {}
     for key_value in keys_values:
         if "=" not in key_value:
@@ -680,7 +685,7 @@ def batch_metadata_from_mapping(
             try:
                 # We need to ignore types as mypy 1.6.0 warns for "expected type[any] but
                 # found "type[any] | None".
-                kwargs[key] = cattrs.structure(value, field_types[key])  # type: ignore
+                kwargs[key] = field_types[key].model_validate(value)  # type: ignore
             except ValueError:
                 raise exceptions.ArgumentsError(f"Failed to parse {value} as for key {key}")
     if use_defaults:

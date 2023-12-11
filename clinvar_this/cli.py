@@ -2,8 +2,8 @@
 
 import typing
 
-import attrs
 import click
+from pydantic import SecretStr
 
 from clinvar_data import (
     class_by_freq,
@@ -51,7 +51,7 @@ def config_set(ctx: click.Context, name: str, value: str):
     try:
         config_obj = load_config(profile)
     except exceptions.ConfigFileMissingException:
-        config_obj = Config(profile=profile, auth_token="")  # swallow, will recreate
+        config_obj = Config(profile=profile, auth_token=SecretStr(""))  # swallow, will recreate
     allowed_names = ["auth_token"]
     if name not in allowed_names:
         raise click.ClickException(f"Invalid value {name}, must be one of {allowed_names}")
@@ -59,7 +59,10 @@ def config_set(ctx: click.Context, name: str, value: str):
     #
     # error: Argument 2 to "evolve" of "Config" has incompatible type "**dict[str, str]";
     # expected "bool"  [arg-type]
-    config_obj = attrs.evolve(config_obj, **{name: value})  # type: ignore
+    if name == "auth_token":
+        config_obj = config_obj.model_copy(update={name: SecretStr(value)})  # type: ignore
+    else:
+        config_obj = config_obj.model_copy(update={name: value})  # type: ignore
     save_config(config_obj, profile)
 
 
@@ -72,7 +75,10 @@ def config_get(profile: str, name: str):
     Show the configuration variable with the given ``NAME``.  This will interpret the current ``--profile`` setting.
     """
     config = load_config(profile)
-    print(getattr(config, name, "<undefined>"))
+    if name == "auth_token":
+        print(getattr(config, name).get_secret_value())
+    else:
+        print(getattr(config, name, "<undefined>"))
 
 
 @config.command("dump")
@@ -182,7 +188,7 @@ def batch_update_metadata(
 def batch_submit(ctx: click.Context, use_testing: bool, dry_run: bool, name: str):
     """Submit the given batch to ClinVar"""
     config_obj = load_config(ctx.obj["profile"])
-    config_obj = attrs.evolve(config_obj, verify_ssl=ctx.obj["verify_ssl"])
+    config_obj = config_obj.model_copy(update={"verify_ssl": ctx.obj["verify_ssl"]})
     batches.submit(config_obj, name, use_testing=use_testing, dry_run=dry_run)
 
 
@@ -198,7 +204,7 @@ def batch_submit(ctx: click.Context, use_testing: bool, dry_run: bool, name: str
 def batch_retrieve(ctx: click.Context, use_testing: bool, name: str):
     """Submit the given batch to ClinVar"""
     config_obj = load_config(ctx.obj["profile"])
-    config_obj = attrs.evolve(config_obj, verify_ssl=ctx.obj["verify_ssl"])
+    config_obj = config_obj.model_copy(update={"verify_ssl": ctx.obj["verify_ssl"]})
     batches.retrieve(config_obj, name, use_testing=use_testing)
 
 

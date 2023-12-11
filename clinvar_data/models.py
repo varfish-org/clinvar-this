@@ -1,11 +1,11 @@
-"""Support for representing ClinVar data from XSD file using attrs"""
+"""Support for representing ClinVar data from XSD file using pydantic"""
 
 import datetime
 import enum
 import typing
 
-import attrs
 from dateutil.parser import parse as parse_datetime
+from pydantic import BaseModel, ConfigDict
 
 T = typing.TypeVar("T")
 
@@ -59,11 +59,12 @@ class Status(enum.Enum):
     UNDER_REVIEW = "under review"
 
 
-@attrs.frozen(auto_attribs=True)
-class Xref:
+class Xref(BaseModel):
     """This structure is used to represent how an object described in the submission relates to
     objects in other databases.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The database name
     db: str
@@ -185,9 +186,10 @@ class CommentType(enum.Enum):
     FLAGGED_COMMENT = "FlaggedComment"
 
 
-@attrs.frozen(auto_attribs=True)
-class Comment:
+class Comment(BaseModel):
     """A structure to support reporting unformatted content"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The comment's content.
     text: str
@@ -208,9 +210,10 @@ class Comment:
             )
 
 
-@attrs.frozen(auto_attribs=True)
-class CitationIdentifier:
+class CitationIdentifier(BaseModel):
     """Type for a citation identifier"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The identifier source.
     source: str
@@ -225,12 +228,13 @@ class CitationIdentifier:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class Citation:
+class Citation(BaseModel):
     """Type for a citation"""
 
+    model_config = ConfigDict(frozen=True)
+
     #: Citation identifiers.
-    ids: typing.List[CitationIdentifier] = attrs.field(factory=list)
+    ids: typing.List[CitationIdentifier] = []
     #: Citation type.
     type: typing.Optional[str] = None
     #: Corresponds to the abbreviation reported by GTR
@@ -266,9 +270,10 @@ class AssertionTypeSCV(enum.Enum):
     VARIATION_TO_INCLUDED_DISEASE = "variation to included disease"
 
 
-@attrs.frozen(auto_attribs=True)
-class CustomAssertionScore:
+class CustomAssertionScore(BaseModel):
     """A custom assertion score"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Score value
     value: float
@@ -283,28 +288,29 @@ class CustomAssertionScore:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinicalSignificanceTypeSCV:
+class ClinicalSignificanceTypeSCV(BaseModel):
     """The clinical significance from the SCV"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The review status
     review_status: typing.Optional[ReviewStatus] = None
     #: We are not providing an enumeration for the values we report for clinical significance within the xsd.
     #: The values are maintained here: ftp://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Clinical_significance.txt.
-    descriptions: typing.List[ClinicalSignificanceDescription] = attrs.field(factory=list)
+    descriptions: typing.List[ClinicalSignificanceDescription] = []
     #: Explanation is used only when the description is 'conflicting data from submitters'.
     #: The element summarizes the conflict.
     explanation: typing.Optional[Comment] = None
     #: Explanation for interpretation.
     explanation_of_interpretation: typing.Optional[str] = None
     #: Custom asertion scores.
-    custom_assertion_score: typing.List[CustomAssertionScore] = attrs.field(factory=list)
+    custom_assertion_score: typing.List[CustomAssertionScore] = []
     #: Cross-references.
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: Citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: Comments.
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Date of last evaluation.
     date_last_evaluated: typing.Optional[datetime.date] = None
 
@@ -363,9 +369,10 @@ class ClinicalSignificanceTypeSCV:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinicalSignificanceRCV:
+class ClinicalSignificanceRCV(BaseModel):
     """The clinical significance from the RCV"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The review status
     review_status: typing.Optional[ReviewStatus] = None
@@ -378,11 +385,11 @@ class ClinicalSignificanceRCV:
     #: Explanation for interpretation.
     explanation_of_interpretation: typing.Optional[str] = None
     #: Cross-references.
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: Citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: Comments.
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Date of last evaluation.
     date_last_evaluated: typing.Optional[datetime.date] = None
 
@@ -432,9 +439,10 @@ class ClinicalSignificanceRCV:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ReferenceClinVarAccession:
+class ReferenceClinVarAccession(BaseModel):
     """Accession for a reference ClinVar record"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The accession assigned by ClinVar
     acc: str
@@ -469,12 +477,13 @@ class ReferenceClinVarAssertionAttributeType(enum.Enum):
     AGE_OF_ONSET = "AgeOfOnset"
 
 
-@attrs.frozen(auto_attribs=True)
-class ReferenceClinVarAssertionAttribute:
+class ReferenceClinVarAssertionAttribute(BaseModel):
     """Attribute for ``ReferenceClnVarAssertion``
 
     Corresponds to the ``<AttributeSet>`` elements.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The attribute's value
     value: str
@@ -485,11 +494,11 @@ class ReferenceClinVarAssertionAttribute:
     #: The optional date value provided in ClinVar public XML
     date_value: typing.Optional[datetime.date] = None
     #: Optional list of citations for this attribute
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: Optional list of cross-references for this attribute
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: Optional list of comments for this attribute
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ReferenceClinVarAssertionAttribute":
@@ -537,9 +546,10 @@ class RelativeOrientation(enum.Enum):
     UNKNOWN = "unknown"
 
 
-@attrs.frozen(auto_attribs=True)
-class AlleleDescription:
+class AlleleDescription(BaseModel):
     """Description of one allele for use in co-occurence description"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Name of the allele
     name: str
@@ -566,14 +576,15 @@ class AlleleDescription:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class Cooccurrence:
+class Cooccurrence(BaseModel):
     """Describes co-ocurrence of variants"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The overall zygosity
     zygosity: typing.Optional[Zygosity] = None
     #: The description of the alleles
-    allele_descriptions: typing.List[AlleleDescription] = attrs.field(factory=list)
+    allele_descriptions: typing.List[AlleleDescription] = []
     #: A count (undocumented in ClinVar XML)
     count: typing.Optional[int] = None
 
@@ -649,9 +660,10 @@ class ObservedDataAttributeType(enum.Enum):
     SEGREGATION_OBSERVED = "SegregationObserved"
 
 
-@attrs.frozen(auto_attribs=True)
-class ObservedDataAttribute:
+class ObservedDataAttribute(BaseModel):
     """Attribute for ``ObservedData``"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The type of the attribute
     type: ObservedDataAttributeType
@@ -683,20 +695,21 @@ class Severity(enum.Enum):
     SEVERE = "severe"
 
 
-@attrs.frozen(auto_attribs=True)
-class ObservedData:
+class ObservedData(BaseModel):
     """Store structured observed data"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The core observation data
     attribute: ObservedDataAttribute
     #: Optional description of severity
     severity: typing.Optional[Severity] = None
     #: Optional list of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: Optional list of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: Optional list of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ObservedData":
@@ -717,9 +730,10 @@ class ObservedData:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class SampleDescription:
+class SampleDescription(BaseModel):
     """Description of a sample with optional citation"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The sample's description
     description: typing.Optional[Comment] = None
@@ -738,14 +752,15 @@ class SampleDescription:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class FamilyInfo:
+class FamilyInfo(BaseModel):
     """Description of a family in an observation.
 
     If the details of the number of families and the de-identified pedigree id are not available,
     use FamilyHistory to describe what type of family data is available.  Can also be used to report
     'Yes' or 'No' if there are no more details.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: Family history description
     family_history: typing.Optional[str] = None
@@ -810,9 +825,10 @@ class SampleOrigin(enum.Enum):
             return SampleOrigin.UNKNOWN
 
 
-@attrs.frozen(auto_attribs=True)
-class Species:
+class Species(BaseModel):
     """Definition of the species of a sample"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The species name
     value: str
@@ -841,9 +857,10 @@ class AgeType(enum.Enum):
     SINGLE = "single"
 
 
-@attrs.frozen(auto_attribs=True)
-class Age:
+class Age(BaseModel):
     """Description of an age or a side of an age range"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The unit of the age
     age_unit: str
@@ -889,9 +906,10 @@ class SampleSource(enum.Enum):
     DATA_MINING = "data mining"
 
 
-@attrs.frozen(auto_attribs=True)
-class TypedValue:
+class TypedValue(BaseModel):
     """A typed value in a value set"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The type description
     type: str
@@ -906,18 +924,19 @@ class TypedValue:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class AnnotatedTypedValue:
+class AnnotatedTypedValue(BaseModel):
     """A further annotated ``TypedValue``"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The inner typed value
     value: TypedValue
     #: Optional list of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: Optional list of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: Optional list of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "AnnotatedTypedValue":
@@ -964,9 +983,10 @@ class SourceType(enum.Enum):
     OTHER = "other"
 
 
-@attrs.frozen(auto_attribs=True)
-class Source:
+class Source(BaseModel):
     """Source information of some data"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: A standard term for the source of the information
     data_source: str
@@ -997,26 +1017,27 @@ class TraitRelationshipType(enum.Enum):
     FINDING_MEMBER = "Finding member"
 
 
-@attrs.frozen(auto_attribs=True)
-class TraitRelationship:
+class TraitRelationship(BaseModel):
     """Describe relations between two types"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The type of the relationship
     type: TraitRelationshipType
     #: An optional identifier of the relationship
     id: typing.Optional[int] = None
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    source: typing.List[Source] = attrs.field(factory=list)
+    source: typing.List[Source] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "TraitRelationship":
@@ -1049,24 +1070,25 @@ class TraitRelationship:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionTraitRelationship:
+class ClinVarAssertionTraitRelationship(BaseModel):
     """Trait relationship for ``ClinVarAssertionTrait`` records"""
 
+    model_config = ConfigDict(frozen=True)
+
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: List of sources
-    sources: typing.List[Source] = attrs.field(factory=list)
+    sources: typing.List[Source] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTraitRelationship":
@@ -1101,26 +1123,27 @@ class ClinVarAssertionTraitRelationship:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionTrait:
+class ClinVarAssertionTrait(BaseModel):
     """Trait description for a ClinVar assertion"""
 
+    model_config = ConfigDict(frozen=True)
+
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of trait relationships
-    trait_relationships: typing.List[TraitRelationship] = attrs.field(factory=list)
+    trait_relationships: typing.List[TraitRelationship] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: List of sources
-    sources: typing.List[Source] = attrs.field(factory=list)
+    sources: typing.List[Source] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTrait":
@@ -1171,28 +1194,29 @@ class TraitType(enum.Enum):
     PHENOTYPE_INSTRUCTION = "PhenotypeInstruction"
 
 
-@attrs.frozen(auto_attribs=True)
-class Trait:
+class Trait(BaseModel):
     """Trait description for trait sets"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the trait
     type: TraitType
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of trait relationships
-    trait_relationships: typing.List[TraitRelationship] = attrs.field(factory=list)
+    trait_relationships: typing.List[TraitRelationship] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: List of sources
-    sources: typing.List[Source] = attrs.field(factory=list)
+    sources: typing.List[Source] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "Trait":
@@ -1239,22 +1263,23 @@ class IndicationType(enum.Enum):
     INDICATION = "Indication"
 
 
-@attrs.frozen(auto_attribs=True)
-class Indication:
+class Indication(BaseModel):
     """Connect trait to test"""
 
+    model_config = ConfigDict(frozen=True)
+
     #: List of traits
-    traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
+    traits: typing.List[ClinVarAssertionTrait] = []
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
     comment: typing.Optional[Comment] = None
     #: The type of the indication
@@ -1293,9 +1318,10 @@ class Indication:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class Sample:
+class Sample(BaseModel):
     """A sample from a ClinVar XML file"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Sample description
     description: typing.Optional[SampleDescription] = None
@@ -1312,7 +1338,7 @@ class Sample:
     #: Species
     species: typing.Optional[Species] = None
     #: Age
-    age: typing.List[Age] = attrs.field(factory=list)
+    age: typing.List[Age] = []
     #: Strain
     strain: typing.Optional[str] = None
     #: Affected status
@@ -1337,11 +1363,11 @@ class Sample:
     #: Indication
     indication: typing.Optional[Indication] = None
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Sample source
     source: typing.Optional[SampleSource] = None
 
@@ -1415,28 +1441,29 @@ class TraitSetType(enum.Enum):
     TRAIT_CHOICE = "TraitChoice"
 
 
-@attrs.frozen(auto_attribs=True)
-class TraitSet:
+class TraitSet(BaseModel):
     """Description of a trait set"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the trait set
     type: TraitSetType
     #: List of traits
-    traits: typing.List[Trait] = attrs.field(factory=list)
+    traits: typing.List[Trait] = []
     #: Optional identifier
     id: typing.Optional[int] = None
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    attributes: typing.List[AnnotatedTypedValue] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "TraitSet":
@@ -1473,8 +1500,7 @@ class TraitSet:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ObservationSet:
+class ObservationSet(BaseModel):
     """Documents in what populations or samples an allele or genotype has been observed
     relative to the described trait.
 
@@ -1483,22 +1509,24 @@ class ObservationSet:
     all options are valid per study type, but these will not be validated in the xsd.
     """
 
+    model_config = ConfigDict(frozen=True)
+
     #: Sample in observation
     sample: Sample
     #: List of observation methods
-    methods: typing.List[ObservationMethod] = attrs.field(factory=list)
+    methods: typing.List[ObservationMethod] = []
     #: List of observed data
-    observed_data: typing.List[ObservedData] = attrs.field(factory=list)
+    observed_data: typing.List[ObservedData] = []
     #: Traits
     traits: typing.Optional[TraitSet] = None
     #: List of co-occurrences
-    cooccurrences: typing.List[Cooccurrence] = attrs.field(factory=list)
+    cooccurrences: typing.List[Cooccurrence] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ObservationSet":
@@ -1572,9 +1600,10 @@ class MeasureSetAttributeType(enum.Enum):
     SUBMITTER_VARIANT_ID = "SubmitterVariantId"
 
 
-@attrs.frozen(auto_attribs=True)
-class MeasureSetAttribute:
+class MeasureSetAttribute(BaseModel):
     """An attribute in a MeasureSet"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the attribute
     type: MeasureSetAttributeType
@@ -1587,11 +1616,11 @@ class MeasureSetAttribute:
     #: Whether the attribute is in MANE plus clinical
     mane_plus_clinical: typing.Optional[bool] = None
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureSetAttribute":
@@ -1665,20 +1694,21 @@ class MeasureAttributeType(enum.Enum):
     ISCN_COORDINATES = "ISCNCoordinates"
 
 
-@attrs.frozen(auto_attribs=True)
-class MeasureAttribute:
+class MeasureAttribute(BaseModel):
     """An attribute in a MeasureType"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The type of the attribute
     type: MeasureAttributeType
     #: Value of the attribute
     value: typing.Optional[str] = None
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: The optional integer value provided in ClinVar public XML
     integer_value: typing.Optional[int] = None
     #: The optional date value provided in ClinVar public XML
@@ -1708,9 +1738,10 @@ class MeasureAttribute:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class AlleleFrequency:
+class AlleleFrequency(BaseModel):
     """Description of an allele frequency"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: AF value
     value: float
@@ -1728,9 +1759,10 @@ class AlleleFrequency:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class GlobalMinorAlleleFrequency:
+class GlobalMinorAlleleFrequency(BaseModel):
     """Description of a global minor allele frequency"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: MAF value
     value: float
@@ -1759,9 +1791,10 @@ class AssemblyStatus(enum.Enum):
     PREVIOUS = "previous"
 
 
-@attrs.frozen(auto_attribs=True)
-class SequenceLocation:
+class SequenceLocation(BaseModel):
     """Description of a location on a sequence"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Assembly of the location
     assembly: str
@@ -1852,9 +1885,10 @@ class MeasureRelationshipAttributeType(enum.Enum):
     GENE_RELATIONSHIPS = "gene relationships"
 
 
-@attrs.frozen(auto_attribs=True)
-class MeasureRelationshipAttribute:
+class MeasureRelationshipAttribute(BaseModel):
     """Attribute of a measure releationship"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The attribute's value
     value: str
@@ -1865,11 +1899,11 @@ class MeasureRelationshipAttribute:
     #: The optional date value provided in ClinVar public XML
     date_value: typing.Optional[datetime.date] = None
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureRelationshipAttribute":
@@ -1909,26 +1943,27 @@ class MeasureRelationshipType(enum.Enum):
     ASSERTED_BUT_NOT_COMPUTED = "asserted, but not computed"
 
 
-@attrs.frozen(auto_attribs=True)
-class MeasureRelationship:
+class MeasureRelationship(BaseModel):
     """Description of a measure relationship"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the measure relationship
     type: typing.Optional[MeasureRelationshipType] = None
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[MeasureRelationshipAttribute] = attrs.field(factory=list)
+    attributes: typing.List[MeasureRelationshipAttribute] = []
     #: Sequence locations
-    sequence_locations: typing.List[SequenceLocation] = attrs.field(factory=list)
+    sequence_locations: typing.List[SequenceLocation] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "MeasureRelationship":
@@ -1998,38 +2033,39 @@ class MeasureType(enum.Enum):
             return MeasureType.OTHER
 
 
-@attrs.frozen(auto_attribs=True)
-class Measure:
+class Measure(BaseModel):
     """Description of a measures"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the measure
     type: typing.Optional[MeasureType] = None
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: Canonical SPDI
     canonical_spdi: typing.Optional[str] = None
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[MeasureAttribute] = attrs.field(factory=list)
+    attributes: typing.List[MeasureAttribute] = []
     #: List of allele frequencies
-    allele_frequencies: typing.List[AlleleFrequency] = attrs.field(factory=list)
+    allele_frequencies: typing.List[AlleleFrequency] = []
     #: Global minor allele frequency
     global_minor_allele_frequency: typing.Optional[GlobalMinorAlleleFrequency] = None
     #: Cytogenic location
-    cytogenic_locations: typing.List[str] = attrs.field(factory=list)
+    cytogenic_locations: typing.List[str] = []
     #: Sequence location
-    sequence_locations: typing.List[SequenceLocation] = attrs.field(factory=list)
+    sequence_locations: typing.List[SequenceLocation] = []
     #: Measure relationship
-    measure_relationship: typing.List[MeasureRelationship] = attrs.field(factory=list)
+    measure_relationship: typing.List[MeasureRelationship] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: List of sources
-    source: typing.List[Source] = attrs.field(factory=list)
+    source: typing.List[Source] = []
     #: Optional identifier
     id: typing.Optional[int] = None
 
@@ -2106,9 +2142,10 @@ class MeasureSetType(enum.Enum):
     DIPLOTYPE = "Diplotype"
 
 
-@attrs.frozen(auto_attribs=True)
-class MeasureSet:
+class MeasureSet(BaseModel):
     """A collection of ``Measure`` objects with further annotations"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the measure
     type: MeasureSetType
@@ -2117,19 +2154,19 @@ class MeasureSet:
     #: Version of the measure
     version: typing.Optional[int] = None
     #: List of measures
-    measures: typing.List[Measure] = attrs.field(factory=list)
+    measures: typing.List[Measure] = []
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
+    attributes: typing.List[MeasureSetAttribute] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Number of chromosomes
     number_of_chromosomes: typing.Optional[int] = None
     #: Optional identifier
@@ -2183,26 +2220,27 @@ class GenotypeSetType(enum.Enum):
     DIPLOTYPE = "Diplotype"
 
 
-@attrs.frozen(auto_attribs=True)
-class GenotypeSet:
+class GenotypeSet(BaseModel):
     """Genotype set description (compound heterozygote or diplotype)"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Type of the genotype set
     type: GenotypeSetType
     #: List of measures
-    measures: typing.List[MeasureSet] = attrs.field(factory=list)
+    measures: typing.List[MeasureSet] = []
     #: List of names
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    names: typing.List[AnnotatedTypedValue] = []
     #: List of symbols
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
+    symbols: typing.List[AnnotatedTypedValue] = []
     #: List of attributes
-    attributes: typing.List[MeasureSetAttribute] = attrs.field(factory=list)
+    attributes: typing.List[MeasureSetAttribute] = []
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of cross-references
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Optional identifier
     id: typing.Optional[int] = None
     #: Optional accession
@@ -2247,9 +2285,10 @@ class GenotypeSet:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ReferenceClinVarAssertion:
+class ReferenceClinVarAssertion(BaseModel):
     """The reference ClinVar assertion"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Accesion of the RCV record.
     clinvar_accession: ReferenceClinVarAccession
@@ -2260,11 +2299,11 @@ class ReferenceClinVarAssertion:
     #: The assertion RCV type.
     assertion: AssertionType
     #: Represents the public identifier a source may have for this record.
-    external_ids: typing.List[Xref] = attrs.field(factory=list)
+    external_ids: typing.List[Xref] = []
     #: Attributes of the RCV record
-    attributes: typing.List[ReferenceClinVarAssertionAttribute] = attrs.field(factory=list)
+    attributes: typing.List[ReferenceClinVarAssertionAttribute] = []
     #: Observations.
-    observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
+    observed_in: typing.List[ObservationSet] = []
     #: Measurement information, mutually exlusive with ``genotypes``.
     measures: typing.Optional[MeasureSet] = None
     #: Genotyping information, mutually exlusive with ``measures``.
@@ -2272,9 +2311,9 @@ class ReferenceClinVarAssertion:
     #: List of traits
     traits: typing.Optional[TraitSet] = None
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
     #: Date created
     date_created: typing.Optional[datetime.date] = None
     #: Date last updated
@@ -2337,9 +2376,10 @@ class ReferenceClinVarAssertion:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarSubmissionId:
+class ClinVarSubmissionId(BaseModel):
     """Corresponds to ``ClinVarSubmissionID`` in XML file"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: Of primary use to submitters, to facilitate identification of records corresponding to
     #: their submissions.  If not provided by a submitter, NCBI generates. If provided by
@@ -2381,13 +2421,14 @@ class SubmitterType(enum.Enum):
     BEHALF = "behalf"
 
 
-@attrs.frozen(auto_attribs=True)
-class Submitter:
+class Submitter(BaseModel):
     """A structure to support reportng the name of a submitter, its org_id, and whether primary
     or secondary or behalf.
 
     Corresponds to ``SubmitterType`` in XML file.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The type of the submitter
     type: SubmitterType
@@ -2416,9 +2457,10 @@ class ClinVarAssertionAccessionType(enum.Enum):
     SCV = "SCV"
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAccession:
+class ClinVarAssertionAccession(BaseModel):
     """Accession number for a ClinVar record in a ``ClinVarAssertion``"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The accession
     acc: str
@@ -2458,11 +2500,12 @@ class ClinVarAssertionAccession:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class RecordHistory:
+class RecordHistory(BaseModel):
     """A structure to support reporting of an accession, its version, the date its status
     changed, and text describing that change.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The accession
     accession: str
@@ -2497,8 +2540,9 @@ class ClinVarAssertionAttributeType(enum.Enum):
     ASSERTION_METHOD = "AssertionMethod"
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAttribute:
+class ClinVarAssertionAttribute(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     type: ClinVarAssertionAttributeType
     value: str
 
@@ -2510,20 +2554,21 @@ class ClinVarAssertionAttribute:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionAttributeSet:
+class ClinVarAssertionAttributeSet(BaseModel):
     """AttributeSet is a package to represent a unit of information, the source(s) of that unit,
     identifiers representing that unit, and comments.
     """
 
+    model_config = ConfigDict(frozen=True)
+
     #: Specification of the attribute set type.
     attribute: ClinVarAssertionAttribute
     #: List of citations
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: List of Xrefs
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
+    xrefs: typing.List[Xref] = []
     #: List of comments
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertionAttributeSet":
@@ -2543,13 +2588,14 @@ class ClinVarAssertionAttributeSet:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinAsserTraitSetTypeAttribute:
+class ClinAsserTraitSetTypeAttribute(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     value: str
     type: str
-    citations: typing.List[Citation] = attrs.field(factory=list)
-    xrefs: typing.List[Xref] = attrs.field(factory=list)
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
+    xrefs: typing.List[Xref] = []
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinAsserTraitSetTypeAttribute":
@@ -2579,14 +2625,15 @@ class ClinVarAssertionTraitSetType(enum.Enum):
     TRAIT_CHOICE = "TraitChoice"
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertionTraitSet:
+class ClinVarAssertionTraitSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     type: ClinVarAssertionTraitSetType
     date_last_evaluated: typing.Optional[datetime.date] = None
-    traits: typing.List[ClinVarAssertionTrait] = attrs.field(factory=list)
-    names: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    symbols: typing.List[AnnotatedTypedValue] = attrs.field(factory=list)
-    attributes: typing.List[ClinAsserTraitSetTypeAttribute] = attrs.field(factory=list)
+    traits: typing.List[ClinVarAssertionTrait] = []
+    names: typing.List[AnnotatedTypedValue] = []
+    symbols: typing.List[AnnotatedTypedValue] = []
+    attributes: typing.List[ClinAsserTraitSetTypeAttribute] = []
     id: typing.Optional[int] = None
     multiple_condition_explanation: typing.Optional[str] = None
 
@@ -2618,13 +2665,14 @@ class ClinVarAssertionTraitSet:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarAssertion:
+class ClinVarAssertion(BaseModel):
     """The ClinVarAssertion is the package of data as received from the submitter. During
     integration with other submissions, the content may have been mapped to controlled values.
 
     Represents a ``ClinVarAssertion`` in the XML file.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     #: The submission's ID.
     id: int
@@ -2638,18 +2686,18 @@ class ClinVarAssertion:
     record_status: RecordStatus = RecordStatus.CURRENT
     #: Optional element used only if there are multiple submitters. When there are multiple,
     #: each is listed in this element.
-    additional_submitters: typing.List[Submitter] = attrs.field(factory=list)
+    additional_submitters: typing.List[Submitter] = []
     #: The list of SCV accessions this SCV record has replaced.
-    replaced_list: typing.List[RecordHistory] = attrs.field(factory=list)
+    replaced_list: typing.List[RecordHistory] = []
     #: The clinical significance assertion.
-    clinical_significance: typing.List[ClinicalSignificanceTypeSCV] = attrs.field(factory=list)
+    clinical_significance: typing.List[ClinicalSignificanceTypeSCV] = []
     #: XrefType is used to identify data source(s) and their identifiers. Optional because
     #: not all sources have an ID specific to the assertion.
-    external_ids: typing.List[Xref] = attrs.field(factory=list)
+    external_ids: typing.List[Xref] = []
     #: Additional attribute sets.
-    attributes: typing.List[ClinVarAssertionAttributeSet] = attrs.field(factory=list)
+    attributes: typing.List[ClinVarAssertionAttributeSet] = []
     #: Observation information.
-    observed_in: typing.List[ObservationSet] = attrs.field(factory=list)
+    observed_in: typing.List[ObservationSet] = []
     #: Measurement information, mutually exlusive with ``genotype``.
     measures: typing.Optional[MeasureSet] = None
     #: Genotyping information, mutually exlusive with ``measure``.
@@ -2657,13 +2705,13 @@ class ClinVarAssertion:
     #: Traits associated with the disease.
     traits: typing.Optional[ClinVarAssertionTraitSet] = None
     #: Citations for the variant.
-    citations: typing.List[Citation] = attrs.field(factory=list)
+    citations: typing.List[Citation] = []
     #: An optional study name.
     study_name: typing.Optional[str] = None
     #: An optional study description.
     study_description: typing.Optional[str] = None
     #: Optional comments.
-    comments: typing.List[Comment] = attrs.field(factory=list)
+    comments: typing.List[Comment] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertion":
@@ -2726,20 +2774,21 @@ class ClinVarAssertion:
         )
 
 
-@attrs.frozen(auto_attribs=True)
-class ClinVarSet:
+class ClinVarSet(BaseModel):
     """A ``<ClinVarSet>`` in the ClinVar public XML file"""
+
+    model_config = ConfigDict(frozen=True)
 
     #: The reference clinvar assertion as used in RCV records
     reference_clinvar_assertion: ReferenceClinVarAssertion
     #: The set's record status
     record_status: RecordStatus = RecordStatus.CURRENT
     #: The identifiers that this record replaces
-    replaces: typing.List[str] = attrs.field(factory=list)
+    replaces: typing.List[str] = []
     #: An optional title for the submission
     title: typing.Optional[str] = None
     #: The clinvar assertion
-    clinvar_assertions: typing.List[ClinVarAssertion] = attrs.field(factory=list)
+    clinvar_assertions: typing.List[ClinVarAssertion] = []
 
     @classmethod
     def from_json_data(cls, json_data: dict) -> "ClinVarSet":

@@ -4,16 +4,15 @@ import gzip
 import json
 import typing
 
-import attrs
-import cattrs
+from pydantic import BaseModel, ConfigDict
 import tqdm
 
 from clinvar_data import models
-from clinvar_data.cattrs_helpers import CONVERTER
 
 
-@attrs.frozen(auto_attribs=True)
-class GenePhenotypeRecord:
+class GenePhenotypeRecord(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     #: RCV accession
     rcv: str
     #: SCV accession
@@ -69,8 +68,7 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
 
     with inputf, outputf:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-            dict_value = json.loads(line)
-            clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
+            clinvar_set = models.ClinVarSet.model_validate_json(line)
             rca = clinvar_set.reference_clinvar_assertion
             rcv = rca.clinvar_accession.acc
 
@@ -116,4 +114,4 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                     hpo_terms=list(sorted(terms.hpo_terms)),
                 )
 
-                print(json.dumps(cattrs.unstructure(record)), file=outputf)
+                print(json.dumps(record.model_dump(mode="json")), file=outputf)

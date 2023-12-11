@@ -7,7 +7,6 @@ import sys
 import traceback
 import typing
 
-import cattrs
 import click
 import tqdm
 import xmltodict
@@ -89,7 +88,7 @@ def convert(
 
         print(
             json.dumps(
-                remove_empties_from_containers(cattrs.unstructure(data)), default=json_default
+                remove_empties_from_containers(data.model_dump(mode="json")), default=json_default
             ),
             file=outputf,
         )

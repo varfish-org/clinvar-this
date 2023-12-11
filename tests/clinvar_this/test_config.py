@@ -13,9 +13,15 @@ verify_ssl = true
 
 def test_config():
     short_config = config.Config(profile="default", auth_token="123")
-    assert str(short_config) == "Config(profile='default', auth_token='***', verify_ssl=True)"
+    assert (
+        repr(short_config)
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
+    )
     long_config = config.Config(profile="default", auth_token="1234567890")
-    assert str(long_config) == "Config(profile='default', auth_token='12345*****', verify_ssl=True)"
+    assert (
+        repr(long_config)
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
+    )
 
 
 def test_load_config_success(fs):
@@ -29,7 +35,10 @@ def test_load_config_success(fs):
         )
         config_obj = config.load_config(profile="default")
 
-    assert str(config_obj) == "Config(profile='default', auth_token='MYTOK**', verify_ssl=True)"
+    assert (
+        repr(config_obj)
+        == "Config(profile='default', auth_token=SecretStr('**********'), verify_ssl=True)"
+    )
 
 
 def test_load_config_fail_missing_config(fs):
@@ -49,7 +58,7 @@ def test_load_config_fail_invalid_toml(fs):
         )
         with pytest.raises(exceptions.ConfigException) as e:
             config.load_config(profile="doesnotexist")
-        assert "'Problem decoding configuration file" in str(e)
+        assert "'Problem decoding configuration file" in repr(e)
 
 
 def test_save_config_fresh(fs):
@@ -57,7 +66,7 @@ def test_save_config_fresh(fs):
 
     with patch("clinvar_this.config.pathlib", fake_pathlib):
         base_path = config.pathlib.Path.home() / ".config" / "clinvar-this"
-        config.save_config(config=config.Config("default", "xxx"))
+        config.save_config(config=config.Config(profile="default", auth_token="xxx"))
 
         with (base_path / "config.toml").open("rt") as inputf:
             config_str = inputf.read()
@@ -74,7 +83,7 @@ def test_save_config_overwrite(fs):
         fs.create_file(
             (base_path / "config.toml"), contents=CONFIG_CONTENT, create_missing_dirs=True
         )
-        config.save_config(config=config.Config("default", "xxx"))
+        config.save_config(config=config.Config(profile="default", auth_token="xxx"))
 
         with (base_path / "config.toml").open("rt") as inputf:
             config_str = inputf.read()

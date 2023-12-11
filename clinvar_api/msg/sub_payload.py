@@ -3,7 +3,8 @@
 from enum import Enum
 import typing
 
-import attrs
+from pydantic import BaseModel
+from pydantic.config import ConfigDict
 
 
 class Assembly(Enum):
@@ -199,19 +200,22 @@ class ReleaseStatus(Enum):
     HOLD_UNTIL_PUBLISHED = "hold until published"
 
 
-@attrs.define(frozen=True)
-class SubmissionClinvarDeletionAccessionSet:
+class SubmissionClinvarDeletionAccessionSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     accession: str
     reason: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionClinvarDeletion:
+class SubmissionClinvarDeletion(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     accessionSet: typing.List[SubmissionClinvarDeletionAccessionSet]
 
 
-@attrs.define(frozen=True)
-class SubmissionChromosomeCoordinates:
+class SubmissionChromosomeCoordinates(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     alternateAllele: typing.Optional[str] = None
     accession: typing.Optional[str] = None
     assembly: typing.Optional[Assembly] = None
@@ -226,14 +230,16 @@ class SubmissionChromosomeCoordinates:
     variantLength: typing.Optional[int] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionVariantGene:
+class SubmissionVariantGene(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     id: typing.Optional[int] = None
     symbol: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionVariant:
+class SubmissionVariant(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     chromosomeCoordinates: typing.Optional[SubmissionChromosomeCoordinates] = None
     copyNumber: typing.Optional[str] = None
     gene: typing.Optional[typing.List[SubmissionVariantGene]] = None
@@ -242,27 +248,31 @@ class SubmissionVariant:
     variantType: typing.Optional[VariantType] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionVariantSet:
+class SubmissionVariantSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     variant: typing.List[SubmissionVariant]
 
 
-@attrs.define(frozen=True)
-class SubmissionPhaseUnknownSet:
+class SubmissionPhaseUnknownSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     hgvs: str
     variants: typing.List[SubmissionVariant]
 
 
-@attrs.define(frozen=True)
-class SubmissionClinicalFeature:
+class SubmissionClinicalFeature(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinicalFeaturesAffectedStatus: ClinicalFeaturesAffectedStatus
     db: typing.Optional[ClinicalFeaturesDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionObservedIn:
+class SubmissionObservedIn(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     affectedStatus: AffectedStatus
     alleleOrigin: AlleleOrigin
     collectionMethod: CollectionMethod
@@ -272,83 +282,95 @@ class SubmissionObservedIn:
     structVarMethodType: typing.Optional[StructVarMethodType] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionHaplotypeSet:
+class SubmissionHaplotypeSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     hgvs: str
     variants: typing.List[SubmissionVariant]
     starAlleleName: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionDistinctChromosomesSet:
+class SubmissionDistinctChromosomesSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     hgvs: str
     #: Hast at least two elements
     variants: typing.List[SubmissionVariant]
 
 
-@attrs.define(frozen=True)
-class SubmissionHaplotypeSets:
+class SubmissionHaplotypeSets(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     haplotypeSet: typing.Optional[SubmissionHaplotypeSet] = None
     haplotypeSingleVariantSet: typing.Optional[SubmissionHaplotypeSet] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionDiplotypeSet:
+class SubmissionDiplotypeSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     haplotypeSets: typing.List[SubmissionHaplotypeSets]
     hgvs: str
     starAlleleName: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionCitation:
+class SubmissionCitation(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     db: typing.Optional[CitationDb] = None
     id: typing.Optional[str] = None
     url: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionAssertionCriteria:
+class SubmissionAssertionCriteria(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     db: typing.Optional[CitationDb] = None
     id: typing.Optional[str] = None
     url: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionCondition:
+class SubmissionCondition(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     db: typing.Optional[ConditionDb] = None
     id: typing.Optional[str] = None
     name: typing.Optional[str] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionDrugResponse:
+class SubmissionDrugResponse(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     db: typing.Optional[ConditionDb] = None
     drugName: typing.Optional[str] = None
     id: typing.Optional[str] = None
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionConditionSet:
+class SubmissionConditionSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
     drugResponse: typing.Optional[typing.List[SubmissionDrugResponse]] = None
     multipleConditionExplanation: typing.Optional[MultipleConditionExplanation] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionCompoundHeterozygoteSetVariantSet:
+class SubmissionCompoundHeterozygoteSetVariantSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     variantSet: typing.Optional[SubmissionVariantSet] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionCompoundHeterozygoteSet:
+class SubmissionCompoundHeterozygoteSet(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     hgvs: str
     # Must have two entries
     variantSets: typing.List[SubmissionCompoundHeterozygoteSetVariantSet]
 
 
-@attrs.define(frozen=True)
-class SubmissionClinicalSignificance:
+class SubmissionClinicalSignificance(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinicalSignificanceDescription: ClinicalSignificanceDescription
     citation: typing.Optional[typing.List[SubmissionCitation]] = None
     comment: typing.Optional[str] = None
@@ -359,8 +381,9 @@ class SubmissionClinicalSignificance:
     modeOfInheritance: typing.Optional[ModeOfInheritance] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionClinvarSubmission:
+class SubmissionClinvarSubmission(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     clinicalSignificance: SubmissionClinicalSignificance
     conditionSet: SubmissionConditionSet
     observedIn: typing.List[SubmissionObservedIn]
@@ -379,9 +402,10 @@ class SubmissionClinvarSubmission:
     variantSet: typing.Optional[SubmissionVariantSet] = None
 
 
-@attrs.define(frozen=True)
-class SubmissionContainer:
+class SubmissionContainer(BaseModel):
     """Representation of the container for a submission."""
+
+    model_config = ConfigDict(frozen=True)
 
     assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     behalfOrgID: typing.Optional[int] = None

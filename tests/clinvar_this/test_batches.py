@@ -9,7 +9,6 @@ import pytest
 import clinvar_api
 from clinvar_api import models
 from clinvar_api.client import RetrieveStatusResult
-from clinvar_api.common import CONVERTER
 from clinvar_this import batches, exceptions
 from clinvar_this.io import tsv as io_tsv
 
@@ -348,7 +347,7 @@ def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
     fs.create_file(SUBMISSION_SCHEMA_JSON_PATH, contents=SUBMISSION_SCHEMA_JSON)
 
     def mock_submit_data(_self, _payload):
-        return {"id": "SUB000fake"}
+        return models.Created(id="SUB000fake")
 
     monkeypatch.setattr(batches.client.Client, "submit_data", mock_submit_data)
 
@@ -360,7 +359,7 @@ def test_submit(fs, app_config, use_testing, dry_run, monkeypatch):
     if not dry_run:
         assert os.path.exists(response_path)
         with open(response_path, "rt") as inputf:
-            assert inputf.read() == '{"id": "SUB000fake"}'
+            assert inputf.read() == '{"id":"SUB000fake"}\n'
     else:
         assert not os.path.exists(response_path)
 
@@ -383,7 +382,7 @@ def test_retrieve_state_submitted(fs, app_config, monkeypatch):
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
-        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+        status=models.SubmissionStatus.model_validate(response["status"]), summaries={}
     )
 
     monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
@@ -414,7 +413,7 @@ def test_retrieve_state_processing(fs, app_config, monkeypatch):
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
-        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+        status=models.SubmissionStatus.model_validate(response["status"]), summaries={}
     )
 
     monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)
@@ -445,9 +444,9 @@ def test_retrieve_state_processed(fs, app_config, monkeypatch):
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
-        status=CONVERTER.structure(response["status"], models.SubmissionStatus),
+        status=models.SubmissionStatus.model_validate(response["status"]),
         summaries={
-            key: CONVERTER.structure(value, models.SummaryResponse)
+            key: models.SummaryResponse.model_validate(value)
             for key, value in response["summaries"].items()
         },
     )
@@ -480,7 +479,7 @@ def test_retrieve_state_error(fs, app_config, monkeypatch):
 
     mock_retrieve_status = MagicMock()
     mock_retrieve_status.return_value = RetrieveStatusResult(
-        status=CONVERTER.structure(response["status"], models.SubmissionStatus), summaries={}
+        status=models.SubmissionStatus.model_validate(response["status"]), summaries={}
     )
 
     monkeypatch.setattr(batches.client.Client, "retrieve_status", mock_retrieve_status)

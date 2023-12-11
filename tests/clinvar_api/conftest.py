@@ -115,7 +115,7 @@ def data_partially_successful_submission():
                             "text": (
                                 'Your ClinVar submission processing status is "Partial success". '
                                 "Please find the details in the file referenced by "
-                                "actions[0].responses[0].files[0].url.",
+                                "actions[0].responses[0].files[0].url."
                             ),
                         },
                         "files": [

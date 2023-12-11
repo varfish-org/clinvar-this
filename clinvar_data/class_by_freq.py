@@ -5,11 +5,9 @@ import gzip
 import json
 import typing
 
-import cattrs
 import tqdm
 
 from clinvar_data import models
-from clinvar_data.cattrs_helpers import CONVERTER
 
 DEFAULT_THRESHOLDS = [
     0.0,
@@ -71,8 +69,7 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
 
     with inputf:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-            dict_value = json.loads(line)
-            clinvar_set = CONVERTER.structure(dict_value, models.ClinVarSet)
+            clinvar_set = models.ClinVarSet.model_validate_json(line)
 
             pathogenicity = (
                 clinvar_set.reference_clinvar_assertion.clinical_significance.description
@@ -114,7 +111,7 @@ def write_report(counts: dict, path_output: str):
     with outputf:
         for hgnc, counts in sorted(counts.items(), key=lambda x: int(x[0][5:])):
             print(
-                json.dumps({"hgnc": hgnc, "counts": cattrs.unstructure(counts)}),
+                json.dumps({"hgnc": hgnc, "counts": counts.model_dump(mode="json")}),  # type: ignore
                 file=outputf,
             )
 
