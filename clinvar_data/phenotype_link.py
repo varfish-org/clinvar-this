@@ -15,8 +15,12 @@ class GenePhenotypeRecord(BaseModel):
 
     #: RCV accession
     rcv: str
+    #: RCV accession version
+    rcv_version: int
     #: SCV accession
     scv: str
+    #: SCV accession version
+    scv_version: int
     #: Clinical significance
     clinsig: typing.Optional[models.ClinicalSignificanceDescription]
     #: Submitter
@@ -71,6 +75,7 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
             clinvar_set = models.ClinVarSet.model_validate_json(line)
             rca = clinvar_set.reference_clinvar_assertion
             rcv = rca.clinvar_accession.acc
+            rcv_version = rca.clinvar_accession.version
 
             hgnc_ids = set()
             if rca.measures:
@@ -92,6 +97,7 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                             break
 
                 scv = ca.clinvar_accession.acc
+                scv_version = ca.clinvar_accession.version
 
                 terms = TermCollector()
                 for observed_in in ca.observed_in or []:
@@ -105,7 +111,9 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
 
                 record = GenePhenotypeRecord(
                     rcv=rcv,
+                    rcv_version=rcv_version,
                     scv=scv,
+                    scv_version=scv_version,
                     clinsig=clinsig,
                     submitter=ca.submission_id.submitter,
                     hgnc_ids=list(sorted(hgnc_ids)),
