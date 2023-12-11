@@ -149,10 +149,10 @@ class RetrieveStatusResult(BaseModel):
     summaries: typing.Dict[str, models.SummaryResponse]
 
 
-def _retrieve_status_summary(
+def _handle_retrieved_status_summaries(
     response: httpx.Response, validate_response_json: bool = True
 ) -> models.SummaryResponse:
-    """Retrieve status summary from the given URL."""
+    """Handle retrieved status summary from the given URL."""
     if httpx.codes.is_success(response.status_code):
         response_json = response.json()
         if validate_response_json:
@@ -225,14 +225,7 @@ class _RetrieveStatus:
     ) -> RetrieveStatusResult:
         summaries = {}
         for url, response in more_results.items():
-            summaries[url] = _retrieve_status_summary(response)
-        summaries = {}
-        for action in status_obj.actions:
-            for action_response in action.responses:
-                for file_ in action_response.files:
-                    logger.info(" - fetching %s", file_.url)
-                    response = httpx.get(file_.url)
-                    summaries[file_.url] = _retrieve_status_summary(response)
+            summaries[url] = _handle_retrieved_status_summaries(response)
         logger.info("... done fetching status summary files")
         return RetrieveStatusResult(status=status_obj, summaries=summaries)
 
