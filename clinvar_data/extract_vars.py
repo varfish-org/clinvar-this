@@ -71,7 +71,9 @@ class VariantRecord(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     rcv: str
+    rcv_version: int
     vcv: str
+    vcv_version: int
     title: str
     variant_type: VariantType
     clinical_significance: typing.Optional[models.ClinicalSignificanceDescription]
@@ -133,7 +135,9 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                     for sequence_location in measure.sequence_locations:
                         record = VariantRecord(
                             rcv=rca.clinvar_accession.acc,
+                            rcv_version=rca.clinvar_accession.version,
                             vcv=rca.measures.acc or "__MISSING__",
+                            vcv_version=rca.measures.version or 0,
                             title=clinvar_set.title or "__MISSING__",
                             clinical_significance=clinical_significance,
                             review_status=review_status,
