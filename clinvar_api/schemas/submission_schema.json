@@ -16,6 +16,7 @@
         },
         "id": {
           "type": "string",
+          "description": "The document identifier.  Formats are: \nPubMed: the PubMed ID, digits only, e.g. 10862036\npmc: the PubMedCentral ID, digits only, e.g. 2746682\nDOI: the full DOI including prefix, forward slash, and suffix, e.g. 10.1038/gim.2015.30",
           "errors": {
             "pattern": "The identifier value is considered an invalid citation. Please provide only one identifier as the citation for your assertion criteria."
           },
@@ -72,7 +73,7 @@
               "properties": {
                 "accession": {
                   "type": "string",
-                  "description": "The SCV accession for your submitted record to delete (not the RCV or the VCV).",
+                  "description": "The SCV accession for your submitted record to delete (not the RCV or the VCV), e.g. SCV000123456.",
                   "pattern": "^SCV[0123456789]{9}$"
                 },
                 "reason": {
@@ -110,6 +111,7 @@
             "properties": {
               "citation": {
                 "type": "array",
+                "minItems": 1,
                 "items": {
                   "type": "object",
                   "description": "Citations that were used by the submitter to evaluate the clinical significance of the variant. More than one citation may be provided. Each citation can be provided as a database identifier, like a PubMed ID, or a URL, but not both.",
@@ -124,7 +126,8 @@
                       ]
                     },
                     "id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The document identifier.  Formats are: \nPubMed: the PubMed ID, digits only, e.g. 10862036\npmc: the PubMedCentral ID, digits only, e.g. 2746682\nDOI: the full DOI including prefix, forward slash, and suffix, e.g. 10.1038/gim.2015.30\nBookShelf: the Bookshelf ID including the prefix, e.g. NBK1384"
                     },
                     "url": {
                       "type": "string"
@@ -221,7 +224,7 @@
           },
           "clinvarAccession": {
             "type": "string",
-            "description": "Required for updated records and for novel records if accession numbers were reserved. Provide the SCV number for your submitted record (not the RCV number). For novel records without reserved accessions: the SCV accession number will be returned to you after your submission file is processed. You should provide that accession number back to ClinVar when you update your SCV record. "
+            "description": "Required for updated records and for novel records if accession numbers were reserved. Provide the SCV number for your submitted record (not the RCV number), e.g. SCV000123456."
           },
           "compoundHeterozygoteSet": {
             "$ref": "#/definitions/compoundHeterozygoteSetType"
@@ -256,8 +259,19 @@
                 ]
               },
               {
-                "required": [
-                  "drugResponse"
+                "allOf": [
+                  {
+                    "required": [
+                      "drugResponse"
+                    ]
+                  },
+                  {
+                    "not": {
+                      "required": [
+                        "multipleConditionExplanation"
+                      ]
+                    }
+                  }
                 ]
               }
             ]
@@ -321,6 +335,7 @@
                 },
                 "clinicalFeatures": {
                   "type": "array",
+                  "minItems": 1,
                   "items": {
                     "type": "object",
                     "description": "Clinical features that were observed by the submitter in an individual with the variant. More than one feature may be provided. Each clinical feature may be described by a database identifier or by a name, but not both. These fields are equivalent to the \"Clinical features\" column in the spreadsheet.",
@@ -344,7 +359,8 @@
                         ]
                       },
                       "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The HPO identifier including the prefix, e.g. HP:0000815"
                       },
                       "name": {
                         "type": "string"
@@ -579,7 +595,8 @@
             ]
           },
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The database identifier for the condition.  Formats are:\nOMIM: the six digit OMIM number for the disease (not the gene), e.g. 300957; or the Phenotypic Series number including the PS prefix, e.g. PS200600\nMedGen: the MedGen UID, e.g. 751520.\nOrphanet: the Orphanet ID including the prefix, e.g. ORPHA71290\nMeSH: the MeSH ID, e.g. D009634\nHP: the HPO ID including the prefix, e.g. HP:0000815\nMondo: the Mondo ID including the prefix, e.g. MONDO:0100038\n"
           },
           "name": {
             "type": "string"
@@ -698,7 +715,7 @@
           },
           "id": {
             "type": "string",
-            "description": "The identifier for the drug response"
+            "description": "The MedGen UID for the drug response, e.g. 148193"
           }
         },
         "additionalProperties": false,
@@ -839,7 +856,8 @@
           "description": "The location of the variant in chromosome coordinates.  Use only 1-based coordinates, not 0-based.  For large variants (> 50 nt.), if the exact coordinates (to basepair resolution) of the variant call are known, provide only the start and stop coordinates.  Otherwise, use outer_start (lower value) and inner_start (upper value) to define the interval in which the call begins. Likewise, use inner_stop (lower value) and outer_stop (upper value) to define the interval in which the call ends.  If only the minimal region is known, use inner_start and inner_stop.  If only the maximum region is known, use outer_start and outer_stop.  You must provide either one set of coordinates (start and stop, outers only, or inners only) or two sets of coordinates (inners and outers).",
           "properties": {
             "accession": {
-              "type": "string"
+              "type": "string",
+              "description": "The accession and version number for the chromosome, e.g. NC_000007.14."
             },
             "alternateAllele": {
               "type": "string",
@@ -949,6 +967,7 @@
         },
         "gene": {
           "type": "array",
+          "minItems": 1,
           "items": {
             "type": "object",
             "description": "Gene symbol should be provided only to indicate the gene-disease relationship supporting the variant interpretation. Gene symbol is not expected for CNVs or cytogenetic variants, except to make a statement that a specific gene within the variant has a relationship to the interpreted condition. Gene symbol can be provided as either the HGNC official symbol or as the NCBI Gene ID, but not both.",
