@@ -16,7 +16,7 @@ A Python module ``clinvar_api`` that you can use for making calls to the ClinVar
 **If you want to integrate ClinVar API submission into your Python software, this is for you.**
 
 The module provides a "Pythonic" API based on `pydantic <https://pydantic.dev/>`__ with ``snake_case`` syntax that has full Python type annotations.
-Of course, you could just roll your own JSON based submission based on Python requests but using the module has some advantages:
+Of course, you could just roll your own JSON based submission based on ``requests`` or ``httpx`` but using the module has some advantages:
 
 * ``clinvar_api`` is fully typed so you can work with Python data types and all advantages that come this this (linting, editor completion, ...)
 * the module authors monitor the ClinVar API docs and are on the relevant mailing lists and will adjust the library in case of API changes
