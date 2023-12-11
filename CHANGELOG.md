@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.14.0](https://www.github.com/bihealth/clinvar-this/compare/v0.13.1...v0.14.0) (2023-12-11)
+
+
+### Features
+
+* adding async client code via switch to httpx ([#167](https://www.github.com/bihealth/clinvar-this/issues/167)) ([#170](https://www.github.com/bihealth/clinvar-this/issues/170)) ([7b76770](https://www.github.com/bihealth/clinvar-this/commit/7b76770fa3423a0651b5068edc59ec0a8e8588af))
+* switch from attrs to pydantic ([#166](https://www.github.com/bihealth/clinvar-this/issues/166)) ([#168](https://www.github.com/bihealth/clinvar-this/issues/168)) ([d84db77](https://www.github.com/bihealth/clinvar-this/commit/d84db77ac2f33fc9c40c4a151fa730089b2f1788))
+* updating to latest upstream JSON schemas ([#173](https://www.github.com/bihealth/clinvar-this/issues/173)) ([f5da1fc](https://www.github.com/bihealth/clinvar-this/commit/f5da1fc02f20d3f34674b037f3f4068d4bf5cec8))
+* write out RCV/VCV version in extract_vars and phenotype_link ([#159](https://www.github.com/bihealth/clinvar-this/issues/159)) ([#172](https://www.github.com/bihealth/clinvar-this/issues/172)) ([534cba1](https://www.github.com/bihealth/clinvar-this/commit/534cba1d96f5f4c80ee7a744a847224942ad1561))
+
+
+### Bug Fixes
+
+* adding support for "no classification from unflagged records" review status ([#171](https://www.github.com/bihealth/clinvar-this/issues/171)) ([f144e74](https://www.github.com/bihealth/clinvar-this/commit/f144e7456f6177ee52e53f32e4940ab1b38ab68f))
+
 ### [0.13.1](https://www.github.com/bihealth/clinvar-this/compare/v0.13.0...v0.13.1) (2023-12-04)
 
 
