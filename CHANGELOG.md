@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.1](https://www.github.com/bihealth/clinvar-this/compare/v0.14.0...v0.14.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* serialization of counter dict ([#174](https://www.github.com/bihealth/clinvar-this/issues/174)) ([06caa81](https://www.github.com/bihealth/clinvar-this/commit/06caa81c8f62cad5779fa62479474c52ca5c4a5d))
+
 ## [0.14.0](https://www.github.com/bihealth/clinvar-this/compare/v0.13.1...v0.14.0) (2023-12-11)
 
 
