@@ -376,6 +376,7 @@ class SubmissionClinicalSignificance(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     clinical_significance_description: ClinicalSignificanceDescription
+    #: Must have at least one entry.
     citation: typing.Optional[typing.List[SubmissionCitation]] = None
     comment: typing.Optional[str] = None
     custom_assertion_score: typing.Optional[float] = None
