@@ -97,7 +97,7 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                 counts[hgnc] = zero_counts(len(thresholds))
 
             idx = locate(thresholds, freq)
-            counts[hgnc][CLINSIG_TO_CLASS[pathogenicity]][idx] += 1
+            counts[hgnc][CLINSIG_TO_CLASS[pathogenicity].value][idx] += 1
 
     return counts
 
