@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.2](https://www.github.com/bihealth/clinvar-this/compare/v0.14.1...v0.14.2) (2023-12-12)
+
+
+### Bug Fixes
+
+* resolve dictionary dump enum issue ([#176](https://www.github.com/bihealth/clinvar-this/issues/176)) ([a6a6c20](https://www.github.com/bihealth/clinvar-this/commit/a6a6c20e24a6432bb57567c1236284d64338201b))
+
 ### [0.14.1](https://www.github.com/bihealth/clinvar-this/compare/v0.14.0...v0.14.1) (2023-12-11)
 
 
