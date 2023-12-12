@@ -47,7 +47,7 @@ CLINSIG_TO_CLASS = {
 
 
 def zero_counts(count: int):
-    return {klass: [0] * (count + 1) for klass in Classes}
+    return {klass.value: [0] * (count + 1) for klass in Classes}
 
 
 def locate(thresholds: typing.List[float], value: typing.Optional[float]) -> int:
