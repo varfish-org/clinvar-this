@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.3](https://www.github.com/bihealth/clinvar-this/compare/v0.14.2...v0.14.3) (2023-12-12)
+
+
+### Bug Fixes
+
+* fixing counter types ([#178](https://www.github.com/bihealth/clinvar-this/issues/178)) ([0b23c6b](https://www.github.com/bihealth/clinvar-this/commit/0b23c6b574ee88a73945e27876193ddbc25dd971))
+
 ### [0.14.2](https://www.github.com/bihealth/clinvar-this/compare/v0.14.1...v0.14.2) (2023-12-12)
 
 
