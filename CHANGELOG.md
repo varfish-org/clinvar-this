@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.5](https://www.github.com/bihealth/clinvar-this/compare/v0.14.4...v0.14.5) (2023-12-13)
+
+
+### Bug Fixes
+
+* fixing MANIFEST.in for so py.typed are included ([#182](https://www.github.com/bihealth/clinvar-this/issues/182)) ([3015b32](https://www.github.com/bihealth/clinvar-this/commit/3015b32d13a44d034cbeea82d935c6e8f2534a6a))
+
 ### [0.14.4](https://www.github.com/bihealth/clinvar-this/compare/v0.14.3...v0.14.4) (2023-12-13)
 
 
