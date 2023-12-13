@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.4](https://www.github.com/bihealth/clinvar-this/compare/v0.14.3...v0.14.4) (2023-12-13)
+
+
+### Bug Fixes
+
+* adding missing py.typed files for mypy ([#180](https://www.github.com/bihealth/clinvar-this/issues/180)) ([3b5945a](https://www.github.com/bihealth/clinvar-this/commit/3b5945a51404decdbe79032d1afcf9b28ff6235a))
+
 ### [0.14.3](https://www.github.com/bihealth/clinvar-this/compare/v0.14.2...v0.14.3) (2023-12-12)
 
 
