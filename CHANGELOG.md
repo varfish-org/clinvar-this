@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.6](https://www.github.com/bihealth/clinvar-this/compare/v0.14.5...v0.14.6) (2023-12-15)
+
+
+### Bug Fixes
+
+* include JSON schemas in package ([#184](https://www.github.com/bihealth/clinvar-this/issues/184)) ([c3dc65a](https://www.github.com/bihealth/clinvar-this/commit/c3dc65a10c0cbadd05892146a9951d07cf18886e))
+
 ### [0.14.5](https://www.github.com/bihealth/clinvar-this/compare/v0.14.4...v0.14.5) (2023-12-13)
 
 
