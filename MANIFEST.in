@@ -5,6 +5,7 @@ include LICENSE
 include README.md
 
 recursive-include requirements *.txt
+recursive-include clinvar_api/schemas *.json
 recursive-include * py.typed
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
