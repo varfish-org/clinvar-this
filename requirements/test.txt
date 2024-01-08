@@ -2,7 +2,7 @@
 
 black ==23.12.1
 isort >=5.10.1, <6.0
-flake8 >=5.0.4, <7.0
+flake8 >=5.0.4, <8.0
 pytest
 pytest-cov
 pytest-httpx
