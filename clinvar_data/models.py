@@ -340,9 +340,11 @@ class ClinicalSignificanceTypeSCV(BaseModel):
         return ClinicalSignificanceTypeSCV(
             review_status=review_status,
             descriptions=descriptions,
-            explanation=Comment.from_json_data(json_data["Explanation"])
-            if json_data.get("Explanation")
-            else None,
+            explanation=(
+                Comment.from_json_data(json_data["Explanation"])
+                if json_data.get("Explanation")
+                else None
+            ),
             explanation_of_interpretation=json_data.get("ExplanationOfInterpretation"),
             custom_assertion_score=[
                 CustomAssertionScore(
@@ -363,11 +365,13 @@ class ClinicalSignificanceTypeSCV(BaseModel):
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            date_last_evaluated=parse_datetime(
-                json_data["@DateLastEvaluated"],
-            ).date()
-            if json_data.get("@DateLastEvaluated")
-            else None,
+            date_last_evaluated=(
+                parse_datetime(
+                    json_data["@DateLastEvaluated"],
+                ).date()
+                if json_data.get("@DateLastEvaluated")
+                else None
+            ),
         )
 
 
@@ -418,9 +422,11 @@ class ClinicalSignificanceRCV(BaseModel):
         return ClinicalSignificanceRCV(
             review_status=review_status,
             description=description,
-            explanation=Comment.from_json_data(json_data["Explanation"])
-            if "Explanation" in json_data
-            else None,
+            explanation=(
+                Comment.from_json_data(json_data["Explanation"])
+                if "Explanation" in json_data
+                else None
+            ),
             explanation_of_interpretation=json_data.get("ExplanationOfInterpretation"),
             xrefs=[
                 Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
@@ -433,11 +439,13 @@ class ClinicalSignificanceRCV(BaseModel):
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            date_last_evaluated=parse_datetime(
-                json_data["@DateLastEvaluated"],
-            ).date()
-            if json_data.get("@DateLastEvaluated")
-            else None,
+            date_last_evaluated=(
+                parse_datetime(
+                    json_data["@DateLastEvaluated"],
+                ).date()
+                if json_data.get("@DateLastEvaluated")
+                else None
+            ),
         )
 
 
@@ -510,9 +518,9 @@ class ReferenceClinVarAssertionAttribute(BaseModel):
             value=attribute["#text"],
             type=ReferenceClinVarAssertionAttributeType(attribute["@Type"]),
             integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
-            date_value=parse_datetime(attribute["@dateValue"])
-            if "@dateValue" in attribute
-            else None,
+            date_value=(
+                parse_datetime(attribute["@dateValue"]) if "@dateValue" in attribute else None
+            ),
             # other data in lists
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -566,15 +574,17 @@ class AlleleDescription(BaseModel):
     def from_json_data(cls, json_data: dict) -> "AlleleDescription":
         return AlleleDescription(
             name=json_data["Name"],
-            relative_orientation=RelativeOrientation(json_data["RelativeOrientation"])
-            if "RelativeOrientation" in json_data
-            else None,
+            relative_orientation=(
+                RelativeOrientation(json_data["RelativeOrientation"])
+                if "RelativeOrientation" in json_data
+                else None
+            ),
             zygosity=Zygosity(json_data["Zygosity"]) if "Zygosity" in json_data else None,
-            clinical_significance=ClinicalSignificanceRCV.from_json_data(
-                json_data["ClinicalSignificance"]
-            )
-            if "ClinicalSignificance" in json_data
-            else None,
+            clinical_significance=(
+                ClinicalSignificanceRCV.from_json_data(json_data["ClinicalSignificance"])
+                if "ClinicalSignificance" in json_data
+                else None
+            ),
         )
 
 
@@ -682,9 +692,9 @@ class ObservedDataAttribute(BaseModel):
             type=ObservedDataAttributeType(json_data["@Type"]),
             value=json_data.get("#text"),
             integer_value=int(json_data["@integerValue"]) if "@integerValue" in json_data else None,
-            date_value=parse_datetime(json_data["@dateValue"])
-            if "@dateValue" in json_data
-            else None,
+            date_value=(
+                parse_datetime(json_data["@dateValue"]) if "@dateValue" in json_data else None
+            ),
         )
 
 
@@ -745,12 +755,14 @@ class SampleDescription(BaseModel):
     @classmethod
     def from_json_data(cls, json_data: dict) -> "SampleDescription":
         return SampleDescription(
-            description=Comment.from_json_data(json_data["Description"])
-            if "Description" in json_data
-            else None,
-            citation=Citation.from_json_data(json_data["Citation"])
-            if "Citation" in json_data
-            else None,
+            description=(
+                Comment.from_json_data(json_data["Description"])
+                if "Description" in json_data
+                else None
+            ),
+            citation=(
+                Citation.from_json_data(json_data["Citation"]) if "Citation" in json_data else None
+            ),
         )
 
 
@@ -782,18 +794,22 @@ class FamilyInfo(BaseModel):
         return FamilyInfo(
             family_history=json_data.get("FamilyHistory"),
             num_families=int(json_data["@NumFamilies"]) if "@NumFamilies" in json_data else None,
-            num_families_with_variant=int(json_data["@NumFamiliesWithVariant"])
-            if "@NumFamiliesWithVariant" in json_data
-            else None,
-            num_families_with_segregation_observed=int(
-                json_data["@NumFamiliesWithSegregationObserved"]
-            )
-            if "@NumFamiliesWithSegregationObserved" in json_data
-            else None,
+            num_families_with_variant=(
+                int(json_data["@NumFamiliesWithVariant"])
+                if "@NumFamiliesWithVariant" in json_data
+                else None
+            ),
+            num_families_with_segregation_observed=(
+                int(json_data["@NumFamiliesWithSegregationObserved"])
+                if "@NumFamiliesWithSegregationObserved" in json_data
+                else None
+            ),
             pedigree_id=json_data.get("@PedigreeID"),
-            segregation_observed=json_data["@SegregationObserved"] == "yes"
-            if "@SegregationObserved" in json_data
-            else None,
+            segregation_observed=(
+                json_data["@SegregationObserved"] == "yes"
+                if "@SegregationObserved" in json_data
+                else None
+            ),
         )
 
 
@@ -1002,9 +1018,9 @@ class Source(BaseModel):
         return Source(
             data_source=json_data["@DataSource"],
             id=json_data.get("@ID"),
-            source_type=SourceType(json_data["@SourceType"])
-            if json_data.get("@SourceType")
-            else None,
+            source_type=(
+                SourceType(json_data["@SourceType"]) if json_data.get("@SourceType") else None
+            ),
         )
 
 
@@ -1314,9 +1330,9 @@ class Indication(BaseModel):
             xrefs=[
                 Xref.from_json_data(raw_xref) for raw_xref in force_list(json_data.get("XRef", []))
             ],
-            comment=Comment.from_json_data(json_data["Comment"])
-            if "Comment" in json_data
-            else None,
+            comment=(
+                Comment.from_json_data(json_data["Comment"]) if "Comment" in json_data else None
+            ),
         )
 
 
@@ -1381,42 +1397,60 @@ class Sample(BaseModel):
             if raw_origin:
                 origin = SampleOrigin.from_the_wild(raw_origin)
         return Sample(
-            description=SampleDescription.from_json_data(json_data["SampleDescription"])
-            if "SampleDescription" in json_data
-            else None,
+            description=(
+                SampleDescription.from_json_data(json_data["SampleDescription"])
+                if "SampleDescription" in json_data
+                else None
+            ),
             origin=origin,
             ethnicity=json_data.get("Ethnicity"),
             geographic_origin=json_data.get("GeographicOrigin"),
             tissue=extract_text(json_data["Tissue"]) if "Tissue" in json_data else None,
             cell_line=json_data["CellLine"] if "CellLine" in json_data else None,
-            species=Species.from_json_data(json_data["Species"])
-            if ("Species" in json_data and json_data.get("Species"))
-            else None,
+            species=(
+                Species.from_json_data(json_data["Species"])
+                if ("Species" in json_data and json_data.get("Species"))
+                else None
+            ),
             age=[Age.from_json_data(raw_age) for raw_age in force_list(json_data.get("Age", []))],
             strain=json_data.get("Strain"),
-            affected_status=AffectedStatus(extract_text(json_data["AffectedStatus"]))
-            if "AffectedStatus" in json_data
-            else AffectedStatus.NOT_PROVIDED,
-            number_tested=int(extract_text(json_data["NumberTested"]) or 0)
-            if "NumberTested" in json_data
-            else None,
-            number_males=int(extract_text(json_data["NumberMales"]) or 0)
-            if "NumberMales" in json_data
-            else None,
-            number_females=int(extract_text(json_data["NumberFemales"]) or 0)
-            if "NumberFemales" in json_data
-            else None,
-            number_chr_tested=int(extract_text(json_data["NumberChrTested"]) or 0)
-            if "NumberChrTested" in json_data
-            else None,
+            affected_status=(
+                AffectedStatus(extract_text(json_data["AffectedStatus"]))
+                if "AffectedStatus" in json_data
+                else AffectedStatus.NOT_PROVIDED
+            ),
+            number_tested=(
+                int(extract_text(json_data["NumberTested"]) or 0)
+                if "NumberTested" in json_data
+                else None
+            ),
+            number_males=(
+                int(extract_text(json_data["NumberMales"]) or 0)
+                if "NumberMales" in json_data
+                else None
+            ),
+            number_females=(
+                int(extract_text(json_data["NumberFemales"]) or 0)
+                if "NumberFemales" in json_data
+                else None
+            ),
+            number_chr_tested=(
+                int(extract_text(json_data["NumberChrTested"]) or 0)
+                if "NumberChrTested" in json_data
+                else None
+            ),
             gender=Gender(extract_text(json_data["Gender"])) if "Gender" in json_data else None,
-            family_data=FamilyInfo.from_json_data(json_data["FamilyData"])
-            if "FamilyData" in json_data
-            else None,
+            family_data=(
+                FamilyInfo.from_json_data(json_data["FamilyData"])
+                if "FamilyData" in json_data
+                else None
+            ),
             proband=json_data.get("Proband"),
-            indication=Indication.from_json_data(json_data["Indication"])
-            if "Indication" in json_data
-            else None,
+            indication=(
+                Indication.from_json_data(json_data["Indication"])
+                if "Indication" in json_data
+                else None
+            ),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -1542,9 +1576,9 @@ class ObservationSet(BaseModel):
                 ObservedData.from_json_data(raw_observed_data)
                 for raw_observed_data in force_list(json_data.get("ObservedData", []))
             ],
-            traits=TraitSet.from_json_data(json_data["TraitSet"])
-            if "TraitSet" in json_data
-            else None,
+            traits=(
+                TraitSet.from_json_data(json_data["TraitSet"]) if "TraitSet" in json_data else None
+            ),
             cooccurrences=[
                 Cooccurrence.from_json_data(raw_cooccurrence)
                 for raw_cooccurrence in force_list(json_data.get("Coocurrence", []))
@@ -1632,9 +1666,11 @@ class MeasureSetAttribute(BaseModel):
             value=attribute["#text"],
             change=attribute.get("@Change"),
             mane_select=attribute["@ManeSelect"] == "yes" if "@ManeSelect" in attribute else None,
-            mane_plus_clinical=attribute["@ManePlusClinical"] == "yes"
-            if "@ManePlusClinical" in attribute
-            else None,
+            mane_plus_clinical=(
+                attribute["@ManePlusClinical"] == "yes"
+                if "@ManePlusClinical" in attribute
+                else None
+            ),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -1734,9 +1770,9 @@ class MeasureAttribute(BaseModel):
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
             integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
-            date_value=parse_datetime(attribute["@dateValue"])
-            if "@dateValue" in attribute
-            else None,
+            date_value=(
+                parse_datetime(attribute["@dateValue"]) if "@dateValue" in attribute else None
+            ),
         )
 
 
@@ -1853,26 +1889,30 @@ class SequenceLocation(BaseModel):
             stop=int(json_data["@stop"]) if "@stop" in json_data else None,
             inner_stop=int(json_data["@innerStop"]) if "@innerStop" in json_data else None,
             outer_stop=int(json_data["@outerStop"]) if "@outerStop" in json_data else None,
-            display_start=int(json_data["@display_start"])
-            if "@display_start" in json_data
-            else None,
+            display_start=(
+                int(json_data["@display_start"]) if "@display_start" in json_data else None
+            ),
             display_stop=int(json_data["@display_stop"]) if "@display_stop" in json_data else None,
             strand=json_data.get("@Strand"),
-            variant_length=int(json_data["@variantLength"])
-            if "@variantLength" in json_data
-            else None,
+            variant_length=(
+                int(json_data["@variantLength"]) if "@variantLength" in json_data else None
+            ),
             reference_allele=json_data.get("@referenceAllele"),
             alternate_allele=json_data.get("@alternateAllele"),
             assembly_accession_version=json_data.get("@AssemblyAccessionVersion"),
-            assembly_status=AssemblyStatus(json_data["@AssemblyStatus"])
-            if "@AssemblyStatus" in json_data
-            else None,
+            assembly_status=(
+                AssemblyStatus(json_data["@AssemblyStatus"])
+                if "@AssemblyStatus" in json_data
+                else None
+            ),
             position_vcf=int(json_data["@positionVCF"]) if "@positionVCF" in json_data else None,
             reference_allele_vcf=json_data.get("@referenceAlleleVCF"),
             alternate_allele_vcf=json_data.get("@alternateAlleleVCF"),
-            for_display_length=json_data["@forDisplayLength"] == "true"
-            if "@forDisplayLength" in json_data
-            else None,
+            for_display_length=(
+                json_data["@forDisplayLength"] == "true"
+                if "@forDisplayLength" in json_data
+                else None
+            ),
         )
 
 
@@ -1915,9 +1955,9 @@ class MeasureRelationshipAttribute(BaseModel):
             value=attribute["#text"],
             type=MeasureRelationshipAttributeType(attribute["@Type"]),
             integer_value=int(attribute["@integerValue"]) if "@integerValue" in attribute else None,
-            date_value=parse_datetime(attribute["@dateValue"])
-            if "@dateValue" in attribute
-            else None,
+            date_value=(
+                parse_datetime(attribute["@dateValue"]) if "@dateValue" in attribute else None
+            ),
             # other data in lists
             citations=[
                 Citation.from_json_data(raw_citation)
@@ -2093,11 +2133,11 @@ class Measure(BaseModel):
                 AlleleFrequency.from_json_data(raw_allele_frequency)
                 for raw_allele_frequency in force_list(json_data.get("AlleleFrequency", []))
             ],
-            global_minor_allele_frequency=GlobalMinorAlleleFrequency.from_json_data(
-                json_data["GlobalMinorAlleleFrequency"]
-            )
-            if "GlobalMinorAlleleFrequency" in json_data
-            else None,
+            global_minor_allele_frequency=(
+                GlobalMinorAlleleFrequency.from_json_data(json_data["GlobalMinorAlleleFrequency"])
+                if "GlobalMinorAlleleFrequency" in json_data
+                else None
+            ),
             cytogenic_locations=[
                 raw_cytogenic_location
                 for raw_cytogenic_location in force_list(json_data.get("CytogeneticLocation", []))
@@ -2207,9 +2247,11 @@ class MeasureSet(BaseModel):
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            number_of_chromosomes=int(json_data["@NumberOfChromosomes"])
-            if json_data.get("@NumberOfChromosomes")
-            else None,
+            number_of_chromosomes=(
+                int(json_data["@NumberOfChromosomes"])
+                if json_data.get("@NumberOfChromosomes")
+                else None
+            ),
             id=int(json_data["@ID"]) if json_data.get("@ID") else None,
         )
 
@@ -2348,15 +2390,19 @@ class ReferenceClinVarAssertion(BaseModel):
                 ObservationSet.from_json_data(raw_observations)
                 for raw_observations in force_list(json_data.get("ObservedIn", []))
             ],
-            measures=MeasureSet.from_json_data(json_data["MeasureSet"])
-            if json_data.get("MeasureSet")
-            else None,
-            genotypes=GenotypeSet.from_json_data(json_data["GenotypeSet"])
-            if json_data.get("GenotypeSet")
-            else None,
-            traits=TraitSet.from_json_data(json_data["TraitSet"])
-            if "TraitSet" in json_data
-            else None,
+            measures=(
+                MeasureSet.from_json_data(json_data["MeasureSet"])
+                if json_data.get("MeasureSet")
+                else None
+            ),
+            genotypes=(
+                GenotypeSet.from_json_data(json_data["GenotypeSet"])
+                if json_data.get("GenotypeSet")
+                else None
+            ),
+            traits=(
+                TraitSet.from_json_data(json_data["TraitSet"]) if "TraitSet" in json_data else None
+            ),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
@@ -2365,15 +2411,21 @@ class ReferenceClinVarAssertion(BaseModel):
                 Comment.from_json_data(raw_comment)
                 for raw_comment in force_list(json_data.get("Comment", []))
             ],
-            date_created=parse_datetime(json_data["@DateCreated"]).date()
-            if json_data.get("@DateCreated")
-            else None,
-            date_last_updated=parse_datetime(json_data["@DateLastUpdated"]).date()
-            if json_data.get("@DateLastUpdated")
-            else None,
-            submission_date=parse_datetime(json_data["@SubmissionDate"]).date()
-            if json_data.get("@SubmissionDate")
-            else None,
+            date_created=(
+                parse_datetime(json_data["@DateCreated"]).date()
+                if json_data.get("@DateCreated")
+                else None
+            ),
+            date_last_updated=(
+                parse_datetime(json_data["@DateLastUpdated"]).date()
+                if json_data.get("@DateLastUpdated")
+                else None
+            ),
+            submission_date=(
+                parse_datetime(json_data["@SubmissionDate"]).date()
+                if json_data.get("@SubmissionDate")
+                else None
+            ),
             id=int(json_data["@ID"]) if json_data.get("@ID") else None,
         )
 
@@ -2405,12 +2457,16 @@ class ClinVarSubmissionId(BaseModel):
             submitter=json_data.get("@submitter"),
             title=json_data.get("@title"),
             submitted_assembly=json_data.get("@submittedAssembly"),
-            submitter_date=parse_datetime(json_data["@submitterDate"] or "").date()
-            if json_data.get("@submitterDate")
-            else None,
-            local_key_is_submitted=json_data.get("localKeyIsSubmitted") == "1"
-            if json_data.get("localKeyIsSubmitted")
-            else None,
+            submitter_date=(
+                parse_datetime(json_data["@submitterDate"] or "").date()
+                if json_data.get("@submitterDate")
+                else None
+            ),
+            local_key_is_submitted=(
+                json_data.get("localKeyIsSubmitted") == "1"
+                if json_data.get("localKeyIsSubmitted")
+                else None
+            ),
         )
 
 
@@ -2489,12 +2545,16 @@ class ClinVarAssertionAccession(BaseModel):
             acc=json_data["@Acc"],
             version=int(json_data["@Version"]),
             type=ClinVarAssertionAccessionType(json_data["@Type"]),
-            date_updated=parse_datetime(json_data["@DateUpdated"] or "").date()
-            if json_data.get("@DateUpdated")
-            else None,
-            date_created=parse_datetime(json_data["@DateCreated"] or "").date()
-            if json_data.get("@DateCreated")
-            else None,
+            date_updated=(
+                parse_datetime(json_data["@DateUpdated"] or "").date()
+                if json_data.get("@DateUpdated")
+                else None
+            ),
+            date_created=(
+                parse_datetime(json_data["@DateCreated"] or "").date()
+                if json_data.get("@DateCreated")
+                else None
+            ),
             org_id=json_data.get("@OrgID"),
             org_abbreviation=json_data.get("@OrgAbbreviation"),
             org_type=json_data.get("@OrgType"),
@@ -2643,9 +2703,11 @@ class ClinVarAssertionTraitSet(BaseModel):
     def from_json_data(cls, json_data: dict) -> "ClinVarAssertionTraitSet":
         return cls(
             type=ClinVarAssertionTraitSetType(json_data["@Type"]),
-            date_last_evaluated=parse_datetime(json_data["@DateLastEvaluated"]).date()
-            if json_data.get("@DateLastEvaluated")
-            else None,
+            date_last_evaluated=(
+                parse_datetime(json_data["@DateLastEvaluated"]).date()
+                if json_data.get("@DateLastEvaluated")
+                else None
+            ),
             traits=[
                 ClinVarAssertionTrait.from_json_data(raw_trait)
                 for raw_trait in force_list(json_data.get("Trait", []))
@@ -2754,15 +2816,21 @@ class ClinVarAssertion(BaseModel):
                 ObservationSet.from_json_data(raw_observations)
                 for raw_observations in force_list(json_data.get("ObservedIn", []))
             ],
-            measures=MeasureSet.from_json_data(json_data["MeasureSet"])
-            if json_data.get("MeasureSet")
-            else None,
-            genotypes=GenotypeSet.from_json_data(json_data["GenotypeSet"])
-            if json_data.get("GenotypeSet")
-            else None,
-            traits=ClinVarAssertionTraitSet.from_json_data(json_data["TraitSet"])
-            if "TraitSet" in json_data
-            else None,
+            measures=(
+                MeasureSet.from_json_data(json_data["MeasureSet"])
+                if json_data.get("MeasureSet")
+                else None
+            ),
+            genotypes=(
+                GenotypeSet.from_json_data(json_data["GenotypeSet"])
+                if json_data.get("GenotypeSet")
+                else None
+            ),
+            traits=(
+                ClinVarAssertionTraitSet.from_json_data(json_data["TraitSet"])
+                if "TraitSet" in json_data
+                else None
+            ),
             citations=[
                 Citation.from_json_data(raw_citation)
                 for raw_citation in force_list(json_data.get("Citation", []))
