@@ -266,9 +266,11 @@ def _retrieve_store_response(
                 "clinvar_accession": local_key_to_accession.get(
                     submission.local_key, submission.clinvar_accession
                 ),
-                "record_status": models.RecordStatus.UPDATE
-                if submission.local_key in local_key_to_accession
-                else models.RecordStatus.NOVEL,
+                "record_status": (
+                    models.RecordStatus.UPDATE
+                    if submission.local_key in local_key_to_accession
+                    else models.RecordStatus.NOVEL
+                ),
                 "extra_data": {
                     **(submission.extra_data or {}),
                     "error_msg": local_id_to_error.get(submission.local_id, ""),
