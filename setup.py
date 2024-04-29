@@ -51,6 +51,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     description="ClinVar Submission via API Made Easy",
     entry_points={"console_scripts": ["clinvar-this=clinvar_this.cli:cli"]},
