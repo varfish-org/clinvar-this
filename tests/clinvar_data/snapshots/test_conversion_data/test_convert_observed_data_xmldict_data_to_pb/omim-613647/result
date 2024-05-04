@@ -1,0 +1,38 @@
+{
+  "sample": {
+    "origin": "ORIGIN_GERMLINE",
+    "species": {
+      "name": "human"
+    },
+    "affectedStatus": "AFFECTED_STATUS_NOT_PROVIDED"
+  },
+  "observedData": [
+    {
+      "attributes": [
+        {
+          "base": {
+            "value": "In 2 French sibs..."
+          },
+          "type": "TYPE_DESCRIPTION"
+        }
+      ],
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "20613862",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "xrefs": [
+        {
+          "db": "OMIM",
+          "id": "613647",
+          "type": "MIM"
+        }
+      ]
+    }
+  ]
+}

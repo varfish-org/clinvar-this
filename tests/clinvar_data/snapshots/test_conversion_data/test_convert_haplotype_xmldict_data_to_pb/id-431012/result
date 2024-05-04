@@ -1,0 +1,516 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "locations": [
+            {
+              "cytogeneticLocations": [
+                "9q34.11"
+              ],
+              "sequenceLocations": [
+                {
+                  "assembly": "GRCh38",
+                  "chr": "CHROMOSOME_9",
+                  "accession": "NC_000009.12",
+                  "start": 128322839,
+                  "stop": 128334072,
+                  "displayStart": 128322839,
+                  "displayStop": 128334072,
+                  "strand": "+"
+                },
+                {
+                  "assembly": "GRCh37",
+                  "chr": "CHROMOSOME_9",
+                  "accession": "NC_000009.11",
+                  "start": 131084790,
+                  "stop": 131096350,
+                  "displayStart": 131084790,
+                  "displayStop": 131096350,
+                  "strand": "+"
+                }
+              ]
+            }
+          ],
+          "omim": "612898",
+          "fullName": "coenzyme Q4",
+          "geneId": "51117",
+          "hgncId": "HGNC:19693",
+          "source": "submitted",
+          "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+        }
+      ],
+      "name": "NM_016035.5(COQ4):c.356C>T (p.Pro119Leu)",
+      "canonicalSpdi": "NC_000009.12:128325834:C:T",
+      "variantTypes": [
+        "single nucleotide variant"
+      ],
+      "locations": [
+        {
+          "cytogeneticLocations": [
+            "9q34.11"
+          ],
+          "sequenceLocations": [
+            {
+              "forDisplay": true,
+              "assembly": "GRCh38",
+              "chr": "CHROMOSOME_9",
+              "accession": "NC_000009.12",
+              "start": 128325835,
+              "stop": 128325835,
+              "displayStart": 128325835,
+              "displayStop": 128325835,
+              "variantLength": 1,
+              "positionVcf": 128325835,
+              "referenceAlleleVcf": "C",
+              "alternateAlleleVcf": "T"
+            },
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_9",
+              "accession": "NC_000009.11",
+              "start": 131088114,
+              "stop": 131088114,
+              "displayStart": 131088114,
+              "displayStop": 131088114,
+              "variantLength": 1,
+              "positionVcf": 131088114,
+              "referenceAlleleVcf": "C",
+              "alternateAlleleVcf": "T"
+            }
+          ]
+        }
+      ],
+      "proteinChanges": [
+        "P119L",
+        "R87W"
+      ],
+      "hgvsExpressions": [
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000009.11:g.131088114C>T",
+            "sequenceAccessionVersion": "NC_000009.11",
+            "sequenceAccession": "NC_000009",
+            "sequenceVersion": 11,
+            "change": "g.131088114C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh37"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000009.12:g.128325835C>T",
+            "sequenceAccessionVersion": "NC_000009.12",
+            "sequenceAccession": "NC_000009",
+            "sequenceVersion": 12,
+            "change": "g.128325835C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh38"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NG_042101.1:g.8328C>T",
+            "sequenceAccessionVersion": "NG_042101.1",
+            "sequenceAccession": "NG_042101",
+            "sequenceVersion": 1,
+            "change": "g.8328C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_001305942.2:c.259C>T",
+            "sequenceAccessionVersion": "NM_001305942.2",
+            "sequenceAccession": "NM_001305942",
+            "sequenceVersion": 2,
+            "change": "c.259C>T"
+          },
+          "proteinExpression": {
+            "expression": "NP_001292871.2:p.Arg87Trp",
+            "sequenceAccessionVersion": "NP_001292871.2",
+            "sequenceAccession": "NP_001292871",
+            "sequenceVersion": 2,
+            "change": "p.Arg87Trp"
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001583",
+              "type": "missense variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_016035.5:c.356C>T",
+            "sequenceAccessionVersion": "NM_016035.5",
+            "sequenceAccession": "NM_016035",
+            "sequenceVersion": 5,
+            "change": "c.356C>T",
+            "maneSelect": true
+          },
+          "proteinExpression": {
+            "expression": "NP_057119.3:p.Pro119Leu",
+            "sequenceAccessionVersion": "NP_057119.3",
+            "sequenceAccession": "NP_057119",
+            "sequenceVersion": 3,
+            "change": "p.Pro119Leu"
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001583",
+              "type": "missense variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        }
+      ],
+      "classifications": {
+        "germlineClassification": {
+          "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_CONFLICTING_CLASSIFICATIONS",
+          "description": "Conflicting classifications of pathogenicity",
+          "explanation": {
+            "value": "Likely pathogenic(1); Uncertain significance(1)",
+            "dataSource": "ClinVar",
+            "type": "COMMENT_TYPE_PUBLIC"
+          },
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "28540186",
+                  "source": "PubMed"
+                }
+              ],
+              "type": "general"
+            }
+          ],
+          "comments": [
+            {
+              "value": "Likely pathogenic(1); Uncertain significance(1)",
+              "dataSource": "ClinVar",
+              "type": "COMMENT_TYPE_PUBLIC"
+            }
+          ],
+          "dateLastEvaluated": "2023-08-17T00:00:00Z",
+          "dateCreated": "2017-03-03T00:00:00Z",
+          "mostRecentSubmission": "2024-02-11T00:00:00Z",
+          "numberOfSubmitters": 2,
+          "numberOfSubmissions": 2
+        }
+      },
+      "xrefs": [
+        {
+          "db": "ClinVar",
+          "id": "431012",
+          "type": "Included"
+        },
+        {
+          "db": "ClinVar",
+          "id": "431013",
+          "type": "Interpreted"
+        },
+        {
+          "db": "ClinGen",
+          "id": "CA5260526"
+        },
+        {
+          "db": "dbSNP",
+          "id": "773943371",
+          "type": "rs"
+        }
+      ],
+      "functionalConsequences": [
+        {
+          "xrefs": [
+            {
+              "db": "Variation Ontology",
+              "id": "0002"
+            }
+          ],
+          "value": "variation affecting protein"
+        }
+      ],
+      "alleleId": "370322",
+      "variationId": "383650"
+    },
+    {
+      "genes": [
+        {
+          "locations": [
+            {
+              "cytogeneticLocations": [
+                "9q34.11"
+              ],
+              "sequenceLocations": [
+                {
+                  "assembly": "GRCh38",
+                  "chr": "CHROMOSOME_9",
+                  "accession": "NC_000009.12",
+                  "start": 128322839,
+                  "stop": 128334072,
+                  "displayStart": 128322839,
+                  "displayStop": 128334072,
+                  "strand": "+"
+                },
+                {
+                  "assembly": "GRCh37",
+                  "chr": "CHROMOSOME_9",
+                  "accession": "NC_000009.11",
+                  "start": 131084790,
+                  "stop": 131096350,
+                  "displayStart": 131084790,
+                  "displayStop": 131096350,
+                  "strand": "+"
+                }
+              ]
+            }
+          ],
+          "omim": "612898",
+          "fullName": "coenzyme Q4",
+          "geneId": "51117",
+          "hgncId": "HGNC:19693",
+          "source": "submitted",
+          "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+        }
+      ],
+      "name": "NM_016035.5(COQ4):c.331G>T (p.Asp111Tyr)",
+      "canonicalSpdi": "NC_000009.12:128325809:G:T",
+      "variantTypes": [
+        "single nucleotide variant"
+      ],
+      "locations": [
+        {
+          "cytogeneticLocations": [
+            "9q34.11"
+          ],
+          "sequenceLocations": [
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_9",
+              "accession": "NC_000009.11",
+              "start": 131088089,
+              "stop": 131088089,
+              "displayStart": 131088089,
+              "displayStop": 131088089,
+              "variantLength": 1,
+              "positionVcf": 131088089,
+              "referenceAlleleVcf": "G",
+              "alternateAlleleVcf": "T"
+            },
+            {
+              "forDisplay": true,
+              "assembly": "GRCh38",
+              "chr": "CHROMOSOME_9",
+              "accession": "NC_000009.12",
+              "start": 128325810,
+              "stop": 128325810,
+              "displayStart": 128325810,
+              "displayStop": 128325810,
+              "variantLength": 1,
+              "positionVcf": 128325810,
+              "referenceAlleleVcf": "G",
+              "alternateAlleleVcf": "T"
+            }
+          ]
+        }
+      ],
+      "proteinChanges": [
+        "D111Y"
+      ],
+      "hgvsExpressions": [
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000009.11:g.131088089G>T",
+            "sequenceAccessionVersion": "NC_000009.11",
+            "sequenceAccession": "NC_000009",
+            "sequenceVersion": 11,
+            "change": "g.131088089G>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh37"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000009.12:g.128325810G>T",
+            "sequenceAccessionVersion": "NC_000009.12",
+            "sequenceAccession": "NC_000009",
+            "sequenceVersion": 12,
+            "change": "g.128325810G>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh38"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NG_042101.1:g.8303G>T",
+            "sequenceAccessionVersion": "NG_042101.1",
+            "sequenceAccession": "NG_042101",
+            "sequenceVersion": 1,
+            "change": "g.8303G>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_001305942.2:c.234G>T",
+            "sequenceAccessionVersion": "NM_001305942.2",
+            "sequenceAccession": "NM_001305942",
+            "sequenceVersion": 2,
+            "change": "c.234G>T"
+          },
+          "proteinExpression": {
+            "expression": "NP_001292871.2:p.Ser78=",
+            "sequenceAccessionVersion": "NP_001292871.2",
+            "sequenceAccession": "NP_001292871",
+            "sequenceVersion": 2,
+            "change": "p.Ser78="
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001819",
+              "type": "synonymous variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_016035.5:c.331G>T",
+            "sequenceAccessionVersion": "NM_016035.5",
+            "sequenceAccession": "NM_016035",
+            "sequenceVersion": 5,
+            "change": "c.331G>T",
+            "maneSelect": true
+          },
+          "proteinExpression": {
+            "expression": "NP_057119.3:p.Asp111Tyr",
+            "sequenceAccessionVersion": "NP_057119.3",
+            "sequenceAccession": "NP_057119",
+            "sequenceVersion": 3,
+            "change": "p.Asp111Tyr"
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001583",
+              "type": "missense variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        }
+      ],
+      "classifications": {
+        "germlineClassification": {
+          "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+          "description": "no classification for the single variant",
+          "numberOfSubmitters": 0,
+          "numberOfSubmissions": 0
+        },
+        "somaticClinicalImpacts": [
+          {
+            "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+            "description": "no classification for the single variant",
+            "numberOfSubmitters": 0,
+            "numberOfSubmissions": 0
+          }
+        ],
+        "oncogenicityClassification": {
+          "reviewStatus": "AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+          "description": "no classification for the single variant",
+          "numberOfSubmitters": 0,
+          "numberOfSubmissions": 0
+        }
+      },
+      "xrefs": [
+        {
+          "db": "dbSNP",
+          "id": "530213004",
+          "type": "rs"
+        },
+        {
+          "db": "ClinVar",
+          "id": "431012",
+          "type": "Included"
+        },
+        {
+          "db": "ClinVar",
+          "id": "431013",
+          "type": "Interpreted"
+        }
+      ],
+      "functionalConsequences": [
+        {
+          "xrefs": [
+            {
+              "db": "Variation Ontology",
+              "id": "0002"
+            }
+          ],
+          "value": "variation affecting protein"
+        }
+      ],
+      "globalMinorAlleleFrequency": {
+        "value": 0.0002,
+        "source": "1000 Genomes Project",
+        "minorAllele": "A"
+      },
+      "alleleId": "404620",
+      "variationId": "417816"
+    }
+  ],
+  "name": "NM_016035.4(COQ4):c.[331G>T;356C>T]",
+  "variationType": "HAPLO_VARIATION_TYPE_HAPLOTYPE",
+  "hgvsExpressions": [
+    {
+      "nucleotideExpression": {
+        "expression": "NM_016035.4(COQ4):c.[331G>T;356C>T]"
+      },
+      "type": "HGVS_TYPE_CODING"
+    }
+  ],
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+      "description": "no classification for the single variant",
+      "numberOfSubmitters": 0,
+      "numberOfSubmissions": 0
+    },
+    "somaticClinicalImpacts": [
+      {
+        "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+        "description": "no classification for the single variant",
+        "numberOfSubmitters": 0,
+        "numberOfSubmissions": 0
+      }
+    ],
+    "oncogenicityClassification": {
+      "reviewStatus": "AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+      "description": "no classification for the single variant",
+      "numberOfSubmitters": 0,
+      "numberOfSubmissions": 0
+    }
+  },
+  "functionalConsequences": [
+    {
+      "value": "effect on catalytic protein function"
+    }
+  ],
+  "xrefs": [
+    {
+      "db": "ClinGen",
+      "id": "CA645372872"
+    },
+    {
+      "db": "ClinVar",
+      "id": "431013",
+      "type": "Interpreted"
+    }
+  ],
+  "variationId": "431012",
+  "numberOfChromosomes": 1
+}

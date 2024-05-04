@@ -1,0 +1,60 @@
+{
+  "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+  "description": "Tier I - Strong",
+  "citations": [
+    {
+      "ids": [
+        {
+          "value": "24868098",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general",
+      "abbrev": "FDA, 2014"
+    },
+    {
+      "ids": [
+        {
+          "value": "17877814",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "ids": [
+        {
+          "value": "18408761",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "ids": [
+        {
+          "value": "19147750",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "url": "https://civicdb.org/links/evidence/229",
+      "type": "general"
+    },
+    {
+      "url": "https://civicdb.org/links/evidence/2629",
+      "type": "general"
+    },
+    {
+      "url": "https://civicdb.org/links/evidence/2994",
+      "type": "general"
+    }
+  ],
+  "dateLastEvaluated": "2018-02-23T00:00:00Z",
+  "dateCreated": "2024-02-20T00:00:00Z",
+  "mostRecentSubmission": "2024-02-20T00:00:00Z",
+  "numberOfSubmitters": 1,
+  "numberOfSubmissions": 2
+}

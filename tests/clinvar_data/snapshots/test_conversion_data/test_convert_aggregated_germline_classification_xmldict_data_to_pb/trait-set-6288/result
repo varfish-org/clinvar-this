@@ -1,0 +1,19 @@
+{
+  "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+  "description": "Pathogenic",
+  "citations": [
+    {
+      "ids": [
+        {
+          "value": "20613862",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    }
+  ],
+  "dateCreated": "2017-01-30T00:00:00Z",
+  "mostRecentSubmission": "2021-05-16T00:00:00Z",
+  "numberOfSubmitters": 2,
+  "numberOfSubmissions": 2
+}

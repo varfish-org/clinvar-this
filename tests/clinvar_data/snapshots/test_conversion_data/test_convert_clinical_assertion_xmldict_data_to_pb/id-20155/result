@@ -1,0 +1,66 @@
+{
+  "clinvarSubmissionId": {
+    "localKey": "613653.0001_SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE",
+    "title": "AP5Z1, 4-BP DEL/22-BP INS, NT80_SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE"
+  },
+  "clinvarAccession": {
+    "accession": "SCV000020155",
+    "version": 3,
+    "submitterIdentifiers": {
+      "submitterName": "OMIM",
+      "orgId": "3",
+      "orgCategory": "resource"
+    },
+    "dateUpdated": "2017-01-30T00:00:00Z",
+    "dateCreated": "2017-01-30T00:00:00Z"
+  },
+  "recordStatus": "RECORD_STATUS_CURRENT",
+  "classifications": [
+    {
+      "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+      "germlineClassification": "Pathogenic",
+      "dateLastEvaluated": "2010-06-29T00:00:00Z"
+    }
+  ],
+  "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+  "simpleAllele": {
+    "genes": [
+      {
+        "symbol": "AP5Z1"
+      }
+    ],
+    "names": [
+      {
+        "value": "AP5Z1, 4-BP DEL/22-BP INS, NT80"
+      }
+    ],
+    "variantType": "Variation",
+    "otherNames": [
+      {
+        "value": "4-BP DEL/22-BP INS, NT80",
+        "type": "NonHGVS"
+      }
+    ],
+    "xrefs": [
+      {
+        "db": "OMIM",
+        "id": "613653.0001",
+        "type": "Allelic variant"
+      }
+    ]
+  },
+  "traitSet": {
+    "traits": [
+      {
+        "names": [
+          {
+            "value": "SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE",
+            "type": "Preferred"
+          }
+        ]
+      }
+    ],
+    "type": "TYPE_DISEASE"
+  },
+  "id": "20155"
+}

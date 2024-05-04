@@ -50,7 +50,7 @@ Check that your installation worked:
 
     Commands:
     batch   Sub comment category ``batch ...``
-    config  Sub command category ``varfish-this config ...``
+    config  Sub command category ``clinvar-this config ...``
 
 ------------------------
 Configure your API Token

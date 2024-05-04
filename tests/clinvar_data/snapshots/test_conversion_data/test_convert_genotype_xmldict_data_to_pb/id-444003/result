@@ -1,0 +1,388 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "locations": [
+            {
+              "cytogeneticLocations": [
+                "22q13.33"
+              ],
+              "sequenceLocations": [
+                {
+                  "assembly": "GRCh38",
+                  "chr": "CHROMOSOME_22",
+                  "accession": "NC_000022.11",
+                  "start": 50217694,
+                  "stop": 50245023,
+                  "displayStart": 50217694,
+                  "displayStop": 50245023,
+                  "strand": "-"
+                },
+                {
+                  "assembly": "GRCh37",
+                  "chr": "CHROMOSOME_22",
+                  "accession": "NC_000022.10",
+                  "start": 50656117,
+                  "stop": 50683399,
+                  "displayStart": 50656117,
+                  "displayStop": 50683399,
+                  "strand": "-"
+                }
+              ]
+            }
+          ],
+          "omim": "610053",
+          "fullName": "tubulin gamma complex component 6",
+          "geneId": "85378",
+          "hgncId": "HGNC:18127",
+          "source": "submitted",
+          "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+        }
+      ],
+      "name": "NM_020461.4(TUBGCP6):c.3139C>T (p.Arg1047Trp)",
+      "canonicalSpdi": "NC_000022.11:50221219:G:A",
+      "variantTypes": [
+        "single nucleotide variant"
+      ],
+      "locations": [
+        {
+          "cytogeneticLocations": [
+            "22q13.33"
+          ],
+          "sequenceLocations": [
+            {
+              "forDisplay": true,
+              "assembly": "GRCh38",
+              "chr": "CHROMOSOME_22",
+              "accession": "NC_000022.11",
+              "start": 50221220,
+              "stop": 50221220,
+              "displayStart": 50221220,
+              "displayStop": 50221220,
+              "variantLength": 1,
+              "positionVcf": 50221220,
+              "referenceAlleleVcf": "G",
+              "alternateAlleleVcf": "A"
+            },
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_22",
+              "accession": "NC_000022.10",
+              "start": 50659649,
+              "stop": 50659649,
+              "displayStart": 50659649,
+              "displayStop": 50659649,
+              "variantLength": 1,
+              "positionVcf": 50659649,
+              "referenceAlleleVcf": "G",
+              "alternateAlleleVcf": "A"
+            }
+          ]
+        }
+      ],
+      "proteinChanges": [
+        "R1047W"
+      ],
+      "hgvsExpressions": [
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000022.10:g.50659649G>A",
+            "sequenceAccessionVersion": "NC_000022.10",
+            "sequenceAccession": "NC_000022",
+            "sequenceVersion": 10,
+            "change": "g.50659649G>A"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh37"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000022.11:g.50221220G>A",
+            "sequenceAccessionVersion": "NC_000022.11",
+            "sequenceAccession": "NC_000022",
+            "sequenceVersion": 11,
+            "change": "g.50221220G>A"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh38"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NG_032160.1:g.28752C>T",
+            "sequenceAccessionVersion": "NG_032160.1",
+            "sequenceAccession": "NG_032160",
+            "sequenceVersion": 1,
+            "change": "g.28752C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_020461.4:c.3139C>T",
+            "sequenceAccessionVersion": "NM_020461.4",
+            "sequenceAccession": "NM_020461",
+            "sequenceVersion": 4,
+            "change": "c.3139C>T",
+            "maneSelect": true
+          },
+          "proteinExpression": {
+            "expression": "NP_065194.3:p.Arg1047Trp",
+            "sequenceAccessionVersion": "NP_065194.3",
+            "sequenceAccession": "NP_065194",
+            "sequenceVersion": 3,
+            "change": "p.Arg1047Trp"
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001583",
+              "type": "missense variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        }
+      ],
+      "classifications": {
+        "germlineClassification": {
+          "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+          "description": "Uncertain significance",
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "31069529",
+                  "source": "PubMed"
+                }
+              ],
+              "type": "general"
+            }
+          ],
+          "dateLastEvaluated": "2023-08-04T00:00:00Z",
+          "dateCreated": "2020-07-13T00:00:00Z",
+          "mostRecentSubmission": "2024-02-11T00:00:00Z",
+          "numberOfSubmitters": 1,
+          "numberOfSubmissions": 1
+        }
+      },
+      "xrefs": [
+        {
+          "db": "ClinGen",
+          "id": "CA10308045"
+        },
+        {
+          "db": "dbSNP",
+          "id": "538652140",
+          "type": "rs"
+        },
+        {
+          "db": "ClinVar",
+          "id": "444003",
+          "type": "Interpreted"
+        }
+      ],
+      "globalMinorAlleleFrequency": {
+        "value": 0.0002,
+        "source": "1000 Genomes Project",
+        "minorAllele": "A"
+      },
+      "alleleId": "437664",
+      "variationId": "444001"
+    },
+    {
+      "genes": [
+        {
+          "locations": [
+            {
+              "cytogeneticLocations": [
+                "22q13.33"
+              ],
+              "sequenceLocations": [
+                {
+                  "assembly": "GRCh38",
+                  "chr": "CHROMOSOME_22",
+                  "accession": "NC_000022.11",
+                  "start": 50217694,
+                  "stop": 50245023,
+                  "displayStart": 50217694,
+                  "displayStop": 50245023,
+                  "strand": "-"
+                },
+                {
+                  "assembly": "GRCh37",
+                  "chr": "CHROMOSOME_22",
+                  "accession": "NC_000022.10",
+                  "start": 50656117,
+                  "stop": 50683399,
+                  "displayStart": 50656117,
+                  "displayStop": 50683399,
+                  "strand": "-"
+                }
+              ]
+            }
+          ],
+          "omim": "610053",
+          "fullName": "tubulin gamma complex component 6",
+          "geneId": "85378",
+          "hgncId": "HGNC:18127",
+          "source": "submitted",
+          "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+        }
+      ],
+      "name": "NM_020461.4(TUBGCP6):c.5140G>A (p.Ala1714Thr)",
+      "canonicalSpdi": "NC_000022.11:50218216:C:T",
+      "variantTypes": [
+        "single nucleotide variant"
+      ],
+      "locations": [
+        {
+          "cytogeneticLocations": [
+            "22q13.33"
+          ],
+          "sequenceLocations": [
+            {
+              "forDisplay": true,
+              "assembly": "GRCh38",
+              "chr": "CHROMOSOME_22",
+              "accession": "NC_000022.11",
+              "start": 50218217,
+              "stop": 50218217,
+              "displayStart": 50218217,
+              "displayStop": 50218217,
+              "variantLength": 1,
+              "positionVcf": 50218217,
+              "referenceAlleleVcf": "C",
+              "alternateAlleleVcf": "T"
+            },
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_22",
+              "accession": "NC_000022.10",
+              "start": 50656646,
+              "stop": 50656646,
+              "displayStart": 50656646,
+              "displayStop": 50656646,
+              "variantLength": 1,
+              "positionVcf": 50656646,
+              "referenceAlleleVcf": "C",
+              "alternateAlleleVcf": "T"
+            }
+          ]
+        }
+      ],
+      "proteinChanges": [
+        "A1714T"
+      ],
+      "hgvsExpressions": [
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000022.10:g.50656646C>T",
+            "sequenceAccessionVersion": "NC_000022.10",
+            "sequenceAccession": "NC_000022",
+            "sequenceVersion": 10,
+            "change": "g.50656646C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh37"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NC_000022.11:g.50218217C>T",
+            "sequenceAccessionVersion": "NC_000022.11",
+            "sequenceAccession": "NC_000022",
+            "sequenceVersion": 11,
+            "change": "g.50218217C>T"
+          },
+          "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+          "assembly": "GRCh38"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NG_032160.1:g.31755G>A",
+            "sequenceAccessionVersion": "NG_032160.1",
+            "sequenceAccession": "NG_032160",
+            "sequenceVersion": 1,
+            "change": "g.31755G>A"
+          },
+          "type": "HGVS_TYPE_GENOMIC"
+        },
+        {
+          "nucleotideExpression": {
+            "expression": "NM_020461.4:c.5140G>A",
+            "sequenceAccessionVersion": "NM_020461.4",
+            "sequenceAccession": "NM_020461",
+            "sequenceVersion": 4,
+            "change": "c.5140G>A",
+            "maneSelect": true
+          },
+          "proteinExpression": {
+            "expression": "NP_065194.3:p.Ala1714Thr",
+            "sequenceAccessionVersion": "NP_065194.3",
+            "sequenceAccession": "NP_065194",
+            "sequenceVersion": 3,
+            "change": "p.Ala1714Thr"
+          },
+          "molecularConsequences": [
+            {
+              "db": "SO",
+              "id": "SO:0001583",
+              "type": "missense variant"
+            }
+          ],
+          "type": "HGVS_TYPE_CODING"
+        }
+      ],
+      "classifications": {
+        "germlineClassification": {
+          "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+          "description": "Uncertain significance",
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "31069529",
+                  "source": "PubMed"
+                }
+              ],
+              "type": "general"
+            }
+          ],
+          "dateLastEvaluated": "2023-09-21T00:00:00Z",
+          "dateCreated": "2022-03-24T00:00:00Z",
+          "mostRecentSubmission": "2024-02-25T00:00:00Z",
+          "numberOfSubmitters": 1,
+          "numberOfSubmissions": 1
+        }
+      },
+      "xrefs": [
+        {
+          "db": "ClinGen",
+          "id": "CA10307162"
+        },
+        {
+          "db": "dbSNP",
+          "id": "748135189",
+          "type": "rs"
+        },
+        {
+          "db": "ClinVar",
+          "id": "444003",
+          "type": "Interpreted"
+        }
+      ],
+      "alleleId": "437663",
+      "variationId": "444002"
+    }
+  ],
+  "name": "NM_020461.3(TUBGCP6):c.[3139C>T];[5140G>A]",
+  "variationType": "VARIATION_TYPE_COMPOUND_HETEROZYGOTE",
+  "hgvsExpressions": [
+    {
+      "nucleotideExpression": {
+        "expression": "NM_020461.3:c.[3139C>T];[5140G>A]"
+      },
+      "type": "HGVS_TYPE_CODING"
+    }
+  ],
+  "variationId": "444003"
+}

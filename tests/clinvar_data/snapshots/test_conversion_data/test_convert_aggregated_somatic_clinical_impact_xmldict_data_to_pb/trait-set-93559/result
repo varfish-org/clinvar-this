@@ -1,0 +1,41 @@
+{
+  "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+  "description": "Tier II - Potential",
+  "citations": [
+    {
+      "ids": [
+        {
+          "value": "24705250",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "ids": [
+        {
+          "value": "24705254",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "url": "https://civicdb.org/links/evidence/4846",
+      "type": "general"
+    },
+    {
+      "url": "https://civicdb.org/links/evidence/6955",
+      "type": "general"
+    },
+    {
+      "url": "https://identifiers.org/civic.mpid:1594",
+      "type": "general"
+    }
+  ],
+  "dateLastEvaluated": "2018-10-16T00:00:00Z",
+  "dateCreated": "2024-02-20T00:00:00Z",
+  "mostRecentSubmission": "2024-02-20T00:00:00Z",
+  "numberOfSubmitters": 1,
+  "numberOfSubmissions": 1
+}

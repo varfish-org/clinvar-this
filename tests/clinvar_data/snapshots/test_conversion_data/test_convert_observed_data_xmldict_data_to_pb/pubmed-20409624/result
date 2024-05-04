@@ -1,0 +1,59 @@
+{
+  "sample": {
+    "origin": "ORIGIN_GERMLINE",
+    "species": {
+      "name": "human"
+    },
+    "affectedStatus": "AFFECTED_STATUS_NOT_PROVIDED"
+  },
+  "observedData": [
+    {
+      "attributes": [
+        {
+          "base": {
+            "value": "Goodeve (2010) noted that..."
+          },
+          "type": "TYPE_DESCRIPTION"
+        }
+      ],
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "20409624",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": [
+        {
+          "base": {
+            "value": "Randi et al. (1991) suggested..."
+          },
+          "type": "TYPE_DESCRIPTION"
+        }
+      ],
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "2010538",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "ids": [
+            {
+              "value": "20409624",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

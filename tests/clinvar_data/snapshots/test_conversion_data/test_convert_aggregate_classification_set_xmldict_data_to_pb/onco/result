@@ -1,0 +1,11 @@
+{
+  "oncogenicityClassification": {
+    "reviewStatus": "AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+    "description": "Uncertain significance",
+    "dateLastEvaluated": "2024-01-24T00:00:00Z",
+    "dateCreated": "2024-03-05T00:00:00Z",
+    "mostRecentSubmission": "2024-03-05T00:00:00Z",
+    "numberOfSubmitters": 1,
+    "numberOfSubmissions": 1
+  }
+}

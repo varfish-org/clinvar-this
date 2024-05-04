@@ -1,0 +1,67 @@
+{
+  "traits": [
+    {
+      "names": [
+        {
+          "value": "Hereditary spastic paraplegia 48",
+          "type": "Preferred",
+          "xrefs": [
+            {
+              "db": "MONDO",
+              "id": "MONDO:0013342"
+            }
+          ]
+        },
+        {
+          "value": "Spastic paraplegia 48",
+          "type": "Alternate"
+        },
+        {
+          "value": "Spastic paraplegia 48, autosomal recessive",
+          "type": "Alternate",
+          "xrefs": [
+            {
+              "db": "Genetic Alliance",
+              "id": "Spastic+paraplegia+48%2C+autosomal+recessive/9323"
+            }
+          ]
+        }
+      ],
+      "symbols": [
+        {
+          "value": "SPG48",
+          "type": "Alternate",
+          "xrefs": [
+            {
+              "db": "OMIM",
+              "id": "613647",
+              "type": "MIM"
+            }
+          ]
+        }
+      ],
+      "xrefs": [
+        {
+          "db": "Orphanet",
+          "id": "306511"
+        },
+        {
+          "db": "MedGen",
+          "id": "C3150901"
+        },
+        {
+          "db": "MONDO",
+          "id": "MONDO:0013342"
+        },
+        {
+          "db": "OMIM",
+          "id": "613647",
+          "type": "MIM"
+        }
+      ]
+    }
+  ],
+  "type": "TYPE_DISEASE",
+  "id": "2",
+  "contributesToAggregateClassification": true
+}

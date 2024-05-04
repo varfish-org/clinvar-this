@@ -1,0 +1,33 @@
+{
+  "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+  "description": "Uncertain significance",
+  "citations": [
+    {
+      "citationText": "Tomatsu, S., Fukuda, S., ...",
+      "type": "general"
+    },
+    {
+      "ids": [
+        {
+          "value": "34387910",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    },
+    {
+      "ids": [
+        {
+          "value": "7795586",
+          "source": "PubMed"
+        }
+      ],
+      "type": "general"
+    }
+  ],
+  "dateLastEvaluated": "2021-02-01T00:00:00Z",
+  "dateCreated": "2018-06-02T00:00:00Z",
+  "mostRecentSubmission": "2021-10-30T00:00:00Z",
+  "numberOfSubmitters": 2,
+  "numberOfSubmissions": 2
+}

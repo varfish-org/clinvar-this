@@ -1,0 +1,2705 @@
+// Protobuf file for representing the types from the ClinVar VCV XSD file.
+
+syntax = "proto3";
+
+package clinvar_public.clinvar_public;
+
+import "google/protobuf/timestamp.proto";
+
+// Enumeration describing connection between genes and variants.
+//
+// Corresponds to XSD type "GeneVariantRelationship".
+enum GeneVariantRelationship {
+  // unspecified gene variant
+  GENE_VARIANT_RELATIONSHIP_UNSPECIFIED = 0;
+  // corresponds to "variant within gene"
+  GENE_VARIANT_RELATIONSHIP_VARIANT_WITHIN_GENE = 1;
+  // corresponds to "gene overlapped by variant" and
+  // (legacy:) "genes overlapped by variant"
+  GENE_VARIANT_RELATIONSHIP_GENE_OVERLAPPED_BY_VARIANT = 2;
+  // corresponds to "variant near gene, upstream" and
+  // (legacy:) "near gene, upstream"
+  GENE_VARIANT_RELATIONSHIP_NEAR_GENE_UPSTREAM = 3;
+  // corresponds to "variant near gene, downstream" and
+  // (legacy:) "near gene, downstream"
+  GENE_VARIANT_RELATIONSHIP_NEAR_GENE_DOWNSTREAM = 4;
+  // corresponds to "asserted, but not computed"
+  GENE_VARIANT_RELATIONSHIP_ASSERTED_BUT_NOT_COMPUTED = 5;
+  // corresponds to "within multiple genes by overlap"
+  GENE_VARIANT_RELATIONSHIP_WITHIN_MULTIPLE_GENES_BY_OVERLAP = 6;
+  // corresponds to "within single gene"
+  GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE = 7;
+}
+
+// Enumeration describing severity.
+//
+// Corresponds to XSD type "typeSeverity"
+enum Severity {
+  // unspecified severity
+  SEVERITY_UNSPECIFIED = 0;
+  // corresponds to "mild"
+  SEVERITY_MILD = 1;
+  // corresponds to "moderate"
+  SEVERITY_MODERATE = 2;
+  // corresponds to "sever"
+  SEVERITY_SEVERE = 3;
+}
+
+// Enumeration describing status.
+//
+// Corresponds to `typeStatus` in XSD.
+enum Status {
+  // unspecified status
+  STATUS_UNSPECIFIED = 0;
+  // corresponds to "current"
+  STATUS_CURRENT = 1;
+  // corresponds to "completed and retired"
+  STATUS_COMPLETED_AND_RETIRED = 2;
+  // corresponds to "delete"
+  STATUS_DELETE = 3;
+  // corresponds to "in development"
+  STATUS_IN_DEVELOPMENT = 4;
+  // corresponds to "reclassified"
+  STATUS_RECLASSIFIED = 5;
+  // corresponds to "reject"
+  STATUS_REJECT = 6;
+  // corresponds to "secondary"
+  STATUS_SECONDARY = 7;
+  // corresponds to "suppressed"
+  STATUS_SUPPRESSED = 8;
+  // corresponds to "under review"
+  STATUS_UNDER_REVIEW = 9;
+}
+
+// Enumeration describing submitter review status.
+//
+// Corresponds to `typeSubmitterReviewStatusValue` in XSD.
+enum SubmitterReviewStatus {
+  // unspecified status
+  SUBMITTER_REVIEW_STATUS_UNSPECIFIED = 0;
+  // corresponds to "no classification provided"
+  SUBMITTER_REVIEW_STATUS_NO_CLASSIFICATION_PROVIDED = 1;
+  // corresponds to "no assertion criteria provided"
+  SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED = 2;
+  // corresponds to "criteria provided, single submitter"
+  SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER = 3;
+  // corresponds to "reviewed by expert panel"
+  SUBMITTER_REVIEW_STATUS_REVIEWED_BY_EXPERT_PANEL = 4;
+  // corresponds to "practice guideline"
+  SUBMITTER_REVIEW_STATUS_PRACTICE_GUIDELINE = 5;
+  // corresponds to "flagged submission"
+  SUBMITTER_REVIEW_STATUS_FLAGGED_SUBMISSION = 6;
+  // corresponds to "criteria provided, multiple submitters, no conflicts"
+  SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_MULTIPLE_SUBMITTERS_NO_CONFLICTS = 7;
+  // corresponds to "criteria provided, conflicting classifications"
+  SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_CONFLICTING_CLASSIFICATIONS = 8;
+  // corresponds to "classified by single submitter"
+  SUBMITTER_REVIEW_STATUS_CLASSIFIED_BY_SINGLE_SUBMITTER = 9;
+  // corresponds to "reviewed by professional society"
+  SUBMITTER_REVIEW_STATUS_REVIEWED_BY_PROFESSIONAL_SOCIETY = 10;
+  // corresponds to "not classified by submitter"
+  SUBMITTER_REVIEW_STATUS_NOT_CLASSIFIED_BY_SUBMITTER = 11;
+  // corresponds to "classified by multiple submitters"
+  SUBMITTER_REVIEW_STATUS_CLASSIFIED_BY_MULTIPLE_SUBMITTERS = 12;
+}
+
+// Enumeration describing zygosity.
+enum Zygosity {
+  // unspecified zygosity
+  ZYGOSITY_UNSPECIFIED = 0;
+  // corresponds to "Homozygote"
+  ZYGOSITY_HOMOZYGOTE = 1;
+  // corresponds to "SingleHeterozygote"
+  ZYGOSITY_SINGLE_HETEROZYGOTE = 2;
+  // corresponds to "CompoundHeterozygote"
+  ZYGOSITY_COMPOUND_HETEROZYGOTE = 3;
+  // corresponds to "Hemizygote"
+  ZYGOSITY_HEMIZYGOTE = 4;
+  // corresponds to "not provided"
+  ZYGOSITY_NOT_PROVIDED = 5;
+}
+
+// Enumeration describing assertion type attributes.
+enum Assertion {
+  // unspecified assertion type attribute
+  ASSERTION_UNSPECIFIED = 0;
+  // corresponds to "variation to disease"
+  ASSERTION_VARIATION_TO_DISEASE = 1;
+  // corresponds to "variation to included disease"
+  ASSERTION_VARIATION_TO_INCLUDED_DISEASE = 2;
+  // corresponds to "variation in modifier gene to disease"
+  ASSERTION_VARIATION_IN_MODIFIER_GENE_TO_DISEASE = 3;
+  // corresponds to "confers sensitivity"
+  ASSERTION_CONFERS_SENSITIVITY = 4;
+  // corresponds to "confers resistance"
+  ASSERTION_CONFERS_RESISTANCE = 5;
+  // corresponds to "variant to named protein"
+  ASSERTION_VARIANT_TO_NAMED_PROTEIN = 6;
+}
+
+// Enumeration describing aggregate germline review status value.
+enum AggregateGermlineReviewStatus {
+  // unspecified aggregate germline review status value
+  AGGREGATE_GERMLINE_REVIEW_STATUS_UNSPECIFIED = 0;
+  // corresponds to "no classification provided"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATION_PROVIDED = 1;
+  // corresponds to "no assertion criteria provided"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED = 2;
+  // corresponds to "criteria provided, single submitter"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER = 3;
+  // corresponds to "criteria provided, multiple submitters, no conflicts"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_MULTIPLE_SUBMITTERS_NO_CONFLICTS = 4;
+  // corresponds to "criteria provided, conflicting classifications"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_CONFLICTING_CLASSIFICATIONS = 5;
+  // corresponds to "reviewed by expert panel"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_REVIEWED_BY_EXPERT_PANEL = 6;
+  // corresponds to "practice guideline"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_PRACTICE_GUIDELINE = 7;
+  // corresponds to "no classifications from unflagged records"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATIONS_FROM_UNFLAGGED_RECORDS = 8;
+  // corresponds to "no classification for the single variant"
+  AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT = 9;
+}
+
+// Enumeration describing aggregate somatic clinical impact review status value.
+enum AggregateSomaticClinicalImpactReviewStatus {
+  // unspecified aggregate somatic clinical impact review status value
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_UNSPECIFIED = 0;
+  // corresponds to "no classification provided"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_PROVIDED = 1;
+  // corresponds to "no assertion criteria provided"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED = 2;
+  // corresponds to "criteria provided, single submitter"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER = 3;
+  // corresponds to "criteria provided, multiple submitters"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_CRITERIA_PROVIDED_MULTIPLE_SUBMITTERS = 4;
+  // corresponds to "reviewed by expert panel"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_REVIEWED_BY_EXPERT_PANEL = 5;
+  // corresponds to "practice guideline"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_PRACTICE_GUIDELINE = 6;
+  // corresponds to "no classifications from unflagged records"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATIONS_FROM_UNFLAGGED_RECORDS = 7;
+  // corresponds to "no classification for the single variant"
+  AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT = 8;
+}
+
+// Enumeration describing aggregate oncogenicity review status value.
+enum AggregateOncogenicityReviewStatus {
+  // unspecified aggregate oncogenicity review status value
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_UNSPECIFIED = 0;
+  // corresponds to "no classification provided"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_PROVIDED = 1;
+  // corresponds to "no assertion criteria provided"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED = 2;
+  // corresponds to "criteria provided, single submitter"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER = 3;
+  // corresponds to "criteria provided, multiple submitters, no conflicts"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_CRITERIA_PROVIDED_MULTIPLE_SUBMITTERS_NO_CONFLICTS = 4;
+  // corresponds to "criteria provided, conflicting classifications"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_CRITERIA_PROVIDED_CONFLICTING_CLASSIFICATIONS = 5;
+  // corresponds to "reviewed by expert panel"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_REVIEWED_BY_EXPERT_PANEL = 6;
+  // corresponds to "practice guideline"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_PRACTICE_GUIDELINE = 7;
+  // corresponds to "no classifications from unflagged records"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATIONS_FROM_UNFLAGGED_RECORDS = 8;
+  // corresponds to "no classification for the single variant"
+  AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT = 9;
+}
+
+// Enumeration describing origin.
+enum Origin {
+  // unspecified origin
+  ORIGIN_UNSPECIFIED = 0;
+  // corresponds to "germline"
+  ORIGIN_GERMLINE = 1;
+  // corresponds to "somatic"
+  ORIGIN_SOMATIC = 2;
+  // corresponds to "de novo"
+  ORIGIN_DE_NOVO = 3;
+  // corresponds to "not provided"
+  ORIGIN_NOT_PROVIDED = 4;
+  // corresponds to "inherited"
+  ORIGIN_INHERITED = 5;
+  // corresponds to "maternal"
+  ORIGIN_MATERNAL = 6;
+  // corresponds to "paternal"
+  ORIGIN_PATERNAL = 7;
+  // corresponds to "uniparental"
+  ORIGIN_UNIPARENTAL = 8;
+  // corresponds to "biparental"
+  ORIGIN_BIPARENTAL = 9;
+  // corresponds to "not-reported"
+  ORIGIN_NOT_REPORTED = 10;
+  // corresponds to "tested-inconclusive"
+  ORIGIN_TESTED_INCONCLUSIVE = 11;
+  // corresponds to "not applicable"
+  ORIGIN_NOT_APPLICABLE = 12;
+  // corresponds to "experimentally generated"
+  ORIGIN_EXPERIMENTALLY_GENERATED = 13;
+}
+
+// Enumeration describing chromosome.
+enum Chromosome {
+  // unspecified chromosome
+  CHROMOSOME_UNSPECIFIED = 0;
+  // corresponds to "1"
+  CHROMOSOME_1 = 1;
+  // corresponds to "2"
+  CHROMOSOME_2 = 2;
+  // corresponds to "3"
+  CHROMOSOME_3 = 3;
+  // corresponds to "4"
+  CHROMOSOME_4 = 4;
+  // corresponds to "5"
+  CHROMOSOME_5 = 5;
+  // corresponds to "6"
+  CHROMOSOME_6 = 6;
+  // corresponds to "7"
+  CHROMOSOME_7 = 7;
+  // corresponds to "8"
+  CHROMOSOME_8 = 8;
+  // corresponds to "9"
+  CHROMOSOME_9 = 9;
+  // corresponds to "10"
+  CHROMOSOME_10 = 10;
+  // corresponds to "11"
+  CHROMOSOME_11 = 11;
+  // corresponds to "12"
+  CHROMOSOME_12 = 12;
+  // corresponds to "13"
+  CHROMOSOME_13 = 13;
+  // corresponds to "14"
+  CHROMOSOME_14 = 14;
+  // corresponds to "15"
+  CHROMOSOME_15 = 15;
+  // corresponds to "16"
+  CHROMOSOME_16 = 16;
+  // corresponds to "17"
+  CHROMOSOME_17 = 17;
+  // corresponds to "18"
+  CHROMOSOME_18 = 18;
+  // corresponds to "19"
+  CHROMOSOME_19 = 19;
+  // corresponds to "20"
+  CHROMOSOME_20 = 20;
+  // corresponds to "21"
+  CHROMOSOME_21 = 21;
+  // corresponds to "22"
+  CHROMOSOME_22 = 22;
+  // corresponds to "X"
+  CHROMOSOME_X = 23;
+  // corresponds to "Y"
+  CHROMOSOME_Y = 24;
+  // corresponds to "MT"
+  CHROMOSOME_MT = 25;
+  // corresponds to "PAR"
+  CHROMOSOME_PAR = 26;
+  // corresponds to "Un"
+  CHROMOSOME_UN = 27;
+}
+
+// Enumeration describing comment type.
+enum CommentType {
+  // unspecified comment type
+  COMMENT_TYPE_UNSPECIFIED = 0;
+  // corresponds to "public"
+  COMMENT_TYPE_PUBLIC = 1;
+  // corresponds to "ConvertedByNCBI"
+  COMMENT_TYPE_CONVERTED_BY_NCB = 2;
+  // corresponds to "MissingFromAssembly"
+  COMMENT_TYPE_MISSING_FROM_ASSEMBLY = 3;
+  // corresponds to "GenomicLocationNotEstablished"
+  COMMENT_TYPE_GENOMIC_LOCATION_NOT_ESTABLISHED = 4;
+  // corresponds to "LocationOnGenomeAndProductNotAligned"
+  COMMENT_TYPE_LOCATION_ON_GENOME_AND_PRODUCT_NOT_ALIGNED = 5;
+  // corresponds to "DeletionComment"
+  COMMENT_TYPE_DELETION_COMMENT = 6;
+  // corresponds to "MergeComment"
+  COMMENT_TYPE_MERGE_COMMENT = 7;
+  // corresponds to "AssemblySpecificAlleleDefinition"
+  COMMENT_TYPE_ASSEMBLY_SPECIFIC_ALLELE_DEFINITION = 8;
+  // corresponds to "AlignmentGapMakesAppearInconsistent"
+  COMMENT_TYPE_ALIGNMENT_GAP_MAKES_APPEAR_INCONSISTENT = 9;
+  // corresponds to "ExplanationOfClassification"
+  COMMENT_TYPE_EXPLANATION_OF_CLASSIFICATION = 10;
+  // corresponds to "FlaggedComment"
+  COMMENT_TYPE_FLAGGED_COMMENT = 11;
+}
+
+// Enumeration describing nucleotide sequence.
+enum NucleotideSequence {
+  // unspecified nucleotide sequence
+  NUCLEOTIDE_SEQUENCE_UNSPECIFIED = 0;
+  // corresponds to "genomic, top-level"
+  NUCLEOTIDE_SEQUENCE_GENOMIC_TOP_LEVEL = 1;
+  // corresponds to "genomic, RefSeqGene"
+  NUCLEOTIDE_SEQUENCE_GENOMIC_REF_SEQ_GENE = 2;
+  // corresponds to "genomic"
+  NUCLEOTIDE_SEQUENCE_GENOMIC = 3;
+  // corresponds to "coding"
+  NUCLEOTIDE_SEQUENCE_CODING = 4;
+  // corresponds to "non-coding"
+  NUCLEOTIDE_SEQUENCE_NON_CODING = 5;
+  // corresponds to "protein"
+  NUCLEOTIDE_SEQUENCE_PROTEIN = 6;
+}
+
+// Enumeration describing protein sequence.
+enum ProteinSequence {
+  // unspecified protein sequence
+  PROTEIN_SEQUENCE_UNSPECIFIED = 0;
+  // corresponds to "protein"
+  PROTEIN_SEQUENCE_PROTEIN = 1;
+}
+
+// Enumeration describing phenotype set.
+enum PhenotypeSetType {
+  // unspecified phenotype set
+  PHENOTYPE_SET_TYPE_UNSPECIFIED = 0;
+  // corresponds to "Disease"
+  PHENOTYPE_SET_TYPE_DISEASE = 1;
+  // corresponds to "DrugResponse"
+  PHENOTYPE_SET_TYPE_DRUG_RESPONSE = 2;
+  // corresponds to "Finding"
+  PHENOTYPE_SET_TYPE_FINDING = 3;
+  // corresponds to "PhenotypeInstruction"
+  PHENOTYPE_SET_TYPE_PHENOTYPE_INSTRUCTION = 4;
+  // corresponds to "TraitChoice"
+  PHENOTYPE_SET_TYPE_TRAIT_CHOICE = 5;
+}
+
+// Enumeration describing variation type.
+enum VariationType {
+  // unspecified variation type
+  VARIATION_TYPE_UNSPECIFIED = 0;
+  // corresponds to "Diplotype"
+  VARIATION_TYPE_DIPLOTYPE = 1;
+  // corresponds to "CompoundHeterozygote"
+  VARIATION_TYPE_COMPOUND_HETEROZYGOTE = 2;
+  // corresponds to "Distinct chromosomes"
+  VARIATION_TYPE_DISTINCT_CHROMOSOMES = 3;
+}
+
+// Enumeration describing evidence type.
+//
+// Corresponds to "EvidenceType" in XSD.
+enum EvidenceType {
+  // unspecified evidence type
+  EVIDENCE_TYPE_UNSPECIFIED = 0;
+  // corresponds to "Genetic"
+  EVIDENCE_TYPE_GENETIC = 1;
+  // corresponds to "Experimental"
+  EVIDENCE_TYPE_EXPERIMENTAL = 2;
+  // corresponds to "Population"
+  EVIDENCE_TYPE_POPULATION = 3;
+  // corresponds to "Computational"
+  EVIDENCE_TYPE_COMPUTATIONAL = 4;
+}
+
+// Enumeration describing method list.
+//
+// Corresponds to "MethodListType" in XSD.
+enum MethodListType {
+  // unspecified method
+  METHOD_LIST_TYPE_UNSPECIFIED = 0;
+  // corresponds to "literature only"
+  METHOD_LIST_TYPE_LITERATURE_ONLY = 1;
+  // corresponds to "reference population"
+  METHOD_LIST_TYPE_REFERENCE_POPULATION = 2;
+  // corresponds to "case-control"
+  METHOD_LIST_TYPE_CASE_CONTROL = 3;
+  // corresponds to "clinical testing"
+  METHOD_LIST_TYPE_CLINICAL_TESTING = 4;
+  // corresponds to "in vitro"
+  METHOD_LIST_TYPE_IN_VITRO = 5;
+  // corresponds to "in vivo"
+  METHOD_LIST_TYPE_IN_VIVO = 6;
+  // corresponds to "research"
+  METHOD_LIST_TYPE_RESEARCH = 7;
+  // corresponds to "curation"
+  METHOD_LIST_TYPE_CURATION = 8;
+  // corresponds to "not provided"
+  METHOD_LIST_TYPE_NOT_PROVIDED = 9;
+  // corresponds to "provider interpretation"
+  METHOD_LIST_TYPE_PROVIDER_INTERPRETATION = 10;
+  // corresponds to "phenotyping only"
+  METHOD_LIST_TYPE_PHENOTYPING_ONLY = 11;
+}
+
+// Enumeration describing HGVS types.
+enum HgvsType {
+  // unspecified HGVS type
+  HGVS_TYPE_UNSPECIFIED = 0;
+  // corresponds to "coding"
+  HGVS_TYPE_CODING = 1;
+  // corresponds to "genomic"
+  HGVS_TYPE_GENOMIC = 2;
+  // corresponds to "genomic, top-level"
+  HGVS_TYPE_GENOMIC_TOP_LEVEL = 3;
+  // corresponds to "non-coding"
+  HGVS_TYPE_NON_CODING = 4;
+  // corresponds to "protein"
+  HGVS_TYPE_PROTEIN = 5;
+}
+
+// Enumeration describing clinical features affected status.
+enum ClinicalFeaturesAffectedStatusType {
+  // unspecified status
+  CLINICAL_FEATURES_AFFECTED_STATUS_TYPE_UNSPECIFIED = 0;
+  // corresponds to "present"
+  CLINICAL_FEATURES_AFFECTED_STATUS_TYPE_PRESENT = 1;
+  // corresponds to "absent"
+  CLINICAL_FEATURES_AFFECTED_STATUS_TYPE_ABSENT = 2;
+  // corresponds to "not tested"
+  CLINICAL_FEATURES_AFFECTED_STATUS_TYPE_NOT_TESTED = 3;
+}
+
+// Enumeration describing haplotype variation types.
+enum HaploVariationType {
+  // unspecified haplotype variation type
+  HAPLO_VARIATION_TYPE_UNSPECIFIED = 0;
+  // corresponds to "Haplotype"
+  HAPLO_VARIATION_TYPE_HAPLOTYPE = 1;
+  // corresponds to "Haplotype, single variant"
+  HAPLO_VARIATION_TYPE_HAPLOTYPE_SINGLE_VARIANT = 2;
+  // corresponds to "Variation"
+  HAPLO_VARIATION_TYPE_VARIATION = 3;
+  // corresponds to "Phase unknown"
+  HAPLO_VARIATION_TYPE_PHASE_UNKNOWN = 4;
+  // corresponds to "Haplotype defined by a single variant"
+  HAPLO_VARIATION_TYPE_HAPLOTYPE_DEFINED_BY_SINGLE_VARIANT = 5;
+}
+
+// A structure to support reporting unformatted content, with type and
+// source specified.
+message Comment {
+  // The comment's value.
+  string value = 1;
+  // The optional comment data source.
+  optional string data_source = 2;
+  // The comment's type.
+  optional CommentType type = 3;
+}
+
+// This structure is used to represent how an object described in the
+// submission relates to objects in other databases.
+message Xref {
+  // The name of the database. When there is an overlap with sequence
+  // databases, that name is used.
+  string db = 1;
+  // The identifier used by the database. Being exported as a string
+  // even though internally the database has rules for defining which datases use
+  // integer identifers.
+  string id = 2;
+  // Used to differentiate between different types of identifiers that
+  // a database may provide.
+  optional string type = 3;
+  // Optional URL to the database entry.
+  optional string url = 4;
+  // The status; defaults to "current".
+  optional Status status = 5;
+}
+
+// Description of a citation.
+message Citation {
+  // Local ID with source.
+  message IdType {
+    // The citation's value.
+    string value = 1;
+    // If there is an identifier, what database provides it.
+    string source = 2;
+  }
+
+  /* nested elements */
+
+  // Optional list of IDs.
+  repeated IdType ids = 1;
+  // Optional URL.
+  optional string url = 2;
+  // Optional citation text.
+  optional string citation_text = 3;
+
+  /* attributes */
+
+  // This maintained distinct from publication types in PubMed and
+  // established by GTR curators.  The default is 'general'.
+  optional string type = 4;
+  // Corresponds to the abbreviation reported by GTR.
+  optional string abbrev = 5;
+}
+
+// The attribute is a general element to represent a defined set of data
+// qualified by an enumerated set of types. For each attribute element, the value will
+// be a character string and is optional. Source shall be used to store identifiers for
+// supplied data from source other than the submitter (e.g. SequenceOntology). The data
+// submitted where Type="variation" shall be validated against sequence_alternation in
+// Sequence Ontology http://www.sequenceontology.org/. This is to be a generic version
+// of AttributeType and should be used with extension when it is used to specify Type
+// and its enumerations.
+message BaseAttribute {
+  // The attribute's value; can be empty.
+  optional string value = 1;
+  // The optional integer value.
+  optional int64 integer_value = 2;
+  // The optional date value.
+  optional google.protobuf.Timestamp date_value = 3;
+}
+
+// Description of a nucleotide sequence expression.
+//
+// Corresponds to `typeNucleotideSequenceExpression`
+message HgvsNucleotideExpression {
+  // The expression values.
+  string expression = 1;
+  // The type of the nucleotide sequence.
+  optional NucleotideSequence sequence_type = 2;
+  // Optional sequence accession version.
+  optional string sequence_accession_version = 3;
+  // Optional sequence accession.
+  optional string sequence_accession = 4;
+  // Optional sequence version.
+  optional int32 sequence_version = 5;
+  // Optional description of the change.
+  optional string change = 6;
+  // Optional assembly information.
+  optional string assembly = 7;
+  // Optional submission information.
+  optional string submitted = 8;
+  // Optional MANE Select flag.
+  optional bool mane_select = 9;
+  // Optional MANE Plus Clinical flag.
+  optional bool mane_plus_clinical = 10;
+}
+
+
+// Description of a protein sequence expression.
+//
+// Corresponds to `typeProteinSequenceExpression` in XSD.
+message HgvsProteinExpression {
+  // The expression values.
+  string expression = 1;
+  // Optional sequence accession version.
+  optional string sequence_accession_version = 2;
+  // Optional sequence accession.
+  optional string sequence_accession = 3;
+  // Optional sequence version.
+  optional int32 sequence_version = 4;
+  // Optional description of the change.
+  optional string change = 5;
+}
+
+// A structure to represent an HGVS expression for a nucleotide sequence
+// variant, along with the predicted protein change and the predicted molecular
+// consequence. Also used to represent only the protein change if that is all that has
+// been reported.
+//
+// Corresponds to `typeHVSExpression` in XSD.
+message HgvsExpression {
+  /* nested elements */
+
+  // Optional nucleotide sequence expression.
+  optional HgvsNucleotideExpression nucleotide_expression = 1;
+  // Optional protein sequence expression.
+  optional HgvsProteinExpression protein_expression = 2;
+  // List of molecular consequences.
+  repeated Xref molecular_consequences = 3;
+
+  /* attributes */
+
+  // Type of HGVS expression.
+  HgvsType type = 4;
+  // Optional assembly.
+  optional string assembly = 5;
+}
+
+// // Phenotype list details.
+// message PhenotypeListDetailsType {
+//   // Local type for phenotype.
+//   message Phenotype {
+//     message XRefList {
+//       repeated Xref xrefs = 1;
+//     }
+
+//     /* nested elements */
+//     repeated XRefList xref_list = 1;
+
+//     /* attributes */
+
+//     // `name` attribute
+//     string name = 2;
+//     // `target_id` attribute
+//     int64 target_id = 3;
+//     // `AffectedStatus` attribute.
+//     optional string affected_status = 4;
+//   }
+
+//   /* nested elements */
+
+//   // List phenotypes.
+//   repeated Phenotype phenotypes = 1;
+//   // List of phenotype details.
+//   repeated PhenotypeDetails phenotype_details = 2;
+
+//   /* attributes */
+
+//   // Type of the phenotype set.
+//   PhenotypeSetType phenotype_set_type = 3;
+// }
+
+// Description of a software.
+message Software {
+  // Name of the software.
+  string name = 1;
+  // Version of the software; optional.
+  optional string version = 2;
+  // Purpose of the software; optional.
+  optional string purpose = 3;
+}
+
+// Description of the history of a record.
+//
+// Called ``typeDescriptionHistory`` in XSD.
+message DescriptionHistory {
+  // The pathogenicity description.
+  string description = 1;
+  // The date of the description.
+  optional google.protobuf.Timestamp dated = 2;
+}
+
+// Entry in an element set.
+//
+// Called ``SetElementSetType`` in XSD.
+message GenericSetElement {
+  // The element's value.
+  string value = 1;
+  // The element's type.
+  string type = 2;
+  // List of citations.
+  repeated Citation citations = 3;
+  // List of xrefs.
+  repeated Xref xrefs = 4;
+  // List of comments.
+  repeated Comment comments = 5;
+}
+
+// Common type for an entry in a set of attributes.
+//
+// Called ``typeAttributeSet`` in XSD.
+message AttributeSetElement {
+  // Extend the BaseAttribute with a `type` field.
+  message Attribute {
+    // The base value.
+    BaseAttribute base = 1;
+    // The type of the attribute.
+    string type = 2;
+  }
+
+  // The attribute value.
+  Attribute attribute = 1;
+  // List of xrefs.
+  repeated Xref xrefs = 2;
+  // List of citations.
+  repeated Citation citations = 3;
+  // List of comments.
+  repeated Comment comments = 4;
+}
+
+// Type to describe traits in various places.
+message Trait {
+  // Local type for trait relationship.
+  message TraitRelationship {
+    // Local enumeration for trait types.
+    //
+    // NB: only DrugResponseAndDisease is used in the XML.
+    enum Type {
+      // unspecified trait type
+      TYPE_UNSPECIFIED = 0;
+      // corresponds to "phenotype"
+      TYPE_PHENOTYPE = 1;
+      // corresponds to "Subphenotype"
+      TYPE_SUBPHENOTYPE = 2;
+      // corresponds to "DrugResponseAndDisease"
+      TYPE_DRUG_RESPONSE_AND_DISEASE = 3;
+      // corresponds to "co-occuring condition"
+      TYPE_CO_OCCURING_CONDITION = 4;
+      // corresponds to "Finding member"
+      TYPE_FINDING_MEMBER = 5;
+    }
+
+    /* nested elements */
+
+    // names
+    //
+    // NB: in XSD this is explictely given as unbounded but XML always has
+    // one element
+    repeated GenericSetElement names = 1;
+    // symbols (NB: never occur in the XML)
+    repeated GenericSetElement symbols = 2;
+    // attributes (NB: never occur in the XML)
+    repeated AttributeSetElement attributes = 3;
+    // Citation list.
+    repeated Citation citations = 4;
+    // Xref list.
+    repeated Xref xrefs = 5;
+    // Comment list.
+    repeated Comment comments = 6;
+    // Sources
+    repeated string sources = 7;
+
+    /* attributes */
+
+    // Trait type.
+    Type type = 8;
+  }
+
+  // names
+  repeated GenericSetElement names = 1;
+  // symbols
+  repeated GenericSetElement symbols = 2;
+  // attributes
+  repeated AttributeSetElement attributes = 3;
+  // Trait relationships
+  repeated TraitRelationship trait_relationships = 4;
+  // Citation list.
+  repeated Citation citations = 5;
+  // Xref list.
+  repeated Xref xrefs = 6;
+  // Comment list.
+  repeated Comment comments = 7;
+  // Sources
+  repeated string sources = 8;
+}
+
+// Describes an indication.
+//
+// NB: Called "IndicationType" in the XSD.
+message Indication {
+  // Enumeration for the indication type.
+  enum Type {
+    // unspecified indication type.
+    TYPE_UNSPECIFIED = 0;
+    // corresponds to "Indication"
+    TYPE_INDICATION = 1;
+  }
+
+  /* nested elements */
+
+  // Represents the value for the test indication as a name of a trait.
+  repeated Trait traits = 1;
+  // List of names.
+  repeated GenericSetElement names = 2;
+  // List of attributes.
+  repeated AttributeSetElement attributes = 3;
+  // List of xrefs.
+  repeated Xref xrefs = 4;
+  // List of citations.
+  repeated Citation citations = 5;
+  // List of comments.
+  repeated Comment comments = 6;
+
+  /* attributes */
+
+  Type type = 7;
+}
+
+// A set of ``Trait`` objects.
+//
+// NB: Called "ClinAsserTraitSetType" in the XSD.
+message TraitSet {
+  // Local type.
+  enum Type {
+    // unspecified type
+    TYPE_UNSPECIFIED = 0;
+    // corresponds to "Disease"
+    TYPE_DISEASE = 1;
+    // corresponds to "DrugResponse"
+    TYPE_DRUG_RESPONSE = 2;
+    // corresponds to "Finding"
+    TYPE_FINDING = 3;
+    // corresponds to "PhenotypeInstruction"
+    TYPE_PHENOTYPE_INSTRUCTION = 4;
+    // corresponds to "TraitChoice"
+    TYPE_TRAIT_CHOICE = 5;
+  }
+
+  /* nested elements */
+
+  // The traits.
+  repeated Trait traits = 1;
+  // The names.
+  repeated GenericSetElement names = 2;
+  // The symbols.
+  repeated GenericSetElement symbols = 3;
+  // The attributes.
+  repeated AttributeSetElement attributes = 4;
+  // List of xrefs.
+  repeated Xref xrefs = 5;
+  // List of citations.
+  repeated Citation citations = 6;
+  // List of comments.
+  repeated Comment comments = 7;
+
+  /* attributes */
+
+  // The type.
+  Type type = 8;
+  // Date of last evaluation.
+  optional google.protobuf.Timestamp date_last_evaluated = 9;
+  // ID.
+  optional int64 id = 10;
+  // Whether contributes to aggregate classification.
+  optional bool contributes_to_aggregate_classification = 11;
+  // Lower level of evidence.
+  optional bool lower_level_of_evidence = 12;
+  // Explanation of or multiple conditions.
+  optional string multiple_condition_explanation = 13;
+}
+
+// Aggregated germline classification info.
+//
+// Corresponds to ``typeAggregatedGermlineClassification`` in XSD.
+message AggregatedGermlineClassification {
+  /* nested elements */
+
+  // The aggregate review status based on all germline submissions
+  // for this record.
+  AggregateGermlineReviewStatus review_status = 1;
+  // We are not providing an enumeration for the values we report
+  // for germline classification within the xsd. Details are in
+  // https://github.com/ncbi/clinvar/ClassificationOnClinVar.md
+  //
+  optional string description = 2;
+  // Explanation is used only when the description is 'conflicting
+  // data from submitters' The element summarizes the conflict.
+  optional Comment explanation = 3;
+  // List of xrefs.
+  repeated Xref xrefs = 4;
+  // List of citations.
+  repeated Citation citations = 5;
+  // List of comments.
+  repeated Comment comments = 6;
+
+  // History information.
+  repeated DescriptionHistory history_records = 7;
+  // List of conditions.
+  repeated TraitSet conditions = 8;
+
+  /* attributes */
+
+  // Date of last evaluation.
+  optional google.protobuf.Timestamp date_last_evaluated = 9;
+  // Date of creation.
+  google.protobuf.Timestamp date_created = 10;
+  // Date of most recent submission.
+  google.protobuf.Timestamp most_recent_submission = 11;
+  // Number of submitters.
+  optional int32 number_of_submitters = 12;
+  // Number of submissions.
+  optional int32 number_of_submissions = 13;
+}
+
+// Aggregated somatic clinical impact info.
+message AggregatedSomaticClinicalImpact {
+  /* nested elements */
+
+  // The aggregate review status based on all somatic clinical
+  // impact submissions for this record.
+  AggregateSomaticClinicalImpactReviewStatus review_status = 1;
+  // We are not providing an enumeration for the values we report
+  // for somatic clinical impact classification within the xsd. Details are in
+  // https://github.com/ncbi/clinvar/ClassificationOnClinVar.md
+  optional string description = 2;
+  // List of xrefs.
+  repeated Xref xrefs = 3;
+  // List of citations.
+  repeated Citation citations = 4;
+  // List of comments.
+  repeated Comment comments = 5;
+
+  // History information.
+  repeated DescriptionHistory history_records = 6;
+  // List of conditions.
+  repeated TraitSet conditions = 7;
+
+  /* attributes */
+
+  // Date of last evaluation.
+  optional google.protobuf.Timestamp date_last_evaluated = 8;
+  // Date of creation.
+  google.protobuf.Timestamp date_created = 9;
+  // Date of most recent submission.
+  google.protobuf.Timestamp most_recent_submission = 10;
+  // Number of submitters.
+  optional int32 number_of_submitters = 11;
+  // Number of submissions.
+  optional int32 number_of_submissions = 12;
+}
+
+// Aggregated oncogenicity classification info.
+message AggregatedOncogenicityClassification {
+  /* nested elements */
+
+  // The aggregate review status based on all somatic clinical
+  // impact submissions for this record.
+  AggregateOncogenicityReviewStatus review_status = 1;
+  // We are not providing an enumeration for the values we report
+  // for somatic clinical impact classification within the xsd. Details are in
+  // https://github.com/ncbi/clinvar/ClassificationOnClinVar.md
+  optional string description = 2;
+  // List of xrefs.
+  repeated Xref xrefs = 3;
+  // List of citations.
+  repeated Citation citations = 4;
+  // List of comments.
+  repeated Comment comments = 5;
+
+  // History information.
+  repeated DescriptionHistory history_records = 6;
+  // List of conditions.
+  repeated TraitSet conditions = 7;
+
+  /* attributes */
+
+  // Date of last evaluation.
+  optional google.protobuf.Timestamp date_last_evaluated = 8;
+  // Date of creation.
+  google.protobuf.Timestamp date_created = 9;
+  // Date of most recent submission.
+  google.protobuf.Timestamp most_recent_submission = 10;
+  // Number of submitters.
+  optional int32 number_of_submitters = 11;
+  // Number of submissions.
+  optional int32 number_of_submissions = 12;
+}
+
+// Used to bundle different types of Classifications (germline,
+// oncogenic, somatic clinical impact) ; Supports summary as
+// well as submission details.
+//
+// NB: called "typeAggregateClassificationSet" in XSD.
+message AggregateClassificationSet {
+  // The aggregate germline classification.
+  optional AggregatedGermlineClassification germline_classification = 1;
+  // The aggregate somatic clinical impact.
+  repeated AggregatedSomaticClinicalImpact somatic_clinical_impacts = 2;
+  // The aggregate oncogenicity classification.
+  optional AggregatedOncogenicityClassification oncogenicity_classification = 3;
+}
+
+// Describes the clinical significance of a variant.
+//
+// Corresponds to `ClinicalSignificanceType` in XSD.
+message ClinicalSignificance {
+  /* contained elements */
+
+  // The optional review status.
+  optional SubmitterReviewStatus review_status = 1;
+  // Structure used to support old data of AlleleDescriptionSet
+  // within Co-occurenceSet.
+  //
+  // NB: unused in XML
+  optional string description = 2;
+  // Optional explanatory comment.
+  //
+  // Explanation is used only when the description is 'conflicting
+  // data from submitters' The element summarizes the conflict.
+  //
+  // NB: unused in XML
+  optional Comment explanation = 3;
+  // Optional list of xrefs.
+  repeated Xref xrefs = 4;
+  // Optional list of citations.
+  repeated Citation citations = 5;
+  // Optional list of comments.
+  repeated Comment comments = 6;
+
+  /* attributes */
+
+  // Date of last evaluation.
+  //
+  // NB: unused in XML
+  optional google.protobuf.Timestamp date_last_evaluated = 7;
+}
+
+// This is to be used within co-occurrence set.
+//
+// Corresponds to `typeAlleleDescr` in XSD.
+message AlleleDescription {
+  // Enumeration for relative orientation.
+  //
+  // NB: unused in XML
+  enum RelativeOrientation {
+    // unspecified relative orientation
+    RELATIVE_ORIENTATION_UNSPECIFIED = 0;
+    // corresponds to "cis"
+    RELATIVE_ORIENTATION_CIS = 1;
+    // corresponds to "trans"
+    RELATIVE_ORIENTATION_TRANS = 2;
+    // corresponds to "unknown"
+    RELATIVE_ORIENTATION_UNKNOWN = 3;
+  }
+
+  // The name of the allele.
+  string name = 1;
+  // Optional relative orientation.
+  //
+  // NB: Unused in XML
+  optional RelativeOrientation relative_orientation = 2;
+  // Optional zygosity.
+  optional Zygosity zygosity = 3;
+  // Optional clinical significance.
+  //
+  // Corresponds to `ClinicalSignificanceType` in XSD.
+  optional ClinicalSignificance clinical_significance = 4;
+}
+
+// A structure to support reporting of an accession, its version, the
+// date its status changed, and text describing that change.
+//
+// Corresponds to `typeRecordHistory` in XSD.
+message RecordHistory {
+  /* nested elements */
+
+  // Optional comment on the history record.
+  optional Comment comment = 1;
+
+  /* attributes */
+
+  // The accession.
+  string accession = 2;
+  // The version.
+  int32 version = 3;
+  // The date the record.
+  google.protobuf.Timestamp date_changed = 4;
+  // Attribute @VaritionID is only populated for VCV, where @Accession
+  // is like VCV000000009
+  optional int64 variation_id = 5;
+}
+
+// Report classification of a variant for a SCV.
+//
+// Corresponds to `ClassificationTypeSCV` in XSD.
+message ClassificationScv {
+  // Clinical impact of a somatic variatn.
+  message SomaticClinicalImpact {
+    // The somatic clinical impact value.
+    string value = 1;
+
+    /* attributes */
+
+    // Type of the clinical impact assertion.
+    optional string clinical_impact_assertion_type = 2;
+    // Clinical impact significance.
+    optional string clinical_impact_clinical_significance = 3;
+    // Name of the drug for the therapeutic assertion.
+    optional string drug_for_therapeutic_assertion = 4;
+  }
+
+  // Classification score description.
+  message ClassificationScore {
+    // The score's value.
+    double value = 1;
+    // The score's type; optional.
+    optional string type = 2;
+  }
+
+  /* nested elements */
+
+  // The field's review status.
+  SubmitterReviewStatus review_status = 1;
+  // The germline classification; mutually exlusive with `somatic_clinical_impact`
+  // and `oncogenicity_classification`.
+  optional string germline_classification = 2;
+  // Information on the clinical impact; mutually exlusive with `germline_classification`
+  // and `oncogenicity_classification`.
+  optional SomaticClinicalImpact somatic_clinical_impacts = 3;
+  // The oncogenicity classification; mutually exlusive with `germline_classification`
+  // and `oncogenicity_classification`.
+  optional string oncogenicity_classification = 4;
+  // Optional explanation of classification.
+  optional string explanation_of_classification = 5;
+  // List of classification scores.
+  repeated ClassificationScore classification_scores = 6;
+  // List of xrefs.
+  repeated Xref xrefs = 7;
+  // List of citations.
+  repeated Citation citations = 8;
+  // List of comments.
+  repeated Comment comments = 9;
+
+  /* attributes */
+
+  // Date of last evaluation.
+  optional google.protobuf.Timestamp date_last_evaluated = 10;
+}
+
+// Set of attributes for the primary submitter. Any addtional submitters
+// are captured in the AdditionalSubmitters element.
+message SubmitterIdentifiers {
+  // Name of submitter.
+  string submitter_name = 1;
+  // Organization ID.
+  int64 org_id = 2;
+  // Organization category.
+  string org_category = 3;
+  // Organization abbreviation; optional.
+  optional string org_abbreviation = 4;
+}
+
+// Definition of a species.
+message Species {
+  // Name of the species.
+  string name = 1;
+  // Optional taxonomy ID.
+  optional int32 taxonomy_id = 2;
+}
+
+// Interpreted condition for an RCV record.
+//
+// Corresponds to `typeRCVInterpretedCondition` in XSD.
+message ClassifiedCondition {
+  // Condition value.
+  string value = 1;
+  // Database name.
+  optional string db = 2;
+  // Identifier in database.
+  optional string id = 3;
+}
+
+// Inside ClinicalAssertion, a structure to support reporting of an
+// accession, its version, the date its status changed, and text describing that
+// change.
+//
+// Corresponds to `typeClinicalAssertionRecordHistory` in XSD.
+message ClinicalAssertionRecordHistory {
+  // Optional comment.
+  optional Comment comment = 1;
+  // Accession.
+  string accession = 2;
+  // Optional version.
+  optional int32 version = 3;
+  // Date of the record.
+  google.protobuf.Timestamp date_changed = 4;
+}
+
+// Description of a functional consequence.
+//
+// Corresponds to `typeFunctionalConsequence` in XSD.
+message FunctionalConsequence {
+  /* nested elements */
+
+  // List of xrefs.
+  repeated Xref xrefs = 1;
+  // List of citations.
+  repeated Citation citations = 2;
+  // List of comments.
+  repeated Comment comments = 3;
+
+  /* attributes */
+
+  // Value of functional consequence.
+  string value = 4;
+}
+
+// Type for the tag `GeneralCitations`.
+message GeneralCitations {
+  // List of xrefs.
+  repeated Xref xrefs = 1;
+  // List of citations.
+  repeated Citation citations = 2;
+}
+
+// This refers to the zygosity of the variant being asserted.
+message Cooccurrence {
+  // Optional zygosity.
+  optional Zygosity zygosity = 1;
+  // The allele descriptions.
+  repeated AlleleDescription allele_descriptions = 2;
+  // The optional count.
+  optional int32 count = 3;
+}
+
+// A structure to support reporting the name of a submitter, its
+// organization id, and its abbreviation and type.
+message Submitter {
+  // Enumeration of submitter kind.
+  enum Type {
+    // unspecified submitter type
+    TYPE_UNSPECIFIED = 0;
+    // corresponds to "primary"
+    TYPE_PRIMARY = 1;
+    // corresponds to "secondary"
+    TYPE_SECONDARY = 2;
+    // corresponds to "behalf"
+    TYPE_BEHALF = 3;
+  }
+
+  // The submitter's identifier.
+  SubmitterIdentifiers submitter_identifiers = 1;
+  // The submitter type.
+  Type type = 2;
+}
+
+
+// Haploinsufficiency/Triplosensitivity of gene.
+message DosageSensitivity {
+  /* nested elements */
+
+  // Value.
+  string value = 1;
+
+  /* attributes */
+
+  // Optional last evaluated date.
+  optional google.protobuf.Timestamp last_evaluated = 2;
+  // URL to ClinGen.
+  optional string clingen = 3;
+}
+
+// A name with an optional type.
+//
+// Corresponds to `typeNames` in XSD.
+message OtherName {
+  // The name's value.
+  string value = 1;
+  // The name's type.
+  optional string type = 2;
+}
+
+// A structure to support reporting of an accession, its version, the
+// date it was deleted and a free-text summary of why it was deleted.
+//
+// Corresponds to `typeDeletedSCV`.
+message DeletedScv {
+  // The accession.
+  string accession = 1;
+  // The version.
+  int32 version = 2;
+  // The date of deletion.
+  google.protobuf.Timestamp date_deleted = 3;
+}
+
+// There can be multiple types of location, and the locations may have
+// identifiers in other databases.
+//
+// Corresponds to `typeLocation` in XSD.
+message Location {
+  // Local type for sequence location.
+  message SequenceLocation {
+    // Local enum for the assembly status.
+    enum AssemblyStatus {
+      // unspecified assembly status
+      ASSEMBLY_STATUS_UNSPECIFIED = 0;
+      // corresponds to "current"
+      ASSEMBLY_STATUS_CURRENT = 1;
+      // corresponds to "previous"
+      ASSEMBLY_STATUS_PREVIOUS = 2;
+    }
+
+    // forDisplay value.
+    optional bool for_display = 1;
+    // Name of assembly.
+    string assembly = 2;
+    // Chromosomeof variant.
+    Chromosome chr = 3;
+    // Optional chromosome accession.
+    optional string accession = 4;
+    // Outer start position.
+    optional uint32 outer_start = 5;
+    // Inner start position.
+    optional uint32 inner_start = 6;
+    // Start position.
+    optional uint32 start = 7;
+    // Stop position.
+    optional uint32 stop = 8;
+    // Inner stop position.
+    optional uint32 inner_stop = 9;
+    // Outer stop position.
+    optional uint32 outer_stop = 10;
+    // Display start position.
+    optional uint32 display_start = 11;
+    // Display stop position.
+    optional uint32 display_stop = 12;
+    // Strand.
+    optional string strand = 13;
+    // Variant length.
+    optional uint32 variant_length = 14;
+    // Reference allele.
+    optional string reference_allele = 15;
+    // Alternate allele.
+    optional string alternate_allele = 16;
+    // Assembly accession version.
+    optional string assembly_accession_version = 17;
+    // Assembly status.
+    optional AssemblyStatus assembly_status = 18;
+    // Position in VCF.
+    optional uint32 position_vcf = 19;
+    // Reference allele in VCF.
+    optional string reference_allele_vcf = 20;
+    // Alternate allele in VCF.
+    optional string alternate_allele_vcf = 21;
+    // For display length.
+    optional uint32 for_display_length = 22;
+  }
+
+  // Cytogenetic location is maintained independent of sequence
+  // location, and can be submitted or computed from the sequence location.
+  //
+  // Between 0 and 4 entries.
+  repeated string cytogenetic_locations = 1;
+  // Location on a defined sequence, with reference and alternate
+  // allele, and start /stop values depending on the specificity with which the
+  // variant location is known. The number system of offset 1, and
+  // right-justified to be consistent with HGVS location data.
+  repeated SequenceLocation sequence_locations = 2;
+  // The location of the variant relative to features within the gene.
+  repeated string gene_locations = 3;
+  // List of xrefs.
+  repeated Xref xrefs = 4;
+}
+
+// Description of a SCV.
+//
+// Corresponds to "typeSCV" in XSD.
+message Scv {
+  // Optional title.
+  optional string title = 1;
+  // Accession.
+  string accession = 2;
+  // Version.
+  int32 version = 3;
+}
+
+// // Description of a list of indications.
+// //
+// // Corresponds to `IndicationListType` in XSD.
+// message Indications {
+//   // The indication may be a set of phenotypic descriptions.
+//   message Indication {
+//     // Xrefs.
+//     repeated Xref xrefs = 1;
+//     // Name of the indication.
+//     string name = 2;
+//     // Target ID.
+//     int64 target_id = 3;
+//   }
+
+//   // Type of the phenotype.
+//   PhenotypeSetType phenotype_set_type = 1;
+// }
+
+// // Description of a pharma.
+// message PharmaType {
+//   // Local type for drug response.
+//   message DrugResponse {
+//     // // The phenotype details.
+//     // repeated PhenotypeListDetailsType phenotype_details = 1;
+//     // Xref list.
+//     repeated Xref xrefs = 1;
+//     // Name of drug.
+//     string drug_name = 2;
+//     // Target ID.
+//     int64 target_id = 3;
+//   }
+
+//   // Drug responses.
+//   repeated DrugResponse drug_responses = 1;
+// }
+
+// // Description of a single method.
+// //
+// // Corresponds to `typeMethodRefs` in XSD.
+// message MethodWithXrefs {
+//   // Name of the method.
+//   string method_name = 1;
+//   // Xrefs.
+//   repeated Xref xrefs = 2;
+// }
+
+// Structure to describe attributes of any family data in an observation.
+// If the details of the number of families and the de-identified pedigree id are not
+// available, use FamilyHistory to describe what type of family data is available. Can
+// also be used to report 'Yes' or 'No' if there are no more details.
+//
+// Corresponds to "FamilyInfo" in XSD.
+message FamilyData {
+  /* nested elements */
+
+  // Optional family history.
+  optional string family_history = 1;
+
+  /* attributes */
+
+  // Number of families.
+  optional int32 num_families = 2;
+  // Number of families with variant.
+  optional int32 num_families_with_variant = 3;
+  // Number of families with segregation observed.
+  optional int32 num_families_with_segregation_observed = 4;
+  // Pedigree ID.
+  optional string pedigree_id = 5;
+  // Segregation oberved (yes, no, number)
+  optional string segregation_observed = 6;
+}
+
+// Description of a sample.
+//
+// Corresponds to `typeSample` in XSD.
+message Sample {
+  // Local type for sample description.
+  message SampleDescription {
+    // Description of sample.
+    optional Comment description = 1;
+    // Citation.
+    optional Citation citation = 2;
+  }
+
+  // Local enumeration for presence in normal tissue.
+  enum SomaticVariantInNormalTissue {
+    // unspecified presence
+    SOMATIC_VARIANT_IN_NORMAL_TISSUE_UNSPECIFIED = 0;
+    // corresponds to "present"
+    SOMATIC_VARIANT_IN_NORMAL_TISSUE_PRESENT = 1;
+    // corresponds to "absent"
+    SOMATIC_VARIANT_IN_NORMAL_TISSUE_ABSENT = 2;
+    // corresponds to "not tested"
+    SOMATIC_VARIANT_IN_NORMAL_TISSUE_NOT_TESTED = 3;
+  }
+
+  // Local enumeration for an age unit.
+  enum AgeUnit {
+    // unspecified age unit
+    AGE_UNIT_UNSPECIFIED = 0;
+    // corresponds to "days"
+    AGE_UNIT_DAYS = 1;
+    // corresponds to "weeks"
+    AGE_UNIT_WEEKS = 2;
+    // corresponds to "months"
+    AGE_UNIT_MONTHS = 3;
+    // corresponds to "years"
+    AGE_UNIT_YEARS = 4;
+    // corresponds to "weeks gestation"
+    AGE_UNIT_WEEKS_GESTATION = 5;
+    // corresponds to "months gestation"
+    AGE_UNIT_MONTHS_GESTATION = 6;
+  }
+
+  // Local enumeration for an age type.
+  enum AgeType {
+    // unspecified age type
+    AGE_TYPE_UNSPECIFIED = 0;
+    // corresponds to "minimum"
+    AGE_TYPE_MINIMUM = 1;
+    // corresponds to "maximum"
+    AGE_TYPE_MAXIMUM = 2;
+    // corresponds to "single"
+    AGE_TYPE_SINGLE = 3;
+  }
+
+  // Local enumeration for the affected status.
+  enum AffectedStatus {
+    // unspecified affected status
+    AFFECTED_STATUS_UNSPECIFIED = 0;
+    // corresponds to "yes"
+    AFFECTED_STATUS_YES = 1;
+    // corresponds to "no"
+    AFFECTED_STATUS_NO = 2;
+    // corresponds to "not provided"
+    AFFECTED_STATUS_NOT_PROVIDED = 3;
+    // corresponds to "unknown"
+    AFFECTED_STATUS_UNKNOWN = 4;
+    // corresponds to "not applicable"
+    AFFECTED_STATUS_NOT_APPLICABLE = 5;
+  }
+
+  // Local type for an age.
+  message Age {
+    // The age value.
+    int32 value = 1;
+    // The age unit.
+    AgeUnit unit = 2;
+    // The age type.
+    AgeType type = 3;
+  }
+
+  // Local enumeration for gender.
+  enum Gender {
+    // unspecified gender
+    GENDER_UNSPECIFIED = 0;
+    // corresponds to "male"
+    GENDER_MALE = 1;
+    // corresponds to "female"
+    GENDER_FEMALE = 2;
+    // corresponds to "mixed"
+    GENDER_MIXED = 3;
+  }
+
+  // Local enumeration for SourceType.
+  enum SourceType {
+    // unspecified source type
+    SOURCE_TYPE_UNSPECIFIED = 0;
+    // corresponds to "submitter-generated"
+    SOURCE_TYPE_SUBMITTER_GENERATED = 1;
+    // corresponds to "data mining"
+    SOURCE_TYPE_DATA_MINING = 2;
+  }
+
+  // The sample description.
+  optional SampleDescription sample_description = 1;
+  // The sample origin.
+  optional Origin origin = 2;
+  // Sample ethnicity.
+  optional string ethnicity = 3;
+  // Sample geographic origin.
+  optional string geographic_origin = 4;
+  // Sample tissue.
+  optional string tissue = 5;
+  // Presence of variant in normal tissue.
+  optional SomaticVariantInNormalTissue somatic_variant_in_normal_tissue = 6;
+  // Somatic variant allele fraction.
+  optional string somatic_variant_allele_fraction = 7;
+  // Cell line name.
+  optional string cell_line = 8;
+  // Species.
+  optional Species species = 9;
+  // Age (range), max. size of 2.
+  repeated Age ages = 10;
+  // Strain.
+  optional string strain = 11;
+  // Affected status.
+  optional AffectedStatus affected_status = 12;
+  // Denominator, total individuals included in this observation set.
+  optional int32 numer_tested = 13;
+  // Denominator, total males included in this observation set.
+  optional int32 number_males = 14;
+  // Denominator, total females included in this observation set.
+  optional int32 number_females = 15;
+  // Denominator, total number chromosomes tested. Number affected
+  // and unaffected are captured in the element NumberObserved.
+  optional int32 number_chr_tested = 16;
+  // Gender should be used ONLY if explicit values are not
+  // available for number of males or females, and there is a need to indicate
+  // that the genders in the sample are known.
+  optional Gender gender = 17;
+  // Family information.
+  optional FamilyData family_data = 18;
+  // Optional proband ID.
+  optional string proband = 19;
+  // Optional indication.
+  optional Indication indication = 20;
+  // List of citations.
+  repeated Citation citations = 21;
+  // List of xrefs.
+  repeated Xref xrefs = 22;
+  // List of comments.
+  repeated Comment comments = 23;
+  // Source type.
+  optional SourceType source_type = 24;
+}
+
+// Details of a method used to generate variant calls or predict/report
+// functional consequence. The name of the platform should represent a sequencer or an
+// array, e.g. sequencing or array , e.g. capillary, 454, Helicos, Solexa, SOLiD. This
+// structure should also be used if the method is 'Curation'.
+//
+// Corresponds to `MethodType` in XSD.
+message Method {
+  // Local enumeration for result types.
+  enum ResultType {
+    // unspecified result type
+    RESULT_TYPE_UNSPECIFIED = 0;
+    // corresponds to "number of occurrences"
+    RESULT_TYPE_NUMBER_OF_OCCURRENCES = 1;
+    // corresponds to "p value"
+    RESULT_TYPE_P_VALUE = 2;
+    // corresponds to "odds ratio"
+    RESULT_TYPE_ODDS_RATIO = 3;
+    // corresponds to "variant call"
+    RESULT_TYPE_VARIANT_CALL = 4;
+  }
+
+  // Local enumeration for SourceType.
+  enum SourceType {
+    // unspecified source type
+    SOURCE_TYPE_UNSPECIFIED = 0;
+    // corresponds to "submitter-generated"
+    SOURCE_TYPE_SUBMITTER_GENERATED = 1;
+    // corresponds to "data mining"
+    SOURCE_TYPE_DATA_MINING = 2;
+    // corresponds to "data review"
+    SOURCE_TYPE_DATA_REVIEW = 3;
+  }
+
+  // Local type for method attribute.
+  message MethodAttribute {
+    // Local enumeration of attribute type.
+    enum AttributeType {
+      // unspecified attribute type
+      ATTRIBUTE_TYPE_UNSPECIFIED = 0;
+      // corresponds to "Location"
+      ATTRIBUTE_TYPE_LOCATION = 1;
+      // corresponds to "ControlsAppropriate"
+      ATTRIBUTE_TYPE_CONTROLS_APPROPRIATE = 2;
+      // corresponds to "MethodAppropriate"
+      ATTRIBUTE_TYPE_METHOD_APPROPRIATE = 3;
+      // corresponds to "TestName"
+      ATTRIBUTE_TYPE_TEST_NAME = 4;
+      // corresponds to "StructVarMethod"
+      ATTRIBUTE_TYPE_STRUCT_VAR_METHOD_TYPE = 5;
+      // corresponds to "ProbeAccession"
+      ATTRIBUTE_TYPE_PROBE_ACCESSION = 6;
+    }
+
+    // The base value.
+    BaseAttribute base = 1;
+    // The attribute type.
+    AttributeType type = 2;
+  }
+
+  // Local type for observation method attribute.
+  message ObsMethodAttribute {
+    // Local enumeration for attribute type.
+    enum AttributeType {
+      // unspecified attribute type
+      ATTRIBUTE_TYPE_UNSPECIFIED = 0;
+      // corresponds to "MethodResult"
+      ATTRIBUTE_TYPE_METHOD_RESULT = 1;
+      // corresponds to "TestingLaboratory"
+      ATTRIBUTE_TYPE_TESTING_LABORATORY = 2;
+    }
+
+    // The base value.
+    BaseAttribute base = 1;
+    // The attribute type.
+    AttributeType type = 2;
+    // Optional comments.
+    repeated Comment comments = 3;
+  }
+
+  // Platform name.
+  optional string name_platform = 1;
+  // Platform type.
+  optional string type_platform = 2;
+  // Method purpose.
+  optional string purpose= 3;
+  // Method result type.
+  optional ResultType result_type = 4;
+  // Smallest reported.
+  optional string min_reported = 5;
+  // Largest reported.
+  optional string max_reported = 6;
+  // Reference standard.
+  optional string reference_standard = 7;
+  // List of citations.
+  repeated Citation citations = 8;
+  // List of xrefs.
+  repeated Xref xrefs = 9;
+  // Free text to enrich the description of the method and to
+  // provide information not captured in specific fields.
+  optional string description = 10;
+  // List of softwares used.
+  repeated Software software = 11;
+  // Source type.
+  optional SourceType source_type = 12;
+  // Method type.
+  MethodListType method_type = 13;
+  // Method attribute.
+  repeated MethodAttribute method_attributes = 14;
+  // ObsMethodAttribute is used to indicate an attribute specific
+  // to a particular method in conjunction with a particular observation .
+  repeated ObsMethodAttribute obs_method_attributes = 15;
+}
+
+// This is a record per variant (Measure/@ID,AlleleID) as submitted for
+// accessioning in an SCV.
+//
+// Corresponds to "typeAlleleSCV" in XSD.
+message AlleleScv {
+  // Local type for Gene.
+  message Gene {
+    /* nested elements */
+
+    // Gene name.
+    optional string name = 1;
+    // Used to set key words for retrieval or
+    // display about a gene, such as genes listed by the
+    // ACMG guidelines.
+    repeated string properties = 2;
+    // Used for gene specific identifiers
+    // such as MIM number, Gene ID, HGNC ID, etc.
+    repeated Xref xrefs = 3;
+
+    /* attributes */
+
+    // Optional gene symbol.
+    optional string symbol = 4;
+    // Relationship between gene and variant.
+    optional GeneVariantRelationship relationship_type = 5;
+  }
+
+  // Local type for MolecularConsequence.
+  message MolecularConsequence {
+    /* nested elements */
+
+    // Xref list.
+    repeated Xref xrefs = 1;
+    // Citation list.
+    repeated Citation citations = 2;
+    // Comment list.
+    repeated Comment comments = 3;
+
+    /* attributes */
+
+    // RS id.
+    optional int64 rs = 4;
+    // Optional HGVS expression.
+    optional string hgvs = 5;
+    // Optional SO id.
+    optional string so_id = 6;
+    // Function.
+    string function = 7;
+  }
+
+  /* nested elements */
+
+  // 0 to many genes (and related data ) related to the allele
+  // being reported.
+  repeated Gene genes = 1;
+  // Name provided by the submitter.
+  repeated OtherName names = 2;
+  // Variant type.
+  optional string variant_type = 3;
+  // Location.
+  optional Location location = 4;
+  // List of other names.
+  repeated OtherName other_names = 5;
+  // Single letter representation of the amino acid change and its
+  // location.
+  repeated string protein_changes = 6;
+  // List of xrefs.
+  repeated Xref xrefs = 7;
+  // List of citations.
+  repeated Citation citations = 8;
+  // List of comments.
+  repeated Comment comments = 9;
+  // Currently redundant with the MolecularConsequence element of
+  // the HGVS element?
+  repeated MolecularConsequence molecular_consequences = 10;
+  // Functional consequences.
+  repeated FunctionalConsequence functional_consequences = 11;
+  // Attributes.
+  repeated AttributeSetElement attributes = 12;
+
+  /* attributes */
+
+  // Allele ID.
+  optional int64 allele_id = 13;
+}
+
+// This is a record of a haplotype in SCV.
+//
+// Corresponds to `typeHaplotypeSCV` in XSD.
+message HaplotypeScv {
+  // The list of alleles in the haplotype.
+  repeated AlleleScv simple_alleles = 1;
+  // The preferred representation of the haplotype.
+  optional string name = 2;
+  // Names other than 'preferred' used for the haplotype.
+  repeated OtherName other_names = 3;
+  // Classification of the variant.
+  optional AggregateClassificationSet classification = 4;
+  // Functional consequences of the variant.
+  repeated FunctionalConsequence functional_consequences = 5;
+  // List of attributes.
+  repeated AttributeSetElement attributes = 6;
+  // List of citations.
+  repeated Citation citations = 7;
+  // List of cross-references.
+  repeated Xref xrefs = 8;
+  // List of comments.
+  repeated Comment comments = 9;
+
+  // Variation ID.
+  optional int64 variation_id = 10;
+  // Number of copies.
+  optional int32 number_of_copies = 11;
+  // Number of chromosomes.
+  optional int32 number_of_chromosomes = 12;
+}
+
+// Used to report genotypes, be they simple or complex diplotypes.
+//
+// Corresponds to "typeGenotypeSCV" in XSD.
+message GenotypeScv {
+  /* nested elements */
+
+  // Simple alleles; mutually exclusive with `haplotypes`.
+  repeated AlleleScv simple_alleles = 1;
+  // Haplotype; mutually exclusive with `simple_alleles`.
+  //
+  // Allows more than 2 haplotypes per genotype to support
+  // representation of ploidy.
+  repeated HaplotypeScv haplotypes = 2;
+  // Optional name.
+  optional string name = 3;
+  // Other names used for the genotype.
+  repeated OtherName other_names = 4;
+  // The variation type.
+  VariationType variation_type = 5;
+  // Functional consequences.
+  repeated FunctionalConsequence functional_consequences = 6;
+  // Attributes.
+  repeated AttributeSetElement attributes = 7;
+  // List of citations.
+  repeated Citation citations = 8;
+  // List of xrefs.
+  repeated Xref xrefs = 9;
+  // List of comments.
+  repeated Comment comments = 10;
+
+  /* attributes */
+
+  // Variation ID.
+  optional int64 variation_id = 11;
+}
+
+// // Observation of one piece of evidence.
+// message typeEvidenceObservation {
+//   // // Method of data capture, not method of evaluation.
+//   // repeated MethodWithXrefs methods = 1;
+//   // Modes of inheritance.
+//   repeated string modes_of_inheritance = 1;
+//   // List of citations.
+//   repeated Citation citations = 2;
+//   // Comments.
+//   repeated Comment comments = 3;
+//   // // Observed phenotypes.
+//   // repeated PhenotypeListDetailsType observed_phenotypes = 5;
+//   // // Indications.
+//   // repeated Indications indications = 6;
+//   // The submitter's identifiers.
+//   repeated Submitter submitter_identifiers = 4;
+//   // Families.
+//   optional string families = 5;
+//   // Individuals.
+//   optional string individuals = 6;
+//   // Segregation.
+//   optional string segregations = 7;
+//   // Other gene.
+//   optional string other_gene = 8;
+//   // Same gene.
+//   optional string same_gene = 9;
+//   // Evident type.
+//   EvidenceType evidence_type = 10;
+//   // Allele frequency.
+//   optional string allele_frequency = 11;
+//   // Allele origin.
+//   optional string allele_origin = 12;
+//   // Ethnicity.
+//   optional string ethnicity = 13;
+//   // Geographic origin.
+//   optional string geographic_origin = 14;
+// }
+
+// Documents in what populations or samples an allele or genotype has
+// been observed relative to the described trait. Summary observations can be
+// registered per submitted assertion, grouped by common citation, study type, origin,
+// ethnicity, tissue, cell line, and species data. Not all options are valid per study
+// type, but these will not be validated in the xsd.
+//
+// Corresponds to `ObservationSet` in XSD.
+message ObservedIn {
+  // Local enum for the method type.
+  enum MethodType {
+    // unspecified method type
+    METHOD_TYPE_UNSPECIFIED = 0;
+    // corresponds to "literature only"
+    METHOD_TYPE_LITERATURE_ONLY = 1;
+    // corresponds to "reference population"
+    METHOD_TYPE_REFERENCE_POPULATION = 2;
+    // corresponds to "case-control"
+    METHOD_TYPE_CASE_CONTROL = 3;
+    // corresponds to "clinical testing"
+    METHOD_TYPE_CLINICAL_TESTING = 4;
+    // corresponds to "in vitro"
+    METHOD_TYPE_IN_VITRO = 5;
+    // corresponds to "in vivo"
+    METHOD_TYPE_IN_VIVO = 6;
+    // corresponds to "inferred from source"
+    METHOD_TYPE_INFERRED_FROM_SOURCE = 7;
+    // corresponds to "research"
+    METHOD_TYPE_RESEARCH = 8;
+  }
+
+  // Local struct for attributes based on `BaseAttribute`.
+  message ObservedDataAttribute {
+    // Local enum for the observed data type.
+    enum Type {
+      // unspecified observed data attribute type
+      TYPE_UNSPECIFIED = 0;
+      // corresponds to "Description"
+      TYPE_DESCRIPTION = 1;
+      // corresponds to "VariantAlleles"
+      TYPE_VARIANT_ALLELES = 2;
+      // corresponds to "SubjectsWithVariant"
+      TYPE_SUBJECTS_WITH_VARIANT = 3;
+      // corresponds to "SubjectsWithDifferentCausativeVariant"
+      TYPE_SUBJECTS_WITH_DIFFERENT_CAUSATIVE_VARIANT = 4;
+      // corresponds to "VariantChromosomes"
+      TYPE_VARIANT_CHROMOSOMES = 5;
+      // corresponds to "IndependentObservations"
+      TYPE_INDEPENDENT_OBSERVATIONS = 6;
+      // corresponds to "SingleHeterozygote"
+      TYPE_SINGLE_HETEROZYGOUS = 7;
+      // corresponds to "CompoundHeterozygote"
+      TYPE_COMPOUND_HETEROZYGOUS = 8;
+      // corresponds to "Homozygote"
+      TYPE_HOMOZYGOUS = 9;
+      // corresponds to "Hemizygote"
+      TYPE_HEMIZYGOUS = 10;
+      // corresponds to "NumberMosaic"
+      TYPE_NUMBER_MOSAIC = 11;
+      // corresponds to "ObservedUnspecified"
+      TYPE_OBSERVED_UNSPECIFIED = 12;
+      // corresponds to "AlleleFrequency"
+      TYPE_ALLELE_FREQUENCY = 13;
+      // corresponds to "SecondaryFinding"
+      TYPE_SECONDARY_FINDING = 14;
+      // corresponds to "GenotypeAndMOIConsistent"
+      TYPE_GENOTYPE_AND_MOI_CONSISTENT = 15;
+      // corresponds to "UnaffectedFamilyMemberWithCausativeVariant"
+      TYPE_UNAFFECTED_FAMILY_MEMBER_WITH_CAUSATIVE_VARIANT = 16;
+      // corresponds to "HetParentTransmitNormalAllele"
+      TYPE_HET_PARENT_TRANSMIT_NORMAL_ALLELE = 17;
+      // corresponds to "CosegregatingFamilies"
+      TYPE_COSEGREGATING_FAMILIES = 18;
+      // corresponds to "InformativeMeioses"
+      TYPE_INFORMATIVE_MEIOSES = 19;
+      // corresponds to "SampleLocalID"
+      TYPE_SAMPLE_LOCAL_ID = 20;
+      // corresponds to "SampleVariantID"
+      TYPE_SAMPLE_VARIANT_ID = 21;
+      // corresponds to "FamilyHistory"
+      TYPE_FAMILY_HISTORY = 22;
+      // corresponds to "NumFamiliesWithVariant"
+      TYPE_NUM_FAMILIES_WITH_VARIANT = 23;
+      // corresponds to "NumFamiliesWithSegregationObserved"
+      TYPE_NUM_FAMILIES_WITH_SEGREGATION_OBSERVED = 24;
+      // corresponds to "SegregationObserved"
+      TYPE_SEGREGATION_OBSERVED = 25;
+    }
+
+    // base
+    BaseAttribute base = 1;
+    // type
+    Type type = 2;
+  }
+
+  // This is an AttributeSet, there will be 1 attribute supported
+  // by optional citations, xrefs and comment. There must be at least one
+  // ObservedData Set, but can be any number. For each ObservedData set the
+  // Attribute will be either decimal or string depending on type. The value will
+  // be stored here, but decimals will be entered to the database as a string.
+  message ObservedData {
+    // Attributes.
+    repeated ObservedDataAttribute attributes = 1;
+    // Severity.
+    optional Severity severity = 2;
+    // Citation list.
+    repeated Citation citations = 3;
+    // Xref list.
+    repeated Xref xrefs = 4;
+    // Comment list.
+    repeated Comment comments = 5;
+  }
+
+  // Sample.
+  Sample sample = 1;
+  // Observed data.
+  repeated ObservedData observed_data = 2;
+  // Co-occurence set.
+  repeated Cooccurrence cooccurrence_sets = 3;
+  // TraitSet.
+  optional TraitSet trait_set = 4;
+  // Citation list.
+  repeated Citation citations = 5;
+  // Xref list.
+  repeated Xref xrefs = 6;
+  // Comment list.
+  repeated Comment comments = 7;
+}
+
+// A clinical assertion as submitted (SCV record).
+//
+// Corresponds to `MeasureTraitType` in XSD and `<ClinicalAssertion>` in XML
+message ClinicalAssertion {
+  // Local type for ClinVarSubmissionID.
+  message ClinvarSubmissionId {
+    // The identifier provided by the submitter to facilitate
+    // identification of records corresponding to their submissions. If not
+    // provided by a submitter, NCBI generates one. If provided by
+    // submitter, that is represented in localKeyIsSubmitted.
+    string local_key = 1;
+    // Optional title.
+    optional string title = 2;
+    // Optional indication whether local key has been submitted.
+    optional bool local_key_is_submitted = 3;
+    // Optional assembly of submission.
+    optional string submitted_assembly = 4;
+  }
+
+  // Local type for attribute set.
+  message AttributeSetElement {
+    // Local enum for types.
+    enum Type {
+      // unspecified type
+      TYPE_UNSPECIFIED = 0;
+      // Corresponds to "ModeOfInheritance"
+      TYPE_MODE_OF_INHERITANCE = 1;
+      // Corresponds to "Penetrance"
+      TYPE_PENETRANCE = 2;
+      // Corresponds to "AgeOfOnset"
+      TYPE_AGE_OF_ONSET = 3;
+      // Corresponds to "Severity"
+      TYPE_SEVERITY = 4;
+      // Corresponds to "ClassificationHistory"
+      TYPE_CLASSIFICATION_HISTORY = 5;
+      // Corresponds to "SeverityDescription"
+      TYPE_SEVERITY_DESCRIPTION = 6;
+      // Corresponds to "AssertionMethod"
+      TYPE_ASSERTION_METHOD = 7;
+    }
+
+    // The base value.
+    BaseAttribute attribute = 1;
+    // The type of the attribute.
+    Type type = 2;
+    // List of xrefs.
+    repeated Xref xrefs = 3;
+    // List of citations.
+    repeated Citation citations = 4;
+    // List of comments.
+    repeated Comment comments = 5;
+  }
+
+  // Local type for `ClinVarAccession`
+  message ClinvarAccession {
+    // Accession.
+    string accession = 1;
+    // Version.
+    int32 version = 2;
+    // The submitter's identifier.
+    SubmitterIdentifiers submitter_identifiers = 3;
+    // The date that the latest update to the submitted
+    // record (SCV) became public in ClinVar.
+    google.protobuf.Timestamp date_updated = 4;
+    // DateCreated is the date when the record first became
+    // public in ClinVar.
+    optional google.protobuf.Timestamp date_created = 5;
+  }
+
+  // Local enum for record status.
+  enum RecordStatus {
+    // unspecified record status
+    RECORD_STATUS_UNSPECIFIED = 0;
+    // corresponds to "current"
+    RECORD_STATUS_CURRENT = 1;
+    // corresponds to "replaced"
+    RECORD_STATUS_REPLACED = 2;
+    // corresponds to "removed"
+    RECORD_STATUS_REMOVED = 3;
+  }
+
+  /* nested elements */
+
+  // The ClinVar submission ID.
+  ClinvarSubmissionId clinvar_submission_id = 1;
+  // The ClinVar SCV accessions.
+  ClinvarAccession clinvar_accession = 2;
+  // Optional list of additional submitters.
+  repeated Submitter additional_submitters = 3;
+  // Record status.
+  RecordStatus record_status = 4;
+  // Replaces; mutually exclusive with replaceds
+  repeated string replaces = 5;
+  // Replaced list; mutually exclusive with replaces
+  repeated ClinicalAssertionRecordHistory replaceds = 6;
+
+  // SCV classifications.
+  repeated ClassificationScv classifications = 7;
+  // The assertion.
+  Assertion assertion = 8;
+  // Attributes.
+  repeated AttributeSetElement attributes = 9;
+  // Observed in.
+  repeated ObservedIn observed_ins = 10;
+
+  // Allele in SCV; mutually exclusive with haplotype/genotype.
+  optional AlleleScv simple_allele = 11;
+  // Haplotype in SCV; mutually exclusive with allele/genotype.
+  optional HaplotypeScv haplotype = 12;
+  // Genotype in SCV; mutually exclusive with allele/haplotype.
+  optional GenotypeScv genotype = 13;
+
+  // The trait set.
+  TraitSet trait_set = 14;
+  // List of citations.
+  repeated Citation citations = 15;
+  // Optional study name.
+  optional string study_name = 16;
+  // Optional study description.
+  optional string study_description = 17;
+  // List of comments.
+  repeated Comment comments = 18;
+  // List of submissions.
+  repeated string submission_names = 19;
+
+  /* attributes */
+
+  // Date of creation.
+  google.protobuf.Timestamp date_created = 20;
+  // Date of creation.
+  google.protobuf.Timestamp date_last_updated = 21;
+  // Date of creation.
+  google.protobuf.Timestamp submission_date = 22;
+  // ID.
+  optional uint64 id = 23;
+  // Whether it is an FDA recognized database.
+  optional bool fda_recognized_database = 24;
+}
+
+// This is a record per variant (Measure/@ID,AlleleID).
+//
+// Corresponds to "typeAllele" in XSD.
+message Allele {
+  // Local type for Gene.
+  message Gene {
+    /* nested elements */
+
+    // Gene's locations.
+    repeated Location locations = 1;
+    // OMIM ID.
+    optional uint64 omim = 2;
+    // Haploinsuffiency.
+    optional DosageSensitivity haploinsufficiency = 3;
+    // Triplosensitivity.
+    optional DosageSensitivity triplosensitivity = 4;
+    // Used to set key words for retrieval or
+    // display about a gene, such as genes listed by the
+    // ACMG guidelines.
+    repeated string properties = 5;
+
+    /* attributes */
+
+    // Optional gene symbol.
+    optional string symbol = 6;
+    // Full gene name.
+    string full_name = 7;
+    // Gene ID.
+    int64 gene_id = 8;
+    // Optional HGNC ID.
+    optional string hgnc_id = 9;
+    // Source of gene (calculated or submitted).
+    string source = 10;
+    // Relationship between gene and variant.
+    optional GeneVariantRelationship relationship_type = 11;
+  }
+
+  // Local type for allele frequency.
+  message AlleleFrequency {
+    // Value.
+    double value = 1;
+    // Source.
+    string source = 2;
+    // URL.
+    optional string url = 3;
+  }
+
+  // Local type for GlobalMinorAlleleFrequency.
+  message GlobalMinorAlleleFrequency {
+    // Value.
+    double value = 1;
+    // Source.
+    string source = 2;
+    // Minor allele.
+    optional string minor_allele = 3;
+    // URL.
+    optional string url = 4;
+  }
+
+  // Local type for allele name.
+  message Name {
+    // The name's value.
+    string value = 1;
+    // The name's type.
+    optional string type = 2;
+  }
+
+  /* nested elements */
+
+  // Gene list.
+  repeated Gene genes = 1;
+  // Name.
+  string name = 2;
+  // Canonical SPDI.
+  optional string canonical_spdi = 3;
+  // Variant type(s).
+  repeated string variant_types = 4;
+  // Location.
+  repeated Location locations = 5;
+  // List of other names.
+  repeated OtherName other_names = 6;
+  // These are the single-letter representations of the protein change.
+  repeated string protein_changes = 7;
+  // List of HGVS expressions.
+  repeated HgvsExpression hgvs_expressions = 8;
+  // Aggregated classifications.
+  optional AggregateClassificationSet classifications = 9;
+  // List of xrefs.
+  repeated Xref xrefs = 10;
+  // List of comments.
+  repeated Comment comments = 11;
+  // List of functional consequences.
+  repeated FunctionalConsequence functional_consequences = 12;
+  // Allele frequencies.
+  repeated AlleleFrequency allele_frequencies = 13;
+  // Global minor allele frequencies.
+  optional GlobalMinorAlleleFrequency global_minor_allele_frequency = 14;
+
+  /* attributes */
+
+  // Allele ID.
+  int64 allele_id = 15;
+  // Variation ID.
+  int64 variation_id = 16;
+}
+
+// This is a record of one or more simple alleles on the same chromosome
+// molecule.
+//
+// Corresponds to `typeHaplotype` in XSD
+message Haplotype {
+  // The list of alleles in the haplotype.
+  repeated Allele simple_alleles = 1;
+  // The preferred representation of the haplotype.
+  string name = 2;
+  // The type of the haplotype.
+  HaploVariationType variation_type = 3;
+  // Names other than 'preferred' used for the haplotype.
+  repeated OtherName other_names = 4;
+  // List of all the HGVS expressions valid for, or used to submit,
+  // a variant.
+  repeated HgvsExpression hgvs_expressions = 5;
+  // Classifications of the variant.
+  optional AggregateClassificationSet classifications = 6;
+  // Functional consequences of the variant.
+  repeated FunctionalConsequence functional_consequences = 7;
+  // List of cross-references.
+  repeated Xref xrefs = 8;
+  // List of comments.
+  repeated Comment comments = 9;
+
+  // Variation ID.
+  int64 variation_id = 10;
+  // Number of copies.
+  optional int32 number_of_copies = 11;
+  // Number of chromosomes.
+  optional int32 number_of_chromosomes = 12;
+}
+
+// This element is used for alleles that were not directly part of a
+// submission but were part of a complex submission. They have no direct submitted
+// classification, but are being reported for a complete representation of all alleles
+// in ClinVar. Compare to ClassifiedRecord.
+message IncludedRecord {
+  // Local type for tag `ClassifiedVariation`.
+  message ClassifiedVariation {
+    // Variation ID.
+    int64 variation_id = 1;
+    // Optional accession.
+    optional string accession = 2;
+    // Version.
+    int32 version = 3;
+  }
+
+  // Simple allele; mutually exclusive with haplotype.
+  optional Allele simple_allele = 1;
+  // Haplotype; mutually exclusive with simple_allele.
+  optional Haplotype haplotype = 2;
+  // Aggregate classification sets.
+  optional AggregateClassificationSet classifications = 3;
+  // List of submitted records.
+  repeated Scv submitted_classifications = 4;
+  // Maintains the list of classified variants represented in
+  // this submission, although not submitted with an Classification
+  // independently.
+  repeated ClassifiedVariation classified_variations = 5;
+  // List of general citations.
+  repeated GeneralCitations general_citations = 6;
+}
+
+// Used to report genotypes, be they simple or complex diplotypes.
+//
+// Corresponds to "typeGenotype" in XSD.
+message Genotype {
+  /* nested elements */
+
+  // Simple allele; mutually exclusive with `haplotype`.
+  repeated Allele simple_alleles = 1;
+  // Haplotype; mutually exclusive with `simple_allele`.
+  //
+  // Allows more than 2 haplotypes per genotype to support
+  // representation of ploidy.
+  repeated Haplotype haplotypes = 2;
+  // Optional name.
+  string name = 3;
+  // The variation type.
+  VariationType variation_type = 4;
+  // Names other than 'preferred' used for the Genotype.
+  repeated OtherName other_names = 5;
+  // HGVS descriptions.
+  repeated HgvsExpression hgvs_expressions = 6;
+  // Functional consequences.
+  repeated FunctionalConsequence functional_consequences = 7;
+  // Aggregated classifications.
+  optional AggregateClassificationSet classifications = 8;
+  // List of xrefs.
+  repeated Xref xrefs = 9;
+  // List of citations.
+  repeated Citation citations = 10;
+  // List of comments.
+  repeated Comment comments = 11;
+  // Attributes.
+  repeated AttributeSetElement attributes = 12;
+
+  /* attributes */
+
+  // Variation ID.
+  optional int64 variation_id = 13;
+}
+
+// Corresponds to "typeRCV" in XSD.
+message RcvAccession {
+  // Local type for ClassifiedConditionList.
+  message ClassifiedConditionList {
+    /* nested elements */
+
+    // List of interpreted conditions.
+    repeated ClassifiedCondition classified_conditions = 1;
+
+    /* attributes */
+
+    // Trait set ID.
+    optional int64 trait_set_id = 2;
+  }
+
+  // Local type for GermlineClassification.
+  //
+  // The aggregate review status based on
+  // all germline submissions for this record.
+  message GermlineClassification {
+    // Local type for Description.
+    message Description {
+      // The description.
+      string value = 1;
+
+      /* attributes */
+
+      // The date of the description.
+      optional google.protobuf.Timestamp date_last_evaluated = 2;
+      // The number of submissions.
+      optional uint32 submission_count = 3;
+    }
+
+    // The aggregate review status based on
+    // all somatic clinical impact submissions for this
+    // record.
+    AggregateGermlineReviewStatus review_status = 1;
+    // The oncogenicity description.
+    Description description = 2;
+  }
+
+  // Local type for SomaticClinicalImpact.
+  //
+  // The aggregate review status based on
+  // all somatic clinical impact submissions for this
+  // record.
+  message SomaticClinicalImpact {
+    // Local type for Description.
+    message Description {
+      // The description.
+      string value = 1;
+
+      /* attributes */
+
+      // Clinical impact assertion type.
+      optional string clinical_impact_assertion_type = 2;
+      // Clinical impact significance
+      optional string clinical_impact_clinical_significance = 3;
+      // The date of the description.
+      optional google.protobuf.Timestamp date_last_evaluated = 4;
+      // The number of submissions.
+      optional uint32 submission_count = 5;
+    }
+
+    // The aggregate review status based on
+    // all somatic clinical impact submissions for this
+    // record.
+    AggregateSomaticClinicalImpactReviewStatus review_status = 1;
+    // The oncogenicity description.
+    Description description = 2;
+  }
+
+  // Local type for OncogenicityClassification.
+  message OncogenicityClassification {
+    // Local type for Description.
+    message Description {
+      // The description.
+      string value = 1;
+
+      /* attributes */
+
+      // The date of the description.
+      optional google.protobuf.Timestamp date_last_evaluated = 2;
+      // The number of submissions.
+      optional uint32 submission_count = 3;
+    }
+
+    // The aggregate review status based on
+    // all oncogenic submissions for this record.
+    AggregateOncogenicityReviewStatus review_status = 1;
+    // The oncogenicity description.
+    Description description = 2;
+  }
+
+  // Local type for RCV classifications.
+  message RcvClassifications {
+    // Germline classification.
+    optional GermlineClassification germline_classification = 1;
+    // Somatic clinical impact.
+    optional SomaticClinicalImpact somatic_clinical_impact = 2;
+    // Oncogenicity classification.
+    optional OncogenicityClassification oncogenicity_classification = 3;
+  }
+
+  /* nested elements */
+
+  // The list of classified conditions.
+  optional ClassifiedConditionList classified_condition_list = 1;
+  // The list of RCV classifications.
+  RcvClassifications rcv_classifications = 2;
+  // The list of RCV accessions this record has replaced.
+  repeated RecordHistory replaceds = 3;
+
+  /* attributes */
+
+  // Optional title.
+  optional string title = 4;
+  // Accession.
+  string accession = 5;
+  // Version.
+  int32 version = 6;
+}
+
+// This element is restricted to variation records for which an explicit
+// classification was submitted.  Compare to IncludedRecord, which provides aggregate
+// information about variants that are part of another submission, but for which
+// ClinVar has *not* received a submission specific to that variant independently.
+message ClassifiedRecord {
+  // Local type for tag `RCVList`.
+  message RcvList {
+    // The RCV record.
+    repeated RcvAccession rcv_accessions = 1;
+    // The number of submissions (SCV accessions) referencing the VariationID.
+    optional int32 submission_count = 2;
+    // The number of idependent observations.
+    optional int32 independent_observations = 3;
+  }
+
+  // Local type for the attribute `@MappingType`.
+  enum MappingType {
+    // unspecified mapping type
+    MAPPING_TYPE_UNSPECIFIED = 0;
+    // corresponds to "Name"
+    MAPPING_TYPE_NAME = 1;
+    // corresponds to "Xref"
+    MAPPING_TYPE_XREF = 2;
+  }
+
+  // Local type for the tag `TraitMapping`.
+  message TraitMapping {
+    // Local type for the tag "MedGen"
+    message Medgen {
+      // Name.
+      string name = 1;
+      // CUI.
+      string cui = 2;
+    }
+
+    /* nested elements */
+    repeated Medgen medgens = 1;
+
+    /* attributes */
+
+    // ID of clinical assertion.
+    int64 clinical_assertion_id = 2;
+    // The trait type.
+    string trait_type = 3;
+    // The mapping type.
+    MappingType mapping_type = 4;
+    // The mapping value.
+    string mapping_value = 5;
+    // The mapping reference.
+    string mapping_ref = 6;
+  }
+
+  // Describes a single sequence change relative to a
+  // contiguous region of a chromosome or the mitochondrion.
+  //
+  // Mutually exclusive with `haplotype` and `genotype`.
+  optional Allele simple_allele = 1;
+  // Describes multiple sequence changes on one of the
+  // chromosomes of a homologous pair or on the mitochondrion.
+  //
+  // Mutually exclusive with `simple_allele` and `genotype`.
+  optional Haplotype haplotype = 2;
+  // Describes the combination of sequence changes on each
+  // chromosome of a homologous pair.
+  //
+  // Mutually exclusive with `simple_allele` and `haplotype`.
+  optional Genotype genotype = 3;
+  // List of RCV records.
+  RcvList rcv_list = 4;
+  // List of classifications.
+  AggregateClassificationSet classifications = 5;
+  // List of clinical assertions.
+  repeated ClinicalAssertion clinical_assertions = 6;
+  // This element is used to report how each user-submitted
+  // trait name was mapped to a MedGen CUI identifier and a preferred name.
+  // The structure may be used in the future to report, when a trait is
+  // identified by a source's identifier (e.g. MIM number), the preferred
+  // name used by that source at the time of submission. For MappingType
+  // XRef, MappingRef is the database name and MappingValue is the database's
+  // identifier. For MappingType Name, MappingRef is Alternate or Preferred,
+  // and MappingValue is the submitted name of the trait. ClinicalAssertionID
+  // is an integer identifier that corresponds 1:1 to the SCV assigned to the
+  // submission.
+  repeated TraitMapping trait_mappings = 7;
+  // List of deleted SCVs.
+  repeated DeletedScv deleted_scvs = 8;
+  // List of general citations.
+  repeated GeneralCitations general_citations = 9;
+}
+
+// This element groups the set of data specific to a VariationArchive
+// record, namely the summary data of what has been submitted about a
+// VariationID AND for Classified records only, the content each
+// submission (SCV) provided.
+//
+// Type for the `<VariationArchive>` type.
+message VariationArchive {
+  // Enumeration for `@RecordType`.
+  enum RecordType {
+    // unspecified record type
+    RECORD_TYPE_UNSPECIFIED = 0;
+    // corresponds to "included"
+    RECORD_TYPE_INCLUDED = 1;
+    // corresponds to "classified"
+    RECORD_TYPE_CLASSIFIED = 2;
+  }
+
+  // Enumeration for `@RecordStatus`.
+  enum RecordStatus {
+    // unspecified record status
+    RECORD_STATUS_UNSPECIFIED = 0;
+    // corresponds to "current"
+    RECORD_STATUS_CURRENT = 1;
+    // corresponds to "previous"
+    RECORD_STATUS_PREVIOUS = 2;
+    // corresponds to "replaced"
+    RECORD_STATUS_REPLACED = 3;
+    // correspodns to "deleted"
+    RECORD_STATUS_DELETED = 4;
+  }
+
+  /* attributes */
+
+  // Numeric variation ID.
+  int64 variation_id = 1;
+  // This is ClinVar's name for the variant.  ClinVar uses this term in
+  // its web displays
+  string variation_name = 2;
+  // Type of the variant.
+  string variation_type = 3;
+  // DateCreated is the date when the record first became public in
+  // ClinVar.
+  google.protobuf.Timestamp date_created = 4;
+  // The date the record was last updated in the public database. The
+  // update may be a change to one of the submitted records (SCVs) or
+  // annotation added to the aggregate record by NCBI staff. This date
+  // is independent of a version change; annotated added by NCBI may
+  // change without representing a change in the version.
+  google.protobuf.Timestamp date_last_updated = 5;
+  // This date is of the most recent submitted record (SCV) for the
+  // VCV; it may reflect a new submitted record or an update to a submitted record.
+  google.protobuf.Timestamp most_recent_submission = 6;
+  // Accession assigned to the variant, or set of variants, that was
+  // Classified
+  string accession = 7;
+  // Version of record and suffix for accession.
+  int32 version = 8;
+  // Number of submitters in record.
+  int32 number_of_submitters = 9;
+  // Number of submissions in record.
+  int32 number_of_submissions = 10;
+  // Record type.
+  RecordType record_type = 11;
+
+  /* contained elements */
+
+  // The record's status.
+  RecordStatus record_status = 12;
+  // Pointer to the replacing record; optional.
+  RecordHistory replaced_by = 13;
+  // The list of VCV accessions this record has replaced.
+  repeated RecordHistory replaceds = 14;
+  // Comment on the record; optional.
+  Comment comment = 15;
+  // Specification of the species.
+  Species species = 16;
+
+  // This element describes the classification of a single
+  // allele, haplotype, or genotype based on all submissions to ClinVar. This
+  // differs from the element IncludedRecord, which describes simple alleles
+  // or haplotypes, referenced in ClassifiedRecord, but for which no explicit
+  // classification was submitted. Once that variation is described, details
+  // are added about the phenotypes being classified, the classification, the
+  // submitters providing the classifications, and all supported evidence.
+  //
+  // NB: mutually exclusive with `included_record`.
+  ClassifiedRecord classified_record = 17;
+
+  // This element describes a single allele or haplotype
+  // included in submissions to ClinVar, but for which no explicit
+  // classification was submitted. It also references the submissions and the
+  // Classified records that include them.
+  //
+  // NB: mutually exclusive with `classified_record`.
+  IncludedRecord included_record = 18;
+}
+
+// The element to group each VariationArchive element in the release
+//
+// Type for the `<ClinVarVariationRelease>` tag.
+message ClinvarVariationRelease {
+  /* attributes */
+
+  // The current release.
+  google.protobuf.Timestamp release_date = 1;
+
+  /* contained elements */
+
+  // List of `<VariationArchive>` tags.
+  repeated VariationArchive variation_archives = 2;
+}

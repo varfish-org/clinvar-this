@@ -34,7 +34,7 @@ def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool):
 
 @cli.group()
 def config():
-    """Sub command category ``varfish-this config ...``"""
+    """Sub command category ``clinvar-this config ...``"""
 
 
 @config.command("set")
@@ -42,7 +42,7 @@ def config():
 @click.argument("value")
 @click.pass_context
 def config_set(ctx: click.Context, name: str, value: str):
-    """Sub command ``varfish-this config set NAME VALUE``
+    """Sub command ``clinvar-this config set NAME VALUE``
 
     Set the configuration variable with the given ``NAME`` to the given ``VALUE``.  This will interpret the
     current ``--profile`` setting.
@@ -70,7 +70,7 @@ def config_set(ctx: click.Context, name: str, value: str):
 @click.option("--profile", default="default", help="The profile to get the value from")
 @click.argument("name")
 def config_get(profile: str, name: str):
-    """Sub command ``varfish-this config get NAME``
+    """Sub command ``clinvar-this config get NAME``
 
     Show the configuration variable with the given ``NAME``.  This will interpret the current ``--profile`` setting.
     """
@@ -83,7 +83,7 @@ def config_get(profile: str, name: str):
 
 @config.command("dump")
 def config_dump():
-    """Sub command ``varfish-this config dump``
+    """Sub command ``clinvar-this config dump``
 
     Print the configuration file to stdout.
     """

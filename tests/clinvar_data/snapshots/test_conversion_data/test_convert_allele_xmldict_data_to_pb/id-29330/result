@@ -1,0 +1,272 @@
+{
+  "genes": [
+    {
+      "locations": [
+        {
+          "cytogeneticLocations": [
+            "6q22.33"
+          ],
+          "sequenceLocations": [
+            {
+              "assembly": "GRCh38",
+              "chr": "CHROMOSOME_6",
+              "accession": "NC_000006.12",
+              "start": 128883138,
+              "stop": 129516566,
+              "displayStart": 128883138,
+              "displayStop": 129516566,
+              "strand": "+"
+            },
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_6",
+              "accession": "NC_000006.11",
+              "start": 129204285,
+              "stop": 129837710,
+              "displayStart": 129204285,
+              "displayStop": 129837710,
+              "strand": "+"
+            }
+          ]
+        }
+      ],
+      "omim": "156225",
+      "fullName": "laminin subunit alpha 2",
+      "geneId": "3908",
+      "hgncId": "HGNC:6482",
+      "source": "submitted",
+      "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+    }
+  ],
+  "name": "NM_000426.4(LAMA2):c.9253C>T (p.Arg3085Ter)",
+  "canonicalSpdi": "NC_000006.12:129516230:C:T",
+  "variantTypes": [
+    "single nucleotide variant"
+  ],
+  "locations": [
+    {
+      "cytogeneticLocations": [
+        "6q22.33"
+      ],
+      "sequenceLocations": [
+        {
+          "forDisplay": true,
+          "assembly": "GRCh38",
+          "chr": "CHROMOSOME_6",
+          "accession": "NC_000006.12",
+          "start": 129516231,
+          "stop": 129516231,
+          "displayStart": 129516231,
+          "displayStop": 129516231,
+          "variantLength": 1,
+          "positionVcf": 129516231,
+          "referenceAlleleVcf": "C",
+          "alternateAlleleVcf": "T"
+        },
+        {
+          "assembly": "GRCh37",
+          "chr": "CHROMOSOME_6",
+          "accession": "NC_000006.11",
+          "start": 129837376,
+          "stop": 129837376,
+          "displayStart": 129837376,
+          "displayStop": 129837376,
+          "variantLength": 1,
+          "positionVcf": 129837376,
+          "referenceAlleleVcf": "C",
+          "alternateAlleleVcf": "T"
+        }
+      ]
+    }
+  ],
+  "proteinChanges": [
+    "R3085*",
+    "R3081*"
+  ],
+  "hgvsExpressions": [
+    {
+      "nucleotideExpression": {
+        "expression": "LRG_409:g.638091C>T",
+        "sequenceAccessionVersion": "LRG_409",
+        "sequenceAccession": "LRG_409"
+      },
+      "type": "HGVS_TYPE_GENOMIC"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "LRG_409t1:c.9253C>T",
+        "sequenceAccessionVersion": "LRG_409t1",
+        "sequenceAccession": "LRG_409t1"
+      },
+      "proteinExpression": {
+        "expression": "LRG_409p1:p.Arg3085Ter",
+        "sequenceAccessionVersion": "LRG_409p1",
+        "sequenceAccession": "LRG_409p1",
+        "change": "p.Arg3085Ter"
+      },
+      "type": "HGVS_TYPE_CODING"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "NC_000006.11:g.129837376C>T",
+        "sequenceAccessionVersion": "NC_000006.11",
+        "sequenceAccession": "NC_000006",
+        "sequenceVersion": 11,
+        "change": "g.129837376C>T"
+      },
+      "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+      "assembly": "GRCh37"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "NC_000006.12:g.129516231C>T",
+        "sequenceAccessionVersion": "NC_000006.12",
+        "sequenceAccession": "NC_000006",
+        "sequenceVersion": 12,
+        "change": "g.129516231C>T"
+      },
+      "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+      "assembly": "GRCh38"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "NG_008678.1:g.638091C>T",
+        "sequenceAccessionVersion": "NG_008678.1",
+        "sequenceAccession": "NG_008678",
+        "sequenceVersion": 1,
+        "change": "g.638091C>T"
+      },
+      "type": "HGVS_TYPE_GENOMIC"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "NM_000426.4:c.9253C>T",
+        "sequenceAccessionVersion": "NM_000426.4",
+        "sequenceAccession": "NM_000426",
+        "sequenceVersion": 4,
+        "change": "c.9253C>T",
+        "maneSelect": true
+      },
+      "proteinExpression": {
+        "expression": "NP_000417.3:p.Arg3085Ter",
+        "sequenceAccessionVersion": "NP_000417.3",
+        "sequenceAccession": "NP_000417",
+        "sequenceVersion": 3,
+        "change": "p.Arg3085Ter"
+      },
+      "molecularConsequences": [
+        {
+          "db": "SO",
+          "id": "SO:0001587",
+          "type": "nonsense"
+        }
+      ],
+      "type": "HGVS_TYPE_CODING"
+    },
+    {
+      "nucleotideExpression": {
+        "expression": "NM_001079823.2:c.9241C>T",
+        "sequenceAccessionVersion": "NM_001079823.2",
+        "sequenceAccession": "NM_001079823",
+        "sequenceVersion": 2,
+        "change": "c.9241C>T"
+      },
+      "proteinExpression": {
+        "expression": "NP_001073291.2:p.Arg3081Ter",
+        "sequenceAccessionVersion": "NP_001073291.2",
+        "sequenceAccession": "NP_001073291",
+        "sequenceVersion": 2,
+        "change": "p.Arg3081Ter"
+      },
+      "molecularConsequences": [
+        {
+          "db": "SO",
+          "id": "SO:0001587",
+          "type": "nonsense"
+        }
+      ],
+      "type": "HGVS_TYPE_CODING"
+    }
+  ],
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_MULTIPLE_SUBMITTERS_NO_CONFLICTS",
+      "description": "Pathogenic/Likely pathogenic",
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "10022829",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        },
+        {
+          "ids": [
+            {
+              "value": "10619025",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        },
+        {
+          "ids": [
+            {
+              "value": "11591858",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        },
+        {
+          "ids": [
+            {
+              "value": "27159402",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        },
+        {
+          "ids": [
+            {
+              "value": "34777456",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        }
+      ],
+      "dateLastEvaluated": "2023-12-18T00:00:00Z",
+      "dateCreated": "2011-01-25T00:00:00Z",
+      "mostRecentSubmission": "2024-02-11T00:00:00Z",
+      "numberOfSubmitters": 5,
+      "numberOfSubmissions": 5
+    }
+  },
+  "xrefs": [
+    {
+      "db": "ClinGen",
+      "id": "CA257204"
+    },
+    {
+      "db": "OMIM",
+      "id": "156225.0005",
+      "type": "Allelic variant"
+    },
+    {
+      "db": "dbSNP",
+      "id": "121913571",
+      "type": "rs"
+    },
+    {
+      "db": "ClinVar",
+      "id": "424826",
+      "type": "Interpreted"
+    }
+  ],
+  "alleleId": "29330",
+  "variationId": "14291"
+}

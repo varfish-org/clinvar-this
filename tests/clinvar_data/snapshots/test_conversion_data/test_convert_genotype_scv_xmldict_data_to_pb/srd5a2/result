@@ -1,0 +1,59 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "name": "steroid 5 alpha-reductase 2",
+          "symbol": "SRD5A2"
+        }
+      ],
+      "variantType": "Variation",
+      "location": {
+        "geneLocations": [
+          "NM_000348.3:intron 3"
+        ]
+      },
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NC_000002.11:g.31754536A>C"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    },
+    {
+      "genes": [
+        {
+          "name": "steroid 5 alpha-reductase 2",
+          "symbol": "SRD5A2"
+        }
+      ],
+      "variantType": "Variation",
+      "location": {
+        "geneLocations": [
+          "NM_000348.3:exon 4"
+        ]
+      },
+      "xrefs": [
+        {
+          "db": "dbSNP",
+          "id": "rs9332964"
+        }
+      ],
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NC_000002.11:g.31754395C>T"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    }
+  ],
+  "variationType": "VARIATION_TYPE_COMPOUND_HETEROZYGOTE"
+}
