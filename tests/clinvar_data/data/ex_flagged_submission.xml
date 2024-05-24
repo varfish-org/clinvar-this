@@ -1,401 +1,857 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ReleaseSet Dated="2023-12-03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.72.xsd">
-
-<ClinVarSet ID="167216329">
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive VariationID="9474" VariationName="NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)" VariationType="single nucleotide variant" Accession="VCV000009474" Version="32" RecordType="classified" NumberOfSubmissions="11" NumberOfSubmitters="9" DateLastUpdated="2024-04-15" DateCreated="2017-01-13" MostRecentSubmission="2024-04-15">
   <RecordStatus>current</RecordStatus>
-  <Replaces>RCV001196707</Replaces>
-  <Title>NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp) AND Achromatopsia 2</Title>
-  <ReferenceClinVarAssertion ID="67585" DateLastUpdated="2023-11-20" DateCreated="2013-04-04">
-    <ClinVarAccession Acc="RCV000010082" Version="11" Type="RCV" DateUpdated="2023-11-20" DateCreated="2013-04-04"/>
-    <RecordStatus>current</RecordStatus>
-    <ClinicalSignificance DateLastEvaluated="2023-07-08">
-      <ReviewStatus>criteria provided, multiple submitters, no conflicts</ReviewStatus>
-      <Description>Pathogenic/Likely pathogenic</Description>
-    </ClinicalSignificance>
-    <Assertion Type="variation to disease"/>
-    <ObservedIn>
-      <Sample>
-        <Origin>germline</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>not provided</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>literature only</MethodType>
-      </Method>
-      <ObservedData ID="140954901">
-        <Attribute Type="Description">In affected members of a family with rod monochromacy (ACHM2; 216900), Kohl et al. (1998) found homozygosity for a C-to-T transition at nucleotide 887 of the CNGA3 gene, resulting in an arg283-to-trp (R283W) substitution.</Attribute>
-        <Citation Type="general">
-          <ID Source="PubMed">9662398</ID>
-        </Citation>
-      </ObservedData>
-      <ObservedData ID="140954901">
-        <Attribute Type="Description">Wissinger et al. (2001) found the R283W mutation in 19 of 110 mutant alleles, including 14 alleles in 7 homozygous patients. Haplotype analysis suggested that these alleles, which were particularly frequent among patients from Scandinavia and northern Italy, have a common origin. Some of the patients homozygous for this mutation had complete achromatopsia with no detectable cone function, whereas others had incomplete achromatopsia with residual cone ERG responses and/or color vision.</Attribute>
-        <Citation Type="general">
-          <ID Source="PubMed">11536077</ID>
-        </Citation>
-      </ObservedData>
-    </ObservedIn>
-    <ObservedIn>
-      <Sample>
-        <Origin>unknown</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>yes</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>clinical testing</MethodType>
-      </Method>
-      <ObservedData ID="140954902">
-        <Attribute integerValue="1" Type="VariantAlleles"/>
-      </ObservedData>
-      <ObservedData ID="140954902">
-        <Attribute Type="Description">not provided</Attribute>
-      </ObservedData>
-    </ObservedIn>
-    <ObservedIn>
-      <Sample>
-        <Origin>unknown</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>unknown</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>clinical testing</MethodType>
-      </Method>
-      <ObservedData ID="140954903">
-        <Attribute Type="Description">not provided</Attribute>
-      </ObservedData>
-    </ObservedIn>
-    <MeasureSet Type="Variant" ID="9474" Acc="VCV000009474" Version="28">
-      <Measure Type="single nucleotide variant" ID="24513">
-        <Name>
-          <ElementValue Type="Preferred">NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)</ElementValue>
-        </Name>
-        <CanonicalSPDI>NC_000002.12:98396016:C:T</CanonicalSPDI>
-        <AttributeSet>
-          <Attribute Accession="NM_001079878" Version="2" Change="c.793C&gt;T" Type="HGVS, coding, RefSeq">NM_001079878.2:c.793C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NM_001298" Version="3" Change="c.847C&gt;T" Type="HGVS, coding, RefSeq" MANESelect="true">NM_001298.3:c.847C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NG_009097" Version="1" Change="g.54863C&gt;T" Type="HGVS, genomic, RefSeqGene">NG_009097.1:g.54863C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NC_000002" Version="12" Change="g.98396017C&gt;T" Type="HGVS, genomic, top level" integerValue="38">NC_000002.12:g.98396017C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NC_000002" Version="11" Change="g.99012480C&gt;T" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000002.11:g.99012480C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NM_001298" Version="2" Change="c.847C&gt;T" Type="HGVS, previous">NM_001298.2:c.847C&gt;T</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="Q16281" Change="p.Arg283Trp" Type="HGVS, protein">Q16281:p.Arg283Trp</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NP_001073347" Version="1" Change="p.Arg265Trp" Type="HGVS, protein, RefSeq">NP_001073347.1:p.Arg265Trp</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NP_001289" Version="1" Change="p.Arg283Trp" Type="HGVS, protein, RefSeq">NP_001289.1:p.Arg283Trp</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Accession="NP_001289" Version="1" Change="p.Arg283Trp" Type="HGVS, protein, RefSeq">NP_001289.1:p.Arg283Trp</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="MolecularConsequence">missense variant</Attribute>
-          <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-          <XRef ID="NM_001079878.2:c.793C&gt;T" DB="RefSeq"/>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="MolecularConsequence">missense variant</Attribute>
-          <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-          <XRef ID="NM_001298.3:c.847C&gt;T" DB="RefSeq"/>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="ProteinChange1LetterCode">R265W</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="ProteinChange1LetterCode">R283W</Attribute>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="ProteinChange3LetterCode">ARG283TRP</Attribute>
-        </AttributeSet>
-        <AlleleFrequencyList>
-          <AlleleFrequency Value="0.00014" Source="Exome Aggregation Consortium (ExAC)"/>
-          <AlleleFrequency Value="0.00002" Source="The Genome Aggregation Database (gnomAD)"/>
-          <AlleleFrequency Value="0.00010" Source="The Genome Aggregation Database (gnomAD), exomes"/>
-          <AlleleFrequency Value="0.00004" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
-          <AlleleFrequency Value="0.00005" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
-        </AlleleFrequencyList>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="24513" VariationID="9474">
+      <GeneList>
+        <Gene Symbol="CNGA3" FullName="cyclic nucleotide gated channel subunit alpha 3" GeneID="1261" HGNC_ID="HGNC:2150" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>2q11.2</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="98346456" stop="98398601" display_start="98346456" display_stop="98398601" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="98962617" stop="99015063" display_start="98962617" display_stop="99015063" Strand="+"/>
+          </Location>
+          <OMIM>600053</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)</Name>
+      <CanonicalSPDI>NC_000002.12:98396016:C:T</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
         <CytogeneticLocation>2q11.2</CytogeneticLocation>
-        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="98396017" stop="98396017" display_start="98396017" display_stop="98396017" variantLength="1" positionVCF="98396017" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="98396017" stop="98396017" display_start="98396017" display_stop="98396017" variantLength="1" positionVCF="98396017" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
         <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="99012480" stop="99012480" display_start="99012480" display_stop="99012480" variantLength="1" positionVCF="99012480" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
-        <MeasureRelationship Type="within single gene">
-          <Name>
-            <ElementValue Type="Preferred">cyclic nucleotide gated channel subunit alpha 3</ElementValue>
-          </Name>
-          <Symbol>
-            <ElementValue Type="Preferred">CNGA3</ElementValue>
-          </Symbol>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="98346456" stop="98398601" display_start="98346456" display_stop="98398601" Strand="+"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="98962617" stop="99015063" display_start="98962617" display_stop="99015063" variantLength="52447" Strand="+"/>
-          <XRef ID="1261" DB="Gene"/>
-          <XRef Type="MIM" ID="600053" DB="OMIM"/>
-          <XRef ID="HGNC:2150" DB="HGNC"/>
-        </MeasureRelationship>
+      </Location>
+      <ProteinChange>R283W</ProteinChange>
+      <ProteinChange>R265W</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="protein">
+          <ProteinExpression sequenceAccessionVersion="Q16281" sequenceAccession="Q16281" change="p.Arg283Trp">
+            <Expression>Q16281:p.Arg283Trp</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000002.11" sequenceAccession="NC_000002" sequenceVersion="11" change="g.99012480C&gt;T" Assembly="GRCh37">
+            <Expression>NC_000002.11:g.99012480C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000002.12" sequenceAccession="NC_000002" sequenceVersion="12" change="g.98396017C&gt;T" Assembly="GRCh38">
+            <Expression>NC_000002.12:g.98396017C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_009097.1" sequenceAccession="NG_009097" sequenceVersion="1" change="g.54863C&gt;T">
+            <Expression>NG_009097.1:g.54863C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001079878.2" sequenceAccession="NM_001079878" sequenceVersion="2" change="c.793C&gt;T">
+            <Expression>NM_001079878.2:c.793C&gt;T</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001073347.1" sequenceAccession="NP_001073347" sequenceVersion="1" change="p.Arg265Trp">
+            <Expression>NP_001073347.1:p.Arg265Trp</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001298.3" sequenceAccession="NM_001298" sequenceVersion="3" change="c.847C&gt;T" MANESelect="true">
+            <Expression>NM_001298.3:c.847C&gt;T</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001289.1" sequenceAccession="NP_001289" sequenceVersion="1" change="p.Arg283Trp">
+            <Expression>NP_001289.1:p.Arg283Trp</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA254820" DB="ClinGen"/>
         <XRef ID="Q16281#VAR_010905" DB="UniProtKB"/>
         <XRef Type="Allelic variant" ID="600053.0002" DB="OMIM"/>
         <XRef Type="rs" ID="104893613" DB="dbSNP"/>
-      </Measure>
-      <Name>
-        <ElementValue Type="Preferred">NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)</ElementValue>
-      </Name>
-      <Name>
-        <ElementValue Type="Preferred">NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)</ElementValue>
-      </Name>
-      <Name>
-        <ElementValue Type="Preferred">NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp)</ElementValue>
-      </Name>
-      <AttributeSet>
-        <Attribute Type="SubmitterVariantId">GDX:724380</Attribute>
-      </AttributeSet>
-      <XRef ID="CA254820" DB="ClinGen"/>
-    </MeasureSet>
-    <TraitSet Type="Disease" ID="6436">
-      <Trait ID="171" Type="Disease">
-        <Name>
-          <ElementValue Type="Preferred">Achromatopsia 2</ElementValue>
-          <XRef ID="Achromatopsia+2/116" DB="Genetic Alliance"/>
-          <XRef ID="MONDO:0009003" DB="MONDO"/>
-        </Name>
-        <Name>
-          <ElementValue Type="Alternate">Colorblindness, total</ElementValue>
-        </Name>
-        <Name>
-          <ElementValue Type="Alternate">Rod monochromatism 2</ElementValue>
-        </Name>
-        <Name>
-          <ElementValue Type="Alternate">Rod monochromacy 2</ElementValue>
-        </Name>
-        <Symbol>
-          <ElementValue Type="Preferred">ACHM2</ElementValue>
-          <XRef Type="MIM" ID="216900" DB="OMIM"/>
-        </Symbol>
-        <Symbol>
-          <ElementValue Type="Alternate">RMCH2</ElementValue>
-          <XRef Type="MIM" ID="216900" DB="OMIM"/>
-        </Symbol>
-        <Symbol>
-          <ElementValue Type="Alternate">CNGA3</ElementValue>
-        </Symbol>
-        <AttributeSet>
-          <Attribute Type="public definition">Achromatopsia is characterized by reduced visual acuity, pendular nystagmus, increased sensitivity to light (photophobia), a small central scotoma, eccentric fixation, and reduced or complete loss of color discrimination. All individuals with achromatopsia (achromats) have impaired color discrimination along all three axes of color vision corresponding to the three cone classes: the protan or long-wavelength-sensitive cone axis (red), the deutan or middle-wavelength-sensitive cone axis (green), and the tritan or short-wavelength-sensitive cone axis (blue). Most individuals have complete achromatopsia, with total lack of function of all three types of cones. Rarely, individuals have incomplete achromatopsia, in which one or more cone types may be partially functioning. The manifestations are similar to those of individuals with complete achromatopsia, but generally less severe. Hyperopia is common in achromatopsia. Nystagmus develops during the first few weeks after birth followed by increased sensitivity to bright light. Best visual acuity varies with severity of the disease; it is 20/200 or less in complete achromatopsia and may be as high as 20/80 in incomplete achromatopsia. Visual acuity is usually stable over time; both nystagmus and sensitivity to bright light may improve slightly. Although the fundus is usually normal, macular changes (which may show early signs of progression) and vessel narrowing may be present in some affected individuals. Defects in the macula are visible on optical coherence tomography.</Attribute>
-          <XRef ID="NBK1418" DB="GeneReviews"/>
-        </AttributeSet>
-        <AttributeSet>
-          <Attribute Type="GARD id" integerValue="9649"/>
-          <XRef ID="9649" DB="Office of Rare Diseases"/>
-        </AttributeSet>
-        <Citation Type="review" Abbrev="GeneReviews">
-          <ID Source="PubMed">20301591</ID>
-          <ID Source="BookShelf">NBK1418</ID>
-        </Citation>
-        <Citation Type="Translational/Evidence-based" Abbrev="EuroGentest, 2011">
-          <ID Source="pmc">3110037</ID>
-        </Citation>
-        <XRef ID="MONDO:0009003" DB="MONDO"/>
-        <XRef ID="C1857618" DB="MedGen"/>
-        <XRef ID="49382" DB="Orphanet"/>
-        <XRef Type="MIM" ID="216900" DB="OMIM"/>
-      </Trait>
-    </TraitSet>
-  </ReferenceClinVarAssertion>
-  <ClinVarAssertion ID="30303">
-    <ClinVarSubmissionID localKey="600053.0002_ACHROMATOPSIA 2" submitter="OMIM" submitterDate="2017-04-07" title="CNGA3, ARG283TRP_ACHROMATOPSIA 2"/>
-    <ClinVarAccession Acc="SCV000030303" Version="3" Type="SCV" OrgID="3" OrganizationCategory="resource" OrgType="primary" DateUpdated="2017-04-21" DateCreated="2013-04-04"/>
-    <RecordStatus>current</RecordStatus>
-    <ClinicalSignificance DateLastEvaluated="2001-10-01">
-      <ReviewStatus>no assertion criteria provided</ReviewStatus>
-      <Description>Pathogenic</Description>
-    </ClinicalSignificance>
-    <Assertion Type="variation to disease"/>
-    <ExternalID DB="OMIM" ID="600053.0002" Type="Allelic variant"/>
-    <ObservedIn>
-      <Sample>
-        <Origin>germline</Origin>
-        <Species>human</Species>
-        <AffectedStatus>not provided</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>literature only</MethodType>
-      </Method>
-      <ObservedData>
-        <Attribute Type="Description">In affected members of a family with rod monochromacy (ACHM2; 216900), Kohl et al. (1998) found homozygosity for a C-to-T transition at nucleotide 887 of the CNGA3 gene, resulting in an arg283-to-trp (R283W) substitution.</Attribute>
-        <Citation>
-          <ID Source="PubMed">9662398</ID>
-        </Citation>
-        <XRef DB="OMIM" ID="216900" Type="MIM"/>
-      </ObservedData>
-      <ObservedData>
-        <Attribute Type="Description">Wissinger et al. (2001) found the R283W mutation in 19 of 110 mutant alleles, including 14 alleles in 7 homozygous patients. Haplotype analysis suggested that these alleles, which were particularly frequent among patients from Scandinavia and northern Italy, have a common origin. Some of the patients homozygous for this mutation had complete achromatopsia with no detectable cone function, whereas others had incomplete achromatopsia with residual cone ERG responses and/or color vision.</Attribute>
-        <Citation>
+      </XRefList>
+      <AlleleFrequencyList>
+        <AlleleFrequency Value="0.00002" Source="The Genome Aggregation Database (gnomAD)"/>
+        <AlleleFrequency Value="0.00005" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+        <AlleleFrequency Value="0.00010" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+        <AlleleFrequency Value="0.00014" Source="Exome Aggregation Consortium (ExAC)"/>
+      </AlleleFrequencyList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp) AND Achromatopsia 2" Accession="RCV000010082" Version="13">
+        <ClassifiedConditionList TraitSetID="6436">
+          <ClassifiedCondition DB="MedGen" ID="C1857618">Achromatopsia 2</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, multiple submitters, no conflicts</ReviewStatus>
+            <Description DateLastEvaluated="2023-07-08" SubmissionCount="4">Pathogenic/Likely pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+      <RCVAccession Title="NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp) AND Monochromacy" Accession="RCV000415133" Version="3">
+        <ClassifiedConditionList TraitSetID="34298">
+          <ClassifiedCondition DB="MedGen" ID="C5201048">Monochromacy</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+            <Description DateLastEvaluated="2014-07-21" SubmissionCount="1">Likely pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+      <RCVAccession Title="NM_001298.3(CNGA3):c.847C&gt;T (p.Arg283Trp) AND not provided" Accession="RCV001222182" Version="26">
+        <ClassifiedConditionList TraitSetID="9460">
+          <ClassifiedCondition DB="MedGen" ID="C3661900">not provided</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, multiple submitters, no conflicts</ReviewStatus>
+            <Description DateLastEvaluated="2024-01-23" SubmissionCount="6">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2024-01-23" NumberOfSubmissions="11" NumberOfSubmitters="9" DateCreated="2017-01-13" MostRecentSubmission="2024-04-15">
+        <ReviewStatus>criteria provided, multiple submitters, no conflicts</ReviewStatus>
+        <Description>Pathogenic/Likely pathogenic</Description>
+        <Citation Type="general">
           <ID Source="PubMed">11536077</ID>
         </Citation>
-      </ObservedData>
-    </ObservedIn>
-    <MeasureSet Type="Variant">
-      <Measure Type="Variation">
-        <Name>
-          <ElementValue Type="Preferred">CNGA3, ARG283TRP</ElementValue>
-        </Name>
+        <Citation Type="general">
+          <ID Source="PubMed">17693388</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">20238023</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">24504161</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">25637600</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">26992781</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">9662398</ID>
+        </Citation>
+        <DescriptionHistory Dated="2020-07-15">
+          <Description>Likely pathogenic</Description>
+        </DescriptionHistory>
+        <DescriptionHistory Dated="2018-05-29">
+          <Description>Pathogenic/Likely pathogenic</Description>
+        </DescriptionHistory>
+        <DescriptionHistory Dated="2017-01-12">
+          <Description>Pathogenic</Description>
+        </DescriptionHistory>
+        <ConditionList>
+          <TraitSet ID="9460" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="17556" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">none provided</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">not provided</ElementValue>
+                <XRef ID="13DG0619" DB="Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital &amp; Research Centre"/>
+              </Name>
+              <AttributeSet>
+                <Attribute Type="public definition">The term 'not provided' is registered in MedGen to support identification of submissions to ClinVar for which no condition was named when assessing the variant. 'not provided' differs from 'not specified', which is used when a variant is asserted to be benign, likely benign, or of uncertain significance for conditions that have not been specified.</Attribute>
+              </AttributeSet>
+              <XRef ID="C3661900" DB="MedGen"/>
+            </Trait>
+          </TraitSet>
+          <TraitSet ID="6436" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="171" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">Colorblindness, total</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Rod monochromatism 2</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Rod monochromacy 2</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Achromatopsia 2</ElementValue>
+                <XRef ID="Achromatopsia+2/116" DB="Genetic Alliance"/>
+                <XRef ID="MONDO:0009003" DB="MONDO"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Preferred">ACHM2</ElementValue>
+                <XRef Type="MIM" ID="216900" DB="OMIM"/>
+              </Symbol>
+              <Symbol>
+                <ElementValue Type="Alternate">RMCH2</ElementValue>
+                <XRef Type="MIM" ID="216900" DB="OMIM"/>
+              </Symbol>
+              <Symbol>
+                <ElementValue Type="Alternate">CNGA3</ElementValue>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="public definition">Achromatopsia is characterized by reduced visual acuity, pendular nystagmus, increased sensitivity to light (photophobia), a small central scotoma, eccentric fixation, and reduced or complete loss of color discrimination. All individuals with achromatopsia (achromats) have impaired color discrimination along all three axes of color vision corresponding to the three cone classes: the protan or long-wavelength-sensitive cone axis (red), the deutan or middle-wavelength-sensitive cone axis (green), and the tritan or short-wavelength-sensitive cone axis (blue). Most individuals have complete achromatopsia, with total lack of function of all three types of cones. Rarely, individuals have incomplete achromatopsia, in which one or more cone types may be partially functioning. The manifestations are similar to those of individuals with complete achromatopsia, but generally less severe. Hyperopia is common in achromatopsia. Nystagmus develops during the first few weeks after birth followed by increased sensitivity to bright light. Best visual acuity varies with severity of the disease; it is 20/200 or less in complete achromatopsia and may be as high as 20/80 in incomplete achromatopsia. Visual acuity is usually stable over time; both nystagmus and sensitivity to bright light may improve slightly. Although the fundus is usually normal, macular changes (which may show early signs of progression) and vessel narrowing may be present in some affected individuals. Defects in the macula are visible on optical coherence tomography.</Attribute>
+                <XRef ID="NBK1418" DB="GeneReviews"/>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="9649"/>
+                <XRef ID="9649" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <Citation Type="review" Abbrev="GeneReviews">
+                <ID Source="PubMed">20301591</ID>
+                <ID Source="BookShelf">NBK1418</ID>
+              </Citation>
+              <Citation Type="Translational/Evidence-based" Abbrev="EuroGentest, 2011">
+                <ID Source="pmc">3110037</ID>
+              </Citation>
+              <XRef ID="49382" DB="Orphanet"/>
+              <XRef ID="C1857618" DB="MedGen"/>
+              <XRef ID="MONDO:0009003" DB="MONDO"/>
+              <XRef Type="MIM" ID="216900" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+          <TraitSet ID="34298" Type="Finding" ContributesToAggregateClassification="true">
+            <Trait ID="26415" Type="Finding">
+              <Name>
+                <ElementValue Type="Preferred">Monochromacy</ElementValue>
+                <XRef ID="HP:0007803" DB="Human Phenotype Ontology"/>
+              </Name>
+              <XRef ID="C5201048" DB="MedGen"/>
+              <XRef Type="primary" ID="HP:0007803" DB="Human Phenotype Ontology"/>
+              <XRef Type="secondary" ID="HP:0007954" DB="Human Phenotype Ontology"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="30303" SubmissionDate="2017-04-07" DateLastUpdated="2017-04-21" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="600053.0002_ACHROMATOPSIA 2" title="CNGA3, ARG283TRP_ACHROMATOPSIA 2"/>
+        <ClinVarAccession Accession="SCV000030303" DateUpdated="2017-04-21" DateCreated="2013-04-04" Type="SCV" Version="3" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2001-10-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In affected members of a family with rod monochromacy (ACHM2; 216900), Kohl et al. (1998) found homozygosity for a C-to-T transition at nucleotide 887 of the CNGA3 gene, resulting in an arg283-to-trp (R283W) substitution.</Attribute>
+              <Citation>
+                <ID Source="PubMed">9662398</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="216900" Type="MIM"/>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="Description">Wissinger et al. (2001) found the R283W mutation in 19 of 110 mutant alleles, including 14 alleles in 7 homozygous patients. Haplotype analysis suggested that these alleles, which were particularly frequent among patients from Scandinavia and northern Italy, have a common origin. Some of the patients homozygous for this mutation had complete achromatopsia with no detectable cone function, whereas others had incomplete achromatopsia with residual cone ERG responses and/or color vision.</Attribute>
+              <Citation>
+                <ID Source="PubMed">11536077</ID>
+              </Citation>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <Name>CNGA3, ARG283TRP</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">ARG283TRP</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="600053.0002" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">ACHROMATOPSIA 2</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="3482937" SubmissionDate="2021-12-08" DateLastUpdated="2023-03-04" DateCreated="2021-08-07">
+        <ClinVarSubmissionID localKey="GDXSV:216529" localKeyIsSubmitted="1"/>
+        <ClinVarAccession Accession="SCV001773382" DateUpdated="2023-03-04" DateCreated="2021-08-07" Type="SCV" Version="3" SubmitterName="GeneDx" OrgID="26957" OrganizationCategory="laboratory"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2021-11-26">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+          <Comment>Published functional studies demonstrate a damaging effect consistent with loss-of-function (Muraki-Oda et al., 2007; Ding et al., 2010); In silico analysis supports that this missense variant has a deleterious effect on protein structure/function; This variant is associated with the following publications: (PMID: 26992781, 31237654, 32141364, 20238023, 24504161, 9662398, 16319819, 17693388, 11536077, 30682209, 31877759, 32869108, 33562422, 32037395)</Comment>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
         <AttributeSet>
-          <Attribute Type="NonHGVS">ARG283TRP</Attribute>
+          <Attribute Type="AssertionMethod">GeneDx Variant Classification Process June 2021</Attribute>
+          <Citation>
+            <URL>https://submit.ncbi.nlm.nih.gov/ft/byid/fc81e176/genedx_variant_classification_process_june_2021.pdf</URL>
+          </Citation>
         </AttributeSet>
-        <MeasureRelationship Type="variant in gene">
-          <Symbol>
-            <ElementValue Type="Preferred">CNGA3</ElementValue>
-          </Symbol>
-        </MeasureRelationship>
-        <XRef DB="OMIM" ID="600053.0002" Type="Allelic variant"/>
-      </Measure>
-    </MeasureSet>
-    <TraitSet Type="Disease">
-      <Trait Type="Disease">
-        <Name>
-          <ElementValue Type="Preferred">ACHROMATOPSIA 2</ElementValue>
-        </Name>
-      </Trait>
-    </TraitSet>
-  </ClinVarAssertion>
-  <ClinVarAssertion ID="1569297" SubmissionName="haerwigman2016">
-    <ClinVarSubmissionID localKey="NM_001298.2:c.847C&gt;T|OMIM:216900" submittedAssembly="GRCh37" submitter="Joint Genome Diagnostic Labs from Nijmegen and Maastricht, Radboudumc and MUMC+" submitterDate="2016-09-14"/>
-    <ClinVarAccession Acc="SCV000804621" Version="2" Type="SCV" OrgID="505925" OrganizationCategory="laboratory" OrgType="primary" DateUpdated="2018-09-10" DateCreated="2018-09-10"/>
-    <RecordStatus>current</RecordStatus>
-    <ClinicalSignificance DateLastEvaluated="2016-09-01">
-      <ReviewStatus>flagged submission</ReviewStatus>
-      <Description>Pathogenic</Description>
-    </ClinicalSignificance>
-    <Assertion Type="variation to disease"/>
-    <ObservedIn>
-      <Sample>
-        <Origin>unknown</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>yes</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>clinical testing</MethodType>
-      </Method>
-      <ObservedData>
-        <Attribute Type="VariantAlleles" integerValue="1"/>
-      </ObservedData>
-      <ObservedData>
-        <Attribute Type="VariantChromosomes" integerValue="1"/>
-      </ObservedData>
-    </ObservedIn>
-    <MeasureSet Type="Variant">
-      <Measure Type="Variation">
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="SubmitterVariantId">GDX:724380</Name>
+          </OtherNameList>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">Not Provided</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>GeneDX_Clinvar_Submission_20_20210805063641</SubmissionName>
+          <SubmissionName>GeneDX_Clinvar_Submission_74_20211208054205</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="7562760" SubmissionDate="2023-10-02" DateLastUpdated="2023-10-07" DateCreated="2023-10-07">
+        <ClinVarSubmissionID localKey="50189|OMIM:216900" submittedAssembly="GRCh38"/>
+        <ClinVarAccession Accession="SCV004041266" DateUpdated="2023-10-07" DateCreated="2023-10-07" Type="SCV" Version="1" SubmitterName="Baylor Genetics" OrgID="1006" OrganizationCategory="laboratory"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2023-07-08">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
         <AttributeSet>
-          <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
         </AttributeSet>
-        <MeasureRelationship Type="variant in gene">
-          <Symbol>
-            <ElementValue Type="Preferred">CNGA3</ElementValue>
-          </Symbol>
-        </MeasureRelationship>
-      </Measure>
-    </MeasureSet>
-    <TraitSet Type="Disease">
-      <Trait Type="Disease">
-        <XRef DB="OMIM" ID="216900" Type="MIM"/>
-      </Trait>
-    </TraitSet>
-    <StudyDescription>Variants as described in Haer-Wigman et al. 2016</StudyDescription>
-    <Comment DataSource="NCBI" Type="FlaggedComment">Reason: This record appears to be redundant with a more recent record from the same submitter.</Comment>
-    <Comment DataSource="NCBI" Type="FlaggedComment">Notes: SCV000804621 appears to be redundant with SCV001956988.</Comment>
-  </ClinVarAssertion>
-  <ClinVarAssertion ID="2695419" SubmissionName="SUB8622351">
-    <ClinVarSubmissionID localKey="NM_001298.2:c.847C&gt;T|OMIM:216900" submittedAssembly="GRCh37" submitter="Centre for Mendelian Genomics, University Medical Centre Ljubljana" submitterDate="2020-11-24"/>
-    <ClinVarAccession Acc="SCV001367338" Version="2" Type="SCV" OrgID="505952" OrganizationCategory="clinic" OrgType="primary" DateUpdated="2020-12-12" DateCreated="2020-07-04"/>
-    <RecordStatus>current</RecordStatus>
-    <ClinicalSignificance DateLastEvaluated="2019-09-12">
-      <ReviewStatus>criteria provided, single submitter</ReviewStatus>
-      <Description>Likely pathogenic</Description>
-      <Comment>This variant was classified as: Likely pathogenic. The following ACMG criteria were applied in classifying this variant: PM1,PM2,PM5,PP3,PP5.</Comment>
-    </ClinicalSignificance>
-    <Assertion Type="variation to disease"/>
-    <AttributeSet>
-      <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
-      <Citation>
-        <ID Source="PubMed">25741868</ID>
-      </Citation>
-    </AttributeSet>
-    <ObservedIn>
-      <Sample>
-        <Origin>unknown</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>yes</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>clinical testing</MethodType>
-      </Method>
-      <ObservedData>
-        <Attribute Type="Description">not provided</Attribute>
-      </ObservedData>
-    </ObservedIn>
-    <MeasureSet Type="Variant">
-      <Measure Type="Variation">
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>unknown</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>unknown</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001298.3:c.847C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="216900" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>SUB13858663</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="4044408" SubmissionDate="2024-04-02" DateLastUpdated="2024-04-15" DateCreated="2022-01-26">
+        <ClinVarSubmissionID localKey="112028|MedGen:CN517202" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV002063881" DateUpdated="2024-04-15" DateCreated="2022-01-26" Type="SCV" Version="14" SubmitterName="CeGaT Center for Human Genetics Tuebingen" OrgID="505870" OrganizationCategory="laboratory" OrgAbbreviation="CHGT"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2022-10-01">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
         <AttributeSet>
-          <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          <Attribute Type="AssertionMethod">CeGaT Center For Human Genetics Tuebingen Variant Classification Criteria Version 2</Attribute>
+          <Citation>
+            <URL>https://submit.ncbi.nlm.nih.gov/api/2.0/files/0ynenhfo/cegat_center_for_human_genetics_tuebingen_-_variant_classification_criteria_-_version_2.pdf/?format=attachment</URL>
+          </Citation>
         </AttributeSet>
-      </Measure>
-    </MeasureSet>
-    <TraitSet Type="Disease">
-      <Trait Type="Disease">
-        <XRef DB="OMIM" ID="216900" Type="MIM"/>
-      </Trait>
-    </TraitSet>
-  </ClinVarAssertion>
-  <ClinVarAssertion ID="7562760" SubmissionName="SUB13858663">
-    <ClinVarSubmissionID localKey="50189|OMIM:216900" submittedAssembly="GRCh38" submitter="Baylor Genetics" submitterDate="2023-10-02"/>
-    <ClinVarAccession Acc="SCV004041266" Version="1" Type="SCV" OrgID="1006" OrganizationCategory="laboratory" OrgType="primary" DateUpdated="2023-10-07" DateCreated="2023-10-07"/>
-    <RecordStatus>current</RecordStatus>
-    <ClinicalSignificance DateLastEvaluated="2023-07-08">
-      <ReviewStatus>criteria provided, single submitter</ReviewStatus>
-      <Description>Pathogenic</Description>
-    </ClinicalSignificance>
-    <Assertion Type="variation to disease"/>
-    <ExternalID DB="Baylor Genetics" ID="50189"/>
-    <AttributeSet>
-      <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
-      <Citation>
-        <ID Source="PubMed">25741868</ID>
-      </Citation>
-    </AttributeSet>
-    <ObservedIn>
-      <Sample>
-        <Origin>unknown</Origin>
-        <Species TaxonomyId="9606">human</Species>
-        <AffectedStatus>unknown</AffectedStatus>
-      </Sample>
-      <Method>
-        <MethodType>clinical testing</MethodType>
-      </Method>
-      <ObservedData>
-        <Attribute Type="Description">not provided</Attribute>
-      </ObservedData>
-    </ObservedIn>
-    <MeasureSet Type="Variant">
-      <Measure Type="Variation">
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="4"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="T" referenceAllele="C" start="99012480" stop="99012480" variantLength="1"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="MedGen" ID="CN517202" Type="CUI"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>2022-01</SubmissionName>
+          <SubmissionName>2022-01-corrected</SubmissionName>
+          <SubmissionName>2022-04</SubmissionName>
+          <SubmissionName>2022-07</SubmissionName>
+          <SubmissionName>2022-08</SubmissionName>
+          <SubmissionName>2022-10.3</SubmissionName>
+          <SubmissionName>2023-01</SubmissionName>
+          <SubmissionName>2023-04</SubmissionName>
+          <SubmissionName>2023-09-add-ACMG-details</SubmissionName>
+          <SubmissionName>2023-10</SubmissionName>
+          <SubmissionName>2024-04</SubmissionName>
+          <SubmissionName>SUB13641132</SubmissionName>
+          <SubmissionName>SUB13985080</SubmissionName>
+          <SubmissionName>SUB14102099</SubmissionName>
+          <SubmissionName>SUB14290090</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="962633" SubmissionDate="2016-11-12" DateLastUpdated="2017-01-13" DateCreated="2017-01-13">
+        <ClinVarSubmissionID localKey="CMGVARID00576|HPO:HP:0007803" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV000492977" DateUpdated="2017-01-13" DateCreated="2017-01-13" Type="SCV" Version="1" SubmitterName="Centre for Mendelian Genomics, University Medical Centre Ljubljana" OrgID="505952" OrganizationCategory="clinic" OrgAbbreviation="CMG-UMCL"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2014-07-21">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Likely pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
         <AttributeSet>
-          <Attribute Type="HGVS">NM_001298.3:c.847C&gt;T</Attribute>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
         </AttributeSet>
-      </Measure>
-    </MeasureSet>
-    <TraitSet Type="Disease">
-      <Trait Type="Disease">
-        <XRef DB="OMIM" ID="216900" Type="MIM"/>
-      </Trait>
-    </TraitSet>
-  </ClinVarAssertion>
-</ClinVarSet>
-
-</ReleaseSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>unknown</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Finding">
+          <Trait Type="Finding">
+            <XRef DB="HP" ID="HP:0007803"/>
+          </Trait>
+        </TraitSet>
+        <StudyDescription>Diagnostic exome sequencing variant classification from diagnostic exome sequencing programme</StudyDescription>
+        <SubmissionNameList>
+          <SubmissionName>CMG_Slovenia_Submission_1</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="1569297" SubmissionDate="2016-09-14" DateLastUpdated="2018-09-10" DateCreated="2018-09-10">
+        <ClinVarSubmissionID localKey="NM_001298.2:c.847C&gt;T|OMIM:216900" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV000804621" DateUpdated="2018-09-10" DateCreated="2018-09-10" Type="SCV" Version="2" SubmitterName="Joint Genome Diagnostic Labs from Nijmegen and Maastricht, Radboudumc and MUMC+" OrgID="505925" OrganizationCategory="laboratory" OrgAbbreviation="Radboudumc_MUMC+"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2016-09-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>unknown</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="1"/>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="VariantChromosomes" integerValue="1"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="216900" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <StudyDescription>Variants as described in Haer-Wigman et al. 2016</StudyDescription>
+        <SubmissionNameList>
+          <SubmissionName>haerwigman2016</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="2695419" SubmissionDate="2020-11-24" DateLastUpdated="2020-12-12" DateCreated="2020-07-04">
+        <ClinVarSubmissionID localKey="NM_001298.2:c.847C&gt;T|OMIM:216900" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001367338" DateUpdated="2020-12-12" DateCreated="2020-07-04" Type="SCV" Version="2" SubmitterName="Centre for Mendelian Genomics, University Medical Centre Ljubljana" OrgID="505952" OrganizationCategory="clinic" OrgAbbreviation="CMG-UMCL"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2019-09-12">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Likely pathogenic</GermlineClassification>
+          <Comment>This variant was classified as: Likely pathogenic. The following ACMG criteria were applied in classifying this variant: PM1,PM2,PM5,PP3,PP5.</Comment>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>unknown</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001298.2:c.847C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="216900" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>SUB8622351</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="3745783" SubmissionDate="2021-09-15" DateLastUpdated="2021-09-25" DateCreated="2021-09-25">
+        <ClinVarSubmissionID localKey="report_configuration_variant_id:3272964"/>
+        <ClinVarAccession Accession="SCV001905566" DateUpdated="2021-09-25" DateCreated="2021-09-25" Type="SCV" Version="1" SubmitterName="Institute of Medical Genetics and Applied Genomics, University Hospital Tübingen" OrgID="506385" OrganizationCategory="laboratory" OrgAbbreviation="IMGAG"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2021-09-15">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="ModeOfInheritance">Autosomal recessive inheritance</Attribute>
+        </AttributeSet>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+              <NumberTested>1</NumberTested>
+              <Gender>male</Gender>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="SampleLocalID">DX2106067</Attribute>
+            </ObservedData>
+            <TraitSet Type="Finding">
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <XRef DB="HP" ID="HP:0011516"/>
+              </Trait>
+            </TraitSet>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="T" referenceAllele="C" start="99012480"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">not provided</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="3838167" SubmissionDate="2021-09-30" DateLastUpdated="2021-10-02" DateCreated="2021-10-02">
+        <ClinVarSubmissionID localKey=":Chr.2_99012480_99012480_C_T|not provided" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001956988" DateUpdated="2021-10-02" DateCreated="2021-10-02" Type="SCV" Version="1" SubmitterName="Joint Genome Diagnostic Labs from Nijmegen and Maastricht, Radboudumc and MUMC+" OrgID="505925" OrganizationCategory="laboratory" OrgAbbreviation="Radboudumc_MUMC+"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="506382" SubmitterName="Diagnostic Laboratory, Department of Genetics, University Medical Center Groningen" Type="behalf" OrganizationCategory="laboratory"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <Classification>
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="T" referenceAllele="C" start="99012480" stop="99012480" variantLength="1"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">not provided</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+        <StudyName>VKGL Data-share Consensus</StudyName>
+        <SubmissionNameList>
+          <SubmissionName>SUB10449206</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="3859083" SubmissionDate="2021-09-21" DateLastUpdated="2021-10-07" DateCreated="2021-10-07">
+        <ClinVarSubmissionID localKey=":Chr.2_99012480_99012480_C_T|not provided" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001966736" DateUpdated="2021-10-07" DateCreated="2021-10-07" Type="SCV" Version="1" SubmitterName="Clinical Genetics DNA and cytogenetics Diagnostics Lab, Erasmus MC, Erasmus Medical Center" OrgID="506497" OrganizationCategory="laboratory" OrgAbbreviation="CGDx-EMC"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="506382" SubmitterName="Diagnostic Laboratory, Department of Genetics, University Medical Center Groningen" Type="behalf" OrganizationCategory="laboratory"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <Classification>
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="T" referenceAllele="C" start="99012480" stop="99012480" variantLength="1"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">not provided</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+        <StudyName>VKGL Data-share Consensus</StudyName>
+        <SubmissionNameList>
+          <SubmissionName>SUB10405229</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="2729182" SubmissionDate="2024-02-08" DateLastUpdated="2024-02-14" DateCreated="2020-07-16">
+        <ClinVarSubmissionID localKey="2474236|MedGen:CN517202" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001394271" DateUpdated="2024-02-14" DateCreated="2020-07-16" Type="SCV" Version="5" SubmitterName="Invitae" OrgID="500031" OrganizationCategory="laboratory" OrgAbbreviation="Invitae"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2024-01-23">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+          <Citation>
+            <ID Source="PubMed">9662398</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">11536077</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">24504161</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">25637600</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">26992781</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">17693388</ID>
+          </Citation>
+          <Citation>
+            <ID Source="PubMed">20238023</ID>
+          </Citation>
+          <Comment>This sequence change replaces arginine, which is basic and polar, with tryptophan, which is neutral and slightly polar, at codon 283 of the CNGA3 protein (p.Arg283Trp). This variant is present in population databases (rs104893613, gnomAD 0.02%). This missense change has been observed in individual(s) with achromatopsia (PMID: 9662398, 11536077, 24504161, 25637600, 26992781). In at least one individual the data is consistent with being in trans (on the opposite chromosome) from a pathogenic variant. It has also been observed to segregate with disease in related individuals. ClinVar contains an entry for this variant (Variation ID: 9474). Advanced modeling of protein sequence and biophysical properties (such as structural, functional, and spatial information, amino acid conservation, physicochemical variation, residue mobility, and thermodynamic stability) performed at Invitae indicates that this missense variant is expected to disrupt CNGA3 protein function with a positive predictive value of 95%. Experimental studies have shown that this missense change affects CNGA3 function (PMID: 17693388, 20238023). For these reasons, this variant has been classified as Pathogenic.</Comment>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">Invitae Variant Classification Sherloc (09022015)</Attribute>
+          <Citation>
+            <ID Source="PubMed">28492532</ID>
+          </Citation>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>unknown</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CNGA3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NC_000002.11:g.99012480C&gt;T</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="MedGen" ID="CN517202" Type="CUI"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>SUB11431369</SubmissionName>
+          <SubmissionName>SUB12507860</SubmissionName>
+          <SubmissionName>SUB14200283</SubmissionName>
+          <SubmissionName>SUB8755776</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="3745783" TraitType="Disease" MappingType="Name" MappingValue="not provided" MappingRef="Preferred">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="4044408" TraitType="Disease" MappingType="XRef" MappingValue="CN517202" MappingRef="MedGen">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="962633" TraitType="Finding" MappingType="XRef" MappingValue="HP:0007803" MappingRef="HP">
+        <MedGen CUI="C5201048" Name="Monochromacy"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="2729182" TraitType="Disease" MappingType="XRef" MappingValue="CN517202" MappingRef="MedGen">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="1569297" TraitType="Disease" MappingType="XRef" MappingValue="216900" MappingRef="OMIM">
+        <MedGen CUI="C1857618" Name="Achromatopsia 2"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="3745783" TraitType="Finding" MappingType="XRef" MappingValue="HP:0011516" MappingRef="HP">
+        <MedGen CUI="C0152200" Name="Achromatopsia"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="3482937" TraitType="Disease" MappingType="Name" MappingValue="Not Provided" MappingRef="Preferred">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="3859083" TraitType="Disease" MappingType="Name" MappingValue="not provided" MappingRef="Preferred">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="3838167" TraitType="Disease" MappingType="Name" MappingValue="not provided" MappingRef="Preferred">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="2695419" TraitType="Disease" MappingType="XRef" MappingValue="216900" MappingRef="OMIM">
+        <MedGen CUI="C1857618" Name="Achromatopsia 2"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="7562760" TraitType="Disease" MappingType="XRef" MappingValue="216900" MappingRef="OMIM">
+        <MedGen CUI="C1857618" Name="Achromatopsia 2"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="30303" TraitType="Disease" MappingType="Name" MappingValue="ACHROMATOPSIA 2" MappingRef="Preferred">
+        <MedGen CUI="C1857618" Name="Achromatopsia 2"/>
+      </TraitMapping>
+    </TraitMappingList>
+    <DeletedSCVList>
+      <SCV>
+        <Accession Version="1" DateDeleted="2020-11-19">SCV001366832</Accession>
+        <Description>Updated the reporting strategy binding the interpretation to OMIM (instead of HPO)</Description>
+      </SCV>
+    </DeletedSCVList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

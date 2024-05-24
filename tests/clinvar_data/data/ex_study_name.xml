@@ -1,359 +1,325 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-  <ClinVarSet ID="92204700">
-    <RecordStatus>current</RecordStatus>
-    <Title>NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs) AND Myocardial infarction 1</Title>
-    <ReferenceClinVarAssertion ID="191173" DateLastUpdated="2022-04-23" DateCreated="2014-01-08">
-      <ClinVarAccession Acc="RCV000077777" DateUpdated="2022-04-23" DateCreated="2014-01-08" Version="1" Type="RCV"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2013-09-15">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="65427" VariationName="NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs)" VariationType="Duplication" Accession="VCV000065427" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2014-01-08" MostRecentSubmission="2014-01-08">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="76355" VariationID="65427">
+      <GeneList>
+        <Gene Symbol="GUCY1A1" FullName="guanylate cyclase 1 soluble subunit alpha 1" GeneID="2982" HGNC_ID="HGNC:4685" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>4q32.1</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="155666848" stop="155737059" display_start="155666848" display_stop="155737059" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="156587861" stop="156658213" display_start="156587861" display_stop="156658213" Strand="+"/>
+          </Location>
+          <OMIM>139396</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs)</Name>
+      <CanonicalSPDI>NC_000004.12:155710647:TTTTTT:TTTTTTT</CanonicalSPDI>
+      <VariantType>Duplication</VariantType>
+      <Location>
+        <CytogeneticLocation>4q32.1</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="155710647" stop="155710648" display_start="155710647" display_stop="155710648" variantLength="1" positionVCF="155710647" referenceAlleleVCF="A" alternateAlleleVCF="AT"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="156631799" stop="156631800" display_start="156631799" display_stop="156631800" variantLength="1" positionVCF="156631799" referenceAlleleVCF="A" alternateAlleleVCF="AT"/>
+      </Location>
+      <ProteinChange>L163fs</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000004.11" sequenceAccession="NC_000004" sequenceVersion="11" change="g.156631805dup" Assembly="GRCh37">
+            <Expression>NC_000004.11:g.156631805dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000004.12" sequenceAccession="NC_000004" sequenceVersion="12" change="g.155710653dup" Assembly="GRCh38">
+            <Expression>NC_000004.12:g.155710653dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_034128.1" sequenceAccession="NG_034128" sequenceVersion="1" change="g.48944dup">
+            <Expression>NG_034128.1:g.48944dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_000856.6" sequenceAccession="NM_000856" sequenceVersion="6" change="c.488dup">
+            <Expression>NM_000856.6:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_000847.2" sequenceAccession="NP_000847" sequenceVersion="2" change="p.Leu163fs">
+            <Expression>NP_000847.2:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001130682.3" sequenceAccession="NM_001130682" sequenceVersion="3" change="c.488dup" MANESelect="true">
+            <Expression>NM_001130682.3:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001124154.1" sequenceAccession="NP_001124154" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001124154.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001130683.4" sequenceAccession="NM_001130683" sequenceVersion="4" change="c.488dup">
+            <Expression>NM_001130683.4:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001124155.1" sequenceAccession="NP_001124155" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001124155.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001130684.3" sequenceAccession="NM_001130684" sequenceVersion="3" change="c.488dup">
+            <Expression>NM_001130684.3:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001124156.1" sequenceAccession="NP_001124156" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001124156.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001130685.3" sequenceAccession="NM_001130685" sequenceVersion="3" change="c.-218dup">
+            <Expression>NM_001130685.3:c.-218dup</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001623" Type="5 prime UTR variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001130687.3" sequenceAccession="NM_001130687" sequenceVersion="3" change="c.488dup">
+            <Expression>NM_001130687.3:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001124159.1" sequenceAccession="NP_001124159" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001124159.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001256449.2" sequenceAccession="NM_001256449" sequenceVersion="2" change="c.488dup">
+            <Expression>NM_001256449.2:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001243378.1" sequenceAccession="NP_001243378" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001243378.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379666.1" sequenceAccession="NM_001379666" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379666.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366595.1" sequenceAccession="NP_001366595" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366595.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379667.1" sequenceAccession="NM_001379667" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379667.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366596.1" sequenceAccession="NP_001366596" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366596.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379668.1" sequenceAccession="NM_001379668" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379668.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366597.1" sequenceAccession="NP_001366597" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366597.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379669.1" sequenceAccession="NM_001379669" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379669.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366598.1" sequenceAccession="NP_001366598" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366598.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379670.1" sequenceAccession="NM_001379670" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379670.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366599.1" sequenceAccession="NP_001366599" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366599.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379671.1" sequenceAccession="NM_001379671" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379671.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366600.1" sequenceAccession="NP_001366600" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366600.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379672.1" sequenceAccession="NM_001379672" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379672.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366601.1" sequenceAccession="NP_001366601" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366601.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379673.1" sequenceAccession="NM_001379673" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379673.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366602.1" sequenceAccession="NP_001366602" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366602.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379674.1" sequenceAccession="NM_001379674" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379674.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366603.1" sequenceAccession="NP_001366603" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366603.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379675.1" sequenceAccession="NM_001379675" sequenceVersion="1" change="c.488dup">
+            <Expression>NM_001379675.1:c.488dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001366604.1" sequenceAccession="NP_001366604" sequenceVersion="1" change="p.Leu163fs">
+            <Expression>NP_001366604.1:p.Leu163fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001379676.1" sequenceAccession="NM_001379676" sequenceVersion="1" change="c.377-396dup">
+            <Expression>NM_001379676.1:c.377-396dup</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001627" Type="intron variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA145493" DB="ClinGen"/>
+        <XRef Type="rs" ID="587777928" DB="dbSNP"/>
+      </XRefList>
+      <FunctionalConsequence Value="protein loss of function">
+        <XRef ID="0043" DB="Variation Ontology"/>
+      </FunctionalConsequence>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs) AND Myocardial infarction 1" Accession="RCV000077777" Version="1">
+        <ClassifiedConditionList TraitSetID="1933">
+          <ClassifiedCondition DB="MedGen" ID="C1838021">Myocardial infarction 1</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2013-09-15" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2013-09-15" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2014-01-08" MostRecentSubmission="2014-01-08">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Pathogenic</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>inherited</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <MethodType>research</MethodType>
-        </Method>
-        <ObservedData ID="97497464">
-          <Attribute Type="Description">not provided</Attribute>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant" ID="65427" Acc="VCV000065427" Version="1">
-        <Measure Type="Duplication" ID="76355">
-          <Name>
-            <ElementValue Type="Preferred">NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs)</ElementValue>
-          </Name>
-          <CanonicalSPDI>NC_000004.12:155710647:TTTTTT:TTTTTTT</CanonicalSPDI>
-          <AttributeSet>
-            <Attribute Type="FunctionalConsequence">protein loss of function</Attribute>
-            <XRef ID="0043" DB="Variation Ontology"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130685" Version="3" Change="c.-218dup" Type="HGVS, coding, RefSeq">NM_001130685.3:c.-218dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379676" Version="1" Change="c.377-396dup" Type="HGVS, coding, RefSeq">NM_001379676.1:c.377-396dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_000856" Version="6" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_000856.6:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130682" Version="3" Change="c.488dup" Type="HGVS, coding, RefSeq" MANESelect="true">NM_001130682.3:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130683" Version="4" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001130683.4:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130684" Version="3" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001130684.3:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130687" Version="3" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001130687.3:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001256449" Version="2" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001256449.2:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379666" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379666.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379667" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379667.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379668" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379668.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379669" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379669.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379670" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379670.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379671" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379671.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379672" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379672.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379673" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379673.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379674" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379674.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001379675" Version="1" Change="c.488dup" Type="HGVS, coding, RefSeq">NM_001379675.1:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NG_034128" Version="1" Change="g.48944dup" Type="HGVS, genomic, RefSeqGene">NG_034128.1:g.48944dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000004" Version="12" Change="g.155710653dup" Type="HGVS, genomic, top level" integerValue="38">NC_000004.12:g.155710653dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000004" Version="11" Change="g.156631805dup" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000004.11:g.156631805dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001130683" Version="2" Change="c.488dup" Type="HGVS, previous">NM_001130683.2:c.488dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_000847" Version="2" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_000847.2:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001124154" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001124154.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001124155" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001124155.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001124156" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001124156.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001124159" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001124159.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001243378" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001243378.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366595" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366595.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366596" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366596.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366597" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366597.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366598" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366598.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366599" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366599.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366600" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366600.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366601" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366601.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366602" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366602.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366603" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366603.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001366604" Version="1" Change="p.Leu163fs" Type="HGVS, protein, RefSeq">NP_001366604.1:p.Leu163fs</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="Location">NM_001130683.2:exon 6</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">5 prime UTR variant</Attribute>
-            <XRef ID="SO:0001623" DB="Sequence Ontology"/>
-            <XRef ID="NM_001130685.3:c.-218dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_000856.6:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001130682.3:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001130683.4:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001130684.3:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001130687.3:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001256449.2:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379666.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379667.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379668.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379669.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379670.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379671.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379672.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379673.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379674.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">frameshift variant</Attribute>
-            <XRef ID="SO:0001589" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379675.1:c.488dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">intron variant</Attribute>
-            <XRef ID="SO:0001627" DB="Sequence Ontology"/>
-            <XRef ID="NM_001379676.1:c.377-396dup" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="ProteinChange1LetterCode">L163fs</Attribute>
-          </AttributeSet>
-          <CytogeneticLocation>4q32.1</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="155710647" stop="155710648" display_start="155710647" display_stop="155710648" variantLength="1" positionVCF="155710647" referenceAlleleVCF="A" alternateAlleleVCF="AT"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="156631799" stop="156631800" display_start="156631799" display_stop="156631800" variantLength="1" positionVCF="156631799" referenceAlleleVCF="A" alternateAlleleVCF="AT"/>
-          <MeasureRelationship Type="within single gene">
-            <Name>
-              <ElementValue Type="Preferred">guanylate cyclase 1 soluble subunit alpha 1</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">GUCY1A1</ElementValue>
-            </Symbol>
-            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="4" Accession="NC_000004.12" start="155666848" stop="155737059" display_start="155666848" display_stop="155737059" Strand="+"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="4" Accession="NC_000004.11" start="156587861" stop="156658213" display_start="156587861" display_stop="156658213" variantLength="70353" Strand="+"/>
-            <XRef ID="2982" DB="Gene"/>
-            <XRef Type="MIM" ID="139396" DB="OMIM"/>
-            <XRef ID="HGNC:4685" DB="HGNC"/>
-          </MeasureRelationship>
-          <Citation Type="general">
-            <ID Source="PubMed">24213632</ID>
-          </Citation>
-          <XRef Type="rs" ID="587777928" DB="dbSNP"/>
-        </Measure>
-        <Name>
-          <ElementValue Type="Preferred">NM_001130682.3(GUCY1A1):c.488dup (p.Leu163fs)</ElementValue>
-        </Name>
-        <XRef ID="CA145493" DB="ClinGen"/>
-      </MeasureSet>
-      <TraitSet Type="Disease" ID="1933">
-        <Trait ID="5582" Type="Disease">
-          <Name>
-            <ElementValue Type="Preferred">Myocardial infarction 1</ElementValue>
-            <XRef ID="Myocardial+infarction+1/8938" DB="Genetic Alliance"/>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">MYOCARDIAL INFARCTION, SUSCEPTIBILITY TO, 1</ElementValue>
-            <XRef Type="Allelic variant" ID="602600.0001" DB="OMIM"/>
-            <XRef ID="608446" DB="OMIM"/>
-          </Name>
-          <Symbol>
-            <ElementValue Type="Preferred">MCI1</ElementValue>
-            <XRef ID="608446" DB="OMIM"/>
-          </Symbol>
-          <XRef ID="C1838021" DB="MedGen"/>
-        </Trait>
-      </TraitSet>
-    </ReferenceClinVarAssertion>
-    <ClinVarAssertion ID="145185" SubmissionName="MI_Family">
-      <ClinVarSubmissionID localKey="NM_001130683.2:c.488dup|OMIM:608446" submitter="Institut für Integrative und Experimentelle Genomik, Universität zu Lübeck" submitterDate="2013-09-23"/>
-      <ClinVarAccession Acc="SCV000083870" DateCreated="2014-01-08" DateUpdated="2014-01-08" Version="1" Type="SCV" OrgID="500151" OrganizationCategory="laboratory" OrgType="primary"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2013-09-15">
-        <ReviewStatus>no assertion criteria provided</ReviewStatus>
-        <Description>pathogenic</Description>
         <Citation Type="general">
           <ID Source="PubMed">24213632</ID>
         </Citation>
-        <Comment Type="ConvertedByNCBI">Converted during submission to Pathogenic.</Comment>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>inherited</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <Age Type="minimum" age_unit="years">25</Age>
-          <Age Type="maximum" age_unit="years">85</Age>
-          <AffectedStatus>yes</AffectedStatus>
-          <Gender>mixed</Gender>
-        </Sample>
-        <Method>
-          <MethodType>research</MethodType>
-        </Method>
-        <ObservedData>
-          <Attribute Type="Description">not provided</Attribute>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="Variation">
-          <Name>
-            <ElementValue Type="Alternate">p.Leu163Phefs*24</ElementValue>
-          </Name>
-          <AttributeSet>
-            <Attribute Type="FunctionalConsequence">loss-of-function</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="Location">NM_001130683.2:exon6</Attribute>
-          </AttributeSet>
+        <ConditionList>
+          <TraitSet ID="1933" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="5582" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">MYOCARDIAL INFARCTION, SUSCEPTIBILITY TO, 1</ElementValue>
+                <XRef Type="Allelic variant" ID="602600.0001" DB="OMIM"/>
+                <XRef ID="608446" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Myocardial infarction 1</ElementValue>
+                <XRef ID="Myocardial+infarction+1/8938" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Preferred">MCI1</ElementValue>
+                <XRef ID="608446" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="C1838021" DB="MedGen"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="145185" SubmissionDate="2013-09-23" DateLastUpdated="2014-01-08" DateCreated="2014-01-08">
+        <ClinVarSubmissionID localKey="NM_001130683.2:c.488dup|OMIM:608446"/>
+        <ClinVarAccession Accession="SCV000083870" DateUpdated="2014-01-08" DateCreated="2014-01-08" Type="SCV" Version="1" SubmitterName="Institut für Integrative und Experimentelle Genomik, Universität zu Lübeck" OrgID="500151" OrganizationCategory="laboratory"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2013-09-15">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>pathogenic</GermlineClassification>
+          <Citation Type="general">
+            <ID Source="PubMed">24213632</ID>
+          </Citation>
+          <Comment Type="ConvertedByNCBI">Converted during submission to Pathogenic.</Comment>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>inherited</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <Age Type="minimum" age_unit="years">25</Age>
+              <Age Type="maximum" age_unit="years">85</Age>
+              <AffectedStatus>yes</AffectedStatus>
+              <Gender>mixed</Gender>
+            </Sample>
+            <Method>
+              <MethodType>research</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="GUCY1A3"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <GeneLocation>NM_001130683.2:exon6</GeneLocation>
+          </Location>
+          <OtherNameList>
+            <Name>p.Leu163Phefs*24</Name>
+          </OtherNameList>
+          <FunctionalConsequence Value="loss-of-function"/>
           <AttributeSet>
             <Attribute Type="HGVS">NM_001130683.2:c.488dup</Attribute>
           </AttributeSet>
-          <MeasureRelationship Type="variant in gene">
-            <Symbol>
-              <ElementValue Type="Preferred">GUCY1A3</ElementValue>
-            </Symbol>
-          </MeasureRelationship>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="Disease">
-        <Trait Type="Disease">
-          <Name>
-            <ElementValue Type="Preferred">Myocardial infarction 1</ElementValue>
-          </Name>
-          <XRef DB="OMIM" ID="608446" Type="MIM"/>
-        </Trait>
-      </TraitSet>
-      <Citation Type="general">
-        <ID Source="PubMed">24213632</ID>
-      </Citation>
-      <Citation Type="general">
-        <ID Source="PubMed">24213632</ID>
-      </Citation>
-      <StudyName>GERMIFS</StudyName>
-    </ClinVarAssertion>
-  </ClinVarSet>
-</ReleaseSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">Myocardial infarction 1</ElementValue>
+            </Name>
+            <XRef DB="OMIM" ID="608446" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <Citation Type="general">
+          <ID Source="PubMed">24213632</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">24213632</ID>
+        </Citation>
+        <StudyName>GERMIFS</StudyName>
+        <SubmissionNameList>
+          <SubmissionName>MI_Family</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="145185" TraitType="Disease" MappingType="Name" MappingValue="Myocardial infarction 1" MappingRef="Preferred">
+        <MedGen CUI="C1838021" Name="Myocardial infarction 1"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

@@ -1,5 +1,6 @@
 """Console script for ClinVar This!"""
 
+import os
 import typing
 
 import click
@@ -23,13 +24,20 @@ from clinvar_this.config import Config, dump_config, load_config, save_config
 @click.option(
     "--verify-ssl/--no-verify-ssl", default=True, help="Whether to enable SSL verification"
 )
+@click.option(
+    "--use-utc/--no-use-utc", default=True, help="Whether to use UTC timezone (default: true)"
+)
 @click.pass_context
-def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool):
+def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool, use_utc: bool):
     """Main entry point for CLI via click."""
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
     ctx.obj["profile"] = profile
     ctx.obj["verify_ssl"] = verify_ssl
+    # Using UTC is a good idea as we store dates as protobuf timestamps and otherwise we
+    # get non-midnight times.
+    if use_utc:
+        os.environ["TZ"] = "UTC"
 
 
 @cli.group()

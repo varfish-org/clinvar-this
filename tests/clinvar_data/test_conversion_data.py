@@ -1,4 +1,4 @@
-"""Tests for converting data to Protocol Buffers."""
+"""Tests for converting XML data to Protocol Buffers."""
 
 import json
 from typing import Any

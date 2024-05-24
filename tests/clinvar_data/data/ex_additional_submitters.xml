@@ -1,241 +1,303 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-  <ClinVarSet ID="92192534">
-    <RecordStatus>current</RecordStatus>
-    <Replaces>RCV000050475</Replaces>
-    <Replaces>RCV000050476</Replaces>
-    <Replaces>RCV000050477</Replaces>
-    <Replaces>RCV000050478</Replaces>
-    <Replaces>RCV000050479</Replaces>
-    <Replaces>RCV000050480</Replaces>
-    <Replaces>RCV000050481</Replaces>
-    <Title>GRCh38/hg38 6p25.3(chr6:259528-307998)x3 AND See cases</Title>
-    <ReferenceClinVarAssertion ID="137943" DateLastUpdated="2022-04-23" DateCreated="2013-08-03">
-      <ClinVarAccession Acc="RCV000050474" DateUpdated="2022-04-23" DateCreated="2013-08-03" Version="7" Type="RCV"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2010-10-19">
-        <ReviewStatus>no assertion criteria provided</ReviewStatus>
-        <Description>Benign</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>not provided</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <NamePlatform>Agilent 023097</NamePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <Method>
-          <NamePlatform>Cyto Custom HD-CGH Microarray (4x44K) design ID 16267</NamePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData ID="97402009">
-          <Attribute integerValue="2" Type="VariantAlleles"/>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant" ID="56992" Acc="VCV000056992" Version="2">
-        <Measure Type="copy number gain" ID="71587">
-          <Name>
-            <ElementValue Type="Preferred">GRCh38/hg38 6p25.3(chr6:259528-307998)x3</ElementValue>
-          </Name>
-          <AttributeSet>
-            <Attribute Type="AbsoluteCopyNumber" integerValue="3"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000006" Version="12" Change="g.(?_259528)_(307998_?)dup" Type="HGVS, genomic, top level" integerValue="38">NC_000006.12:g.(?_259528)_(307998_?)dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000006" Version="10" Change="g.(?_204528)_(252998_?)dup" Type="HGVS, genomic, top level, previous" integerValue="36">NC_000006.10:g.(?_204528)_(252998_?)dup</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000006" Version="11" Change="g.(?_259528)_(307998_?)dup" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000006.11:g.(?_259528)_(307998_?)dup</Attribute>
-          </AttributeSet>
-          <CytogeneticLocation>6p25.3</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" innerStart="259528" innerStop="307998" display_start="259528" display_stop="307998" variantLength="48471"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" innerStart="259528" innerStop="307998" display_start="259528" display_stop="307998" variantLength="48471"/>
-          <SequenceLocation Assembly="NCBI36" AssemblyAccessionVersion="GCF_000001405.12" AssemblyStatus="previous" Chr="6" Accession="NC_000006.10" innerStart="204528" innerStop="252998" display_start="204528" display_stop="252998" variantLength="48471"/>
-          <MeasureRelationship Type="genes overlapped by variant">
-            <Name>
-              <ElementValue Type="Preferred">dual specificity phosphatase 22</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">DUSP22</ElementValue>
-            </Symbol>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="56992" VariationName="GRCh38/hg38 6p25.3(chr6:259528-307998)x3" VariationType="copy number gain" Accession="VCV000056992" Version="2" NumberOfSubmissions="2" NumberOfSubmitters="2" DateLastUpdated="2023-10-15" DateCreated="2015-07-10" MostRecentSubmission="2015-07-10">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="71587" VariationID="56992">
+      <GeneList>
+        <Gene Symbol="DUSP22" FullName="dual specificity phosphatase 22" GeneID="56940" HGNC_ID="HGNC:16077" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="292487" stop="351355" display_start="292487" display_stop="351355" Strand="+"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="292100" stop="351354" display_start="292100" display_stop="351354" variantLength="59255" Strand="+"/>
-            <XRef ID="56940" DB="Gene"/>
-            <XRef Type="MIM" ID="616778" DB="OMIM"/>
-            <XRef ID="HGNC:16077" DB="HGNC"/>
-          </MeasureRelationship>
-          <XRef ID="nssv581836" DB="dbVar"/>
-          <XRef ID="nssv582007" DB="dbVar"/>
-          <XRef ID="nsv529150" DB="dbVar"/>
-        </Measure>
-        <Name>
-          <ElementValue Type="Preferred">GRCh38/hg38 6p25.3(chr6:259528-307998)x3</ElementValue>
-        </Name>
-      </MeasureSet>
-      <TraitSet Type="PhenotypeInstruction" ID="16994">
-        <Trait ID="18728" Type="PhenotypeInstruction">
-          <Name>
-            <ElementValue Type="Preferred">See cases</ElementValue>
-          </Name>
-        </Trait>
-      </TraitSet>
-    </ReferenceClinVarAssertion>
-    <ClinVarAssertion ID="350852" SubmissionName="nstd37">
-      <ClinVarSubmissionID localKey="nsv529150:copy number gain:See cases:3:SCV000196254" submitter="ISCA site 17" submitterDate="2014-06-21"/>
-      <ClinVarAccession Acc="SCV000196254" DateCreated="2015-01-02" DateUpdated="2015-07-10" OrgID="505238" OrgType="primary" OrganizationCategory="laboratory" Type="SCV" Version="2"/>
-      <AdditionalSubmitters>
-        <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" category="consortium"/>
-      </AdditionalSubmitters>
-      <RecordStatus>current</RecordStatus>
-      <ReplacedList>
-        <Replaced Accession="SCV000175203" DateChanged="2015-01-01" Version="1"/>
-      </ReplacedList>
-      <ClinicalSignificance DateLastEvaluated="2009-07-30">
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="292100" stop="351354" display_start="292100" display_stop="351354" Strand="+"/>
+          </Location>
+          <OMIM>616778</OMIM>
+        </Gene>
+        <Gene Symbol="LOC129995536" FullName="ATAC-STARR-seq lymphoblastoid active region 23815" GeneID="129995536" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="287018" stop="287087" display_start="287018" display_stop="287087" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995537" FullName="ATAC-STARR-seq lymphoblastoid active region 23816" GeneID="129995537" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="287308" stop="287377" display_start="287308" display_stop="287377" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995538" FullName="ATAC-STARR-seq lymphoblastoid active region 23818" GeneID="129995538" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="292960" stop="293219" display_start="292960" display_stop="293219" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995539" FullName="ATAC-STARR-seq lymphoblastoid active region 23819" GeneID="129995539" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="296647" stop="296806" display_start="296647" display_stop="296806" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995540" FullName="ATAC-STARR-seq lymphoblastoid active region 23820" GeneID="129995540" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="297547" stop="297636" display_start="297547" display_stop="297636" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995541" FullName="ATAC-STARR-seq lymphoblastoid active region 23821" GeneID="129995541" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="304067" stop="304146" display_start="304067" display_stop="304146" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129995542" FullName="ATAC-STARR-seq lymphoblastoid active region 23822" GeneID="129995542" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>6p25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="304966" stop="305015" display_start="304966" display_stop="305015" Strand="+"/>
+          </Location>
+        </Gene>
+      </GeneList>
+      <Name>GRCh38/hg38 6p25.3(chr6:259528-307998)x3</Name>
+      <VariantType>copy number gain</VariantType>
+      <Location>
+        <CytogeneticLocation>6p25.3</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" innerStart="259528" innerStop="307998" display_start="259528" display_stop="307998" variantLength="48471"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" innerStart="259528" innerStop="307998" display_start="259528" display_stop="307998" variantLength="48471"/>
+        <SequenceLocation Assembly="NCBI36" AssemblyAccessionVersion="GCF_000001405.12" AssemblyStatus="previous" Chr="6" Accession="NC_000006.10" innerStart="204528" innerStop="252998" display_start="204528" display_stop="252998" variantLength="48471"/>
+      </Location>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000006.11" sequenceAccession="NC_000006" sequenceVersion="11" change="g.(?_259528)_(307998_?)dup" Assembly="GRCh37">
+            <Expression>NC_000006.11:g.(?_259528)_(307998_?)dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="NCBI36" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000006.10" sequenceAccession="NC_000006" sequenceVersion="10" change="g.(?_204528)_(252998_?)dup" Assembly="NCBI36">
+            <Expression>NC_000006.10:g.(?_204528)_(252998_?)dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000006.12" sequenceAccession="NC_000006" sequenceVersion="12" change="g.(?_259528)_(307998_?)dup" Assembly="GRCh38">
+            <Expression>NC_000006.12:g.(?_259528)_(307998_?)dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="nssv581836" DB="dbVar"/>
+        <XRef ID="nssv582007" DB="dbVar"/>
+        <XRef ID="nsv529150" DB="dbVar"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="GRCh38/hg38 6p25.3(chr6:259528-307998)x3 AND See cases" Accession="RCV000050474" Version="7">
+        <ClassifiedConditionList TraitSetID="16994">
+          <ClassifiedCondition>See cases</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-10-19" SubmissionCount="2">Benign</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-10-19" NumberOfSubmissions="2" NumberOfSubmitters="2" DateCreated="2015-07-10" MostRecentSubmission="2015-07-10">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Benign</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <SampleDescription>
-            <Description Type="public">p25.3</Description>
-          </SampleDescription>
-          <Origin>not provided</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <NamePlatform>Agilent 023097</NamePlatform>
-          <TypePlatform>Oligo aCGH</TypePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <SourceType>submitter-generated</SourceType>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData>
-          <Attribute Type="VariantAlleles" integerValue="1"/>
-        </ObservedData>
-        <TraitSet Type="Finding">
-          <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
-            <Name>
-              <ElementValue Type="Preferred">Developmental delay AND/OR other significant developmental or morphological phenotypes</ElementValue>
-            </Name>
-          </Trait>
-        </TraitSet>
-        <XRef DB="dbVar" ID="nssv582007" Type="dbVarVariantCallId"/>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="copy number gain">
+        <ConditionList>
+          <TraitSet ID="16994" Type="PhenotypeInstruction" ContributesToAggregateClassification="true">
+            <Trait ID="18728" Type="PhenotypeInstruction">
+              <Name>
+                <ElementValue Type="Preferred">See cases</ElementValue>
+              </Name>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="350852" SubmissionDate="2014-06-21" DateLastUpdated="2015-07-10" DateCreated="2015-01-02">
+        <ClinVarSubmissionID localKey="nsv529150:copy number gain:See cases:3:SCV000196254"/>
+        <ClinVarAccession Accession="SCV000196254" DateUpdated="2015-07-10" DateCreated="2015-01-02" Type="SCV" Version="2" SubmitterName="ISCA site 17" OrgID="505238" OrganizationCategory="laboratory"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" OrganizationCategory="consortium"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <ReplacedList>
+          <Replaced Accession="SCV000175203" DateChanged="2015-01-01" Version="1"/>
+        </ReplacedList>
+        <Classification DateLastEvaluated="2009-07-30">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Benign</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <SampleDescription>
+                <Description Type="public">p25.3</Description>
+              </SampleDescription>
+              <Origin>not provided</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <NamePlatform>Agilent 023097</NamePlatform>
+              <TypePlatform>Oligo aCGH</TypePlatform>
+              <Purpose>Discovery</Purpose>
+              <Description>Microarray</Description>
+              <SourceType>submitter-generated</SourceType>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="1"/>
+            </ObservedData>
+            <TraitSet Type="Finding">
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <Name>
+                  <ElementValue Type="Preferred">Developmental delay AND/OR other significant developmental or morphological phenotypes</ElementValue>
+                </Name>
+              </Trait>
+            </TraitSet>
+            <XRef DB="dbVar" ID="nssv582007" Type="dbVarVariantCallId"/>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>copy number gain</VariantType>
+          <Location>
+            <SequenceLocation Accession="NC_000006.10" Assembly="NCBI36" Chr="6" innerStart="204528" innerStop="252998"/>
+          </Location>
+          <XRefList>
+            <XRef DB="dbVar" ID="nssv582007" Type="dbVarVariantCallId"/>
+            <XRef DB="dbVar" ID="nsv529150" Type="dbVarVariantRegionId"/>
+          </XRefList>
           <AttributeSet>
             <Attribute Type="AbsoluteCopyNumber">3</Attribute>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="HGVS">NC_000006.10:g.(?_204528)_(252998_?)dup</Attribute>
           </AttributeSet>
-          <SequenceLocation Accession="NC_000006.10" Assembly="NCBI36" Chr="6" innerStart="204528" innerStop="252998"/>
-          <XRef DB="dbVar" ID="nssv582007" Type="dbVarVariantCallId"/>
-          <XRef DB="dbVar" ID="nsv529150" Type="dbVarVariantRegionId"/>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="PhenotypeInstruction">
-        <Trait Type="PhenotypeInstruction">
-          <Name>
-            <ElementValue Type="Preferred">See cases</ElementValue>
-          </Name>
-        </Trait>
-      </TraitSet>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
-      <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
-    </ClinVarAssertion>
-    <ClinVarAssertion ID="350976" SubmissionName="nstd37">
-      <ClinVarSubmissionID localKey="nsv529150:copy number gain:See cases:3:SCV000196255" submitter="ISCA site 8" submitterDate="2014-06-21"/>
-      <ClinVarAccession Acc="SCV000196255" DateCreated="2015-01-02" DateUpdated="2015-07-10" OrgID="505285" OrgType="primary" OrganizationCategory="laboratory" Type="SCV" Version="2"/>
-      <AdditionalSubmitters>
-        <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" category="consortium"/>
-      </AdditionalSubmitters>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2010-10-19">
-        <ReviewStatus>no assertion criteria provided</ReviewStatus>
-        <Description>Benign</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>not provided</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <NamePlatform>Cyto Custom HD-CGH Microarray (4x44K) design ID 16267</NamePlatform>
-          <TypePlatform>Oligo aCGH</TypePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <SourceType>submitter-generated</SourceType>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData>
-          <Attribute Type="VariantAlleles" integerValue="1"/>
-        </ObservedData>
-        <TraitSet Type="Finding">
-          <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+        </SimpleAllele>
+        <TraitSet Type="PhenotypeInstruction">
+          <Trait Type="PhenotypeInstruction">
             <Name>
-              <ElementValue Type="Preferred">Obesity</ElementValue>
+              <ElementValue Type="Preferred">See cases</ElementValue>
             </Name>
-            <XRef DB="HP" ID="HP:0001513"/>
-          </Trait>
-          <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
-            <Name>
-              <ElementValue Type="Preferred">Global developmental delay</ElementValue>
-            </Name>
-            <XRef DB="HP" ID="HP:0001263"/>
           </Trait>
         </TraitSet>
-        <XRef DB="dbVar" ID="nssv581836" Type="dbVarVariantCallId"/>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="copy number gain">
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
+        <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
+        <SubmissionNameList>
+          <SubmissionName>nstd37</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="350976" SubmissionDate="2014-06-21" DateLastUpdated="2015-07-10" DateCreated="2015-01-02">
+        <ClinVarSubmissionID localKey="nsv529150:copy number gain:See cases:3:SCV000196255"/>
+        <ClinVarAccession Accession="SCV000196255" DateUpdated="2015-07-10" DateCreated="2015-01-02" Type="SCV" Version="2" SubmitterName="ISCA site 8" OrgID="505285" OrganizationCategory="laboratory"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" OrganizationCategory="consortium"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-10-19">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Benign</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>not provided</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <NamePlatform>Cyto Custom HD-CGH Microarray (4x44K) design ID 16267</NamePlatform>
+              <TypePlatform>Oligo aCGH</TypePlatform>
+              <Purpose>Discovery</Purpose>
+              <Description>Microarray</Description>
+              <SourceType>submitter-generated</SourceType>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="1"/>
+            </ObservedData>
+            <TraitSet Type="Finding">
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <Name>
+                  <ElementValue Type="Preferred">Obesity</ElementValue>
+                </Name>
+                <XRef DB="HP" ID="HP:0001513"/>
+              </Trait>
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <Name>
+                  <ElementValue Type="Preferred">Global developmental delay</ElementValue>
+                </Name>
+                <XRef DB="HP" ID="HP:0001263"/>
+              </Trait>
+            </TraitSet>
+            <XRef DB="dbVar" ID="nssv581836" Type="dbVarVariantCallId"/>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>copy number gain</VariantType>
+          <Location>
+            <SequenceLocation Accession="NC_000006.10" Assembly="NCBI36" Chr="6" innerStart="204528" innerStop="252998"/>
+          </Location>
+          <XRefList>
+            <XRef DB="dbVar" ID="nssv581836" Type="dbVarVariantCallId"/>
+            <XRef DB="dbVar" ID="nsv529150" Type="dbVarVariantRegionId"/>
+          </XRefList>
           <AttributeSet>
             <Attribute Type="AbsoluteCopyNumber">3</Attribute>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="HGVS">NC_000006.10:g.(?_204528)_(252998_?)dup</Attribute>
           </AttributeSet>
-          <SequenceLocation Accession="NC_000006.10" Assembly="NCBI36" Chr="6" innerStart="204528" innerStop="252998"/>
-          <XRef DB="dbVar" ID="nssv581836" Type="dbVarVariantCallId"/>
-          <XRef DB="dbVar" ID="nsv529150" Type="dbVarVariantRegionId"/>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="PhenotypeInstruction">
-        <Trait Type="PhenotypeInstruction">
-          <Name>
-            <ElementValue Type="Preferred">See cases</ElementValue>
-          </Name>
-        </Trait>
-      </TraitSet>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
-      <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
-    </ClinVarAssertion>
-  </ClinVarSet>
-</ReleaseSet>
+        </SimpleAllele>
+        <TraitSet Type="PhenotypeInstruction">
+          <Trait Type="PhenotypeInstruction">
+            <Name>
+              <ElementValue Type="Preferred">See cases</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
+        <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
+        <SubmissionNameList>
+          <SubmissionName>nstd37</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="350976" TraitType="PhenotypeInstruction" MappingType="Name" MappingValue="See cases" MappingRef="Preferred">
+        <MedGen CUI="None" Name="See cases"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="350852" TraitType="PhenotypeInstruction" MappingType="Name" MappingValue="See cases" MappingRef="Preferred">
+        <MedGen CUI="None" Name="See cases"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="350976" TraitType="Finding" MappingType="Name" MappingValue="Obesity" MappingRef="Preferred">
+        <MedGen CUI="C4759928" Name="BODY MASS INDEX QUANTITATIVE TRAIT LOCUS 20"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="350852" TraitType="Finding" MappingType="Name" MappingValue="Developmental delay AND/OR other significant developmental or morphological phenotypes" MappingRef="Preferred">
+        <MedGen CUI="CN218420" Name="Developmental delay AND/OR other significant developmental or morphological phenotypes"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="350976" TraitType="Finding" MappingType="Name" MappingValue="Global developmental delay" MappingRef="Preferred">
+        <MedGen CUI="C0557874" Name="Global developmental delay"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

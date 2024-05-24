@@ -1,220 +1,220 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-  <ClinVarSet ID="93326300">
-    <RecordStatus>current</RecordStatus>
-    <Title>NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser) AND Catel-Manzke syndrome</Title>
-    <ReferenceClinVarAssertion ID="2830963" DateLastUpdated="2022-04-23" DateCreated="2020-09-27">
-      <ClinVarAccession Acc="RCV001256675" DateUpdated="2022-04-23" DateCreated="2020-09-27" Version="1" Type="RCV"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2012-01-07">
-        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
-        <Description>Pathogenic</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <AttributeSet>
-        <Attribute Type="ModeOfInheritance" integerValue="263">Autosomal recessive inheritance</Attribute>
-      </AttributeSet>
-      <ObservedIn>
-        <Sample>
-          <Origin>germline</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-          <NumberTested>1</NumberTested>
-        </Sample>
-        <Method>
-          <MethodType>research</MethodType>
-        </Method>
-        <ObservedData ID="97144328">
-          <Attribute integerValue="2" Type="VariantAlleles"/>
-        </ObservedData>
-        <ObservedData ID="97144328">
-          <Attribute Type="SampleLocalID">PM31923704-3</Attribute>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant" ID="978270" Acc="VCV000978270" Version="1">
-        <Measure Type="single nucleotide variant" ID="966396">
-          <Name>
-            <ElementValue Type="Preferred">NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser)</ElementValue>
-          </Name>
-          <CanonicalSPDI>NC_000002.12:142927693:G:C</CanonicalSPDI>
-          <AttributeSet>
-            <Attribute Accession="NM_001032998" Version="2" Change="c.326G&gt;C" Type="HGVS, coding, RefSeq">NM_001032998.2:c.326G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001199241" Version="2" Change="c.326G&gt;C" Type="HGVS, coding, RefSeq">NM_001199241.2:c.326G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_003937" Version="3" Change="c.326G&gt;C" Type="HGVS, coding, RefSeq" MANESelect="true">NM_003937.3:c.326G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NG_023254" Version="1" Change="g.55069G&gt;C" Type="HGVS, genomic, RefSeqGene">NG_023254.1:g.55069G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000002" Version="12" Change="g.142927694G&gt;C" Type="HGVS, genomic, top level" integerValue="38">NC_000002.12:g.142927694G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000002" Version="11" Change="g.143685263G&gt;C" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000002.11:g.143685263G&gt;C</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001028170" Version="1" Change="p.Trp109Ser" Type="HGVS, protein, RefSeq">NP_001028170.1:p.Trp109Ser</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001186170" Version="1" Change="p.Trp109Ser" Type="HGVS, protein, RefSeq">NP_001186170.1:p.Trp109Ser</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_003928" Version="1" Change="p.Trp109Ser" Type="HGVS, protein, RefSeq">NP_003928.1:p.Trp109Ser</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-            <XRef ID="NM_001032998.2:c.326G&gt;C" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-            <XRef ID="NM_001199241.2:c.326G&gt;C" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-            <XRef ID="NM_003937.3:c.326G&gt;C" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="ProteinChange1LetterCode">W109S</Attribute>
-          </AttributeSet>
-          <AlleleFrequencyList>
-            <AlleleFrequency Value="0.00002" Source="Exome Aggregation Consortium (ExAC)"/>
-            <AlleleFrequency Value="0.00001" Source="The Genome Aggregation Database (gnomAD), exomes"/>
-          </AlleleFrequencyList>
-          <CytogeneticLocation>2q22.2</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="142927694" stop="142927694" display_start="142927694" display_stop="142927694" variantLength="1" positionVCF="142927694" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="143685263" stop="143685263" display_start="143685263" display_stop="143685263" variantLength="1" referenceAllele="G" alternateAllele="C" positionVCF="143685263" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
-          <MeasureRelationship Type="within single gene">
-            <Name>
-              <ElementValue Type="Preferred">kynureninase</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">KYNU</ElementValue>
-            </Symbol>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="978270" VariationName="NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser)" VariationType="single nucleotide variant" Accession="VCV000978270" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2020-09-27" MostRecentSubmission="2020-09-27">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="966396" VariationID="978270">
+      <GeneList>
+        <Gene Symbol="KYNU" FullName="kynureninase" GeneID="8942" HGNC_ID="HGNC:6469" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>2q22.2</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="142877664" stop="143055833" display_start="142877664" display_stop="143055833" Strand="+"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="143635194" stop="143799884" display_start="143635194" display_stop="143799884" variantLength="164691" Strand="+"/>
-            <XRef ID="8942" DB="Gene"/>
-            <XRef Type="MIM" ID="605197" DB="OMIM"/>
-            <XRef ID="HGNC:6469" DB="HGNC"/>
-          </MeasureRelationship>
-          <XRef Type="rs" ID="780720490" DB="dbSNP"/>
-        </Measure>
-        <Name>
-          <ElementValue Type="Preferred">NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser)</ElementValue>
-        </Name>
-      </MeasureSet>
-      <TraitSet Type="Disease" ID="20503">
-        <Trait ID="700" Type="Disease">
-          <Name>
-            <ElementValue Type="Preferred">Catel-Manzke syndrome</ElementValue>
-            <XRef ID="MONDO:0014507" DB="MONDO"/>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">Hyperphalangy-clinodactyly of index finger with Pierre Robin syndrome</ElementValue>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">Pierre Robin syndrome with hyperphalangy and clinodactyly</ElementValue>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">Palatodigital syndrome Catel-Manzke type</ElementValue>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">Index finger anomaly with Pierre Robin syndrome</ElementValue>
-          </Name>
-          <Name>
-            <ElementValue Type="Alternate">MICROGNATHIA DIGITAL SYNDROME</ElementValue>
-            <XRef Type="MIM" ID="616145" DB="OMIM"/>
-          </Name>
-          <Symbol>
-            <ElementValue Type="Alternate">CATMANS</ElementValue>
-            <XRef Type="MIM" ID="616145" DB="OMIM"/>
-          </Symbol>
-          <AttributeSet>
-            <Attribute Type="GARD id" integerValue="28"/>
-            <XRef ID="28" DB="Office of Rare Diseases"/>
-          </AttributeSet>
-          <XRef ID="MONDO:0014507" DB="MONDO"/>
-          <XRef ID="C1844887" DB="MedGen"/>
-          <XRef ID="1388" DB="Orphanet"/>
-          <XRef Type="MIM" ID="616145" DB="OMIM"/>
-        </Trait>
-      </TraitSet>
-    </ReferenceClinVarAssertion>
-    <ClinVarAssertion ID="2829930">
-      <ClinVarSubmissionID localKey="20200511-001-003" localKeyIsSubmitted="1" submittedAssembly="GRCh37" submitter="Institute for Medical Genetics and Human Genetics, Charité - Universitätsmedizin Berlin" submitterDate="2020-05-11"/>
-      <ClinVarAccession Acc="SCV001433049" DateCreated="2020-09-27" DateUpdated="2020-09-27" OrgID="505735" OrgType="primary" OrganizationCategory="clinic" Type="SCV" Version="1"/>
-      <AdditionalSubmitters>
-        <SubmitterDescription OrgID="507461" SubmitterName="CUBI - Core Unit Bioinformatics, Berlin Institute of Health" Type="secondary" category="laboratory"/>
-      </AdditionalSubmitters>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2012-01-07">
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="143635194" stop="143799884" display_start="143635194" display_stop="143799884" Strand="+"/>
+          </Location>
+          <OMIM>605197</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser)</Name>
+      <CanonicalSPDI>NC_000002.12:142927693:G:C</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>2q22.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="2" Accession="NC_000002.12" start="142927694" stop="142927694" display_start="142927694" display_stop="142927694" variantLength="1" positionVCF="142927694" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="2" Accession="NC_000002.11" start="143685263" stop="143685263" display_start="143685263" display_stop="143685263" variantLength="1" referenceAllele="G" alternateAllele="C" positionVCF="143685263" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+      </Location>
+      <ProteinChange>W109S</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000002.11" sequenceAccession="NC_000002" sequenceVersion="11" change="g.143685263G&gt;C" Assembly="GRCh37">
+            <Expression>NC_000002.11:g.143685263G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000002.12" sequenceAccession="NC_000002" sequenceVersion="12" change="g.142927694G&gt;C" Assembly="GRCh38">
+            <Expression>NC_000002.12:g.142927694G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_023254.1" sequenceAccession="NG_023254" sequenceVersion="1" change="g.55069G&gt;C">
+            <Expression>NG_023254.1:g.55069G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001032998.2" sequenceAccession="NM_001032998" sequenceVersion="2" change="c.326G&gt;C">
+            <Expression>NM_001032998.2:c.326G&gt;C</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001028170.1" sequenceAccession="NP_001028170" sequenceVersion="1" change="p.Trp109Ser">
+            <Expression>NP_001028170.1:p.Trp109Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001199241.2" sequenceAccession="NM_001199241" sequenceVersion="2" change="c.326G&gt;C">
+            <Expression>NM_001199241.2:c.326G&gt;C</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001186170.1" sequenceAccession="NP_001186170" sequenceVersion="1" change="p.Trp109Ser">
+            <Expression>NP_001186170.1:p.Trp109Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_003937.3" sequenceAccession="NM_003937" sequenceVersion="3" change="c.326G&gt;C" MANESelect="true">
+            <Expression>NM_003937.3:c.326G&gt;C</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_003928.1" sequenceAccession="NP_003928" sequenceVersion="1" change="p.Trp109Ser">
+            <Expression>NP_003928.1:p.Trp109Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef Type="rs" ID="780720490" DB="dbSNP"/>
+      </XRefList>
+      <AlleleFrequencyList>
+        <AlleleFrequency Value="0.00001" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+        <AlleleFrequency Value="0.00002" Source="Exome Aggregation Consortium (ExAC)"/>
+      </AlleleFrequencyList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_003937.3(KYNU):c.326G&gt;C (p.Trp109Ser) AND Catel-Manzke syndrome" Accession="RCV001256675" Version="1">
+        <ClassifiedConditionList TraitSetID="20503">
+          <ClassifiedCondition DB="MedGen" ID="C1844887">Catel-Manzke syndrome</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+            <Description DateLastEvaluated="2012-01-07" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2012-01-07" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2020-09-27" MostRecentSubmission="2020-09-27">
         <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         <Description>Pathogenic</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <AttributeSet>
-        <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
-        <Citation>
-          <ID Source="PubMed">25741868</ID>
-        </Citation>
-      </AttributeSet>
-      <AttributeSet>
-        <Attribute Type="AgeOfOnset">Antenatal</Attribute>
-      </AttributeSet>
-      <AttributeSet>
-        <Attribute Type="ModeOfInheritance">Autosomal recessive inheritance</Attribute>
-      </AttributeSet>
-      <ObservedIn>
-        <Sample>
-          <Origin>germline</Origin>
-          <Tissue>blood</Tissue>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-          <NumberTested>1</NumberTested>
-          <Gender>male</Gender>
-          <FamilyData PedigreeID="PM31923704-3"/>
+        <ConditionList>
+          <TraitSet ID="20503" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="700" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">Hyperphalangy-clinodactyly of index finger with Pierre Robin syndrome</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Pierre Robin syndrome with hyperphalangy and clinodactyly</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Palatodigital syndrome Catel-Manzke type</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Index finger anomaly with Pierre Robin syndrome</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Catel-Manzke syndrome</ElementValue>
+                <XRef ID="MONDO:0014507" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">MICROGNATHIA DIGITAL SYNDROME</ElementValue>
+                <XRef Type="MIM" ID="616145" DB="OMIM"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">CATMANS</ElementValue>
+                <XRef Type="MIM" ID="616145" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="28"/>
+                <XRef ID="28" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <XRef ID="1388" DB="Orphanet"/>
+              <XRef ID="C1844887" DB="MedGen"/>
+              <XRef ID="MONDO:0014507" DB="MONDO"/>
+              <XRef Type="MIM" ID="616145" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="2829930" SubmissionDate="2020-05-11" DateLastUpdated="2020-09-27" DateCreated="2020-09-27">
+        <ClinVarSubmissionID localKey="20200511-001-003" localKeyIsSubmitted="1" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001433049" DateUpdated="2020-09-27" DateCreated="2020-09-27" Type="SCV" Version="1" SubmitterName="Institute for Medical Genetics and Human Genetics, Charité - Universitätsmedizin Berlin" OrgID="505735" OrganizationCategory="clinic" OrgAbbreviation="Charité - Universitätsmedizin"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="507461" SubmitterName="CUBI - Core Unit Bioinformatics, Berlin Institute of Health" Type="secondary" OrganizationCategory="laboratory"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2012-01-07">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
           <Citation>
-            <ID Source="PubMed">31923704</ID>
+            <ID Source="PubMed">25741868</ID>
           </Citation>
-        </Sample>
-        <Method>
-          <MethodType>research</MethodType>
-        </Method>
-        <ObservedData>
-          <Attribute Type="CompoundHeterozygote" integerValue="2"/>
-        </ObservedData>
-        <ObservedData>
-          <Attribute Type="SampleLocalID">PM31923704-3</Attribute>
-        </ObservedData>
-        <TraitSet Type="Finding">
-          <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
-            <Name>
-              <ElementValue Type="Preferred">Finger hyperphalangy</ElementValue>
-            </Name>
-            <XRef DB="HP" ID="HP:0030367"/>
+        </AttributeSet>
+        <AttributeSet>
+          <Attribute Type="AgeOfOnset">Antenatal</Attribute>
+        </AttributeSet>
+        <AttributeSet>
+          <Attribute Type="ModeOfInheritance">Autosomal recessive inheritance</Attribute>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Tissue>blood</Tissue>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+              <NumberTested>1</NumberTested>
+              <Gender>male</Gender>
+              <FamilyData PedigreeID="PM31923704-3"/>
+              <Citation>
+                <ID Source="PubMed">31923704</ID>
+              </Citation>
+            </Sample>
+            <Method>
+              <MethodType>research</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="CompoundHeterozygote" integerValue="2"/>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="SampleLocalID">PM31923704-3</Attribute>
+            </ObservedData>
+            <TraitSet Type="Finding">
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <Name>
+                  <ElementValue Type="Preferred">Finger hyperphalangy</ElementValue>
+                </Name>
+                <XRef DB="HP" ID="HP:0030367"/>
+              </Trait>
+            </TraitSet>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="KYNU"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="C" referenceAllele="G" start="143685263" stop="143685263"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="616145" Type="MIM"/>
           </Trait>
         </TraitSet>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="Variation">
-          <SequenceLocation Assembly="GRCh37" Chr="2" alternateAllele="C" referenceAllele="G" start="143685263" stop="143685263"/>
-          <MeasureRelationship Type="variant in gene">
-            <Symbol>
-              <ElementValue Type="Preferred">KYNU</ElementValue>
-            </Symbol>
-          </MeasureRelationship>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="Disease">
-        <Trait Type="Disease">
-          <XRef DB="OMIM" ID="616145" Type="MIM"/>
-        </Trait>
-      </TraitSet>
-    </ClinVarAssertion>
-  </ClinVarSet>
-</ReleaseSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="2829930" TraitType="Finding" MappingType="Name" MappingValue="Finger hyperphalangy" MappingRef="Preferred">
+        <MedGen CUI="C4072906" Name="Finger hyperphalangy"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="2829930" TraitType="Disease" MappingType="XRef" MappingValue="616145" MappingRef="OMIM">
+        <MedGen CUI="C1844887" Name="Catel-Manzke syndrome"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

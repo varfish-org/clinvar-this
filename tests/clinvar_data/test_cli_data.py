@@ -43,6 +43,7 @@ def test_cli_xml_to_json_stdin_stdout(snapshot):
 @pytest.mark.parametrize(
     "fname_in",
     [
+        "first.xml",
         "ex_additional_submitters.xml",
         "ex_attribute_set.xml",
         "ex_custom_score.xml",
@@ -56,6 +57,8 @@ def test_cli_xml_to_json_stdin_stdout(snapshot):
         "ex_with_ethnicity.xml",
         "ex_with_hpo.xml",
         "record_with_submitter.xml",
+        "one_record.xml",
+        "ten_records.xml",
     ],
 )
 def test_convert_snapshot_to_jsonl(fname_in, tmp_path, snapshot):
