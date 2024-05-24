@@ -31,7 +31,9 @@
             ]
           }
         ],
-        "omim": "613599",
+        "omims": [
+          "613599"
+        ],
         "fullName": "abhydrolase domain containing 12, lysophospholipase",
         "geneId": "26090",
         "hgncId": "HGNC:15868",
@@ -229,6 +231,81 @@
           "type": "general"
         }
       ],
+      "conditions": [
+        {
+          "traits": [
+            {
+              "names": [
+                {
+                  "value": "PHARC syndrome",
+                  "type": "Preferred",
+                  "xrefs": [
+                    {
+                      "db": "MONDO",
+                      "id": "MONDO:0012984"
+                    }
+                  ]
+                },
+                {
+                  "value": "Polyneuropathy-hearing loss-ataxia-retinitis pigmentosa-cataract syndrome",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "Orphanet",
+                      "id": "171848"
+                    }
+                  ]
+                },
+                {
+                  "value": "Polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "Genetic Alliance",
+                      "id": "Polyneuropathy%2C+hearing+loss%2C+ataxia%2C+retinitis+pigmentosa%2C+and+cataract/9132"
+                    }
+                  ]
+                }
+              ],
+              "symbols": [
+                {
+                  "value": "PHARC",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "612674",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "Orphanet",
+                  "id": "171848"
+                },
+                {
+                  "db": "MedGen",
+                  "id": "C2675204"
+                },
+                {
+                  "db": "MONDO",
+                  "id": "MONDO:0012984"
+                },
+                {
+                  "db": "OMIM",
+                  "id": "612674",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "type": "TYPE_DISEASE",
+          "id": "17",
+          "contributesToAggregateClassification": true
+        }
+      ],
       "dateLastEvaluated": "2010-09-10T00:00:00Z",
       "dateCreated": "2015-05-18T00:00:00Z",
       "mostRecentSubmission": "2015-05-18T00:00:00Z",
@@ -251,7 +328,7 @@
           "orgCategory": "resource"
         },
         "dateUpdated": "2015-05-18T00:00:00Z",
-        "dateCreated": "2015-05-18T00:00:00Z"
+        "dateCreated": "2013-04-04T00:00:00Z"
       },
       "recordStatus": "RECORD_STATUS_CURRENT",
       "classifications": [
@@ -262,6 +339,46 @@
         }
       ],
       "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+      "observedIns": [
+        {
+          "sample": {
+            "origin": "ORIGIN_GERMLINE",
+            "species": {
+              "name": "human"
+            },
+            "affectedStatus": "AFFECTED_STATUS_NOT_PROVIDED"
+          },
+          "observedData": [
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "value": "In 7 patients from 4 Algerian families with polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract (PHARC; 612674), Fiskerstrand et al. (2010) identified a homozygous 7-bp duplication in exon 9 of the ABHD12 gene (846_852dupTAAGAGC), resulting in a premature stop codon at residue 285. The patients ranged in age from 10 to 44 years. The older individuals were more severely affected. All patients had some evidence of a polyneuropathy, with hyporeflexia, pes cavus, and/or sensory loss, and most had gait ataxia with onset in the childhood. Four of the older patients had hearing loss, but only 1 had retinitis pigmentosa and cataract. Other common features included extensor plantar responses and cerebellar atrophy."
+                  },
+                  "type": "TYPE_DESCRIPTION"
+                }
+              ],
+              "citations": [
+                {
+                  "ids": [
+                    {
+                      "value": "20797687",
+                      "source": "PubMed"
+                    }
+                  ]
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "OMIM",
+                  "id": "612674",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "simpleAllele": {
         "genes": [
           {

@@ -32,7 +32,9 @@
               ]
             }
           ],
-          "omim": "610053",
+          "omims": [
+            "610053"
+          ],
           "fullName": "tubulin gamma complex component 6",
           "geneId": "85378",
           "hgncId": "HGNC:18127",
@@ -158,6 +160,49 @@
               "type": "general"
             }
           ],
+          "conditions": [
+            {
+              "traits": [
+                {
+                  "names": [
+                    {
+                      "value": "none provided",
+                      "type": "Alternate"
+                    },
+                    {
+                      "value": "not provided",
+                      "type": "Preferred",
+                      "xrefs": [
+                        {
+                          "db": "Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital & Research Centre",
+                          "id": "13DG0619"
+                        }
+                      ]
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attribute": {
+                        "base": {
+                          "value": "The term 'not provided' is registered in MedGen to support identification of submissions to ClinVar for which no condition was named when assessing the variant. 'not provided' differs from 'not specified', which is used when a variant is asserted to be benign, likely benign, or of uncertain significance for conditions that have not been specified."
+                        },
+                        "type": "public definition"
+                      }
+                    }
+                  ],
+                  "xrefs": [
+                    {
+                      "db": "MedGen",
+                      "id": "C3661900"
+                    }
+                  ]
+                }
+              ],
+              "type": "TYPE_DISEASE",
+              "id": "9460",
+              "contributesToAggregateClassification": true
+            }
+          ],
           "dateLastEvaluated": "2023-08-04T00:00:00Z",
           "dateCreated": "2020-07-13T00:00:00Z",
           "mostRecentSubmission": "2024-02-11T00:00:00Z",
@@ -221,7 +266,9 @@
               ]
             }
           ],
-          "omim": "610053",
+          "omims": [
+            "610053"
+          ],
           "fullName": "tubulin gamma complex component 6",
           "geneId": "85378",
           "hgncId": "HGNC:18127",
@@ -345,6 +392,49 @@
                 }
               ],
               "type": "general"
+            }
+          ],
+          "conditions": [
+            {
+              "traits": [
+                {
+                  "names": [
+                    {
+                      "value": "none provided",
+                      "type": "Alternate"
+                    },
+                    {
+                      "value": "not provided",
+                      "type": "Preferred",
+                      "xrefs": [
+                        {
+                          "db": "Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital & Research Centre",
+                          "id": "13DG0619"
+                        }
+                      ]
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attribute": {
+                        "base": {
+                          "value": "The term 'not provided' is registered in MedGen to support identification of submissions to ClinVar for which no condition was named when assessing the variant. 'not provided' differs from 'not specified', which is used when a variant is asserted to be benign, likely benign, or of uncertain significance for conditions that have not been specified."
+                        },
+                        "type": "public definition"
+                      }
+                    }
+                  ],
+                  "xrefs": [
+                    {
+                      "db": "MedGen",
+                      "id": "C3661900"
+                    }
+                  ]
+                }
+              ],
+              "type": "TYPE_DISEASE",
+              "id": "9460",
+              "contributesToAggregateClassification": true
             }
           ],
           "dateLastEvaluated": "2023-09-21T00:00:00Z",

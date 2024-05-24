@@ -2,7 +2,7 @@
 
 syntax = "proto3";
 
-package clinvar_public.clinvar_public;
+package clinvar_data.pbs.clinvar_public;
 
 import "google/protobuf/timestamp.proto";
 
@@ -233,10 +233,12 @@ enum Origin {
   ORIGIN_NOT_REPORTED = 10;
   // corresponds to "tested-inconclusive"
   ORIGIN_TESTED_INCONCLUSIVE = 11;
+  // corresponds to "unknown"
+  ORIGIN_UNKNOWN = 12;
   // corresponds to "not applicable"
-  ORIGIN_NOT_APPLICABLE = 12;
+  ORIGIN_NOT_APPLICABLE = 13;
   // corresponds to "experimentally generated"
-  ORIGIN_EXPERIMENTALLY_GENERATED = 13;
+  ORIGIN_EXPERIMENTALLY_GENERATED = 14;
 }
 
 // Enumeration describing chromosome.
@@ -2093,7 +2095,7 @@ message ClinicalAssertion {
     SubmitterIdentifiers submitter_identifiers = 3;
     // The date that the latest update to the submitted
     // record (SCV) became public in ClinVar.
-    google.protobuf.Timestamp date_updated = 4;
+    optional google.protobuf.Timestamp date_updated = 4;
     // DateCreated is the date when the record first became
     // public in ClinVar.
     optional google.protobuf.Timestamp date_created = 5;
@@ -2180,7 +2182,7 @@ message Allele {
     // Gene's locations.
     repeated Location locations = 1;
     // OMIM ID.
-    optional uint64 omim = 2;
+    repeated uint64 omims = 2;
     // Haploinsuffiency.
     optional DosageSensitivity haploinsufficiency = 3;
     // Triplosensitivity.
@@ -2678,7 +2680,7 @@ message VariationArchive {
   // submitters providing the classifications, and all supported evidence.
   //
   // NB: mutually exclusive with `included_record`.
-  ClassifiedRecord classified_record = 17;
+  optional ClassifiedRecord classified_record = 17;
 
   // This element describes a single allele or haplotype
   // included in submissions to ClinVar, but for which no explicit
@@ -2686,7 +2688,7 @@ message VariationArchive {
   // Classified records that include them.
   //
   // NB: mutually exclusive with `classified_record`.
-  IncludedRecord included_record = 18;
+  optional IncludedRecord included_record = 18;
 }
 
 // The element to group each VariationArchive element in the release

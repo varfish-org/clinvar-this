@@ -654,9 +654,11 @@ class _OriginEnumTypeWrapper(
     """corresponds to "not-reported" """
     ORIGIN_TESTED_INCONCLUSIVE: _Origin.ValueType  # 11
     """corresponds to "tested-inconclusive" """
-    ORIGIN_NOT_APPLICABLE: _Origin.ValueType  # 12
+    ORIGIN_UNKNOWN: _Origin.ValueType  # 12
+    """corresponds to "unknown" """
+    ORIGIN_NOT_APPLICABLE: _Origin.ValueType  # 13
     """corresponds to "not applicable" """
-    ORIGIN_EXPERIMENTALLY_GENERATED: _Origin.ValueType  # 13
+    ORIGIN_EXPERIMENTALLY_GENERATED: _Origin.ValueType  # 14
     """corresponds to "experimentally generated" """
 
 class Origin(_Origin, metaclass=_OriginEnumTypeWrapper):
@@ -686,9 +688,11 @@ ORIGIN_NOT_REPORTED: Origin.ValueType  # 10
 """corresponds to "not-reported" """
 ORIGIN_TESTED_INCONCLUSIVE: Origin.ValueType  # 11
 """corresponds to "tested-inconclusive" """
-ORIGIN_NOT_APPLICABLE: Origin.ValueType  # 12
+ORIGIN_UNKNOWN: Origin.ValueType  # 12
+"""corresponds to "unknown" """
+ORIGIN_NOT_APPLICABLE: Origin.ValueType  # 13
 """corresponds to "not applicable" """
-ORIGIN_EXPERIMENTALLY_GENERATED: Origin.ValueType  # 13
+ORIGIN_EXPERIMENTALLY_GENERATED: Origin.ValueType  # 14
 """corresponds to "experimentally generated" """
 global___Origin = Origin
 
@@ -7941,6 +7945,8 @@ class ClinicalAssertion(google.protobuf.message.Message):
             field_name: typing.Literal[
                 "_date_created",
                 b"_date_created",
+                "_date_updated",
+                b"_date_updated",
                 "date_created",
                 b"date_created",
                 "date_updated",
@@ -7954,6 +7960,8 @@ class ClinicalAssertion(google.protobuf.message.Message):
             field_name: typing.Literal[
                 "_date_created",
                 b"_date_created",
+                "_date_updated",
+                b"_date_updated",
                 "accession",
                 b"accession",
                 "date_created",
@@ -7966,9 +7974,14 @@ class ClinicalAssertion(google.protobuf.message.Message):
                 b"version",
             ],
         ) -> None: ...
+        @typing.overload
         def WhichOneof(
             self, oneof_group: typing.Literal["_date_created", b"_date_created"]
         ) -> typing.Literal["date_created"] | None: ...
+        @typing.overload
+        def WhichOneof(
+            self, oneof_group: typing.Literal["_date_updated", b"_date_updated"]
+        ) -> typing.Literal["date_updated"] | None: ...
 
     CLINVAR_SUBMISSION_ID_FIELD_NUMBER: builtins.int
     CLINVAR_ACCESSION_FIELD_NUMBER: builtins.int
@@ -8299,7 +8312,7 @@ class Allele(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         LOCATIONS_FIELD_NUMBER: builtins.int
-        OMIM_FIELD_NUMBER: builtins.int
+        OMIMS_FIELD_NUMBER: builtins.int
         HAPLOINSUFFICIENCY_FIELD_NUMBER: builtins.int
         TRIPLOSENSITIVITY_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
@@ -8309,8 +8322,6 @@ class Allele(google.protobuf.message.Message):
         HGNC_ID_FIELD_NUMBER: builtins.int
         SOURCE_FIELD_NUMBER: builtins.int
         RELATIONSHIP_TYPE_FIELD_NUMBER: builtins.int
-        omim: builtins.int
-        """OMIM ID."""
         symbol: builtins.str
         """attributes
 
@@ -8333,6 +8344,12 @@ class Allele(google.protobuf.message.Message):
             """Gene's locations."""
 
         @property
+        def omims(
+            self,
+        ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+            """OMIM ID."""
+
+        @property
         def haploinsufficiency(self) -> global___DosageSensitivity:
             """Haploinsuffiency."""
 
@@ -8353,7 +8370,7 @@ class Allele(google.protobuf.message.Message):
             self,
             *,
             locations: collections.abc.Iterable[global___Location] | None = ...,
-            omim: builtins.int | None = ...,
+            omims: collections.abc.Iterable[builtins.int] | None = ...,
             haploinsufficiency: global___DosageSensitivity | None = ...,
             triplosensitivity: global___DosageSensitivity | None = ...,
             properties: collections.abc.Iterable[builtins.str] | None = ...,
@@ -8371,8 +8388,6 @@ class Allele(google.protobuf.message.Message):
                 b"_haploinsufficiency",
                 "_hgnc_id",
                 b"_hgnc_id",
-                "_omim",
-                b"_omim",
                 "_relationship_type",
                 b"_relationship_type",
                 "_symbol",
@@ -8383,8 +8398,6 @@ class Allele(google.protobuf.message.Message):
                 b"haploinsufficiency",
                 "hgnc_id",
                 b"hgnc_id",
-                "omim",
-                b"omim",
                 "relationship_type",
                 b"relationship_type",
                 "symbol",
@@ -8400,8 +8413,6 @@ class Allele(google.protobuf.message.Message):
                 b"_haploinsufficiency",
                 "_hgnc_id",
                 b"_hgnc_id",
-                "_omim",
-                b"_omim",
                 "_relationship_type",
                 b"_relationship_type",
                 "_symbol",
@@ -8418,8 +8429,8 @@ class Allele(google.protobuf.message.Message):
                 b"hgnc_id",
                 "locations",
                 b"locations",
-                "omim",
-                b"omim",
+                "omims",
+                b"omims",
                 "properties",
                 b"properties",
                 "relationship_type",
@@ -8440,10 +8451,6 @@ class Allele(google.protobuf.message.Message):
         def WhichOneof(
             self, oneof_group: typing.Literal["_hgnc_id", b"_hgnc_id"]
         ) -> typing.Literal["hgnc_id"] | None: ...
-        @typing.overload
-        def WhichOneof(
-            self, oneof_group: typing.Literal["_omim", b"_omim"]
-        ) -> typing.Literal["omim"] | None: ...
         @typing.overload
         def WhichOneof(
             self, oneof_group: typing.Literal["_relationship_type", b"_relationship_type"]
@@ -10423,6 +10430,10 @@ class VariationArchive(google.protobuf.message.Message):
     def HasField(
         self,
         field_name: typing.Literal[
+            "_classified_record",
+            b"_classified_record",
+            "_included_record",
+            b"_included_record",
             "classified_record",
             b"classified_record",
             "comment",
@@ -10444,6 +10455,10 @@ class VariationArchive(google.protobuf.message.Message):
     def ClearField(
         self,
         field_name: typing.Literal[
+            "_classified_record",
+            b"_classified_record",
+            "_included_record",
+            b"_included_record",
             "accession",
             b"accession",
             "classified_record",
@@ -10482,6 +10497,14 @@ class VariationArchive(google.protobuf.message.Message):
             b"version",
         ],
     ) -> None: ...
+    @typing.overload
+    def WhichOneof(
+        self, oneof_group: typing.Literal["_classified_record", b"_classified_record"]
+    ) -> typing.Literal["classified_record"] | None: ...
+    @typing.overload
+    def WhichOneof(
+        self, oneof_group: typing.Literal["_included_record", b"_included_record"]
+    ) -> typing.Literal["included_record"] | None: ...
 
 global___VariationArchive = VariationArchive
 

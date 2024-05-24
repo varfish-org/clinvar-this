@@ -80,12 +80,13 @@ from clinvar_data.conversion.dict_to_pb import (
     ConvertXref,
     ConvertZygosity,
 )
-from clinvar_data.pbs.clinvar_this.clinvar_public import (
+from clinvar_data.pbs.clinvar_public import (
     AggregateGermlineReviewStatus,
     AggregateOncogenicityReviewStatus,
     AggregateSomaticClinicalImpactReviewStatus,
     Assertion,
     Chromosome,
+    ClassifiedRecord,
     ClinicalAssertion,
     ClinicalFeaturesAffectedStatusType,
     CommentType,
@@ -109,12 +110,9 @@ from clinvar_data.pbs.clinvar_this.clinvar_public import (
     SubmitterReviewStatus,
     Trait,
     TraitSet,
+    VariationArchive,
     VariationType,
     Zygosity,
-)
-from clinvar_data.pbs.clinvar_this.clinvar_public_pb2 import (
-    ClassifiedRecord,
-    VariationArchive,
 )
 
 
@@ -4338,7 +4336,7 @@ def test_convert_clinical_assertion_xmldict_data_to_pb(xml_str: str, snapshot):
                         ],
                     },
                 ],
-                "omim": "613653",
+                "omim": ["613653"],
                 "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE",
                 "source": "submitted",
             },
@@ -4387,7 +4385,7 @@ def test_convert_clinical_assertion_xmldict_data_to_pb(xml_str: str, snapshot):
                         ],
                     },
                 ],
-                "omim": "613583",
+                "omim": ["613583"],
                 "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE",
                 "source": "submitted",
             },

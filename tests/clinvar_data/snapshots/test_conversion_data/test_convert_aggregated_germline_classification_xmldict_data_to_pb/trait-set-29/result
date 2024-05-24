@@ -12,6 +12,65 @@
       "type": "general"
     }
   ],
+  "conditions": [
+    {
+      "traits": [
+        {
+          "names": [
+            {
+              "value": "Senior-Loken syndrome 7",
+              "type": "Preferred",
+              "xrefs": [
+                {
+                  "db": "Genetic Alliance",
+                  "id": "Senior-Loken+syndrome+7/9283"
+                },
+                {
+                  "db": "MONDO",
+                  "id": "MONDO:0013326"
+                }
+              ]
+            }
+          ],
+          "symbols": [
+            {
+              "value": "SLSN7",
+              "type": "Preferred",
+              "xrefs": [
+                {
+                  "db": "OMIM",
+                  "id": "613615",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "xrefs": [
+            {
+              "db": "Orphanet",
+              "id": "3156"
+            },
+            {
+              "db": "MedGen",
+              "id": "C3150877"
+            },
+            {
+              "db": "MONDO",
+              "id": "MONDO:0013326"
+            },
+            {
+              "db": "OMIM",
+              "id": "613615",
+              "type": "MIM"
+            }
+          ]
+        }
+      ],
+      "type": "TYPE_DISEASE",
+      "id": "29",
+      "contributesToAggregateClassification": true
+    }
+  ],
   "dateLastEvaluated": "2010-10-01T00:00:00Z",
   "dateCreated": "2016-10-23T00:00:00Z",
   "mostRecentSubmission": "2016-10-23T00:00:00Z",

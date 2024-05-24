@@ -72,6 +72,30 @@
       ]
     }
   ],
+  "observedIns": [
+    {
+      "sample": {
+        "origin": "ORIGIN_GERMLINE",
+        "species": {
+          "name": "human",
+          "taxonomyId": 9606
+        },
+        "affectedStatus": "AFFECTED_STATUS_UNKNOWN"
+      },
+      "observedData": [
+        {
+          "attributes": [
+            {
+              "base": {
+                "value": "not provided"
+              },
+              "type": "TYPE_DESCRIPTION"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "simpleAllele": {
     "genes": [
       {

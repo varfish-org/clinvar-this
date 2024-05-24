@@ -25,6 +25,160 @@
       "type": "general"
     }
   ],
+  "conditions": [
+    {
+      "traits": [
+        {
+          "names": [
+            {
+              "value": "Mucopolysaccharidosis Type IVA",
+              "type": "Alternate",
+              "xrefs": [
+                {
+                  "db": "GeneReviews",
+                  "id": "NBK148668"
+                }
+              ]
+            },
+            {
+              "value": "Morquio syndrome A",
+              "type": "Alternate"
+            },
+            {
+              "value": "MPS 4A",
+              "type": "Alternate"
+            },
+            {
+              "value": "Morquio A disease",
+              "type": "Alternate"
+            },
+            {
+              "value": "Galactosamine-6-sulfatase deficiency",
+              "type": "Alternate"
+            },
+            {
+              "value": "Mucopolysaccharidosis type IV A",
+              "type": "Alternate"
+            },
+            {
+              "value": "MPS IVA",
+              "type": "Alternate",
+              "xrefs": [
+                {
+                  "db": "OMIM",
+                  "id": "253000",
+                  "type": "MIM"
+                }
+              ]
+            },
+            {
+              "value": "Morquio syndrome A, mild",
+              "type": "Alternate"
+            },
+            {
+              "value": "Mucopolysaccharidosis, MPS-IV-A",
+              "type": "Preferred",
+              "xrefs": [
+                {
+                  "db": "Genetic Alliance",
+                  "id": "Morquio+syndrome+A/4876"
+                },
+                {
+                  "db": "SNOMED CT",
+                  "id": "7259005"
+                }
+              ]
+            }
+          ],
+          "symbols": [
+            {
+              "value": "MPS4A",
+              "type": "Preferred",
+              "xrefs": [
+                {
+                  "db": "OMIM",
+                  "id": "253000",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": {
+                "base": {
+                  "value": "The phenotypic spectrum of ..."
+                },
+                "type": "public definition"
+              },
+              "xrefs": [
+                {
+                  "db": "GeneReviews",
+                  "id": "NBK148668"
+                }
+              ]
+            },
+            {
+              "attribute": {
+                "base": {
+                  "integerValue": "3785"
+                },
+                "type": "GARD id"
+              },
+              "xrefs": [
+                {
+                  "db": "Office of Rare Diseases",
+                  "id": "3785"
+                }
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "23844448",
+                  "source": "PubMed"
+                },
+                {
+                  "value": "NBK148668",
+                  "source": "BookShelf"
+                }
+              ],
+              "type": "review",
+              "abbrev": "GeneReviews"
+            }
+          ],
+          "xrefs": [
+            {
+              "db": "Orphanet",
+              "id": "309297"
+            },
+            {
+              "db": "Orphanet",
+              "id": "582"
+            },
+            {
+              "db": "MedGen",
+              "id": "C0086651"
+            },
+            {
+              "db": "MONDO",
+              "id": "MONDO:0009659"
+            },
+            {
+              "db": "OMIM",
+              "id": "253000",
+              "type": "MIM"
+            }
+          ]
+        }
+      ],
+      "type": "TYPE_DISEASE",
+      "id": "175",
+      "contributesToAggregateClassification": true
+    }
+  ],
   "dateLastEvaluated": "2021-02-01T00:00:00Z",
   "dateCreated": "2018-06-02T00:00:00Z",
   "mostRecentSubmission": "2021-10-30T00:00:00Z",

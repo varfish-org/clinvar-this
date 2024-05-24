@@ -101,7 +101,9 @@
             ]
           }
         ],
-        "omim": "191130",
+        "omims": [
+          "191130"
+        ],
         "fullName": "tubulin beta class I",
         "geneId": "203068",
         "hgncId": "HGNC:20778",

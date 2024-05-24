@@ -7,7 +7,7 @@ from typing import Any, Dict
 import dateutil.parser
 import google.protobuf.timestamp_pb2
 
-from clinvar_data.pbs.clinvar_this.clinvar_public import (
+from clinvar_data.pbs.clinvar_public import (
     AggregateClassificationSet,
     AggregatedGermlineClassification,
     AggregatedOncogenicityClassification,
@@ -74,7 +74,7 @@ from clinvar_data.pbs.clinvar_this.clinvar_public import (
     Xref,
     Zygosity,
 )
-from clinvar_data.pbs.clinvar_this.clinvar_public_pb2 import (
+from clinvar_data.pbs.clinvar_public_pb2 import (
     ClassifiedRecord,
     ClinvarVariationRelease,
     Genotype,
@@ -407,6 +407,7 @@ class ConvertOrigin:
         "biparental": Origin.ORIGIN_BIPARENTAL,
         "not-reported": Origin.ORIGIN_NOT_REPORTED,
         "tested-inconclusive": Origin.ORIGIN_TESTED_INCONCLUSIVE,
+        "unknown": Origin.ORIGIN_UNKNOWN,
         "not applicable": Origin.ORIGIN_NOT_APPLICABLE,
         "experimentally generated": Origin.ORIGIN_EXPERIMENTALLY_GENERATED,
     }
@@ -1670,10 +1671,15 @@ class ConvertAggregatedGermlineClassification(ConverterBase):
             ]
 
         conditions: list[TraitSet] | None = None
-        if "Condition" in tag_germline_classification:
+        if (
+            "ConditionList" in tag_germline_classification
+            and "TraitSet" in tag_germline_classification["ConditionList"]
+        ):
             conditions = [
                 ConvertTraitSet.xmldict_data_to_pb({"TraitSet": element})
-                for element in cls.ensure_list(tag_germline_classification["Condition"])
+                for element in cls.ensure_list(
+                    tag_germline_classification["ConditionList"]["TraitSet"]
+                )
             ]
 
         # Obtain date_last_evaluated
@@ -2482,7 +2488,7 @@ class ConvertDosageSensitivity(ConverterBase):
         assert tag_name in tag
         tag_inner: dict[str, Any] = tag[tag_name]
 
-        value: str = tag_inner["#text"]
+        value: str = tag_inner.get("#text", "")
         last_evaluated: google.protobuf.timestamp_pb2.Timestamp | None = None
         if "@last_evaluated" in tag_inner:
             parsed = dateutil.parser.parse(tag_inner["@last_evaluated"])
@@ -2519,7 +2525,7 @@ class ConvertOtherName(ConverterBase):
             return OtherName(value=tag_inner)
         else:
             assert isinstance(tag_inner, dict)
-            value: str = tag_inner["#text"]
+            value: str = tag_inner.get("#text", "")
             type_: str | None = tag_inner.get("@Type")
             return OtherName(value=value, type=type_)
 
@@ -3029,13 +3035,17 @@ class ConvertSample(ConverterBase):
             gender = cls.convert_gender(tag_sample["Gender"])
         family_data: FamilyData | None = None
         if "FamilyData" in tag_sample:
-            family_data = ConvertFamilyData.xmldict_data_to_pb(tag_sample["FamilyData"])
+            family_data = ConvertFamilyData.xmldict_data_to_pb(
+                {"FamilyData": tag_sample["FamilyData"]}
+            )
         proband: str | None = None
         if "Proband" in tag_sample:
             proband = tag_sample["Proband"]
         indication: Indication | None = None
         if "Indication" in tag_sample:
-            indication = ConvertIndication.xmldict_data_to_pb(tag_sample["Indication"])
+            indication = ConvertIndication.xmldict_data_to_pb(
+                {"Indication": tag_sample["Indication"]}
+            )
         cxcs = cls.parse_citations_xrefs_comments(tag_sample)
         source_type: Sample.SourceType.ValueType | None = None
         if "SourceType" in tag_sample:
@@ -3986,12 +3996,16 @@ class ConvertClinicalAssertion(ConverterBase):
         submitter_identifiers: SubmitterIdentifiers = (
             ConvertSubmitterIdentifiers.xmldict_data_to_pb(tag, "ClinVarAccession")
         )
-        dt_date_updated = dateutil.parser.parse(tag_cva["@DateUpdated"])
-        seconds_date_updated = int(time.mktime(dt_date_updated.timetuple()))
-        date_updated = google.protobuf.timestamp_pb2.Timestamp(seconds=seconds_date_updated)
-        dt_date_created = dateutil.parser.parse(tag_cva["@DateUpdated"])
-        seconds_date_created = int(time.mktime(dt_date_created.timetuple()))
-        date_created = google.protobuf.timestamp_pb2.Timestamp(seconds=seconds_date_created)
+        date_updated: google.protobuf.timestamp_pb2.Timestamp | None = None
+        if "@DateUpdated" in tag_cva:
+            dt_date_updated = dateutil.parser.parse(tag_cva["@DateUpdated"])
+            seconds_date_updated = int(time.mktime(dt_date_updated.timetuple()))
+            date_updated = google.protobuf.timestamp_pb2.Timestamp(seconds=seconds_date_updated)
+        date_created: google.protobuf.timestamp_pb2.Timestamp | None = None
+        if "@DateCreated" in tag_cva:
+            dt_date_created = dateutil.parser.parse(tag_cva["@DateCreated"])
+            seconds_date_created = int(time.mktime(dt_date_created.timetuple()))
+            date_created = google.protobuf.timestamp_pb2.Timestamp(seconds=seconds_date_created)
 
         return ClinicalAssertion.ClinvarAccession(
             accession=accession,
@@ -4080,10 +4094,10 @@ class ConvertClinicalAssertion(ConverterBase):
                 for entry in cls.ensure_list(tag_ca["AttributeSet"])
             ]
         observed_ins: list[ObservedIn] | None = None
-        if "ObservedIn" in tag_ca:
+        if "ObservedInList" in tag_ca and "ObservedIn" in tag_ca["ObservedInList"]:
             observed_ins = [
                 ConvertObservedIn.xmldict_data_to_pb({"ObservedIn": entry})
-                for entry in cls.ensure_list(tag_ca["ObservedIn"])
+                for entry in cls.ensure_list(tag_ca["ObservedInList"]["ObservedIn"])
             ]
         simple_allele: AlleleScv | None = None
         if "SimpleAllele" in tag_ca:
@@ -4192,9 +4206,9 @@ class ConvertAllele(ConverterBase):
                 ConvertLocation.xmldict_data_to_pb({"Location": entry})
                 for entry in cls.ensure_list(tag_gene["Location"])
             ]
-        omim: int | None = None
+        omims: list[int] | None = None
         if "OMIM" in tag_gene:
-            omim = int(tag_gene["OMIM"])
+            omims = [int(omim_value) for omim_value in cls.ensure_list(tag_gene["OMIM"])]
         haploinsufficiency: DosageSensitivity | None = None
         if "Haploinsufficiency" in tag_gene:
             haploinsufficiency = ConvertDosageSensitivity.xmldict_data_to_pb(
@@ -4223,7 +4237,7 @@ class ConvertAllele(ConverterBase):
 
         return Allele.Gene(
             locations=locations,
-            omim=omim,
+            omims=omims,
             haploinsufficiency=haploinsufficiency,
             triplosensitivity=triplosensitivity,
             properties=properties,

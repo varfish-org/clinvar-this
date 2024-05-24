@@ -54,10 +54,10 @@ protoc-run:
 	mkdir -p clinvar_data/pbs/clinvar_this
 	touch clinvar_data/pbs/__init__.py clinvar_data/pbs/clinvar_this/__init__.py
 	rm -f \
-		clinvar_data/pbs/clinvar_this/*_pb2.py \
-		clinvar_data/pbs/clinvar_this/*.pyi
+		clinvar_data/*_pb2.py \
+		clinvar_data/*.pyi
 	protoc \
 		-Iprotos \
-			--python_out=clinvar_data/pbs/ \
-			--mypy_out=clinvar_data/pbs/ \
-			protos/clinvar_this/*.proto
+			--python_out=. \
+			--mypy_out=. \
+			protos/clinvar_data/pbs/*.proto

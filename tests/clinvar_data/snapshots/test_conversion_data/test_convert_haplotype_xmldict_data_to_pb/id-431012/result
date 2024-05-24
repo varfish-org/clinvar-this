@@ -32,7 +32,9 @@
               ]
             }
           ],
-          "omim": "612898",
+          "omims": [
+            "612898"
+          ],
           "fullName": "coenzyme Q4",
           "geneId": "51117",
           "hgncId": "HGNC:19693",
@@ -195,6 +197,152 @@
               "type": "COMMENT_TYPE_PUBLIC"
             }
           ],
+          "conditions": [
+            {
+              "traits": [
+                {
+                  "names": [
+                    {
+                      "value": "Neonatal encephalomyopathy-cardiomyopathy-respiratory distress syndrome",
+                      "type": "Preferred",
+                      "xrefs": [
+                        {
+                          "db": "MONDO",
+                          "id": "MONDO:0014562"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "Coenzyme Q10 deficiency, primary, 7",
+                      "type": "Alternate"
+                    }
+                  ],
+                  "symbols": [
+                    {
+                      "value": "COQ10D7",
+                      "type": "Alternate",
+                      "xrefs": [
+                        {
+                          "db": "OMIM",
+                          "id": "616276",
+                          "type": "MIM"
+                        }
+                      ]
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attribute": {
+                        "base": {
+                          "integerValue": "17796"
+                        },
+                        "type": "GARD id"
+                      },
+                      "xrefs": [
+                        {
+                          "db": "Office of Rare Diseases",
+                          "id": "17796"
+                        }
+                      ]
+                    },
+                    {
+                      "attribute": {
+                        "base": {
+                          "value": "Primary coenzyme Q10 (CoQ10) deficiency is usually associated with multisystem involvement, including neurologic manifestations such as fatal neonatal encephalopathy with hypotonia; a late-onset slowly progressive multiple-system atrophy-like phenotype (neurodegeneration with autonomic failure and various combinations of parkinsonism and cerebellar ataxia, and pyramidal dysfunction); and dystonia, spasticity, seizures, and intellectual disability. Steroid-resistant nephrotic syndrome (SRNS), the hallmark renal manifestation, is often the initial manifestation either as isolated renal involvement that progresses to end-stage renal disease (ESRD), or associated with encephalopathy (seizures, stroke-like episodes, severe neurologic impairment) resulting in early death. Hypertrophic cardiomyopathy (HCM), retinopathy or optic atrophy, and sensorineural hearing loss can also be seen."
+                        },
+                        "type": "public definition"
+                      },
+                      "xrefs": [
+                        {
+                          "db": "GeneReviews",
+                          "id": "NBK410087"
+                        }
+                      ]
+                    }
+                  ],
+                  "citations": [
+                    {
+                      "ids": [
+                        {
+                          "value": "28125198",
+                          "source": "PubMed"
+                        },
+                        {
+                          "value": "NBK410087",
+                          "source": "BookShelf"
+                        }
+                      ],
+                      "type": "review",
+                      "abbrev": "GeneReviews"
+                    }
+                  ],
+                  "xrefs": [
+                    {
+                      "db": "Orphanet",
+                      "id": "457185"
+                    },
+                    {
+                      "db": "MedGen",
+                      "id": "C5568562"
+                    },
+                    {
+                      "db": "MONDO",
+                      "id": "MONDO:0014562"
+                    },
+                    {
+                      "db": "OMIM",
+                      "id": "616276",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "type": "TYPE_DISEASE",
+              "id": "21037",
+              "contributesToAggregateClassification": true
+            },
+            {
+              "traits": [
+                {
+                  "names": [
+                    {
+                      "value": "none provided",
+                      "type": "Alternate"
+                    },
+                    {
+                      "value": "not provided",
+                      "type": "Preferred",
+                      "xrefs": [
+                        {
+                          "db": "Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital & Research Centre",
+                          "id": "13DG0619"
+                        }
+                      ]
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attribute": {
+                        "base": {
+                          "value": "The term 'not provided' is registered in MedGen to support identification of submissions to ClinVar for which no condition was named when assessing the variant. 'not provided' differs from 'not specified', which is used when a variant is asserted to be benign, likely benign, or of uncertain significance for conditions that have not been specified."
+                        },
+                        "type": "public definition"
+                      }
+                    }
+                  ],
+                  "xrefs": [
+                    {
+                      "db": "MedGen",
+                      "id": "C3661900"
+                    }
+                  ]
+                }
+              ],
+              "type": "TYPE_DISEASE",
+              "id": "9460",
+              "contributesToAggregateClassification": true
+            }
+          ],
           "dateLastEvaluated": "2023-08-17T00:00:00Z",
           "dateCreated": "2017-03-03T00:00:00Z",
           "mostRecentSubmission": "2024-02-11T00:00:00Z",
@@ -269,7 +417,9 @@
               ]
             }
           ],
-          "omim": "612898",
+          "omims": [
+            "612898"
+          ],
           "fullName": "coenzyme Q4",
           "geneId": "51117",
           "hgncId": "HGNC:19693",
