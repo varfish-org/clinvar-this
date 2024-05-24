@@ -2169,7 +2169,7 @@ class ConvertClassificationScv(ConverterBase):
             )
         else:
             assert isinstance(tag_classification["ReviewStatus"], str)
-            ConvertSubmitterReviewStatus.xmldict_data_to_pb(tag_classification["ReviewStatus"])
+            review_status = ConvertSubmitterReviewStatus.xmldict_data_to_pb(tag_classification["ReviewStatus"])
         germline_classification: str | None = tag_classification.get("GermlineClassification")
         somatic_clinical_impacts: ClassificationScv.SomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classification:
