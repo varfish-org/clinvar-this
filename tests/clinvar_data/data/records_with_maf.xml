@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="442" VariationName="NM_005581.5(BCAM):c.711C&gt;A (p.Cys237Ter)" VariationType="single nucleotide variant" Accession="VCV000000442" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2018-02-08" MostRecentSubmission="2018-02-08">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15481" VariationID="442">
+      <GeneList>
+        <Gene Symbol="BCAM" FullName="basal cell adhesion molecule (Lutheran blood group)" GeneID="4059" HGNC_ID="HGNC:6722" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>19q13.32</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="44809059" stop="44821421" display_start="44809059" display_stop="44821421" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="45312315" stop="45324677" display_start="45312315" display_stop="45324677" Strand="+"/>
+          </Location>
+          <OMIM>612773</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_005581.5(BCAM):c.711C&gt;A (p.Cys237Ter)</Name>
+      <CanonicalSPDI>NC_000019.10:44813546:C:A</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>19q13.32</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="44813547" stop="44813547" display_start="44813547" display_stop="44813547" variantLength="1" positionVCF="44813547" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="45316804" stop="45316804" display_start="45316804" display_stop="45316804" variantLength="1" positionVCF="45316804" referenceAlleleVCF="C" alternateAlleleVCF="A"/>
+      </Location>
+      <ProteinChange>C237*</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="LRG_798" sequenceAccession="LRG_798">
+            <Expression>LRG_798:g.9467C&gt;A</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="LRG_798t2" sequenceAccession="LRG_798t2">
+            <Expression>LRG_798t2:c.711C&gt;A</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="LRG_798p2" sequenceAccession="LRG_798p2" change="p.Cys237Ter">
+            <Expression>LRG_798p2:p.Cys237Ter</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.10" sequenceAccession="NC_000019" sequenceVersion="10" change="g.44813547C&gt;A" Assembly="GRCh38">
+            <Expression>NC_000019.10:g.44813547C&gt;A</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.9" sequenceAccession="NC_000019" sequenceVersion="9" change="g.45316804C&gt;A" Assembly="GRCh37">
+            <Expression>NC_000019.9:g.45316804C&gt;A</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_007480.1" sequenceAccession="NG_007480" sequenceVersion="1" change="g.9467C&gt;A">
+            <Expression>NG_007480.1:g.9467C&gt;A</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001013257.2" sequenceAccession="NM_001013257" sequenceVersion="2" change="c.711C&gt;A">
+            <Expression>NM_001013257.2:c.711C&gt;A</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001013275.1" sequenceAccession="NP_001013275" sequenceVersion="1" change="p.Cys237Ter">
+            <Expression>NP_001013275.1:p.Cys237Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_005581.5" sequenceAccession="NM_005581" sequenceVersion="5" change="c.711C&gt;A" MANESelect="true">
+            <Expression>NM_005581.5:c.711C&gt;A</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_005572.2" sequenceAccession="NP_005572" sequenceVersion="2" change="p.Cys237Ter">
+            <Expression>NP_005572.2:p.Cys237Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA114290" DB="ClinGen"/>
+        <XRef Type="Allelic variant" ID="612773.0005" DB="OMIM"/>
+        <XRef Type="rs" ID="3810141" DB="dbSNP"/>
+      </XRefList>
+      <GlobalMinorAlleleFrequency Value="0.10004" Source="1000 Genomes Project" MinorAllele="T"/>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_005581.5(BCAM):c.711C&gt;A (p.Cys237Ter) AND BLOOD GROUP--LUTHERAN NULL" Accession="RCV000000471" Version="3">
+        <ClassifiedConditionList TraitSetID="125">
+          <ClassifiedCondition DB="MedGen" ID="C4017284">BLOOD GROUP--LUTHERAN NULL</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2007-03-01" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2007-03-01" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2018-02-08" MostRecentSubmission="2018-02-08">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <CitationText>Mallinson, G., Green, C. A., Okubo, Y., Daniels, G. L. The molecular background of recessive Lu(a-b-) phenotype in a Japanese family. Transfusion Med. 7 (Suppl. 1): 18-only, 1997.</CitationText>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">17319831</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="125" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="9638" Type="BloodGroup">
+              <Name>
+                <ElementValue Type="Preferred">BLOOD GROUP--LUTHERAN NULL</ElementValue>
+                <XRef Type="Allelic variant" ID="612773.0005" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="612773.0006" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="612773.0003" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="612773.0004" DB="OMIM"/>
+              </Name>
+              <XRef ID="C4017284" DB="MedGen"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20620" SubmissionDate="2018-02-05" DateLastUpdated="2018-02-08" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="612773.0005_BLOOD GROUP--LUTHERAN NULL" title="BCAM, CYS237TER_BLOOD GROUP--LUTHERAN NULL"/>
+        <ClinVarAccession Accession="SCV000020620" DateUpdated="2018-02-08" DateCreated="2013-04-04" Type="SCV" Version="2" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2007-03-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In a healthy Japanese man with the Lutheran null blood group phenotype (247420), Mallinson et al. (1997) identified a homozygous 733C-A transversion in exon 6 of the BCAM gene, resulting in a cys237-to-ter (C237X) substitution in the extracellular domain. He was identified through blood donation and had no phenotypic manifestations. His parents and brother were heterozygous for the mutation. Karamatic Crew et al. (2007) stated that the C237X substitution resulted from a 711C-A transversion based on numbering from the translation initiation ATG codon.</Attribute>
+              <Citation>
+                <CitationText>Mallinson, G., Green, C. A., Okubo, Y., Daniels, G. L. The molecular background of recessive Lu(a-b-) phenotype in a Japanese family. Transfusion Med. 7 (Suppl. 1): 18-only, 1997.</CitationText>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">17319831</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="247420" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="BCAM"/>
+          </GeneList>
+          <Name>BCAM, CYS237TER</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">CYS237TER</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="612773.0005" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">BLOOD GROUP--LUTHERAN NULL</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20620" TraitType="Disease" MappingType="Name" MappingValue="BLOOD GROUP--LUTHERAN NULL" MappingRef="Preferred">
+        <MedGen CUI="C4017284" Name="BLOOD GROUP--LUTHERAN NULL"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+
+<VariationArchive RecordType="classified" VariationID="13196" VariationName="NM_006907.4(PYCR1):c.355C&gt;G (p.Arg119Gly)" VariationType="single nucleotide variant" Accession="VCV000013196" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2015-05-23" MostRecentSubmission="2015-05-23">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="28235" VariationID="13196">
+      <GeneList>
+        <Gene Symbol="PYCR1" FullName="pyrroline-5-carboxylate reductase 1" GeneID="5831" HGNC_ID="HGNC:9721" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>17q25.3</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="17" Accession="NC_000017.11" start="81932391" stop="81937300" display_start="81932391" display_stop="81937300" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="17" Accession="NC_000017.10" start="79890266" stop="79894967" display_start="79890266" display_stop="79894967" Strand="-"/>
+          </Location>
+          <OMIM>179035</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_006907.4(PYCR1):c.355C&gt;G (p.Arg119Gly)</Name>
+      <CanonicalSPDI>NC_000017.11:81935110:G:C</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>17q25.3</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="17" Accession="NC_000017.11" start="81935111" stop="81935111" display_start="81935111" display_stop="81935111" variantLength="1" positionVCF="81935111" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="17" Accession="NC_000017.10" start="79892987" stop="79892987" display_start="79892987" display_stop="79892987" variantLength="1" positionVCF="79892987" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+      </Location>
+      <ProteinChange>R119G</ProteinChange>
+      <ProteinChange>R146G</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="protein">
+          <ProteinExpression sequenceAccessionVersion="P32322" sequenceAccession="P32322" change="p.Arg119Gly">
+            <Expression>P32322:p.Arg119Gly</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000017.10" sequenceAccession="NC_000017" sequenceVersion="10" change="g.79892987G&gt;C" Assembly="GRCh37">
+            <Expression>NC_000017.10:g.79892987G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000017.11" sequenceAccession="NC_000017" sequenceVersion="11" change="g.81935111G&gt;C" Assembly="GRCh38">
+            <Expression>NC_000017.11:g.81935111G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_023032.1" sequenceAccession="NG_023032" sequenceVersion="1" change="g.6982C&gt;G">
+            <Expression>NG_023032.1:g.6982C&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001282279.2" sequenceAccession="NM_001282279" sequenceVersion="2" change="c.355C&gt;G">
+            <Expression>NM_001282279.2:c.355C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001269208.1" sequenceAccession="NP_001269208" sequenceVersion="1" change="p.Arg119Gly">
+            <Expression>NP_001269208.1:p.Arg119Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001282280.2" sequenceAccession="NM_001282280" sequenceVersion="2" change="c.355C&gt;G">
+            <Expression>NM_001282280.2:c.355C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001269209.1" sequenceAccession="NP_001269209" sequenceVersion="1" change="p.Arg119Gly">
+            <Expression>NP_001269209.1:p.Arg119Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001282281.2" sequenceAccession="NM_001282281" sequenceVersion="2" change="c.436C&gt;G">
+            <Expression>NM_001282281.2:c.436C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001269210.1" sequenceAccession="NP_001269210" sequenceVersion="1" change="p.Arg146Gly">
+            <Expression>NP_001269210.1:p.Arg146Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001330523.2" sequenceAccession="NM_001330523" sequenceVersion="2" change="c.355C&gt;G">
+            <Expression>NM_001330523.2:c.355C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001317452.1" sequenceAccession="NP_001317452" sequenceVersion="1" change="p.Arg119Gly">
+            <Expression>NP_001317452.1:p.Arg119Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_006907.4" sequenceAccession="NM_006907" sequenceVersion="4" change="c.355C&gt;G" MANESelect="true">
+            <Expression>NM_006907.4:c.355C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_008838.2" sequenceAccession="NP_008838" sequenceVersion="2" change="p.Arg119Gly">
+            <Expression>NP_008838.2:p.Arg119Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_153824.3" sequenceAccession="NM_153824" sequenceVersion="3" change="c.355C&gt;G">
+            <Expression>NM_153824.3:c.355C&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_722546.1" sequenceAccession="NP_722546" sequenceVersion="1" change="p.Arg119Gly">
+            <Expression>NP_722546.1:p.Arg119Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA122954" DB="ClinGen"/>
+        <XRef ID="P32322#VAR_059068" DB="UniProtKB"/>
+        <XRef Type="Allelic variant" ID="179035.0007" DB="OMIM"/>
+        <XRef Type="rs" ID="121918376" DB="dbSNP"/>
+      </XRefList>
+      <GlobalMinorAlleleFrequency Value="0.00020" Source="1000 Genomes Project" MinorAllele="A"/>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_006907.4(PYCR1):c.355C&gt;G (p.Arg119Gly) AND Autosomal recessive cutis laxa type 2B" Accession="RCV000014083" Version="24">
+        <ClassifiedConditionList TraitSetID="3587">
+          <ClassifiedCondition DB="MedGen" ID="C2751987">Autosomal recessive cutis laxa type 2B</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2009-09-01" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2009-09-01" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2015-05-23" MostRecentSubmission="2015-05-23">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">19648921</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="3587" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="6726" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">CUTIS LAXA, AUTOSOMAL RECESSIVE, TYPE IIB</ElementValue>
+                <XRef Type="MIM" ID="612940" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0003" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0006" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0001" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0004" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0007" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0002" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0005" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="179035.0008" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">CUTIS LAXA WITH PROGEROID FEATURES</ElementValue>
+                <XRef Type="MIM" ID="612940" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Autosomal recessive cutis laxa type 2B</ElementValue>
+                <XRef ID="Autosomal+recessive+cutis+laxa+type+2B/7790" DB="Genetic Alliance"/>
+                <XRef ID="MONDO:0013051" DB="MONDO"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Preferred">ARCL2B</ElementValue>
+                <XRef Type="MIM" ID="612940" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="1641"/>
+                <XRef ID="1641" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="disease mechanism" integerValue="273">loss of function</Attribute>
+                <XRef ID="GTR000331788" DB="Genetic Testing Registry (GTR)"/>
+                <XRef ID="GTR000553576" DB="Genetic Testing Registry (GTR)"/>
+                <XRef ID="GTR000569455" DB="Genetic Testing Registry (GTR)"/>
+                <XRef ID="GTR000510761" DB="Genetic Testing Registry (GTR)"/>
+                <XRef ID="GTR000561718" DB="Genetic Testing Registry (GTR)"/>
+              </AttributeSet>
+              <XRef ID="357064" DB="Orphanet"/>
+              <XRef ID="C2751987" DB="MedGen"/>
+              <XRef ID="MONDO:0013051" DB="MONDO"/>
+              <XRef Type="MIM" ID="612940" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="34331" SubmissionDate="2015-05-20" DateLastUpdated="2015-05-23" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="179035.0007_CUTIS LAXA, AUTOSOMAL RECESSIVE, TYPE IIB" title="PYCR1, ARG119GLY_CUTIS LAXA, AUTOSOMAL RECESSIVE, TYPE IIB"/>
+        <ClinVarAccession Accession="SCV000034331" DateUpdated="2015-05-23" DateCreated="2013-04-04" Type="SCV" Version="2" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2009-09-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">For discussion of the arg119-to-gly (R119G) mutation in the PYCR1 gene that was found in compound heterozygous state in a patient with intrauterine growth retardation, congenital cutis laxa, hernias, osteopenia, and mental retardation (ARCL2B; 612940) by Reversade et al. (2009), see 179035.0006.</Attribute>
+              <Citation>
+                <ID Source="PubMed">19648921</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="612940" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="PYCR1"/>
+          </GeneList>
+          <Name>PYCR1, ARG119GLY</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">ARG119GLY</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="179035.0007" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">CUTIS LAXA, AUTOSOMAL RECESSIVE, TYPE IIB</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="34331" TraitType="Disease" MappingType="Name" MappingValue="CUTIS LAXA, AUTOSOMAL RECESSIVE, TYPE IIB" MappingRef="Preferred">
+        <MedGen CUI="C2751987" Name="Autosomal recessive cutis laxa type 2B"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

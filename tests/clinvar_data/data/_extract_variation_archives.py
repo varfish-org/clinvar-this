@@ -153,6 +153,10 @@ TARGETS: list[Target] = [
         ],
         name="ten_records",
     ),
+    Target(
+        vcvs=["VCV000000442", "VCV000013196"],
+        name="records_with_maf",
+    )
 ]
 
 
