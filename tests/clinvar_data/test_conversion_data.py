@@ -80,7 +80,7 @@ from clinvar_data.conversion.dict_to_pb import (
     ConvertXref,
     ConvertZygosity,
 )
-from clinvar_data.pbs.clinvar_public.clinvar_public import (
+from clinvar_data.pbs.clinvar_this.clinvar_public import (
     AggregateGermlineReviewStatus,
     AggregateOncogenicityReviewStatus,
     AggregateSomaticClinicalImpactReviewStatus,
@@ -112,7 +112,7 @@ from clinvar_data.pbs.clinvar_public.clinvar_public import (
     VariationType,
     Zygosity,
 )
-from clinvar_data.pbs.clinvar_public.clinvar_public_pb2 import (
+from clinvar_data.pbs.clinvar_this.clinvar_public_pb2 import (
     ClassifiedRecord,
     VariationArchive,
 )

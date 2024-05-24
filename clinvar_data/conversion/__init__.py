@@ -12,7 +12,7 @@ import tqdm
 import xmltodict
 
 from clinvar_data.conversion import dict_to_pb
-from clinvar_data.pbs.clinvar_public import clinvar_public
+from clinvar_data.pbs.clinvar_this import clinvar_public
 
 
 def remove_empties_from_containers(

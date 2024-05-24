@@ -7,7 +7,7 @@ from typing import Any, Dict
 import dateutil.parser
 import google.protobuf.timestamp_pb2
 
-from clinvar_data.pbs.clinvar_public.clinvar_public import (
+from clinvar_data.pbs.clinvar_this.clinvar_public import (
     AggregateClassificationSet,
     AggregatedGermlineClassification,
     AggregatedOncogenicityClassification,
@@ -74,7 +74,7 @@ from clinvar_data.pbs.clinvar_public.clinvar_public import (
     Xref,
     Zygosity,
 )
-from clinvar_data.pbs.clinvar_public.clinvar_public_pb2 import (
+from clinvar_data.pbs.clinvar_this.clinvar_public_pb2 import (
     ClassifiedRecord,
     ClinvarVariationRelease,
     Genotype,

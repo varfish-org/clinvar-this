@@ -51,13 +51,13 @@ protolint-check:
 # Re-run protoc.
 .PHONY: protoc-run
 protoc-run:
-	mkdir -p clinvar_data/pbs/clinvar_public
-	touch clinvar_data/pbs/__init__.py clinvar_data/pbs/clinvar_public/__init__.py
+	mkdir -p clinvar_data/pbs/clinvar_this
+	touch clinvar_data/pbs/__init__.py clinvar_data/pbs/clinvar_this/__init__.py
 	rm -f \
-		clinvar_data/pbs/clinvar_public/*_pb2.py \
-		clinvar_data/pbs/clinvar_public/*.pyi
+		clinvar_data/pbs/clinvar_this/*_pb2.py \
+		clinvar_data/pbs/clinvar_this/*.pyi
 	protoc \
 		-Iprotos \
 			--python_out=clinvar_data/pbs/ \
 			--mypy_out=clinvar_data/pbs/ \
-			protos/clinvar_public/*.proto
+			protos/clinvar_this/*.proto
