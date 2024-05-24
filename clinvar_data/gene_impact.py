@@ -11,26 +11,30 @@ import tqdm
 from clinvar_data import models
 
 
-@enum.unique
-class Impact(enum.Enum):
-    """SO terms for gene impact"""
+class ConverGeneImpact:
+    """Static method helper for ``VariationType`` string to enum conversion."""
 
-    THREE_PRIME_UTR_VARIANT = "3_prime_UTR_variant"
-    FIVE_PRIME_UTR_VARIANT = "5_prime_UTR_variant"
-    DOWNSTREAM_TRANSCRIPT_VARIANT = "downstream_gene_variant"
-    FRAMESHIFT_VARIANT = "frameshift_variant"
-    INFRAME_INDEL = "inframe_indel"
-    START_LOST = "start_lost"
-    INTRON_VARIANT = "intron_variant"
-    MISSENSE_VARIANT = "missense_variant"
-    NON_CODING_TRANSCRIPT_VARIANT = "non_coding_transcript_variant"
-    STOP_GAINED = "stop_gained"
-    NO_SEQUENCE_ALTERATION = "no_sequence_alteration"
-    SPLICE_ACCEPTOR_VARIANT = "splice_acceptor_variant"
-    SPLICE_DONOR_VARIANT = "splice_donor_variant"
-    STOP_LOST = "stop_lost"
-    SYNONYMOUS_VARIANT = "synonymous_variant"
-    UPSTREAM_TRANSCRIPT_VARIANT = "upstream_gene_variant"
+    #: Dict for conversion.
+    CONVERT: dict[str, VariationType.ValueType] = {
+        "insertion": VariationType.VARIATION_TYPE_INSERTION,
+        "deletion": VariationType.VARIATION_TYPE_DELETION,
+        "single nucleotide variant": VariationType.VARIATION_TYPE_SNV,
+        "indel": VariationType.VARIATION_TYPE_INDEL,
+        "duplication": VariationType.VARIATION_TYPE_DUPLICATION,
+        "tandem duplication": VariationType.VARIATION_TYPE_TANDEM_DUPLICATION,
+        "structural variant": VariationType.VARIATION_TYPE_STRUCTURAL_VARIANT,
+        "copy number gain": VariationType.VARIATION_TYPE_COPY_NUMBER_GAIN,
+        "copy number loss": VariationType.VARIATION_TYPE_COPY_NUMBER_LOSS,
+        "protein only": VariationType.VARIATION_TYPE_PROTEIN_ONLY,
+        "microsatellite": VariationType.VARIATION_TYPE_MICROSATELLITE,
+        "inversion": VariationType.VARIATION_TYPE_INVERSION,
+        "other": VariationType.VARIATION_TYPE_OTHER,
+    }
+
+    @classmethod
+    def from_string_value(cls, string_value: str) -> VariationType.ValueType:
+        """Convert string to protobuf enum value."""
+        return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
 
 
 #: Mapping from strings used in ClinVar XML to ``IMPACT``.
