@@ -7,7 +7,6 @@ import typing
 from google.protobuf.json_format import MessageToDict, ParseDict
 import tqdm
 
-from clinvar_data import models
 from clinvar_data.pbs.clinvar_public_pb2 import (
     Allele,
     Assertion,
@@ -22,25 +21,7 @@ def clean_omim(terms: typing.Set[str]) -> typing.Set[str]:
     return {term.split(".")[0] for term in terms}
 
 
-class TermCollector:
-    def __init__(self):
-        self.omim_terms = set()
-        self.mondo_terms = set()
-        self.hpo_terms = set()
-
-    def add_xref(self, xref: models.Xref):
-        if xref.db == "OMIM":
-            self.omim_terms.add(xref.id)
-        elif xref.db in ("Human Phenotype Ontology", "HP"):
-            self.hpo_terms.add(xref.id)
-        elif xref.db == "MONDO":
-            self.mondo_terms.add(xref.id)
-
-    def has_link(self) -> bool:
-        return self.hpo_terms or self.omim_terms or self.mondo_terms
-
-
-def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
+def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):  # noqa: C901
     """Read in file at path_input and generate link records to path_output."""
 
     if path_input.endswith(".gz"):
@@ -71,27 +52,29 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
             if not variation_archive.classified_record.HasField("simple_allele"):
                 continue
             simple_allele: Allele = classified_record.simple_allele
-            hgnc_ids = [gene.hgnc_id for gene in simple_allele.genes if gene.HasField('hgnc_id')]
+            hgnc_ids = [gene.hgnc_id for gene in simple_allele.genes if gene.HasField("hgnc_id")]
 
             for clinical_assertion in classified_record.clinical_assertions:
-                scv = (
-                    VersionedAccession(
-                        accession=clinical_assertion.clinvar_accession.accession,
-                        version=clinical_assertion.clinvar_accession.version,
-                    )
+                scv = VersionedAccession(
+                    accession=clinical_assertion.clinvar_accession.accession,
+                    version=clinical_assertion.clinvar_accession.version,
                 )
                 germline_classification: str | None = None
                 for classification in clinical_assertion.classifications:
                     if (
                         classification.HasField("germline_classification")
-                        and "pathogenic" in classification.germline_classification.lower()
+                        # and "pathogenic" in classification.germline_classification.lower()
                     ):
                         germline_classification = classification.germline_classification
+                        print("\n\n", germline_classification)
                         break
                 if not germline_classification:
                     continue
 
-                if clinical_assertion.assertion != Assertion.ASSERTION_VARIATION_TO_DISEASE:
+                if clinical_assertion.assertion not in (
+                    Assertion.ASSERTION_VARIATION_TO_DISEASE,
+                    Assertion.ASSERTION_VARIATION_TO_INCLUDED_DISEASE,
+                ):
                     continue
 
                 mondo_terms = []
@@ -119,6 +102,9 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                 mondo_terms = list(sorted(set(mondo_terms)))
                 omim_terms = list(sorted(set(omim_terms)))
                 hpo_terms = list(sorted(set(hpo_terms)))
+                if not hpo_terms and needs_hpo_terms:
+                    continue
+
                 record = GenePhenotypeRecord(
                     vcv=vcv,
                     scv=scv,

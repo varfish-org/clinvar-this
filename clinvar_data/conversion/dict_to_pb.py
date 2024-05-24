@@ -4205,6 +4205,7 @@ class ConvertAllele(ConverterBase):
             locations = [
                 ConvertLocation.xmldict_data_to_pb({"Location": entry})
                 for entry in cls.ensure_list(tag_gene["Location"])
+                if entry
             ]
         omims: list[int] | None = None
         if "OMIM" in tag_gene:
