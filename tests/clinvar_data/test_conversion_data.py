@@ -3997,7 +3997,7 @@ def test_convert_clinical_assertion_convert_attribute_set(xml_str: str, expected
             """,
             {
                 "accession": "SCV000020896",
-                "dateCreated": "2018-06-02T00:00:00Z",
+                "dateCreated": "2013-04-04T00:00:00Z",
                 "dateUpdated": "2018-06-02T00:00:00Z",
                 "submitterIdentifiers": {
                     "orgCategory": "resource",
@@ -4336,7 +4336,7 @@ def test_convert_clinical_assertion_xmldict_data_to_pb(xml_str: str, snapshot):
                         ],
                     },
                 ],
-                "omim": ["613653"],
+                "omims": ["613653"],
                 "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE",
                 "source": "submitted",
             },
@@ -4385,7 +4385,7 @@ def test_convert_clinical_assertion_xmldict_data_to_pb(xml_str: str, snapshot):
                         ],
                     },
                 ],
-                "omim": ["613583"],
+                "omims": ["613583"],
                 "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE",
                 "source": "submitted",
             },
