@@ -85,6 +85,18 @@ from clinvar_data.pbs.clinvar_public_pb2 import (
 )
 
 
+def ensure_str(value: str | dict[str, str]) -> str:
+    """Ensure the value is a string and not a dict with an xlnsi."""
+    if isinstance(value, dict):
+        assert (
+            "@xmlns:xsi" in value
+            and value["xmlns:xsi"] == "http://www.w3.org/2001/XMLSchema-instance"
+        )
+        return value["#text"]
+    else:
+        return value
+
+
 class ConvertGeneVariantRelationship:
     """Static method helper for converting XML data to to ``GeneVariantRelationship``."""
 
@@ -2162,14 +2174,11 @@ class ConvertClassificationScv(ConverterBase):
         assert "Classification" in value
         tag_classification: dict[str, Any] = value["Classification"]
 
-        review_status: SubmitterReviewStatus.ValueType
-        if isinstance(tag_classification["ReviewStatus"], dict):
-            review_status = ConvertSubmitterReviewStatus.xmldict_data_to_pb(
-                tag_classification["ReviewStatus"]["#text"]
+        review_status: SubmitterReviewStatus.ValueType = (
+            ConvertSubmitterReviewStatus.xmldict_data_to_pb(
+                ensure_str(tag_classification["ReviewStatus"])
             )
-        else:
-            assert isinstance(tag_classification["ReviewStatus"], str)
-            review_status = ConvertSubmitterReviewStatus.xmldict_data_to_pb(tag_classification["ReviewStatus"])
+        )
         germline_classification: str | None = tag_classification.get("GermlineClassification")
         somatic_clinical_impacts: ClassificationScv.SomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classification:
@@ -2997,7 +3006,7 @@ class ConvertSample(ConverterBase):
 
         origin: Origin.ValueType | None = None
         if "Origin" in tag_sample:
-            origin = ConvertOrigin.xmldict_data_to_pb(tag_sample["Origin"])
+            origin = ConvertOrigin.xmldict_data_to_pb(ensure_str(tag_sample["Origin"]))
 
         ethnicity: str | None = tag_sample.get("Ethnicity")
         geographic_origin: str | None = tag_sample.get("GeographicOrigin")

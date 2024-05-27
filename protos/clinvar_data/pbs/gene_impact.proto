@@ -6,39 +6,86 @@ package clinvar_data.pbs.gene_impact;
 
 import "clinvar_data/pbs/clinvar_public.proto";
 
-enum Impact {
+// Enumeration with the variant consequence.
+enum GeneImpact {
   // unspecified impact
-  IMPACT_UNSPECIFIED = 0;
+  GENE_IMPACT_UNSPECIFIED = 0;
   // Corresponds to "3_prime_UTR_variant"
-  IMPACT_THREE_PRIME_UTR_VARIANT = 1;
+  GENE_IMPACT_THREE_PRIME_UTR_VARIANT = 1;
   // Corresponds to "5_prime_UTR_variant"
-  IMPACT_FIVE_PRIME_UTR_VARIANT = 2;
+  GENE_IMPACT_FIVE_PRIME_UTR_VARIANT = 2;
   // Corresponds to "downstream_gene_variant"
-  IMPACT_DOWNSTREAM_TRANSCRIPT_VARIANT = 3;
+  GENE_IMPACT_DOWNSTREAM_TRANSCRIPT_VARIANT = 3;
   // Corresponds to "frameshift_variant"
-  IMPACT_FRAMESHIFT_VARIANT = 4;
+  GENE_IMPACT_FRAMESHIFT_VARIANT = 4;
   // Corresponds to "inframe_indel"
-  IMPACT_INFRAME_INDEL = 5;
+  GENE_IMPACT_INFRAME_INDEL = 5;
   // Corresponds to "start_lost"
-  IMPACT_START_LOST = 6;
+  GENE_IMPACT_START_LOST = 6;
   // Corresponds to "intron_variant"
-  IMPACT_INTRON_VARIANT = 7;
+  GENE_IMPACT_INTRON_VARIANT = 7;
   // Corresponds to "missense_variant"
-  IMPACT_MISSENSE_VARIANT = 8;
+  GENE_IMPACT_MISSENSE_VARIANT = 8;
   // Corresponds to "non_codnig_transcript_variant"
-  IMPACT_NON_CODING_TRANSCRIPT_VARIANT = 9;
+  GENE_IMPACT_NON_CODING_TRANSCRIPT_VARIANT = 9;
   // Corresponds to "stop_gained"
-  IMPACT_STOP_GAINED = 10;
+  GENE_IMPACT_STOP_GAINED = 10;
   // Corresponds to "no_sequence_alteration"
-  IMPACT_NO_SEQUENCE_ALTERATION = 11;
+  GENE_IMPACT_NO_SEQUENCE_ALTERATION = 11;
   // Corresponds to "splice_acceptor_variant"
-  IMPACT_SPLICE_ACCEPTOR_VARIANT = 12;
+  GENE_IMPACT_SPLICE_ACCEPTOR_VARIANT = 12;
   // Corresponds to "splice_donor_variant"
-  IMPACT_SPLICE_DONOR_VARIANT = 13;
+  GENE_IMPACT_SPLICE_DONOR_VARIANT = 13;
   // Corresponds to "stop_lost"
-  IMPACT_STOP_LOST = 14;
+  GENE_IMPACT_STOP_LOST = 14;
   // Corresponds to "synonymous_variant"
-  IMPACT_SYNONYMOUS_VARIANT = 15;
+  GENE_IMPACT_SYNONYMOUS_VARIANT = 15;
   // Corresponds to "upstream_gene_variant"
-  IMPACT_UPSTREAM_TRANSCRIPT_VARIANT = 16;
+  GENE_IMPACT_UPSTREAM_TRANSCRIPT_VARIANT = 16;
+}
+
+
+// Enumeration for ACMG clinical significance.
+enum ClinicalSignificance {
+  // unspecified clinical significance
+  CLINICAL_SIGNIFICANCE_UNSPECIFIED = 0;
+  // Corresponds to "Benign"
+  CLINICAL_SIGNIFICANCE_BENIGN = 1;
+  // Corresponds to "Likely benign"
+  CLINICAL_SIGNIFICANCE_LIKELY_BENIGN = 2;
+  // Corresponds to "Uncertain significance"
+  CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE = 3;
+  // Corresponds to "Likely pathogenic"
+  CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC = 4;
+  // Corresponds to "Pathogenic"
+  CLINICAL_SIGNIFICANCE_PATHOGENIC = 5;
+  // Corresponds to "not provided"
+  CLINICAL_SIGNIFICANCE_NOT_PROVIDED = 6;
+  // Corresponds to "other"
+  CLINICAL_SIGNIFICANCE_OTHER = 7;
+}
+
+
+// Entry for storing counts of `GeneImpact` and `ClinicalSignificance`.
+message GeneImpactCounts {
+  // Stores the `Count`s for a gene impact.
+  message ImpactCounts {
+    // The gene impact.
+    GeneImpact gene_impact = 1;
+    // The counts for the benign impact.
+    uint32 count_benign = 2;
+    // The counts for the likely benign impact.
+    uint32 count_likely_benign = 3;
+    // The counts for the uncertain significance impact.
+    uint32 count_uncertain_significance = 4;
+    // The counts for the likely pathogenic impact.
+    uint32 count_likely_pathogenic = 5;
+    // The counts for the pathogenic impact.
+    uint32 count_pathogenic = 6;
+  }
+
+  // The gene HGNC ID.
+  string hgnc_id = 1;
+  // The impact counts.
+  repeated ImpactCounts impact_counts = 2;
 }

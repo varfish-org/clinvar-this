@@ -1,156 +1,225 @@
-# """Generate a report for each gene with variant count per impact and pathogenicity"""
+"""Generate a report for each gene with variant count per impact and pathogenicity"""
 
-# import enum
-# import gzip
-# import json
-# import sys
-# import typing
+import gzip
+import json
+import sys
+import typing
 
-# import tqdm
+from google.protobuf.json_format import MessageToDict, ParseDict
+import tqdm
 
-# from clinvar_data import models
-
-
-# class ConverGeneImpact:
-#     """Static method helper for ``VariationType`` string to enum conversion."""
-
-#     #: Dict for conversion.
-#     CONVERT: dict[str, VariationType.ValueType] = {
-#         "insertion": VariationType.VARIATION_TYPE_INSERTION,
-#         "deletion": VariationType.VARIATION_TYPE_DELETION,
-#         "single nucleotide variant": VariationType.VARIATION_TYPE_SNV,
-#         "indel": VariationType.VARIATION_TYPE_INDEL,
-#         "duplication": VariationType.VARIATION_TYPE_DUPLICATION,
-#         "tandem duplication": VariationType.VARIATION_TYPE_TANDEM_DUPLICATION,
-#         "structural variant": VariationType.VARIATION_TYPE_STRUCTURAL_VARIANT,
-#         "copy number gain": VariationType.VARIATION_TYPE_COPY_NUMBER_GAIN,
-#         "copy number loss": VariationType.VARIATION_TYPE_COPY_NUMBER_LOSS,
-#         "protein only": VariationType.VARIATION_TYPE_PROTEIN_ONLY,
-#         "microsatellite": VariationType.VARIATION_TYPE_MICROSATELLITE,
-#         "inversion": VariationType.VARIATION_TYPE_INVERSION,
-#         "other": VariationType.VARIATION_TYPE_OTHER,
-#     }
-
-#     @classmethod
-#     def from_string_value(cls, string_value: str) -> VariationType.ValueType:
-#         """Convert string to protobuf enum value."""
-#         return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
+from clinvar_data.pbs.clinvar_public_pb2 import VariationArchive
+from clinvar_data.pbs.gene_impact import (
+    ClinicalSignificance,
+    GeneImpact,
+    GeneImpactCounts,
+)
 
 
-# #: Mapping from strings used in ClinVar XML to ``IMPACT``.
-# GENE_IMPACT_MAP = {
-#     "3 prime utr variant": Impact.THREE_PRIME_UTR_VARIANT,
-#     "5 prime utr variant": Impact.FIVE_PRIME_UTR_VARIANT,
-#     "downstream transcript variant": Impact.DOWNSTREAM_TRANSCRIPT_VARIANT,
-#     "frameshift variant": Impact.FRAMESHIFT_VARIANT,
-#     "genic downstream transcript variant": Impact.DOWNSTREAM_TRANSCRIPT_VARIANT,
-#     "genic upstream transcript variant": Impact.UPSTREAM_TRANSCRIPT_VARIANT,
-#     "inframe deletion": Impact.INFRAME_INDEL,
-#     "inframe indel": Impact.INFRAME_INDEL,
-#     "inframe insertion": Impact.INFRAME_INDEL,
-#     "initiatior codon variant": Impact.START_LOST,
-#     "intron variant": Impact.INTRON_VARIANT,
-#     "missense variant": Impact.MISSENSE_VARIANT,
-#     "non coding transcript variant": Impact.NON_CODING_TRANSCRIPT_VARIANT,
-#     "nonsense": Impact.STOP_GAINED,
-#     "no sequence alteration": Impact.NO_SEQUENCE_ALTERATION,
-#     "splice acceptor variant": Impact.SPLICE_ACCEPTOR_VARIANT,
-#     "splice donor variant": Impact.SPLICE_DONOR_VARIANT,
-#     "stop lost": Impact.STOP_LOST,
-#     "synonymous variant": Impact.SYNONYMOUS_VARIANT,
-#     "upstream transcript variant": Impact.UPSTREAM_TRANSCRIPT_VARIANT,
-# }
+class ConvertGeneImpact:
+    """Static method helper for ``GeneImpact`` string to enum conversion."""
 
-# #: ACMG clinical significance values
-# ACMG_CLINSIGS = (
-#     models.ClinicalSignificanceDescription.BENIGN,
-#     models.ClinicalSignificanceDescription.LIKELY_BENIGN,
-#     models.ClinicalSignificanceDescription.UNCERTAIN_SIGNIFICANCE,
-#     models.ClinicalSignificanceDescription.LIKELY_PATHOGENIC,
-#     models.ClinicalSignificanceDescription.PATHOGENIC,
-# )
+    #: Dict for conversion.
+    CONVERT: dict[str, GeneImpact.ValueType] = {
+        "3 prime utr variant": GeneImpact.GENE_IMPACT_THREE_PRIME_UTR_VARIANT,
+        "5 prime utr variant": GeneImpact.GENE_IMPACT_FIVE_PRIME_UTR_VARIANT,
+        "downstream transcript variant": GeneImpact.GENE_IMPACT_DOWNSTREAM_TRANSCRIPT_VARIANT,
+        "frameshift variant": GeneImpact.GENE_IMPACT_FRAMESHIFT_VARIANT,
+        "genic downstream transcript variant": GeneImpact.GENE_IMPACT_DOWNSTREAM_TRANSCRIPT_VARIANT,
+        "genic upstream transcript variant": GeneImpact.GENE_IMPACT_UPSTREAM_TRANSCRIPT_VARIANT,
+        "inframe deletion": GeneImpact.GENE_IMPACT_INFRAME_INDEL,
+        "inframe indel": GeneImpact.GENE_IMPACT_INFRAME_INDEL,
+        "inframe insertion": GeneImpact.GENE_IMPACT_INFRAME_INDEL,
+        "initiatior codon variant": GeneImpact.GENE_IMPACT_START_LOST,
+        "intron variant": GeneImpact.GENE_IMPACT_INTRON_VARIANT,
+        "missense variant": GeneImpact.GENE_IMPACT_MISSENSE_VARIANT,
+        "non coding transcript variant": GeneImpact.GENE_IMPACT_NON_CODING_TRANSCRIPT_VARIANT,
+        "nonsense": GeneImpact.GENE_IMPACT_STOP_GAINED,
+        "no sequence alteration": GeneImpact.GENE_IMPACT_NO_SEQUENCE_ALTERATION,
+        "splice acceptor variant": GeneImpact.GENE_IMPACT_SPLICE_ACCEPTOR_VARIANT,
+        "splice donor variant": GeneImpact.GENE_IMPACT_SPLICE_DONOR_VARIANT,
+        "stop lost": GeneImpact.GENE_IMPACT_STOP_LOST,
+        "synonymous variant": GeneImpact.GENE_IMPACT_SYNONYMOUS_VARIANT,
+        "upstream transcript variant": GeneImpact.GENE_IMPACT_UPSTREAM_TRANSCRIPT_VARIANT,
+    }
 
-
-# def zero_counts() -> typing.Dict[typing.Tuple[Impact, models.ClinicalSignificanceDescription], int]:
-#     return {(impact, pathogenicity): 0 for impact in Impact for pathogenicity in ACMG_CLINSIGS}
+    @classmethod
+    def from_str(cls, string_value: str) -> GeneImpact.ValueType:
+        """Convert string to protobuf enum value."""
+        return cls.CONVERT[string_value.lower()]
 
 
-# def write_report(counts: dict, path_output: str):
-#     """Write report to output."""
+class ConverClinicalSignificance:
+    """Static method helper for ``ClinicalSignificance`` string to enum conversion."""
 
-#     if path_output.endswith(".gz"):
-#         outputf = gzip.open(path_output, "wt")
-#     else:
-#         outputf = open(path_output, "wt")
+    #: Dict for conversion.
+    CONVERT: dict[str, ClinicalSignificance.ValueType] = {
+        "Pathogenic": ClinicalSignificance.CLINICAL_SIGNIFICANCE_PATHOGENIC,
+        "Likely pathogenic": ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC,
+        "Uncertain significance": ClinicalSignificance.CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE,
+        "Likely benign": ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_BENIGN,
+        "Benign": ClinicalSignificance.CLINICAL_SIGNIFICANCE_BENIGN,
+    }
 
-#     with outputf:
-#         for hgnc, counts in sorted(counts.items(), key=lambda x: int(x[0][5:])):
-#             counts_out = {}
-#             for impact in Impact:
-#                 arr = []
-#                 for patho in ACMG_CLINSIGS:
-#                     arr.append(counts[(impact, patho)])
-#                 if sum(arr) > 0:
-#                     counts_out[impact.value] = arr
-#             print(
-#                 json.dumps({"hgnc": hgnc, "counts": counts_out}),
-#                 file=outputf,
-#             )
+    @classmethod
+    def from_str(cls, string_value: str) -> ClinicalSignificance.ValueType:
+        """Convert string to protobuf enum value."""
+        return cls.CONVERT.get(string_value, ClinicalSignificance.CLINICAL_SIGNIFICANCE_OTHER)
 
 
-# def generate_counts(path_input: str) -> dict:
-#     """Count occurrences of each impact for each gene."""
-#     counts = {}
+#: Canonical ACMG clinical significance values.
+CANONICAL_CLINSIG = (
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_BENIGN,
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_BENIGN,
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE,
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC,
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_PATHOGENIC,
+)
 
-#     if path_input.endswith(".gz"):
-#         inputf = gzip.open(path_input, "rt")
-#     else:
-#         inputf = open(path_input, "rt")
-
-#     with inputf:
-#         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-#             clinvar_set = models.ClinVarSet.model_validate_json(line)
-
-#             pathogenicity = (
-#                 clinvar_set.reference_clinvar_assertion.clinical_significance.description
-#             )
-#             if not pathogenicity or not pathogenicity.is_canonical_acmg:
-#                 continue  # skip not ACMG 1-5
-
-#             if not clinvar_set.reference_clinvar_assertion.measures:
-#                 continue
-
-#             csq = None
-#             for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
-#                 for attribute in measure.attributes:
-#                     if attribute.type == models.MeasureAttributeType.MOLECULAR_CONSEQUENCE:
-#                         csq = attribute.value
-#                         break
-#             if not csq:
-#                 continue  # skip, no molecular consequence
-#             else:
-#                 csq = csq.lower().replace("_", " ").replace("-", " ")
-#                 if csq not in GENE_IMPACT_MAP:
-#                     print(f"WARNING: unknown molecular consequence {csq}", file=sys.stderr)
-#                     continue
-
-#             hgnc = None
-#             for measure in clinvar_set.reference_clinvar_assertion.measures.measures:
-#                 for measure_relationship in measure.measure_relationship:
-#                     for xref in measure_relationship.xrefs:
-#                         if xref.db == "HGNC":
-#                             hgnc = xref.id
-#                             break
-#             if not hgnc:
-#                 continue  # skip, no HGNC ID
-
-#             if hgnc not in counts:
-#                 counts[hgnc] = zero_counts()
-#             counts[hgnc][(GENE_IMPACT_MAP[csq], pathogenicity)] += 1
-#     return counts
+#: Type variable for gene impact and significance.
+KeyImpactSig = typing.Tuple[GeneImpact.ValueType, ClinicalSignificance.ValueType]
+#: Counter dictionary.
+PerGeneCounter = typing.Dict[KeyImpactSig, int]
 
 
-# def run_report(path_input: str, path_output: str):
-#     """Generate the report from the given input to output path."""
-#     counts = generate_counts(path_input)
-#     write_report(counts, path_output)
+def zero_counts() -> PerGeneCounter:
+    """Returns counter from gene impact and clinical significance to zero count."""
+    return {
+        (v.number, clinsig): 0
+        for v in GeneImpact.DESCRIPTOR.values
+        for clinsig in CANONICAL_CLINSIG
+    }
+
+
+def write_report(
+    counters: typing.Dict[str, PerGeneCounter],
+    path_output: str,
+):
+    """Write report to output."""
+
+    if path_output.endswith(".gz"):
+        outputf = gzip.open(path_output, "wt")
+    else:
+        outputf = open(path_output, "wt")
+
+    with outputf:
+        for hgnc_id, counts in sorted(counters.items(), key=lambda x: int(x[0][5:])):
+            record = GeneImpactCounts(hgnc_id=hgnc_id)
+            for v in GeneImpact.DESCRIPTOR.values:
+                if any([counts[(v.number, sig)] for sig in CANONICAL_CLINSIG]):
+                    record.impact_counts.append(
+                        GeneImpactCounts.ImpactCounts(
+                            gene_impact=v.number,
+                            count_benign=counts[
+                                (v.number, ClinicalSignificance.CLINICAL_SIGNIFICANCE_BENIGN)
+                            ],
+                            count_likely_benign=counts[
+                                (v.number, ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_BENIGN)
+                            ],
+                            count_uncertain_significance=counts[
+                                (
+                                    v.number,
+                                    ClinicalSignificance.CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE,
+                                )
+                            ],
+                            count_likely_pathogenic=counts[
+                                (
+                                    v.number,
+                                    ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC,
+                                )
+                            ],
+                            count_pathogenic=counts[
+                                (v.number, ClinicalSignificance.CLINICAL_SIGNIFICANCE_PATHOGENIC)
+                            ],
+                        )
+                    )
+            print(MessageToDict(record), file=outputf)
+
+
+def generate_counts(path_input: str) -> dict:  # noqa: C901
+    """Count occurrences of each impact for each gene."""
+    counts: dict[str, dict[KeyImpactSig, int]] = {}
+
+    if path_input.endswith(".gz"):
+        inputf = gzip.open(path_input, "rt")
+    else:
+        inputf = open(path_input, "rt")
+
+    with inputf:
+        for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
+            line_json = json.loads(line)
+            va: VariationArchive = ParseDict(line_json, message=VariationArchive())
+
+            # Obtain variant name, will start with submitted transcript.
+            if not va.HasField("classified_record"):
+                continue
+            elif not va.classified_record.HasField("simple_allele"):
+                continue
+            variant_name: str = va.classified_record.simple_allele.name
+
+            # Obtain germline classification description or skip record if has none.
+            if not va.classified_record.HasField("classifications"):
+                continue
+            elif not va.classified_record.classifications.HasField("germline_classification"):
+                continue
+            elif not va.classified_record.classifications.germline_classification.HasField(
+                "description"
+            ):
+                continue
+            else:
+                description: str = (
+                    va.classified_record.classifications.germline_classification.description
+                )
+                pathogenicity: ClinicalSignificance.ValueType = ConverClinicalSignificance.from_str(
+                    description
+                )
+
+            # Obtain molecular consequence on transcript of variant name, skip if none.
+            if not va.classified_record.simple_allele.hgvs_expressions:
+                continue
+            else:
+                csq: str | None = None
+                for expression in va.classified_record.simple_allele.hgvs_expressions:
+                    if expression.HasField(
+                        "nucleotide_expression"
+                    ) and expression.nucleotide_expression.HasField("sequence_accession"):
+                        sequence_accession: str = (
+                            expression.nucleotide_expression.sequence_accession
+                        )
+                        if variant_name.startswith(sequence_accession):
+                            for molecular_consequences in expression.molecular_consequences:
+                                if molecular_consequences.type in ConvertGeneImpact.CONVERT:
+                                    csq = molecular_consequences.type
+                if not csq:
+                    print(
+                        f"Skipping variant {variant_name} due to no molecular consequence",
+                        file=sys.stderr,
+                    )
+                    continue
+
+            # Obtain gene HGNC ID
+            hgnc_id: str | None = None
+            for gene in va.classified_record.simple_allele.genes:
+                if not gene.HasField("hgnc_id"):
+                    continue
+                else:
+                    hgnc_id = gene.hgnc_id
+                    break
+            if not hgnc_id:
+                print(
+                    f"Skipping variant {variant_name} due to no HGNC ID",
+                    file=sys.stderr,
+                )
+                continue
+
+            if hgnc_id not in counts:
+                counts[hgnc_id] = zero_counts()
+
+            counts[hgnc_id][(ConvertGeneImpact.from_str(csq), pathogenicity)] += 1
+    return counts
+
+
+def run_report(path_input: str, path_output: str):
+    """Generate the report from the given input to output path."""
+    counts = generate_counts(path_input)
+    write_report(counts, path_output)
