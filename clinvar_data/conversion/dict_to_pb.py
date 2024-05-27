@@ -90,7 +90,7 @@ def ensure_str(value: str | dict[str, str]) -> str:
     if isinstance(value, dict):
         assert (
             "@xmlns:xsi" in value
-            and value["xmlns:xsi"] == "http://www.w3.org/2001/XMLSchema-instance"
+            and value["@xmlns:xsi"] == "http://www.w3.org/2001/XMLSchema-instance"
         )
         return value["#text"]
     else:
