@@ -23,7 +23,7 @@ numpy  # needed when running mypy on tests *shrug*
 
 sphinx
 sphinx_rtd_theme
-sphinx-mdinclude
+sphinx-mdinclude <0.6  # incompatible with sphinx-rtd-theme via docutils
 sphinx-click
 
 protolint-bin

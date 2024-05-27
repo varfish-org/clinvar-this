@@ -268,7 +268,7 @@ def gene_impact_report(ctx: click.Context, input_file: str, output_file: str):
     help="Whether to filter to rows with HPO terms (default: true)",
 )
 @click.pass_context
-def gene_phenotype_links(
+def gene_phenotype_link(
     ctx: click.Context, input_file: str, output_file: str, needs_hpo_terms: bool
 ):
     """Create links between gene and phenotype."""

@@ -57,6 +57,12 @@ Otherwise, the following are good entry points:
 
     clinvar_this/modules
     clinvar_this/clinvar_this
+    clinvar_this/clinvar_this.io
+
+    clinvar_data/modules
+    clinvar_data/clinvar_data
+    clinvar_data/clinvar_data.conversion
+    clinvar_data/clinvar_data.pbs
 
 Indices and tables
 ==================

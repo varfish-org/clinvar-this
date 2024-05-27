@@ -17,7 +17,7 @@ from clinvar_data.pbs import (
 )
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n%clinvar_data/pbs/phenotype_link.proto\x12 clinvar_data.pbs.phenotype_links\x1a%clinvar_data/pbs/extracted_vars.proto"\xa0\x02\n\x13GenePhenotypeRecord\x12@\n\x03vcv\x18\x01 \x01(\x0b\x32\x33.clinvar_data.pbs.extracted_vars.VersionedAccession\x12@\n\x03scv\x18\x02 \x01(\x0b\x32\x33.clinvar_data.pbs.extracted_vars.VersionedAccession\x12\x1f\n\x17germline_classification\x18\x03 \x01(\t\x12\x16\n\x0esubmitter_name\x18\x04 \x01(\t\x12\x10\n\x08hgnc_ids\x18\x05 \x03(\t\x12\x12\n\nomim_terms\x18\x06 \x03(\t\x12\x13\n\x0bmondo_terms\x18\x07 \x03(\t\x12\x11\n\thpo_terms\x18\x08 \x03(\tb\x06proto3'
+    b'\n%clinvar_data/pbs/phenotype_link.proto\x12\x1f\x63linvar_data.pbs.phenotype_link\x1a%clinvar_data/pbs/extracted_vars.proto"\xa0\x02\n\x13GenePhenotypeRecord\x12@\n\x03vcv\x18\x01 \x01(\x0b\x32\x33.clinvar_data.pbs.extracted_vars.VersionedAccession\x12@\n\x03scv\x18\x02 \x01(\x0b\x32\x33.clinvar_data.pbs.extracted_vars.VersionedAccession\x12\x1f\n\x17germline_classification\x18\x03 \x01(\t\x12\x16\n\x0esubmitter_name\x18\x04 \x01(\t\x12\x10\n\x08hgnc_ids\x18\x05 \x03(\t\x12\x12\n\nomim_terms\x18\x06 \x03(\t\x12\x13\n\x0bmondo_terms\x18\x07 \x03(\t\x12\x11\n\thpo_terms\x18\x08 \x03(\tb\x06proto3'
 )
 
 _globals = globals()
@@ -26,6 +26,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "clinvar_data.pbs.phenotype_
 if _descriptor._USE_C_DESCRIPTORS == False:
 
     DESCRIPTOR._options = None
-    _globals["_GENEPHENOTYPERECORD"]._serialized_start = 115
-    _globals["_GENEPHENOTYPERECORD"]._serialized_end = 403
+    _globals["_GENEPHENOTYPERECORD"]._serialized_start = 114
+    _globals["_GENEPHENOTYPERECORD"]._serialized_end = 402
 # @@protoc_insertion_point(module_scope)
