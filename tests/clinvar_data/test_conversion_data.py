@@ -5463,13 +5463,13 @@ def test_convert_cv_accession_convert_somatic_clinical_impact_description(
             </SomaticClinicalImpact>
             """,
             {
-                "description": {
+                "descriptions": [{
                     "clinicalImpactAssertionType": "prognostic",
                     "clinicalImpactClinicalSignificance": "poor outcome",
                     "dateLastEvaluated": "2024-01-24T00:00:00Z",
                     "submissionCount": 1,
                     "value": "Tier I - Strong",
-                },
+                }],
                 "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
             },
         ),
@@ -5481,9 +5481,9 @@ def test_convert_cv_accession_convert_somatic_clinical_impact_description(
             </SomaticClinicalImpact>
             """,
             {
-                "description": {
+                "descriptions": [{
                     "value": "no classification for the single variant",
-                },
+                }],
                 "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
             },
         ),
@@ -5604,13 +5604,13 @@ def test_convert_cv_accession_convert_oncogenicity_classification(xml_str: str, 
             """,
             {
                 "somaticClinicalImpact": {
-                    "description": {
+                    "descriptions": [{
                         "clinicalImpactAssertionType": "prognostic",
                         "clinicalImpactClinicalSignificance": "poor outcome",
                         "dateLastEvaluated": "2024-01-24T00:00:00Z",
                         "submissionCount": 1,
                         "value": "Tier I - Strong",
-                    },
+                    }],
                     "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
                 },
             },

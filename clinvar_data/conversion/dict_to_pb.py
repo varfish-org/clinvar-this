@@ -4838,13 +4838,14 @@ class ConvertRcvAccession(ConverterBase):
                 tag_sci["ReviewStatus"]
             )
         )
-        description: RcvAccession.SomaticClinicalImpact.Description = (
-            cls.convert_somatic_clinical_impact_description({"Description": tag_sci["Description"]})
-        )
+        descriptions: list[RcvAccession.SomaticClinicalImpact.Description] = [
+            cls.convert_somatic_clinical_impact_description({"Description": description})
+            for description in cls.ensure_list(tag_sci["Description"])
+        ]
 
         return RcvAccession.SomaticClinicalImpact(
             review_status=review_status,
-            description=description,
+            descriptions=descriptions,
         )
 
     @classmethod

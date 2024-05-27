@@ -2450,7 +2450,7 @@ message RcvAccession {
     // record.
     AggregateSomaticClinicalImpactReviewStatus review_status = 1;
     // The oncogenicity description.
-    Description description = 2;
+    repeated Description descriptions = 2;
   }
 
   // Local type for OncogenicityClassification.

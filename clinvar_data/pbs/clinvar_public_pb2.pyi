@@ -9573,29 +9573,33 @@ class RcvAccession(google.protobuf.message.Message):
             ) -> typing.Literal["submission_count"] | None: ...
 
         REVIEW_STATUS_FIELD_NUMBER: builtins.int
-        DESCRIPTION_FIELD_NUMBER: builtins.int
+        DESCRIPTIONS_FIELD_NUMBER: builtins.int
         review_status: global___AggregateSomaticClinicalImpactReviewStatus.ValueType
         """The aggregate review status based on
         all somatic clinical impact submissions for this
         record.
         """
         @property
-        def description(self) -> global___RcvAccession.SomaticClinicalImpact.Description:
+        def descriptions(
+            self,
+        ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+            global___RcvAccession.SomaticClinicalImpact.Description
+        ]:
             """The oncogenicity description."""
 
         def __init__(
             self,
             *,
             review_status: global___AggregateSomaticClinicalImpactReviewStatus.ValueType = ...,
-            description: global___RcvAccession.SomaticClinicalImpact.Description | None = ...,
+            descriptions: (
+                collections.abc.Iterable[global___RcvAccession.SomaticClinicalImpact.Description]
+                | None
+            ) = ...,
         ) -> None: ...
-        def HasField(
-            self, field_name: typing.Literal["description", b"description"]
-        ) -> builtins.bool: ...
         def ClearField(
             self,
             field_name: typing.Literal[
-                "description", b"description", "review_status", b"review_status"
+                "descriptions", b"descriptions", "review_status", b"review_status"
             ],
         ) -> None: ...
 
