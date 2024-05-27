@@ -3010,7 +3010,7 @@ class ConvertSample(ConverterBase):
 
         ethnicity: str | None = tag_sample.get("Ethnicity")
         geographic_origin: str | None = tag_sample.get("GeographicOrigin")
-        tissue: str | None = tag_sample.get("Tissue")
+        tissue: str | None = ensure_str(tag_sample.get("Tissue"))
         somatic_variant_in_normal_tissue: Sample.SomaticVariantInNormalTissue.ValueType | None = (
             None
         )
