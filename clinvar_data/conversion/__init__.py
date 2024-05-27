@@ -47,7 +47,11 @@ def convert_variation_archive(json_va: dict) -> clinvar_public.VariationArchive:
 
 
 def convert(
-    input_file: str, output_file: str, max_records: int = 0, use_click: bool = False
+    input_file: str,
+    output_file: str,
+    max_records: int = 0,
+    use_click: bool = False,
+    show_progress: bool = True,
 ) -> int:
     """Run conversion from ClinVar XML to JSONL"""
     if input_file.endswith((".gz", ".bgz")):
@@ -64,9 +68,11 @@ def convert(
     else:
         outputf = open(output_file, "wt")
 
-    pb = tqdm.tqdm(
-        desc="parsing", unit=" VariationArchive records", smoothing=1.0, total=TOTAL_RECORDS
-    )
+    pb: tqdm.tqdm | None = None
+    if show_progress:
+        pb = tqdm.tqdm(
+            desc="parsing", unit=" VariationArchive records", smoothing=1.0, total=TOTAL_RECORDS
+        )
     records_written = 0
     errors = 0
 

@@ -227,10 +227,22 @@ def data():
 @click.option(
     "--max-records", required=False, default=0, help="Maximum number of records to convert"
 )
+@click.option(
+    "--show-progress/no-show-progress",
+    type=bool,
+    default=True,
+    help="Whether to show progress bar.",
+)
 @click.pass_context
 def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str, max_records: int):
     """Convert XML to JSONL"""
-    retcode = conversion.convert(input_file, output_file, max_records=max_records, use_click=True)
+    retcode = conversion.convert(
+        input_file,
+        output_file,
+        max_records=max_records,
+        use_click=True,
+        show_progress=show_progress,
+    )
     ctx.exit(retcode)
 
 
