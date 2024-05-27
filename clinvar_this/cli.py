@@ -228,7 +228,7 @@ def data():
     "--max-records", required=False, default=0, help="Maximum number of records to convert"
 )
 @click.option(
-    "--show-progress/no-show-progress",
+    "--show-progress/--no-show-progress",
     type=bool,
     default=True,
     help="Whether to show progress bar.",
