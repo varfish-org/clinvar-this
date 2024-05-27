@@ -3034,16 +3034,16 @@ class ConvertSample(ConverterBase):
             affected_status = cls.convert_affected_status(ensure_str(tag_sample["AffectedStatus"]))
         number_tested: int | None = None
         if "NumberTested" in tag_sample:
-            number_tested = int(tag_sample["NumberTested"])
+            number_tested = int(ensure_str(tag_sample["NumberTested"]))
         number_males: int | None = None
         if "NumberMales" in tag_sample:
-            number_males = int(tag_sample["NumberMales"])
+            number_males = int(ensure_str(tag_sample["NumberMales"]))
         number_females: int | None = None
         if "NumberFemales" in tag_sample:
-            number_females = int(tag_sample["NumberFemales"])
+            number_females = int(ensure_str(tag_sample["NumberFemales"]))
         number_chr_tested: int | None = None
         if "NumberChrTested" in tag_sample:
-            number_chr_tested = int(tag_sample["NumberChrTested"])
+            number_chr_tested = int(ensure_str(tag_sample["NumberChrTested"]))
         gender: Sample.Gender.ValueType | None = None
         if "Gender" in tag_sample:
             gender = cls.convert_gender(tag_sample["Gender"])
