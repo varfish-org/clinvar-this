@@ -33,7 +33,7 @@ install_requirements = parse_requirements("requirements/base.txt")
 
 package_root = os.path.abspath(os.path.dirname(__file__))
 version = {}
-with open(os.path.join(package_root, "clinvar_this/_version.py")) as fp:
+with open(os.path.join(package_root, "clinvar_this/version.py")) as fp:
     exec(fp.read(), version)
 version = version["__version__"]
 
