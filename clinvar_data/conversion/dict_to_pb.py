@@ -2118,25 +2118,28 @@ class ConvertClassificationScv(ConverterBase):
             The ``SomaticClinicalImpact`` protobuf.
         """
         assert "SomaticClinicalImpact" in value
-        tag_somatic_clinical_impact: dict[str, Any] = value["SomaticClinicalImpact"]
-        cls.assert_keys(tag_somatic_clinical_impact, ["#text"])
+        tag_somatic_clinical_impact: str | dict[str, Any] = value["SomaticClinicalImpact"]
+        if isinstance(tag_somatic_clinical_impact, str):
+            return ClassificationScv.SomaticClinicalImpact(value=tag_somatic_clinical_impact)
+        else:
+            cls.assert_keys(tag_somatic_clinical_impact, ["#text"])
 
-        clinical_impact_assertion_type: str | None = tag_somatic_clinical_impact.get(
-            "@ClinicalImpactAssertionType"
-        )
-        clinical_impact_clinical_significance: str | None = tag_somatic_clinical_impact.get(
-            "@ClinicalImpactClinicalSignificance"
-        )
-        drug_for_therapeutic_assertion: str | None = tag_somatic_clinical_impact.get(
-            "@DrugForTherapeuticAssertion"
-        )
+            clinical_impact_assertion_type: str | None = tag_somatic_clinical_impact.get(
+                "@ClinicalImpactAssertionType"
+            )
+            clinical_impact_clinical_significance: str | None = tag_somatic_clinical_impact.get(
+                "@ClinicalImpactClinicalSignificance"
+            )
+            drug_for_therapeutic_assertion: str | None = tag_somatic_clinical_impact.get(
+                "@DrugForTherapeuticAssertion"
+            )
 
-        return ClassificationScv.SomaticClinicalImpact(
-            value=tag_somatic_clinical_impact["#text"],
-            clinical_impact_assertion_type=clinical_impact_assertion_type,
-            clinical_impact_clinical_significance=clinical_impact_clinical_significance,
-            drug_for_therapeutic_assertion=drug_for_therapeutic_assertion,
-        )
+            return ClassificationScv.SomaticClinicalImpact(
+                value=tag_somatic_clinical_impact["#text"],
+                clinical_impact_assertion_type=clinical_impact_assertion_type,
+                clinical_impact_clinical_significance=clinical_impact_clinical_significance,
+                drug_for_therapeutic_assertion=drug_for_therapeutic_assertion,
+            )
 
     @classmethod
     def convert_classification_score(
@@ -3014,7 +3017,11 @@ class ConvertSample(ConverterBase):
 
         ethnicity: str | None = tag_sample.get("Ethnicity")
         geographic_origin: str | None = tag_sample.get("GeographicOrigin")
-        tissue: str | None = ensure_str(tag_sample.get("Tissue"))
+        val_tissue: str | dict[str, str] | None = tag_sample.get("Tissue")
+        if val_tissue:
+            tissue = ensure_str(val_tissue)
+        else:
+            tissue = None
         somatic_variant_in_normal_tissue: Sample.SomaticVariantInNormalTissue.ValueType | None = (
             None
         )
