@@ -49,7 +49,7 @@ class ConvertGeneImpact:
         return cls.CONVERT[string_value.lower()]
 
 
-class ConverClinicalSignificance:
+class ConvertClinicalSignificance:
     """Static method helper for ``ClinicalSignificance`` string to enum conversion."""
 
     #: Dict for conversion.
@@ -170,8 +170,8 @@ def generate_counts(path_input: str) -> dict:  # noqa: C901
                 description: str = (
                     va.classified_record.classifications.germline_classification.description
                 )
-                pathogenicity: ClinicalSignificance.ValueType = ConverClinicalSignificance.from_str(
-                    description
+                pathogenicity: ClinicalSignificance.ValueType = (
+                    ConvertClinicalSignificance.from_str(description)
                 )
 
             # Obtain molecular consequence on transcript of variant name, skip if none.

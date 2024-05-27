@@ -156,33 +156,8 @@ class GeneImpactCounts(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class Count(google.protobuf.message.Message):
-        """Stores the counts of a clinical significance for a gene impact."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        CLINICAL_SIGNIFICANCE_FIELD_NUMBER: builtins.int
-        COUNT_FIELD_NUMBER: builtins.int
-        clinical_significance: global___ClinicalSignificance.ValueType
-        """The clinical significance."""
-        count: builtins.int
-        """The count of the gene impact."""
-        def __init__(
-            self,
-            *,
-            clinical_significance: global___ClinicalSignificance.ValueType = ...,
-            count: builtins.int = ...,
-        ) -> None: ...
-        def ClearField(
-            self,
-            field_name: typing.Literal[
-                "clinical_significance", b"clinical_significance", "count", b"count"
-            ],
-        ) -> None: ...
-
-    @typing.final
     class ImpactCounts(google.protobuf.message.Message):
-        """Stores the `Count`s for a gene impact."""
+        """Stores the counts for a gene impact."""
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

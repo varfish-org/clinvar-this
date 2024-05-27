@@ -68,7 +68,7 @@ enum ClinicalSignificance {
 
 // Entry for storing counts of `GeneImpact` and `ClinicalSignificance`.
 message GeneImpactCounts {
-  // Stores the `Count`s for a gene impact.
+  // Stores the counts for a gene impact.
   message ImpactCounts {
     // The gene impact.
     GeneImpact gene_impact = 1;

@@ -1,0 +1,29 @@
+// Protocol buffers for types for class-by-freq tool.
+
+syntax = "proto3";
+
+package clinvar_data.pbs.class_by_freq;
+
+// Enumeration for coarse-grain classification.
+enum CoarseClinicalSignificance {
+  // unspecified coarse clinical significance
+  COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED = 0;
+  // Corresponds to "benign".
+  COARSE_CLINICAL_SIGNIFICANCE_BENIGN = 1;
+  // Corresponds to "uncertain".
+  COARSE_CLINICAL_SIGNIFICANCE_UNCERTAIN = 2;
+  // Corresponds to "pathogenic".
+  COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC = 3;
+}
+
+// Output record.
+message GeneCoarseClinsigFrequencyCounts {
+  // The gene HGNC ID.
+  string hgnc_id = 1;
+  // The counts for (likely) pathogenic.
+  repeated uint32 pathogenic_counts = 2;
+  // The counts for uncertain significance.
+  repeated uint32 uncertain_counts = 3;
+  // The counts for (likely) benign.
+  repeated uint32 benign_counts = 4;
+}
