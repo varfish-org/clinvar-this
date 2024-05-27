@@ -3046,7 +3046,7 @@ class ConvertSample(ConverterBase):
             number_chr_tested = int(ensure_str(tag_sample["NumberChrTested"]))
         gender: Sample.Gender.ValueType | None = None
         if "Gender" in tag_sample:
-            gender = cls.convert_gender(tag_sample["Gender"])
+            gender = cls.convert_gender(ensure_str(tag_sample["Gender"]))
         family_data: FamilyData | None = None
         if "FamilyData" in tag_sample:
             family_data = ConvertFamilyData.xmldict_data_to_pb(
