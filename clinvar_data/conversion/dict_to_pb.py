@@ -2151,15 +2151,19 @@ class ConvertClassificationScv(ConverterBase):
             The ``ClassificationScore`` protobuf.
         """
         assert "ClassificationScore" in value
-        tag_classification_score: dict[str, Any] = value["ClassificationScore"]
-        cls.assert_keys(tag_classification_score, ["#text"])
+        tag_classification_score: str | dict[str, Any] = value["ClassificationScore"]
 
-        type_: str | None = tag_classification_score.get("@type")
-
-        return ClassificationScv.ClassificationScore(
-            value=float(tag_classification_score["#text"]),
-            type=type_,
-        )
+        if isinstance(tag_classification_score, str):
+            return ClassificationScv.ClassificationScore(
+                value=float(tag_classification_score),
+            )
+        else:
+            cls.assert_keys(tag_classification_score, ["#text"])
+            type_: str | None = tag_classification_score.get("@type")
+            return ClassificationScv.ClassificationScore(
+                value=float(tag_classification_score["#text"]),
+                type=type_,
+            )
 
     @classmethod
     def xmldict_data_to_pb(cls, value: dict[str, Any]) -> ClassificationScv:
