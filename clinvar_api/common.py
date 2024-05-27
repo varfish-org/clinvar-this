@@ -3,9 +3,11 @@ import typing
 
 def clean_for_json(
     value: typing.Union[
-        bool, int, float, typing.List[typing.Any], None, typing.Dict[str, typing.Any]
+        bool, int, float, typing.List[typing.Any], None, typing.Dict[str, typing.Any], str
     ]
-) -> typing.Union[bool, int, float, typing.List[typing.Any], None, typing.Dict[str, typing.Any]]:
+) -> typing.Union[
+    bool, int, float, typing.List[typing.Any], None, typing.Dict[str, typing.Any], str
+]:
     """Clean the given value for JSON submission."""
     if isinstance(value, dict):
         return {k: clean_for_json(v) for k, v in value.items() if v is not None}

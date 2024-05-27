@@ -5,7 +5,7 @@ default:
 format: black isort protolint-fix
 
 .PHONY: lint
-lint: flake8 isort-check black-check mypy protolint-check
+lint: flake8 isort-check black-check pyright protolint-check
 
 .PHONY: test
 test:
@@ -35,10 +35,10 @@ isort-check:
 flake8:
 	flake8
 
-.PHONY: mypy
-mypy: export MYPYPATH=stubs
-mypy:
-	mypy clinvar_this clinvar_api clinvar_data tests
+.PHONY: pyright
+pyright: export MYPYPATH=stubs
+pyright:
+	pyright clinvar_this clinvar_api clinvar_data tests
 
 .PHONY: protolint-fix
 protolint-fix:

@@ -294,6 +294,7 @@ class TestConditionDefinition:
         for condition in self.condition_strings:
             record = self._create_seq_record(condition=condition["expected"])
             container = seq_var_tsv_records_to_submission_container([record], metadata)
+            assert container.clinvar_submission is not None
             assert container.clinvar_submission[0].condition_set == condition["parsed"]
 
     def test_struc_vars_parse(self):
@@ -301,6 +302,7 @@ class TestConditionDefinition:
         for condition in self.condition_strings:
             record = self._create_struc_record(condition=condition["expected"])
             container = struc_var_tsv_records_to_submission_container([record], metadata)
+            assert container.clinvar_submission is not None
             assert container.clinvar_submission[0].condition_set == condition["parsed"]
 
     def test_seq_vars_dump(self):
@@ -343,6 +345,6 @@ def test_read_struc_var_tsv_error():
 
 
 def test_guess_file_type():
-    assert guess_tsv_type(path=DATA_DIR / "example.bad.tsv") == None  # noqa: E711
-    assert guess_tsv_type(path=DATA_DIR / "example.tsv") == TsvType.SEQ_VAR
-    assert guess_tsv_type(path=DATA_DIR / "example_sv.tsv") == TsvType.STRUC_VAR
+    assert guess_tsv_type(path=str(DATA_DIR / "example.bad.tsv")) == None  # noqa: E711
+    assert guess_tsv_type(path=str(DATA_DIR / "example.tsv")) == TsvType.SEQ_VAR
+    assert guess_tsv_type(path=str(DATA_DIR / "example_sv.tsv")) == TsvType.STRUC_VAR

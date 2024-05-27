@@ -1270,7 +1270,7 @@ def test_convert_trait_trait_relationship_type(
     xml_str: str, expected: Trait.TraitRelationship.Type.ValueType
 ):
     result = ConvertTrait.convert_trait_relationship_type(xml_str)
-    result == expected
+    assert result == expected
 
 
 @pytest.mark.parametrize(

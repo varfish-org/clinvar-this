@@ -277,7 +277,7 @@ def _retrieve_store_response(
                 },
             }
         )
-        for submission in payload.clinvar_submission
+        for submission in payload.clinvar_submission or []
     ]
     updated_payload = payload.model_copy(update={"clinvar_submission": clinvar_submission})
     logger.debug("Write out updated payload")
