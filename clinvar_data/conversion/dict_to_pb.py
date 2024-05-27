@@ -3031,7 +3031,7 @@ class ConvertSample(ConverterBase):
         strain: str | None = tag_sample.get("Strain")
         affected_status: Sample.AffectedStatus.ValueType | None = None
         if "AffectedStatus" in tag_sample:
-            affected_status = cls.convert_affected_status(tag_sample["AffectedStatus"])
+            affected_status = cls.convert_affected_status(ensure_str(tag_sample["AffectedStatus"]))
         number_tested: int | None = None
         if "NumberTested" in tag_sample:
             number_tested = int(tag_sample["NumberTested"])
