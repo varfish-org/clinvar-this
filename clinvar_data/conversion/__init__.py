@@ -99,7 +99,8 @@ def convert(
 
         nonlocal records_written
         records_written += 1
-        pb.update(1)
+        if pb:
+            pb.update(1)
 
         return max_records == 0 or records_written < max_records
 

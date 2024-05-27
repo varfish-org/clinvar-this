@@ -234,7 +234,9 @@ def data():
     help="Whether to show progress bar.",
 )
 @click.pass_context
-def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str, max_records: int):
+def xml_to_jsonl(
+    ctx: click.Context, input_file: str, output_file: str, max_records: int, show_progress: bool
+):
     """Convert XML to JSONL"""
     retcode = conversion.convert(
         input_file,
