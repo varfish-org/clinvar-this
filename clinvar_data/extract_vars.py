@@ -9,7 +9,13 @@ import typing
 from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
-from clinvar_data.pbs.clinvar_public import Allele, VariationArchive, ClassifiedRecord, RcvAccession
+from clinvar_data.pbs.clinvar_public import (
+    Allele,
+    ClassifiedRecord,
+    RcvAccession,
+    VariationArchive,
+)
+from clinvar_data.pbs.clinvar_public_pb2 import AggregateClassificationSet
 from clinvar_data.pbs.extracted_vars import (
     ExtractedRcvRecord,
     ExtractedVcvRecord,
@@ -71,18 +77,21 @@ class ConvertVariationType:
         return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
 
 
-def thin_out_rcva_classification(classifications: RcvAccession.RcvClassifications | None) -> RcvAccession.RcvClassifications | None:
+def thin_out_aggregate_classification_set(
+    classifications: AggregateClassificationSet,
+) -> AggregateClassificationSet:
+    """Thin out the aggregate classifications set for extracted variants."""
     if classifications is None:
         return None
     else:
-        result = RcvAccession.RcvClassifications()
+        result = AggregateClassificationSet()
         result.CopyFrom(classifications)
         if result.HasField("germline_classification"):
-            pass
-        if result.HasField("somatic_clinical_impact"):
-            pass
+            pass  # TODO
+        if result.HasField("somatic_clinical_impacts"):
+            pass  # TODO
         if result.HasField("oncogenicity_classification"):
-            pass
+            pass  # TODO
         return result
 
 
@@ -143,7 +152,11 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         rcvs=rcvs,
                         name=name,
                         variation_type=variation_type,
-                        classifications=classified_record.classifications,
+                        classifications=(
+                            thin_out_aggregate_classification_set(classified_record.classification)
+                            if classified_record.HasField("classifications")
+                            else None
+                        ),
                         sequence_location=sequence_location,
                         hgnc_ids=hgnc_ids,
                     )
