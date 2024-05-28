@@ -37,7 +37,7 @@ class ClinVarAccessionType(enum.Enum):
 
 @enum.unique
 class RecordStatus(enum.Enum):
-    """Enumeration with ``ClinVarSet.record_status`"""
+    """Enumeration with ``ClinVarSet.record_status``"""
 
     CURRENT = "current"
     REPLACED = "replaced"

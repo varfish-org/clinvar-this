@@ -4,10 +4,27 @@ clinvar\_this package
 Submodules
 ----------
 
+clinvar\_this.batches module
+----------------------------
+
+.. automodule:: clinvar_this.batches
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 clinvar\_this.cli module
 ------------------------
 
 .. automodule:: clinvar_this.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+clinvar\_this.config module
+---------------------------
+
+.. automodule:: clinvar_this.config
    :members:
    :undoc-members:
    :show-inheritance:
@@ -20,10 +37,10 @@ clinvar\_this.exceptions module
    :undoc-members:
    :show-inheritance:
 
-clinvar\_this.tsv module
-------------------------
+clinvar\_this.version module
+----------------------------
 
-.. automodule:: clinvar_this.tsv
+.. automodule:: clinvar_this.version
    :members:
    :undoc-members:
    :show-inheritance:

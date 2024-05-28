@@ -2,7 +2,7 @@
 
 syntax = "proto3";
 
-package clinvar_data.pbs.phenotype_links;
+package clinvar_data.pbs.phenotype_link;
 
 import "clinvar_data/pbs/extracted_vars.proto";
 
