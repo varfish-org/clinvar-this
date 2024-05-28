@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.4](https://github.com/varfish-org/clinvar-this/compare/v0.15.3...v0.15.4) (2024-05-28)
+
+
+### Bug Fixes
+
+* quotes in gene-impact report ([#217](https://github.com/varfish-org/clinvar-this/issues/217)) ([e10d4ef](https://github.com/varfish-org/clinvar-this/commit/e10d4eff92354528c380448a57abd47ad7602057))
+
 ## [0.15.3](https://github.com/varfish-org/clinvar-this/compare/v0.15.2...v0.15.3) (2024-05-28)
 
 
