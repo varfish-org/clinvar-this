@@ -74,6 +74,7 @@ CANONICAL_CLINSIG = (
     ClinicalSignificance.CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE,
     ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC,
     ClinicalSignificance.CLINICAL_SIGNIFICANCE_PATHOGENIC,
+    ClinicalSignificance.CLINICAL_SIGNIFICANCE_OTHER,
 )
 
 #: Type variable for gene impact and significance.
