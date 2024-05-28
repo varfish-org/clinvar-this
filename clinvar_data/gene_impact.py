@@ -134,7 +134,7 @@ def write_report(
                             ],
                         )
                     )
-            print(MessageToDict(record), file=outputf)
+            print(json.dumps(MessageToDict(record)), file=outputf)
 
 
 def generate_counts(path_input: str) -> dict:  # noqa: C901
