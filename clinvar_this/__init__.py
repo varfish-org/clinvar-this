@@ -3,6 +3,6 @@
 __author__ = """Manuel Holtgrewe"""
 __email__ = "manuel.holtgrewe@bih-charite.de"
 
-from clinvar_this import _version
+from clinvar_this import version
 
-__version__ = _version.__version__
+__version__ = version.__version__

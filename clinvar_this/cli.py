@@ -13,12 +13,12 @@ from clinvar_data import (
     gene_impact,
     phenotype_link,
 )
-from clinvar_this import _version, batches, exceptions
+from clinvar_this import batches, exceptions, version
 from clinvar_this.config import Config, dump_config, load_config, save_config
 
 
 @click.group()
-@click.version_option(_version.__version__)
+@click.version_option(version.__version__)
 @click.option("--verbose/--no-verbose", default=False)
 @click.option("--profile", default="default", help="The profile to use")
 @click.option(
