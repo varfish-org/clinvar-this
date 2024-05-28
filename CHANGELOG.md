@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.15.0](https://github.com/varfish-org/clinvar-this/compare/v0.14.6...v0.15.0) (2024-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* adjusting to new XML structure with germline/somatic split ([#201](https://github.com/varfish-org/clinvar-this/issues/201))
+
+### Features
+
+* adjusting to new XML structure with germline/somatic split ([#201](https://github.com/varfish-org/clinvar-this/issues/201)) ([85652be](https://github.com/varfish-org/clinvar-this/commit/85652bebfa441f52c1395c15a5437df451839d33))
+
 ### [0.14.6](https://www.github.com/bihealth/clinvar-this/compare/v0.14.5...v0.14.6) (2023-12-15)
 
 
