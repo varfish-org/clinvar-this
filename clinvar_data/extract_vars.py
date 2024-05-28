@@ -9,8 +9,7 @@ import typing
 from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
-from clinvar_data.pbs.clinvar_public import Allele, VariationArchive
-from clinvar_data.pbs.clinvar_public_pb2 import ClassifiedRecord
+from clinvar_data.pbs.clinvar_public import Allele, VariationArchive, ClassifiedRecord, RcvAccession
 from clinvar_data.pbs.extracted_vars import (
     ExtractedRcvRecord,
     ExtractedVcvRecord,
@@ -72,6 +71,21 @@ class ConvertVariationType:
         return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
 
 
+def thin_out_rcva_classification(classifications: RcvAccession.RcvClassifications | None) -> RcvAccession.RcvClassifications | None:
+    if classifications is None:
+        return None
+    else:
+        result = RcvAccession.RcvClassifications()
+        result.CopyFrom(classifications)
+        if result.HasField("germline_classification"):
+            pass
+        if result.HasField("somatic_clinical_impact"):
+            pass
+        if result.HasField("oncogenicity_classification"):
+            pass
+        return result
+
+
 def run(path_input: str, output_dir: str, gzip_output: bool):
     """Execute the variant extraction."""
     os.makedirs(output_dir, exist_ok=True)
@@ -107,11 +121,12 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
             )
             rcvs: list[ExtractedRcvRecord] = [
                 ExtractedRcvRecord(
-                    title=rcva.title,
                     accession=VersionedAccession(
                         accession=rcva.accession,
                         version=rcva.version,
                     ),
+                    title=rcva.title,
+                    classifications=rcva.classifications,
                 )
                 for rcva in classified_record.rcv_list.rcv_accessions
             ]

@@ -52,6 +52,8 @@ message ExtractedRcvRecord {
   VersionedAccession accession = 1;
   // Title of RCV.
   string title = 2;
+  // Classifications (thinned out).
+  clinvar_data.clinvar_public.RcvClassifications classifications = 3;
 }
 
 // Protocol buffer for storing essential information of one VCV.
@@ -64,7 +66,7 @@ message ExtractedVcvRecord {
   string name = 3;
   // The type of the variant.
   VariationType variation_type = 4;
-  // Classifications.
+  // Classifications (thinned out).
   clinvar_data.pbs.clinvar_public.AggregateClassificationSet classifications = 5;
   // The sequence location on one reference.
   clinvar_data.pbs.clinvar_public.Location.SequenceLocation sequence_location = 6;
