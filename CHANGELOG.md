@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.3](https://github.com/varfish-org/clinvar-this/compare/v0.15.2...v0.15.3) (2024-05-28)
+
+
+### Bug Fixes
+
+* per-gene report also includes other impact ([#216](https://github.com/varfish-org/clinvar-this/issues/216)) ([4b27718](https://github.com/varfish-org/clinvar-this/commit/4b27718d2a937b1bc2081c84ffa478917d0d0e27))
+
+
+### Documentation
+
+* more API documentation ([#214](https://github.com/varfish-org/clinvar-this/issues/214)) ([41fc92a](https://github.com/varfish-org/clinvar-this/commit/41fc92afeab9acb5c24f793c1f72c7bc0e7127d1))
+
 ## [0.15.2](https://github.com/varfish-org/clinvar-this/compare/v0.15.1...v0.15.2) (2024-05-28)
 
 
