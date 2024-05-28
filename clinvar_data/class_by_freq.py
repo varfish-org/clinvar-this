@@ -4,7 +4,7 @@ import gzip
 import json
 import typing
 
-from google.protobuf.json_format import MessageToDict, ParseDict
+from google.protobuf.json_format import MessageToDict, Parse
 import tqdm
 
 from clinvar_data.pbs.class_by_freq import CoarseClinicalSignificance
@@ -50,7 +50,9 @@ class ConvertCoarseClinicalSignificance:
     @classmethod
     def from_str(cls, string_value: str) -> CoarseClinicalSignificance.ValueType:
         """Convert string to protobuf enum value."""
-        return cls.CONVERT.get(string_value, CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED)
+        return cls.CONVERT.get(
+            string_value, CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED
+        )
 
 
 def zero_counts(count: int):
@@ -82,8 +84,7 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
 
     with inputf:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-            line_json = json.loads(line)
-            va: VariationArchive = ParseDict(line_json, message=VariationArchive())
+            va: VariationArchive = Parse(line, message=VariationArchive())
 
             # Obtain germline classification description or skip record if has none.
             if not va.classified_record.HasField("classifications"):
@@ -102,7 +103,7 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                     ConvertCoarseClinicalSignificance.from_str(description)
                 )
             if pathogenicity == CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED:
-               continue
+                continue
 
             # Obtain minor allele frequency.
             gmaf: float | None = None
@@ -112,6 +113,27 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                 continue
             elif va.classified_record.simple_allele.HasField("global_minor_allele_frequency"):
                 gmaf = va.classified_record.simple_allele.global_minor_allele_frequency.value
+
+            # Try to get VCF location and skip unless is sequence variant.
+            is_seqvar = False
+            simple_allele = va.classified_record.simple_allele
+            for location in simple_allele.locations or []:
+                for sequence_location in location.sequence_locations or []:
+                    if (
+                        sequence_location.HasField("reference_allele")
+                        and len(sequence_location.reference_allele) < 50
+                        and sequence_location.HasField("alternate_allele")
+                        and len(sequence_location.alternate_allele) < 50
+                    ) or (
+                        sequence_location.HasField("reference_allele_vcf")
+                        and len(sequence_location.reference_allele_vcf) < 50
+                        and sequence_location.HasField("alternate_allele_vcf")
+                        and len(sequence_location.alternate_allele_vcf) < 50
+                    ):
+                        is_seqvar = True
+                        break
+            if not is_seqvar:
+                continue
 
             # Obtain gene HGNC ID.
             hgnc_id: str | None = None

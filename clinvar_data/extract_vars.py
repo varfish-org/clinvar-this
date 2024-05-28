@@ -135,12 +135,19 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
 
                     if record.variation_type == VariationType.VARIATION_TYPE_OTHER:
                         continue
+                    if sequence_location.assembly.lower() == "ncbi36":
+                        continue
 
                     if (
                         sequence_location.HasField("reference_allele")
-                        or sequence_location.HasField("alternate_allele")
-                        or sequence_location.HasField("reference_allele_vcf")
-                        or sequence_location.HasField("alternate_allele_vcf")
+                        and len(sequence_location.reference_allele) < 50
+                        and sequence_location.HasField("alternate_allele")
+                        and len(sequence_location.alternate_allele) < 50
+                    ) or (
+                        sequence_location.HasField("reference_allele_vcf")
+                        and len(sequence_location.reference_allele_vcf) < 50
+                        and sequence_location.HasField("alternate_allele_vcf")
+                        and len(sequence_location.alternate_allele_vcf) < 50
                     ):
                         variant_size = "seqvars"
                     else:
