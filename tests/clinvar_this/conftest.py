@@ -1,5 +1,6 @@
 import os
 
+from pydantic import SecretStr
 import pytest
 
 from clinvar_this import config
@@ -19,6 +20,6 @@ def fs_config(fs):
 def app_config():
     yield config.Config(
         profile="default",
-        auth_token="fake_auth_token",
+        auth_token=SecretStr("fake_auth_token"),
         verify_ssl=False,
     )

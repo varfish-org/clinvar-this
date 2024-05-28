@@ -499,6 +499,7 @@ def _read_seq_var_tsv_file(inputf: typing.TextIO) -> typing.List[SeqVarTsvRecord
         if header_row:
             raw_record = {}
             extra_data = {}
+            assert headers is not None
             if len(row) != len(header_row):
                 raise exceptions.InvalidFormat(f"Wrong number of rows in line {lineno+1}")
             for value, header, header_name in zip(row, headers, header_row):
@@ -531,6 +532,7 @@ def _read_struc_var_tsv_file(inputf: typing.TextIO) -> typing.List[StrucVarTsvRe
         if header_row:
             raw_record = {}
             extra_data = {}
+            assert headers is not None
             if len(row) != len(header_row):
                 raise exceptions.InvalidFormat(f"Wrong number of rows in line {lineno+1}")
             for value, header, header_name in zip(row, headers, header_row):

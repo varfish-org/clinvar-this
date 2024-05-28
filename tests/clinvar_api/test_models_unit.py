@@ -3,6 +3,9 @@
 import datetime
 
 from clinvar_api import models, msg
+from clinvar_api.msg.query_response import ErrorCode
+from clinvar_api.msg.sub_payload import ClinicalFeaturesDb
+from clinvar_api.msg.sub_response import BatchProcessingStatus, BatchReleaseStatus
 
 
 def test_created_construction():
@@ -79,7 +82,7 @@ def test_submission_status_object_from_msg():
 
 def test_submission_status_response_message_construction():
     models.SubmissionStatusResponseMessage(
-        error_code="1", severity="fake-severity", text="fake text"
+        error_code=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
     )
     models.SubmissionStatusResponseMessage(
         error_code=None, severity="fake-severity", text="fake text"
@@ -89,7 +92,7 @@ def test_submission_status_response_message_construction():
 def test_submission_status_response_message_from_msg():
     models.SubmissionStatusResponseMessage.from_msg(
         msg.SubmissionStatusResponseMessage(
-            errorCode="1", severity="fake-severity", text="fake text"
+            errorCode=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
         )
     )
 
@@ -99,7 +102,7 @@ def test_submission_status_response_construction():
         status="processing",
         files=[models.SubmissionStatusFile(url="http://example.com")],
         message=models.SubmissionStatusResponseMessage(
-            error_code="1", severity="fake-severity", text="fake text"
+            error_code=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
         ),
         objects=[
             models.SubmissionStatusObject(
@@ -116,7 +119,7 @@ def test_submission_status_response_construction():
         status="fake-status",
         files=[models.SubmissionStatusFile(url="http://example.com")],
         message=models.SubmissionStatusResponseMessage(
-            error_code="1", severity="fake-severity", text="fake text"
+            error_code=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
         ),
         objects=[
             models.SubmissionStatusObject(
@@ -137,7 +140,7 @@ def test_submission_status_response_from_msg():
             status="processing",
             files=[msg.SubmissionStatusFile(url="http://example.com")],
             message=msg.SubmissionStatusResponseMessage(
-                errorCode="1", severity="fake-severity", text="fake text"
+                errorCode=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
             ),
             objects=[
                 msg.SubmissionStatusObject(
@@ -161,7 +164,7 @@ def test_submission_status_actions_construction():
                 status="processing",
                 files=[models.SubmissionStatusFile(url="http://example.com")],
                 message=models.SubmissionStatusResponseMessage(
-                    error_code="1", severity="fake-severity", text="fake text"
+                    error_code=ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
                 ),
                 objects=[
                     models.SubmissionStatusObject(
@@ -197,7 +200,9 @@ def test_submission_status_actions_from_msg():
                     status="processing",
                     files=[msg.SubmissionStatusFile(url="http://example.com")],
                     message=msg.SubmissionStatusResponseMessage(
-                        errorCode="1", severity="fake-severity", text="fake text"
+                        errorCode=ErrorCode.PARTIAL_SUCCESS,
+                        severity="fake-severity",
+                        text="fake text",
                     ),
                     objects=[
                         msg.SubmissionStatusObject(
@@ -429,8 +434,8 @@ def test_summary_response_submission_from_msg():
 
 def test_summary_response_construction():
     models.SummaryResponse(
-        batch_processing_status="Success",
-        batch_release_status="Released",
+        batch_processing_status=BatchProcessingStatus.SUCCESS,
+        batch_release_status=BatchReleaseStatus.RELEASED,
         submission_date="2022-01-01",
         submission_name="submission-name",
         total_count=10,
@@ -459,8 +464,8 @@ def test_summary_response_construction():
         total_delete_success=10,
     )
     models.SummaryResponse(
-        batch_processing_status="Success",
-        batch_release_status="Released",
+        batch_processing_status=BatchProcessingStatus.SUCCESS,
+        batch_release_status=BatchReleaseStatus.RELEASED,
         submission_date="2022-01-01",
         submission_name="submission-name",
         total_count=10,
@@ -479,8 +484,8 @@ def test_summary_response_construction():
 def test_summary_response_from_msg():
     models.SummaryResponse.from_msg(
         msg.SummaryResponse(
-            batchProcessingStatus="Success",
-            batchReleaseStatus="Released",
+            batchProcessingStatus=BatchProcessingStatus.SUCCESS,
+            batchReleaseStatus=BatchReleaseStatus.RELEASED,
             submissionDate="2022-01-01",
             submissionName="submission-name",
             totalCount=10,
@@ -639,7 +644,7 @@ def test_submission_variant_construction():
         copy_number="2",
         gene=[models.SubmissionVariantGene()],
         hgvs="hgvs-string",
-        reference_copy_number="2",
+        reference_copy_number=2,
         variant_type=models.VariantType.DELETION,
     )
     models.SubmissionVariant()
@@ -659,7 +664,7 @@ def test_submission_variant_to_msg():
         copy_number="2",
         gene=[models.SubmissionVariantGene()],
         hgvs="hgvs-string",
-        reference_copy_number="2",
+        reference_copy_number=2,
         variant_type=models.VariantType.DELETION,
     ).to_msg()
     models.SubmissionVariant().to_msg()
@@ -699,8 +704,8 @@ def test_submission_phase_unknown_set_to_msg():
 
 def test_submission_clinical_feature_construction():
     models.SubmissionClinicalFeature(
-        clinical_features_affected_status="present",
-        db="HP",
+        clinical_features_affected_status=models.ClinicalFeaturesAffectedStatus.PRESENT,
+        db=ClinicalFeaturesDb.HP,
         id="the-id",
         name="same-name",
     )
@@ -708,8 +713,8 @@ def test_submission_clinical_feature_construction():
 
 def test_submission_clinical_feature_to_msg():
     models.SubmissionClinicalFeature(
-        clinical_features_affected_status="present",
-        db="HP",
+        clinical_features_affected_status=models.ClinicalFeaturesAffectedStatus.PRESENT,
+        db=ClinicalFeaturesDb.HP,
         id="the-id",
         name="same-name",
     ).to_msg()
@@ -717,49 +722,49 @@ def test_submission_clinical_feature_to_msg():
 
 def test_submission_observed_in_construction():
     models.SubmissionObservedIn(
-        affected_status="yes",
-        allele_origin="germline",
-        collection_method="clinical testing",
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
         clinical_features=[
             models.SubmissionClinicalFeature(
-                clinical_features_affected_status="present",
-                db="HP",
+                clinical_features_affected_status=models.ClinicalFeaturesAffectedStatus.PRESENT,
+                db=ClinicalFeaturesDb.HP,
                 id="the-id",
                 name="same-name",
             )
         ],
         clinical_features_comment="some comment",
         number_of_individuals=1,
-        struct_var_method_type="SNP array",
+        struct_var_method_type=models.StructVarMethodType.SNP_ARRAY,
     )
     models.SubmissionObservedIn(
-        affected_status="yes",
-        allele_origin="germline",
-        collection_method="clinical testing",
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
     )
 
 
 def test_submission_observed_in_to_msg():
     models.SubmissionObservedIn(
-        affected_status="yes",
-        allele_origin="germline",
-        collection_method="clinical testing",
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
         clinical_features=[
             models.SubmissionClinicalFeature(
-                clinical_features_affected_status="present",
-                db="HP",
+                clinical_features_affected_status=models.ClinicalFeaturesAffectedStatus.PRESENT,
+                db=ClinicalFeaturesDb.HP,
                 id="the-id",
                 name="same-name",
             )
         ],
         clinical_features_comment="some comment",
         number_of_individuals=1,
-        struct_var_method_type="SNP array",
+        struct_var_method_type=models.StructVarMethodType.SNP_ARRAY,
     ).to_msg()
     models.SubmissionObservedIn(
-        affected_status="yes",
-        allele_origin="germline",
-        collection_method="clinical testing",
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
     ).to_msg()
 
 
@@ -1082,12 +1087,12 @@ def test_submission_clinvar_submission_construction():
         condition_set=models.SubmissionConditionSet(),
         observed_in=[
             models.SubmissionObservedIn(
-                affected_status="yes",
-                allele_origin="germline",
-                collection_method="clinical testing",
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        record_status="novel",
+        record_status=models.RecordStatus.NOVEL,
         clinvar_accession="some-accession",
         compound_heterozygote_set=models.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -1132,12 +1137,12 @@ def test_submission_clinvar_submission_construction():
         condition_set=models.SubmissionConditionSet(),
         observed_in=[
             models.SubmissionObservedIn(
-                affected_status="yes",
-                allele_origin="germline",
-                collection_method="clinical testing",
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        record_status="novel",
+        record_status=models.RecordStatus.NOVEL,
     )
 
 
@@ -1149,12 +1154,12 @@ def test_submission_clinvar_submission_to_msg():
         condition_set=models.SubmissionConditionSet(),
         observed_in=[
             models.SubmissionObservedIn(
-                affected_status="yes",
-                allele_origin="germline",
-                collection_method="clinical testing",
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        record_status="novel",
+        record_status=models.RecordStatus.NOVEL,
         clinvar_accession="some-accession",
         compound_heterozygote_set=models.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -1199,12 +1204,12 @@ def test_submission_clinvar_submission_to_msg():
         condition_set=models.SubmissionConditionSet(),
         observed_in=[
             models.SubmissionObservedIn(
-                affected_status="yes",
-                allele_origin="germline",
-                collection_method="clinical testing",
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        record_status="novel",
+        record_status=models.RecordStatus.NOVEL,
     ).to_msg()
 
 
@@ -1220,7 +1225,7 @@ def test_submission_container_construction():
             ]
         ),
         clinvar_submission=None,
-        clinvar_submission_release_status="public",
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
     )
     models.SubmissionContainer(
@@ -1234,15 +1239,15 @@ def test_submission_container_construction():
                 condition_set=models.SubmissionConditionSet(),
                 observed_in=[
                     models.SubmissionObservedIn(
-                        affected_status="yes",
-                        allele_origin="germline",
-                        collection_method="clinical testing",
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.GERMLINE,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
                     )
                 ],
-                record_status="novel",
+                record_status=models.RecordStatus.NOVEL,
             )
         ],
-        clinvar_submission_release_status="public",
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
     )
 
@@ -1259,7 +1264,7 @@ def test_submission_container_to_msg():
             ]
         ),
         clinvar_submission=None,
-        clinvar_submission_release_status="public",
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
     ).to_msg()
     models.SubmissionContainer(
@@ -1273,14 +1278,14 @@ def test_submission_container_to_msg():
                 condition_set=models.SubmissionConditionSet(),
                 observed_in=[
                     models.SubmissionObservedIn(
-                        affected_status="yes",
-                        allele_origin="germline",
-                        collection_method="clinical testing",
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.GERMLINE,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
                     )
                 ],
-                record_status="novel",
+                record_status=models.RecordStatus.NOVEL,
             )
         ],
-        clinvar_submission_release_status="public",
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
     ).to_msg()

@@ -100,9 +100,7 @@ class _SubmitData:
             error_obj = models.Error.from_msg(error_msg)
             logger.debug("Full server response is %s", response.json())
             if hasattr(error_obj, "errors"):
-                raise exceptions.SubmissionFailed(
-                    f"ClinVar submission failed: {error_obj.message}, errors: {error_obj.errors}"
-                )
+                raise exceptions.SubmissionFailed(f"ClinVar submission failed: {error_obj.message}")
             else:
                 raise exceptions.SubmissionFailed(f"ClinVar submission failed: {error_obj.message}")
 
@@ -275,6 +273,7 @@ async def async_retrieve_status(
     if httpx.codes.is_success(response.status_code):
         more_urls, status_obj = helper.after_first_get_success(response)
 
+        more_results: typing.Dict[str, httpx.Response] = {}  # make pyright happy
         async with contextlib.AsyncExitStack() as stack:
             tasks: typing.Dict[str, typing.Awaitable[httpx.Response]] = {}
             for url in more_urls:
@@ -284,10 +283,7 @@ async def async_retrieve_status(
                 )
                 tasks[url] = client.get(url)
 
-            more_results: typing.Dict[str, httpx.Response] = dict(
-                zip(tasks.keys(), await asyncio.gather(*tasks.values()))
-            )
-
+            more_results = dict(zip(tasks.keys(), await asyncio.gather(*tasks.values())))
         return helper.after_get_more_urls(status_obj, more_results)
     else:
         return helper.after_first_get_failure(response)

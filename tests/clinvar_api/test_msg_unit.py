@@ -44,7 +44,9 @@ def test_submission_status_object_construction():
 
 
 def test_submission_status_response_message_construction():
-    msg.SubmissionStatusResponseMessage(errorCode="1", severity="fake-severity", text="fake text")
+    msg.SubmissionStatusResponseMessage(
+        errorCode=msg.ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
+    )
     msg.SubmissionStatusResponseMessage(errorCode=None, severity="fake-severity", text="fake text")
 
 
@@ -53,7 +55,7 @@ def test_submission_status_response_construction():
         status="processing",
         files=[msg.SubmissionStatusFile(url="http://example.com")],
         message=msg.SubmissionStatusResponseMessage(
-            errorCode="1", severity="fake-severity", text="fake text"
+            errorCode=msg.ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
         ),
         objects=[
             msg.SubmissionStatusObject(
@@ -70,7 +72,7 @@ def test_submission_status_response_construction():
         status="fake-status",
         files=[msg.SubmissionStatusFile(url="http://example.com")],
         message=msg.SubmissionStatusResponseMessage(
-            errorCode="1", severity="fake-severity", text="fake text"
+            errorCode=msg.ErrorCode.PARTIAL_SUCCESS, severity="fake-severity", text="fake text"
         ),
         objects=[
             msg.SubmissionStatusObject(
@@ -93,7 +95,9 @@ def test_submission_status_actions_construction():
                 status="processing",
                 files=[msg.SubmissionStatusFile(url="http://example.com")],
                 message=msg.SubmissionStatusResponseMessage(
-                    errorCode="1", severity="fake-severity", text="fake text"
+                    errorCode=msg.ErrorCode.PARTIAL_SUCCESS,
+                    severity="fake-severity",
+                    text="fake text",
                 ),
                 objects=[
                     msg.SubmissionStatusObject(
@@ -229,8 +233,8 @@ def test_summary_response_submission_construction():
 
 def test_summary_response_construction():
     msg.SummaryResponse(
-        batchProcessingStatus="In processing",
-        batchReleaseStatus="Not released",
+        batchProcessingStatus=msg.BatchProcessingStatus.IN_PROCESSING,
+        batchReleaseStatus=msg.BatchReleaseStatus.NOT_RELEASED,
         submissionDate="2022-01-01",
         submissionName="submission-name",
         totalCount=10,
@@ -257,8 +261,8 @@ def test_summary_response_construction():
         totalDeleteSuccess=10,
     )
     msg.SummaryResponse(
-        batchProcessingStatus="In processing",
-        batchReleaseStatus="Not released",
+        batchProcessingStatus=msg.BatchProcessingStatus.IN_PROCESSING,
+        batchReleaseStatus=msg.BatchReleaseStatus.NOT_RELEASED,
         submissionDate="2022-01-01",
         submissionName="submission-name",
         totalCount=10,
@@ -325,7 +329,7 @@ def test_submission_chromosome_coordinates_construction():
 
 def test_submission_variant_gene_construction():
     msg.SubmissionVariantGene(
-        id="4711",
+        id=4711,
         symbol="some-symbol",
     )
     msg.SubmissionVariantGene()
@@ -345,7 +349,7 @@ def test_submission_variant_construction():
         copyNumber="2",
         gene=[msg.SubmissionVariantGene()],
         hgvs="hgvs-string",
-        referenceCopyNumber="2",
+        referenceCopyNumber=2,
         variantType=msg.VariantType.DELETION,
     )
     msg.SubmissionVariant()
@@ -369,8 +373,8 @@ def test_submission_phase_unknown_set_construction():
 
 def test_submission_clinical_feature_construction():
     msg.SubmissionClinicalFeature(
-        clinicalFeaturesAffectedStatus="present",
-        db="HP",
+        clinicalFeaturesAffectedStatus=msg.ClinicalFeaturesAffectedStatus.PRESENT,
+        db=msg.ClinicalFeaturesDb.HP,
         id="the-id",
         name="same-name",
     )
@@ -378,25 +382,25 @@ def test_submission_clinical_feature_construction():
 
 def test_submission_observed_in_construction():
     msg.SubmissionObservedIn(
-        affectedStatus="yes",
-        alleleOrigin="germline",
-        collectionMethod="clinical testing",
+        affectedStatus=msg.AffectedStatus.YES,
+        alleleOrigin=msg.AlleleOrigin.GERMLINE,
+        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
         clinicalFeatures=[
             msg.SubmissionClinicalFeature(
-                clinicalFeaturesAffectedStatus="present",
-                db="HP",
+                clinicalFeaturesAffectedStatus=msg.ClinicalFeaturesAffectedStatus.PRESENT,
+                db=msg.ClinicalFeaturesDb.HP,
                 id="the-id",
                 name="same-name",
             )
         ],
         clinicalFeaturesComment="some comment",
         numberOfIndividuals=1,
-        structVarMethodType="SNP array",
+        structVarMethodType=msg.StructVarMethodType.SNP_ARRAY,
     )
     msg.SubmissionObservedIn(
-        affectedStatus="yes",
-        alleleOrigin="germline",
-        collectionMethod="clinical testing",
+        affectedStatus=msg.AffectedStatus.YES,
+        alleleOrigin=msg.AlleleOrigin.GERMLINE,
+        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
     )
 
 
@@ -561,12 +565,12 @@ def test_submission_clinvar_submission_construction():
         conditionSet=msg.SubmissionConditionSet(),
         observedIn=[
             msg.SubmissionObservedIn(
-                affectedStatus="yes",
-                alleleOrigin="germline",
-                collectionMethod="clinical testing",
+                affectedStatus=msg.AffectedStatus.YES,
+                alleleOrigin=msg.AlleleOrigin.GERMLINE,
+                collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        recordStatus="novel",
+        recordStatus=msg.RecordStatus.NOVEL,
         clinvarAccession="some-accession",
         compoundHeterozygoteSet=msg.SubmissionCompoundHeterozygoteSet(
             hgvs="hgvs",
@@ -611,12 +615,12 @@ def test_submission_clinvar_submission_construction():
         conditionSet=msg.SubmissionConditionSet(),
         observedIn=[
             msg.SubmissionObservedIn(
-                affectedStatus="yes",
-                alleleOrigin="germline",
-                collectionMethod="clinical testing",
+                affectedStatus=msg.AffectedStatus.YES,
+                alleleOrigin=msg.AlleleOrigin.GERMLINE,
+                collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
             )
         ],
-        recordStatus="novel",
+        recordStatus=msg.RecordStatus.NOVEL,
     )
 
 
@@ -631,7 +635,7 @@ def test_submission_container_construction():
                 )
             ]
         ),
-        clinvarSubmissionReleaseStatus="public",
+        clinvarSubmissionReleaseStatus=msg.ReleaseStatus.PUBLIC,
         submissionName="some-name",
     )
     msg.SubmissionContainer(
@@ -642,7 +646,7 @@ def test_submission_container_construction():
         ),
         behalfOrgID=123,
         clinvarDeletion=None,
-        clinvarSubmissionReleaseStatus="public",
+        clinvarSubmissionReleaseStatus=msg.ReleaseStatus.PUBLIC,
         clinvarSubmission=[
             msg.SubmissionClinvarSubmission(
                 clinicalSignificance=msg.SubmissionClinicalSignificance(
@@ -651,12 +655,12 @@ def test_submission_container_construction():
                 conditionSet=msg.SubmissionConditionSet(),
                 observedIn=[
                     msg.SubmissionObservedIn(
-                        affectedStatus="yes",
-                        alleleOrigin="germline",
-                        collectionMethod="clinical testing",
+                        affectedStatus=msg.AffectedStatus.YES,
+                        alleleOrigin=msg.AlleleOrigin.GERMLINE,
+                        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
                     )
                 ],
-                recordStatus="novel",
+                recordStatus=msg.RecordStatus.NOVEL,
             )
         ],
         submissionName="some-name",
