@@ -1,8 +1,18 @@
+import datetime
 import json
 
 import pytest
 
 from clinvar_data import conversion, models
+
+
+def json_default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime("%Y-%m-%d %H:%M:%S")
+    elif isinstance(obj, datetime.date):
+        return obj.strftime("%Y-%m-%d")
+    else:
+        raise TypeError("Type not serializable")
 
 
 def test_force_list_lst():
@@ -1882,7 +1892,7 @@ def test_trait_set_from_json_data(value, expected):
 def test_reference_clinvar_assertion_from_json_data(value, snapshot):
     obj = models.ReferenceClinVarAssertion.from_json_data(value)
     value = conversion.remove_empties_from_containers(obj.model_dump(mode="json"))
-    snapshot.assert_match(json.dumps(value, indent=2, default=conversion.json_default), "output")
+    snapshot.assert_match(json.dumps(value, indent=2, default=json_default), "output")
 
 
 @pytest.mark.parametrize(

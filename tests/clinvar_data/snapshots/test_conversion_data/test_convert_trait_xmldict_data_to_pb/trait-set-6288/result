@@ -1,0 +1,280 @@
+{
+  "traits": [
+    {
+      "names": [
+        {
+          "value": "Acute myeloid leukemia, adult",
+          "type": "Alternate"
+        },
+        {
+          "value": "AML adult",
+          "type": "Alternate"
+        },
+        {
+          "value": "Acute myelogenous leukemia",
+          "type": "Alternate",
+          "xrefs": [
+            {
+              "db": "Genetic Alliance",
+              "id": "Acute+Myeloid+Leukemia%2C+Adult/204"
+            },
+            {
+              "db": "Human Phenotype Ontology",
+              "id": "HP:0004808"
+            }
+          ]
+        },
+        {
+          "value": "Acute non-lymphocytic leukemia",
+          "type": "Alternate"
+        },
+        {
+          "value": "Acute granulocytic leukemia",
+          "type": "Alternate"
+        },
+        {
+          "value": "Leukemia, acute myelogenous, somatic",
+          "type": "Alternate"
+        },
+        {
+          "value": "Leukemia, acute myeloid, somatic",
+          "type": "Alternate"
+        },
+        {
+          "value": "Acute myeloid leukemia",
+          "type": "Preferred",
+          "xrefs": [
+            {
+              "db": "Human Phenotype Ontology",
+              "id": "HP:0004808"
+            },
+            {
+              "db": "MONDO",
+              "id": "MONDO:0018874"
+            },
+            {
+              "db": "Orphanet",
+              "id": "519"
+            },
+            {
+              "db": "SNOMED CT",
+              "id": "17788007"
+            }
+          ]
+        }
+      ],
+      "symbols": [
+        {
+          "value": "AML",
+          "type": "Preferred",
+          "xrefs": [
+            {
+              "db": "Genetic Testing Registry (GTR)",
+              "id": "GTR000500636"
+            },
+            {
+              "db": "OMIM",
+              "id": "601626",
+              "type": "MIM"
+            }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "Constitutively activated FLT3"
+            },
+            "type": "disease mechanism"
+          },
+          "xrefs": [
+            {
+              "db": "Genetic Testing Registry (GTR)",
+              "id": "GTR000552464"
+            }
+          ]
+        },
+        {
+          "attribute": {
+            "base": {
+              "value": "A clonal expansion of myeloid..."
+            },
+            "type": "public definition"
+          }
+        },
+        {
+          "attribute": {
+            "base": {
+              "integerValue": "12757"
+            },
+            "type": "GARD id"
+          },
+          "xrefs": [
+            {
+              "db": "Office of Rare Diseases",
+              "id": "12757"
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "20963938",
+              "source": "PubMed"
+            },
+            {
+              "value": "NBK47457",
+              "source": "BookShelf"
+            }
+          ],
+          "type": "review",
+          "abbrev": "GeneReviews"
+        },
+        {
+          "ids": [
+            {
+              "value": "22138009",
+              "source": "PubMed"
+            }
+          ],
+          "type": "Translational/Evidence-based",
+          "abbrev": "NCCN, 2011"
+        },
+        {
+          "ids": [
+            {
+              "value": "23970018",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general",
+          "abbrev": "ESMO, 2013"
+        },
+        {
+          "ids": [
+            {
+              "value": "33226740",
+              "source": "PubMed"
+            },
+            {
+              "value": "NBK564234",
+              "source": "BookShelf"
+            }
+          ],
+          "type": "review",
+          "abbrev": "GeneReviews"
+        },
+        {
+          "ids": [
+            {
+              "value": "33661592",
+              "source": "PubMed"
+            },
+            {
+              "value": "NBK568319",
+              "source": "BookShelf"
+            }
+          ],
+          "type": "review",
+          "abbrev": "GeneReviews"
+        },
+        {
+          "ids": [
+            {
+              "value": "34723452",
+              "source": "PubMed"
+            },
+            {
+              "value": "NBK574843",
+              "source": "BookShelf"
+            }
+          ],
+          "type": "review",
+          "abbrev": "GeneReviews"
+        },
+        {
+          "ids": [
+            {
+              "value": "32171751",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general",
+          "abbrev": "ESMO, 2020"
+        },
+        {
+          "url": "https://www.nccn.org/professionals/physician_gls/pdf/all.pdf",
+          "citationText": "NCCN Clinical Practice Guidelines in Oncology (NCCN Guidelines\u00ae) Acute Lymphoblastic Leukemia, 2023",
+          "type": "practice guideline",
+          "abbrev": "NCCN, 2023"
+        },
+        {
+          "url": "https://www.nccn.org/professionals/physician_gls/pdf/aml.pdf",
+          "citationText": "NCCN Clinical Practice Guidelines in Oncology (NCCN Guidelines\u00ae) Acute Myeloid Leukemia, 2023",
+          "type": "practice guideline",
+          "abbrev": "NCCN, 2023"
+        }
+      ],
+      "xrefs": [
+        {
+          "db": "Orphanet",
+          "id": "519"
+        },
+        {
+          "db": "MedGen",
+          "id": "C0023467"
+        },
+        {
+          "db": "MeSH",
+          "id": "D015470"
+        },
+        {
+          "db": "MONDO",
+          "id": "MONDO:0018874"
+        },
+        {
+          "db": "OMIM",
+          "id": "601626",
+          "type": "MIM"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0004808",
+          "type": "primary"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0001914",
+          "type": "secondary"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0004843",
+          "type": "secondary"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0005516",
+          "type": "secondary"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0006724",
+          "type": "secondary"
+        },
+        {
+          "db": "Human Phenotype Ontology",
+          "id": "HP:0006728",
+          "type": "secondary"
+        }
+      ]
+    }
+  ],
+  "type": "TYPE_DISEASE",
+  "id": "6288",
+  "contributesToAggregateClassification": false,
+  "lowerLevelOfEvidence": true
+}

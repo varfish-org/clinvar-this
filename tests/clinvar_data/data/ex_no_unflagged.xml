@@ -1,171 +1,173 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-
-    <ClinVarSet ID="170238667">
-        <RecordStatus>current</RecordStatus>
-        <Title>NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter) AND 3M syndrome 1</Title>
-        <ReferenceClinVarAssertion ID="269569" DateLastUpdated="2023-12-09" DateCreated="2014-05-09">
-          <ClinVarAccession Acc="RCV000115042" Version="3" Type="RCV" DateUpdated="2023-12-09" DateCreated="2014-05-09"/>
-          <RecordStatus>current</RecordStatus>
-          <ClinicalSignificance>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive VariationID="127244" VariationName="NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter)" VariationType="single nucleotide variant" Accession="VCV000127244" Version="1" RecordType="classified" NumberOfSubmissions="2" NumberOfSubmitters="1" DateLastUpdated="2024-04-06" DateCreated="2014-05-09" MostRecentSubmission="2015-05-31">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="132701" VariationID="127244">
+      <GeneList>
+        <Gene Symbol="CUL7" FullName="cullin 7" GeneID="9820" HGNC_ID="HGNC:21024" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>6p21.1</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="43037617" stop="43053851" display_start="43037617" display_stop="43053851" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="43005354" stop="43021682" display_start="43005354" display_stop="43021682" Strand="-"/>
+          </Location>
+          <OMIM>609577</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter)</Name>
+      <CanonicalSPDI>NC_000006.12:43046303:A:C</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>6p21.1</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="43046304" stop="43046304" display_start="43046304" display_stop="43046304" variantLength="1" positionVCF="43046304" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="43014042" stop="43014042" display_start="43014042" display_stop="43014042" variantLength="1" positionVCF="43014042" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
+      </Location>
+      <ProteinChange>Y864*</ProteinChange>
+      <ProteinChange>Y948*</ProteinChange>
+      <ProteinChange>Y896*</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000006.11" sequenceAccession="NC_000006" sequenceVersion="11" change="g.43014042A&gt;C" Assembly="GRCh37">
+            <Expression>NC_000006.11:g.43014042A&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000006.12" sequenceAccession="NC_000006" sequenceVersion="12" change="g.43046304A&gt;C" Assembly="GRCh38">
+            <Expression>NC_000006.12:g.43046304A&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_016205.1" sequenceAccession="NG_016205" sequenceVersion="1" change="g.12642T&gt;G">
+            <Expression>NG_016205.1:g.12642T&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001168370.2" sequenceAccession="NM_001168370" sequenceVersion="2" change="c.2688T&gt;G">
+            <Expression>NM_001168370.2:c.2688T&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001161842.2" sequenceAccession="NP_001161842" sequenceVersion="2" change="p.Tyr896Ter">
+            <Expression>NP_001161842.2:p.Tyr896Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001374872.1" sequenceAccession="NM_001374872" sequenceVersion="1" change="c.2688T&gt;G">
+            <Expression>NM_001374872.1:c.2688T&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001361801.1" sequenceAccession="NP_001361801" sequenceVersion="1" change="p.Tyr896Ter">
+            <Expression>NP_001361801.1:p.Tyr896Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001374873.1" sequenceAccession="NM_001374873" sequenceVersion="1" change="c.2592T&gt;G">
+            <Expression>NM_001374873.1:c.2592T&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001361802.1" sequenceAccession="NP_001361802" sequenceVersion="1" change="p.Tyr864Ter">
+            <Expression>NP_001361802.1:p.Tyr864Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001374874.1" sequenceAccession="NM_001374874" sequenceVersion="1" change="c.2592T&gt;G">
+            <Expression>NM_001374874.1:c.2592T&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001361803.1" sequenceAccession="NP_001361803" sequenceVersion="1" change="p.Tyr864Ter">
+            <Expression>NP_001361803.1:p.Tyr864Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_014780.5" sequenceAccession="NM_014780" sequenceVersion="5" change="c.2592T&gt;G" MANESelect="true">
+            <Expression>NM_014780.5:c.2592T&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_055595.2" sequenceAccession="NP_055595" sequenceVersion="2" change="p.Tyr864Ter">
+            <Expression>NP_055595.2:p.Tyr864Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA236446" DB="ClinGen"/>
+        <XRef Type="rs" ID="201406974" DB="dbSNP"/>
+      </XRefList>
+      <FunctionalConsequence Value="protein loss of function">
+        <XRef ID="0043" DB="Variation Ontology"/>
+      </FunctionalConsequence>
+      <GlobalMinorAlleleFrequency Value="0.00020" Source="1000 Genomes Project" MinorAllele="G"/>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter) AND 3M syndrome 1" Accession="RCV000115042" Version="4">
+        <ClassifiedConditionList TraitSetID="415">
+          <ClassifiedCondition DB="MedGen" ID="C2678312">3M syndrome 1</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
             <ReviewStatus>no classifications from unflagged records</ReviewStatus>
-            <Description>no classifications from unflagged records</Description>
-          </ClinicalSignificance>
-          <Assertion Type="variation to disease"/>
-          <ObservedIn>
-            <Sample>
-              <Origin>germline</Origin>
-              <Ethnicity>Arab</Ethnicity>
-              <Species TaxonomyId="9606">human</Species>
-              <AffectedStatus>yes</AffectedStatus>
-            </Sample>
-            <Method>
-              <MethodType>research</MethodType>
-            </Method>
-            <ObservedData ID="142028773">
-              <Attribute Type="Description">not provided</Attribute>
-            </ObservedData>
-          </ObservedIn>
-          <MeasureSet Type="Variant" ID="127244" Acc="VCV000127244" Version="1">
-            <Measure Type="single nucleotide variant" ID="132701">
+            <Description SubmissionCount="1">no classifications from unflagged records</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+      <RCVAccession Title="NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter) AND not provided" Accession="RCV000171523" Version="2">
+        <ClassifiedConditionList TraitSetID="9460">
+          <ClassifiedCondition DB="MedGen" ID="C3661900">not provided</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+            <Description SubmissionCount="1">Likely pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification NumberOfSubmissions="2" NumberOfSubmitters="1" DateCreated="2014-05-09" MostRecentSubmission="2015-05-31">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Likely pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">24389050</ID>
+        </Citation>
+        <DescriptionHistory Dated="2023-11-19">
+          <Description>Pathogenic/Likely pathogenic</Description>
+        </DescriptionHistory>
+        <ConditionList>
+          <TraitSet ID="9460" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="17556" Type="Disease">
               <Name>
-                <ElementValue Type="Preferred">NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter)</ElementValue>
+                <ElementValue Type="Preferred">not provided</ElementValue>
+                <XRef ID="13DG0619" DB="Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital &amp; Research Centre"/>
               </Name>
-              <CanonicalSPDI>NC_000006.12:43046303:A:C</CanonicalSPDI>
+              <Name>
+                <ElementValue Type="Alternate">none provided</ElementValue>
+              </Name>
               <AttributeSet>
-                <Attribute Type="FunctionalConsequence">protein loss of function</Attribute>
-                <XRef ID="0043" DB="Variation Ontology"/>
+                <Attribute Type="public definition">The term 'not provided' is registered in MedGen to support identification of submissions to ClinVar for which no condition was named when assessing the variant. 'not provided' differs from 'not specified', which is used when a variant is asserted to be benign, likely benign, or of uncertain significance for conditions that have not been specified.</Attribute>
               </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_001374873" Version="1" Change="c.2592T&gt;G" Type="HGVS, coding, RefSeq">NM_001374873.1:c.2592T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_001374874" Version="1" Change="c.2592T&gt;G" Type="HGVS, coding, RefSeq">NM_001374874.1:c.2592T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_014780" Version="5" Change="c.2592T&gt;G" Type="HGVS, coding, RefSeq" MANESelect="true">NM_014780.5:c.2592T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_001168370" Version="2" Change="c.2688T&gt;G" Type="HGVS, coding, RefSeq">NM_001168370.2:c.2688T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_001374872" Version="1" Change="c.2688T&gt;G" Type="HGVS, coding, RefSeq">NM_001374872.1:c.2688T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NG_016205" Version="1" Change="g.12642T&gt;G" Type="HGVS, genomic, RefSeqGene">NG_016205.1:g.12642T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NC_000006" Version="12" Change="g.43046304A&gt;C" Type="HGVS, genomic, top level" integerValue="38">NC_000006.12:g.43046304A&gt;C</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NC_000006" Version="11" Change="g.43014042A&gt;C" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000006.11:g.43014042A&gt;C</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NM_001168370" Version="1" Change="c.2844T&gt;G" Type="HGVS, previous">NM_001168370.1:c.2844T&gt;G</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="HGVS, protein">p.Y948*</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_001361802" Version="1" Change="p.Tyr864Ter" Type="HGVS, protein, RefSeq">NP_001361802.1:p.Tyr864Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_001361803" Version="1" Change="p.Tyr864Ter" Type="HGVS, protein, RefSeq">NP_001361803.1:p.Tyr864Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_055595" Version="2" Change="p.Tyr864Ter" Type="HGVS, protein, RefSeq">NP_055595.2:p.Tyr864Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_001161842" Version="2" Change="p.Tyr896Ter" Type="HGVS, protein, RefSeq">NP_001161842.2:p.Tyr896Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_001361801" Version="1" Change="p.Tyr896Ter" Type="HGVS, protein, RefSeq">NP_001361801.1:p.Tyr896Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Accession="NP_001161842" Version="1" Change="p.Tyr948Ter" Type="HGVS, protein, RefSeq">NP_001161842.1:p.Tyr948Ter</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="MolecularConsequence">nonsense</Attribute>
-                <XRef ID="SO:0001587" DB="Sequence Ontology"/>
-                <XRef ID="NM_001168370.2:c.2688T&gt;G" DB="RefSeq"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="MolecularConsequence">nonsense</Attribute>
-                <XRef ID="SO:0001587" DB="Sequence Ontology"/>
-                <XRef ID="NM_001374872.1:c.2688T&gt;G" DB="RefSeq"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="MolecularConsequence">nonsense</Attribute>
-                <XRef ID="SO:0001587" DB="Sequence Ontology"/>
-                <XRef ID="NM_001374873.1:c.2592T&gt;G" DB="RefSeq"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="MolecularConsequence">nonsense</Attribute>
-                <XRef ID="SO:0001587" DB="Sequence Ontology"/>
-                <XRef ID="NM_001374874.1:c.2592T&gt;G" DB="RefSeq"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="MolecularConsequence">nonsense</Attribute>
-                <XRef ID="SO:0001587" DB="Sequence Ontology"/>
-                <XRef ID="NM_014780.5:c.2592T&gt;G" DB="RefSeq"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="ProteinChange1LetterCode">Y864*</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="ProteinChange1LetterCode">Y896*</Attribute>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="ProteinChange1LetterCode">Y948*</Attribute>
-              </AttributeSet>
-              <GlobalMinorAlleleFrequency Value="0.00020" Source="1000 Genomes Project" MinorAllele="G"/>
-              <CytogeneticLocation>6p21.1</CytogeneticLocation>
-              <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="43046304" stop="43046304" display_start="43046304" display_stop="43046304" variantLength="1" positionVCF="43046304" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
-              <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="43014042" stop="43014042" display_start="43014042" display_stop="43014042" variantLength="1" positionVCF="43014042" referenceAlleleVCF="A" alternateAlleleVCF="C"/>
-              <MeasureRelationship Type="within single gene">
-                <Name>
-                  <ElementValue Type="Preferred">cullin 7</ElementValue>
-                </Name>
-                <Symbol>
-                  <ElementValue Type="Preferred">CUL7</ElementValue>
-                </Symbol>
-                <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="6" Accession="NC_000006.12" start="43037617" stop="43053851" display_start="43037617" display_stop="43053851" Strand="-"/>
-                <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="6" Accession="NC_000006.11" start="43005354" stop="43021682" display_start="43005354" display_stop="43021682" variantLength="16329" Strand="-"/>
-                <XRef ID="9820" DB="Gene"/>
-                <XRef Type="MIM" ID="609577" DB="OMIM"/>
-                <XRef ID="HGNC:21024" DB="HGNC"/>
-              </MeasureRelationship>
-              <XRef Type="rs" ID="201406974" DB="dbSNP"/>
-            </Measure>
-            <Name>
-              <ElementValue Type="Preferred">NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter)</ElementValue>
-            </Name>
-            <Name>
-              <ElementValue Type="Preferred">NM_014780.5(CUL7):c.2592T&gt;G (p.Tyr864Ter)</ElementValue>
-            </Name>
-            <XRef ID="CA236446" DB="ClinGen"/>
-          </MeasureSet>
-          <TraitSet Type="Disease" ID="415">
+              <XRef ID="C3661900" DB="MedGen"/>
+            </Trait>
+          </TraitSet>
+          <TraitSet ID="415" Type="Disease" ContributesToAggregateClassification="false">
             <Trait ID="6044" Type="Disease">
-              <Name>
-                <ElementValue Type="Preferred">3M syndrome 1</ElementValue>
-                <XRef ID="MONDO:0010117" DB="MONDO"/>
-              </Name>
               <Name>
                 <ElementValue Type="Alternate">Three M syndrome 1</ElementValue>
                 <XRef ID="Three+M+syndrome/7072" DB="Genetic Alliance"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">3M syndrome 1</ElementValue>
+                <XRef ID="MONDO:0010117" DB="MONDO"/>
               </Name>
               <Symbol>
                 <ElementValue Type="Alternate">3M1</ElementValue>
                 <XRef Type="MIM" ID="273750" DB="OMIM"/>
               </Symbol>
               <AttributeSet>
-                <Attribute Type="public definition">Three M syndrome is characterized by severe pre- and postnatal growth deficiency (final height 5-6 SD below the mean; i.e., 120-130 cm), characteristic facies, and normal intelligence. Additional features of three M syndrome include short broad neck, prominent trapezii, deformed sternum, short thorax, square shoulders, winged scapulae, hyperlordosis, short fifth fingers, prominent heels, and loose joints. Males with three M syndrome have hypogonadism and occasionally hypospadias.</Attribute>
-                <XRef ID="NBK1481" DB="GeneReviews"/>
-              </AttributeSet>
-              <AttributeSet>
                 <Attribute Type="GARD id" integerValue="15239"/>
                 <XRef ID="15239" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="public definition">Three M syndrome is characterized by severe pre- and postnatal growth deficiency (final height 5-6 SD below the mean; i.e., 120-130 cm), characteristic facies, and normal intelligence. Additional features of three M syndrome include short broad neck, prominent trapezii, deformed sternum, short thorax, square shoulders, winged scapulae, hyperlordosis, short fifth fingers, prominent heels, and loose joints. Males with three M syndrome have hypogonadism and occasionally hypospadias.</Attribute>
+                <XRef ID="NBK1481" DB="GeneReviews"/>
               </AttributeSet>
               <Citation Type="review" Abbrev="GeneReviews">
                 <ID Source="PubMed">20301654</ID>
@@ -174,22 +176,26 @@
               <Citation Type="Translational/Evidence-based" Abbrev="EuroGentest, 2011">
                 <ID Source="PubMed">21364696</ID>
               </Citation>
-              <XRef ID="MONDO:0010117" DB="MONDO"/>
-              <XRef ID="C2678312" DB="MedGen"/>
               <XRef ID="2616" DB="Orphanet"/>
+              <XRef ID="C2678312" DB="MedGen"/>
+              <XRef ID="MONDO:0010117" DB="MONDO"/>
               <XRef Type="MIM" ID="273750" DB="OMIM"/>
             </Trait>
           </TraitSet>
-        </ReferenceClinVarAssertion>
-        <ClinVarAssertion ID="269551" SubmissionName="2045">
-          <ClinVarSubmissionID localKey="NM_001168370.1:c.2844T&gt;G|OMIM:273750" submitter="Developmental Genetics Unit, King Faisal Specialist Hospital &amp; Research Centre" submitterDate="2014-05-08"/>
-          <ClinVarAccession Acc="SCV000108552" Version="1" Type="SCV" OrgID="500184" OrganizationCategory="laboratory" OrgType="primary" DateUpdated="2014-05-09" DateCreated="2014-05-09"/>
-          <RecordStatus>current</RecordStatus>
-          <ClinicalSignificance>
-            <ReviewStatus>flagged submission</ReviewStatus>
-            <Description>Pathogenic</Description>
-          </ClinicalSignificance>
-          <Assertion Type="variation to disease"/>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="269551" SubmissionDate="2014-05-08" DateLastUpdated="2014-05-09" DateCreated="2014-05-09">
+        <ClinVarSubmissionID localKey="NM_001168370.1:c.2844T&gt;G|OMIM:273750"/>
+        <ClinVarAccession Accession="SCV000108552" DateUpdated="2014-05-09" DateCreated="2014-05-09" Type="SCV" Version="1" SubmitterName="Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital &amp; Research Centre" OrgID="500184" OrganizationCategory="laboratory" OrgAbbreviation="DGU-KFSHRC"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification>
+          <ReviewStatus>flagged submission</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
           <ObservedIn>
             <Sample>
               <Origin>germline</Origin>
@@ -213,37 +219,103 @@
               </Trait>
             </TraitSet>
           </ObservedIn>
-          <MeasureSet Type="Variant">
-            <Measure Type="Variation">
-              <Name>
-                <ElementValue Type="Alternate">p.Y948*</ElementValue>
-              </Name>
-              <AttributeSet>
-                <Attribute Type="FunctionalConsequence">protein loss of function</Attribute>
-                <XRef DB="Variation Ontology" ID="0043" URL="http://www.variationontology.org/cgi-bin/amivario/term-details.cgi?term=VariO:0043"/>
-              </AttributeSet>
-              <AttributeSet>
-                <Attribute Type="HGVS">NM_001168370.1:c.2844T&gt;G</Attribute>
-              </AttributeSet>
-              <MeasureRelationship Type="variant in gene">
-                <Symbol>
-                  <ElementValue Type="Preferred">CUL7</ElementValue>
-                </Symbol>
-              </MeasureRelationship>
-            </Measure>
-          </MeasureSet>
-          <TraitSet Type="Disease">
-            <Trait Type="Disease">
-              <Name>
-                <ElementValue Type="Preferred">Three M syndrome 1</ElementValue>
-              </Name>
-              <XRef DB="OMIM" ID="273750" Type="MIM"/>
-            </Trait>
-          </TraitSet>
-          <StudyName>Genomic Analysis of Primordial Dwarfism Reveals Novel Disease Genes</StudyName>
-          <Comment DataSource="NCBI" Type="FlaggedComment">Reason: This record appears to be redundant with a more recent record from the same submitter.</Comment>
-          <Comment DataSource="NCBI" Type="FlaggedComment">Notes: SCV000108552 appears to be redundant with SCV000221722.</Comment>
-        </ClinVarAssertion>
-      </ClinVarSet>
-
-</ReleaseSet>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CUL7"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name>p.Y948*</Name>
+          </OtherNameList>
+          <FunctionalConsequence Value="protein loss of function">
+            <XRef DB="Variation Ontology" ID="0043" URL="http://www.variationontology.org/cgi-bin/amivario/term-details.cgi?term=VariO:0043"/>
+          </FunctionalConsequence>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_001168370.1:c.2844T&gt;G</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">Three M syndrome 1</ElementValue>
+            </Name>
+            <XRef DB="OMIM" ID="273750" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <StudyName>Genomic Analysis of Primordial Dwarfism Reveals Novel Disease Genes</StudyName>
+        <Comment DataSource="NCBI" Type="FlaggedComment">Reason: This record appears to be redundant with a more recent record from the same submitter.</Comment>
+        <Comment DataSource="NCBI" Type="FlaggedComment">Notes: SCV000108552 appears to be redundant with SCV000221722.</Comment>
+        <SubmissionNameList>
+          <SubmissionName>2045</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="407989" SubmissionDate="2015-04-14" DateLastUpdated="2015-05-31" DateCreated="2015-05-31">
+        <ClinVarSubmissionID localKey="SGP2014-4671-1|Not provided"/>
+        <ClinVarAccession Accession="SCV000221722" DateUpdated="2015-05-31" DateCreated="2015-05-31" Type="SCV" Version="1" SubmitterName="Department Of Translational Genomics (developmental Genetics Section), King Faisal Specialist Hospital &amp; Research Centre" OrgID="500184" OrganizationCategory="laboratory" OrgAbbreviation="DGU-KFSHRC"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification>
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Likely pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+              <Indication Type="Indication">
+                <Trait Type="Finding">
+                  <Name>
+                    <ElementValue Type="Preferred">Dysmorphic/Dysplastic phenotype</ElementValue>
+                  </Name>
+                </Trait>
+              </Indication>
+            </Sample>
+            <Method>
+              <MethodType>research</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">not provided</Attribute>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="CUL7"/>
+          </GeneList>
+          <VariantType>Variation</VariantType>
+          <Location>
+            <SequenceLocation Assembly="GRCh37" Chr="6" alternateAllele="C" referenceAllele="A" start="43014042" stop="43014042" variantLength="1"/>
+          </Location>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">Not provided</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="269551" TraitType="Finding" MappingType="Name" MappingValue="Small and mal-aligned teeth, skin and joint laxity, and normal motor and cognitive development" MappingRef="Preferred">
+        <MedGen CUI="CN186928" Name="Small and mal-aligned teeth, skin and joint laxity, and normal motor and cognitive development"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="269551" TraitType="Disease" MappingType="Name" MappingValue="Three M syndrome 1" MappingRef="Preferred">
+        <MedGen CUI="C2678312" Name="3M syndrome 1"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="407989" TraitType="Disease" MappingType="Name" MappingValue="Not provided" MappingRef="Preferred">
+        <MedGen CUI="C3661900" Name="not provided"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

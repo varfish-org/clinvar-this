@@ -1,185 +1,312 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-  <ClinVarSet ID="92192491">
-    <RecordStatus>current</RecordStatus>
-    <Title>GRCh38/hg38 5p15.33(chr5:629340-820360)x1 AND See cases</Title>
-    <ReferenceClinVarAssertion ID="137832" DateLastUpdated="2022-04-23" DateCreated="2013-08-03">
-      <ClinVarAccession Acc="RCV000050363" DateUpdated="2022-04-23" DateCreated="2013-08-03" Version="7" Type="RCV"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2009-12-30">
-        <ReviewStatus>no assertion criteria provided</ReviewStatus>
-        <Description>Benign</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>not provided</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <NamePlatform>ISCA 44K 024614, v2</NamePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData ID="96923088">
-          <Attribute integerValue="1" Type="VariantAlleles"/>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant" ID="34753" Acc="VCV000034753" Version="2">
-        <Measure Type="copy number loss" ID="43418">
-          <Name>
-            <ElementValue Type="Preferred">GRCh38/hg38 5p15.33(chr5:629340-820360)x1</ElementValue>
-          </Name>
-          <AttributeSet>
-            <Attribute Type="AbsoluteCopyNumber" integerValue="1"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000005" Version="10" Change="g.(?_629340)_(820360_?)del" Type="HGVS, genomic, top level" integerValue="38">NC_000005.10:g.(?_629340)_(820360_?)del</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000005" Version="9" Change="g.(?_629455)_(820475_?)del" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000005.9:g.(?_629455)_(820475_?)del</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000005" Version="8" Change="g.(?_682455)_(873475_?)del" Type="HGVS, genomic, top level, previous" integerValue="36">NC_000005.8:g.(?_682455)_(873475_?)del</Attribute>
-          </AttributeSet>
-          <CytogeneticLocation>5p15.33</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" innerStart="629340" innerStop="820360" display_start="629340" display_stop="820360" variantLength="191021"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" innerStart="629455" innerStop="820475" display_start="629455" display_stop="820475" variantLength="191021"/>
-          <SequenceLocation Assembly="NCBI36" AssemblyAccessionVersion="GCF_000001405.12" AssemblyStatus="previous" Chr="5" Accession="NC_000005.8" innerStart="682455" innerStop="873475" display_start="682455" display_stop="873475" variantLength="191021"/>
-          <MeasureRelationship Type="genes overlapped by variant">
-            <Name>
-              <ElementValue Type="Preferred">centrosomal protein 72</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">CEP72</ElementValue>
-            </Symbol>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="34753" VariationName="GRCh38/hg38 5p15.33(chr5:629340-820360)x1" VariationType="copy number loss" Accession="VCV000034753" Version="2" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2023-10-15" DateCreated="2015-07-10" MostRecentSubmission="2015-07-10">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="43418" VariationID="34753">
+      <GeneList>
+        <Gene Symbol="CEP72" FullName="centrosomal protein 72" GeneID="55722" HGNC_ID="HGNC:25547" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="612340" stop="676616" display_start="612340" display_stop="676616" Strand="+"/>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NT_187550.1" start="6636" stop="14557" display_start="6636" display_stop="14557" Strand="-"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="612404" stop="653667" display_start="612404" display_stop="653667" variantLength="41264" Strand="+"/>
-            <XRef ID="55722" DB="Gene"/>
-            <XRef Type="MIM" ID="616475" DB="OMIM"/>
-            <XRef ID="HGNC:25547" DB="HGNC"/>
-          </MeasureRelationship>
-          <MeasureRelationship Type="genes overlapped by variant">
-            <Name>
-              <ElementValue Type="Preferred">tubulin polymerization promoting protein</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">TPPP</ElementValue>
-            </Symbol>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="612404" stop="653667" display_start="612404" display_stop="653667" Strand="+"/>
+          </Location>
+          <OMIM>616475</OMIM>
+        </Gene>
+        <Gene Symbol="LOC129993564" FullName="ATAC-STARR-seq lymphoblastoid silent region 15876" GeneID="129993564" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="693355" stop="693604" display_start="693355" display_stop="693604" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129993565" FullName="ATAC-STARR-seq lymphoblastoid active region 22299" GeneID="129993565" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="754133" stop="754212" display_start="754133" display_stop="754212" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129993566" FullName="ATAC-STARR-seq lymphoblastoid active region 22300" GeneID="129993566" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="754323" stop="754402" display_start="754323" display_stop="754402" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC129993567" FullName="ATAC-STARR-seq lymphoblastoid active region 22301" GeneID="129993567" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="754423" stop="754472" display_start="754423" display_stop="754472" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089290" FullName="Neanderthal introgressed variant-containing enhancer experimental_86736" GeneID="132089290" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="637077" stop="637246" display_start="637077" display_stop="637246" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089291" FullName="Neanderthal introgressed variant-containing enhancer experimental_86741" GeneID="132089291" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="642828" stop="642997" display_start="642828" display_stop="642997" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089292" FullName="Neanderthal introgressed variant-containing enhancer experimental_86745" GeneID="132089292" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="644352" stop="644521" display_start="644352" display_stop="644521" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089293" FullName="Neanderthal introgressed variant-containing enhancer experimental_86753" GeneID="132089293" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="646218" stop="646387" display_start="646218" display_stop="646387" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089294" FullName="Neanderthal introgressed variant-containing enhancer experimental_86779" GeneID="132089294" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="662413" stop="662582" display_start="662413" display_stop="662582" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089295" FullName="Neanderthal introgressed variant-containing enhancer experimental_86783" GeneID="132089295" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="663884" stop="664053" display_start="663884" display_stop="664053" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089296" FullName="Neanderthal introgressed variant-containing enhancer experimental_86799" GeneID="132089296" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="665471" stop="665640" display_start="665471" display_stop="665640" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089297" FullName="Neanderthal introgressed variant-containing enhancer experimental_86803" GeneID="132089297" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="671094" stop="671263" display_start="671094" display_stop="671263" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089298" FullName="Neanderthal introgressed variant-containing enhancer experimental_86807" GeneID="132089298" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="671626" stop="671795" display_start="671626" display_stop="671795" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089299" FullName="Neanderthal introgressed variant-containing enhancer experimental_86811" GeneID="132089299" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="672393" stop="672562" display_start="672393" display_stop="672562" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089300" FullName="Neanderthal introgressed variant-containing enhancer experimental_86819" GeneID="132089300" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="673941" stop="674110" display_start="673941" display_stop="674110" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089301" FullName="Neanderthal introgressed variant-containing enhancer experimental_86831" GeneID="132089301" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="676568" stop="676737" display_start="676568" display_stop="676737" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089302" FullName="Neanderthal introgressed variant-containing enhancer experimental_86835" GeneID="132089302" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="681776" stop="681945" display_start="681776" display_stop="681945" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132089303" FullName="Neanderthal introgressed variant-containing enhancer experimental_86882" GeneID="132089303" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="775580" stop="775749" display_start="775580" display_stop="775749" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132090722" FullName="Neanderthal introgressed variant-containing enhancer experimental_86749/86750" GeneID="132090722" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="645284" stop="645453" display_start="645284" display_stop="645453" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132090723" FullName="Neanderthal introgressed variant-containing enhancer experimental_86841/86842" GeneID="132090723" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="684688" stop="684857" display_start="684688" display_stop="684857" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC132205959" FullName="Neanderthal introgressed variant-containing enhancers experimental_86823 and experimental_86827" GeneID="132205959" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="676223" stop="676515" display_start="676223" display_stop="676515" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="TPPP" FullName="tubulin polymerization promoting protein" GeneID="11076" HGNC_ID="HGNC:24164" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="659862" stop="700727" display_start="659862" display_stop="700727" Strand="-"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="659976" stop="693509" display_start="659976" display_stop="693509" variantLength="33534" Strand="-"/>
-            <XRef ID="11076" DB="Gene"/>
-            <XRef Type="MIM" ID="608773" DB="OMIM"/>
-            <XRef ID="HGNC:24164" DB="HGNC"/>
-          </MeasureRelationship>
-          <MeasureRelationship Type="genes overlapped by variant">
-            <Name>
-              <ElementValue Type="Preferred">zinc finger DHHC-type containing 11</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">ZDHHC11</ElementValue>
-            </Symbol>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="659976" stop="693509" display_start="659976" display_stop="693509" Strand="-"/>
+          </Location>
+          <OMIM>608773</OMIM>
+        </Gene>
+        <Gene Symbol="ZDHHC11" FullName="zinc finger DHHC-type containing 11" GeneID="79844" HGNC_ID="HGNC:19158" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="795605" stop="860563" display_start="795605" display_stop="860563" Strand="-"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="795719" stop="851100" display_start="795719" display_stop="851100" variantLength="55382" Strand="-"/>
-            <XRef ID="79844" DB="Gene"/>
-            <XRef ID="HGNC:19158" DB="HGNC"/>
-          </MeasureRelationship>
-          <MeasureRelationship Type="genes overlapped by variant">
-            <Name>
-              <ElementValue Type="Preferred">zinc finger DHHC-type containing 11B</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">ZDHHC11B</ElementValue>
-            </Symbol>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="795719" stop="851100" display_start="795719" display_stop="851100" Strand="-"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="ZDHHC11B" FullName="zinc finger DHHC-type containing 11B" GeneID="653082" HGNC_ID="HGNC:32962" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>5p15.33</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" start="710355" stop="784729" display_start="710355" display_stop="784729" Strand="-"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="692723" stop="784841" display_start="692723" display_stop="784841" variantLength="92119" Strand="-"/>
-            <XRef ID="653082" DB="Gene"/>
-            <XRef ID="HGNC:32962" DB="HGNC"/>
-          </MeasureRelationship>
-          <XRef ID="nssv576789" DB="dbVar"/>
-          <XRef ID="nsv491918" DB="dbVar"/>
-        </Measure>
-        <Name>
-          <ElementValue Type="Preferred">GRCh38/hg38 5p15.33(chr5:629340-820360)x1</ElementValue>
-        </Name>
-      </MeasureSet>
-      <TraitSet Type="PhenotypeInstruction" ID="16994">
-        <Trait ID="18728" Type="PhenotypeInstruction">
-          <Name>
-            <ElementValue Type="Preferred">See cases</ElementValue>
-          </Name>
-        </Trait>
-      </TraitSet>
-    </ReferenceClinVarAssertion>
-    <ClinVarAssertion ID="312692" SubmissionName="nstd37">
-      <ClinVarSubmissionID localKey="nsv491918:copy number loss:See cases:1:SCV000173253" submitter="ISCA site 4" submitterDate="2014-06-21"/>
-      <ClinVarAccession Acc="SCV000173253" DateCreated="2014-08-30" DateUpdated="2015-07-10" OrgID="505240" OrgType="primary" OrganizationCategory="laboratory" Type="SCV" Version="3"/>
-      <AdditionalSubmitters>
-        <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" category="consortium"/>
-      </AdditionalSubmitters>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2009-12-30">
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" start="692723" stop="784841" display_start="692723" display_stop="784841" Strand="-"/>
+          </Location>
+        </Gene>
+      </GeneList>
+      <Name>GRCh38/hg38 5p15.33(chr5:629340-820360)x1</Name>
+      <VariantType>copy number loss</VariantType>
+      <Location>
+        <CytogeneticLocation>5p15.33</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="5" Accession="NC_000005.10" innerStart="629340" innerStop="820360" display_start="629340" display_stop="820360" variantLength="191021"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="5" Accession="NC_000005.9" innerStart="629455" innerStop="820475" display_start="629455" display_stop="820475" variantLength="191021"/>
+        <SequenceLocation Assembly="NCBI36" AssemblyAccessionVersion="GCF_000001405.12" AssemblyStatus="previous" Chr="5" Accession="NC_000005.8" innerStart="682455" innerStop="873475" display_start="682455" display_stop="873475" variantLength="191021"/>
+      </Location>
+      <HGVSlist>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000005.10" sequenceAccession="NC_000005" sequenceVersion="10" change="g.(?_629340)_(820360_?)del" Assembly="GRCh38">
+            <Expression>NC_000005.10:g.(?_629340)_(820360_?)del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000005.9" sequenceAccession="NC_000005" sequenceVersion="9" change="g.(?_629455)_(820475_?)del" Assembly="GRCh37">
+            <Expression>NC_000005.9:g.(?_629455)_(820475_?)del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="NCBI36" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000005.8" sequenceAccession="NC_000005" sequenceVersion="8" change="g.(?_682455)_(873475_?)del" Assembly="NCBI36">
+            <Expression>NC_000005.8:g.(?_682455)_(873475_?)del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="nssv576789" DB="dbVar"/>
+        <XRef ID="nsv491918" DB="dbVar"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="GRCh38/hg38 5p15.33(chr5:629340-820360)x1 AND See cases" Accession="RCV000050363" Version="7">
+        <ClassifiedConditionList TraitSetID="16994">
+          <ClassifiedCondition>See cases</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2009-12-30" SubmissionCount="1">Benign</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2009-12-30" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2015-07-10" MostRecentSubmission="2015-07-10">
         <ReviewStatus>no assertion criteria provided</ReviewStatus>
         <Description>Benign</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <ObservedIn>
-        <Sample>
-          <Origin>not provided</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <NamePlatform>ISCA 44K 024614, v2</NamePlatform>
-          <TypePlatform>Oligo aCGH</TypePlatform>
-          <Purpose>Discovery</Purpose>
-          <Description>Microarray</Description>
-          <SourceType>submitter-generated</SourceType>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData>
-          <Attribute Type="VariantAlleles" integerValue="1"/>
-        </ObservedData>
-        <TraitSet Type="Finding">
-          <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
-            <Name>
-              <ElementValue Type="Preferred">Developmental delay AND/OR other significant developmental or morphological phenotypes</ElementValue>
-            </Name>
-          </Trait>
-        </TraitSet>
-        <XRef DB="dbVar" ID="nssv576789" Type="dbVarVariantCallId"/>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="copy number loss">
+        <ConditionList>
+          <TraitSet ID="16994" Type="PhenotypeInstruction" ContributesToAggregateClassification="true">
+            <Trait ID="18728" Type="PhenotypeInstruction">
+              <Name>
+                <ElementValue Type="Preferred">See cases</ElementValue>
+              </Name>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="312692" SubmissionDate="2014-06-21" DateLastUpdated="2015-07-10" DateCreated="2014-08-30">
+        <ClinVarSubmissionID localKey="nsv491918:copy number loss:See cases:1:SCV000173253"/>
+        <ClinVarAccession Accession="SCV000173253" DateUpdated="2015-07-10" DateCreated="2014-08-30" Type="SCV" Version="3" SubmitterName="ISCA site 4" OrgID="505240" OrganizationCategory="laboratory"/>
+        <AdditionalSubmitters>
+          <SubmitterDescription OrgID="500029" SubmitterName="International Standards For Cytogenomic Arrays Consortium (ISCA)" Type="secondary" OrganizationCategory="consortium"/>
+        </AdditionalSubmitters>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2009-12-30">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Benign</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>not provided</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <NamePlatform>ISCA 44K 024614, v2</NamePlatform>
+              <TypePlatform>Oligo aCGH</TypePlatform>
+              <Purpose>Discovery</Purpose>
+              <Description>Microarray</Description>
+              <SourceType>submitter-generated</SourceType>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="1"/>
+            </ObservedData>
+            <TraitSet Type="Finding">
+              <Trait Type="Finding" ClinicalFeaturesAffectedStatus="present">
+                <Name>
+                  <ElementValue Type="Preferred">Developmental delay AND/OR other significant developmental or morphological phenotypes</ElementValue>
+                </Name>
+              </Trait>
+            </TraitSet>
+            <XRef DB="dbVar" ID="nssv576789" Type="dbVarVariantCallId"/>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>copy number loss</VariantType>
+          <Location>
+            <SequenceLocation Accession="NC_000005.8" Assembly="NCBI36" Chr="5" innerStart="682455" innerStop="873475"/>
+          </Location>
+          <XRefList>
+            <XRef DB="dbVar" ID="nssv576789" Type="dbVarVariantCallId"/>
+            <XRef DB="dbVar" ID="nsv491918" Type="dbVarVariantRegionId"/>
+          </XRefList>
           <AttributeSet>
             <Attribute Type="AbsoluteCopyNumber">1</Attribute>
           </AttributeSet>
           <AttributeSet>
             <Attribute Type="HGVS">NC_000005.8:g.(?_682455)_(873475_?)del</Attribute>
           </AttributeSet>
-          <SequenceLocation Accession="NC_000005.8" Assembly="NCBI36" Chr="5" innerStart="682455" innerStop="873475"/>
-          <XRef DB="dbVar" ID="nssv576789" Type="dbVarVariantCallId"/>
-          <XRef DB="dbVar" ID="nsv491918" Type="dbVarVariantRegionId"/>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="PhenotypeInstruction">
-        <Trait Type="PhenotypeInstruction">
-          <Name>
-            <ElementValue Type="Preferred">See cases</ElementValue>
-          </Name>
-        </Trait>
-      </TraitSet>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <Citation Abbrev="ISCA, 2010" Type="Position Statement">
-        <ID Source="PubMed">20466091</ID>
-      </Citation>
-      <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
-      <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
-    </ClinVarAssertion>
-  </ClinVarSet>
-</ReleaseSet>
+        </SimpleAllele>
+        <TraitSet Type="PhenotypeInstruction">
+          <Trait Type="PhenotypeInstruction">
+            <Name>
+              <ElementValue Type="Preferred">See cases</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <Citation Abbrev="ISCA, 2010" Type="Position Statement">
+          <ID Source="PubMed">20466091</ID>
+        </Citation>
+        <StudyDescription>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</StudyDescription>
+        <Comment>Copy number variation identified through the course of routine clinical cytogenomic testing in postnatal populations, with clinical assertions as classified by the original submitter.</Comment>
+        <SubmissionNameList>
+          <SubmissionName>nstd37</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="312692" TraitType="PhenotypeInstruction" MappingType="Name" MappingValue="See cases" MappingRef="Preferred">
+        <MedGen CUI="None" Name="See cases"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="312692" TraitType="Finding" MappingType="Name" MappingValue="Developmental delay AND/OR other significant developmental or morphological phenotypes" MappingRef="Preferred">
+        <MedGen CUI="CN218420" Name="Developmental delay AND/OR other significant developmental or morphological phenotypes"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

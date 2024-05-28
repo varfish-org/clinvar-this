@@ -1,0 +1,40 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "symbol": "INVS"
+        }
+      ],
+      "variantType": "Variation",
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_014425.5:c.796+5G>A"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    },
+    {
+      "genes": [
+        {
+          "symbol": "INVS"
+        }
+      ],
+      "variantType": "Variation",
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_014425.5:c.805_806del"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    }
+  ]
+}

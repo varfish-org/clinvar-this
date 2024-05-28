@@ -1,0 +1,71 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "name": "dynein cytoplasmic 2 heavy chain 1",
+          "symbol": "DYNC2H1"
+        }
+      ],
+      "variantType": "Variation",
+      "location": {
+        "geneLocations": [
+          "NM_001080463.1:exon 48"
+        ]
+      },
+      "otherNames": [
+        {
+          "value": "D-2653",
+          "type": "SubmitterVariantId"
+        },
+        {
+          "value": "p.H2595R"
+        }
+      ],
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_001080463.1:c.7784A>G"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    },
+    {
+      "genes": [
+        {
+          "name": "dynein cytoplasmic 2 heavy chain 1",
+          "symbol": "DYNC2H1"
+        }
+      ],
+      "variantType": "Variation",
+      "location": {
+        "geneLocations": [
+          "NM_001080463.1:Exon 33"
+        ]
+      },
+      "otherNames": [
+        {
+          "value": "D-2653",
+          "type": "SubmitterVariantId"
+        },
+        {
+          "value": "p.G1685R"
+        }
+      ],
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_001080463.1:c.5053G>A"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    }
+  ],
+  "variationType": "VARIATION_TYPE_COMPOUND_HETEROZYGOTE"
+}

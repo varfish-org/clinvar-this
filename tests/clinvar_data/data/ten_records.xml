@@ -1,0 +1,1955 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive RecordType="classified" VariationID="2" VariationName="NM_014855.3(AP5Z1):c.80_83delinsTGCTGTAAACTGTAACTGTAAA (p.Arg27_Ile28delinsLeuLeuTer)" VariationType="Indel" Accession="VCV000000002" Version="3" NumberOfSubmissions="2" NumberOfSubmitters="2" DateLastUpdated="2022-04-25" DateCreated="2017-01-30" MostRecentSubmission="2021-05-16">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15041" VariationID="2">
+      <GeneList>
+        <Gene Symbol="AP5Z1" FullName="adaptor related protein complex 5 subunit zeta 1" GeneID="9907" HGNC_ID="HGNC:22197" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>7p22.1</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="7" Accession="NC_000007.14" start="4775623" stop="4794397" display_start="4775623" display_stop="4794397" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="NC_000007.13" start="4815261" stop="4834025" display_start="4815261" display_stop="4834025" Strand="+"/>
+          </Location>
+          <OMIM>613653</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_014855.3(AP5Z1):c.80_83delinsTGCTGTAAACTGTAACTGTAAA (p.Arg27_Ile28delinsLeuLeuTer)</Name>
+      <CanonicalSPDI>NC_000007.14:4781212:GGAT:TGCTGTAAACTGTAACTGTAAA</CanonicalSPDI>
+      <VariantType>Indel</VariantType>
+      <Location>
+        <CytogeneticLocation>7p22.1</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="7" Accession="NC_000007.14" start="4781213" stop="4781216" display_start="4781213" display_stop="4781216" variantLength="22" positionVCF="4781213" referenceAlleleVCF="GGAT" alternateAlleleVCF="TGCTGTAAACTGTAACTGTAAA"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="NC_000007.13" start="4820844" stop="4820847" display_start="4820844" display_stop="4820847" variantLength="22" positionVCF="4820844" referenceAlleleVCF="GGAT" alternateAlleleVCF="TGCTGTAAACTGTAACTGTAAA"/>
+      </Location>
+      <OtherNameList>
+        <Name>AP5Z1, 4-BP DEL/22-BP INS, NT80</Name>
+      </OtherNameList>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.13" sequenceAccession="NC_000007" sequenceVersion="13" change="g.4820844_4820847delinsTGCTGTAAACTGTAACTGTAAA" Assembly="GRCh37">
+            <Expression>NC_000007.13:g.4820844_4820847delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001364858.1" sequenceAccession="NM_001364858" sequenceVersion="1" change="c.-202_-199delinsTGCTGTAAACTGTAACTGTAAA">
+            <Expression>NM_001364858.1:c.-202_-199delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001623" Type="5 prime UTR variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="LRG_1247t1" sequenceAccession="LRG_1247t1" change="c.80_83delinsTGCTGTAAACTGTAACTGTAAA">
+            <Expression>LRG_1247t1:c.80_83delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="LRG_1247p1" sequenceAccession="LRG_1247p1" change="p.Arg27_Ile28delinsLeuLeuTer">
+            <Expression>LRG_1247p1:p.Arg27_Ile28delinsLeuLeuTer</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="LRG_1247" sequenceAccession="LRG_1247" change="g.10583_10586delinsTGCTGTAAACTGTAACTGTAAA">
+            <Expression>LRG_1247:g.10583_10586delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_014855.3" sequenceAccession="NM_014855" sequenceVersion="3" change="c.80_83delinsTGCTGTAAACTGTAACTGTAAA" MANESelect="true">
+            <Expression>NM_014855.3:c.80_83delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_055670.1" sequenceAccession="NP_055670" sequenceVersion="1" change="p.Arg27_Ile28delinsLeuLeuTer">
+            <Expression>NP_055670.1:p.Arg27_Ile28delinsLeuLeuTer</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.14" sequenceAccession="NC_000007" sequenceVersion="14" change="g.4781213_4781216delinsTGCTGTAAACTGTAACTGTAAA" Assembly="GRCh38">
+            <Expression>NC_000007.14:g.4781213_4781216delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028111.1" sequenceAccession="NG_028111" sequenceVersion="1" change="g.10583_10586delinsTGCTGTAAACTGTAACTGTAAA">
+            <Expression>NG_028111.1:g.10583_10586delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="non-coding">
+          <NucleotideExpression sequenceAccessionVersion="NR_157345.1" sequenceAccession="NR_157345" sequenceVersion="1" change="n.173_176delinsTGCTGTAAACTGTAACTGTAAA">
+            <Expression>NR_157345.1:n.173_176delinsTGCTGTAAACTGTAACTGTAAA</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001619" Type="non-coding transcript variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA215070" DB="ClinGen"/>
+        <XRef Type="Allelic variant" ID="613653.0001" DB="OMIM"/>
+        <XRef Type="rs" ID="397704705" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_014855.3(AP5Z1):c.80_83delinsTGCTGTAAACTGTAACTGTAAA (p.Arg27_Ile28delinsLeuLeuTer) AND Hereditary spastic paraplegia 48" Accession="RCV000000012" Version="5">
+        <ClassifiedConditionList TraitSetID="2">
+          <ClassifiedCondition DB="MedGen" ID="C3150901">Hereditary spastic paraplegia 48</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+            <Description SubmissionCount="2">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification NumberOfSubmissions="2" NumberOfSubmitters="2" DateCreated="2017-01-30" MostRecentSubmission="2021-05-16">
+        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20613862</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="2" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="9580" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Hereditary spastic paraplegia 48</ElementValue>
+                <XRef ID="MONDO:0013342" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Spastic paraplegia 48</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Spastic paraplegia 48, autosomal recessive</ElementValue>
+                <XRef ID="Spastic+paraplegia+48%2C+autosomal+recessive/9323" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">SPG48</ElementValue>
+                <XRef Type="MIM" ID="613647" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="306511" DB="Orphanet"/>
+              <XRef ID="C3150901" DB="MedGen"/>
+              <XRef ID="MONDO:0013342" DB="MONDO"/>
+              <XRef Type="MIM" ID="613647" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20155" SubmissionDate="2017-01-26" DateLastUpdated="2017-01-30" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613653.0001_SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE" title="AP5Z1, 4-BP DEL/22-BP INS, NT80_SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE"/>
+        <ClinVarAccession Accession="SCV000020155" DateUpdated="2017-01-30" DateCreated="2013-04-04" Type="SCV" Version="3" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-06-29">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In 2 French sibs with autosomal recessive spastic paraplegia-48 (SPG48; 613647), Slabicki et al. (2010) identified a homozygous complex insertion/deletion mutation in exon 2 of the KIAA0415 gene. The mutation comprised a 4-bp deletion (80del4) and a 22-bp insertion (84ins22), resulting in a frameshift and premature stop codon following residue 29. The insertion was found to be an imperfect quadruplication of a sequence, suggesting DNA polymerase slippage during DNA synthesis as the pathogenetic mechanism. The patients presented with progressive spastic paraplegia associated with urinary incontinence from ages 50 and 49 years, respectively. One had a normal cerebral MRI, whereas the other had spinal hyperintensities in the cervical spine. The unaffected parents were not known to be consanguineous, but they originated from 2 neighboring villages. The mutation was not found in 156 Caucasian or 242 North African control chromosomes. Studies of lymphoblastoid cells derived from 1 patient showed increased sensitivity to DNA-damaging drugs. The findings suggested a link between this form of spastic paraplegia, which could be considered a neurodegenerative disease, and defects in DNA repair.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20613862</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="613647" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="AP5Z1"/>
+          </GeneList>
+          <Name>AP5Z1, 4-BP DEL/22-BP INS, NT80</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">4-BP DEL/22-BP INS, NT80</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613653.0001" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+      <ClinicalAssertion ID="2865972" SubmissionDate="2020-11-14" DateLastUpdated="2021-05-16" DateCreated="2021-05-16">
+        <ClinVarSubmissionID localKey="NM_014855.3:c.80_83delinsTGCTGTAAACTGTAACTGTAAA|OMIM:613647" submittedAssembly="GRCh37"/>
+        <ClinVarAccession Accession="SCV001451119" DateUpdated="2021-05-16" DateCreated="2021-05-16" Type="SCV" Version="1" SubmitterName="Paris Brain Institute, Inserm - ICM" OrgID="507826" OrganizationCategory="laboratory"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification>
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines, 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>unknown</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="2"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>Variation</VariantType>
+          <AttributeSet>
+            <Attribute Type="HGVS">NM_014855.3:c.80_83delinsTGCTGTAAACTGTAACTGTAAA</Attribute>
+          </AttributeSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="613647" Type="MIM"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>SUB8526155</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20155" TraitType="Disease" MappingType="Name" MappingValue="SPASTIC PARAPLEGIA 48, AUTOSOMAL RECESSIVE" MappingRef="Preferred">
+        <MedGen CUI="C3150901" Name="Hereditary spastic paraplegia 48"/>
+      </TraitMapping>
+      <TraitMapping ClinicalAssertionID="2865972" TraitType="Disease" MappingType="XRef" MappingValue="613647" MappingRef="OMIM">
+        <MedGen CUI="C3150901" Name="Hereditary spastic paraplegia 48"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="6" VariationName="NM_017547.4(FOXRED1):c.1289A&gt;G (p.Asn430Ser)" VariationType="single nucleotide variant" Accession="VCV000000006" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2019-02-04" MostRecentSubmission="2019-02-04">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15045" VariationID="6">
+      <GeneList>
+        <Gene Symbol="FOXRED1" FullName="FAD dependent oxidoreductase domain containing 1" GeneID="55572" HGNC_ID="HGNC:26927" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>11q24.2</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="11" Accession="NC_000011.10" start="126269154" stop="126278126" display_start="126269154" display_stop="126278126" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="11" Accession="NC_000011.9" start="126138934" stop="126148026" display_start="126138934" display_stop="126148026" Strand="+"/>
+          </Location>
+          <OMIM>613622</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_017547.4(FOXRED1):c.1289A&gt;G (p.Asn430Ser)</Name>
+      <CanonicalSPDI>NC_000011.10:126277516:A:G</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>11q24.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="11" Accession="NC_000011.10" start="126277517" stop="126277517" display_start="126277517" display_stop="126277517" variantLength="1" positionVCF="126277517" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="11" Accession="NC_000011.9" start="126147412" stop="126147412" display_start="126147412" display_stop="126147412" variantLength="1" positionVCF="126147412" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
+      </Location>
+      <ProteinChange>N430S</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="protein">
+          <ProteinExpression sequenceAccessionVersion="Q96CU9" sequenceAccession="Q96CU9" change="p.Asn430Ser">
+            <Expression>Q96CU9:p.Asn430Ser</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000011.10" sequenceAccession="NC_000011" sequenceVersion="10" change="g.126277517A&gt;G" Assembly="GRCh38">
+            <Expression>NC_000011.10:g.126277517A&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000011.9" sequenceAccession="NC_000011" sequenceVersion="9" change="g.126147412A&gt;G" Assembly="GRCh37">
+            <Expression>NC_000011.9:g.126147412A&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="non-coding">
+          <NucleotideExpression sequenceAccessionVersion="NR_037648.2" sequenceAccession="NR_037648" sequenceVersion="2" change="n.1466A&gt;G">
+            <Expression>NR_037648.2:n.1466A&gt;G</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001619" Type="non-coding transcript variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028029.1" sequenceAccession="NG_028029" sequenceVersion="1" change="g.13478A&gt;G">
+            <Expression>NG_028029.1:g.13478A&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_017547.4" sequenceAccession="NM_017547" sequenceVersion="4" change="c.1289A&gt;G" MANESelect="true">
+            <Expression>NM_017547.4:c.1289A&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_060017.1" sequenceAccession="NP_060017" sequenceVersion="1" change="p.Asn430Ser">
+            <Expression>NP_060017.1:p.Asn430Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="non-coding">
+          <NucleotideExpression sequenceAccessionVersion="NR_037647.2" sequenceAccession="NR_037647" sequenceVersion="2" change="n.1121A&gt;G">
+            <Expression>NR_037647.2:n.1121A&gt;G</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001619" Type="non-coding transcript variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA113794" DB="ClinGen"/>
+        <XRef ID="Q96CU9#VAR_064571" DB="UniProtKB"/>
+        <XRef Type="Allelic variant" ID="613622.0002" DB="OMIM"/>
+        <XRef Type="rs" ID="267606830" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_017547.4(FOXRED1):c.1289A&gt;G (p.Asn430Ser) AND Mitochondrial complex 1 deficiency, nuclear type 19" Accession="RCV000000016" Version="6">
+        <ClassifiedConditionList TraitSetID="45335">
+          <ClassifiedCondition DB="MedGen" ID="C4748791">Mitochondrial complex 1 deficiency, nuclear type 19</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-10-01" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-10-01" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2019-02-04" MostRecentSubmission="2019-02-04">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20818383</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="45335" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="40897" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Mitochondrial complex 1 deficiency, nuclear type 19</ElementValue>
+                <XRef ID="MONDO:0032624" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">MITOCHONDRIAL COMPLEX I DEFICIENCY, NUCLEAR TYPE 19</ElementValue>
+                <XRef Type="MIM" ID="618241" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613622.0001" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613622.0002" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613622.0003" DB="OMIM"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">MC1DN19</ElementValue>
+                <XRef Type="MIM" ID="618241" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="C4748791" DB="MedGen"/>
+              <XRef ID="MONDO:0032624" DB="MONDO"/>
+              <XRef Type="MIM" ID="618241" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20159" SubmissionDate="2019-01-31" DateLastUpdated="2019-02-04" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613622.0002_MITOCHONDRIAL COMPLEX I DEFICIENCY, NUCLEAR TYPE 19" title="FOXRED1, ASN430SER_MITOCHONDRIAL COMPLEX I DEFICIENCY, NUCLEAR TYPE 19"/>
+        <ClinVarAccession Accession="SCV000020159" DateUpdated="2019-02-04" DateCreated="2013-04-04" Type="SCV" Version="5" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-10-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">For discussion of the asn430-to-ser (N430S) mutation in the FOXRED1 gene that was found in compound heterozygous state in a patient with mitochondrial complex I deficiency nuclear type 19 (MC1DN19; 618241) manifesting as Leigh syndrome (see 252010), by Calvo et al. (2010), see 613622.0001.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20818383</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="618241" Type="MIM"/>
+              <XRef DB="OMIM" ID="252010" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="FOXRED1"/>
+          </GeneList>
+          <Name>FOXRED1, ASN430SER</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">ASN430SER</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613622.0002" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">MITOCHONDRIAL COMPLEX I DEFICIENCY, NUCLEAR TYPE 19</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20159" TraitType="Disease" MappingType="Name" MappingValue="MITOCHONDRIAL COMPLEX I DEFICIENCY, NUCLEAR TYPE 19" MappingRef="Preferred">
+        <MedGen CUI="C4748791" Name="Mitochondrial complex 1 deficiency, nuclear type 19"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="3" VariationName="NM_014855.3(AP5Z1):c.1413_1426del (p.Leu473fs)" VariationType="Deletion" Accession="VCV000000003" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2017-01-30" MostRecentSubmission="2017-01-30">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15042" VariationID="3">
+      <GeneList>
+        <Gene Symbol="AP5Z1" FullName="adaptor related protein complex 5 subunit zeta 1" GeneID="9907" HGNC_ID="HGNC:22197" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>7p22.1</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="7" Accession="NC_000007.14" start="4775623" stop="4794397" display_start="4775623" display_stop="4794397" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="NC_000007.13" start="4815261" stop="4834025" display_start="4815261" display_stop="4834025" Strand="+"/>
+          </Location>
+          <OMIM>613653</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_014855.3(AP5Z1):c.1413_1426del (p.Leu473fs)</Name>
+      <CanonicalSPDI>NC_000007.14:4787729:CTGCTGGACCTGCCCTGCT:CTGCT</CanonicalSPDI>
+      <VariantType>Deletion</VariantType>
+      <Location>
+        <CytogeneticLocation>7p22.1</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="7" Accession="NC_000007.14" start="4787730" stop="4787743" display_start="4787730" display_stop="4787743" variantLength="14" positionVCF="4787729" referenceAlleleVCF="GCTGCTGGACCTGCC" alternateAlleleVCF="G"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="NC_000007.13" start="4827361" stop="4827374" display_start="4827361" display_stop="4827374" variantLength="14" positionVCF="4827360" referenceAlleleVCF="GCTGCTGGACCTGCC" alternateAlleleVCF="G"/>
+      </Location>
+      <OtherNameList>
+        <Name>AP5Z1, 14-BP DEL, NT1413</Name>
+      </OtherNameList>
+      <ProteinChange>L317fs</ProteinChange>
+      <ProteinChange>L473fs</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="LRG_1247" sequenceAccession="LRG_1247" change="g.17105_17118del">
+            <Expression>LRG_1247:g.17105_17118del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="LRG_1247t1" sequenceAccession="LRG_1247t1" change="c.1413_1426del">
+            <Expression>LRG_1247t1:c.1413_1426del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="LRG_1247p1" sequenceAccession="LRG_1247p1" change="p.Leu473fs">
+            <Expression>LRG_1247p1:p.Leu473fs</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001364858.1" sequenceAccession="NM_001364858" sequenceVersion="1" change="c.945_958del">
+            <Expression>NM_001364858.1:c.945_958del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001351787.1" sequenceAccession="NP_001351787" sequenceVersion="1" change="p.Leu317fs">
+            <Expression>NP_001351787.1:p.Leu317fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_014855.3" sequenceAccession="NM_014855" sequenceVersion="3" change="c.1413_1426del" MANESelect="true">
+            <Expression>NM_014855.3:c.1413_1426del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_055670.1" sequenceAccession="NP_055670" sequenceVersion="1" change="p.Leu473fs">
+            <Expression>NP_055670.1:p.Leu473fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="non-coding">
+          <NucleotideExpression sequenceAccessionVersion="NR_157345.1" sequenceAccession="NR_157345" sequenceVersion="1" change="n.1544_1557del">
+            <Expression>NR_157345.1:n.1544_1557del</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001619" Type="non-coding transcript variant" DB="SO"/>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.13" sequenceAccession="NC_000007" sequenceVersion="13" change="g.4827366_4827379del" Assembly="GRCh37">
+            <Expression>NC_000007.13:g.4827366_4827379del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.14" sequenceAccession="NC_000007" sequenceVersion="14" change="g.4787735_4787748del" Assembly="GRCh38">
+            <Expression>NC_000007.14:g.4787735_4787748del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028111.1" sequenceAccession="NG_028111" sequenceVersion="1" change="g.17105_17118del">
+            <Expression>NG_028111.1:g.17105_17118del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef Type="rs" ID="397704709" DB="dbSNP"/>
+        <XRef ID="CA215072" DB="ClinGen"/>
+        <XRef Type="Allelic variant" ID="613653.0002" DB="OMIM"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_014855.3(AP5Z1):c.1413_1426del (p.Leu473fs) AND Hereditary spastic paraplegia 48" Accession="RCV000000013" Version="6">
+        <ClassifiedConditionList TraitSetID="2">
+          <ClassifiedCondition DB="MedGen" ID="C3150901">Hereditary spastic paraplegia 48</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-06-29" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-06-29" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2017-01-30" MostRecentSubmission="2017-01-30">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20613862</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="2" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="9580" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Hereditary spastic paraplegia 48</ElementValue>
+                <XRef ID="MONDO:0013342" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Spastic paraplegia 48</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Spastic paraplegia 48, autosomal recessive</ElementValue>
+                <XRef ID="Spastic+paraplegia+48%2C+autosomal+recessive/9323" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">SPG48</ElementValue>
+                <XRef Type="MIM" ID="613647" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="306511" DB="Orphanet"/>
+              <XRef ID="C3150901" DB="MedGen"/>
+              <XRef ID="MONDO:0013342" DB="MONDO"/>
+              <XRef Type="MIM" ID="613647" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20156" SubmissionDate="2017-01-26" DateLastUpdated="2017-01-30" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613653.0002_SPASTIC PARAPLEGIA 48" title="AP5Z1, 14-BP DEL, NT1413_SPASTIC PARAPLEGIA 48"/>
+        <ClinVarAccession Accession="SCV000020156" DateUpdated="2017-01-30" DateCreated="2013-04-04" Type="SCV" Version="5" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-06-29">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In a patient with sporadic SPG48 (613647), Slabicki et al. (2010) identified a heterozygous 14-bp deletion (1413del14) in the KIAA0415 gene, resulting in a frameshift and premature termination following residue 56. No family members were available for study, and no copy number variations were found on chromosome 7, but a second small change affecting the KIAA0415 gene could not be completely excluded. The mutation was not found in 158 Caucasian or 84 North African control chromosomes.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20613862</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="613647" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="AP5Z1"/>
+          </GeneList>
+          <Name>AP5Z1, 14-BP DEL, NT1413</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">14-BP DEL, NT1413</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613653.0002" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">SPASTIC PARAPLEGIA 48</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20156" TraitType="Disease" MappingType="Name" MappingValue="SPASTIC PARAPLEGIA 48" MappingRef="Preferred">
+        <MedGen CUI="C3150901" Name="Hereditary spastic paraplegia 48"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="26" VariationName="NM_001042472.3(ABHD12):c.846_852dup (p.His285Ter)" VariationType="Duplication" Accession="VCV000000026" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2015-05-18" MostRecentSubmission="2015-05-18">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15065" VariationID="26">
+      <GeneList>
+        <Gene Symbol="ABHD12" FullName="abhydrolase domain containing 12, lysophospholipase" GeneID="26090" HGNC_ID="HGNC:15868" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25294743" stop="25390835" display_start="25294743" display_stop="25390835" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="25275378" stop="25371617" display_start="25275378" display_stop="25371617" Strand="-"/>
+          </Location>
+          <OMIM>613599</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_001042472.3(ABHD12):c.846_852dup (p.His285Ter)</Name>
+      <CanonicalSPDI>NC_000020.11:25307980:GCTCTTAGCT:GCTCTTAGCTCTTAGCT</CanonicalSPDI>
+      <VariantType>Duplication</VariantType>
+      <Location>
+        <CytogeneticLocation>20p11.21</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25307980" stop="25307981" display_start="25307980" display_stop="25307981" variantLength="7" positionVCF="25307980" referenceAlleleVCF="G" alternateAlleleVCF="GGCTCTTA"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="25288616" stop="25288617" display_start="25288616" display_stop="25288617" variantLength="7" positionVCF="25288616" referenceAlleleVCF="G" alternateAlleleVCF="GGCTCTTA"/>
+      </Location>
+      <ProteinChange>H285*</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000020.10" sequenceAccession="NC_000020" sequenceVersion="10" change="g.25288620_25288626dup" Assembly="GRCh37">
+            <Expression>NC_000020.10:g.25288620_25288626dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000020.11" sequenceAccession="NC_000020" sequenceVersion="11" change="g.25307984_25307990dup" Assembly="GRCh38">
+            <Expression>NC_000020.11:g.25307984_25307990dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028119.1" sequenceAccession="NG_028119" sequenceVersion="1" change="g.87996_88002dup">
+            <Expression>NG_028119.1:g.87996_88002dup</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001042472.3" sequenceAccession="NM_001042472" sequenceVersion="3" change="c.846_852dup" MANESelect="true">
+            <Expression>NM_001042472.3:c.846_852dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001035937.1" sequenceAccession="NP_001035937" sequenceVersion="1" change="p.His285Ter">
+            <Expression>NP_001035937.1:p.His285Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_015600.5" sequenceAccession="NM_015600" sequenceVersion="5" change="c.846_852dup">
+            <Expression>NM_015600.5:c.846_852dup</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_056415.1" sequenceAccession="NP_056415" sequenceVersion="1" change="p.His285Ter">
+            <Expression>NP_056415.1:p.His285Ter</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001587" Type="nonsense" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA113810" DB="ClinGen"/>
+        <XRef Type="Allelic variant" ID="613599.0003" DB="OMIM"/>
+        <XRef Type="rs" ID="397704714" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_001042472.3(ABHD12):c.846_852dup (p.His285Ter) AND PHARC syndrome" Accession="RCV000000043" Version="3">
+        <ClassifiedConditionList TraitSetID="17">
+          <ClassifiedCondition DB="MedGen" ID="C2675204">PHARC syndrome</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-09-10" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-09-10" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2015-05-18" MostRecentSubmission="2015-05-18">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20797687</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="17" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="5781" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">PHARC syndrome</ElementValue>
+                <XRef ID="MONDO:0012984" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Polyneuropathy-hearing loss-ataxia-retinitis pigmentosa-cataract syndrome</ElementValue>
+                <XRef ID="171848" DB="Orphanet"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract</ElementValue>
+                <XRef ID="Polyneuropathy%2C+hearing+loss%2C+ataxia%2C+retinitis+pigmentosa%2C+and+cataract/9132" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">PHARC</ElementValue>
+                <XRef Type="MIM" ID="612674" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="171848" DB="Orphanet"/>
+              <XRef ID="C2675204" DB="MedGen"/>
+              <XRef ID="MONDO:0012984" DB="MONDO"/>
+              <XRef Type="MIM" ID="612674" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20186" SubmissionDate="2015-05-12" DateLastUpdated="2015-05-18" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613599.0003_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT" title="ABHD12, 7-BP DUP, NT846_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT"/>
+        <ClinVarAccession Accession="SCV000020186" DateUpdated="2015-05-18" DateCreated="2013-04-04" Type="SCV" Version="2" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-09-10">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In 7 patients from 4 Algerian families with polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract (PHARC; 612674), Fiskerstrand et al. (2010) identified a homozygous 7-bp duplication in exon 9 of the ABHD12 gene (846_852dupTAAGAGC), resulting in a premature stop codon at residue 285. The patients ranged in age from 10 to 44 years. The older individuals were more severely affected. All patients had some evidence of a polyneuropathy, with hyporeflexia, pes cavus, and/or sensory loss, and most had gait ataxia with onset in the childhood. Four of the older patients had hearing loss, but only 1 had retinitis pigmentosa and cataract. Other common features included extensor plantar responses and cerebellar atrophy.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20797687</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="612674" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="ABHD12"/>
+          </GeneList>
+          <Name>ABHD12, 7-BP DUP, NT846</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">7-BP DUP, NT846</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613599.0003" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20186" TraitType="Disease" MappingType="Name" MappingValue="POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT" MappingRef="Preferred">
+        <MedGen CUI="C2675204" Name="PHARC syndrome"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="32" VariationName="NM_138413.4(HOGA1):c.700+4G&gt;T" VariationType="single nucleotide variant" Accession="VCV000000032" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2013-04-04" MostRecentSubmission="2013-04-04">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15071" VariationID="32">
+      <GeneList>
+        <Gene Symbol="HOGA1" FullName="4-hydroxy-2-oxoglutarate aldolase 1" GeneID="112817" HGNC_ID="HGNC:25155" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>10q24.2</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="10" Accession="NC_000010.11" start="97584389" stop="97612802" display_start="97584389" display_stop="97612802" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="10" Accession="NC_000010.10" start="99344101" stop="99372558" display_start="99344101" display_stop="99372558" Strand="+"/>
+          </Location>
+          <OMIM>613597</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_138413.4(HOGA1):c.700+4G&gt;T</Name>
+      <CanonicalSPDI>NC_000010.11:97600166:G:T</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>10q24.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="10" Accession="NC_000010.11" start="97600167" stop="97600167" display_start="97600167" display_stop="97600167" variantLength="1" positionVCF="97600167" referenceAlleleVCF="G" alternateAlleleVCF="T"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="10" Accession="NC_000010.10" start="99359924" stop="99359924" display_start="99359924" display_stop="99359924" variantLength="1" positionVCF="99359924" referenceAlleleVCF="G" alternateAlleleVCF="T"/>
+      </Location>
+      <OtherNameList>
+        <Name>IVS, G-T, +4</Name>
+      </OtherNameList>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000010.10" sequenceAccession="NC_000010" sequenceVersion="10" change="g.99359924G&gt;T" Assembly="GRCh37">
+            <Expression>NC_000010.10:g.99359924G&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000010.11" sequenceAccession="NC_000010" sequenceVersion="11" change="g.97600167G&gt;T" Assembly="GRCh38">
+            <Expression>NC_000010.11:g.97600167G&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_027922.1" sequenceAccession="NG_027922" sequenceVersion="1" change="g.20823G&gt;T">
+            <Expression>NG_027922.1:g.20823G&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_138413.4" sequenceAccession="NM_138413" sequenceVersion="4" change="c.700+4G&gt;T" MANESelect="true">
+            <Expression>NM_138413.4:c.700+4G&gt;T</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001627" Type="intron variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001134670.2" sequenceAccession="NM_001134670" sequenceVersion="2" change="c.212-1690G&gt;T">
+            <Expression>NM_001134670.2:c.212-1690G&gt;T</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001627" Type="intron variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="HOGA1_000005" DB="LOVD 3"/>
+        <XRef Type="Allelic variant" ID="613597.0004" DB="OMIM"/>
+        <XRef Type="rs" ID="2041105506" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_138413.4(HOGA1):c.700+4G&gt;T AND Primary hyperoxaluria type 3" Accession="RCV000000049" Version="2">
+        <ClassifiedConditionList TraitSetID="19">
+          <ClassifiedCondition DB="MedGen" ID="C3150878">Primary hyperoxaluria type 3</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-09-10" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-09-10" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2013-04-04" MostRecentSubmission="2013-04-04">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20797690</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="19" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="9592" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Primary hyperoxaluria type 3</ElementValue>
+                <XRef ID="MONDO:0013327" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">PH III</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Primary hyperoxaluria, type III</ElementValue>
+                <XRef ID="Primary+Hyperoxaluria+Type+3/8596" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">HP3</ElementValue>
+                <XRef Type="MIM" ID="613616" DB="OMIM"/>
+              </Symbol>
+              <Symbol>
+                <ElementValue Type="Alternate">HOGA1</ElementValue>
+              </Symbol>
+              <Symbol>
+                <ElementValue Type="Alternate">PH3</ElementValue>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="disease mechanism" integerValue="273">loss of function</Attribute>
+                <XRef ID="GTR000561373" DB="Genetic Testing Registry (GTR)"/>
+              </AttributeSet>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="10738"/>
+                <XRef ID="10738" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <Citation Type="review" Abbrev="GeneReviews">
+                <ID Source="PubMed">26401545</ID>
+                <ID Source="BookShelf">NBK316514</ID>
+              </Citation>
+              <XRef ID="416" DB="Orphanet"/>
+              <XRef ID="93600" DB="Orphanet"/>
+              <XRef ID="C3150878" DB="MedGen"/>
+              <XRef ID="MONDO:0013327" DB="MONDO"/>
+              <XRef Type="MIM" ID="613616" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20192" SubmissionDate="2012-11-21" DateLastUpdated="2013-04-04" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613597.0004_HYPEROXALURIA, PRIMARY, TYPE III" title="HOGA1, IVS, G-T, +4_HYPEROXALURIA, PRIMARY, TYPE III"/>
+        <ClinVarAccession Accession="SCV000020192" DateUpdated="2013-04-04" DateCreated="2013-04-04" Type="SCV" Version="1" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-09-10">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In a 24-year-old woman from a European American family with calcium oxalate nephrolithiasis (HP3; 613616), Belostotsky et al. (2010) identified compound heterozygosity for an intronic G-to-T transversion (701+4G-T) in the DHDPSL gene, predicted to result in insertion of 17 amino acid residues, and glu315del (613597.0001). The unaffected parents were each heterozygous for 1 of the mutations, neither of which was found in 226 chromosomes from European American individuals.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20797690</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="613616" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="HOGA1"/>
+          </GeneList>
+          <Name>HOGA1, IVS, G-T, +4</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">IVS, G-T, +4</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613597.0004" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">HYPEROXALURIA, PRIMARY, TYPE III</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20192" TraitType="Disease" MappingType="Name" MappingValue="HYPEROXALURIA, PRIMARY, TYPE III" MappingRef="Preferred">
+        <MedGen CUI="C3150878" Name="Primary hyperoxaluria type 3"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="42" VariationName="NM_001083961.2(WDR62):c.671G&gt;C (p.Trp224Ser)" VariationType="single nucleotide variant" Accession="VCV000000042" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2019-03-10" MostRecentSubmission="2019-03-10">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15081" VariationID="42">
+      <GeneList>
+        <Gene Symbol="WDR62" FullName="WD repeat domain 62" GeneID="284403" HGNC_ID="HGNC:24502" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>19q13.12</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="36054897" stop="36111145" display_start="36054897" display_stop="36111145" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="36545782" stop="36596011" display_start="36545782" display_stop="36596011" Strand="+"/>
+          </Location>
+          <OMIM>613583</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_001083961.2(WDR62):c.671G&gt;C (p.Trp224Ser)</Name>
+      <CanonicalSPDI>NC_000019.10:36067414:G:C</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>19q13.12</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="36067415" stop="36067415" display_start="36067415" display_stop="36067415" variantLength="1" positionVCF="36067415" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="36558317" stop="36558317" display_start="36558317" display_stop="36558317" variantLength="1" positionVCF="36558317" referenceAlleleVCF="G" alternateAlleleVCF="C"/>
+      </Location>
+      <ProteinChange>W224S</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.10" sequenceAccession="NC_000019" sequenceVersion="10" change="g.36067415G&gt;C" Assembly="GRCh38">
+            <Expression>NC_000019.10:g.36067415G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.9" sequenceAccession="NC_000019" sequenceVersion="9" change="g.36558317G&gt;C" Assembly="GRCh37">
+            <Expression>NC_000019.9:g.36558317G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028101.1" sequenceAccession="NG_028101" sequenceVersion="1" change="g.17535G&gt;C">
+            <Expression>NG_028101.1:g.17535G&gt;C</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001083961.2" sequenceAccession="NM_001083961" sequenceVersion="2" change="c.671G&gt;C" MANESelect="true">
+            <Expression>NM_001083961.2:c.671G&gt;C</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001077430.1" sequenceAccession="NP_001077430" sequenceVersion="1" change="p.Trp224Ser">
+            <Expression>NP_001077430.1:p.Trp224Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_173636.5" sequenceAccession="NM_173636" sequenceVersion="5" change="c.671G&gt;C">
+            <Expression>NM_173636.5:c.671G&gt;C</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_775907.4" sequenceAccession="NP_775907" sequenceVersion="4" change="p.Trp224Ser">
+            <Expression>NP_775907.4:p.Trp224Ser</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="protein">
+          <ProteinExpression sequenceAccessionVersion="O43379" sequenceAccession="O43379" change="p.Trp224Ser">
+            <Expression>O43379:p.Trp224Ser</Expression>
+          </ProteinExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA251361" DB="ClinGen"/>
+        <XRef ID="O43379#VAR_063702" DB="UniProtKB"/>
+        <XRef Type="Allelic variant" ID="613583.0003" DB="OMIM"/>
+        <XRef Type="rs" ID="267607176" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_001083961.2(WDR62):c.671G&gt;C (p.Trp224Ser) AND Microcephaly 2, primary, autosomal recessive, with or without cortical malformations" Accession="RCV000000059" Version="5">
+        <ClassifiedConditionList TraitSetID="7167">
+          <ClassifiedCondition DB="MedGen" ID="C1858535">Microcephaly 2, primary, autosomal recessive, with or without cortical malformations</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-09-09" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-09-09" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2019-03-10" MostRecentSubmission="2019-03-10">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20729831</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="7167" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="5522" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS</ElementValue>
+                <XRef Type="Allelic variant" ID="613583.0005" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0003" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0004" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0009" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0001" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0010" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0013" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0002" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0012" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Primary autosomal recessive microcephaly 2</ElementValue>
+                <XRef ID="Primary+autosomal+recessive+microcephaly+2/9156" DB="Genetic Alliance"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Microcephaly 2, primary, autosomal recessive, with or without cortical malformations</ElementValue>
+                <XRef ID="MONDO:0011435" DB="MONDO"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">MCPH2</ElementValue>
+                <XRef Type="MIM" ID="604317" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="public definition">In WDR62 primary microcephaly (WDR62-MCPH), microcephaly (occipitofrontal circumference [OFC] = -2 SD) is usually present at birth, but in some instances becomes evident later in the first year of life. Growth is otherwise normal. Except for brain malformations in most affected individuals, no other congenital malformations are observed. Central nervous system involvement can include delayed motor development, mild-to-severe intellectual disability (ID), behavior problems, epilepsy, spasticity, and ataxia.</Attribute>
+                <XRef ID="NBK578067" DB="GeneReviews"/>
+              </AttributeSet>
+              <Citation Type="review" Abbrev="GeneReviews">
+                <ID Source="PubMed">35188728</ID>
+                <ID Source="BookShelf">NBK578067</ID>
+              </Citation>
+              <XRef ID="2512" DB="Orphanet"/>
+              <XRef ID="C1858535" DB="MedGen"/>
+              <XRef ID="MONDO:0011435" DB="MONDO"/>
+              <XRef Type="MIM" ID="604317" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20202" SubmissionDate="2019-03-05" DateLastUpdated="2019-03-10" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613583.0003_MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS" title="WDR62, TRP224SER_MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS"/>
+        <ClinVarAccession Accession="SCV000020202" DateUpdated="2019-03-10" DateCreated="2013-04-04" Type="SCV" Version="4" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-09-09">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In 2 sibs and their cousin with microcephaly-2 and cortical malformations (MCPH2; 604317), Bilguvar et al. (2010) identified homozygosity for a missense mutation in the WDR62 gene, a G-to-C transversion in exon 6 that converted tryptophan to serine at codon 224 (W224S). All parents were heterozygous for the mutation, which was not identified in 1,290 Turkish and 1,500 Caucasian control chromosomes. Tryptophan-224 was invariant in all species examined from human to zebrafish and lamprey. The proband was a 6-year, 5-month-old boy who presented at 2 years of age with hyperactivity, seizures, and inability to sleep. He experienced 4 to 8 seizures per day and had microcephaly, micrognathia, and severe mental retardation, and could ambulate only with assistance. The sibs were cousins of the proband. One was an 8-year, 7-month-old female who presented at age 3 with seizures. She was microcephalic, hyperactive, and had dysconjugate gaze. She was able to walk independently and had no obvious dysmorphic features but had moderate mental retardation. Her brother was 12 years, 11 months old. He had seizures, self-mutilating behavior, and severe mental retardation, but could ambulate independently.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20729831</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="604317" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="WDR62"/>
+          </GeneList>
+          <Name>WDR62, TRP224SER</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">TRP224SER</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613583.0003" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20202" TraitType="Disease" MappingType="Name" MappingValue="MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS" MappingRef="Preferred">
+        <MedGen CUI="C1858535" Name="Microcephaly 2, primary, autosomal recessive, with or without cortical malformations"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="40" VariationName="NM_001083961.2(WDR62):c.4205_4208del (p.Val1402fs)" VariationType="Deletion" Accession="VCV000000040" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2015-09-17" MostRecentSubmission="2015-09-17">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15079" VariationID="40">
+      <GeneList>
+        <Gene Symbol="WDR62" FullName="WD repeat domain 62" GeneID="284403" HGNC_ID="HGNC:24502" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>19q13.12</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="36054897" stop="36111145" display_start="36054897" display_stop="36111145" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="36545782" stop="36596011" display_start="36545782" display_stop="36596011" Strand="+"/>
+          </Location>
+          <OMIM>613583</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_001083961.2(WDR62):c.4205_4208del (p.Val1402fs)</Name>
+      <CanonicalSPDI>NC_000019.10:36104568:TGCC:</CanonicalSPDI>
+      <VariantType>Deletion</VariantType>
+      <Location>
+        <CytogeneticLocation>19q13.12</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="19" Accession="NC_000019.10" start="36104569" stop="36104572" display_start="36104569" display_stop="36104572" variantLength="4" positionVCF="36104568" referenceAlleleVCF="GTGCC" alternateAlleleVCF="G"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="19" Accession="NC_000019.9" start="36595471" stop="36595474" display_start="36595471" display_stop="36595474" variantLength="4" positionVCF="36595470" referenceAlleleVCF="GTGCC" alternateAlleleVCF="G"/>
+      </Location>
+      <ProteinChange>V1397fs</ProteinChange>
+      <ProteinChange>V1402fs</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_028101.1" sequenceAccession="NG_028101" sequenceVersion="1" change="g.54689_54692del">
+            <Expression>NG_028101.1:g.54689_54692del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001083961.2" sequenceAccession="NM_001083961" sequenceVersion="2" change="c.4205_4208del" MANESelect="true">
+            <Expression>NM_001083961.2:c.4205_4208del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001077430.1" sequenceAccession="NP_001077430" sequenceVersion="1" change="p.Val1402fs">
+            <Expression>NP_001077430.1:p.Val1402fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_173636.5" sequenceAccession="NM_173636" sequenceVersion="5" change="c.4190_4193del">
+            <Expression>NM_173636.5:c.4190_4193del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_775907.4" sequenceAccession="NP_775907" sequenceVersion="4" change="p.Val1397fs">
+            <Expression>NP_775907.4:p.Val1397fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.10" sequenceAccession="NC_000019" sequenceVersion="10" change="g.36104569_36104572del" Assembly="GRCh38">
+            <Expression>NC_000019.10:g.36104569_36104572del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000019.9" sequenceAccession="NC_000019" sequenceVersion="9" change="g.36595471_36595474del" Assembly="GRCh37">
+            <Expression>NC_000019.9:g.36595471_36595474del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA251360" DB="ClinGen"/>
+        <XRef Type="Allelic variant" ID="613583.0001" DB="OMIM"/>
+        <XRef Type="rs" ID="397704721" DB="dbSNP"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_001083961.2(WDR62):c.4205_4208del (p.Val1402fs) AND Microcephaly 2, primary, autosomal recessive, with or without cortical malformations" Accession="RCV000000057" Version="4">
+        <ClassifiedConditionList TraitSetID="7167">
+          <ClassifiedCondition DB="MedGen" ID="C1858535">Microcephaly 2, primary, autosomal recessive, with or without cortical malformations</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-09-09" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-09-09" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2015-09-17" MostRecentSubmission="2015-09-17">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20729831</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="7167" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="5522" Type="Disease">
+              <Name>
+                <ElementValue Type="Alternate">MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS</ElementValue>
+                <XRef Type="Allelic variant" ID="613583.0005" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0003" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0004" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0009" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0001" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0010" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0013" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0002" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613583.0012" DB="OMIM"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Primary autosomal recessive microcephaly 2</ElementValue>
+                <XRef ID="Primary+autosomal+recessive+microcephaly+2/9156" DB="Genetic Alliance"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">Microcephaly 2, primary, autosomal recessive, with or without cortical malformations</ElementValue>
+                <XRef ID="MONDO:0011435" DB="MONDO"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">MCPH2</ElementValue>
+                <XRef Type="MIM" ID="604317" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="public definition">In WDR62 primary microcephaly (WDR62-MCPH), microcephaly (occipitofrontal circumference [OFC] = -2 SD) is usually present at birth, but in some instances becomes evident later in the first year of life. Growth is otherwise normal. Except for brain malformations in most affected individuals, no other congenital malformations are observed. Central nervous system involvement can include delayed motor development, mild-to-severe intellectual disability (ID), behavior problems, epilepsy, spasticity, and ataxia.</Attribute>
+                <XRef ID="NBK578067" DB="GeneReviews"/>
+              </AttributeSet>
+              <Citation Type="review" Abbrev="GeneReviews">
+                <ID Source="PubMed">35188728</ID>
+                <ID Source="BookShelf">NBK578067</ID>
+              </Citation>
+              <XRef ID="2512" DB="Orphanet"/>
+              <XRef ID="C1858535" DB="MedGen"/>
+              <XRef ID="MONDO:0011435" DB="MONDO"/>
+              <XRef Type="MIM" ID="604317" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20200" SubmissionDate="2015-09-15" DateLastUpdated="2015-09-17" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613583.0001_MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS" title="WDR62, 4-BP DEL, TGCC_MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS"/>
+        <ClinVarAccession Accession="SCV000020200" DateUpdated="2015-09-17" DateCreated="2013-04-04" Type="SCV" Version="3" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-09-09">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In 2 sibs with autosomal recessive microcephaly-2 and cortical malformations (MCPH2; 604317) and in an affected child from another family, all from consanguineous Turkish unions, Bilguvar et al. (2010) identified homozygosity for a 4-basepair deletion (TGCC) in exon 31 of the WDR62 gene. This deletion occurred at codon 1402 and resulted in a frameshift and premature termination (Val1402GlyfsTer12). The mutation was heterozygous in all parents. It was not observed in 1,290 Turkish control chromosomes. The index patient was a 4-year, 6-month-old female who initially presented at 4 months of age with small head size. At 2 years, 3 months she showed micrognathia and a bulbous nose, and suffered from severe mental retardation. She had had no seizures. MRI showed diffuse cortical thickening and pachygyria. The patient from the second family was a 2-year, 4 month-old male. He had microcephaly and developmental delay but no seizures. Coronal images of this patient showed findings of microlissencephaly including prominent microcephaly, bilateral Sylvian clefts, hypoplastic corpus callosum, and thickened cortex. The kinship coefficients between affected individuals from both families were consistent with fourth-degree relatedness.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20729831</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="604317" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="WDR62"/>
+          </GeneList>
+          <Name>WDR62, 4-BP DEL, TGCC</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">4-BP DEL, TGCC</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613583.0001" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20200" TraitType="Disease" MappingType="Name" MappingValue="MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS" MappingRef="Preferred">
+        <MedGen CUI="C1858535" Name="Microcephaly 2, primary, autosomal recessive, with or without cortical malformations"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="18397" VariationName="NM_002036.4(ACKR1):c.286_299del (p.Trp96fs)" VariationType="Deletion" Accession="VCV000018397" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2015-08-12" MostRecentSubmission="2015-08-12">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="33436" VariationID="18397">
+      <GeneList>
+        <Gene Symbol="ACKR1" FullName="atypical chemokine receptor 1 (Duffy blood group)" GeneID="2532" HGNC_ID="HGNC:4035" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>1q23.2</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" Strand="+"/>
+          </Location>
+          <OMIM>613665</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_002036.4(ACKR1):c.286_299del (p.Trp96fs)</Name>
+      <CanonicalSPDI>NC_000001.11:159205718:CCTGGCTGGCCTGTCCTGGC:CCTGGC</CanonicalSPDI>
+      <VariantType>Deletion</VariantType>
+      <Location>
+        <CytogeneticLocation>1q23.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205719" stop="159205732" display_start="159205719" display_stop="159205732" variantLength="14" positionVCF="159205718" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175509" stop="159175522" display_start="159175509" display_stop="159175522" variantLength="14" positionVCF="159175508" referenceAlleleVCF="CCCTGGCTGGCCTGT" alternateAlleleVCF="C"/>
+      </Location>
+      <OtherNameList>
+        <Name>ACKR1, 14-BP DEL, NT286</Name>
+      </OtherNameList>
+      <ProteinChange>W96fs</ProteinChange>
+      <ProteinChange>W98fs</ProteinChange>
+      <HGVSlist>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="LRG_801" sequenceAccession="LRG_801">
+            <Expression>LRG_801:g.6713_6726del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="LRG_801t1" sequenceAccession="LRG_801t1">
+            <Expression>LRG_801t1:c.286_299del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="LRG_801p1" sequenceAccession="LRG_801p1" change="p.Trp96fs">
+            <Expression>LRG_801p1:p.Trp96fs</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000001.10" sequenceAccession="NC_000001" sequenceVersion="10" change="g.159175515_159175528del" Assembly="GRCh37">
+            <Expression>NC_000001.10:g.159175515_159175528del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000001.11" sequenceAccession="NC_000001" sequenceVersion="11" change="g.159205725_159205738del" Assembly="GRCh38">
+            <Expression>NC_000001.11:g.159205725_159205738del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_011626.3" sequenceAccession="NG_011626" sequenceVersion="3" change="g.6713_6726del">
+            <Expression>NG_011626.3:g.6713_6726del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001122951.3" sequenceAccession="NM_001122951" sequenceVersion="3" change="c.292_305del">
+            <Expression>NM_001122951.3:c.292_305del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001116423.1" sequenceAccession="NP_001116423" sequenceVersion="1" change="p.Trp98fs">
+            <Expression>NP_001116423.1:p.Trp98fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_002036.4" sequenceAccession="NM_002036" sequenceVersion="4" change="c.286_299del" MANESelect="true">
+            <Expression>NM_002036.4:c.286_299del</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_002027.2" sequenceAccession="NP_002027" sequenceVersion="2" change="p.Trp96fs">
+            <Expression>NP_002027.2:p.Trp96fs</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001589" Type="frameshift variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM"/>
+        <XRef Type="rs" ID="587776507" DB="dbSNP"/>
+        <XRef ID="CA113791" DB="ClinGen"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_002036.4(ACKR1):c.286_299del (p.Trp96fs) AND DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" Accession="RCV000000010" Version="3">
+        <ClassifiedConditionList TraitSetID="6212">
+          <ClassifiedCondition>DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2000-04-01" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2000-04-01" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2015-08-12" MostRecentSubmission="2015-08-12">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">10791881</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">7669660</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">8248172</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">8547665</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="6212" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="15692" Type="BloodGroup">
+              <Name>
+                <ElementValue Type="Alternate">DUFFY NULL; Fy(a-b-)</ElementValue>
+              </Name>
+              <Name>
+                <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE</ElementValue>
+                <XRef Type="Allelic variant" ID="613665.0004" DB="OMIM"/>
+                <XRef Type="Allelic variant" ID="613665.0002" DB="OMIM"/>
+              </Name>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20153" SubmissionDate="2015-08-10" DateLastUpdated="2015-08-12" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613665.0004_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" title="ACKR1, 14-BP DEL, NT286_DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE"/>
+        <ClinVarAccession Accession="SCV000020153" DateUpdated="2015-08-12" DateCreated="2013-04-04" Type="SCV" Version="2" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2000-04-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">Mallinson et al. (1995) presented evidence for 2 different genetic backgrounds giving rise to the Fy(a-b-) phenotype. The most likely genetic mechanism in most individuals is downregulation of Duffy glycoprotein mRNA (see 613665.0002). However, the Duffy gene from a very rare Caucasian individual (AZ) with the Fy(a-b-) phenotype had a 14-bp deletion that resulted in a frameshift. In the Abstract and Results sections of their paper, Mallinson et al. (1995) reported that the deletion removed nucleotides 287 to 301 of DARC. However, their Figure 4 showed that the deletion involved nucleotides 292 to 305, which appeared to be correct. The DARC cDNA sequence used by Mallinson et al. (1995) was identical to that of the minor DARC variant reported by Chaudhuri et al. (1993). The frameshift resulting from the deletion introduced a stop codon 23 amino acids downstream and produced a putative truncated 118-amino acid protein. The occurrence of this mutation in an apparently healthy individual raised questions about the functional importance of the Duffy glycoprotein, not only in normal erythrocytes, but also in all human cells and tissues. The only known examples of the Fy(a-b-) phenotype in Caucasians were AZ and Czech gypsies.</Attribute>
+              <Citation>
+                <ID Source="PubMed">7669660</ID>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">8248172</ID>
+              </Citation>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="Description">Using the sequence of the major DARC variant reported by Iwamoto et al. (1996), as was recommended by Pogo and Chaudhuri (2000), this 14-bp deletion occurs at nucleotide 286.</Attribute>
+              <Citation>
+                <ID Source="PubMed">8547665</ID>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">10791881</ID>
+              </Citation>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="ACKR1"/>
+          </GeneList>
+          <Name>ACKR1, 14-BP DEL, NT286</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">14-BP DEL, NT286</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613665.0004" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20153" TraitType="Disease" MappingType="Name" MappingValue="DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE" MappingRef="Preferred">
+        <MedGen CUI="C4017326" Name="DUFFY BLOOD GROUP SYSTEM, FY(a-b-) PHENOTYPE"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="25" VariationName="NM_015600.4(ABHD12):c.-6898_191+7002delinsCC" VariationType="Indel" Accession="VCV000000025" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2023-10-15" DateCreated="2018-10-10" MostRecentSubmission="2018-10-10">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15064" VariationID="25">
+      <GeneList>
+        <Gene Symbol="ABHD12" FullName="abhydrolase domain containing 12, lysophospholipase" GeneID="26090" HGNC_ID="HGNC:15868" Source="submitted" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25294743" stop="25390835" display_start="25294743" display_stop="25390835" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="25275378" stop="25371617" display_start="25275378" display_stop="25371617" Strand="-"/>
+          </Location>
+          <OMIM>613599</OMIM>
+        </Gene>
+        <Gene Symbol="LOC130065583" FullName="ATAC-STARR-seq lymphoblastoid silent region 12749" GeneID="130065583" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25389925" stop="25390084" display_start="25389925" display_stop="25390084" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC130065584" FullName="ATAC-STARR-seq lymphoblastoid silent region 12750" GeneID="130065584" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25390255" stop="25390414" display_start="25390255" display_stop="25390414" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC130065585" FullName="ATAC-STARR-seq lymphoblastoid silent region 12751" GeneID="130065585" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25390455" stop="25390504" display_start="25390455" display_stop="25390504" Strand="+"/>
+          </Location>
+        </Gene>
+        <Gene Symbol="LOC130065586" FullName="ATAC-STARR-seq lymphoblastoid silent region 12752" GeneID="130065586" Source="calculated" RelationshipType="genes overlapped by variant">
+          <Location>
+            <CytogeneticLocation>20p11.21</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25390545" stop="25390964" display_start="25390545" display_stop="25390964" Strand="+"/>
+          </Location>
+        </Gene>
+      </GeneList>
+      <Name>NM_015600.4(ABHD12):c.-6898_191+7002delinsCC</Name>
+      <VariantType>Indel</VariantType>
+      <Location>
+        <CytogeneticLocation>20p11.21</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="20" Accession="NC_000020.11" start="25383511" stop="25397601" display_start="25383511" display_stop="25397601" variantLength="14091" alternateAllele="GG"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="20" Accession="NC_000020.10" start="25364147" stop="25378237" display_start="25364147" display_stop="25378237" variantLength="14091" alternateAllele="GG"/>
+      </Location>
+      <OtherNameList>
+        <Name>14-KB DEL</Name>
+      </OtherNameList>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000020.10" sequenceAccession="NC_000020" sequenceVersion="10" change="g.25364147_25378237delinsGG" Assembly="GRCh37">
+            <Expression>NC_000020.10:g.25364147_25378237delinsGG</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000020.11" sequenceAccession="NC_000020" sequenceVersion="11" change="g.25383511_25397601delinsGG" Assembly="GRCh38">
+            <Expression>NC_000020.11:g.25383511_25397601delinsGG</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_015600.4" sequenceAccession="NM_015600" sequenceVersion="4" change="c.-6898_191+7002delinsCC">
+            <Expression>NM_015600.4:c.-6898_191+7002delinsCC</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000020.11" sequenceAccession="NC_000020" sequenceVersion="11" change="g.25383511_25397600delinsG" Assembly="GRCh38">
+            <Expression>NC_000020.11:g.25383511_25397600delinsG</Expression>
+          </NucleotideExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="nssv3761628" DB="dbVar"/>
+        <XRef ID="nsv1067853" DB="dbVar"/>
+        <XRef Type="Allelic variant" ID="613599.0002" DB="OMIM"/>
+      </XRefList>
+      <Comment DataSource="NCBI curation" Type="public">Deletion of exon 1 plus flanking sequences from ABHD12 (NG_028119.1), with insertion of GG</Comment>
+      <Comment DataSource="NCBI curation" Type="public">The location of this deletion was determined from analysis of Fig. S4C in PubMed 20797687.</Comment>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_015600.4(ABHD12):c.-6898_191+7002delinsCC AND PHARC syndrome" Accession="RCV000000042" Version="4">
+        <ClassifiedConditionList TraitSetID="17">
+          <ClassifiedCondition DB="MedGen" ID="C2675204">PHARC syndrome</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-09-10" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-09-10" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2018-10-10" MostRecentSubmission="2018-10-10">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20797687</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="17" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="5781" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">PHARC syndrome</ElementValue>
+                <XRef ID="MONDO:0012984" DB="MONDO"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Polyneuropathy-hearing loss-ataxia-retinitis pigmentosa-cataract syndrome</ElementValue>
+                <XRef ID="171848" DB="Orphanet"/>
+              </Name>
+              <Name>
+                <ElementValue Type="Alternate">Polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract</ElementValue>
+                <XRef ID="Polyneuropathy%2C+hearing+loss%2C+ataxia%2C+retinitis+pigmentosa%2C+and+cataract/9132" DB="Genetic Alliance"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Alternate">PHARC</ElementValue>
+                <XRef Type="MIM" ID="612674" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="17071"/>
+                <XRef ID="17071" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <XRef ID="171848" DB="Orphanet"/>
+              <XRef ID="C2675204" DB="MedGen"/>
+              <XRef ID="MONDO:0012984" DB="MONDO"/>
+              <XRef Type="MIM" ID="612674" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20185" SubmissionDate="2018-10-03" DateLastUpdated="2018-10-10" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613599.0002_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT" title="ABHD12, 14-KB DEL_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT"/>
+        <ClinVarAccession Accession="SCV000020185" DateUpdated="2018-10-10" DateCreated="2013-04-04" Type="SCV" Version="3" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-09-10">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In 3 affected members of a family from the United Arab Emirates with polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract (PHARC; 612674), Fiskerstrand et al. (2010) identified a homozygous 14-kb deletion and 2-bp insertion (del14007insGG) in the ABHD12 gene encompassing the promoter region and exon 1 of the gene. Two patients were in their twenties, and 1 was age 6 years. Common features included absent tendon reflexes, hearing loss, ataxia, cataracts; hearing loss occurred in childhood in all 3. Only the older 2 patients had retinitis pigmentosa.</Attribute>
+              <Citation>
+                <ID Source="PubMed">20797687</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="612674" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="ABHD12"/>
+          </GeneList>
+          <Name>ABHD12, 14-KB DEL</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">14-KB DEL</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613599.0002" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20185" TraitType="Disease" MappingType="Name" MappingValue="POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT" MappingRef="Preferred">
+        <MedGen CUI="C2675204" Name="PHARC syndrome"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+<VariationArchive RecordType="classified" VariationID="18396" VariationName="NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys)" VariationType="single nucleotide variant" Accession="VCV000018396" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2023-12-25" DateCreated="2017-12-15" MostRecentSubmission="2017-12-15">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="33435" VariationID="18396">
+      <GeneList>
+        <Gene Symbol="ACKR1" FullName="atypical chemokine receptor 1 (Duffy blood group)" GeneID="2532" HGNC_ID="HGNC:4035" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>1q23.2</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159204875" stop="159206500" display_start="159204875" display_stop="159206500" Strand="+"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159173802" stop="159176289" display_start="159173802" display_stop="159176289" Strand="+"/>
+          </Location>
+          <OMIM>613665</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys)</Name>
+      <CanonicalSPDI>NC_000001.11:159205703:C:T</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>1q23.2</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="1" Accession="NC_000001.11" start="159205704" stop="159205704" display_start="159205704" display_stop="159205704" variantLength="1" positionVCF="159205704" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="1" Accession="NC_000001.10" start="159175494" stop="159175494" display_start="159175494" display_stop="159175494" variantLength="1" positionVCF="159175494" referenceAlleleVCF="C" alternateAlleleVCF="T"/>
+      </Location>
+      <ProteinChange>R89C</ProteinChange>
+      <ProteinChange>R91C</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000001.10" sequenceAccession="NC_000001" sequenceVersion="10" change="g.159175494C&gt;T" Assembly="GRCh37">
+            <Expression>NC_000001.10:g.159175494C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000001.11" sequenceAccession="NC_000001" sequenceVersion="11" change="g.159205704C&gt;T" Assembly="GRCh38">
+            <Expression>NC_000001.11:g.159205704C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_011626.3" sequenceAccession="NG_011626" sequenceVersion="3" change="g.6692C&gt;T">
+            <Expression>NG_011626.3:g.6692C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001122951.3" sequenceAccession="NM_001122951" sequenceVersion="3" change="c.271C&gt;T">
+            <Expression>NM_001122951.3:c.271C&gt;T</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001116423.1" sequenceAccession="NP_001116423" sequenceVersion="1" change="p.Arg91Cys">
+            <Expression>NP_001116423.1:p.Arg91Cys</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_002036.4" sequenceAccession="NM_002036" sequenceVersion="4" change="c.265C&gt;T" MANESelect="true">
+            <Expression>NM_002036.4:c.265C&gt;T</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_002027.2" sequenceAccession="NP_002027" sequenceVersion="2" change="p.Arg89Cys">
+            <Expression>NP_002027.2:p.Arg89Cys</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="protein">
+          <ProteinExpression sequenceAccessionVersion="Q16570" sequenceAccession="Q16570" change="p.Arg89Cys">
+            <Expression>Q16570:p.Arg89Cys</Expression>
+          </ProteinExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="LRG_801" sequenceAccession="LRG_801">
+            <Expression>LRG_801:g.6692C&gt;T</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="LRG_801t1" sequenceAccession="LRG_801t1">
+            <Expression>LRG_801t1:c.265C&gt;T</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="LRG_801p1" sequenceAccession="LRG_801p1" change="p.Arg89Cys">
+            <Expression>LRG_801p1:p.Arg89Cys</Expression>
+          </ProteinExpression>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef ID="CA113789" DB="ClinGen"/>
+        <XRef ID="Q16570#VAR_015068" DB="UniProtKB"/>
+        <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
+        <XRef Type="rs" ID="34599082" DB="dbSNP"/>
+      </XRefList>
+      <AlleleFrequencyList>
+        <AlleleFrequency Value="0.00437" Source="1000 Genomes Project 30x"/>
+        <AlleleFrequency Value="0.00459" Source="1000 Genomes Project"/>
+        <AlleleFrequency Value="0.00936" Source="Trans-Omics for Precision Medicine (TOPMed)"/>
+        <AlleleFrequency Value="0.01072" Source="Exome Aggregation Consortium (ExAC)"/>
+        <AlleleFrequency Value="0.01089" Source="The Genome Aggregation Database (gnomAD)"/>
+        <AlleleFrequency Value="0.01099" Source="NHLBI Exome Sequencing Project (ESP) Exome Variant Server"/>
+        <AlleleFrequency Value="0.01124" Source="The Genome Aggregation Database (gnomAD), exomes"/>
+      </AlleleFrequencyList>
+      <GlobalMinorAlleleFrequency Value="0.00459" Source="1000 Genomes Project" MinorAllele="T"/>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_002036.4(ACKR1):c.265C&gt;T (p.Arg89Cys) AND DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" Accession="RCV000000009" Version="4">
+        <ClassifiedConditionList TraitSetID="6213">
+          <ClassifiedCondition>DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2001-06-01" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2001-06-01" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2017-12-15" MostRecentSubmission="2017-12-15">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">11369664</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">8547665</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">9399903</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">9731074</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">9746760</ID>
+        </Citation>
+        <Citation Type="general">
+          <ID Source="PubMed">9886340</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="6213" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="15693" Type="BloodGroup">
+              <Name>
+                <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ElementValue>
+                <XRef Type="Allelic variant" ID="613665.0003" DB="OMIM"/>
+              </Name>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20152" SubmissionDate="2017-12-11" DateLastUpdated="2017-12-15" DateCreated="2013-04-04">
+        <ClinVarSubmissionID localKey="613665.0003_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" title="ACKR1, ARG89CYS_DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE"/>
+        <ClinVarAccession Accession="SCV000020152" DateUpdated="2017-12-15" DateCreated="2013-04-04" Type="SCV" Version="3" SubmitterName="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2001-06-01">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">Tournamille et al. (1998) and Olsson et al. (1998) described a Duffy allele, FYB-weak (FYB-WK), or FYX, in approximately 3.5% of the population that, because of an arg89-to-cys (R89C) substitution in the first cytoplasmic domain of DARC, results in reduced levels of protein, lower antigen expression, and reduced ability to bind chemokines. The phenotype is called Fy(bwk), Fy(x), or either Fy(a-b+(weak)) or Fy(a+b+(weak)). The R89C substitution results from a C-to-T change at nucleotide 286 of the DARC gene.</Attribute>
+              <Citation>
+                <ID Source="PubMed">9731074</ID>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">9886340</ID>
+              </Citation>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="Description">Parasol et al. (1998) noted that, in addition to West African blacks, the Duffy-null phenotype also occurs in non-Ashkenazi Jews, being found, for example, in approximately 20% of Jews from Yemen. They found that in some of these cases Fy(b-) individuals had the wildtype FY*B GATA but carried 271C-T and 304G-A mutations. The 271C-T substitution resulted in an R91C amino acid substitution (R89C in the predominant DARC isoform reported by Iwamoto et al. (1996)), which represented a considerable change of chemical nature, one that may affect the antigenic determinants of DARC, and thus may be of clinical significance. Parasol et al. (1998) noted that further studies were needed to determine whether erythrocytes carrying these mutations behave as Fy(bwk) variants.</Attribute>
+              <Citation>
+                <ID Source="PubMed">9746760</ID>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">8547665</ID>
+              </Citation>
+            </ObservedData>
+            <ObservedData>
+              <Attribute Type="Description">Carrington et al. (1997) described a CCR5 (601373) allele that carries a single amino acid substitution (R60S; 601373.0008) in the first intracellular domain of the protein that in heterozygous state appears to protect against human immunodeficiency virus (HIV) infection (see 609423). Tamasauskas et al. (2001) showed that in both the CCR5 R60S and DARC R89C alleles, the loss of a positive charge from the intracellular loop leads to reduced surface expression, thereby identifying a novel mechanism that may be protective against disease: against malarial infection by Plasmodium vivax in the case of the DARC gene and against AIDS in the case of the CCR5 gene.</Attribute>
+              <Citation>
+                <ID Source="PubMed">9399903</ID>
+              </Citation>
+              <Citation>
+                <ID Source="PubMed">11369664</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="601373" Type="MIM"/>
+              <XRef DB="OMIM" ID="609423" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="ACKR1"/>
+          </GeneList>
+          <Name>ACKR1, ARG89CYS</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">ARG89CYS</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613665.0003" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE</ElementValue>
+            </Name>
+          </Trait>
+        </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20152" TraitType="Disease" MappingType="Name" MappingValue="DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE" MappingRef="Preferred">
+        <MedGen CUI="C4017327" Name="DUFFY BLOOD GROUP SYSTEM, FY(bwk) PHENOTYPE"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

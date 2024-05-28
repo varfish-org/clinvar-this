@@ -1,4 +1,4 @@
-"""Tests for the conversion module."""
+"""Tests for the conversion CLI module."""
 
 import os
 

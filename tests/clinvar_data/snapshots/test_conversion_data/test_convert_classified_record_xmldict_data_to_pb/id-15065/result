@@ -1,0 +1,439 @@
+{
+  "simpleAllele": {
+    "genes": [
+      {
+        "locations": [
+          {
+            "cytogeneticLocations": [
+              "20p11.21"
+            ],
+            "sequenceLocations": [
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_20",
+                "accession": "NC_000020.11",
+                "start": 25294743,
+                "stop": 25390835,
+                "displayStart": 25294743,
+                "displayStop": 25390835,
+                "strand": "-"
+              },
+              {
+                "assembly": "GRCh37",
+                "chr": "CHROMOSOME_20",
+                "accession": "NC_000020.10",
+                "start": 25275378,
+                "stop": 25371617,
+                "displayStart": 25275378,
+                "displayStop": 25371617,
+                "strand": "-"
+              }
+            ]
+          }
+        ],
+        "omims": [
+          "613599"
+        ],
+        "fullName": "abhydrolase domain containing 12, lysophospholipase",
+        "geneId": "26090",
+        "hgncId": "HGNC:15868",
+        "source": "submitted",
+        "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+      }
+    ],
+    "name": "NM_001042472.3(ABHD12):c.846_852dup (p.His285Ter)",
+    "canonicalSpdi": "NC_000020.11:25307980:GCTCTTAGCT:GCTCTTAGCTCTTAGCT",
+    "variantTypes": [
+      "Duplication"
+    ],
+    "locations": [
+      {
+        "cytogeneticLocations": [
+          "20p11.21"
+        ],
+        "sequenceLocations": [
+          {
+            "forDisplay": true,
+            "assembly": "GRCh38",
+            "chr": "CHROMOSOME_20",
+            "accession": "NC_000020.11",
+            "start": 25307980,
+            "stop": 25307981,
+            "displayStart": 25307980,
+            "displayStop": 25307981,
+            "variantLength": 7,
+            "positionVcf": 25307980,
+            "referenceAlleleVcf": "G",
+            "alternateAlleleVcf": "GGCTCTTA"
+          },
+          {
+            "assembly": "GRCh37",
+            "chr": "CHROMOSOME_20",
+            "accession": "NC_000020.10",
+            "start": 25288616,
+            "stop": 25288617,
+            "displayStart": 25288616,
+            "displayStop": 25288617,
+            "variantLength": 7,
+            "positionVcf": 25288616,
+            "referenceAlleleVcf": "G",
+            "alternateAlleleVcf": "GGCTCTTA"
+          }
+        ]
+      }
+    ],
+    "proteinChanges": [
+      "H285*"
+    ],
+    "hgvsExpressions": [
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000020.10:g.25288620_25288626dup",
+          "sequenceAccessionVersion": "NC_000020.10",
+          "sequenceAccession": "NC_000020",
+          "sequenceVersion": 10,
+          "change": "g.25288620_25288626dup"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh37"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000020.11:g.25307984_25307990dup",
+          "sequenceAccessionVersion": "NC_000020.11",
+          "sequenceAccession": "NC_000020",
+          "sequenceVersion": 11,
+          "change": "g.25307984_25307990dup"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh38"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NG_028119.1:g.87996_88002dup",
+          "sequenceAccessionVersion": "NG_028119.1",
+          "sequenceAccession": "NG_028119",
+          "sequenceVersion": 1,
+          "change": "g.87996_88002dup"
+        },
+        "type": "HGVS_TYPE_GENOMIC"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001042472.3:c.846_852dup",
+          "sequenceAccessionVersion": "NM_001042472.3",
+          "sequenceAccession": "NM_001042472",
+          "sequenceVersion": 3,
+          "change": "c.846_852dup",
+          "maneSelect": true
+        },
+        "proteinExpression": {
+          "expression": "NP_001035937.1:p.His285Ter",
+          "sequenceAccessionVersion": "NP_001035937.1",
+          "sequenceAccession": "NP_001035937",
+          "sequenceVersion": 1,
+          "change": "p.His285Ter"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001587",
+            "type": "nonsense"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_015600.5:c.846_852dup",
+          "sequenceAccessionVersion": "NM_015600.5",
+          "sequenceAccession": "NM_015600",
+          "sequenceVersion": 5,
+          "change": "c.846_852dup"
+        },
+        "proteinExpression": {
+          "expression": "NP_056415.1:p.His285Ter",
+          "sequenceAccessionVersion": "NP_056415.1",
+          "sequenceAccession": "NP_056415",
+          "sequenceVersion": 1,
+          "change": "p.His285Ter"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001587",
+            "type": "nonsense"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      }
+    ],
+    "xrefs": [
+      {
+        "db": "ClinGen",
+        "id": "CA113810"
+      },
+      {
+        "db": "OMIM",
+        "id": "613599.0003",
+        "type": "Allelic variant"
+      },
+      {
+        "db": "dbSNP",
+        "id": "397704714",
+        "type": "rs"
+      }
+    ],
+    "alleleId": "15065",
+    "variationId": "26"
+  },
+  "rcvList": {
+    "rcvAccessions": [
+      {
+        "classifiedConditionList": {
+          "classifiedConditions": [
+            {
+              "value": "PHARC syndrome",
+              "db": "MedGen",
+              "id": "C2675204"
+            }
+          ],
+          "traitSetId": "17"
+        },
+        "rcvClassifications": {
+          "germlineClassification": {
+            "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+            "description": {
+              "value": "Pathogenic",
+              "dateLastEvaluated": "2010-09-10T00:00:00Z",
+              "submissionCount": 1
+            }
+          }
+        },
+        "title": "NM_001042472.3(ABHD12):c.846_852dup (p.His285Ter) AND PHARC syndrome",
+        "accession": "RCV000000043",
+        "version": 3
+      }
+    ]
+  },
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+      "description": "Pathogenic",
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "20797687",
+              "source": "PubMed"
+            }
+          ],
+          "type": "general"
+        }
+      ],
+      "conditions": [
+        {
+          "traits": [
+            {
+              "names": [
+                {
+                  "value": "PHARC syndrome",
+                  "type": "Preferred",
+                  "xrefs": [
+                    {
+                      "db": "MONDO",
+                      "id": "MONDO:0012984"
+                    }
+                  ]
+                },
+                {
+                  "value": "Polyneuropathy-hearing loss-ataxia-retinitis pigmentosa-cataract syndrome",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "Orphanet",
+                      "id": "171848"
+                    }
+                  ]
+                },
+                {
+                  "value": "Polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "Genetic Alliance",
+                      "id": "Polyneuropathy%2C+hearing+loss%2C+ataxia%2C+retinitis+pigmentosa%2C+and+cataract/9132"
+                    }
+                  ]
+                }
+              ],
+              "symbols": [
+                {
+                  "value": "PHARC",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "612674",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "Orphanet",
+                  "id": "171848"
+                },
+                {
+                  "db": "MedGen",
+                  "id": "C2675204"
+                },
+                {
+                  "db": "MONDO",
+                  "id": "MONDO:0012984"
+                },
+                {
+                  "db": "OMIM",
+                  "id": "612674",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "type": "TYPE_DISEASE",
+          "id": "17",
+          "contributesToAggregateClassification": true
+        }
+      ],
+      "dateLastEvaluated": "2010-09-10T00:00:00Z",
+      "dateCreated": "2015-05-18T00:00:00Z",
+      "mostRecentSubmission": "2015-05-18T00:00:00Z",
+      "numberOfSubmitters": 1,
+      "numberOfSubmissions": 1
+    }
+  },
+  "clinicalAssertions": [
+    {
+      "clinvarSubmissionId": {
+        "localKey": "613599.0003_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT",
+        "title": "ABHD12, 7-BP DUP, NT846_POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT"
+      },
+      "clinvarAccession": {
+        "accession": "SCV000020186",
+        "version": 2,
+        "submitterIdentifiers": {
+          "submitterName": "OMIM",
+          "orgId": "3",
+          "orgCategory": "resource"
+        },
+        "dateUpdated": "2015-05-18T00:00:00Z",
+        "dateCreated": "2013-04-04T00:00:00Z"
+      },
+      "recordStatus": "RECORD_STATUS_CURRENT",
+      "classifications": [
+        {
+          "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+          "germlineClassification": "Pathogenic",
+          "dateLastEvaluated": "2010-09-10T00:00:00Z"
+        }
+      ],
+      "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+      "observedIns": [
+        {
+          "sample": {
+            "origin": "ORIGIN_GERMLINE",
+            "species": {
+              "name": "human"
+            },
+            "affectedStatus": "AFFECTED_STATUS_NOT_PROVIDED"
+          },
+          "observedData": [
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "value": "In 7 patients from 4 Algerian families with polyneuropathy, hearing loss, ataxia, retinitis pigmentosa, and cataract (PHARC; 612674), Fiskerstrand et al. (2010) identified a homozygous 7-bp duplication in exon 9 of the ABHD12 gene (846_852dupTAAGAGC), resulting in a premature stop codon at residue 285. The patients ranged in age from 10 to 44 years. The older individuals were more severely affected. All patients had some evidence of a polyneuropathy, with hyporeflexia, pes cavus, and/or sensory loss, and most had gait ataxia with onset in the childhood. Four of the older patients had hearing loss, but only 1 had retinitis pigmentosa and cataract. Other common features included extensor plantar responses and cerebellar atrophy."
+                  },
+                  "type": "TYPE_DESCRIPTION"
+                }
+              ],
+              "citations": [
+                {
+                  "ids": [
+                    {
+                      "value": "20797687",
+                      "source": "PubMed"
+                    }
+                  ]
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "OMIM",
+                  "id": "612674",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "simpleAllele": {
+        "genes": [
+          {
+            "symbol": "ABHD12"
+          }
+        ],
+        "names": [
+          {
+            "value": "ABHD12, 7-BP DUP, NT846"
+          }
+        ],
+        "variantType": "Variation",
+        "otherNames": [
+          {
+            "value": "7-BP DUP, NT846",
+            "type": "NonHGVS"
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "OMIM",
+            "id": "613599.0003",
+            "type": "Allelic variant"
+          }
+        ]
+      },
+      "traitSet": {
+        "traits": [
+          {
+            "names": [
+              {
+                "value": "POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT",
+                "type": "Preferred"
+              }
+            ]
+          }
+        ],
+        "type": "TYPE_DISEASE"
+      },
+      "id": "20186"
+    }
+  ],
+  "traitMappings": [
+    {
+      "medgens": [
+        {
+          "name": "PHARC syndrome",
+          "cui": "C2675204"
+        }
+      ],
+      "clinicalAssertionId": "20186",
+      "traitType": "Disease",
+      "mappingType": "MAPPING_TYPE_NAME",
+      "mappingValue": "POLYNEUROPATHY, HEARING LOSS, ATAXIA, RETINITIS PIGMENTOSA, AND CATARACT",
+      "mappingRef": "Preferred"
+    }
+  ]
+}

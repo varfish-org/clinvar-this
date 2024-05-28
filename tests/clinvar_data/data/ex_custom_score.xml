@@ -1,160 +1,167 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ReleaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Dated="2023-07-30" Type="full" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/clinvar_public_1.70.xsd">
-  <ClinVarSet ID="122077039">
-    <RecordStatus>current</RecordStatus>
-    <Title>NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly) AND Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies</Title>
-    <ReferenceClinVarAssertion ID="5503133" DateLastUpdated="2023-01-15" DateCreated="2023-01-07">
-      <ClinVarAccession Acc="RCV002508983" Version="1" Type="RCV" DateUpdated="2023-01-15" DateCreated="2023-01-07"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2022-07-04">
-        <ReviewStatus>criteria provided, single submitter</ReviewStatus>
-        <Description>Likely pathogenic</Description>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <AttributeSet>
-        <Attribute Type="ModeOfInheritance" integerValue="263">Autosomal recessive inheritance</Attribute>
-      </AttributeSet>
-      <ObservedIn>
-        <Sample>
-          <Origin>inherited</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <MethodType>clinical testing</MethodType>
-        </Method>
-        <ObservedData ID="118705003">
-          <Attribute integerValue="1" Type="VariantAlleles"/>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant" ID="1810274" Acc="VCV001810274" Version="1">
-        <Measure Type="single nucleotide variant" ID="1867277">
-          <Name>
-            <ElementValue Type="Preferred">NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly)</ElementValue>
-          </Name>
-          <CanonicalSPDI>NC_000008.11:91078440:A:G</CanonicalSPDI>
-          <AttributeSet>
-            <Attribute Accession="NM_016023" Version="5" Change="c.401A&gt;G" Type="HGVS, coding, RefSeq" MANESelect="true">NM_016023.5:c.401A&gt;G</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NM_001286745" Version="3" Change="c.98A&gt;G" Type="HGVS, coding, RefSeq">NM_001286745.3:c.98A&gt;G</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000008" Version="11" Change="g.91078441A&gt;G" Type="HGVS, genomic, top level" integerValue="38">NC_000008.11:g.91078441A&gt;G</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NC_000008" Version="10" Change="g.92090669A&gt;G" Type="HGVS, genomic, top level, previous" integerValue="37">NC_000008.10:g.92090669A&gt;G</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_057107" Version="4" Change="p.Glu134Gly" Type="HGVS, protein, RefSeq">NP_057107.4:p.Glu134Gly</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Accession="NP_001273674" Version="1" Change="p.Glu33Gly" Type="HGVS, protein, RefSeq">NP_001273674.1:p.Glu33Gly</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-            <XRef ID="NM_001286745.3:c.98A&gt;G" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="MolecularConsequence">missense variant</Attribute>
-            <XRef ID="SO:0001583" DB="Sequence Ontology"/>
-            <XRef ID="NM_016023.5:c.401A&gt;G" DB="RefSeq"/>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="ProteinChange1LetterCode">E134G</Attribute>
-          </AttributeSet>
-          <AttributeSet>
-            <Attribute Type="ProteinChange1LetterCode">E33G</Attribute>
-          </AttributeSet>
-          <CytogeneticLocation>8q21.3</CytogeneticLocation>
-          <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="8" Accession="NC_000008.11" start="91078441" stop="91078441" display_start="91078441" display_stop="91078441" variantLength="1" positionVCF="91078441" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
-          <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="8" Accession="NC_000008.10" start="92090669" stop="92090669" display_start="92090669" display_stop="92090669" variantLength="1" positionVCF="92090669" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
-          <MeasureRelationship Type="within single gene">
-            <Name>
-              <ElementValue Type="Preferred">OTU deubiquitinase 6B</ElementValue>
-            </Name>
-            <Symbol>
-              <ElementValue Type="Preferred">OTUD6B</ElementValue>
-            </Symbol>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.0.xsd" ReleaseDate="2024-05-02">
+<VariationArchive VariationID="1810274" VariationName="NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly)" VariationType="single nucleotide variant" Accession="VCV001810274" Version="2" RecordType="classified" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2024-01-26" DateCreated="2023-01-07" MostRecentSubmission="2024-01-26">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="1867277" VariationID="1810274">
+      <GeneList>
+        <Gene Symbol="OTUD6B" FullName="OTU deubiquitinase 6B" GeneID="51633" HGNC_ID="HGNC:24281" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>8q21.3</CytogeneticLocation>
             <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="8" Accession="NC_000008.11" start="91070344" stop="91087093" display_start="91070344" display_stop="91087093" Strand="+"/>
-            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="8" Accession="NC_000008.10" start="92082423" stop="92099322" display_start="92082423" display_stop="92099322" variantLength="16900" Strand="+"/>
-            <XRef ID="51633" DB="Gene"/>
-            <XRef Type="MIM" ID="612021" DB="OMIM"/>
-            <XRef ID="HGNC:24281" DB="HGNC"/>
-          </MeasureRelationship>
-        </Measure>
-        <Name>
-          <ElementValue Type="Preferred">NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly)</ElementValue>
-        </Name>
-      </MeasureSet>
-      <TraitSet Type="Disease" ID="36087">
-        <Trait ID="37800" Type="Disease">
-          <Name>
-            <ElementValue Type="Preferred">Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies</ElementValue>
-            <XRef ID="MONDO:0044319" DB="MONDO"/>
-          </Name>
-          <Symbol>
-            <ElementValue Type="Preferred">IDDFSDA</ElementValue>
-            <XRef Type="MIM" ID="617452" DB="OMIM"/>
-          </Symbol>
-          <XRef ID="MONDO:0044319" DB="MONDO"/>
-          <XRef ID="C4479520" DB="MedGen"/>
-          <XRef Type="MIM" ID="617452" DB="OMIM"/>
-        </Trait>
-      </TraitSet>
-    </ReferenceClinVarAssertion>
-    <ClinVarAssertion ID="5502945" SubmissionName="SUB12515886">
-      <ClinVarSubmissionID localKey="NM_016023.5:c.401A&gt;G|OMIM:617452" submitter="Cytogenetique et Genetique Moleculaire, CHU Besancon" submitterDate="2023-01-06"/>
-      <ClinVarAccession Acc="SCV002818301" Version="1" Type="SCV" OrgID="508575" OrganizationCategory="laboratory" OrgType="primary" DateUpdated="2023-01-07" DateCreated="2023-01-07"/>
-      <RecordStatus>current</RecordStatus>
-      <ClinicalSignificance DateLastEvaluated="2022-07-04">
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="8" Accession="NC_000008.10" start="92082423" stop="92099322" display_start="92082423" display_stop="92099322" Strand="+"/>
+          </Location>
+          <OMIM>612021</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly)</Name>
+      <CanonicalSPDI>NC_000008.11:91078440:A:G</CanonicalSPDI>
+      <VariantType>single nucleotide variant</VariantType>
+      <Location>
+        <CytogeneticLocation>8q21.3</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Chr="8" Accession="NC_000008.11" start="91078441" stop="91078441" display_start="91078441" display_stop="91078441" variantLength="1" positionVCF="91078441" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="8" Accession="NC_000008.10" start="92090669" stop="92090669" display_start="92090669" display_stop="92090669" variantLength="1" positionVCF="92090669" referenceAlleleVCF="A" alternateAlleleVCF="G"/>
+      </Location>
+      <ProteinChange>E134G</ProteinChange>
+      <ProteinChange>E33G</ProteinChange>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000008.10" sequenceAccession="NC_000008" sequenceVersion="10" change="g.92090669A&gt;G" Assembly="GRCh37">
+            <Expression>NC_000008.10:g.92090669A&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000008.11" sequenceAccession="NC_000008" sequenceVersion="11" change="g.91078441A&gt;G" Assembly="GRCh38">
+            <Expression>NC_000008.11:g.91078441A&gt;G</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_001286745.3" sequenceAccession="NM_001286745" sequenceVersion="3" change="c.98A&gt;G">
+            <Expression>NM_001286745.3:c.98A&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_001273674.1" sequenceAccession="NP_001273674" sequenceVersion="1" change="p.Glu33Gly">
+            <Expression>NP_001273674.1:p.Glu33Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_016023.5" sequenceAccession="NM_016023" sequenceVersion="5" change="c.401A&gt;G" MANESelect="true">
+            <Expression>NM_016023.5:c.401A&gt;G</Expression>
+          </NucleotideExpression>
+          <ProteinExpression sequenceAccessionVersion="NP_057107.4" sequenceAccession="NP_057107" sequenceVersion="4" change="p.Glu134Gly">
+            <Expression>NP_057107.4:p.Glu134Gly</Expression>
+          </ProteinExpression>
+          <MolecularConsequence ID="SO:0001583" Type="missense variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_016023.5(OTUD6B):c.401A&gt;G (p.Glu134Gly) AND Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies" Accession="RCV002508983" Version="2">
+        <ClassifiedConditionList TraitSetID="36087">
+          <ClassifiedCondition DB="MedGen" ID="C4479520">Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+            <Description DateLastEvaluated="2022-07-04" SubmissionCount="1">Likely pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2022-07-04" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2023-01-07" MostRecentSubmission="2024-01-26">
         <ReviewStatus>criteria provided, single submitter</ReviewStatus>
         <Description>Likely pathogenic</Description>
-        <CustomAssertionScore type="ACMG Guidelines 2015">4</CustomAssertionScore>
-        <Citation>
+        <Citation Type="general">
           <ID Source="PubMed">28343629</ID>
         </Citation>
-        <Comment>In a autosomal recessive syndrom, this homozygous inherited variant from both heterozygous parents (confirmed by parental segregation thanks to Sanger sequencing), is associated with a matching described phenotype (seizures, larges ears..).</Comment>
-      </ClinicalSignificance>
-      <Assertion Type="variation to disease"/>
-      <AttributeSet>
-        <Attribute Type="AssertionMethod">ACMG Guidelines 2015</Attribute>
-        <Citation>
-          <ID Source="PubMed">25741868</ID>
-        </Citation>
-      </AttributeSet>
-      <AttributeSet>
-        <Attribute Type="ModeOfInheritance">Autosomal recessive inheritance</Attribute>
-      </AttributeSet>
-      <ObservedIn>
-        <Sample>
-          <Origin>inherited</Origin>
-          <Species TaxonomyId="9606">human</Species>
-          <AffectedStatus>yes</AffectedStatus>
-        </Sample>
-        <Method>
-          <MethodType>clinical testing</MethodType>
-          <MethodAttribute>
-            <Attribute Type="StructVarMethodType">Paired-end mapping</Attribute>
-          </MethodAttribute>
-        </Method>
-        <ObservedData>
-          <Attribute Type="VariantAlleles" integerValue="1"/>
-        </ObservedData>
-      </ObservedIn>
-      <MeasureSet Type="Variant">
-        <Measure Type="Variation">
+        <ConditionList>
+          <TraitSet ID="36087" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="37800" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies</ElementValue>
+                <XRef ID="MONDO:0044319" DB="MONDO"/>
+              </Name>
+              <Symbol>
+                <ElementValue Type="Preferred">IDDFSDA</ElementValue>
+                <XRef Type="MIM" ID="617452" DB="OMIM"/>
+              </Symbol>
+              <AttributeSet>
+                <Attribute Type="GARD id" integerValue="17942"/>
+                <XRef ID="17942" DB="Office of Rare Diseases"/>
+              </AttributeSet>
+              <XRef ID="505237" DB="Orphanet"/>
+              <XRef ID="C4479520" DB="MedGen"/>
+              <XRef ID="MONDO:0044319" DB="MONDO"/>
+              <XRef Type="MIM" ID="617452" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="5502945" SubmissionDate="2024-01-12" DateLastUpdated="2024-01-26" DateCreated="2023-01-07">
+        <ClinVarSubmissionID localKey="NM_016023.5:c.401A&gt;G|OMIM:617452"/>
+        <ClinVarAccession Accession="SCV002818301" DateUpdated="2024-01-26" DateCreated="2023-01-07" Type="SCV" Version="2" SubmitterName="Cytogenetique et Genetique Moleculaire, CHU Besancon" OrgID="508575" OrganizationCategory="laboratory"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2022-07-04">
+          <ReviewStatus>criteria provided, single submitter</ReviewStatus>
+          <GermlineClassification>Likely pathogenic</GermlineClassification>
+          <Citation Type="general">
+            <ID Source="PubMed">28343629</ID>
+          </Citation>
+          <Comment>In a autosomal recessive syndrom, this homozygous inherited variant from both heterozygous parents (confirmed by parental segregation thanks to Sanger sequencing), is associated with a matching described phenotype (seizures, larges ears..).</Comment>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <AttributeSet>
+          <Attribute Type="AssertionMethod">ACMG Guidelines 2015</Attribute>
+          <Citation>
+            <ID Source="PubMed">25741868</ID>
+          </Citation>
+        </AttributeSet>
+        <AttributeSet>
+          <Attribute Type="ModeOfInheritance">Autosomal recessive inheritance</Attribute>
+        </AttributeSet>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>inherited</Origin>
+              <Species TaxonomyId="9606">human</Species>
+              <AffectedStatus>yes</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>clinical testing</MethodType>
+              <MethodAttribute>
+                <Attribute Type="StructVarMethodType">Paired-end mapping</Attribute>
+              </MethodAttribute>
+            </Method>
+            <ObservedData>
+              <Attribute Type="VariantAlleles" integerValue="1"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <VariantType>Variation</VariantType>
           <AttributeSet>
             <Attribute Type="HGVS">NM_016023.5:c.401A&gt;G</Attribute>
           </AttributeSet>
-        </Measure>
-      </MeasureSet>
-      <TraitSet Type="Disease">
-        <Trait Type="Disease">
-          <XRef DB="OMIM" ID="617452" Type="MIM"/>
-        </Trait>
-      </TraitSet>
-    </ClinVarAssertion>
-  </ClinVarSet>
-</ReleaseSet>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <XRef DB="OMIM" ID="617452"/>
+          </Trait>
+        </TraitSet>
+        <SubmissionNameList>
+          <SubmissionName>SUB12515886</SubmissionName>
+        </SubmissionNameList>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="5502945" TraitType="Disease" MappingType="XRef" MappingValue="617452" MappingRef="OMIM">
+        <MedGen CUI="C4479520" Name="Intellectual developmental disorder with dysmorphic facies, seizures, and distal limb anomalies"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
+</ClinVarVariationRelease>

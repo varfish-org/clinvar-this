@@ -1,0 +1,11 @@
+{
+  "germlineClassification": {
+    "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+    "description": "Pathogenic",
+    "dateLastEvaluated": "2010-10-01T00:00:00Z",
+    "dateCreated": "2019-02-04T00:00:00Z",
+    "mostRecentSubmission": "2019-02-04T00:00:00Z",
+    "numberOfSubmitters": 1,
+    "numberOfSubmissions": 1
+  }
+}

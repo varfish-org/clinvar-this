@@ -1,0 +1,156 @@
+{
+  "clinvarSubmissionId": {
+    "localKey": "4926460|MedGen:C0270850;C4310756",
+    "submittedAssembly": "GRCh37"
+  },
+  "clinvarAccession": {
+    "accession": "SCV001385009",
+    "version": 1,
+    "submitterIdentifiers": {
+      "submitterName": "Invitae",
+      "orgId": "500031",
+      "orgCategory": "laboratory"
+    },
+    "dateUpdated": "2020-07-16T00:00:00Z",
+    "dateCreated": "2020-07-16T00:00:00Z"
+  },
+  "recordStatus": "RECORD_STATUS_CURRENT",
+  "classifications": [
+    {
+      "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+      "germlineClassification": "Uncertain significance",
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "15888660",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "ids": [
+            {
+              "value": "14729682",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "ids": [
+            {
+              "value": "12891677",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "comments": [
+        {
+          "value": "This sequence change replaces..."
+        }
+      ],
+      "dateLastEvaluated": "2019-08-08T00:00:00Z"
+    }
+  ],
+  "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+  "attributes": [
+    {
+      "attribute": {
+        "value": "Invitae Variant Classification Sherloc (09022015)"
+      },
+      "type": "TYPE_ASSERTION_METHOD",
+      "citations": [
+        {
+          "ids": [
+            {
+              "value": "28492532",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "observedIns": [
+    {
+      "sample": {
+        "origin": "ORIGIN_GERMLINE",
+        "species": {
+          "name": "human",
+          "taxonomyId": 9606
+        },
+        "affectedStatus": "AFFECTED_STATUS_UNKNOWN"
+      },
+      "observedData": [
+        {
+          "attributes": [
+            {
+              "base": {
+                "value": "not provided"
+              },
+              "type": "TYPE_DESCRIPTION"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "simpleAllele": {
+    "genes": [
+      {
+        "symbol": "CACNA1H"
+      }
+    ],
+    "variantType": "Variation",
+    "attributes": [
+      {
+        "attribute": {
+          "base": {
+            "value": "NM_021098.2:c.844G>A"
+          },
+          "type": "HGVS"
+        }
+      }
+    ]
+  },
+  "traitSet": {
+    "traits": [
+      {
+        "names": [
+          {
+            "value": "Idiopathic generalized epilepsy",
+            "type": "Preferred"
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "MedGen",
+            "id": "C0270850",
+            "type": "CUI"
+          }
+        ]
+      },
+      {
+        "names": [
+          {
+            "value": "Hyperaldosteronism, familial, type IV",
+            "type": "Preferred"
+          }
+        ],
+        "xrefs": [
+          {
+            "db": "MedGen",
+            "id": "C4310756",
+            "type": "CUI"
+          }
+        ]
+      }
+    ],
+    "type": "TYPE_DISEASE"
+  },
+  "submissionNames": [
+    "SUB6933842"
+  ],
+  "id": "2719824"
+}

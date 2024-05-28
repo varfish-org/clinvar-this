@@ -1,5 +1,6 @@
 """Console script for ClinVar This!"""
 
+import os
 import typing
 
 import click
@@ -23,18 +24,25 @@ from clinvar_this.config import Config, dump_config, load_config, save_config
 @click.option(
     "--verify-ssl/--no-verify-ssl", default=True, help="Whether to enable SSL verification"
 )
+@click.option(
+    "--use-utc/--no-use-utc", default=True, help="Whether to use UTC timezone (default: true)"
+)
 @click.pass_context
-def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool):
+def cli(ctx: click.Context, verbose: bool, profile: str, verify_ssl: bool, use_utc: bool):
     """Main entry point for CLI via click."""
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
     ctx.obj["profile"] = profile
     ctx.obj["verify_ssl"] = verify_ssl
+    # Using UTC is a good idea as we store dates as protobuf timestamps and otherwise we
+    # get non-midnight times.
+    if use_utc:
+        os.environ["TZ"] = "UTC"
 
 
 @cli.group()
 def config():
-    """Sub command category ``varfish-this config ...``"""
+    """Sub command category ``clinvar-this config ...``"""
 
 
 @config.command("set")
@@ -42,7 +50,7 @@ def config():
 @click.argument("value")
 @click.pass_context
 def config_set(ctx: click.Context, name: str, value: str):
-    """Sub command ``varfish-this config set NAME VALUE``
+    """Sub command ``clinvar-this config set NAME VALUE``
 
     Set the configuration variable with the given ``NAME`` to the given ``VALUE``.  This will interpret the
     current ``--profile`` setting.
@@ -70,7 +78,7 @@ def config_set(ctx: click.Context, name: str, value: str):
 @click.option("--profile", default="default", help="The profile to get the value from")
 @click.argument("name")
 def config_get(profile: str, name: str):
-    """Sub command ``varfish-this config get NAME``
+    """Sub command ``clinvar-this config get NAME``
 
     Show the configuration variable with the given ``NAME``.  This will interpret the current ``--profile`` setting.
     """
@@ -83,7 +91,7 @@ def config_get(profile: str, name: str):
 
 @config.command("dump")
 def config_dump():
-    """Sub command ``varfish-this config dump``
+    """Sub command ``clinvar-this config dump``
 
     Print the configuration file to stdout.
     """
@@ -219,10 +227,24 @@ def data():
 @click.option(
     "--max-records", required=False, default=0, help="Maximum number of records to convert"
 )
+@click.option(
+    "--show-progress/--no-show-progress",
+    type=bool,
+    default=True,
+    help="Whether to show progress bar.",
+)
 @click.pass_context
-def xml_to_jsonl(ctx: click.Context, input_file: str, output_file: str, max_records: int):
+def xml_to_jsonl(
+    ctx: click.Context, input_file: str, output_file: str, max_records: int, show_progress: bool
+):
     """Convert XML to JSONL"""
-    retcode = conversion.convert(input_file, output_file, max_records=max_records, use_click=True)
+    retcode = conversion.convert(
+        input_file,
+        output_file,
+        max_records=max_records,
+        use_click=True,
+        show_progress=show_progress,
+    )
     ctx.exit(retcode)
 
 

@@ -1,0 +1,99 @@
+{
+  "clinvarSubmissionId": {
+    "localKey": ":Chr.X_38178162_38178162_A_C|not provided",
+    "submittedAssembly": "GRCh37"
+  },
+  "clinvarAccession": {
+    "accession": "SCV001970600",
+    "version": 1,
+    "submitterIdentifiers": {
+      "submitterName": "Clinical Genetics DNA and cytogenetics Diagnostics Lab, Erasmus MC, Erasmus Medical Center",
+      "orgId": "506497",
+      "orgCategory": "laboratory",
+      "orgAbbreviation": "CGDx-EMC"
+    },
+    "dateUpdated": "2021-10-08T00:00:00Z",
+    "dateCreated": "2021-10-08T00:00:00Z"
+  },
+  "additionalSubmitters": [
+    {
+      "submitterIdentifiers": {
+        "submitterName": "Diagnostic Laboratory, Department of Genetics, University Medical Center Groningen",
+        "orgId": "506382",
+        "orgCategory": "laboratory"
+      },
+      "type": "TYPE_BEHALF"
+    }
+  ],
+  "recordStatus": "RECORD_STATUS_CURRENT",
+  "classifications": [
+    {
+      "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+      "germlineClassification": "Pathogenic"
+    }
+  ],
+  "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+  "observedIns": [
+    {
+      "sample": {
+        "origin": "ORIGIN_GERMLINE",
+        "species": {
+          "name": "human",
+          "taxonomyId": 9606
+        },
+        "affectedStatus": "AFFECTED_STATUS_YES"
+      },
+      "observedData": [
+        {
+          "attributes": [
+            {
+              "base": {
+                "value": "not provided"
+              },
+              "type": "TYPE_DESCRIPTION"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "simpleAllele": {
+    "genes": [
+      {
+        "symbol": "RPGR"
+      }
+    ],
+    "variantType": "Variation",
+    "location": {
+      "sequenceLocations": [
+        {
+          "assembly": "GRCh37",
+          "chr": "CHROMOSOME_X",
+          "start": 38178162,
+          "stop": 38178162,
+          "variantLength": 1,
+          "referenceAllele": "A",
+          "alternateAllele": "C"
+        }
+      ]
+    }
+  },
+  "traitSet": {
+    "traits": [
+      {
+        "names": [
+          {
+            "value": "not provided",
+            "type": "Preferred"
+          }
+        ]
+      }
+    ],
+    "type": "TYPE_DISEASE"
+  },
+  "studyName": "VKGL Data-share Consensus",
+  "submissionNames": [
+    "SUB10405229"
+  ],
+  "id": "3860220"
+}

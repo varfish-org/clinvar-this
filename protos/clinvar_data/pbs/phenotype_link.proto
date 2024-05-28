@@ -1,0 +1,28 @@
+// Protocol buffers to store the gene-to-phenotype links extracted from ClinVar.
+
+syntax = "proto3";
+
+package clinvar_data.pbs.phenotype_links;
+
+import "clinvar_data/pbs/extracted_vars.proto";
+
+
+// A record linking gene to phenotype.
+message GenePhenotypeRecord {
+  // VCV
+  clinvar_data.pbs.extracted_vars.VersionedAccession vcv = 1;
+  // SCV
+  clinvar_data.pbs.extracted_vars.VersionedAccession scv = 2;
+  // Clinical germline classification.
+  string germline_classification = 3;
+  // Submitter
+  string submitter_name = 4;
+  // Gene HGNC ID
+  repeated string hgnc_ids = 5;
+  // Linked OMIM terms
+  repeated string omim_terms = 6;
+  // Linked MONDO terms
+  repeated string mondo_terms = 7;
+  // Linked HPO terms
+  repeated string hpo_terms = 8;
+}

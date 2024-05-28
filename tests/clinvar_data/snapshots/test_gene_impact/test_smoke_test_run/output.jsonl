@@ -1,6 +1,6 @@
-{"hgnc": "HGNC:4035", "counts": {"frameshift_variant": [0, 0, 0, 0, 1], "missense_variant": [0, 0, 0, 0, 1]}}
-{"hgnc": "HGNC:15868", "counts": {"stop_gained": [0, 0, 0, 0, 1]}}
-{"hgnc": "HGNC:22197", "counts": {"5_prime_UTR_variant": [0, 0, 0, 0, 1], "frameshift_variant": [0, 0, 0, 0, 1]}}
-{"hgnc": "HGNC:24502", "counts": {"frameshift_variant": [0, 0, 0, 0, 1], "missense_variant": [0, 0, 0, 0, 1]}}
-{"hgnc": "HGNC:25155", "counts": {"intron_variant": [0, 0, 0, 0, 1]}}
-{"hgnc": "HGNC:26927", "counts": {"missense_variant": [0, 0, 0, 0, 1]}}
+{'hgncId': 'HGNC:4035', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_FRAMESHIFT_VARIANT', 'countPathogenic': 1}, {'geneImpact': 'GENE_IMPACT_MISSENSE_VARIANT', 'countPathogenic': 1}]}
+{'hgncId': 'HGNC:15868', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_STOP_GAINED', 'countPathogenic': 1}]}
+{'hgncId': 'HGNC:22197', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_FRAMESHIFT_VARIANT', 'countPathogenic': 1}, {'geneImpact': 'GENE_IMPACT_STOP_GAINED', 'countPathogenic': 1}]}
+{'hgncId': 'HGNC:24502', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_FRAMESHIFT_VARIANT', 'countPathogenic': 1}, {'geneImpact': 'GENE_IMPACT_MISSENSE_VARIANT', 'countPathogenic': 1}]}
+{'hgncId': 'HGNC:25155', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_INTRON_VARIANT', 'countPathogenic': 1}]}
+{'hgncId': 'HGNC:26927', 'impactCounts': [{'geneImpact': 'GENE_IMPACT_MISSENSE_VARIANT', 'countPathogenic': 1}]}

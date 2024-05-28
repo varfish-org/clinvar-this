@@ -1,0 +1,113 @@
+{
+  "clinvarSubmissionId": {
+    "localKey": "609712.0004_PYRUVATE KINASE DEFICIENCY",
+    "title": "PKLR, THR384MET_PYRUVATE KINASE DEFICIENCY"
+  },
+  "clinvarAccession": {
+    "accession": "SCV000021727",
+    "version": 1,
+    "submitterIdentifiers": {
+      "submitterName": "OMIM",
+      "orgId": "3",
+      "orgCategory": "resource"
+    },
+    "dateUpdated": "2013-04-04T00:00:00Z",
+    "dateCreated": "2013-04-04T00:00:00Z"
+  },
+  "recordStatus": "RECORD_STATUS_CURRENT",
+  "replaceds": [
+    {
+      "accession": "SCV000057029",
+      "version": 1,
+      "dateChanged": "2014-08-31T00:00:00Z"
+    }
+  ],
+  "classifications": [
+    {
+      "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+      "germlineClassification": "Pathogenic",
+      "dateLastEvaluated": "1991-09-15T00:00:00Z"
+    }
+  ],
+  "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+  "observedIns": [
+    {
+      "sample": {
+        "origin": "ORIGIN_GERMLINE",
+        "species": {
+          "name": "human"
+        },
+        "affectedStatus": "AFFECTED_STATUS_NOT_PROVIDED"
+      },
+      "observedData": [
+        {
+          "attributes": [
+            {
+              "base": {
+                "value": "In 2 Japanese patients, born of consanguineous parents, with hereditary hemolytic anemia due to PK Tokyo (266200), Kanno et al. (1991) identified a homozygous 1151C-T transition in the PKLR gene, resulting in a thr384-to-met (T384M) substitution in a highly conserved residue at the end of the seventh alpha-helix of the A domain. Functional expression studies showed that the mutant enzyme had decreased stability. Each parent was heterozygous for the mutation."
+              },
+              "type": "TYPE_DESCRIPTION"
+            }
+          ],
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "1896471",
+                  "source": "PubMed"
+                }
+              ]
+            }
+          ],
+          "xrefs": [
+            {
+              "db": "OMIM",
+              "id": "266200",
+              "type": "MIM"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "simpleAllele": {
+    "genes": [
+      {
+        "symbol": "PKLR"
+      }
+    ],
+    "names": [
+      {
+        "value": "PKLR, THR384MET"
+      }
+    ],
+    "variantType": "Variation",
+    "otherNames": [
+      {
+        "value": "THR384MET",
+        "type": "NonHGVS"
+      }
+    ],
+    "xrefs": [
+      {
+        "db": "OMIM",
+        "id": "609712.0004",
+        "type": "Allelic variant"
+      }
+    ]
+  },
+  "traitSet": {
+    "traits": [
+      {
+        "names": [
+          {
+            "value": "PYRUVATE KINASE DEFICIENCY",
+            "type": "Preferred"
+          }
+        ]
+      }
+    ],
+    "type": "TYPE_DISEASE"
+  },
+  "id": "21727"
+}

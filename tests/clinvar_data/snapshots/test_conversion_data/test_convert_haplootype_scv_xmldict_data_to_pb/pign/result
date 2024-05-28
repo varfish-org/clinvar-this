@@ -1,0 +1,40 @@
+{
+  "simpleAlleles": [
+    {
+      "genes": [
+        {
+          "symbol": "PIGN"
+        }
+      ],
+      "variantType": "Variation",
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_176787.5:c.2399G>A"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    },
+    {
+      "genes": [
+        {
+          "symbol": "PIGN"
+        }
+      ],
+      "variantType": "Variation",
+      "attributes": [
+        {
+          "attribute": {
+            "base": {
+              "value": "NM_176787.5:c.1251+1G>T"
+            },
+            "type": "HGVS"
+          }
+        }
+      ]
+    }
+  ]
+}

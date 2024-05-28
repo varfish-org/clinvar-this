@@ -1,0 +1,349 @@
+{
+  "simpleAllele": {
+    "genes": [
+      {
+        "locations": [
+          {
+            "cytogeneticLocations": [
+              "6p21.33"
+            ],
+            "sequenceLocations": [
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NC_000006.12",
+                "start": 30720352,
+                "stop": 30725422,
+                "displayStart": 30720352,
+                "displayStop": 30725422,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_113891.3",
+                "start": 2200091,
+                "stop": 2205161,
+                "displayStart": 2200091,
+                "displayStop": 2205161,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167244.2",
+                "start": 2049855,
+                "stop": 2054925,
+                "displayStart": 2049855,
+                "displayStop": 2054925,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167245.2",
+                "start": 1976202,
+                "stop": 1981272,
+                "displayStart": 1976202,
+                "displayStop": 1981272,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167246.2",
+                "start": 2030603,
+                "stop": 2035673,
+                "displayStart": 2030603,
+                "displayStop": 2035673,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167247.2",
+                "start": 2064427,
+                "stop": 2069497,
+                "displayStart": 2064427,
+                "displayStop": 2069497,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167248.2",
+                "start": 1975464,
+                "stop": 1980535,
+                "displayStart": 1975464,
+                "displayStop": 1980535,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_6",
+                "accession": "NT_167249.2",
+                "start": 2021138,
+                "stop": 2026208,
+                "displayStart": 2021138,
+                "displayStop": 2026208,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh37",
+                "chr": "CHROMOSOME_6",
+                "accession": "NC_000006.11",
+                "start": 30688156,
+                "stop": 30693198,
+                "displayStart": 30688156,
+                "displayStop": 30693198,
+                "strand": "+"
+              }
+            ]
+          }
+        ],
+        "omims": [
+          "191130"
+        ],
+        "fullName": "tubulin beta class I",
+        "geneId": "203068",
+        "hgncId": "HGNC:20778",
+        "source": "submitted",
+        "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+      }
+    ],
+    "name": "NM_178014.4(TUBB):c.58-593_58-575del",
+    "canonicalSpdi": "NC_000006.12:30721941:CCTGGGCAACAAAGCGAGACC:CC",
+    "variantTypes": [
+      "Deletion"
+    ],
+    "locations": [
+      {
+        "cytogeneticLocations": [
+          "6p21.33"
+        ],
+        "sequenceLocations": [
+          {
+            "forDisplay": true,
+            "assembly": "GRCh38",
+            "chr": "CHROMOSOME_6",
+            "accession": "NC_000006.12",
+            "start": 30721942,
+            "stop": 30721960,
+            "displayStart": 30721942,
+            "displayStop": 30721960,
+            "variantLength": 19,
+            "positionVcf": 30721941,
+            "referenceAlleleVcf": "TCCTGGGCAACAAAGCGAGA",
+            "alternateAlleleVcf": "T"
+          },
+          {
+            "assembly": "GRCh37",
+            "chr": "CHROMOSOME_6",
+            "accession": "NC_000006.11",
+            "start": 30689719,
+            "stop": 30689737,
+            "displayStart": 30689719,
+            "displayStop": 30689737,
+            "variantLength": 19,
+            "positionVcf": 30689718,
+            "referenceAlleleVcf": "TCCTGGGCAACAAAGCGAGA",
+            "alternateAlleleVcf": "T"
+          }
+        ]
+      }
+    ],
+    "proteinChanges": [
+      "G23fs"
+    ],
+    "hgvsExpressions": [
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293212.2:c.66_84delTGGGCAACAAAGCGAGACC",
+          "sequenceAccessionVersion": "NM_001293212.2",
+          "sequenceAccession": "NM_001293212",
+          "sequenceVersion": 2,
+          "change": "c.66_84delTGGGCAACAAAGCGAGACC"
+        },
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000006.11:g.30689721_30689739del",
+          "sequenceAccessionVersion": "NC_000006.11",
+          "sequenceAccession": "NC_000006",
+          "sequenceVersion": 11,
+          "change": "g.30689721_30689739del"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh37"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000006.12:g.30721944_30721962del",
+          "sequenceAccessionVersion": "NC_000006.12",
+          "sequenceAccession": "NC_000006",
+          "sequenceVersion": 12,
+          "change": "g.30721944_30721962del"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh38"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NG_034142.1:g.6744_6762del",
+          "sequenceAccessionVersion": "NG_034142.1",
+          "sequenceAccession": "NG_034142",
+          "sequenceVersion": 1,
+          "change": "g.6744_6762del"
+        },
+        "type": "HGVS_TYPE_GENOMIC"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293212.2:c.66_84del",
+          "sequenceAccessionVersion": "NM_001293212.2",
+          "sequenceAccession": "NM_001293212",
+          "sequenceVersion": 2,
+          "change": "c.66_84del"
+        },
+        "proteinExpression": {
+          "expression": "NP_001280141.1:p.Gly23fs",
+          "sequenceAccessionVersion": "NP_001280141.1",
+          "sequenceAccession": "NP_001280141",
+          "sequenceVersion": 1,
+          "change": "p.Gly23fs"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001589",
+            "type": "frameshift variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_178014.4:c.58-593_58-575del",
+          "sequenceAccessionVersion": "NM_178014.4",
+          "sequenceAccession": "NM_178014",
+          "sequenceVersion": 4,
+          "change": "c.58-593_58-575del",
+          "maneSelect": true
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001627",
+            "type": "intron variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293213.2:c.58-593_58-575del",
+          "sequenceAccessionVersion": "NM_001293213.2",
+          "sequenceAccession": "NM_001293213",
+          "sequenceVersion": 2,
+          "change": "c.58-593_58-575del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001627",
+            "type": "intron variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293214.2:c.35-974_35-956del",
+          "sequenceAccessionVersion": "NM_001293214.2",
+          "sequenceAccession": "NM_001293214",
+          "sequenceVersion": 2,
+          "change": "c.35-974_35-956del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001627",
+            "type": "intron variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293215.2:c.-160+46_-160+64del",
+          "sequenceAccessionVersion": "NM_001293215.2",
+          "sequenceAccession": "NM_001293215",
+          "sequenceVersion": 2,
+          "change": "c.-160+46_-160+64del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001627",
+            "type": "intron variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001293216.2:c.-160+147_-160+165del",
+          "sequenceAccessionVersion": "NM_001293216.2",
+          "sequenceAccession": "NM_001293216",
+          "sequenceVersion": 2,
+          "change": "c.-160+147_-160+165del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001627",
+            "type": "intron variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      }
+    ],
+    "xrefs": [
+      {
+        "db": "ClinVar",
+        "id": "1065830",
+        "type": "Interpreted"
+      },
+      {
+        "db": "dbSNP",
+        "id": "2127746598",
+        "type": "rs"
+      }
+    ],
+    "alleleId": "1054167",
+    "variationId": "1076996"
+  },
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+      "description": "no classification for the single variant",
+      "numberOfSubmitters": 0,
+      "numberOfSubmissions": 0
+    },
+    "somaticClinicalImpacts": [
+      {
+        "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+        "description": "no classification for the single variant",
+        "numberOfSubmitters": 0,
+        "numberOfSubmissions": 0
+      }
+    ],
+    "oncogenicityClassification": {
+      "reviewStatus": "AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+      "description": "no classification for the single variant",
+      "numberOfSubmitters": 0,
+      "numberOfSubmissions": 0
+    }
+  }
+}

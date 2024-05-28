@@ -1,0 +1,73 @@
+// Protocol buffers to store the extracted variants from ClinVar.
+
+syntax = "proto3";
+
+package clinvar_data.pbs.extracted_vars;
+
+import "clinvar_data/pbs/clinvar_public.proto";
+
+// Enumeration for the type of the variant.
+enum VariationType {
+  // unspecified variation type
+  VARIATION_TYPE_UNSPECIFIED = 0;
+  // Corresponds to "insertion".
+  VARIATION_TYPE_INSERTION = 1;
+  // Corresponds to "deletion".
+  VARIATION_TYPE_DELETION = 2;
+  // Corresponds to "single nucleotide variant".
+  VARIATION_TYPE_SNV = 3;
+  // Corresponds to "indel".
+  VARIATION_TYPE_INDEL = 4;
+  // Corresponds to "duplication".
+  VARIATION_TYPE_DUPLICATION = 5;
+  // Corresponds to "tandem duplication".
+  VARIATION_TYPE_TANDEM_DUPLICATION = 6;
+  // Corresponds to "structural variant".
+  VARIATION_TYPE_STRUCTURAL_VARIANT = 7;
+  // Corresponds to "copy number gain".
+  VARIATION_TYPE_COPY_NUMBER_GAIN = 8;
+  // Corresponds to "copy number loss".
+  VARIATION_TYPE_COPY_NUMBER_LOSS = 9;
+  // Corresponds to "protein only".
+  VARIATION_TYPE_PROTEIN_ONLY = 10;
+  // Corresponds to "microsatellite".
+  VARIATION_TYPE_MICROSATELLITE = 11;
+  // Corresponds to "inversion".
+  VARIATION_TYPE_INVERSION = 12;
+  // Corresponds to "other".
+  VARIATION_TYPE_OTHER = 13;
+}
+
+// Accession with version.
+message VersionedAccession {
+  // The accession.
+  string accession = 1;
+  // The version.
+  int32 version = 2;
+}
+
+// Protocol buffer for storing essential information of one RCV.
+message ExtractedRcvRecord {
+  // The accession.
+  VersionedAccession accession = 1;
+  // Title of RCV.
+  string title = 2;
+}
+
+// Protocol buffer for storing essential information of one VCV.
+message ExtractedVcvRecord {
+  // The accession.
+  VersionedAccession accession = 1;
+  // List of aggregated RCVs.
+  repeated ExtractedRcvRecord rcvs = 2;
+  // Name of VCV.
+  string name = 3;
+  // The type of the variant.
+  VariationType variation_type = 4;
+  // Classifications.
+  clinvar_data.pbs.clinvar_public.AggregateClassificationSet classifications = 5;
+  // The sequence location on one reference.
+  clinvar_data.pbs.clinvar_public.Location.SequenceLocation sequence_location = 6;
+  // List of HGNC IDs.
+  repeated string hgnc_ids = 7;
+}

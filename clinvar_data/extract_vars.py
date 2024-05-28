@@ -1,23 +1,35 @@
 """Extract variants from RCV records."""
 
 import contextlib
-import enum
 import gzip
+import json
 import os
 import typing
 
-from pydantic import BaseModel, ConfigDict
+from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
-from clinvar_data import models
-from clinvar_data.models import MeasureAttributeType
+from clinvar_data.pbs.clinvar_public import Allele, VariationArchive
+from clinvar_data.pbs.clinvar_public_pb2 import ClassifiedRecord
+from clinvar_data.pbs.extracted_vars import (
+    ExtractedRcvRecord,
+    ExtractedVcvRecord,
+    VariationType,
+    VersionedAccession,
+)
 
 
 class OutputFilesHandler:
+    """Helper for creating output paths."""
+
     def __init__(self, output_dir: str, gzip_output: bool):
+        #: Output directory.
         self.output_dir = output_dir
+        #: Whether to gzip output.
         self.gzip_output = gzip_output
+        #: File suffix.
         self.suffix = "jsonl.gz" if self.gzip_output else "jsonl"
+        #: Mapping of assembly and variant size to file.
         self.files: typing.Dict[typing.Tuple[str, str], typing.TextIO] = {}
 
     def get_file(self, stack: contextlib.ExitStack, assembly: str, variant_size: str):
@@ -34,58 +46,34 @@ class OutputFilesHandler:
         return self.files[key]
 
 
-@enum.unique
-class VariantType(enum.Enum):
-    INSERTION = "insertion"
-    DELETION = "deletion"
-    SNV = "single nucleotide variant"
-    INDEL = "indel"
-    DUPLICATION = "duplication"
-    TANDEM_DUPLICATION = "tandem duplication"
-    STRUCTURAL_VARIANT = "structural variant"
-    COPY_NUMBER_GAIN = "copy number gain"
-    COPY_NUMBER_LOSS = "copy number loss"
-    PROTEIN_ONLY = "protein only"
-    MICROSATELLITE = "microsatellite"
-    INVERSION = "inversion"
-    OTHER = "other"
+class ConvertVariationType:
+    """Static method helper for ``VariationType`` string to enum conversion."""
+
+    #: Dict for conversion.
+    CONVERT: dict[str, VariationType.ValueType] = {
+        "insertion": VariationType.VARIATION_TYPE_INSERTION,
+        "deletion": VariationType.VARIATION_TYPE_DELETION,
+        "single nucleotide variant": VariationType.VARIATION_TYPE_SNV,
+        "indel": VariationType.VARIATION_TYPE_INDEL,
+        "duplication": VariationType.VARIATION_TYPE_DUPLICATION,
+        "tandem duplication": VariationType.VARIATION_TYPE_TANDEM_DUPLICATION,
+        "structural variant": VariationType.VARIATION_TYPE_STRUCTURAL_VARIANT,
+        "copy number gain": VariationType.VARIATION_TYPE_COPY_NUMBER_GAIN,
+        "copy number loss": VariationType.VARIATION_TYPE_COPY_NUMBER_LOSS,
+        "protein only": VariationType.VARIATION_TYPE_PROTEIN_ONLY,
+        "microsatellite": VariationType.VARIATION_TYPE_MICROSATELLITE,
+        "inversion": VariationType.VARIATION_TYPE_INVERSION,
+        "other": VariationType.VARIATION_TYPE_OTHER,
+    }
 
     @classmethod
-    def from_measure_type(cls, mt: typing.Optional[models.MeasureType]) -> "VariantType":
-        mapping: typing.Dict[typing.Optional[models.MeasureType], VariantType] = {
-            models.MeasureType.INSERTION: VariantType.INSERTION,
-            models.MeasureType.DELETION: VariantType.DELETION,
-            models.MeasureType.SNV: VariantType.SNV,
-            models.MeasureType.INDEL: VariantType.INDEL,
-            models.MeasureType.DUPLICATION: VariantType.DUPLICATION,
-            models.MeasureType.TANDEM_DUPLICATION: VariantType.TANDEM_DUPLICATION,
-            models.MeasureType.STRUCTURAL_VARIANT: VariantType.STRUCTURAL_VARIANT,
-            models.MeasureType.COPY_NUMBER_GAIN: VariantType.COPY_NUMBER_GAIN,
-            models.MeasureType.COPY_NUMBER_LOSS: VariantType.COPY_NUMBER_LOSS,
-            models.MeasureType.INVERSION: VariantType.INVERSION,
-        }
-        return mapping.get(mt, VariantType.OTHER)
-
-
-class VariantRecord(BaseModel):
-    model_config = ConfigDict(frozen=True)
-
-    rcv: str
-    rcv_version: int
-    vcv: str
-    vcv_version: int
-    title: str
-    variant_type: VariantType
-    clinical_significance: typing.Optional[models.ClinicalSignificanceDescription]
-    review_status: typing.Optional[models.ReviewStatus]
-    sequence_location: models.SequenceLocation
-    hgnc_ids: typing.List[str]
-    absolute_copy_number: typing.Union[None, str, int, float] = None
-    reference_copy_number: typing.Union[None, str, int, float] = None
-    copy_number_tuple: typing.Union[None, str, int, float] = None
+    def from_string_value(cls, string_value: str) -> VariationType.ValueType:
+        """Convert string to protobuf enum value."""
+        return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
 
 
 def run(path_input: str, output_dir: str, gzip_output: bool):
+    """Execute the variant extraction."""
     os.makedirs(output_dir, exist_ok=True)
 
     if path_input.endswith(".gz"):
@@ -97,70 +85,75 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
 
     with inputf, contextlib.ExitStack() as stack:
         for line in tqdm.tqdm(inputf, desc="processing", unit=" JSONL records"):
-            clinvar_set = models.ClinVarSet.model_validate_json(line)
-            rca = clinvar_set.reference_clinvar_assertion
+            line_json = json.loads(line)
+            variation_archive: VariationArchive = ParseDict(
+                js_dict=line_json, message=VariationArchive()
+            )
 
-            if rca.measures:
-                for measure in rca.measures.measures or []:
-                    if not measure.sequence_locations:
+            if not variation_archive.HasField("classified_record"):
+                continue
+            classified_record: ClassifiedRecord = variation_archive.classified_record
+            if not variation_archive.classified_record.HasField("simple_allele"):
+                continue
+            simple_allele: Allele = classified_record.simple_allele
+
+            name: str = variation_archive.variation_name
+            variation_type: VariationType.ValueType = ConvertVariationType.from_string_value(
+                variation_archive.variation_type
+            )
+            accession: VersionedAccession = VersionedAccession(
+                accession=variation_archive.accession,
+                version=variation_archive.version,
+            )
+            rcvs: list[ExtractedRcvRecord] = [
+                ExtractedRcvRecord(
+                    title=rcva.title,
+                    accession=VersionedAccession(
+                        accession=rcva.accession,
+                        version=rcva.version,
+                    ),
+                )
+                for rcva in classified_record.rcv_list.rcv_accessions
+            ]
+            hgnc_ids: list[str] = [
+                gene.hgnc_id
+                for gene in classified_record.simple_allele.genes
+                if gene.HasField("hgnc_id")
+            ]
+
+            for location in simple_allele.locations or []:
+                for sequence_location in location.sequence_locations or []:
+                    record = ExtractedVcvRecord(
+                        accession=accession,
+                        rcvs=rcvs,
+                        name=name,
+                        variation_type=variation_type,
+                        classifications=classified_record.classifications,
+                        sequence_location=sequence_location,
+                        hgnc_ids=hgnc_ids,
+                    )
+
+                    if record.variation_type == VariationType.VARIATION_TYPE_OTHER:
+                        continue
+                    if sequence_location.assembly.lower() == "ncbi36":
                         continue
 
-                    hgnc_ids_set = set()
-                    for measure_relationship in measure.measure_relationship or []:
-                        for xref in measure_relationship.xrefs:
-                            if xref.db == "HGNC":
-                                hgnc_ids_set.add(xref.id)
-                    hgnc_ids = list(sorted(hgnc_ids_set))
-
-                    absolute_copy_number = None
-                    reference_copy_number = None
-                    copy_number_tuple = None
-                    for attribute in measure.attributes or []:
-                        value = attribute.value or attribute.integer_value
-                        if attribute.type == MeasureAttributeType.ABSOLUTE_COPY_NUMBER:
-                            absolute_copy_number = value
-                        elif attribute.type == MeasureAttributeType.REFERENCE_COPY_NUMBER:
-                            reference_copy_number = value
-                        elif attribute.type == MeasureAttributeType.COPY_NUMBER_TUPLE:
-                            copy_number_tuple = value
-
-                    if rca.clinical_significance and rca.clinical_significance.description:
-                        clinical_significance = rca.clinical_significance.description
-                        review_status = rca.clinical_significance.review_status
+                    if (
+                        sequence_location.HasField("reference_allele")
+                        and len(sequence_location.reference_allele) < 50
+                        and sequence_location.HasField("alternate_allele")
+                        and len(sequence_location.alternate_allele) < 50
+                    ) or (
+                        sequence_location.HasField("reference_allele_vcf")
+                        and len(sequence_location.reference_allele_vcf) < 50
+                        and sequence_location.HasField("alternate_allele_vcf")
+                        and len(sequence_location.alternate_allele_vcf) < 50
+                    ):
+                        variant_size = "seqvars"
                     else:
-                        clinical_significance = None
-                        review_status = None
+                        variant_size = "strucvars"
 
-                    # The structural variants that we saw had the sequence location directly on the measure.
-                    for sequence_location in measure.sequence_locations:
-                        record = VariantRecord(
-                            rcv=rca.clinvar_accession.acc,
-                            rcv_version=rca.clinvar_accession.version,
-                            vcv=rca.measures.acc or "__MISSING__",
-                            vcv_version=rca.measures.version or 0,
-                            title=clinvar_set.title or "__MISSING__",
-                            clinical_significance=clinical_significance,
-                            review_status=review_status,
-                            variant_type=VariantType.from_measure_type(measure.type),
-                            sequence_location=sequence_location,
-                            hgnc_ids=hgnc_ids,
-                            absolute_copy_number=absolute_copy_number,
-                            reference_copy_number=reference_copy_number,
-                            copy_number_tuple=copy_number_tuple,
-                        )
-                        if record.variant_type == VariantType.OTHER:
-                            continue
-
-                        if (
-                            sequence_location.reference_allele
-                            or sequence_location.alternate_allele
-                            or sequence_location.reference_allele_vcf
-                            or sequence_location.alternate_allele_vcf
-                        ):
-                            variant_size = "seqvars"
-                        else:
-                            variant_size = "strucvars"
-                        dest = output_files.get_file(
-                            stack, sequence_location.assembly.lower(), variant_size
-                        )
-                        print(record.model_dump_json(), file=dest)
+                    dest = output_files.get_file(
+                        stack, sequence_location.assembly.lower(), variant_size
+                    )
+                    print(MessageToJson(record, indent=None), file=dest)

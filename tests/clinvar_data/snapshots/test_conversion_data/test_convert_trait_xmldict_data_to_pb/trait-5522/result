@@ -1,0 +1,95 @@
+{
+  "names": [
+    {
+      "value": "MICROCEPHALY 2, PRIMARY, AUTOSOMAL RECESSIVE, WITH CORTICAL MALFORMATIONS",
+      "type": "Alternate",
+      "xrefs": [
+        {
+          "db": "OMIM",
+          "id": "613583.0005",
+          "type": "Allelic variant"
+        },
+        {
+          "db": "OMIM",
+          "id": "613583.0003",
+          "type": "Allelic variant"
+        }
+      ]
+    },
+    {
+      "value": "Primary autosomal recessive microcephaly 2",
+      "type": "Alternate",
+      "xrefs": [
+        {
+          "db": "Genetic Alliance",
+          "id": "Primary+autosomal+recessive+microcephaly+2/9156"
+        }
+      ]
+    },
+    {
+      "value": "Microcephaly 2, primary, autosomal recessive, with or without cortical malformations",
+      "type": "Preferred",
+      "xrefs": [
+        {
+          "db": "MONDO",
+          "id": "MONDO:0011435"
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "value": "MCPH2",
+      "type": "Alternate",
+      "xrefs": [
+        {
+          "db": "OMIM",
+          "id": "604317",
+          "type": "MIM"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "attribute": {
+        "base": {
+          "value": "In WDR62 primary microcephaly..."
+        },
+        "type": "public definition"
+      },
+      "xrefs": [
+        {
+          "db": "GeneReviews",
+          "id": "NBK578067"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "ids": [
+        {
+          "value": "35188728",
+          "source": "PubMed"
+        },
+        {
+          "value": "NBK578067",
+          "source": "BookShelf"
+        }
+      ],
+      "type": "review",
+      "abbrev": "GeneReviews"
+    }
+  ],
+  "xrefs": [
+    {
+      "db": "Orphanet",
+      "id": "2512"
+    },
+    {
+      "db": "MedGen",
+      "id": "C1858535"
+    }
+  ]
+}

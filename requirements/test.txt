@@ -25,3 +25,7 @@ sphinx
 sphinx_rtd_theme
 sphinx-mdinclude
 sphinx-click
+
+protolint-bin
+types-protobuf
+mypy-protobuf
