@@ -802,6 +802,7 @@ message Indication {
 
   /* attributes */
 
+  // The type of indication.
   Type type = 7;
 }
 
