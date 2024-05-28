@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/varfish-org/clinvar-this/compare/v0.15.0...v0.15.1) (2024-05-28)
+
+
+### Bug Fixes
+
+* properly configure release-please with manifest ([#210](https://github.com/varfish-org/clinvar-this/issues/210)) ([25973e7](https://github.com/varfish-org/clinvar-this/commit/25973e75a03d04d032011ef7f7d735fe1d3627cb))
+
 ## [0.15.0](https://github.com/varfish-org/clinvar-this/compare/v0.14.6...v0.15.0) (2024-05-28)
 
 
