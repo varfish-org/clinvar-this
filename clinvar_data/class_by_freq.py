@@ -7,11 +7,9 @@ import typing
 from google.protobuf.json_format import MessageToDict, ParseDict
 import tqdm
 
-from clinvar_data.gene_impact import ConvertClinicalSignificance
 from clinvar_data.pbs.class_by_freq import CoarseClinicalSignificance
 from clinvar_data.pbs.class_by_freq_pb2 import GeneCoarseClinsigFrequencyCounts
 from clinvar_data.pbs.clinvar_public_pb2 import VariationArchive
-from clinvar_data.pbs.gene_impact import ClinicalSignificance
 
 #: Default thresholds for frequency.
 DEFAULT_THRESHOLDS = [
@@ -35,14 +33,24 @@ DEFAULT_THRESHOLDS = [
 ]
 
 
-#: Mapping from clinical significance to coarse one.
-CLINSIG_TO_COARSE: dict[ClinicalSignificance.ValueType, CoarseClinicalSignificance.ValueType] = {
-    ClinicalSignificance.CLINICAL_SIGNIFICANCE_PATHOGENIC: CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC,
-    ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_PATHOGENIC: CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC,
-    ClinicalSignificance.CLINICAL_SIGNIFICANCE_UNCERTAIN_SIGNIFICANCE: CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNCERTAIN,
-    ClinicalSignificance.CLINICAL_SIGNIFICANCE_LIKELY_BENIGN: CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_BENIGN,
-    ClinicalSignificance.CLINICAL_SIGNIFICANCE_BENIGN: CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_BENIGN,
-}
+class ConvertCoarseClinicalSignificance:
+    """Static method helper for germline clinical significance summary string to coarse enum conversion."""
+
+    #: Dict for conversion.
+    CONVERT: dict[str, CoarseClinicalSignificance.ValueType] = {
+        "Pathogenic": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC,
+        "Pathogenic/Likely pathogenic": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC,
+        "Likely pathogenic": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_PATHOGENIC,
+        "Uncertain significance": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNCERTAIN,
+        "Likely benign": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_BENIGN,
+        "Benign": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_BENIGN,
+        "Benign/Likely benign": CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_BENIGN,
+    }
+
+    @classmethod
+    def from_str(cls, string_value: str) -> CoarseClinicalSignificance.ValueType:
+        """Convert string to protobuf enum value."""
+        return cls.CONVERT.get(string_value, CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED)
 
 
 def zero_counts(count: int):
@@ -90,9 +98,11 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                 description: str = (
                     va.classified_record.classifications.germline_classification.description
                 )
-                pathogenicity: ClinicalSignificance.ValueType = (
-                    ConvertClinicalSignificance.from_str(description)
+                pathogenicity: CoarseClinicalSignificance.ValueType = (
+                    ConvertCoarseClinicalSignificance.from_str(description)
                 )
+            if pathogenicity == CoarseClinicalSignificance.COARSE_CLINICAL_SIGNIFICANCE_UNSPECIFIED:
+               continue
 
             # Obtain minor allele frequency.
             gmaf: float | None = None
@@ -118,7 +128,7 @@ def generate_counts(path_input: str, thresholds: typing.List[float]):
                 counts[hgnc_id] = zero_counts(len(thresholds))
 
             idx = locate(thresholds, gmaf)
-            counts[hgnc_id][CLINSIG_TO_COARSE[pathogenicity]][idx] += 1
+            counts[hgnc_id][pathogenicity][idx] += 1
 
     return counts
 
