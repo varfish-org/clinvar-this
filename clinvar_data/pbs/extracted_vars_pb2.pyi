@@ -123,21 +123,39 @@ class ExtractedRcvRecord(google.protobuf.message.Message):
 
     ACCESSION_FIELD_NUMBER: builtins.int
     TITLE_FIELD_NUMBER: builtins.int
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
     title: builtins.str
     """Title of RCV."""
     @property
     def accession(self) -> global___VersionedAccession:
         """The accession."""
 
+    @property
+    def classifications(
+        self,
+    ) -> clinvar_data.pbs.clinvar_public_pb2.RcvAccession.RcvClassifications:
+        """Classifications (thinned out)."""
+
     def __init__(
         self,
         *,
         accession: global___VersionedAccession | None = ...,
         title: builtins.str = ...,
+        classifications: (
+            clinvar_data.pbs.clinvar_public_pb2.RcvAccession.RcvClassifications | None
+        ) = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["accession", b"accession"]) -> builtins.bool: ...
+    def HasField(
+        self,
+        field_name: typing.Literal[
+            "accession", b"accession", "classifications", b"classifications"
+        ],
+    ) -> builtins.bool: ...
     def ClearField(
-        self, field_name: typing.Literal["accession", b"accession", "title", b"title"]
+        self,
+        field_name: typing.Literal[
+            "accession", b"accession", "classifications", b"classifications", "title", b"title"
+        ],
     ) -> None: ...
 
 global___ExtractedRcvRecord = ExtractedRcvRecord
@@ -173,7 +191,7 @@ class ExtractedVcvRecord(google.protobuf.message.Message):
 
     @property
     def classifications(self) -> clinvar_data.pbs.clinvar_public_pb2.AggregateClassificationSet:
-        """Classifications."""
+        """Classifications (thinned out)."""
 
     @property
     def sequence_location(self) -> clinvar_data.pbs.clinvar_public_pb2.Location.SequenceLocation:

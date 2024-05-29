@@ -9,8 +9,8 @@ import typing
 from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
-from clinvar_data.pbs.clinvar_public import Allele, VariationArchive
-from clinvar_data.pbs.clinvar_public_pb2 import ClassifiedRecord
+from clinvar_data.pbs.clinvar_public import Allele, ClassifiedRecord, VariationArchive
+from clinvar_data.pbs.clinvar_public_pb2 import AggregateClassificationSet
 from clinvar_data.pbs.extracted_vars import (
     ExtractedRcvRecord,
     ExtractedVcvRecord,
@@ -72,6 +72,27 @@ class ConvertVariationType:
         return cls.CONVERT.get(string_value.lower(), VariationType.VARIATION_TYPE_OTHER)
 
 
+def thin_out_aggregate_classification_set(
+    classifications: AggregateClassificationSet | None,
+) -> AggregateClassificationSet | None:
+    """Thin out the aggregate classifications set for extracted variants."""
+    if classifications is None:
+        return None
+    else:
+        result = AggregateClassificationSet()
+        result.CopyFrom(classifications)
+        if result.HasField("germline_classification"):
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                result.germline_classification.ClearField(key)
+        for somatic_clinical_impacts in result.somatic_clinical_impacts:
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                somatic_clinical_impacts.ClearField(key)
+        if result.HasField("oncogenicity_classification"):
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                result.oncogenicity_classification.ClearField(key)
+        return result
+
+
 def run(path_input: str, output_dir: str, gzip_output: bool):
     """Execute the variant extraction."""
     os.makedirs(output_dir, exist_ok=True)
@@ -107,11 +128,12 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
             )
             rcvs: list[ExtractedRcvRecord] = [
                 ExtractedRcvRecord(
-                    title=rcva.title,
                     accession=VersionedAccession(
                         accession=rcva.accession,
                         version=rcva.version,
                     ),
+                    title=rcva.title,
+                    classifications=rcva.rcv_classifications,
                 )
                 for rcva in classified_record.rcv_list.rcv_accessions
             ]
@@ -128,7 +150,9 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         rcvs=rcvs,
                         name=name,
                         variation_type=variation_type,
-                        classifications=classified_record.classifications,
+                        classifications=(
+                            thin_out_aggregate_classification_set(classified_record.classifications)
+                        ),
                         sequence_location=sequence_location,
                         hgnc_ids=hgnc_ids,
                     )

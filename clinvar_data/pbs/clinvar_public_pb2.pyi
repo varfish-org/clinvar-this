@@ -2537,7 +2537,10 @@ class Indication(google.protobuf.message.Message):
     COMMENTS_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     type: global___Indication.Type.ValueType
-    """attributes"""
+    """attributes
+
+    The type of indication.
+    """
     @property
     def traits(
         self,
