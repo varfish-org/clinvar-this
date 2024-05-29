@@ -9,12 +9,7 @@ import typing
 from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
-from clinvar_data.pbs.clinvar_public import (
-    Allele,
-    ClassifiedRecord,
-    RcvAccession,
-    VariationArchive,
-)
+from clinvar_data.pbs.clinvar_public import Allele, ClassifiedRecord, VariationArchive
 from clinvar_data.pbs.clinvar_public_pb2 import AggregateClassificationSet
 from clinvar_data.pbs.extracted_vars import (
     ExtractedRcvRecord,
@@ -78,8 +73,8 @@ class ConvertVariationType:
 
 
 def thin_out_aggregate_classification_set(
-    classifications: AggregateClassificationSet,
-) -> AggregateClassificationSet:
+    classifications: AggregateClassificationSet | None,
+) -> AggregateClassificationSet | None:
     """Thin out the aggregate classifications set for extracted variants."""
     if classifications is None:
         return None
@@ -87,11 +82,14 @@ def thin_out_aggregate_classification_set(
         result = AggregateClassificationSet()
         result.CopyFrom(classifications)
         if result.HasField("germline_classification"):
-            pass  # TODO
-        if result.HasField("somatic_clinical_impacts"):
-            pass  # TODO
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                result.germline_classification.ClearField(key)
+        for somatic_clinical_impacts in result.somatic_clinical_impacts:
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                somatic_clinical_impacts.ClearField(key)
         if result.HasField("oncogenicity_classification"):
-            pass  # TODO
+            for key in ("xrefs", "citations", "history_records", "conditions"):
+                result.oncogenicity_classification.ClearField(key)
         return result
 
 
@@ -135,7 +133,7 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         version=rcva.version,
                     ),
                     title=rcva.title,
-                    classifications=rcva.classifications,
+                    classifications=rcva.rcv_classifications,
                 )
                 for rcva in classified_record.rcv_list.rcv_accessions
             ]
@@ -153,9 +151,7 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         name=name,
                         variation_type=variation_type,
                         classifications=(
-                            thin_out_aggregate_classification_set(classified_record.classification)
-                            if classified_record.HasField("classifications")
-                            else None
+                            thin_out_aggregate_classification_set(classified_record.classifications)
                         ),
                         sequence_location=sequence_location,
                         hgnc_ids=hgnc_ids,

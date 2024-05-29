@@ -53,7 +53,7 @@ message ExtractedRcvRecord {
   // Title of RCV.
   string title = 2;
   // Classifications (thinned out).
-  clinvar_data.clinvar_public.RcvClassifications classifications = 3;
+  clinvar_data.pbs.clinvar_public.RcvAccession.RcvClassifications classifications = 3;
 }
 
 // Protocol buffer for storing essential information of one VCV.
