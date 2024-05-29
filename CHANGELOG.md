@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.5](https://github.com/varfish-org/clinvar-this/compare/v0.15.4...v0.15.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* refined (thinned out) extraction of variants ([#219](https://github.com/varfish-org/clinvar-this/issues/219)) ([dc9652c](https://github.com/varfish-org/clinvar-this/commit/dc9652c87aaad156dcc59358a77f2bd976546a02))
+
 ## [0.15.4](https://github.com/varfish-org/clinvar-this/compare/v0.15.3...v0.15.4) (2024-05-28)
 
 
