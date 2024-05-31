@@ -149,7 +149,7 @@ def test_import_seq_variant_tsv_new(fs, app_config, monkeypatch):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == SEQ_VARIANT_PAYLOAD_JSON
+    assert json.loads(payload_json) == json.loads(SEQ_VARIANT_PAYLOAD_JSON)
 
 
 @freeze_time("2012-01-14")
@@ -174,7 +174,7 @@ def test_import_seq_variant_tsv_update(fs, app_config):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == SEQ_VARIANT_UPDATE_PAYLOAD_JSON
+    assert json.loads(payload_json) == json.loads(SEQ_VARIANT_UPDATE_PAYLOAD_JSON)
 
 
 @freeze_time("2012-01-14")
@@ -206,7 +206,7 @@ def test_import_structural_variant_tsv_new(fs, app_config, monkeypatch):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == STRUC_VARIANT_PAYLOAD_JSON
+    assert json.loads(payload_json) == json.loads(STRUC_VARIANT_PAYLOAD_JSON)
 
 
 def test_import_structural_variant_tsv_update(fs, app_config):
@@ -231,7 +231,7 @@ def test_import_structural_variant_tsv_update(fs, app_config):
     assert os.path.exists(payload_path)
     with open(payload_path, "rt") as inputf:
         payload_json = inputf.read()
-    assert payload_json == STRUC_VARIANT_UPDATE_PAYLOAD_JSON
+    assert json.loads(payload_json) == json.loads(STRUC_VARIANT_UPDATE_PAYLOAD_JSON)
 
 
 @pytest.mark.parametrize(

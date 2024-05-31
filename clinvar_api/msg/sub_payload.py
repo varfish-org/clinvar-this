@@ -167,10 +167,10 @@ class ModeOfInheritance(Enum):
     AUTOSOMAL_DOMINANT_INHERITANCE = "Autosomal dominant inheritance"
     AUTOSOMAL_RECESSIVE_INHERITANCE = "Autosomal recessive inheritance"
     MITOCHONDRIAL_INHERITANCE = "Mitochondrial inheritance"
-    SOMATIC_MUTATION = "Somatic mutation"
     GENETIC_ANTICIPATION = "Genetic anticipation"
     SPORADIC = "Sporadic"
     SEX_LIMITED_AUTOSOMAL_DOMINANT = "Sex-limited autosomal dominant"
+    SOMATIC_MUTATION = "Somatic mutation"
     X_LINKED_RECESSIVE_INHERITANCE = "X-linked recessive inheritance"
     X_LINKED_DOMINANT_INHERITANCE = "X-linked dominant inheritance"
     Y_LINKED_INHERITANCE = "Y-linked inheritance"
@@ -270,7 +270,9 @@ class SubmissionClinicalFeature(BaseModel):
     name: typing.Optional[str] = None
 
 
-class SubmissionObservedIn(BaseModel):
+class _SubmissionObservedInBase(BaseModel):
+    """Base observation type."""
+
     model_config = ConfigDict(frozen=True)
 
     affectedStatus: AffectedStatus
@@ -280,6 +282,10 @@ class SubmissionObservedIn(BaseModel):
     clinicalFeaturesComment: typing.Optional[str] = None
     numberOfIndividuals: typing.Optional[int] = None
     structVarMethodType: typing.Optional[StructVarMethodType] = None
+
+
+class SubmissionObservedIn(_SubmissionObservedInBase):
+    model_config = ConfigDict(frozen=True)
 
 
 class SubmissionHaplotypeSet(BaseModel):
@@ -368,26 +374,33 @@ class SubmissionCompoundHeterozygoteSet(BaseModel):
     variantSets: typing.List[SubmissionCompoundHeterozygoteSetVariantSet]
 
 
-class SubmissionClinicalSignificance(BaseModel):
+class _SubmissionClinicalSignificanceBase(BaseModel):
+    """Base class for clinical significance evaluation."""
+
+    model_config = ConfigDict(frozen=True)
+
+    citation: typing.Optional[typing.List[SubmissionCitation]] = None
+    comment: typing.Optional[str] = None
+    dateLastEvaluated: typing.Optional[str] = None
+
+
+class SubmissionClinicalSignificance(_SubmissionClinicalSignificanceBase):
     model_config = ConfigDict(frozen=True)
 
     clinicalSignificanceDescription: ClinicalSignificanceDescription
-    citation: typing.Optional[typing.List[SubmissionCitation]] = None
-    comment: typing.Optional[str] = None
     customAssertionScore: typing.Optional[float] = None
-    dateLastEvaluated: typing.Optional[str] = None
     explanationOfDrugResponse: typing.Optional[str] = None
     explanationOfOtherClinicalSignificance: typing.Optional[str] = None
     modeOfInheritance: typing.Optional[ModeOfInheritance] = None
 
 
-class SubmissionClinvarSubmission(BaseModel):
+class _SubmissionClinvarSubmissionBase(BaseModel):
+    """Base class for ClinVar submissions."""
+
     model_config = ConfigDict(frozen=True)
 
-    clinicalSignificance: SubmissionClinicalSignificance
-    conditionSet: SubmissionConditionSet
-    observedIn: typing.List[SubmissionObservedIn]
     recordStatus: RecordStatus
+
     clinvarAccession: typing.Optional[str] = None
     compoundHeterozygoteSet: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
     diplotypeSet: typing.Optional[SubmissionDiplotypeSet] = None
@@ -398,8 +411,16 @@ class SubmissionClinvarSubmission(BaseModel):
     haplotypeSingleVariantSet: typing.Optional[SubmissionHaplotypeSet] = None
     localID: typing.Optional[str] = None
     localKey: typing.Optional[str] = None
-    phaseUnknownSet: typing.Optional[SubmissionPhaseUnknownSet] = None
     variantSet: typing.Optional[SubmissionVariantSet] = None
+    phaseUnknownSet: typing.Optional[SubmissionPhaseUnknownSet] = None
+
+
+class SubmissionClinvarSubmission(_SubmissionClinvarSubmissionBase):
+    model_config = ConfigDict(frozen=True)
+
+    clinicalSignificance: SubmissionClinicalSignificance
+    conditionSet: SubmissionConditionSet
+    observedIn: typing.List[SubmissionObservedIn]
 
 
 class SubmissionContainer(BaseModel):

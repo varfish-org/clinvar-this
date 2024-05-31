@@ -168,7 +168,9 @@ class SubmissionClinicalFeature(BaseModel):
         )
 
 
-class SubmissionObservedIn(BaseModel):
+class _SubmissionObservedInBase(BaseModel):
+    """Base type for observations."""
+
     model_config = ConfigDict(frozen=True)
 
     affected_status: AffectedStatus
@@ -178,6 +180,10 @@ class SubmissionObservedIn(BaseModel):
     clinical_features_comment: typing.Optional[str] = None
     number_of_individuals: typing.Optional[int] = None
     struct_var_method_type: typing.Optional[StructVarMethodType] = None
+
+
+class SubmissionObservedIn(_SubmissionObservedInBase):
+    model_config = ConfigDict(frozen=True)
 
     def to_msg(self) -> msg.SubmissionObservedIn:
         clinical_features = None
@@ -372,15 +378,20 @@ class SubmissionCompoundHeterozygoteSet(BaseModel):
         )
 
 
-class SubmissionClinicalSignificance(BaseModel):
+class _SubmissionClinicalSignificanceBase(BaseModel):
     model_config = ConfigDict(frozen=True)
 
-    clinical_significance_description: ClinicalSignificanceDescription
     #: Must have at least one entry.
     citation: typing.Optional[typing.List[SubmissionCitation]] = None
     comment: typing.Optional[str] = None
-    custom_assertion_score: typing.Optional[float] = None
     date_last_evaluated: typing.Optional[str] = None
+
+
+class SubmissionClinicalSignificance(_SubmissionClinicalSignificanceBase):
+    model_config = ConfigDict(frozen=True)
+
+    clinical_significance_description: ClinicalSignificanceDescription
+    custom_assertion_score: typing.Optional[float] = None
     explanation_of_drug_response: typing.Optional[str] = None
     explanation_of_other_clinical_significance: typing.Optional[str] = None
     mode_of_inheritance: typing.Optional[ModeOfInheritance] = None
@@ -401,13 +412,11 @@ class SubmissionClinicalSignificance(BaseModel):
         )
 
 
-class SubmissionClinvarSubmission(BaseModel):
+class _SubmissionClinvarSubmissionBase(BaseModel):
     model_config = ConfigDict(frozen=True)
 
-    clinical_significance: SubmissionClinicalSignificance
-    condition_set: SubmissionConditionSet
-    observed_in: typing.List[SubmissionObservedIn]
     record_status: RecordStatus
+
     clinvar_accession: typing.Optional[str] = None
     compound_heterozygote_set: typing.Optional[SubmissionCompoundHeterozygoteSet] = None
     diplotype_set: typing.Optional[SubmissionDiplotypeSet] = None
@@ -420,6 +429,14 @@ class SubmissionClinvarSubmission(BaseModel):
     local_key: typing.Optional[str] = None
     phase_unknown_set: typing.Optional[SubmissionPhaseUnknownSet] = None
     variant_set: typing.Optional[SubmissionVariantSet] = None
+
+
+class SubmissionClinvarSubmission(_SubmissionClinvarSubmissionBase):
+    model_config = ConfigDict(frozen=True)
+
+    clinical_significance: SubmissionClinicalSignificance
+    condition_set: SubmissionConditionSet
+    observed_in: typing.List[SubmissionObservedIn]
     #: Additional information from import.  Will not be used for conversion to message but can be converted back to
     #: external formats.
     extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
