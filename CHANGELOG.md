@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.0](https://github.com/varfish-org/clinvar-this/compare/v0.15.5...v0.16.0) (2024-05-31)
+
+
+### Features
+
+* make compatible with 2024 March 1 schema of ClinVar ([#222](https://github.com/varfish-org/clinvar-this/issues/222)) ([#223](https://github.com/varfish-org/clinvar-this/issues/223)) ([a7480dd](https://github.com/varfish-org/clinvar-this/commit/a7480dd730d7c4594958e3c621da90b4353b1370))
+* make compatible with 2024 May 15 schema of ClinVar ([#221](https://github.com/varfish-org/clinvar-this/issues/221)) ([#229](https://github.com/varfish-org/clinvar-this/issues/229)) ([c0d1a4c](https://github.com/varfish-org/clinvar-this/commit/c0d1a4c746e44f9301412fe8e74f3c91aeb096a5))
+
 ## [0.15.5](https://github.com/varfish-org/clinvar-this/compare/v0.15.4...v0.15.5) (2024-05-29)
 
 
