@@ -720,7 +720,7 @@ def test_submission_clinical_feature_to_msg():
     ).to_msg()
 
 
-def test_submission_observed_in_construction():
+def test_submission_observed_in_germline_construction():
     models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
@@ -744,7 +744,24 @@ def test_submission_observed_in_construction():
     )
 
 
-def test_submission_observed_in_to_msg():
+def test_submission_observed_in_somatic_construction():
+    models.SubmissionObservedInSomatic(
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.SOMATIC,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+        number_of_individuals=1,
+        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+        somatic_variant_allele_fraction=0.5,
+    )
+    models.SubmissionObservedInSomatic(
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+    )
+
+
+def test_submission_observed_germline_in_to_msg():
     models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
@@ -762,6 +779,23 @@ def test_submission_observed_in_to_msg():
         struct_var_method_type=models.StructVarMethodType.SNP_ARRAY,
     ).to_msg()
     models.SubmissionObservedInGermline(
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.GERMLINE,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+    ).to_msg()
+
+
+def test_submission_observed_in_somatic_to_msg():
+    models.SubmissionObservedInSomatic(
+        affected_status=models.AffectedStatus.YES,
+        allele_origin=models.AlleleOrigin.SOMATIC,
+        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+        number_of_individuals=1,
+        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+        somatic_variant_allele_fraction=0.5,
+    ).to_msg()
+    models.SubmissionObservedInSomatic(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -975,7 +1009,7 @@ def test_submission_drug_response_to_msg():
     ).to_msg()
 
 
-def test_submission_condition_set_construction():
+def test_submission_condition_set_germline_construction():
     models.SubmissionConditionSetGermline(
         condition=[models.SubmissionCondition()],
         drug_response=[models.SubmissionDrugResponse()],
@@ -986,13 +1020,37 @@ def test_submission_condition_set_construction():
     )
 
 
-def test_submission_condition_set_to_msg():
+def test_submission_condition_set_germline_to_msg():
     models.SubmissionConditionSetGermline(
         condition=[models.SubmissionCondition()],
         drug_response=[models.SubmissionDrugResponse()],
     ).to_msg()
     models.SubmissionConditionSetGermline(
         condition=None,
+        drug_response=None,
+    ).to_msg()
+
+
+def test_submission_condition_set_somatic_construction():
+    models.SubmissionConditionSetSomatic(
+        condition=[models.SubmissionCondition()],
+        drug_response=[models.SubmissionDrugResponse()],
+        multiple_condition_explanation=models.MultipleConditionExplanation.UNCERTAIN,
+    )
+    models.SubmissionConditionSetSomatic(
+        condition=[models.SubmissionCondition()],
+        drug_response=None,
+    )
+
+
+def test_submission_condition_set_somatic_to_msg():
+    models.SubmissionConditionSetSomatic(
+        condition=[models.SubmissionCondition()],
+        drug_response=[models.SubmissionDrugResponse()],
+        multiple_condition_explanation=models.MultipleConditionExplanation.UNCERTAIN,
+    ).to_msg()
+    models.SubmissionConditionSetSomatic(
+        condition=[models.SubmissionCondition()],
         drug_response=None,
     ).to_msg()
 
@@ -1213,6 +1271,232 @@ def test_submission_clinvar_submission_to_msg():
     ).to_msg()
 
 
+def test_somatic_clinical_impact_classification_construction():
+    models.SomaticClinicalImpactClassification(
+        clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+        assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+        drug_for_therapeutic_assertion=None,
+    )
+
+
+def test_somatic_clinical_impact_classification_to_msg():
+    models.SomaticClinicalImpactClassification(
+        clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+        assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+        drug_for_therapeutic_assertion=None,
+    ).to_msg()
+
+
+def test_submission_clinical_impact_submission_construction():
+    models.SubmissionClinicalImpactSubmission(
+        clinical_impact_classification=models.SomaticClinicalImpactClassification(
+            clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+            assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+            drug_for_therapeutic_assertion=None,
+        ),
+        condition_set=models.SubmissionConditionSetSomatic(
+            condition=[models.SubmissionCondition()],
+            drug_response=None,
+        ),
+        observed_in=[
+            models.SubmissionObservedInSomatic(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.SOMATIC,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                number_of_individuals=1,
+                struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somatic_variant_allele_fraction=0.5,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    )
+
+
+def test_submission_clinical_impact_submission_to_msg():
+    models.SubmissionClinicalImpactSubmission(
+        clinical_impact_classification=models.SomaticClinicalImpactClassification(
+            clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+            assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+            drug_for_therapeutic_assertion=None,
+        ),
+        condition_set=models.SubmissionConditionSetSomatic(
+            condition=[models.SubmissionCondition()],
+            drug_response=None,
+        ),
+        observed_in=[
+            models.SubmissionObservedInSomatic(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.SOMATIC,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                number_of_individuals=1,
+                struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somatic_variant_allele_fraction=0.5,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    ).to_msg()
+
+
+def test_somatic_oncogenicity_classification_construction():
+    models.SomaticOncogenicityClassification(
+        oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+    )
+
+
+def test_somatic_oncogenicity_classification_to_msg():
+    models.SomaticOncogenicityClassification(
+        oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+    ).to_msg()
+
+
+def test_somatic_oncogenicity_submission_construction():
+    models.SubmissionOncogenicitySubmission(
+        oncogenicity_classification=models.SomaticOncogenicityClassification(
+            oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+        ),
+        condition_set=models.SubmissionConditionSetSomatic(
+            condition=[models.SubmissionCondition()],
+            drug_response=None,
+        ),
+        observed_in=[
+            models.SubmissionObservedInSomatic(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.SOMATIC,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                number_of_individuals=1,
+                struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somatic_variant_allele_fraction=0.5,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    )
+
+
+def test_somatic_oncogenicity_submission_to_msg():
+    models.SubmissionOncogenicitySubmission(
+        oncogenicity_classification=models.SomaticOncogenicityClassification(
+            oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+        ),
+        condition_set=models.SubmissionConditionSetSomatic(
+            condition=[models.SubmissionCondition()],
+            drug_response=None,
+        ),
+        observed_in=[
+            models.SubmissionObservedInSomatic(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.SOMATIC,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                number_of_individuals=1,
+                struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somatic_variant_allele_fraction=0.5,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    ).to_msg()
+
+
+def test_germline_classification_construction():
+    models.GermlineClassification(
+        germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+        citation=[
+            models.SubmissionCitation(
+                db=models.CitationDb.PMC,
+                id="PMC123",
+                url="https://example.com",
+            )
+        ],
+        comment="some comment",
+        custom_classification_score=42.0,
+        date_last_evaluated="2022-01-01",
+        explanation_of_drug_response="some explanation",
+        explanation_of_other_classification="some explanation",
+        mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+    )
+
+
+def test_germline_classification_to_msg():
+    models.GermlineClassification(
+        germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+        citation=[
+            models.SubmissionCitation(
+                db=models.CitationDb.PMC,
+                id="PMC123",
+                url="https://example.com",
+            )
+        ],
+        comment="some comment",
+        custom_classification_score=42.0,
+        date_last_evaluated="2022-01-01",
+        explanation_of_drug_response="some explanation",
+        explanation_of_other_classification="some explanation",
+        mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+    ).to_msg()
+
+
+def test_germline_submission_construction():
+    models.SubmissionGermlineSubmission(
+        germline_classification=models.GermlineClassification(
+            germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+            citation=[
+                models.SubmissionCitation(
+                    db=models.CitationDb.PMC,
+                    id="PMC123",
+                    url="https://example.com",
+                )
+            ],
+            comment="some comment",
+            custom_classification_score=42.0,
+            date_last_evaluated="2022-01-01",
+            explanation_of_drug_response="some explanation",
+            explanation_of_other_classification="some explanation",
+            mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+        ),
+        condition_set=models.SubmissionConditionSetGermline(),
+        observed_in=[
+            models.SubmissionObservedInGermline(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    )
+
+
+def test_germline_submission_to_msg():
+    models.SubmissionGermlineSubmission(
+        germline_classification=models.GermlineClassification(
+            germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+            citation=[
+                models.SubmissionCitation(
+                    db=models.CitationDb.PMC,
+                    id="PMC123",
+                    url="https://example.com",
+                )
+            ],
+            comment="some comment",
+            custom_classification_score=42.0,
+            date_last_evaluated="2022-01-01",
+            explanation_of_drug_response="some explanation",
+            explanation_of_other_classification="some explanation",
+            mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+        ),
+        condition_set=models.SubmissionConditionSetGermline(),
+        observed_in=[
+            models.SubmissionObservedInGermline(
+                affected_status=models.AffectedStatus.YES,
+                allele_origin=models.AlleleOrigin.GERMLINE,
+                collection_method=models.CollectionMethod.CLINICAL_TESTING,
+            )
+        ],
+        record_status=models.RecordStatus.NOVEL,
+    ).to_msg()
+
+
 def test_submission_container_construction():
     models.SubmissionContainer(
         behalf_org_id=123,
@@ -1249,6 +1533,116 @@ def test_submission_container_construction():
         ],
         clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
+    )
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        clinical_impact_submission=[
+            models.SubmissionClinicalImpactSubmission(
+                clinical_impact_classification=models.SomaticClinicalImpactClassification(
+                    clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+                    assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+                    drug_for_therapeutic_assertion=None,
+                ),
+                condition_set=models.SubmissionConditionSetSomatic(
+                    condition=[models.SubmissionCondition()],
+                    drug_response=None,
+                ),
+                observed_in=[
+                    models.SubmissionObservedInSomatic(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.SOMATIC,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                        number_of_individuals=1,
+                        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somatic_variant_allele_fraction=0.5,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
+    )
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        oncogenicity_submission=[
+            models.SubmissionOncogenicitySubmission(
+                oncogenicity_classification=models.SomaticOncogenicityClassification(
+                    oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+                ),
+                condition_set=models.SubmissionConditionSetSomatic(
+                    condition=[models.SubmissionCondition()],
+                    drug_response=None,
+                ),
+                observed_in=[
+                    models.SubmissionObservedInSomatic(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.SOMATIC,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                        number_of_individuals=1,
+                        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somatic_variant_allele_fraction=0.5,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
+    )
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        germline_submission=[
+            models.SubmissionGermlineSubmission(
+                germline_classification=models.GermlineClassification(
+                    germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+                    citation=[
+                        models.SubmissionCitation(
+                            db=models.CitationDb.PMC,
+                            id="PMC123",
+                            url="https://example.com",
+                        )
+                    ],
+                    comment="some comment",
+                    custom_classification_score=42.0,
+                    date_last_evaluated="2022-01-01",
+                    explanation_of_drug_response="some explanation",
+                    explanation_of_other_classification="some explanation",
+                    mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+                ),
+                condition_set=models.SubmissionConditionSetGermline(),
+                observed_in=[
+                    models.SubmissionObservedInGermline(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.GERMLINE,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
     )
 
 
@@ -1288,4 +1682,114 @@ def test_submission_container_to_msg():
         ],
         clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
         submission_name="some-name",
+    ).to_msg()
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        clinical_impact_submission=[
+            models.SubmissionClinicalImpactSubmission(
+                clinical_impact_classification=models.SomaticClinicalImpactClassification(
+                    clinical_impact_classification_description=models.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+                    assertion_type_for_clinical_impact=models.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+                    drug_for_therapeutic_assertion=None,
+                ),
+                condition_set=models.SubmissionConditionSetSomatic(
+                    condition=[models.SubmissionCondition()],
+                    drug_response=None,
+                ),
+                observed_in=[
+                    models.SubmissionObservedInSomatic(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.SOMATIC,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                        number_of_individuals=1,
+                        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somatic_variant_allele_fraction=0.5,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
+    ).to_msg()
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        oncogenicity_submission=[
+            models.SubmissionOncogenicitySubmission(
+                oncogenicity_classification=models.SomaticOncogenicityClassification(
+                    oncogenicity_classification_description=models.OncogenicityClassificationDescription.BENIGN
+                ),
+                condition_set=models.SubmissionConditionSetSomatic(
+                    condition=[models.SubmissionCondition()],
+                    drug_response=None,
+                ),
+                observed_in=[
+                    models.SubmissionObservedInSomatic(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.SOMATIC,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                        number_of_individuals=1,
+                        struct_var_method_type=models.StructVarMethodType.PAIRED_END_MAPPING,
+                        presence_of_somatic_variant_in_normal_tissue=models.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somatic_variant_allele_fraction=0.5,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
+    ).to_msg()
+    models.SubmissionContainer(
+        assertion_criteria=models.SubmissionAssertionCriteria(
+            db=models.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalf_org_id=123,
+        clinvar_deletion=None,
+        clinvar_submission_release_status=models.ReleaseStatus.PUBLIC,
+        submission_name="some-name",
+        germline_submission=[
+            models.SubmissionGermlineSubmission(
+                germline_classification=models.GermlineClassification(
+                    germline_classification_description=models.ClinicalSignificanceDescription.PATHOGENIC,
+                    citation=[
+                        models.SubmissionCitation(
+                            db=models.CitationDb.PMC,
+                            id="PMC123",
+                            url="https://example.com",
+                        )
+                    ],
+                    comment="some comment",
+                    custom_classification_score=42.0,
+                    date_last_evaluated="2022-01-01",
+                    explanation_of_drug_response="some explanation",
+                    explanation_of_other_classification="some explanation",
+                    mode_of_inheritance=models.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+                ),
+                condition_set=models.SubmissionConditionSetGermline(),
+                observed_in=[
+                    models.SubmissionObservedInGermline(
+                        affected_status=models.AffectedStatus.YES,
+                        allele_origin=models.AlleleOrigin.GERMLINE,
+                        collection_method=models.CollectionMethod.CLINICAL_TESTING,
+                    )
+                ],
+                record_status=models.RecordStatus.NOVEL,
+            )
+        ],
     ).to_msg()

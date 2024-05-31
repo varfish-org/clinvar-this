@@ -701,10 +701,6 @@ class SubmissionGermlineSubmission(_SubmissionClinvarSubmissionBase):
     germline_classification: GermlineClassification
     condition_set: SubmissionConditionSetGermline
     observed_in: typing.List[SubmissionObservedInGermline]
-    mode_of_inheritance: ModeOfInheritance
-    custom_classification_score: typing.Optional[float] = None
-    explanation_of_drug_response: typing.Optional[str] = None
-    explanation_of_other_classification: typing.Optional[str] = None
     #: Additional information from import.  Will not be used for conversion to message but can be converted back to
     #: external formats.
     extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
