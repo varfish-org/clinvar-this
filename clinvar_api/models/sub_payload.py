@@ -23,8 +23,12 @@ from clinvar_api.msg.sub_payload import (
     ConditionDb,
     ModeOfInheritance,
     MultipleConditionExplanation,
+    OncogenicityClassificationDescription,
+    PresenceOfSomaticVariantInNormalTissue,
     RecordStatus,
     ReleaseStatus,
+    SomaticClinicalImpactAssertionType,
+    SomaticClinicalImpactClassificationDescription,
     StructVarMethodType,
     VariantType,
 )
@@ -182,17 +186,17 @@ class _SubmissionObservedInBase(BaseModel):
     struct_var_method_type: typing.Optional[StructVarMethodType] = None
 
 
-class SubmissionObservedIn(_SubmissionObservedInBase):
+class SubmissionObservedInGermline(_SubmissionObservedInBase):
     model_config = ConfigDict(frozen=True)
 
-    def to_msg(self) -> msg.SubmissionObservedIn:
+    def to_msg(self) -> msg.SubmissionObservedInGermline:
         clinical_features = None
         if self.clinical_features:
             clinical_features = [
                 SubmissionClinicalFeature.to_msg(msg_feature)
                 for msg_feature in self.clinical_features
             ]
-        return msg.SubmissionObservedIn(
+        return msg.SubmissionObservedInGermline(
             affectedStatus=self.affected_status,
             alleleOrigin=self.allele_origin,
             collectionMethod=self.collection_method,
@@ -200,6 +204,34 @@ class SubmissionObservedIn(_SubmissionObservedInBase):
             clinicalFeaturesComment=self.clinical_features_comment,
             numberOfIndividuals=self.number_of_individuals,
             structVarMethodType=self.struct_var_method_type,
+        )
+
+
+class SubmissionObservedInSomatic(_SubmissionObservedInBase):
+    model_config = ConfigDict(frozen=True)
+
+    presence_of_somatic_variant_in_normal_tissue: typing.Optional[
+        PresenceOfSomaticVariantInNormalTissue
+    ] = None
+    somatic_variant_allele_fraction: typing.Optional[float] = None
+
+    def to_msg(self) -> msg.SubmissionObservedInSomatic:
+        clinical_features = None
+        if self.clinical_features:
+            clinical_features = [
+                SubmissionClinicalFeature.to_msg(msg_feature)
+                for msg_feature in self.clinical_features
+            ]
+        return msg.SubmissionObservedInSomatic(
+            affectedStatus=self.affected_status,
+            alleleOrigin=self.allele_origin,
+            collectionMethod=self.collection_method,
+            clinicalFeatures=clinical_features,
+            clinicalFeaturesComment=self.clinical_features_comment,
+            numberOfIndividuals=self.number_of_individuals,
+            structVarMethodType=self.struct_var_method_type,
+            presenceOfSomaticVariantInNormalTissue=self.presence_of_somatic_variant_in_normal_tissue,
+            somaticVariantAlleleFraction=self.somatic_variant_allele_fraction,
         )
 
 
@@ -331,21 +363,40 @@ class SubmissionDrugResponse(BaseModel):
         )
 
 
-class SubmissionConditionSet(BaseModel):
+class SubmissionConditionSetGermline(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
     drug_response: typing.Optional[typing.List[SubmissionDrugResponse]] = None
     multiple_condition_explanation: typing.Optional[MultipleConditionExplanation] = None
 
-    def to_msg(self) -> msg.SubmissionConditionSet:
+    def to_msg(self) -> msg.SubmissionConditionSetGermline:
         condition = None
         if self.condition:
             condition = [msg_condition.to_msg() for msg_condition in self.condition]
         drug_response = None
         if self.drug_response:
             drug_response = [msg_response.to_msg() for msg_response in self.drug_response]
-        return msg.SubmissionConditionSet(
+        return msg.SubmissionConditionSetGermline(
+            condition=condition,
+            drugResponse=drug_response,
+            multipleConditionExplanation=self.multiple_condition_explanation,
+        )
+
+
+class SubmissionConditionSetSomatic(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    condition: typing.List[SubmissionCondition]
+    drug_response: typing.Optional[typing.List[SubmissionDrugResponse]] = None
+    multiple_condition_explanation: typing.Optional[MultipleConditionExplanation] = None
+
+    def to_msg(self) -> msg.SubmissionConditionSetSomatic:
+        condition = [msg_condition.to_msg() for msg_condition in self.condition]
+        drug_response = None
+        if self.drug_response:
+            drug_response = [msg_response.to_msg() for msg_response in self.drug_response]
+        return msg.SubmissionConditionSetSomatic(
             condition=condition,
             drugResponse=drug_response,
             multipleConditionExplanation=self.multiple_condition_explanation,
@@ -402,13 +453,13 @@ class SubmissionClinicalSignificance(_SubmissionClinicalSignificanceBase):
             citation = [msg_citation.to_msg() for msg_citation in self.citation]
         return msg.SubmissionClinicalSignificance(
             clinicalSignificanceDescription=self.clinical_significance_description,
-            citation=citation,
-            comment=self.comment,
             customAssertionScore=self.custom_assertion_score,
-            dateLastEvaluated=self.date_last_evaluated,
             explanationOfDrugResponse=self.explanation_of_drug_response,
             explanationOfOtherClinicalSignificance=self.explanation_of_other_clinical_significance,
             modeOfInheritance=self.mode_of_inheritance,
+            citation=citation,
+            comment=self.comment,
+            dateLastEvaluated=self.date_last_evaluated,
         )
 
 
@@ -435,8 +486,8 @@ class SubmissionClinvarSubmission(_SubmissionClinvarSubmissionBase):
     model_config = ConfigDict(frozen=True)
 
     clinical_significance: SubmissionClinicalSignificance
-    condition_set: SubmissionConditionSet
-    observed_in: typing.List[SubmissionObservedIn]
+    condition_set: SubmissionConditionSetGermline
+    observed_in: typing.List[SubmissionObservedInGermline]
     #: Additional information from import.  Will not be used for conversion to message but can be converted back to
     #: external formats.
     extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
@@ -481,6 +532,219 @@ class SubmissionClinvarSubmission(_SubmissionClinvarSubmissionBase):
         )
 
 
+class SomaticClinicalImpactClassification(_SubmissionClinicalSignificanceBase):
+    """Details of somatic clinical impact classification."""
+
+    clinical_impact_classification_description: SomaticClinicalImpactClassificationDescription
+    assertion_type_for_clinical_impact: typing.Optional[SomaticClinicalImpactAssertionType] = None
+    drug_for_therapeutic_assertion: typing.Optional[str] = None
+
+    def to_msg(self) -> msg.SomaticClinicalImpactClassification:
+        citation = None
+        if self.citation:
+            citation = [msg_citation.to_msg() for msg_citation in self.citation]
+        return msg.SomaticClinicalImpactClassification(
+            clinicalImpactClassificationDescription=self.clinical_impact_classification_description,
+            assertionTypeForClinicalImpact=self.assertion_type_for_clinical_impact,
+            drugForTherapeuticAssertion=self.drug_for_therapeutic_assertion,
+            citation=citation,
+            comment=self.comment,
+            dateLastEvaluated=self.date_last_evaluated,
+        )
+
+
+class SubmissionClinicalImpactSubmission(_SubmissionClinvarSubmissionBase):
+    model_config = ConfigDict(frozen=True)
+
+    clinical_impact_classification: SomaticClinicalImpactClassification
+    condition_set: SubmissionConditionSetSomatic
+    observed_in: typing.List[SubmissionObservedInSomatic]
+    #: Additional information from import.  Will not be used for conversion to message but can be converted back to
+    #: external formats.
+    extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
+
+    def to_msg(self) -> msg.SubmissionClinicalImpactSubmission:
+        compound_heterozygote_set = None
+        if self.compound_heterozygote_set:
+            compound_heterozygote_set = self.compound_heterozygote_set.to_msg()
+        diplotype_set = None
+        if self.diplotype_set:
+            diplotype_set = self.diplotype_set.to_msg()
+        distinct_chromosomes_set = None
+        if self.distinct_chromosomes_set:
+            distinct_chromosomes_set = self.distinct_chromosomes_set.to_msg()
+        haplotype_set = None
+        if self.haplotype_set:
+            haplotype_set = self.haplotype_set.to_msg()
+        haplotype_single_variant_set = None
+        if self.haplotype_single_variant_set:
+            haplotype_single_variant_set = self.haplotype_single_variant_set.to_msg()
+        phase_unknown_set = None
+        if self.phase_unknown_set:
+            phase_unknown_set = self.phase_unknown_set.to_msg()
+        variant_set = None
+        if self.variant_set:
+            variant_set = self.variant_set.to_msg()
+        return msg.SubmissionClinicalImpactSubmission(
+            clinicalImpactClassification=self.clinical_impact_classification.to_msg(),
+            conditionSet=self.condition_set.to_msg(),
+            observedIn=[msg_observed_in.to_msg() for msg_observed_in in self.observed_in],
+            recordStatus=self.record_status,
+            clinvarAccession=self.clinvar_accession,
+            compoundHeterozygoteSet=compound_heterozygote_set,
+            diplotypeSet=diplotype_set,
+            distinctChromosomesSet=distinct_chromosomes_set,
+            haplotypeSet=haplotype_set,
+            haplotypeSingleVariantSet=haplotype_single_variant_set,
+            localID=self.local_id,
+            localKey=self.local_key,
+            phaseUnknownSet=phase_unknown_set,
+            variantSet=variant_set,
+        )
+
+
+class SomaticOncogenicityClassification(_SubmissionClinicalSignificanceBase):
+    """Details of somatic clinical impact classification."""
+
+    oncogenicity_classification_description: OncogenicityClassificationDescription
+
+    def to_msg(self) -> msg.SomaticOncogenicityClassification:
+        citation = None
+        if self.citation:
+            citation = [msg_citation.to_msg() for msg_citation in self.citation]
+        return msg.SomaticOncogenicityClassification(
+            oncogenicityClassificationDescription=self.oncogenicity_classification_description,
+            citation=citation,
+            comment=self.comment,
+            dateLastEvaluated=self.date_last_evaluated,
+        )
+
+
+class SubmissionOncogenicitySubmission(_SubmissionClinvarSubmissionBase):
+    model_config = ConfigDict(frozen=True)
+
+    oncogenicity_classification: SomaticOncogenicityClassification
+    condition_set: SubmissionConditionSetSomatic
+    observed_in: typing.List[SubmissionObservedInSomatic]
+    #: Additional information from import.  Will not be used for conversion to message but can be converted back to
+    #: external formats.
+    extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
+
+    def to_msg(self) -> msg.SubmissionOncogenicitySubmission:
+        compound_heterozygote_set = None
+        if self.compound_heterozygote_set:
+            compound_heterozygote_set = self.compound_heterozygote_set.to_msg()
+        diplotype_set = None
+        if self.diplotype_set:
+            diplotype_set = self.diplotype_set.to_msg()
+        distinct_chromosomes_set = None
+        if self.distinct_chromosomes_set:
+            distinct_chromosomes_set = self.distinct_chromosomes_set.to_msg()
+        haplotype_set = None
+        if self.haplotype_set:
+            haplotype_set = self.haplotype_set.to_msg()
+        haplotype_single_variant_set = None
+        if self.haplotype_single_variant_set:
+            haplotype_single_variant_set = self.haplotype_single_variant_set.to_msg()
+        phase_unknown_set = None
+        if self.phase_unknown_set:
+            phase_unknown_set = self.phase_unknown_set.to_msg()
+        variant_set = None
+        if self.variant_set:
+            variant_set = self.variant_set.to_msg()
+        return msg.SubmissionOncogenicitySubmission(
+            oncogenicityClassification=self.oncogenicity_classification.to_msg(),
+            conditionSet=self.condition_set.to_msg(),
+            observedIn=[msg_observed_in.to_msg() for msg_observed_in in self.observed_in],
+            recordStatus=self.record_status,
+            clinvarAccession=self.clinvar_accession,
+            compoundHeterozygoteSet=compound_heterozygote_set,
+            diplotypeSet=diplotype_set,
+            distinctChromosomesSet=distinct_chromosomes_set,
+            haplotypeSet=haplotype_set,
+            haplotypeSingleVariantSet=haplotype_single_variant_set,
+            localID=self.local_id,
+            localKey=self.local_key,
+            phaseUnknownSet=phase_unknown_set,
+            variantSet=variant_set,
+        )
+
+
+class GermlineClassification(_SubmissionClinicalSignificanceBase):
+    """Details of somatic clinical impact classification."""
+
+    germline_classification_description: ClinicalSignificanceDescription
+    mode_of_inheritance: ModeOfInheritance
+    custom_classification_score: typing.Optional[float] = None
+    explanation_of_drug_response: typing.Optional[str] = None
+    explanation_of_other_classification: typing.Optional[str] = None
+
+    def to_msg(self) -> msg.GermlineClassification:
+        citation = None
+        if self.citation:
+            citation = [msg_citation.to_msg() for msg_citation in self.citation]
+        return msg.GermlineClassification(
+            germlineClassificationDescription=self.germline_classification_description,
+            modeOfInheritance=self.mode_of_inheritance,
+            customClassificationScore=self.custom_classification_score,
+            explanationOfDrugResponse=self.explanation_of_drug_response,
+            explanationOfOtherClassification=self.explanation_of_other_classification,
+            citation=citation,
+            comment=self.comment,
+            dateLastEvaluated=self.date_last_evaluated,
+        )
+
+
+class SubmissionGermlineSubmission(_SubmissionClinvarSubmissionBase):
+    model_config = ConfigDict(frozen=True)
+
+    germline_classification: GermlineClassification
+    condition_set: SubmissionConditionSetGermline
+    observed_in: typing.List[SubmissionObservedInGermline]
+    #: Additional information from import.  Will not be used for conversion to message but can be converted back to
+    #: external formats.
+    extra_data: typing.Optional[typing.Dict[str, typing.Any]] = None
+
+    def to_msg(self) -> msg.SubmissionGermlineSubmission:
+        compound_heterozygote_set = None
+        if self.compound_heterozygote_set:
+            compound_heterozygote_set = self.compound_heterozygote_set.to_msg()
+        diplotype_set = None
+        if self.diplotype_set:
+            diplotype_set = self.diplotype_set.to_msg()
+        distinct_chromosomes_set = None
+        if self.distinct_chromosomes_set:
+            distinct_chromosomes_set = self.distinct_chromosomes_set.to_msg()
+        haplotype_set = None
+        if self.haplotype_set:
+            haplotype_set = self.haplotype_set.to_msg()
+        haplotype_single_variant_set = None
+        if self.haplotype_single_variant_set:
+            haplotype_single_variant_set = self.haplotype_single_variant_set.to_msg()
+        phase_unknown_set = None
+        if self.phase_unknown_set:
+            phase_unknown_set = self.phase_unknown_set.to_msg()
+        variant_set = None
+        if self.variant_set:
+            variant_set = self.variant_set.to_msg()
+        return msg.SubmissionGermlineSubmission(
+            germlineClassification=self.germline_classification.to_msg(),
+            conditionSet=self.condition_set.to_msg(),
+            observedIn=[msg_observed_in.to_msg() for msg_observed_in in self.observed_in],
+            recordStatus=self.record_status,
+            clinvarAccession=self.clinvar_accession,
+            compoundHeterozygoteSet=compound_heterozygote_set,
+            diplotypeSet=diplotype_set,
+            distinctChromosomesSet=distinct_chromosomes_set,
+            haplotypeSet=haplotype_set,
+            haplotypeSingleVariantSet=haplotype_single_variant_set,
+            localID=self.local_id,
+            localKey=self.local_key,
+            phaseUnknownSet=phase_unknown_set,
+            variantSet=variant_set,
+        )
+
+
 class SubmissionContainer(BaseModel):
     model_config = ConfigDict(frozen=True)
 
@@ -488,6 +752,11 @@ class SubmissionContainer(BaseModel):
     behalf_org_id: typing.Optional[int] = None
     clinvar_deletion: typing.Optional[SubmissionClinvarDeletion] = None
     clinvar_submission: typing.Optional[typing.List[SubmissionClinvarSubmission]] = None
+    germline_submission: typing.Optional[typing.List[SubmissionGermlineSubmission]] = None
+    oncogenicity_submission: typing.Optional[typing.List[SubmissionOncogenicitySubmission]] = None
+    clinical_impact_submission: typing.Optional[typing.List[SubmissionClinicalImpactSubmission]] = (
+        None
+    )
     clinvar_submission_release_status: typing.Optional[ReleaseStatus] = None
     submission_name: typing.Optional[str] = None
 
@@ -503,11 +772,29 @@ class SubmissionContainer(BaseModel):
             clinvar_submission = [
                 msg_submission.to_msg() for msg_submission in self.clinvar_submission
             ]
+        germline_submission = None
+        if self.germline_submission:
+            germline_submission = [
+                msg_submission.to_msg() for msg_submission in self.germline_submission
+            ]
+        oncogenicity_submission = None
+        if self.oncogenicity_submission:
+            oncogenicity_submission = [
+                msg_submission.to_msg() for msg_submission in self.oncogenicity_submission
+            ]
+        clinical_impact_submission = None
+        if self.clinical_impact_submission:
+            clinical_impact_submission = [
+                msg_submission.to_msg() for msg_submission in self.clinical_impact_submission
+            ]
         return msg.SubmissionContainer(
             assertionCriteria=assertion_criteria,
             behalfOrgID=self.behalf_org_id,
             clinvarDeletion=clinvar_deletion,
             clinvarSubmission=clinvar_submission,
+            germlineSubmission=germline_submission,
+            oncogenicitySubmission=oncogenicity_submission,
+            clinicalImpactSubmission=clinical_impact_submission,
             clinvarSubmissionReleaseStatus=self.clinvar_submission_release_status,
             submissionName=self.submission_name,
         )

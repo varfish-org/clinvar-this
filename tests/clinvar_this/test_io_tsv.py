@@ -3,7 +3,7 @@ import pathlib
 
 import pytest
 
-from clinvar_api.models import SubmissionCondition, SubmissionConditionSet
+from clinvar_api.models import SubmissionCondition, SubmissionConditionSetGermline
 from clinvar_api.msg import (
     Assembly,
     Chromosome,
@@ -170,14 +170,14 @@ class TestConditionDefinition:
         {
             "raw": "OMIM:123",
             "expected": ["OMIM:123"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[SubmissionCondition(db=ConditionDb.OMIM, id="123")]
             ),
         },
         {
             "raw": "MONDO:123;OMIM:123",
             "expected": ["MONDO:123", "OMIM:123"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.MONDO, id="MONDO:123"),
                     SubmissionCondition(db=ConditionDb.OMIM, id="123"),
@@ -187,7 +187,7 @@ class TestConditionDefinition:
         {
             "raw": "MONDO:123 ;OMIM:123",
             "expected": ["MONDO:123", "OMIM:123"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.MONDO, id="MONDO:123"),
                     SubmissionCondition(db=ConditionDb.OMIM, id="123"),
@@ -197,7 +197,7 @@ class TestConditionDefinition:
         {
             "raw": "MONDO:123;OMIM:123;ORPHA:123",
             "expected": ["MONDO:123", "OMIM:123", "ORPHA:123"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.MONDO, id="MONDO:123"),
                     SubmissionCondition(db=ConditionDb.OMIM, id="123"),
@@ -208,7 +208,7 @@ class TestConditionDefinition:
         {
             "raw": "MONDO:123;OMIM:123;ORPHA:123;Uncertain",
             "expected": ["MONDO:123", "OMIM:123", "ORPHA:123", "Uncertain"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.MONDO, id="MONDO:123"),
                     SubmissionCondition(db=ConditionDb.OMIM, id="123"),
@@ -220,7 +220,7 @@ class TestConditionDefinition:
         {
             "raw": "MONDO:123;OMIM:123;ORPHA:123;Co-occurring",
             "expected": ["MONDO:123", "OMIM:123", "ORPHA:123", "Co-occurring"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.MONDO, id="MONDO:123"),
                     SubmissionCondition(db=ConditionDb.OMIM, id="123"),
@@ -232,7 +232,7 @@ class TestConditionDefinition:
         {
             "raw": "HP:123;HP:124;HP:125;Novel disease",
             "expected": ["HP:123", "HP:124", "HP:125", "Novel disease"],
-            "parsed": SubmissionConditionSet(
+            "parsed": SubmissionConditionSetGermline(
                 condition=[
                     SubmissionCondition(db=ConditionDb.HP, id="HP:123"),
                     SubmissionCondition(db=ConditionDb.HP, id="HP:124"),

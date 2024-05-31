@@ -380,8 +380,8 @@ def test_submission_clinical_feature_construction():
     )
 
 
-def test_submission_observed_in_construction():
-    msg.SubmissionObservedIn(
+def test_submission_observed_in_germline_construction():
+    msg.SubmissionObservedInGermline(
         affectedStatus=msg.AffectedStatus.YES,
         alleleOrigin=msg.AlleleOrigin.GERMLINE,
         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -397,7 +397,24 @@ def test_submission_observed_in_construction():
         numberOfIndividuals=1,
         structVarMethodType=msg.StructVarMethodType.SNP_ARRAY,
     )
-    msg.SubmissionObservedIn(
+    msg.SubmissionObservedInGermline(
+        affectedStatus=msg.AffectedStatus.YES,
+        alleleOrigin=msg.AlleleOrigin.GERMLINE,
+        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+    )
+
+
+def test_submission_observed_in_somatic_construction():
+    msg.SubmissionObservedInSomatic(
+        affectedStatus=msg.AffectedStatus.YES,
+        alleleOrigin=msg.AlleleOrigin.SOMATIC,
+        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+        numberOfIndividuals=1,
+        structVarMethodType=msg.StructVarMethodType.PAIRED_END_MAPPING,
+        presenceOfSomaticVariantInNormalTissue=msg.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+        somaticVariantAlleleFraction=0.5,
+    )
+    msg.SubmissionObservedInSomatic(
         affectedStatus=msg.AffectedStatus.YES,
         alleleOrigin=msg.AlleleOrigin.GERMLINE,
         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -505,13 +522,26 @@ def test_submission_drug_response_construction():
     )
 
 
-def test_submission_condition_set_construction():
-    msg.SubmissionConditionSet(
+def test_submission_condition_set_germline_construction():
+    msg.SubmissionConditionSetGermline(
         condition=[msg.SubmissionCondition()],
         drugResponse=[msg.SubmissionDrugResponse()],
+        multipleConditionExplanation=msg.MultipleConditionExplanation.UNCERTAIN,
     )
-    msg.SubmissionConditionSet(
+    msg.SubmissionConditionSetGermline(
         condition=None,
+        drugResponse=None,
+    )
+
+
+def test_submission_condition_set_somatic_construction():
+    msg.SubmissionConditionSetSomatic(
+        condition=[msg.SubmissionCondition()],
+        drugResponse=[msg.SubmissionDrugResponse()],
+        multipleConditionExplanation=msg.MultipleConditionExplanation.UNCERTAIN,
+    )
+    msg.SubmissionConditionSetSomatic(
+        condition=[msg.SubmissionCondition()],
         drugResponse=None,
     )
 
@@ -562,9 +592,9 @@ def test_submission_clinvar_submission_construction():
         clinicalSignificance=msg.SubmissionClinicalSignificance(
             clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSetGermline(),
         observedIn=[
-            msg.SubmissionObservedIn(
+            msg.SubmissionObservedInGermline(
                 affectedStatus=msg.AffectedStatus.YES,
                 alleleOrigin=msg.AlleleOrigin.GERMLINE,
                 collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -612,9 +642,122 @@ def test_submission_clinvar_submission_construction():
         clinicalSignificance=msg.SubmissionClinicalSignificance(
             clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSetGermline(),
         observedIn=[
-            msg.SubmissionObservedIn(
+            msg.SubmissionObservedInGermline(
+                affectedStatus=msg.AffectedStatus.YES,
+                alleleOrigin=msg.AlleleOrigin.GERMLINE,
+                collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+            )
+        ],
+        recordStatus=msg.RecordStatus.NOVEL,
+    )
+
+
+def test_somatic_clinical_impact_classification_construction():
+    msg.SomaticClinicalImpactClassification(
+        clinicalImpactClassificationDescription=msg.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+        assertionTypeForClinicalImpact=msg.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+        drugForTherapeuticAssertion=None,
+    )
+
+
+def test_submission_clinical_impact_submission_construction():
+    msg.SubmissionClinicalImpactSubmission(
+        clinicalImpactClassification=msg.SomaticClinicalImpactClassification(
+            clinicalImpactClassificationDescription=msg.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+            assertionTypeForClinicalImpact=msg.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+            drugForTherapeuticAssertion=None,
+        ),
+        conditionSet=msg.SubmissionConditionSetSomatic(
+            condition=[msg.SubmissionCondition()],
+            drugResponse=None,
+        ),
+        observedIn=[
+            msg.SubmissionObservedInSomatic(
+                affectedStatus=msg.AffectedStatus.YES,
+                alleleOrigin=msg.AlleleOrigin.SOMATIC,
+                collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+                numberOfIndividuals=1,
+                structVarMethodType=msg.StructVarMethodType.PAIRED_END_MAPPING,
+                presenceOfSomaticVariantInNormalTissue=msg.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somaticVariantAlleleFraction=0.5,
+            )
+        ],
+        recordStatus=msg.RecordStatus.NOVEL,
+    )
+
+
+def test_somatic_oncogenicity_classification_construction():
+    msg.SomaticOncogenicityClassification(
+        oncogenicityClassificationDescription=msg.OncogenicityClassificationDescription.BENIGN
+    )
+
+
+def test_somatic_oncogenicity_submission_construction():
+    msg.SubmissionOncogenicitySubmission(
+        oncogenicityClassification=msg.SomaticOncogenicityClassification(
+            oncogenicityClassificationDescription=msg.OncogenicityClassificationDescription.BENIGN
+        ),
+        conditionSet=msg.SubmissionConditionSetSomatic(
+            condition=[msg.SubmissionCondition()],
+            drugResponse=None,
+        ),
+        observedIn=[
+            msg.SubmissionObservedInSomatic(
+                affectedStatus=msg.AffectedStatus.YES,
+                alleleOrigin=msg.AlleleOrigin.SOMATIC,
+                collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+                numberOfIndividuals=1,
+                structVarMethodType=msg.StructVarMethodType.PAIRED_END_MAPPING,
+                presenceOfSomaticVariantInNormalTissue=msg.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                somaticVariantAlleleFraction=0.5,
+            )
+        ],
+        recordStatus=msg.RecordStatus.NOVEL,
+    )
+
+
+def test_germline_classification_construction():
+    msg.GermlineClassification(
+        germlineClassificationDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
+        citation=[
+            msg.SubmissionCitation(
+                db=msg.CitationDb.PMC,
+                id="PMC123",
+                url="https://example.com",
+            )
+        ],
+        comment="some comment",
+        customClassificationScore=42.0,
+        dateLastEvaluated="2022-01-01",
+        explanationOfDrugResponse="some explanation",
+        explanationOfOtherClassification="some explanation",
+        modeOfInheritance=msg.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+    )
+
+
+def test_germline_submission_construction():
+    msg.SubmissionGermlineSubmission(
+        germlineClassification=msg.GermlineClassification(
+            germlineClassificationDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
+            citation=[
+                msg.SubmissionCitation(
+                    db=msg.CitationDb.PMC,
+                    id="PMC123",
+                    url="https://example.com",
+                )
+            ],
+            comment="some comment",
+            customClassificationScore=42.0,
+            dateLastEvaluated="2022-01-01",
+            explanationOfDrugResponse="some explanation",
+            explanationOfOtherClassification="some explanation",
+            modeOfInheritance=msg.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+        ),
+        conditionSet=msg.SubmissionConditionSetGermline(),
+        observedIn=[
+            msg.SubmissionObservedInGermline(
                 affectedStatus=msg.AffectedStatus.YES,
                 alleleOrigin=msg.AlleleOrigin.GERMLINE,
                 collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -652,9 +795,9 @@ def test_submission_container_construction():
                 clinicalSignificance=msg.SubmissionClinicalSignificance(
                     clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
                 ),
-                conditionSet=msg.SubmissionConditionSet(),
+                conditionSet=msg.SubmissionConditionSetGermline(),
                 observedIn=[
-                    msg.SubmissionObservedIn(
+                    msg.SubmissionObservedInGermline(
                         affectedStatus=msg.AffectedStatus.YES,
                         alleleOrigin=msg.AlleleOrigin.GERMLINE,
                         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -664,4 +807,114 @@ def test_submission_container_construction():
             )
         ],
         submissionName="some-name",
+    )
+    msg.SubmissionContainer(
+        assertionCriteria=msg.SubmissionAssertionCriteria(
+            db=msg.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalfOrgID=123,
+        clinvarDeletion=None,
+        clinvarSubmissionReleaseStatus=msg.ReleaseStatus.PUBLIC,
+        submissionName="some-name",
+        clinicalImpactSubmission=[
+            msg.SubmissionClinicalImpactSubmission(
+                clinicalImpactClassification=msg.SomaticClinicalImpactClassification(
+                    clinicalImpactClassificationDescription=msg.SomaticClinicalImpactClassificationDescription.BENIGN_LIKELY_BENIGN,
+                    assertionTypeForClinicalImpact=msg.SomaticClinicalImpactAssertionType.PROGNOSTIC_BETTER_OUTCOME,
+                    drugForTherapeuticAssertion=None,
+                ),
+                conditionSet=msg.SubmissionConditionSetSomatic(
+                    condition=[msg.SubmissionCondition()],
+                    drugResponse=None,
+                ),
+                observedIn=[
+                    msg.SubmissionObservedInSomatic(
+                        affectedStatus=msg.AffectedStatus.YES,
+                        alleleOrigin=msg.AlleleOrigin.SOMATIC,
+                        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+                        numberOfIndividuals=1,
+                        structVarMethodType=msg.StructVarMethodType.PAIRED_END_MAPPING,
+                        presenceOfSomaticVariantInNormalTissue=msg.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somaticVariantAlleleFraction=0.5,
+                    )
+                ],
+                recordStatus=msg.RecordStatus.NOVEL,
+            )
+        ],
+    )
+    msg.SubmissionContainer(
+        assertionCriteria=msg.SubmissionAssertionCriteria(
+            db=msg.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalfOrgID=123,
+        clinvarDeletion=None,
+        clinvarSubmissionReleaseStatus=msg.ReleaseStatus.PUBLIC,
+        submissionName="some-name",
+        oncogenicitySubmission=[
+            msg.SubmissionOncogenicitySubmission(
+                oncogenicityClassification=msg.SomaticOncogenicityClassification(
+                    oncogenicityClassificationDescription=msg.OncogenicityClassificationDescription.BENIGN
+                ),
+                conditionSet=msg.SubmissionConditionSetSomatic(
+                    condition=[msg.SubmissionCondition()],
+                    drugResponse=None,
+                ),
+                observedIn=[
+                    msg.SubmissionObservedInSomatic(
+                        affectedStatus=msg.AffectedStatus.YES,
+                        alleleOrigin=msg.AlleleOrigin.SOMATIC,
+                        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+                        numberOfIndividuals=1,
+                        structVarMethodType=msg.StructVarMethodType.PAIRED_END_MAPPING,
+                        presenceOfSomaticVariantInNormalTissue=msg.PresenceOfSomaticVariantInNormalTissue.ABSENT,
+                        somaticVariantAlleleFraction=0.5,
+                    )
+                ],
+                recordStatus=msg.RecordStatus.NOVEL,
+            )
+        ],
+    )
+    msg.SubmissionContainer(
+        assertionCriteria=msg.SubmissionAssertionCriteria(
+            db=msg.CitationDb.PMC,
+            id="PMC123",
+            url="https://example.com",
+        ),
+        behalfOrgID=123,
+        clinvarDeletion=None,
+        clinvarSubmissionReleaseStatus=msg.ReleaseStatus.PUBLIC,
+        submissionName="some-name",
+        germlineSubmission=[
+            msg.SubmissionGermlineSubmission(
+                germlineClassification=msg.GermlineClassification(
+                    germlineClassificationDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
+                    citation=[
+                        msg.SubmissionCitation(
+                            db=msg.CitationDb.PMC,
+                            id="PMC123",
+                            url="https://example.com",
+                        )
+                    ],
+                    comment="some comment",
+                    customClassificationScore=42.0,
+                    dateLastEvaluated="2022-01-01",
+                    explanationOfDrugResponse="some explanation",
+                    explanationOfOtherClassification="some explanation",
+                    modeOfInheritance=msg.ModeOfInheritance.AUTOSOMAL_DOMINANT_INHERITANCE,
+                ),
+                conditionSet=msg.SubmissionConditionSetGermline(),
+                observedIn=[
+                    msg.SubmissionObservedInGermline(
+                        affectedStatus=msg.AffectedStatus.YES,
+                        alleleOrigin=msg.AlleleOrigin.GERMLINE,
+                        collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
+                    )
+                ],
+                recordStatus=msg.RecordStatus.NOVEL,
+            )
+        ],
     )

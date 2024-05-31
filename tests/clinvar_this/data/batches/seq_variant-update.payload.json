@@ -91,6 +91,9 @@
       "extra_data": null
     }
   ],
+  "clinical_impact_submission": null,
+  "germline_submission": null,
+  "oncogenicity_submission": null,
   "clinvar_submission_release_status": "public",
   "submission_name": null
 }
