@@ -564,3 +564,183 @@ def data_submission_snv():
             }
         ],
     }
+
+
+@pytest.fixture
+def data_sample_api_submissions_sample_clinical_impact_hgvs_json():
+    return {
+        "clinvarSubmissionReleaseStatus": "hold until published",
+        "assertionCriteria": {"db": "PubMed", "id": "25741868"},
+        "clinvarSubmission": [
+            {
+                "recordStatus": "novel",
+                "clinicalSignificance": {
+                    "clinicalSignificanceDescription": "Pathogenic",
+                    "dateLastEvaluated": "2018-04-28",
+                    "comment": "This comment explains the rationale for classifying this PDE6B variant as pathogenic for Retinitis pigmentosa-40.",
+                    "citation": [
+                        {"db": "PubMed", "id": "PMID:11295882"},
+                        {"db": "PubMed", "id": "PMID:1363786"},
+                        {"url": "https://yourdatabaselink.org"},
+                    ],
+                    "modeOfInheritance": "Autosomal dominant inheritance",
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "germline",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 1,
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_000283.3:c.3645A>T", "gene": [{"id": 2}]}]},
+                "conditionSet": {"condition": [{"db": "OMIM", "id": "613801"}]},
+            }
+        ],
+    }
+
+
+@pytest.fixture
+def data_sample_api_submissions_sample_clinical_significance_hgvs_submission_json():
+    return {
+        "clinvarSubmissionReleaseStatus": "hold until published",
+        "assertionCriteria": {"db": "PubMed", "id": "25741868"},
+        "germlineSubmission": [
+            {
+                "recordStatus": "novel",
+                "germlineClassification": {
+                    "germlineClassificationDescription": "Pathogenic",
+                    "dateLastEvaluated": "2018-04-28",
+                    "comment": "This comment explains the rationale for classifying this PDE6B variant as pathogenic for Retinitis pigmentosa-40.",
+                    "citation": [
+                        {"db": "PubMed", "id": "PMID:11295882"},
+                        {"db": "PubMed", "id": "PMID:1363786"},
+                        {"url": "https://yourdatabaselink.org"},
+                    ],
+                    "modeOfInheritance": "Autosomal dominant inheritance",
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "germline",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 1,
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_000283.3:c.3645A>T", "gene": [{"id": 2}]}]},
+                "conditionSet": {"condition": [{"db": "OMIM", "id": "613801"}]},
+            }
+        ],
+    }
+
+
+@pytest.fixture
+def data_sample_api_submissions_sample_germline_hgvs_submission_json():
+    return {
+        "submissionName": "my_oncogenicity_submission",
+        "assertionCriteria": {"db": "PubMed", "id": "36063163"},
+        "behalfOrgID": 20000,
+        "oncogenicitySubmission": [
+            {
+                "recordStatus": "novel",
+                "oncogenicityClassification": {
+                    "oncogenicityClassificationDescription": "Benign",
+                    "dateLastEvaluated": "2020-04-28",
+                    "comment": "This comment explains the rationale for classifying this variant as Benign for breast cancer.",
+                    "citation": [{"db": "PubMed", "id": "21084639"}],
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "somatic",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 24,
+                        "presenceOfSomaticVariantInNormalTissue": "not tested",
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_000314.8:c.700C>T"}]},
+                "conditionSet": {"condition": [{"db": "MedGen", "id": "C0007134"}]},
+            },
+            {
+                "recordStatus": "novel",
+                "oncogenicityClassification": {
+                    "oncogenicityClassificationDescription": "Oncogenic",
+                    "dateLastEvaluated": "2018-04-28",
+                    "comment": "This comment explains the rationale for classifying this variant as oncogenic for breast cancer.",
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "somatic",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 1,
+                        "presenceOfSomaticVariantInNormalTissue": "present",
+                        "somaticVariantAlleleFraction": 20,
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_004333.6:c.1012A>G", "gene": [{"id": 2}]}]},
+                "conditionSet": {"condition": [{"name": "breast cancer"}]},
+            },
+        ],
+    }
+
+
+@pytest.fixture
+def data_sample_api_submissions_sample_oncogenicity_hgvs_json():
+    return {
+        "submissionName": "my_clinical_impact_submission",
+        "assertionCriteria": {"db": "PubMed", "id": "27993330"},
+        "behalfOrgID": 20000,
+        "clinicalImpactSubmission": [
+            {
+                "recordStatus": "novel",
+                "clinicalImpactClassification": {
+                    "clinicalImpactClassificationDescription": "Tier I - Strong",
+                    "assertionTypeForClinicalImpact": "therapeutic: sensitivity/response",
+                    "drugForTherapeuticAssertion": "compound101",
+                    "dateLastEvaluated": "2020-04-28",
+                    "comment": "This comment explains the rationale for classifying this variant as Tier 1 - Strong for a therapeutic assertion that the variant confers sensitivity to compound 101 in renal cancer.",
+                    "citation": [{"db": "PubMed", "id": "33767709"}],
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "somatic",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 24,
+                        "clinicalFeatures": [
+                            {
+                                "db": "HP",
+                                "id": "HP:0009726",
+                                "clinicalFeaturesAffectedStatus": "present",
+                            }
+                        ],
+                        "clinicalFeaturesComment": "Renal tumors first observed in patients ranging in age from 45-68 years.",
+                        "presenceOfSomaticVariantInNormalTissue": "not tested",
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_000314.8:c.700C>T"}]},
+                "conditionSet": {"condition": [{"db": "MedGen", "id": "C0007134"}]},
+            },
+            {
+                "recordStatus": "novel",
+                "clinicalImpactClassification": {
+                    "clinicalImpactClassificationDescription": "Tier III - Unknown",
+                    "dateLastEvaluated": "2018-04-28",
+                    "comment": "This comment explains the rationale for classifying this variant as Tier III - Unknown for breast cancer.",
+                },
+                "observedIn": [
+                    {
+                        "alleleOrigin": "somatic",
+                        "affectedStatus": "yes",
+                        "collectionMethod": "clinical testing",
+                        "numberOfIndividuals": 1,
+                        "presenceOfSomaticVariantInNormalTissue": "present",
+                        "somaticVariantAlleleFraction": 43,
+                    }
+                ],
+                "variantSet": {"variant": [{"hgvs": "NM_004333.6:c.1012A>G", "gene": [{"id": 2}]}]},
+                "conditionSet": {"condition": [{"name": "breast cancer"}]},
+            },
+        ],
+    }

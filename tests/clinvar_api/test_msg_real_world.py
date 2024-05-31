@@ -41,3 +41,35 @@ def test_data_summary_response_error_all(data_summary_response_error_all):
 
 def test_data_submission_snv(data_submission_snv):
     assert msg.SubmissionContainer.model_validate(data_submission_snv)
+
+
+def test_data_sample_api_submissions_sample_clinical_impact_hgvs_json(
+    data_sample_api_submissions_sample_clinical_impact_hgvs_json,
+):
+    assert msg.SubmissionContainer.model_validate(
+        data_sample_api_submissions_sample_clinical_impact_hgvs_json
+    )
+
+
+def test_data_sample_api_submissions_sample_clinical_significance_hgvs_submission_json(
+    data_sample_api_submissions_sample_clinical_significance_hgvs_submission_json,
+):
+    assert msg.SubmissionContainer.model_validate(
+        data_sample_api_submissions_sample_clinical_significance_hgvs_submission_json
+    )
+
+
+def test_data_sample_api_submissions_sample_germline_hgvs_submission_json(
+    data_sample_api_submissions_sample_germline_hgvs_submission_json,
+):
+    assert msg.SubmissionContainer.model_validate(
+        data_sample_api_submissions_sample_germline_hgvs_submission_json
+    )
+
+
+def test_data_sample_api_submissions_sample_oncogenicity_hgvs_json(
+    data_sample_api_submissions_sample_oncogenicity_hgvs_json,
+):
+    assert msg.SubmissionContainer.model_validate(
+        data_sample_api_submissions_sample_oncogenicity_hgvs_json
+    )

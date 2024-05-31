@@ -323,8 +323,10 @@ class SubmissionObservedInGermline(_SubmissionObservedInBase):
 class SubmissionObservedInSomatic(_SubmissionObservedInBase):
     model_config = ConfigDict(frozen=True)
 
-    presenceOfSomaticVariantInNormalTissue: typing.Optional[PresenceOfSomaticVariantInNormalTissue]
-    somaticVariantAlleleFraction: typing.Optional[float]
+    presenceOfSomaticVariantInNormalTissue: typing.Optional[
+        PresenceOfSomaticVariantInNormalTissue
+    ] = None
+    somaticVariantAlleleFraction: typing.Optional[float] = None
 
 
 class SubmissionHaplotypeSet(BaseModel):
@@ -495,7 +497,7 @@ class SubmissionClinicalImpactSubmission(_SubmissionClinvarSubmissionBase):
 class SomaticOncogenicityClassification(_SubmissionClinicalSignificanceBase):
     """Details of somatic oncogenicity classification."""
 
-    clinicalImpactClassificationDescription: OncogenicityClassificationDescription
+    oncogenicityClassificationDescription: OncogenicityClassificationDescription
 
 
 class SubmissionOncogenicitySubmission(_SubmissionClinvarSubmissionBase):
@@ -509,7 +511,7 @@ class SubmissionOncogenicitySubmission(_SubmissionClinvarSubmissionBase):
 class GermlineClassification(_SubmissionClinicalSignificanceBase):
     model_config = ConfigDict(frozen=True)
 
-    clinicalSignificanceDescription: ClinicalSignificanceDescription
+    germlineClassificationDescription: ClinicalSignificanceDescription
     modeOfInheritance: ModeOfInheritance
     customClassificationScore: typing.Optional[float] = None
     explanationOfDrugResponse: typing.Optional[str] = None

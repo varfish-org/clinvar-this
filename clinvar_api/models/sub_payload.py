@@ -212,8 +212,8 @@ class SubmissionObservedInSomatic(_SubmissionObservedInBase):
 
     presence_of_somatic_variant_in_normal_tissue: typing.Optional[
         PresenceOfSomaticVariantInNormalTissue
-    ]
-    somatic_variant_allele_fraction: typing.Optional[float]
+    ] = None
+    somatic_variant_allele_fraction: typing.Optional[float] = None
 
     def to_msg(self) -> msg.SubmissionObservedInSomatic:
         clinical_features = None
@@ -606,14 +606,14 @@ class SubmissionClinicalImpactSubmission(_SubmissionClinvarSubmissionBase):
 class SomaticOncogenicityClassification(_SubmissionClinicalSignificanceBase):
     """Details of somatic clinical impact classification."""
 
-    clinical_impact_classification_description: OncogenicityClassificationDescription
+    oncogenicity_classification_description: OncogenicityClassificationDescription
 
     def to_msg(self) -> msg.SomaticOncogenicityClassification:
         citation = None
         if self.citation:
             citation = [msg_citation.to_msg() for msg_citation in self.citation]
         return msg.SomaticOncogenicityClassification(
-            clinicalImpactClassificationDescription=self.clinical_impact_classification_description,
+            oncogenicityClassificationDescription=self.oncogenicity_classification_description,
             citation=citation,
             comment=self.comment,
             dateLastEvaluated=self.date_last_evaluated,
@@ -673,7 +673,7 @@ class SubmissionOncogenicitySubmission(_SubmissionClinvarSubmissionBase):
 class GermlineClassification(_SubmissionClinicalSignificanceBase):
     """Details of somatic clinical impact classification."""
 
-    clinical_significance_description: ClinicalSignificanceDescription
+    germline_classification_description: ClinicalSignificanceDescription
     mode_of_inheritance: ModeOfInheritance
     custom_classification_score: typing.Optional[float] = None
     explanation_of_drug_response: typing.Optional[str] = None
@@ -684,7 +684,7 @@ class GermlineClassification(_SubmissionClinicalSignificanceBase):
         if self.citation:
             citation = [msg_citation.to_msg() for msg_citation in self.citation]
         return msg.GermlineClassification(
-            clinicalSignificanceDescription=self.clinical_significance_description,
+            germlineClassificationDescription=self.germline_classification_description,
             modeOfInheritance=self.mode_of_inheritance,
             customClassificationScore=self.custom_classification_score,
             explanationOfDrugResponse=self.explanation_of_drug_response,
@@ -702,7 +702,7 @@ class SubmissionGermlineSubmission(_SubmissionClinvarSubmissionBase):
     condition_set: SubmissionConditionSetGermline
     observed_in: typing.List[SubmissionObservedInGermline]
     mode_of_inheritance: ModeOfInheritance
-    custom_classification_score: typing.Optional[float]
+    custom_classification_score: typing.Optional[float] = None
     explanation_of_drug_response: typing.Optional[str] = None
     explanation_of_other_classification: typing.Optional[str] = None
     #: Additional information from import.  Will not be used for conversion to message but can be converted back to
