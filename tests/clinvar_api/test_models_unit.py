@@ -721,7 +721,7 @@ def test_submission_clinical_feature_to_msg():
 
 
 def test_submission_observed_in_construction():
-    models.SubmissionObservedIn(
+    models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -737,7 +737,7 @@ def test_submission_observed_in_construction():
         number_of_individuals=1,
         struct_var_method_type=models.StructVarMethodType.SNP_ARRAY,
     )
-    models.SubmissionObservedIn(
+    models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -745,7 +745,7 @@ def test_submission_observed_in_construction():
 
 
 def test_submission_observed_in_to_msg():
-    models.SubmissionObservedIn(
+    models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -761,7 +761,7 @@ def test_submission_observed_in_to_msg():
         number_of_individuals=1,
         struct_var_method_type=models.StructVarMethodType.SNP_ARRAY,
     ).to_msg()
-    models.SubmissionObservedIn(
+    models.SubmissionObservedInGermline(
         affected_status=models.AffectedStatus.YES,
         allele_origin=models.AlleleOrigin.GERMLINE,
         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -976,22 +976,22 @@ def test_submission_drug_response_to_msg():
 
 
 def test_submission_condition_set_construction():
-    models.SubmissionConditionSet(
+    models.SubmissionConditionSetGermline(
         condition=[models.SubmissionCondition()],
         drug_response=[models.SubmissionDrugResponse()],
     )
-    models.SubmissionConditionSet(
+    models.SubmissionConditionSetGermline(
         condition=None,
         drug_response=None,
     )
 
 
 def test_submission_condition_set_to_msg():
-    models.SubmissionConditionSet(
+    models.SubmissionConditionSetGermline(
         condition=[models.SubmissionCondition()],
         drug_response=[models.SubmissionDrugResponse()],
     ).to_msg()
-    models.SubmissionConditionSet(
+    models.SubmissionConditionSetGermline(
         condition=None,
         drug_response=None,
     ).to_msg()
@@ -1084,9 +1084,9 @@ def test_submission_clinvar_submission_construction():
         clinical_significance=models.SubmissionClinicalSignificance(
             clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        condition_set=models.SubmissionConditionSet(),
+        condition_set=models.SubmissionConditionSetGermline(),
         observed_in=[
-            models.SubmissionObservedIn(
+            models.SubmissionObservedInGermline(
                 affected_status=models.AffectedStatus.YES,
                 allele_origin=models.AlleleOrigin.GERMLINE,
                 collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -1134,9 +1134,9 @@ def test_submission_clinvar_submission_construction():
         clinical_significance=models.SubmissionClinicalSignificance(
             clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        condition_set=models.SubmissionConditionSet(),
+        condition_set=models.SubmissionConditionSetGermline(),
         observed_in=[
-            models.SubmissionObservedIn(
+            models.SubmissionObservedInGermline(
                 affected_status=models.AffectedStatus.YES,
                 allele_origin=models.AlleleOrigin.GERMLINE,
                 collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -1151,9 +1151,9 @@ def test_submission_clinvar_submission_to_msg():
         clinical_significance=models.SubmissionClinicalSignificance(
             clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        condition_set=models.SubmissionConditionSet(),
+        condition_set=models.SubmissionConditionSetGermline(),
         observed_in=[
-            models.SubmissionObservedIn(
+            models.SubmissionObservedInGermline(
                 affected_status=models.AffectedStatus.YES,
                 allele_origin=models.AlleleOrigin.GERMLINE,
                 collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -1201,9 +1201,9 @@ def test_submission_clinvar_submission_to_msg():
         clinical_significance=models.SubmissionClinicalSignificance(
             clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        condition_set=models.SubmissionConditionSet(),
+        condition_set=models.SubmissionConditionSetGermline(),
         observed_in=[
-            models.SubmissionObservedIn(
+            models.SubmissionObservedInGermline(
                 affected_status=models.AffectedStatus.YES,
                 allele_origin=models.AlleleOrigin.GERMLINE,
                 collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -1236,9 +1236,9 @@ def test_submission_container_construction():
                 clinical_significance=models.SubmissionClinicalSignificance(
                     clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
                 ),
-                condition_set=models.SubmissionConditionSet(),
+                condition_set=models.SubmissionConditionSetGermline(),
                 observed_in=[
-                    models.SubmissionObservedIn(
+                    models.SubmissionObservedInGermline(
                         affected_status=models.AffectedStatus.YES,
                         allele_origin=models.AlleleOrigin.GERMLINE,
                         collection_method=models.CollectionMethod.CLINICAL_TESTING,
@@ -1275,9 +1275,9 @@ def test_submission_container_to_msg():
                 clinical_significance=models.SubmissionClinicalSignificance(
                     clinical_significance_description=models.ClinicalSignificanceDescription.PATHOGENIC,
                 ),
-                condition_set=models.SubmissionConditionSet(),
+                condition_set=models.SubmissionConditionSetGermline(),
                 observed_in=[
-                    models.SubmissionObservedIn(
+                    models.SubmissionObservedInGermline(
                         affected_status=models.AffectedStatus.YES,
                         allele_origin=models.AlleleOrigin.GERMLINE,
                         collection_method=models.CollectionMethod.CLINICAL_TESTING,

@@ -139,7 +139,8 @@ class StructVarMethodType(Enum):
 
 
 class ClinicalSignificanceDescription(Enum):
-    """Allowed values for the ``clinicalSignificanceDescription``.
+    """Allowed values for the ``clinicalSignificanceDescription`` and
+    ``germlineClassificationDescription``.
 
     The values of the enumeration map to the values used by the ClinVar submission API.
     """
@@ -188,6 +189,37 @@ class ModeOfInheritance(Enum):
     MULTIFACTORIAL_INHERITANCE = "Multifactorial inheritance"
     UNKNOWN_MECHANISM = "Unknown mechanism"
     OLIGOGENIC_INHERITANCE = "Oligogenic inheritance"
+
+
+class OncogenicityClassificationDescription(Enum):
+    ONCOGENIC = "Oncogenic"
+    LIKELY_ONCOGENIC = "Likely Oncogenic"
+    UNCERTAIN_SIGNIFICANCE = ("Uncertain significance",)
+    LIKELY_BENIGN = ("Likely benign",)
+    BENIGN = "Benign"
+
+
+class SomaticClinicalImpactClassificationDescription(Enum):
+    STRONG = "Tier I - Strong"
+    POTENTIAL = "Tier II - Potential"
+    UNKNOWN = "Tier III - Unknown"
+    BENIGN_LIKELY_BENIGN = "Tier IV - Benign/Likely benign"
+
+
+class PresenceOfSomaticVariantInNormalTissue(Enum):
+    PRESENT = "present"
+    ABSENT = "absent"
+    NOT_TESTED = "not tested"
+
+
+class SomaticClinicalImpactAssertionType(Enum):
+    THERAPEUTIC_SENSITIVITY_RESPONSE = "therapeutic: sensitivity/response"
+    THERAPEUTIC_RESISTANCE = "therapeutic: resistance"
+    THERAPEUTIC_REDUCED_SENSITIVITY = "therapeutic: reduced sensitivity"
+    DIAGNOSTIC_SUPPORTS_DIAGNOSIS = "diagnostic: supports diagnosis"
+    DIAGNOSTIC_EXCLUDES_DIAGNOSIS = "diagnostic: excludes diagnosis"
+    PROGNOSTIC_BETTER_OUTCOME = "prognostic: better outcome"
+    PROGNOSTIC_POOR_OUTCOME = "prognostic: poor outcome"
 
 
 class RecordStatus(Enum):
@@ -284,8 +316,15 @@ class _SubmissionObservedInBase(BaseModel):
     structVarMethodType: typing.Optional[StructVarMethodType] = None
 
 
-class SubmissionObservedIn(_SubmissionObservedInBase):
+class SubmissionObservedInGermline(_SubmissionObservedInBase):
     model_config = ConfigDict(frozen=True)
+
+
+class SubmissionObservedInSomatic(_SubmissionObservedInBase):
+    model_config = ConfigDict(frozen=True)
+
+    presenceOfSomaticVariantInNormalTissue: typing.Optional[PresenceOfSomaticVariantInNormalTissue]
+    somaticVariantAlleleFraction: typing.Optional[float]
 
 
 class SubmissionHaplotypeSet(BaseModel):
@@ -352,10 +391,18 @@ class SubmissionDrugResponse(BaseModel):
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
 
 
-class SubmissionConditionSet(BaseModel):
+class SubmissionConditionSetGermline(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     condition: typing.Optional[typing.List[SubmissionCondition]] = None
+    drugResponse: typing.Optional[typing.List[SubmissionDrugResponse]] = None
+    multipleConditionExplanation: typing.Optional[MultipleConditionExplanation] = None
+
+
+class SubmissionConditionSetSomatic(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    condition: typing.List[SubmissionCondition]
     drugResponse: typing.Optional[typing.List[SubmissionDrugResponse]] = None
     multipleConditionExplanation: typing.Optional[MultipleConditionExplanation] = None
 
@@ -416,11 +463,65 @@ class _SubmissionClinvarSubmissionBase(BaseModel):
 
 
 class SubmissionClinvarSubmission(_SubmissionClinvarSubmissionBase):
+    """Old format of ClinVar submission.
+
+    The 2024 ClinVar has split germline, somatic clinical impact, and somatic
+    oncogenicity submission.
+    """
+
     model_config = ConfigDict(frozen=True)
 
     clinicalSignificance: SubmissionClinicalSignificance
-    conditionSet: SubmissionConditionSet
-    observedIn: typing.List[SubmissionObservedIn]
+    conditionSet: SubmissionConditionSetGermline
+    observedIn: typing.List[SubmissionObservedInGermline]
+
+
+class SomaticClinicalImpactClassification(_SubmissionClinicalSignificanceBase):
+    """Details of somatic clinical impact classification."""
+
+    clinicalImpactClassificationDescription: SomaticClinicalImpactClassificationDescription
+    assertionTypeForClinicalImpact: typing.Optional[SomaticClinicalImpactAssertionType] = None
+    drugForTherapeuticAssertion: typing.Optional[str] = None
+
+
+class SubmissionClinicalImpactSubmission(_SubmissionClinvarSubmissionBase):
+    """Submission relating to somatic clinical impact."""
+
+    clinicalImpactClassification: SomaticClinicalImpactClassification
+    conditionSet: SubmissionConditionSetSomatic
+    observedIn: typing.List[SubmissionObservedInSomatic]
+
+
+class SomaticOncogenicityClassification(_SubmissionClinicalSignificanceBase):
+    """Details of somatic oncogenicity classification."""
+
+    clinicalImpactClassificationDescription: OncogenicityClassificationDescription
+
+
+class SubmissionOncogenicitySubmission(_SubmissionClinvarSubmissionBase):
+    """Submission relating to somatic clinical impact."""
+
+    oncogenicityClassification: SomaticOncogenicityClassification
+    conditionSet: SubmissionConditionSetSomatic
+    observedIn: typing.List[SubmissionObservedInSomatic]
+
+
+class GermlineClassification(_SubmissionClinicalSignificanceBase):
+    model_config = ConfigDict(frozen=True)
+
+    clinicalSignificanceDescription: ClinicalSignificanceDescription
+    modeOfInheritance: ModeOfInheritance
+    customClassificationScore: typing.Optional[float] = None
+    explanationOfDrugResponse: typing.Optional[str] = None
+    explanationOfOtherClassification: typing.Optional[str] = None
+
+
+class SubmissionGermlineSubmission(_SubmissionClinvarSubmissionBase):
+    """Submission relating to somatic clinical impact."""
+
+    germlineClassification: GermlineClassification
+    conditionSet: SubmissionConditionSetGermline
+    observedIn: typing.List[SubmissionObservedInGermline]
 
 
 class SubmissionContainer(BaseModel):
@@ -431,6 +532,16 @@ class SubmissionContainer(BaseModel):
     assertionCriteria: typing.Optional[SubmissionAssertionCriteria] = None
     behalfOrgID: typing.Optional[int] = None
     clinvarDeletion: typing.Optional[SubmissionClinvarDeletion] = None
+    #: The "old format" ClinVar submission, mutually exclusive with
+    #: "clinicalImpactSubmission", "oncogenicitySubmission", and "germlineSubmission".
     clinvarSubmission: typing.Optional[typing.List[SubmissionClinvarSubmission]] = None
+    #: ClinVar Submission Set for germline variants
+    germlineSubmission: typing.Optional[typing.List[SubmissionGermlineSubmission]] = None
+    #: ClinVar Submission Set for somatic variants with oncogenicityClassification.
+    oncogenicitySubmission: typing.Optional[typing.List[SubmissionOncogenicitySubmission]] = None
+    #: ClinVar Submission Set for somatic variants with clinicalImpactClassification.
+    clinicalImpactSubmission: typing.Optional[typing.List[SubmissionClinicalImpactSubmission]] = (
+        None
+    )
     clinvarSubmissionReleaseStatus: typing.Optional[ReleaseStatus] = None
     submissionName: typing.Optional[str] = None

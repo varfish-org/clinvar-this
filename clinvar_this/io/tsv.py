@@ -31,9 +31,9 @@ from clinvar_api.models import (
     SubmissionClinicalSignificance,
     SubmissionClinvarSubmission,
     SubmissionCondition,
-    SubmissionConditionSet,
+    SubmissionConditionSetGermline,
     SubmissionContainer,
-    SubmissionObservedIn,
+    SubmissionObservedInGermline,
     SubmissionVariant,
     SubmissionVariantSet,
 )
@@ -774,10 +774,10 @@ def record_condition_explanation(
 
 def record_condition_set(
     record: typing.Union[SeqVarTsvRecord, StrucVarTsvRecord]
-) -> SubmissionConditionSet:
+) -> SubmissionConditionSetGermline:
     conditions = record_conditions(record)
     multiple_condition_explanation = record_condition_explanation(record)
-    return SubmissionConditionSet(
+    return SubmissionConditionSetGermline(
         condition=conditions, multiple_condition_explanation=multiple_condition_explanation
     )
 
@@ -840,7 +840,7 @@ def seq_var_tsv_records_to_submission_container(
                 local_key=record.local_key,
                 condition_set=record_condition_set(record),
                 observed_in=[
-                    SubmissionObservedIn(
+                    SubmissionObservedInGermline(
                         affected_status=AffectedStatus.YES,
                         allele_origin=allele_origin,
                         collection_method=collection_method,
@@ -932,7 +932,7 @@ def struc_var_tsv_records_to_submission_container(
                 local_key=record.local_key,
                 condition_set=record_condition_set(record),
                 observed_in=[
-                    SubmissionObservedIn(
+                    SubmissionObservedInGermline(
                         affected_status=AffectedStatus.YES,
                         allele_origin=allele_origin,
                         collection_method=collection_method,
@@ -965,7 +965,7 @@ def struc_var_tsv_records_to_submission_container(
     )
 
 
-def format_conditions(condition_set: SubmissionConditionSet) -> typing.List[str]:
+def format_conditions(condition_set: SubmissionConditionSetGermline) -> typing.List[str]:
     conditions = condition_set.condition
     fmt_conditions = []
     if conditions:

@@ -381,7 +381,7 @@ def test_submission_clinical_feature_construction():
 
 
 def test_submission_observed_in_construction():
-    msg.SubmissionObservedIn(
+    msg.SubmissionObservedInGermline(
         affectedStatus=msg.AffectedStatus.YES,
         alleleOrigin=msg.AlleleOrigin.GERMLINE,
         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -397,7 +397,7 @@ def test_submission_observed_in_construction():
         numberOfIndividuals=1,
         structVarMethodType=msg.StructVarMethodType.SNP_ARRAY,
     )
-    msg.SubmissionObservedIn(
+    msg.SubmissionObservedInGermline(
         affectedStatus=msg.AffectedStatus.YES,
         alleleOrigin=msg.AlleleOrigin.GERMLINE,
         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -506,11 +506,11 @@ def test_submission_drug_response_construction():
 
 
 def test_submission_condition_set_construction():
-    msg.SubmissionConditionSet(
+    msg.SubmissionConditionSetGermline(
         condition=[msg.SubmissionCondition()],
         drugResponse=[msg.SubmissionDrugResponse()],
     )
-    msg.SubmissionConditionSet(
+    msg.SubmissionConditionSetGermline(
         condition=None,
         drugResponse=None,
     )
@@ -562,9 +562,9 @@ def test_submission_clinvar_submission_construction():
         clinicalSignificance=msg.SubmissionClinicalSignificance(
             clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSetGermline(),
         observedIn=[
-            msg.SubmissionObservedIn(
+            msg.SubmissionObservedInGermline(
                 affectedStatus=msg.AffectedStatus.YES,
                 alleleOrigin=msg.AlleleOrigin.GERMLINE,
                 collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -612,9 +612,9 @@ def test_submission_clinvar_submission_construction():
         clinicalSignificance=msg.SubmissionClinicalSignificance(
             clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
         ),
-        conditionSet=msg.SubmissionConditionSet(),
+        conditionSet=msg.SubmissionConditionSetGermline(),
         observedIn=[
-            msg.SubmissionObservedIn(
+            msg.SubmissionObservedInGermline(
                 affectedStatus=msg.AffectedStatus.YES,
                 alleleOrigin=msg.AlleleOrigin.GERMLINE,
                 collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
@@ -652,9 +652,9 @@ def test_submission_container_construction():
                 clinicalSignificance=msg.SubmissionClinicalSignificance(
                     clinicalSignificanceDescription=msg.ClinicalSignificanceDescription.PATHOGENIC,
                 ),
-                conditionSet=msg.SubmissionConditionSet(),
+                conditionSet=msg.SubmissionConditionSetGermline(),
                 observedIn=[
-                    msg.SubmissionObservedIn(
+                    msg.SubmissionObservedInGermline(
                         affectedStatus=msg.AffectedStatus.YES,
                         alleleOrigin=msg.AlleleOrigin.GERMLINE,
                         collectionMethod=msg.CollectionMethod.CLINICAL_TESTING,
