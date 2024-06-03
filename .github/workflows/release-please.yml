@@ -16,7 +16,7 @@ jobs:
           release-type: python
           token: ${{ secrets.BOT_TOKEN }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
         with:
           fetch-depth: 0
