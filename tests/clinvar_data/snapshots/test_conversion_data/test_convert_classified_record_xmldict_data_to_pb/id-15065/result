@@ -331,13 +331,11 @@
         "dateCreated": "2013-04-04T00:00:00Z"
       },
       "recordStatus": "RECORD_STATUS_CURRENT",
-      "classifications": [
-        {
-          "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
-          "germlineClassification": "Pathogenic",
-          "dateLastEvaluated": "2010-09-10T00:00:00Z"
-        }
-      ],
+      "classifications": {
+        "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+        "germlineClassification": "Pathogenic",
+        "dateLastEvaluated": "2010-09-10T00:00:00Z"
+      },
       "assertion": "ASSERTION_VARIATION_TO_DISEASE",
       "observedIns": [
         {
@@ -385,11 +383,9 @@
             "symbol": "ABHD12"
           }
         ],
-        "names": [
-          {
-            "value": "ABHD12, 7-BP DUP, NT846"
-          }
-        ],
+        "name": {
+          "value": "ABHD12, 7-BP DUP, NT846"
+        },
         "variantType": "Variation",
         "otherNames": [
           {

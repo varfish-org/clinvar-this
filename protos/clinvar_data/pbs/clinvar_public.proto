@@ -731,28 +731,21 @@ message Trait {
 
     /* nested elements */
 
-    // names
-    //
-    // NB: in XSD this is explictely given as unbounded but XML always has
-    // one element
+    // Name(s) of the trait.
     repeated GenericSetElement names = 1;
-    // symbols (NB: never occur in the XML)
-    repeated GenericSetElement symbols = 2;
-    // attributes (NB: never occur in the XML)
-    repeated AttributeSetElement attributes = 3;
     // Citation list.
-    repeated Citation citations = 4;
+    repeated Citation citations = 2;
     // Xref list.
-    repeated Xref xrefs = 5;
+    repeated Xref xrefs = 3;
     // Comment list.
-    repeated Comment comments = 6;
+    repeated Comment comments = 4;
     // Sources
-    repeated string sources = 7;
+    repeated string sources = 5;
 
     /* attributes */
 
     // Trait type.
-    Type type = 8;
+    Type type = 6;
   }
 
   // names
@@ -985,7 +978,7 @@ message AggregateClassificationSet {
   // The aggregate germline classification.
   optional AggregatedGermlineClassification germline_classification = 1;
   // The aggregate somatic clinical impact.
-  repeated AggregatedSomaticClinicalImpact somatic_clinical_impacts = 2;
+  optional AggregatedSomaticClinicalImpact somatic_clinical_impact = 2;
   // The aggregate oncogenicity classification.
   optional AggregatedOncogenicityClassification oncogenicity_classification = 3;
 }
@@ -1116,7 +1109,7 @@ message ClassificationScv {
   optional string germline_classification = 2;
   // Information on the clinical impact; mutually exlusive with `germline_classification`
   // and `oncogenicity_classification`.
-  optional SomaticClinicalImpact somatic_clinical_impacts = 3;
+  optional SomaticClinicalImpact somatic_clinical_impact = 3;
   // The oncogenicity classification; mutually exlusive with `germline_classification`
   // and `oncogenicity_classification`.
   optional string oncogenicity_classification = 4;
@@ -1770,7 +1763,7 @@ message AlleleScv {
   // being reported.
   repeated Gene genes = 1;
   // Name provided by the submitter.
-  repeated OtherName names = 2;
+  OtherName name = 2;
   // Variant type.
   optional string variant_type = 3;
   // Location.
@@ -1811,7 +1804,7 @@ message HaplotypeScv {
   // Names other than 'preferred' used for the haplotype.
   repeated OtherName other_names = 3;
   // Classification of the variant.
-  optional AggregateClassificationSet classification = 4;
+  optional AggregateClassificationSet classifications = 4;
   // Functional consequences of the variant.
   repeated FunctionalConsequence functional_consequences = 5;
   // List of attributes.
@@ -2129,8 +2122,8 @@ message ClinicalAssertion {
   // Replaced list; mutually exclusive with replaces
   repeated ClinicalAssertionRecordHistory replaceds = 6;
 
-  // SCV classifications.
-  repeated ClassificationScv classifications = 7;
+  // SCV classification.
+  ClassificationScv classifications = 7;
   // The assertion.
   Assertion assertion = 8;
   // Attributes.

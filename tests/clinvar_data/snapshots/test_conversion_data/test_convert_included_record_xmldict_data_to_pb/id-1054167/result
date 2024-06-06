@@ -331,14 +331,12 @@
       "numberOfSubmitters": 0,
       "numberOfSubmissions": 0
     },
-    "somaticClinicalImpacts": [
-      {
-        "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
-        "description": "no classification for the single variant",
-        "numberOfSubmitters": 0,
-        "numberOfSubmissions": 0
-      }
-    ],
+    "somaticClinicalImpact": {
+      "reviewStatus": "AGGREGATE_SOMATIC_CLINICAL_IMPACT_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
+      "description": "no classification for the single variant",
+      "numberOfSubmitters": 0,
+      "numberOfSubmissions": 0
+    },
     "oncogenicityClassification": {
       "reviewStatus": "AGGREGATE_ONCOGENICITY_REVIEW_STATUS_NO_CLASSIFICATION_FOR_THE_SINGLE_VARIANT",
       "description": "no classification for the single variant",

@@ -15,44 +15,42 @@
     "dateCreated": "2020-07-16T00:00:00Z"
   },
   "recordStatus": "RECORD_STATUS_CURRENT",
-  "classifications": [
-    {
-      "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
-      "germlineClassification": "Uncertain significance",
-      "citations": [
-        {
-          "ids": [
-            {
-              "value": "15888660",
-              "source": "PubMed"
-            }
-          ]
-        },
-        {
-          "ids": [
-            {
-              "value": "14729682",
-              "source": "PubMed"
-            }
-          ]
-        },
-        {
-          "ids": [
-            {
-              "value": "12891677",
-              "source": "PubMed"
-            }
-          ]
-        }
-      ],
-      "comments": [
-        {
-          "value": "This sequence change replaces..."
-        }
-      ],
-      "dateLastEvaluated": "2019-08-08T00:00:00Z"
-    }
-  ],
+  "classifications": {
+    "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+    "germlineClassification": "Uncertain significance",
+    "citations": [
+      {
+        "ids": [
+          {
+            "value": "15888660",
+            "source": "PubMed"
+          }
+        ]
+      },
+      {
+        "ids": [
+          {
+            "value": "14729682",
+            "source": "PubMed"
+          }
+        ]
+      },
+      {
+        "ids": [
+          {
+            "value": "12891677",
+            "source": "PubMed"
+          }
+        ]
+      }
+    ],
+    "comments": [
+      {
+        "value": "This sequence change replaces..."
+      }
+    ],
+    "dateLastEvaluated": "2019-08-08T00:00:00Z"
+  },
   "assertion": "ASSERTION_VARIATION_TO_DISEASE",
   "attributes": [
     {

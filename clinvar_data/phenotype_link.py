@@ -60,14 +60,14 @@ def run_report(path_input: str, path_output: str, needs_hpo_terms: bool = True):
                     version=clinical_assertion.clinvar_accession.version,
                 )
                 germline_classification: str | None = None
-                for classification in clinical_assertion.classifications:
-                    if (
-                        classification.HasField("germline_classification")
-                        # and "pathogenic" in classification.germline_classification.lower()
-                    ):
-                        germline_classification = classification.germline_classification
-                        print("\n\n", germline_classification)
-                        break
+                if (
+                    clinical_assertion.HasField("classifications")
+                    and clinical_assertion.classifications.HasField("germline_classification")
+                    # and "pathogenic" in classification.germline_classification.lower()
+                ):
+                    germline_classification = (
+                        clinical_assertion.classifications.germline_classification
+                    )
                 if not germline_classification:
                     continue
 

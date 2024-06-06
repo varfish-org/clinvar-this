@@ -179,7 +179,6 @@
     </TraitMappingList>
   </ClassifiedRecord>
 </VariationArchive>
-
 <VariationArchive RecordType="classified" VariationID="13196" VariationName="NM_006907.4(PYCR1):c.355C&gt;G (p.Arg119Gly)" VariationType="single nucleotide variant" Accession="VCV000013196" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2015-05-23" MostRecentSubmission="2015-05-23">
   <RecordStatus>current</RecordStatus>
   <Species>Homo sapiens</Species>

@@ -84,9 +84,9 @@ def thin_out_aggregate_classification_set(
         if result.HasField("germline_classification"):
             for key in ("xrefs", "citations", "history_records", "conditions"):
                 result.germline_classification.ClearField(key)
-        for somatic_clinical_impacts in result.somatic_clinical_impacts:
+        if result.HasField("somatic_clinical_impact"):
             for key in ("xrefs", "citations", "history_records", "conditions"):
-                somatic_clinical_impacts.ClearField(key)
+                result.somatic_clinical_impact.ClearField(key)
         if result.HasField("oncogenicity_classification"):
             for key in ("xrefs", "citations", "history_records", "conditions"):
                 result.oncogenicity_classification.ClearField(key)

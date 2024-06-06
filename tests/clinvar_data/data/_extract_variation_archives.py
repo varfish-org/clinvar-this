@@ -163,7 +163,7 @@ TARGETS: list[Target] = [
 def main() -> int:
     args = sys.argv
     if len(args) != 2:
-        print("Usage: extract_variation_archives.py <input_xml>")
+        print("Usage: _extract_variation_archives.py <input_xml>")
         return 1
 
     input_xml = args[1]
