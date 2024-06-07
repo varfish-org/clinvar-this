@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.17.0](https://github.com/varfish-org/clinvar-this/compare/v0.16.0...v0.17.0) (2024-06-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* adjust ClinVar XML parsing to cardinality fixes ([#233](https://github.com/varfish-org/clinvar-this/issues/233)) (#234)
+
+### Bug Fixes
+
+* adjust ClinVar XML parsing to cardinality fixes ([#233](https://github.com/varfish-org/clinvar-this/issues/233)) ([#234](https://github.com/varfish-org/clinvar-this/issues/234)) ([119ab42](https://github.com/varfish-org/clinvar-this/commit/119ab42ffadfb0d10ee58b3f855bd0cbf9eee825))
+
 ## [0.16.0](https://github.com/varfish-org/clinvar-this/compare/v0.15.5...v0.16.0) (2024-05-31)
 
 
