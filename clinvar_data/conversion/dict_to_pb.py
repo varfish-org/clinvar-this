@@ -1375,6 +1375,9 @@ class ConvertTrait(ConverterBase):
                 tag_trait_relationship["Name"], dict
             ), "never seen more than once in XML"
             names = [ConvertGenericSetElement.xmldict_data_to_pb(tag_trait_relationship, "Name")]
+        sources: list[str] = []
+        if "Source" in tag_trait_relationship:
+            sources = cls.ensure_list(tag_trait_relationship["Source"])
         # Parse out Citation, XRef, Comment tags.
         cxcs = cls.parse_citations_xrefs_comments(tag_trait_relationship)
 
@@ -1384,6 +1387,7 @@ class ConvertTrait(ConverterBase):
             citations=cxcs.citations,
             xrefs=cxcs.xrefs,
             comments=cxcs.comments,
+            sources=sources,
         )
 
     @classmethod
@@ -1928,14 +1932,11 @@ class ConvertAggregateClassificationSet(ConverterBase):
             germline_classification = ConvertAggregatedGermlineClassification.xmldict_data_to_pb(
                 {"GermlineClassification": tag_classifications["GermlineClassification"]}
             )
-        somatic_clinical_impacts: list[AggregatedSomaticClinicalImpact] | None = None
+        somatic_clinical_impact: AggregatedSomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classifications:
-            somatic_clinical_impacts = [
-                ConvertAggregatedSomaticClinicalImpact.xmldict_data_to_pb(
-                    {"SomaticClinicalImpact": element}
-                )
-                for element in cls.ensure_list(tag_classifications["SomaticClinicalImpact"])
-            ]
+            somatic_clinical_impact = ConvertAggregatedSomaticClinicalImpact.xmldict_data_to_pb(
+                {"SomaticClinicalImpact": tag_classifications["SomaticClinicalImpact"]}
+            )
         oncogenicity_classification: AggregatedOncogenicityClassification | None = None
         if "OncogenicityClassification" in tag_classifications:
             oncogenicity_classification = (
@@ -1950,7 +1951,7 @@ class ConvertAggregateClassificationSet(ConverterBase):
 
         return AggregateClassificationSet(
             germline_classification=germline_classification,
-            somatic_clinical_impacts=somatic_clinical_impacts,
+            somatic_clinical_impact=somatic_clinical_impact,
             oncogenicity_classification=oncogenicity_classification,
         )
 
@@ -2187,9 +2188,9 @@ class ConvertClassificationScv(ConverterBase):
             )
         )
         germline_classification: str | None = tag_classification.get("GermlineClassification")
-        somatic_clinical_impacts: ClassificationScv.SomaticClinicalImpact | None = None
+        somatic_clinical_impact: ClassificationScv.SomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classification:
-            somatic_clinical_impacts = cls.convert_somatic_clinical_impact(
+            somatic_clinical_impact = cls.convert_somatic_clinical_impact(
                 {"SomaticClinicalImpact": tag_classification["SomaticClinicalImpact"]}
             )
         oncogenicity_classification: str | None = tag_classification.get(
@@ -2217,7 +2218,7 @@ class ConvertClassificationScv(ConverterBase):
         return ClassificationScv(
             review_status=review_status,
             germline_classification=germline_classification,
-            somatic_clinical_impacts=somatic_clinical_impacts,
+            somatic_clinical_impact=somatic_clinical_impact,
             oncogenicity_classification=oncogenicity_classification,
             explanation_of_classification=explanation_of_classification,
             classification_scores=classification_scores,
@@ -3457,12 +3458,10 @@ class ConvertAlleleScv(ConverterBase):
                 cls.convert_gene({"Gene": entry})
                 for entry in cls.ensure_list(tag_sa["GeneList"]["Gene"])
             ]
-        names: list[OtherName] | None = None
+        name: OtherName | None = None
         if "Name" in tag_sa:
-            names = [
-                ConvertOtherName.xmldict_data_to_pb({"Name": entry})
-                for entry in cls.ensure_list(tag_sa["Name"])
-            ]
+            assert isinstance(tag_sa["Name"], (dict, str)), f"is: {tag_sa['Name']}"
+            name = ConvertOtherName.xmldict_data_to_pb({"Name": tag_sa["Name"]})
         variant_type: str | None = tag_sa.get("VariantType")
         location: Location | None = None
         if "Location" in tag_sa:
@@ -3545,7 +3544,7 @@ class ConvertAlleleScv(ConverterBase):
 
         return AlleleScv(
             genes=genes,
-            names=names,
+            name=name,
             variant_type=variant_type,
             location=location,
             other_names=other_names,
@@ -3589,9 +3588,9 @@ class ConvertHaplotypeScv(ConverterBase):
                 ConvertOtherName.xmldict_data_to_pb({"Name": entry})
                 for entry in cls.ensure_list(tag_genotype["OtherNameList"]["Name"])
             ]
-        classification: AggregateClassificationSet | None = None
+        classifications: AggregateClassificationSet | None = None
         if "Classification" in tag_genotype:
-            classification = ConvertAggregateClassificationSet.xmldict_data_to_pb(
+            classifications = ConvertAggregateClassificationSet.xmldict_data_to_pb(
                 tag_genotype["Classification"]
             )
         functional_consequences: list[FunctionalConsequence] | None = None
@@ -3638,7 +3637,7 @@ class ConvertHaplotypeScv(ConverterBase):
             simple_alleles=simple_alleles,
             name=name,
             other_names=other_names,
-            classification=classification,
+            classifications=classifications,
             functional_consequences=functional_consequences,
             attributes=attributes,
             citations=citations,
@@ -4105,12 +4104,12 @@ class ConvertClinicalAssertion(ConverterBase):
                 ConvertClinicalAssertionRecordHistory.xmldict_data_to_pb({"Replaced": entry})
                 for entry in cls.ensure_list(tag_ca["ReplacedList"]["Replaced"])
             ]
-        classifications: list[ClassificationScv] | None = None
+        classifications: ClassificationScv | None = None
         if "Classification" in tag_ca:
-            classifications = [
-                ConvertClassificationScv.xmldict_data_to_pb({"Classification": entry})
-                for entry in cls.ensure_list(tag_ca["Classification"])
-            ]
+            assert isinstance(tag_ca["Classification"], dict)
+            classifications = ConvertClassificationScv.xmldict_data_to_pb(
+                {"Classification": tag_ca["Classification"]}
+            )
         assertion: Assertion.ValueType = ConvertAssertion.xmldict_data_to_pb(tag_ca["Assertion"])
         attributes: list[ClinicalAssertion.AttributeSetElement] | None = None
         if "AttributeSet" in tag_ca:

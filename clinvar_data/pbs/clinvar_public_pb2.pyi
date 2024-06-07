@@ -2296,8 +2296,6 @@ class Trait(google.protobuf.message.Message):
         """corresponds to "Finding member" """
 
         NAMES_FIELD_NUMBER: builtins.int
-        SYMBOLS_FIELD_NUMBER: builtins.int
-        ATTRIBUTES_FIELD_NUMBER: builtins.int
         CITATIONS_FIELD_NUMBER: builtins.int
         XREFS_FIELD_NUMBER: builtins.int
         COMMENTS_FIELD_NUMBER: builtins.int
@@ -2316,27 +2314,8 @@ class Trait(google.protobuf.message.Message):
         ]:
             """nested elements
 
-            names
-
-            NB: in XSD this is explictely given as unbounded but XML always has
-            one element
+            Name(s) of the trait.
             """
-
-        @property
-        def symbols(
-            self,
-        ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
-            global___GenericSetElement
-        ]:
-            """symbols (NB: never occur in the XML)"""
-
-        @property
-        def attributes(
-            self,
-        ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
-            global___AttributeSetElement
-        ]:
-            """attributes (NB: never occur in the XML)"""
 
         @property
         def citations(
@@ -2366,8 +2345,6 @@ class Trait(google.protobuf.message.Message):
             self,
             *,
             names: collections.abc.Iterable[global___GenericSetElement] | None = ...,
-            symbols: collections.abc.Iterable[global___GenericSetElement] | None = ...,
-            attributes: collections.abc.Iterable[global___AttributeSetElement] | None = ...,
             citations: collections.abc.Iterable[global___Citation] | None = ...,
             xrefs: collections.abc.Iterable[global___Xref] | None = ...,
             comments: collections.abc.Iterable[global___Comment] | None = ...,
@@ -2377,8 +2354,6 @@ class Trait(google.protobuf.message.Message):
         def ClearField(
             self,
             field_name: typing.Literal[
-                "attributes",
-                b"attributes",
                 "citations",
                 b"citations",
                 "comments",
@@ -2387,8 +2362,6 @@ class Trait(google.protobuf.message.Message):
                 b"names",
                 "sources",
                 b"sources",
-                "symbols",
-                b"symbols",
                 "type",
                 b"type",
                 "xrefs",
@@ -3422,18 +3395,14 @@ class AggregateClassificationSet(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     GERMLINE_CLASSIFICATION_FIELD_NUMBER: builtins.int
-    SOMATIC_CLINICAL_IMPACTS_FIELD_NUMBER: builtins.int
+    SOMATIC_CLINICAL_IMPACT_FIELD_NUMBER: builtins.int
     ONCOGENICITY_CLASSIFICATION_FIELD_NUMBER: builtins.int
     @property
     def germline_classification(self) -> global___AggregatedGermlineClassification:
         """The aggregate germline classification."""
 
     @property
-    def somatic_clinical_impacts(
-        self,
-    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
-        global___AggregatedSomaticClinicalImpact
-    ]:
+    def somatic_clinical_impact(self) -> global___AggregatedSomaticClinicalImpact:
         """The aggregate somatic clinical impact."""
 
     @property
@@ -3444,9 +3413,7 @@ class AggregateClassificationSet(google.protobuf.message.Message):
         self,
         *,
         germline_classification: global___AggregatedGermlineClassification | None = ...,
-        somatic_clinical_impacts: (
-            collections.abc.Iterable[global___AggregatedSomaticClinicalImpact] | None
-        ) = ...,
+        somatic_clinical_impact: global___AggregatedSomaticClinicalImpact | None = ...,
         oncogenicity_classification: global___AggregatedOncogenicityClassification | None = ...,
     ) -> None: ...
     def HasField(
@@ -3456,10 +3423,14 @@ class AggregateClassificationSet(google.protobuf.message.Message):
             b"_germline_classification",
             "_oncogenicity_classification",
             b"_oncogenicity_classification",
+            "_somatic_clinical_impact",
+            b"_somatic_clinical_impact",
             "germline_classification",
             b"germline_classification",
             "oncogenicity_classification",
             b"oncogenicity_classification",
+            "somatic_clinical_impact",
+            b"somatic_clinical_impact",
         ],
     ) -> builtins.bool: ...
     def ClearField(
@@ -3469,12 +3440,14 @@ class AggregateClassificationSet(google.protobuf.message.Message):
             b"_germline_classification",
             "_oncogenicity_classification",
             b"_oncogenicity_classification",
+            "_somatic_clinical_impact",
+            b"_somatic_clinical_impact",
             "germline_classification",
             b"germline_classification",
             "oncogenicity_classification",
             b"oncogenicity_classification",
-            "somatic_clinical_impacts",
-            b"somatic_clinical_impacts",
+            "somatic_clinical_impact",
+            b"somatic_clinical_impact",
         ],
     ) -> None: ...
     @typing.overload
@@ -3488,6 +3461,10 @@ class AggregateClassificationSet(google.protobuf.message.Message):
             "_oncogenicity_classification", b"_oncogenicity_classification"
         ],
     ) -> typing.Literal["oncogenicity_classification"] | None: ...
+    @typing.overload
+    def WhichOneof(
+        self, oneof_group: typing.Literal["_somatic_clinical_impact", b"_somatic_clinical_impact"]
+    ) -> typing.Literal["somatic_clinical_impact"] | None: ...
 
 global___AggregateClassificationSet = AggregateClassificationSet
 
@@ -3969,7 +3946,7 @@ class ClassificationScv(google.protobuf.message.Message):
 
     REVIEW_STATUS_FIELD_NUMBER: builtins.int
     GERMLINE_CLASSIFICATION_FIELD_NUMBER: builtins.int
-    SOMATIC_CLINICAL_IMPACTS_FIELD_NUMBER: builtins.int
+    SOMATIC_CLINICAL_IMPACT_FIELD_NUMBER: builtins.int
     ONCOGENICITY_CLASSIFICATION_FIELD_NUMBER: builtins.int
     EXPLANATION_OF_CLASSIFICATION_FIELD_NUMBER: builtins.int
     CLASSIFICATION_SCORES_FIELD_NUMBER: builtins.int
@@ -3993,7 +3970,7 @@ class ClassificationScv(google.protobuf.message.Message):
     explanation_of_classification: builtins.str
     """Optional explanation of classification."""
     @property
-    def somatic_clinical_impacts(self) -> global___ClassificationScv.SomaticClinicalImpact:
+    def somatic_clinical_impact(self) -> global___ClassificationScv.SomaticClinicalImpact:
         """Information on the clinical impact; mutually exlusive with `germline_classification`
         and `oncogenicity_classification`.
         """
@@ -4036,7 +4013,7 @@ class ClassificationScv(google.protobuf.message.Message):
         *,
         review_status: global___SubmitterReviewStatus.ValueType = ...,
         germline_classification: builtins.str | None = ...,
-        somatic_clinical_impacts: global___ClassificationScv.SomaticClinicalImpact | None = ...,
+        somatic_clinical_impact: global___ClassificationScv.SomaticClinicalImpact | None = ...,
         oncogenicity_classification: builtins.str | None = ...,
         explanation_of_classification: builtins.str | None = ...,
         classification_scores: (
@@ -4058,8 +4035,8 @@ class ClassificationScv(google.protobuf.message.Message):
             b"_germline_classification",
             "_oncogenicity_classification",
             b"_oncogenicity_classification",
-            "_somatic_clinical_impacts",
-            b"_somatic_clinical_impacts",
+            "_somatic_clinical_impact",
+            b"_somatic_clinical_impact",
             "date_last_evaluated",
             b"date_last_evaluated",
             "explanation_of_classification",
@@ -4068,8 +4045,8 @@ class ClassificationScv(google.protobuf.message.Message):
             b"germline_classification",
             "oncogenicity_classification",
             b"oncogenicity_classification",
-            "somatic_clinical_impacts",
-            b"somatic_clinical_impacts",
+            "somatic_clinical_impact",
+            b"somatic_clinical_impact",
         ],
     ) -> builtins.bool: ...
     def ClearField(
@@ -4083,8 +4060,8 @@ class ClassificationScv(google.protobuf.message.Message):
             b"_germline_classification",
             "_oncogenicity_classification",
             b"_oncogenicity_classification",
-            "_somatic_clinical_impacts",
-            b"_somatic_clinical_impacts",
+            "_somatic_clinical_impact",
+            b"_somatic_clinical_impact",
             "citations",
             b"citations",
             "classification_scores",
@@ -4101,8 +4078,8 @@ class ClassificationScv(google.protobuf.message.Message):
             b"oncogenicity_classification",
             "review_status",
             b"review_status",
-            "somatic_clinical_impacts",
-            b"somatic_clinical_impacts",
+            "somatic_clinical_impact",
+            b"somatic_clinical_impact",
             "xrefs",
             b"xrefs",
         ],
@@ -4131,8 +4108,8 @@ class ClassificationScv(google.protobuf.message.Message):
     ) -> typing.Literal["oncogenicity_classification"] | None: ...
     @typing.overload
     def WhichOneof(
-        self, oneof_group: typing.Literal["_somatic_clinical_impacts", b"_somatic_clinical_impacts"]
-    ) -> typing.Literal["somatic_clinical_impacts"] | None: ...
+        self, oneof_group: typing.Literal["_somatic_clinical_impact", b"_somatic_clinical_impact"]
+    ) -> typing.Literal["somatic_clinical_impact"] | None: ...
 
 global___ClassificationScv = ClassificationScv
 
@@ -6707,7 +6684,7 @@ class AlleleScv(google.protobuf.message.Message):
         ) -> typing.Literal["so_id"] | None: ...
 
     GENES_FIELD_NUMBER: builtins.int
-    NAMES_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
     VARIANT_TYPE_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
     OTHER_NAMES_FIELD_NUMBER: builtins.int
@@ -6739,9 +6716,7 @@ class AlleleScv(google.protobuf.message.Message):
         """
 
     @property
-    def names(
-        self,
-    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OtherName]:
+    def name(self) -> global___OtherName:
         """Name provided by the submitter."""
 
     @property
@@ -6810,7 +6785,7 @@ class AlleleScv(google.protobuf.message.Message):
         self,
         *,
         genes: collections.abc.Iterable[global___AlleleScv.Gene] | None = ...,
-        names: collections.abc.Iterable[global___OtherName] | None = ...,
+        name: global___OtherName | None = ...,
         variant_type: builtins.str | None = ...,
         location: global___Location | None = ...,
         other_names: collections.abc.Iterable[global___OtherName] | None = ...,
@@ -6840,6 +6815,8 @@ class AlleleScv(google.protobuf.message.Message):
             b"allele_id",
             "location",
             b"location",
+            "name",
+            b"name",
             "variant_type",
             b"variant_type",
         ],
@@ -6869,8 +6846,8 @@ class AlleleScv(google.protobuf.message.Message):
             b"location",
             "molecular_consequences",
             b"molecular_consequences",
-            "names",
-            b"names",
+            "name",
+            b"name",
             "other_names",
             b"other_names",
             "protein_changes",
@@ -6908,7 +6885,7 @@ class HaplotypeScv(google.protobuf.message.Message):
     SIMPLE_ALLELES_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     OTHER_NAMES_FIELD_NUMBER: builtins.int
-    CLASSIFICATION_FIELD_NUMBER: builtins.int
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
     FUNCTIONAL_CONSEQUENCES_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
     CITATIONS_FIELD_NUMBER: builtins.int
@@ -6938,7 +6915,7 @@ class HaplotypeScv(google.protobuf.message.Message):
         """Names other than 'preferred' used for the haplotype."""
 
     @property
-    def classification(self) -> global___AggregateClassificationSet:
+    def classifications(self) -> global___AggregateClassificationSet:
         """Classification of the variant."""
 
     @property
@@ -6981,7 +6958,7 @@ class HaplotypeScv(google.protobuf.message.Message):
         simple_alleles: collections.abc.Iterable[global___AlleleScv] | None = ...,
         name: builtins.str | None = ...,
         other_names: collections.abc.Iterable[global___OtherName] | None = ...,
-        classification: global___AggregateClassificationSet | None = ...,
+        classifications: global___AggregateClassificationSet | None = ...,
         functional_consequences: (
             collections.abc.Iterable[global___FunctionalConsequence] | None
         ) = ...,
@@ -6996,8 +6973,8 @@ class HaplotypeScv(google.protobuf.message.Message):
     def HasField(
         self,
         field_name: typing.Literal[
-            "_classification",
-            b"_classification",
+            "_classifications",
+            b"_classifications",
             "_name",
             b"_name",
             "_number_of_chromosomes",
@@ -7006,8 +6983,8 @@ class HaplotypeScv(google.protobuf.message.Message):
             b"_number_of_copies",
             "_variation_id",
             b"_variation_id",
-            "classification",
-            b"classification",
+            "classifications",
+            b"classifications",
             "name",
             b"name",
             "number_of_chromosomes",
@@ -7021,8 +6998,8 @@ class HaplotypeScv(google.protobuf.message.Message):
     def ClearField(
         self,
         field_name: typing.Literal[
-            "_classification",
-            b"_classification",
+            "_classifications",
+            b"_classifications",
             "_name",
             b"_name",
             "_number_of_chromosomes",
@@ -7035,8 +7012,8 @@ class HaplotypeScv(google.protobuf.message.Message):
             b"attributes",
             "citations",
             b"citations",
-            "classification",
-            b"classification",
+            "classifications",
+            b"classifications",
             "comments",
             b"comments",
             "functional_consequences",
@@ -7059,8 +7036,8 @@ class HaplotypeScv(google.protobuf.message.Message):
     ) -> None: ...
     @typing.overload
     def WhichOneof(
-        self, oneof_group: typing.Literal["_classification", b"_classification"]
-    ) -> typing.Literal["classification"] | None: ...
+        self, oneof_group: typing.Literal["_classifications", b"_classifications"]
+    ) -> typing.Literal["classifications"] | None: ...
     @typing.overload
     def WhichOneof(
         self, oneof_group: typing.Literal["_name", b"_name"]
@@ -8054,12 +8031,8 @@ class ClinicalAssertion(google.protobuf.message.Message):
         """Replaced list; mutually exclusive with replaces"""
 
     @property
-    def classifications(
-        self,
-    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
-        global___ClassificationScv
-    ]:
-        """SCV classifications."""
+    def classifications(self) -> global___ClassificationScv:
+        """SCV classification."""
 
     @property
     def attributes(
@@ -8133,7 +8106,7 @@ class ClinicalAssertion(google.protobuf.message.Message):
         record_status: global___ClinicalAssertion.RecordStatus.ValueType = ...,
         replaces: collections.abc.Iterable[builtins.str] | None = ...,
         replaceds: collections.abc.Iterable[global___ClinicalAssertionRecordHistory] | None = ...,
-        classifications: collections.abc.Iterable[global___ClassificationScv] | None = ...,
+        classifications: global___ClassificationScv | None = ...,
         assertion: global___Assertion.ValueType = ...,
         attributes: (
             collections.abc.Iterable[global___ClinicalAssertion.AttributeSetElement] | None
@@ -8171,6 +8144,8 @@ class ClinicalAssertion(google.protobuf.message.Message):
             b"_study_description",
             "_study_name",
             b"_study_name",
+            "classifications",
+            b"classifications",
             "clinvar_accession",
             b"clinvar_accession",
             "clinvar_submission_id",

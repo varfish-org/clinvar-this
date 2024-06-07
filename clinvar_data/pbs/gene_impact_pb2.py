@@ -24,6 +24,7 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "clinvar_data.pbs.gene_impact_pb2", _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
+
     DESCRIPTOR._options = None
     _globals["_GENEIMPACT"]._serialized_start = 458
     _globals["_GENEIMPACT"]._serialized_end = 1091

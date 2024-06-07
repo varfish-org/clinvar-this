@@ -24,6 +24,7 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "clinvar_data.pbs.extracted_vars_pb2", _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
+
     DESCRIPTOR._options = None
     _globals["_VARIATIONTYPE"]._serialized_start = 812
     _globals["_VARIATIONTYPE"]._serialized_end = 1276

@@ -375,13 +375,11 @@
           "dateCreated": "2013-04-04T00:00:00Z"
         },
         "recordStatus": "RECORD_STATUS_CURRENT",
-        "classifications": [
-          {
-            "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
-            "germlineClassification": "Pathogenic",
-            "dateLastEvaluated": "2010-06-29T00:00:00Z"
-          }
-        ],
+        "classifications": {
+          "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+          "germlineClassification": "Pathogenic",
+          "dateLastEvaluated": "2010-06-29T00:00:00Z"
+        },
         "assertion": "ASSERTION_VARIATION_TO_DISEASE",
         "observedIns": [
           {
@@ -429,11 +427,9 @@
               "symbol": "AP5Z1"
             }
           ],
-          "names": [
-            {
-              "value": "AP5Z1, 4-BP DEL/22-BP INS, NT80"
-            }
-          ],
+          "name": {
+            "value": "AP5Z1, 4-BP DEL/22-BP INS, NT80"
+          },
           "variantType": "Variation",
           "otherNames": [
             {
@@ -481,12 +477,10 @@
           "dateCreated": "2021-05-16T00:00:00Z"
         },
         "recordStatus": "RECORD_STATUS_CURRENT",
-        "classifications": [
-          {
-            "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
-            "germlineClassification": "Pathogenic"
-          }
-        ],
+        "classifications": {
+          "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+          "germlineClassification": "Pathogenic"
+        },
         "assertion": "ASSERTION_VARIATION_TO_DISEASE",
         "attributes": [
           {

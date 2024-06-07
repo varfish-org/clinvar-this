@@ -22,13 +22,11 @@
       "dateChanged": "2014-08-31T00:00:00Z"
     }
   ],
-  "classifications": [
-    {
-      "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
-      "germlineClassification": "Pathogenic",
-      "dateLastEvaluated": "1991-09-15T00:00:00Z"
-    }
-  ],
+  "classifications": {
+    "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+    "germlineClassification": "Pathogenic",
+    "dateLastEvaluated": "1991-09-15T00:00:00Z"
+  },
   "assertion": "ASSERTION_VARIATION_TO_DISEASE",
   "observedIns": [
     {
@@ -76,11 +74,9 @@
         "symbol": "PKLR"
       }
     ],
-    "names": [
-      {
-        "value": "PKLR, THR384MET"
-      }
-    ],
+    "name": {
+      "value": "PKLR, THR384MET"
+    },
     "variantType": "Variation",
     "otherNames": [
       {

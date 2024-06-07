@@ -26,12 +26,10 @@
     }
   ],
   "recordStatus": "RECORD_STATUS_CURRENT",
-  "classifications": [
-    {
-      "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
-      "germlineClassification": "Pathogenic"
-    }
-  ],
+  "classifications": {
+    "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
+    "germlineClassification": "Pathogenic"
+  },
   "assertion": "ASSERTION_VARIATION_TO_DISEASE",
   "observedIns": [
     {

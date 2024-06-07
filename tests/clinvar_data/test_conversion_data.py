@@ -2205,7 +2205,7 @@ def test_convert_classification_scv_convert_classification_score(xml_str: str, e
                 ],
                 "dateLastEvaluated": "2024-01-24T00:00:00Z",
                 "reviewStatus": "SUBMITTER_REVIEW_STATUS_NO_ASSERTION_CRITERIA_PROVIDED",
-                "somaticClinicalImpacts": {
+                "somaticClinicalImpact": {
                     "clinicalImpactAssertionType": "diagnostic",
                     "clinicalImpactClinicalSignificance": "supports diagnosis",
                     "value": "Tier I - Strong",
@@ -3463,11 +3463,9 @@ def test_convert_allele_scv_convert_molecular_consequence(xml_str: str, expected
                         "symbol": "THAP1",
                     },
                 ],
-                "names": [
-                    {
-                        "value": "THAP1, LYS24GLU",
-                    },
-                ],
+                "name": {
+                    "value": "THAP1, LYS24GLU",
+                },
                 "otherNames": [
                     {
                         "type": "NonHGVS",
