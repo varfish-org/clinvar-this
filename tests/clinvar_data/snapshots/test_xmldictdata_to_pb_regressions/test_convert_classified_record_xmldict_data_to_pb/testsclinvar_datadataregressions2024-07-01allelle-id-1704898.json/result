@@ -1,0 +1,674 @@
+{
+  "simpleAllele": {
+    "genes": [
+      {
+        "locations": [
+          {
+            "cytogeneticLocations": [
+              "9q34.3"
+            ],
+            "sequenceLocations": [
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_9",
+                "accession": "NC_000009.12",
+                "start": 137139154,
+                "stop": 137168756,
+                "displayStart": 137139154,
+                "displayStop": 137168756,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh37",
+                "chr": "CHROMOSOME_9",
+                "accession": "NC_000009.11",
+                "start": 140033608,
+                "stop": 140063213,
+                "displayStart": 140033608,
+                "displayStop": 140063213,
+                "strand": "+"
+              }
+            ]
+          }
+        ],
+        "omims": [
+          "138249"
+        ],
+        "fullName": "glutamate ionotropic receptor NMDA type subunit 1",
+        "geneId": "2902",
+        "hgncId": "HGNC:4584",
+        "source": "submitted",
+        "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+      }
+    ],
+    "name": "NM_007327.4(GRIN1):c.2377G>T (p.Val793Phe)",
+    "canonicalSpdi": "NC_000009.12:137163601:G:T",
+    "variantTypes": [
+      "single nucleotide variant"
+    ],
+    "locations": [
+      {
+        "cytogeneticLocations": [
+          "9q34.3"
+        ],
+        "sequenceLocations": [
+          {
+            "forDisplay": true,
+            "assembly": "GRCh38",
+            "chr": "CHROMOSOME_9",
+            "accession": "NC_000009.12",
+            "start": 137163602,
+            "stop": 137163602,
+            "displayStart": 137163602,
+            "displayStop": 137163602,
+            "variantLength": 1,
+            "positionVcf": 137163602,
+            "referenceAlleleVcf": "G",
+            "alternateAlleleVcf": "T"
+          },
+          {
+            "assembly": "GRCh37",
+            "chr": "CHROMOSOME_9",
+            "accession": "NC_000009.11",
+            "start": 140058054,
+            "stop": 140058054,
+            "displayStart": 140058054,
+            "displayStop": 140058054,
+            "variantLength": 1,
+            "positionVcf": 140058054,
+            "referenceAlleleVcf": "G",
+            "alternateAlleleVcf": "T"
+          }
+        ]
+      }
+    ],
+    "proteinChanges": [
+      "V793F",
+      "V814F"
+    ],
+    "hgvsExpressions": [
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000009.11:g.140058054G>T",
+          "sequenceAccessionVersion": "NC_000009.11",
+          "sequenceAccession": "NC_000009",
+          "sequenceVersion": 11,
+          "change": "g.140058054G>T"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh37"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000009.12:g.137163602G>T",
+          "sequenceAccessionVersion": "NC_000009.12",
+          "sequenceAccession": "NC_000009",
+          "sequenceVersion": 12,
+          "change": "g.137163602G>T"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh38"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NG_011507.1:g.29446G>T",
+          "sequenceAccessionVersion": "NG_011507.1",
+          "sequenceAccession": "NG_011507",
+          "sequenceVersion": 1,
+          "change": "g.29446G>T"
+        },
+        "type": "HGVS_TYPE_GENOMIC"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_000832.7:c.2377G>T",
+          "sequenceAccessionVersion": "NM_000832.7",
+          "sequenceAccession": "NM_000832",
+          "sequenceVersion": 7,
+          "change": "c.2377G>T"
+        },
+        "proteinExpression": {
+          "expression": "NP_000823.4:p.Val793Phe",
+          "sequenceAccessionVersion": "NP_000823.4",
+          "sequenceAccession": "NP_000823",
+          "sequenceVersion": 4,
+          "change": "p.Val793Phe"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001583",
+            "type": "missense variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001185090.2:c.2440G>T",
+          "sequenceAccessionVersion": "NM_001185090.2",
+          "sequenceAccession": "NM_001185090",
+          "sequenceVersion": 2,
+          "change": "c.2440G>T"
+        },
+        "proteinExpression": {
+          "expression": "NP_001172019.1:p.Val814Phe",
+          "sequenceAccessionVersion": "NP_001172019.1",
+          "sequenceAccession": "NP_001172019",
+          "sequenceVersion": 1,
+          "change": "p.Val814Phe"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001583",
+            "type": "missense variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001185091.2:c.2440G>T",
+          "sequenceAccessionVersion": "NM_001185091.2",
+          "sequenceAccession": "NM_001185091",
+          "sequenceVersion": 2,
+          "change": "c.2440G>T"
+        },
+        "proteinExpression": {
+          "expression": "NP_001172020.1:p.Val814Phe",
+          "sequenceAccessionVersion": "NP_001172020.1",
+          "sequenceAccession": "NP_001172020",
+          "sequenceVersion": 1,
+          "change": "p.Val814Phe"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001583",
+            "type": "missense variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_007327.4:c.2377G>T",
+          "sequenceAccessionVersion": "NM_007327.4",
+          "sequenceAccession": "NM_007327",
+          "sequenceVersion": 4,
+          "change": "c.2377G>T",
+          "maneSelect": true
+        },
+        "proteinExpression": {
+          "expression": "NP_015566.1:p.Val793Phe",
+          "sequenceAccessionVersion": "NP_015566.1",
+          "sequenceAccession": "NP_015566",
+          "sequenceVersion": 1,
+          "change": "p.Val793Phe"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001583",
+            "type": "missense variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_021569.4:c.2377G>T",
+          "sequenceAccessionVersion": "NM_021569.4",
+          "sequenceAccession": "NM_021569",
+          "sequenceVersion": 4,
+          "change": "c.2377G>T"
+        },
+        "proteinExpression": {
+          "expression": "NP_067544.1:p.Val793Phe",
+          "sequenceAccessionVersion": "NP_067544.1",
+          "sequenceAccession": "NP_067544",
+          "sequenceVersion": 1,
+          "change": "p.Val793Phe"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001583",
+            "type": "missense variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      }
+    ],
+    "alleleId": "1704898",
+    "variationId": "1706588"
+  },
+  "rcvList": {
+    "rcvAccessions": [
+      {
+        "classifiedConditionList": {
+          "classifiedConditions": [
+            {
+              "value": "Intellectual disability, autosomal dominant 8",
+              "db": "MedGen",
+              "id": "C3280282"
+            }
+          ],
+          "traitSetId": "7616"
+        },
+        "rcvClassifications": {
+          "germlineClassification": {
+            "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+            "description": {
+              "value": "Likely pathogenic",
+              "dateLastEvaluated": "2022-09-16T00:00:00Z",
+              "submissionCount": 1
+            }
+          }
+        },
+        "title": "NM_007327.4(GRIN1):c.2377G>T (p.Val793Phe) AND Intellectual disability, autosomal dominant 8",
+        "accession": "RCV002285197",
+        "version": 2
+      }
+    ]
+  },
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+      "description": "Likely pathogenic",
+      "conditions": [
+        {
+          "traits": [
+            {
+              "names": [
+                {
+                  "value": "Mental retardation, autosomal dominant 8",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "Genetic Alliance",
+                      "id": "Mental+retardation%2C+autosomal+dominant+8/8831"
+                    }
+                  ]
+                },
+                {
+                  "value": "Intellectual disability, autosomal dominant 8",
+                  "type": "Preferred",
+                  "xrefs": [
+                    {
+                      "db": "MONDO",
+                      "id": "MONDO:0013655"
+                    }
+                  ]
+                },
+                {
+                  "value": "Neurodevelopmental disorder with or without hyperkinetic movements and seizures, autosomal dominant",
+                  "type": "Alternate"
+                }
+              ],
+              "symbols": [
+                {
+                  "value": "NDHMSD",
+                  "type": "Preferred",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "614254",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "attributes": [
+                {
+                  "attribute": {
+                    "base": {
+                      "integerValue": "13686"
+                    },
+                    "type": "GARD id"
+                  },
+                  "xrefs": [
+                    {
+                      "db": "Office of Rare Diseases",
+                      "id": "13686"
+                    }
+                  ]
+                },
+                {
+                  "attribute": {
+                    "base": {
+                      "value": "GRIN1-related neurodevelopmental disorder (GRIN1-NDD) is characterized by mild-to-profound developmental delay/ intellectual disability (DD/ID) in all affected individuals. Other common manifestations are epilepsy, muscular hypotonia, movement disorders, spasticity, feeding difficulties, and behavior problems. A subset of individuals show a malformation of cortical development consisting of extensive and diffuse bilateral polymicrogyria. To date, 72 individuals with GRIN1-NDD have been reported."
+                    },
+                    "type": "public definition"
+                  },
+                  "xrefs": [
+                    {
+                      "db": "GeneReviews",
+                      "id": "NBK542807"
+                    }
+                  ]
+                }
+              ],
+              "citations": [
+                {
+                  "ids": [
+                    {
+                      "value": "31219694",
+                      "source": "PubMed"
+                    },
+                    {
+                      "value": "NBK542807",
+                      "source": "BookShelf"
+                    }
+                  ],
+                  "type": "review",
+                  "abbrev": "GeneReviews"
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "MedGen",
+                  "id": "C3280282"
+                },
+                {
+                  "db": "MONDO",
+                  "id": "MONDO:0013655"
+                },
+                {
+                  "db": "OMIM",
+                  "id": "614254",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "type": "TYPE_DISEASE",
+          "id": "7616",
+          "contributesToAggregateClassification": true
+        }
+      ],
+      "dateLastEvaluated": "2022-09-16T00:00:00Z",
+      "dateCreated": "2022-10-01T00:00:00Z",
+      "mostRecentSubmission": "2022-10-01T00:00:00Z",
+      "numberOfSubmitters": 1,
+      "numberOfSubmissions": 1
+    }
+  },
+  "clinicalAssertions": [
+    {
+      "clinvarSubmissionId": {
+        "localKey": "4cb0b18b-3b43-49ac-8352-6a0cd7048e13",
+        "localKeyIsSubmitted": false,
+        "submittedAssembly": "GRCh37"
+      },
+      "clinvarAccession": {
+        "accession": "SCV002574937",
+        "version": 1,
+        "submitterIdentifiers": {
+          "submitterName": "Institute for Medical Genetics and Human Genetics, Charit\u00e9 - Universit\u00e4tsmedizin Berlin",
+          "orgId": "505735",
+          "orgCategory": "clinic",
+          "orgAbbreviation": "Charit\u00e9 - Universit\u00e4tsmedizin"
+        },
+        "dateUpdated": "2022-10-01T00:00:00Z",
+        "dateCreated": "2022-10-01T00:00:00Z"
+      },
+      "additionalSubmitters": [
+        {
+          "submitterIdentifiers": {
+            "submitterName": "CUBI - Core Unit Bioinformatics, Berlin Institute of Health",
+            "orgId": "507461",
+            "orgCategory": "laboratory"
+          },
+          "type": "TYPE_SECONDARY"
+        }
+      ],
+      "recordStatus": "RECORD_STATUS_CURRENT",
+      "classifications": {
+        "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+        "germlineClassification": "Likely pathogenic",
+        "dateLastEvaluated": "2022-09-16T00:00:00Z"
+      },
+      "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+      "attributes": [
+        {
+          "attribute": {
+            "value": "ACMG Guidelines, 2015"
+          },
+          "type": "TYPE_ASSERTION_METHOD",
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "25741868",
+                  "source": "PubMed"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "observedIns": [
+        {
+          "sample": {
+            "origin": "ORIGIN_GERMLINE",
+            "tissue": "Blood",
+            "species": {
+              "name": "human",
+              "taxonomyId": 9606
+            },
+            "affectedStatus": "AFFECTED_STATUS_YES",
+            "numerTested": 1,
+            "gender": "GENDER_MALE",
+            "familyData": {
+              "pedigreeId": "fe3ca5e9-f193-401c-ad76-edbf30fe29f3"
+            }
+          },
+          "observedData": [
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "integerValue": "1"
+                  },
+                  "type": "TYPE_SINGLE_HETEROZYGOUS"
+                }
+              ]
+            },
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "value": "202eb76d-a7a1-4d2c-97fe-608bed412367"
+                  },
+                  "type": "TYPE_SAMPLE_LOCAL_ID"
+                }
+              ]
+            }
+          ],
+          "traitSet": {
+            "traits": [
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0001263"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0003502"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0001252"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0000733"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0002020"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0011145"
+                  }
+                ]
+              }
+            ],
+            "type": "TYPE_FINDING"
+          }
+        }
+      ],
+      "simpleAllele": {
+        "genes": [
+          {
+            "symbol": "GRIN1"
+          }
+        ],
+        "variantType": "Variation",
+        "location": {
+          "sequenceLocations": [
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_9",
+              "start": 140058054,
+              "stop": 140058054,
+              "referenceAllele": "G",
+              "alternateAllele": "T"
+            }
+          ]
+        }
+      },
+      "traitSet": {
+        "traits": [
+          {
+            "xrefs": [
+              {
+                "db": "OMIM",
+                "id": "614254"
+              }
+            ]
+          }
+        ],
+        "type": "TYPE_DISEASE"
+      },
+      "id": "5034259"
+    }
+  ],
+  "traitMappings": [
+    {
+      "medgens": [
+        {
+          "name": "Hypotonia",
+          "cui": "C0026827"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0001252",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Intellectual disability, autosomal dominant 8",
+          "cui": "C3280282"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Disease",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "614254",
+      "mappingRef": "OMIM"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Motor stereotypies",
+          "cui": "C0038271"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0000733",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Symptomatic seizures",
+          "cui": "C4023516"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0011145",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Global developmental delay",
+          "cui": "C0557874"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0001263",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Gastroesophageal reflux",
+          "cui": "C4317146"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0002020",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Mild short stature",
+          "cui": "C3150077"
+        }
+      ],
+      "clinicalAssertionId": "5034259",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0003502",
+      "mappingRef": "HP"
+    }
+  ]
+}

@@ -1,0 +1,564 @@
+{
+  "simpleAllele": {
+    "genes": [
+      {
+        "locations": [
+          {
+            "cytogeneticLocations": [
+              "Xp22.2"
+            ],
+            "sequenceLocations": [
+              {
+                "assembly": "GRCh38",
+                "chr": "CHROMOSOME_X",
+                "accession": "NC_000023.11",
+                "start": 11758159,
+                "stop": 11775772,
+                "displayStart": 11758159,
+                "displayStop": 11775772,
+                "strand": "+"
+              },
+              {
+                "assembly": "GRCh37",
+                "chr": "CHROMOSOME_X",
+                "accession": "NC_000023.10",
+                "start": 11776277,
+                "stop": 11793871,
+                "displayStart": 11776277,
+                "displayStop": 11793871,
+                "strand": "+"
+              }
+            ]
+          }
+        ],
+        "omims": [
+          "300609"
+        ],
+        "haploinsufficiency": {
+          "value": "Sufficient evidence for dosage pathogenicity",
+          "lastEvaluated": "2023-08-23T00:00:00Z",
+          "clingen": "https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=MSL3"
+        },
+        "triplosensitivity": {
+          "value": "No evidence available",
+          "lastEvaluated": "2023-08-23T00:00:00Z",
+          "clingen": "https://www.ncbi.nlm.nih.gov/projects/dbvar/ISCA/isca_gene.cgi?sym=MSL3"
+        },
+        "fullName": "MSL complex subunit 3",
+        "geneId": "10943",
+        "hgncId": "HGNC:7370",
+        "source": "submitted",
+        "relationshipType": "GENE_VARIANT_RELATIONSHIP_WITHIN_SINGLE_GENE"
+      }
+    ],
+    "name": "NM_078629.4(MSL3):c.1282-249_1382-154del",
+    "variantTypes": [
+      "Deletion"
+    ],
+    "locations": [
+      {
+        "cytogeneticLocations": [
+          "Xp22.2"
+        ],
+        "sequenceLocations": [
+          {
+            "forDisplay": true,
+            "assembly": "GRCh38",
+            "chr": "CHROMOSOME_X",
+            "accession": "NC_000023.11",
+            "start": 11771907,
+            "stop": 11772467,
+            "displayStart": 11771907,
+            "displayStop": 11772467,
+            "variantLength": 561,
+            "positionVcf": 11771906,
+            "referenceAlleleVcf": "AAAGGACTAAAGAACCTAAACAGTTACAGTTATTTATAGAGAATAACTGTTGCGAGTTAAGAAATTAAAGACTTTCTTGATCTATTTTAAGTGTTTTTGCCTTTCATCTTTGTTTTTTGTAAGCTTGTGTTTATTTTGATCCAATCACTTATTTTTTCCCCTCTACGTACAATTTACTGTCATAATTGTTAGGTGGTTGGAAGTGTCTCCATTAAGAATAACAAAAGCATTCAATTCGTGCTTTTTCCAGGTCCTCTCCTGGAAGCTTGTGCCTGACAATTACCCCCCAGGTGACCAGCCGCCTCCACCCTCTTACATTTATGGGGCACAACATTTGCTGCGATTGTTTGGTAAGAATCCTGGTTCCTGCCTTCTTTCCATTTTTCATTTTGTATTCTCTTGTTAGCTTTCTGTACACCTTGTGGTTTGGGCTATAATTATCTAACTAAGAAATTTGGGGATCCAAGAAAAATTAAAAGTAATCTATCAAAGAAAAGGCATTGAATGAATCTTAAATTTCATAAAAATTATGTTTGTAATATTTGTACTGCTACTCTGTCTT",
+            "alternateAlleleVcf": "A"
+          },
+          {
+            "assembly": "GRCh37",
+            "chr": "CHROMOSOME_X",
+            "accession": "NC_000023.10",
+            "start": 11790026,
+            "stop": 11790586,
+            "displayStart": 11790026,
+            "displayStop": 11790586,
+            "variantLength": 561,
+            "positionVcf": 11790025,
+            "referenceAlleleVcf": "AAAGGACTAAAGAACCTAAACAGTTACAGTTATTTATAGAGAATAACTGTTGCGAGTTAAGAAATTAAAGACTTTCTTGATCTATTTTAAGTGTTTTTGCCTTTCATCTTTGTTTTTTGTAAGCTTGTGTTTATTTTGATCCAATCACTTATTTTTTCCCCTCTACGTACAATTTACTGTCATAATTGTTAGGTGGTTGGAAGTGTCTCCATTAAGAATAACAAAAGCATTCAATTCGTGCTTTTTCCAGGTCCTCTCCTGGAAGCTTGTGCCTGACAATTACCCCCCAGGTGACCAGCCGCCTCCACCCTCTTACATTTATGGGGCACAACATTTGCTGCGATTGTTTGGTAAGAATCCTGGTTCCTGCCTTCTTTCCATTTTTCATTTTGTATTCTCTTGTTAGCTTTCTGTACACCTTGTGGTTTGGGCTATAATTATCTAACTAAGAAATTTGGGGATCCAAGAAAAATTAAAAGTAATCTATCAAAGAAAAGGCATTGAATGAATCTTAAATTTCATAAAAATTATGTTTGTAATATTTGTACTGCTACTCTGTCTT",
+            "alternateAlleleVcf": "A"
+          }
+        ]
+      }
+    ],
+    "hgvsExpressions": [
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000023.10:g.11790026_11790586del",
+          "sequenceAccessionVersion": "NC_000023.10",
+          "sequenceAccession": "NC_000023",
+          "sequenceVersion": 10,
+          "change": "g.11790026_11790586del"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh37"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NC_000023.11:g.11771907_11772467del",
+          "sequenceAccessionVersion": "NC_000023.11",
+          "sequenceAccession": "NC_000023",
+          "sequenceVersion": 11,
+          "change": "g.11771907_11772467del"
+        },
+        "type": "HGVS_TYPE_GENOMIC_TOP_LEVEL",
+        "assembly": "GRCh38"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NG_012564.1:g.18749_19309del",
+          "sequenceAccessionVersion": "NG_012564.1",
+          "sequenceAccession": "NG_012564",
+          "sequenceVersion": 1,
+          "change": "g.18749_19309del"
+        },
+        "type": "HGVS_TYPE_GENOMIC"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001282174.1:c.835-249_935-154del",
+          "sequenceAccessionVersion": "NM_001282174.1",
+          "sequenceAccession": "NM_001282174",
+          "sequenceVersion": 1,
+          "change": "c.835-249_935-154del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001574",
+            "type": "splice acceptor variant"
+          },
+          {
+            "db": "SO",
+            "id": "SO:0001575",
+            "type": "splice donor variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_078629.4:c.1282-249_1382-154del",
+          "sequenceAccessionVersion": "NM_078629.4",
+          "sequenceAccession": "NM_078629",
+          "sequenceVersion": 4,
+          "change": "c.1282-249_1382-154del",
+          "maneSelect": true
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001574",
+            "type": "splice acceptor variant"
+          },
+          {
+            "db": "SO",
+            "id": "SO:0001575",
+            "type": "splice donor variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_001193270.2:c.1246-249_1346-154del",
+          "sequenceAccessionVersion": "NM_001193270.2",
+          "sequenceAccession": "NM_001193270",
+          "sequenceVersion": 2,
+          "change": "c.1246-249_1346-154del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001574",
+            "type": "splice acceptor variant"
+          },
+          {
+            "db": "SO",
+            "id": "SO:0001575",
+            "type": "splice donor variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      },
+      {
+        "nucleotideExpression": {
+          "expression": "NM_006800.4:c.784-249_884-154del",
+          "sequenceAccessionVersion": "NM_006800.4",
+          "sequenceAccession": "NM_006800",
+          "sequenceVersion": 4,
+          "change": "c.784-249_884-154del"
+        },
+        "molecularConsequences": [
+          {
+            "db": "SO",
+            "id": "SO:0001574",
+            "type": "splice acceptor variant"
+          },
+          {
+            "db": "SO",
+            "id": "SO:0001575",
+            "type": "splice donor variant"
+          }
+        ],
+        "type": "HGVS_TYPE_CODING"
+      }
+    ],
+    "alleleId": "1706807",
+    "variationId": "1708509"
+  },
+  "rcvList": {
+    "rcvAccessions": [
+      {
+        "classifiedConditionList": {
+          "classifiedConditions": [
+            {
+              "value": "Basilicata-Akhtar syndrome",
+              "db": "MedGen",
+              "id": "C5231394"
+            }
+          ],
+          "traitSetId": "50614"
+        },
+        "rcvClassifications": {
+          "germlineClassification": {
+            "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+            "description": {
+              "value": "Pathogenic",
+              "dateLastEvaluated": "2022-09-27T00:00:00Z",
+              "submissionCount": 1
+            }
+          }
+        },
+        "title": "NM_078629.4(MSL3):c.1282-249_1382-154del AND Basilicata-Akhtar syndrome",
+        "accession": "RCV002287880",
+        "version": 3
+      }
+    ]
+  },
+  "classifications": {
+    "germlineClassification": {
+      "reviewStatus": "AGGREGATE_GERMLINE_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+      "description": "Pathogenic",
+      "conditions": [
+        {
+          "traits": [
+            {
+              "names": [
+                {
+                  "value": "MENTAL RETARDATION, X-LINKED, SYNDROMIC, BASILICATA-AKHTAR TYPE",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "301032",
+                      "type": "MIM"
+                    }
+                  ]
+                },
+                {
+                  "value": "Basilicata-Akhtar syndrome",
+                  "type": "Preferred",
+                  "xrefs": [
+                    {
+                      "db": "MONDO",
+                      "id": "MONDO:0026730"
+                    }
+                  ]
+                },
+                {
+                  "value": "INTELLECTUAL DEVELOPMENTAL DISORDER, X-LINKED, SYNDROMIC, 36",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "301032",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "symbols": [
+                {
+                  "value": "MRXSBA",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "301032",
+                      "type": "MIM"
+                    }
+                  ]
+                },
+                {
+                  "value": "MRXS36",
+                  "type": "Alternate",
+                  "xrefs": [
+                    {
+                      "db": "OMIM",
+                      "id": "301032",
+                      "type": "MIM"
+                    }
+                  ]
+                }
+              ],
+              "xrefs": [
+                {
+                  "db": "MedGen",
+                  "id": "C5231394"
+                },
+                {
+                  "db": "MONDO",
+                  "id": "MONDO:0026730"
+                },
+                {
+                  "db": "OMIM",
+                  "id": "301032",
+                  "type": "MIM"
+                }
+              ]
+            }
+          ],
+          "type": "TYPE_DISEASE",
+          "id": "50614",
+          "contributesToAggregateClassification": true
+        }
+      ],
+      "dateLastEvaluated": "2022-09-27T00:00:00Z",
+      "dateCreated": "2022-10-08T00:00:00Z",
+      "mostRecentSubmission": "2022-10-08T00:00:00Z",
+      "numberOfSubmitters": 1,
+      "numberOfSubmissions": 1
+    }
+  },
+  "clinicalAssertions": [
+    {
+      "clinvarSubmissionId": {
+        "localKey": "1f7d8179-9e58-4ea0-bcba-4faaec993f6e",
+        "localKeyIsSubmitted": false,
+        "submittedAssembly": "GRCh37"
+      },
+      "clinvarAccession": {
+        "accession": "SCV002578174",
+        "version": 1,
+        "submitterIdentifiers": {
+          "submitterName": "Institute for Medical Genetics and Human Genetics, Charit\u00e9 - Universit\u00e4tsmedizin Berlin",
+          "orgId": "505735",
+          "orgCategory": "clinic",
+          "orgAbbreviation": "Charit\u00e9 - Universit\u00e4tsmedizin"
+        },
+        "dateUpdated": "2022-10-08T00:00:00Z",
+        "dateCreated": "2022-10-08T00:00:00Z"
+      },
+      "additionalSubmitters": [
+        {
+          "submitterIdentifiers": {
+            "submitterName": "CUBI - Core Unit Bioinformatics, Berlin Institute of Health",
+            "orgId": "507461",
+            "orgCategory": "laboratory"
+          },
+          "type": "TYPE_SECONDARY"
+        }
+      ],
+      "recordStatus": "RECORD_STATUS_CURRENT",
+      "classifications": {
+        "reviewStatus": "SUBMITTER_REVIEW_STATUS_CRITERIA_PROVIDED_SINGLE_SUBMITTER",
+        "germlineClassification": "Pathogenic",
+        "dateLastEvaluated": "2022-09-27T00:00:00Z"
+      },
+      "assertion": "ASSERTION_VARIATION_TO_DISEASE",
+      "attributes": [
+        {
+          "attribute": {
+            "value": "ACMG Guidelines, 2015"
+          },
+          "type": "TYPE_ASSERTION_METHOD",
+          "citations": [
+            {
+              "ids": [
+                {
+                  "value": "25741868",
+                  "source": "PubMed"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "attribute": {
+            "value": "X-linked dominant inheritance"
+          },
+          "type": "TYPE_MODE_OF_INHERITANCE"
+        }
+      ],
+      "observedIns": [
+        {
+          "sample": {
+            "origin": "ORIGIN_GERMLINE",
+            "tissue": "Blood",
+            "species": {
+              "name": "human",
+              "taxonomyId": 9606
+            },
+            "affectedStatus": "AFFECTED_STATUS_YES",
+            "numerTested": 1,
+            "gender": "GENDER_FEMALE",
+            "familyData": {
+              "pedigreeId": "09393c9d-7530-4277-b8a7-13f252a0d7cf"
+            }
+          },
+          "observedData": [
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "integerValue": "1"
+                  },
+                  "type": "TYPE_SINGLE_HETEROZYGOUS"
+                }
+              ]
+            },
+            {
+              "attributes": [
+                {
+                  "base": {
+                    "value": "6129e3ba-c880-44d7-b2d2-65d437bc4de7"
+                  },
+                  "type": "TYPE_SAMPLE_LOCAL_ID"
+                }
+              ]
+            }
+          ],
+          "traitSet": {
+            "traits": [
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0001263"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0000256"
+                  }
+                ]
+              },
+              {
+                "xrefs": [
+                  {
+                    "db": "HP",
+                    "id": "HP:0000006"
+                  }
+                ]
+              }
+            ],
+            "type": "TYPE_FINDING"
+          }
+        }
+      ],
+      "simpleAllele": {
+        "genes": [
+          {
+            "symbol": "MSL3"
+          }
+        ],
+        "variantType": "Deletion",
+        "location": {
+          "sequenceLocations": [
+            {
+              "assembly": "GRCh37",
+              "chr": "CHROMOSOME_X",
+              "start": 11790026,
+              "stop": 11790586
+            }
+          ]
+        }
+      },
+      "traitSet": {
+        "traits": [
+          {
+            "xrefs": [
+              {
+                "db": "OMIM",
+                "id": "301032"
+              }
+            ]
+          }
+        ],
+        "type": "TYPE_DISEASE"
+      },
+      "submissionNames": [
+        "SUB7643814"
+      ],
+      "id": "5039779"
+    }
+  ],
+  "traitMappings": [
+    {
+      "medgens": [
+        {
+          "name": "Global developmental delay",
+          "cui": "C0557874"
+        }
+      ],
+      "clinicalAssertionId": "5039779",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0001263",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Macrocephaly",
+          "cui": "C2243051"
+        }
+      ],
+      "clinicalAssertionId": "5039779",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0000256",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Autosomal dominant inheritance",
+          "cui": "C0443147"
+        }
+      ],
+      "clinicalAssertionId": "5039779",
+      "traitType": "Finding",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "HP:0000006",
+      "mappingRef": "HP"
+    },
+    {
+      "medgens": [
+        {
+          "name": "Basilicata-Akhtar syndrome",
+          "cui": "C5231394"
+        }
+      ],
+      "clinicalAssertionId": "5039779",
+      "traitType": "Disease",
+      "mappingType": "MAPPING_TYPE_XREF",
+      "mappingValue": "301032",
+      "mappingRef": "OMIM"
+    }
+  ]
+}

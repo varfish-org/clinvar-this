@@ -97,6 +97,14 @@ def ensure_str(value: str | dict[str, str]) -> str:
         return value
 
 
+def ensure_str_optional(value: None | str | dict[str, str]) -> None | str:
+    """Similar to ``ensure_str`` but allows ``None``."""
+    if value is None:
+        return None
+    else:
+        return ensure_str(value)
+
+
 class ConvertGeneVariantRelationship:
     """Static method helper for converting XML data to to ``GeneVariantRelationship``."""
 
@@ -1669,7 +1677,9 @@ class ConvertAggregatedGermlineClassification(ConverterBase):
                 tag_germline_classification["ReviewStatus"]
             )
         )
-        description: str | None = tag_germline_classification.get("Description")
+        description: str | None = ensure_str_optional(
+            tag_germline_classification.get("Description")
+        )
         explanation: Comment | None = None
         if "Explanation" in tag_germline_classification:
             explanation = ConvertComment.xmldict_data_to_pb(
@@ -1764,7 +1774,9 @@ class ConvertAggregatedSomaticClinicalImpact(ConverterBase):
                 tag_somatic_clinical_impact["ReviewStatus"]
             )
         )
-        description: str | None = tag_somatic_clinical_impact.get("Description")
+        description: str | None = ensure_str_optional(
+            tag_somatic_clinical_impact.get("Description")
+        )
 
         # Parse out Citation, XRef, Comment tags.
         cxcs = cls.parse_citations_xrefs_comments(tag_somatic_clinical_impact)
@@ -1848,7 +1860,9 @@ class ConvertAggregatedOncogenicityClassification(ConverterBase):
                 tag_oncogenicity_classification["ReviewStatus"]
             )
         )
-        description: str | None = tag_oncogenicity_classification.get("Description")
+        description: str | None = ensure_str_optional(
+            tag_oncogenicity_classification.get("Description")
+        )
 
         # Parse out Citation, XRef, Comment tags.
         cxcs = cls.parse_citations_xrefs_comments(tag_oncogenicity_classification)
@@ -1977,7 +1991,7 @@ class ConvertClinicalSignificance(ConverterBase):
             review_status = ConvertSubmitterReviewStatus.xmldict_data_to_pb(
                 tag_clinical_significance["ReviewStatus"]
             )
-        description: str | None = tag_clinical_significance.get("Description")
+        description: str | None = ensure_str_optional(tag_clinical_significance.get("Description"))
         explanation: Comment | None = None
         if "Explanation" in tag_clinical_significance:
             explanation = ConvertComment.xmldict_data_to_pb(
@@ -2187,17 +2201,19 @@ class ConvertClassificationScv(ConverterBase):
                 ensure_str(tag_classification["ReviewStatus"])
             )
         )
-        germline_classification: str | None = tag_classification.get("GermlineClassification")
+        germline_classification: str | None = ensure_str_optional(
+            tag_classification.get("GermlineClassification")
+        )
         somatic_clinical_impact: ClassificationScv.SomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classification:
             somatic_clinical_impact = cls.convert_somatic_clinical_impact(
                 {"SomaticClinicalImpact": tag_classification["SomaticClinicalImpact"]}
             )
-        oncogenicity_classification: str | None = tag_classification.get(
-            "OncogenicityClassification"
+        oncogenicity_classification: str | None = ensure_str_optional(
+            tag_classification.get("OncogenicityClassification")
         )
-        explanation_of_classification: str | None = tag_classification.get(
-            "ExplanationOfClassification"
+        explanation_of_classification: str | None = ensure_str_optional(
+            tag_classification.get("ExplanationOfClassification")
         )
         classification_scores: list[ClassificationScv.ClassificationScore] | None = None
         if "ClassificationScore" in tag_classification:
@@ -2785,7 +2801,7 @@ class ConvertFamilyData(ConverterBase):
         assert "FamilyData" in tag
         tag_inner: dict[str, Any] = tag["FamilyData"]
 
-        family_history: str | None = tag_inner.get("FamilyHistory")
+        family_history: str | None = ensure_str_optional(tag_inner.get("FamilyHistory"))
         num_families: int | None = None
         if "@NumFamilies" in tag_inner:
             num_families = int(tag_inner["@NumFamilies"])
@@ -3016,8 +3032,8 @@ class ConvertSample(ConverterBase):
         if "Origin" in tag_sample:
             origin = ConvertOrigin.xmldict_data_to_pb(ensure_str(tag_sample["Origin"]))
 
-        ethnicity: str | None = tag_sample.get("Ethnicity")
-        geographic_origin: str | None = tag_sample.get("GeographicOrigin")
+        ethnicity: str | None = ensure_str_optional(tag_sample.get("Ethnicity"))
+        geographic_origin: str | None = ensure_str_optional(tag_sample.get("GeographicOrigin"))
         val_tissue: str | dict[str, str] | None = tag_sample.get("Tissue")
         if val_tissue:
             tissue = ensure_str(val_tissue)
@@ -3033,14 +3049,14 @@ class ConvertSample(ConverterBase):
         somatic_variant_allele_fraction: str | None = None
         if "SomaticVariantAlleleFraction" in tag_sample:
             somatic_variant_allele_fraction = tag_sample["SomaticVariantAlleleFraction"]
-        cell_line: str | None = tag_sample.get("CellLine")
+        cell_line: str | None = ensure_str_optional(tag_sample.get("CellLine"))
         species: Species | None = None
         if "Species" in tag_sample:
             species = ConvertSpecies.xmldict_data_to_pb(tag_sample)
         ages: list[Sample.Age] | None = None
         if "Age" in tag_sample:
             ages = [cls.convert_age({"Age": entry}) for entry in cls.ensure_list(tag_sample["Age"])]
-        strain: str | None = tag_sample.get("Strain")
+        strain: str | None = ensure_str_optional(tag_sample.get("Strain"))
         affected_status: Sample.AffectedStatus.ValueType | None = None
         if "AffectedStatus" in tag_sample:
             affected_status = cls.convert_affected_status(ensure_str(tag_sample["AffectedStatus"]))
@@ -3462,7 +3478,7 @@ class ConvertAlleleScv(ConverterBase):
         if "Name" in tag_sa:
             assert isinstance(tag_sa["Name"], (dict, str)), f"is: {tag_sa['Name']}"
             name = ConvertOtherName.xmldict_data_to_pb({"Name": tag_sa["Name"]})
-        variant_type: str | None = tag_sa.get("VariantType")
+        variant_type: str | None = ensure_str_optional(tag_sa.get("VariantType"))
         location: Location | None = None
         if "Location" in tag_sa:
             location = ConvertLocation.xmldict_data_to_pb({"Location": tag_sa["Location"]})
@@ -3581,7 +3597,7 @@ class ConvertHaplotypeScv(ConverterBase):
                 ConvertAlleleScv.xmldict_data_to_pb({"SimpleAllele": entry})
                 for entry in cls.ensure_list(tag_genotype["SimpleAllele"])
             ]
-        name: str | None = tag_genotype.get("Name")
+        name: str | None = ensure_str_optional(tag_genotype.get("Name"))
         other_names: list[OtherName] | None = None
         if "OtherNameList" in tag_genotype:
             other_names = [
@@ -3677,7 +3693,7 @@ class ConvertGenotypeScv(ConverterBase):
                 ConvertHaplotypeScv.xmldict_data_to_pb({"Haplotype": entry})
                 for entry in cls.ensure_list(tag_genotype["Haplotype"])
             ]
-        name: str | None = tag_genotype.get("Name")
+        name: str | None = ensure_str_optional(tag_genotype.get("Name"))
         other_names: list[OtherName] | None = None
         if "OtherNameList" in tag_genotype:
             other_names = [
@@ -4141,8 +4157,8 @@ class ConvertClinicalAssertion(ConverterBase):
                 ConvertCitation.xmldict_data_to_pb({"Citation": entry})
                 for entry in cls.ensure_list(tag_ca["CitationList"]["Citation"])
             ]
-        study_name: str | None = tag_ca.get("StudyName")
-        study_description: str | None = tag_ca.get("StudyDescription")
+        study_name: str | None = ensure_str_optional(tag_ca.get("StudyName"))
+        study_description: str | None = ensure_str_optional(tag_ca.get("StudyDescription"))
         comments: list[Comment] | None = None
         if "Comment" in tag_ca:
             comments = [
@@ -4247,7 +4263,7 @@ class ConvertAllele(ConverterBase):
         properties: list[str] | None = None
         if "Property" in tag_gene:
             properties = [entry for entry in cls.ensure_list(tag_gene["Property"])]
-        symbol: str | None = tag_gene.get("Symbol")
+        symbol: str | None = ensure_str_optional(tag_gene.get("Symbol"))
         full_name: str = tag_gene["@FullName"]
         gene_id: int = int(tag_gene["@GeneID"])
         hgnc_id: str | None = None
@@ -4348,7 +4364,7 @@ class ConvertAllele(ConverterBase):
                 for entry in cls.ensure_list(tag_allele["GeneList"]["Gene"])
             ]
         name: str = tag_allele["Name"]
-        canonical_spdi: str | None = tag_allele.get("CanonicalSPDI")
+        canonical_spdi: str | None = ensure_str_optional(tag_allele.get("CanonicalSPDI"))
         variant_types: list[str] | None = None
         if "VariantType" in tag_allele:
             variant_types = [entry for entry in cls.ensure_list(tag_allele["VariantType"])]
