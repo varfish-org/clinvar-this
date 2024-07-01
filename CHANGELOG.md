@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.1](https://github.com/varfish-org/clinvar-this/compare/v0.17.0...v0.17.1) (2024-07-01)
+
+
+### Bug Fixes
+
+* namespaced string issue from 2207-07-01 ([#241](https://github.com/varfish-org/clinvar-this/issues/241)) ([ab85be8](https://github.com/varfish-org/clinvar-this/commit/ab85be805f32b69178e41de0c498f8596ca38ebd))
+
 ## [0.17.0](https://github.com/varfish-org/clinvar-this/compare/v0.16.0...v0.17.0) (2024-06-07)
 
 
