@@ -2,17 +2,18 @@
 
 import json
 
-from google.protobuf.json_format import MessageToDict, Parse
+from google.protobuf.json_format import MessageToDict
 import pytest
 
 from clinvar_data.conversion.dict_to_pb import ConvertClassifiedRecord
+
 
 @pytest.mark.parametrize(
     "path_json_input",
     [
         "tests/clinvar_data/data/regressions/2024-07-01/allele-id-1706807.json",
         "tests/clinvar_data/data/regressions/2024-07-01/allelle-id-1704898.json",
-    ]
+    ],
 )
 def test_convert_classified_record_xmldict_data_to_pb(path_json_input: str, snapshot):
     with open(path_json_input, "rt") as input:

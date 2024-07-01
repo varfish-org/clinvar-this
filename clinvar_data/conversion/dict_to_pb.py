@@ -1677,7 +1677,9 @@ class ConvertAggregatedGermlineClassification(ConverterBase):
                 tag_germline_classification["ReviewStatus"]
             )
         )
-        description: str | None = ensure_str_optional(tag_germline_classification.get("Description"))
+        description: str | None = ensure_str_optional(
+            tag_germline_classification.get("Description")
+        )
         explanation: Comment | None = None
         if "Explanation" in tag_germline_classification:
             explanation = ConvertComment.xmldict_data_to_pb(
@@ -1772,7 +1774,9 @@ class ConvertAggregatedSomaticClinicalImpact(ConverterBase):
                 tag_somatic_clinical_impact["ReviewStatus"]
             )
         )
-        description: str | None = ensure_str_optional(tag_somatic_clinical_impact.get("Description"))
+        description: str | None = ensure_str_optional(
+            tag_somatic_clinical_impact.get("Description")
+        )
 
         # Parse out Citation, XRef, Comment tags.
         cxcs = cls.parse_citations_xrefs_comments(tag_somatic_clinical_impact)
@@ -1856,7 +1860,9 @@ class ConvertAggregatedOncogenicityClassification(ConverterBase):
                 tag_oncogenicity_classification["ReviewStatus"]
             )
         )
-        description: str | None = ensure_str_optional(tag_oncogenicity_classification.get("Description"))
+        description: str | None = ensure_str_optional(
+            tag_oncogenicity_classification.get("Description")
+        )
 
         # Parse out Citation, XRef, Comment tags.
         cxcs = cls.parse_citations_xrefs_comments(tag_oncogenicity_classification)
@@ -2195,18 +2201,20 @@ class ConvertClassificationScv(ConverterBase):
                 ensure_str(tag_classification["ReviewStatus"])
             )
         )
-        germline_classification: str | None = ensure_str_optional(tag_classification.get("GermlineClassification"))
+        germline_classification: str | None = ensure_str_optional(
+            tag_classification.get("GermlineClassification")
+        )
         somatic_clinical_impact: ClassificationScv.SomaticClinicalImpact | None = None
         if "SomaticClinicalImpact" in tag_classification:
             somatic_clinical_impact = cls.convert_somatic_clinical_impact(
                 {"SomaticClinicalImpact": tag_classification["SomaticClinicalImpact"]}
             )
-        oncogenicity_classification: str | None = ensure_str_optional(tag_classification.get(
-            "OncogenicityClassification"
-        ))
-        explanation_of_classification: str | None = ensure_str_optional(tag_classification.get(
-            "ExplanationOfClassification"
-        ))
+        oncogenicity_classification: str | None = ensure_str_optional(
+            tag_classification.get("OncogenicityClassification")
+        )
+        explanation_of_classification: str | None = ensure_str_optional(
+            tag_classification.get("ExplanationOfClassification")
+        )
         classification_scores: list[ClassificationScv.ClassificationScore] | None = None
         if "ClassificationScore" in tag_classification:
             classification_scores = [
