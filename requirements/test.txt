@@ -11,7 +11,7 @@ pytest-asyncio
 pyfakefs
 freezegun
 
-pyright ==1.1.377
+pyright ==1.1.378
 types-python-dateutil >=2.8.19.3
 types-click >=7.1.8, <9.0
 types-toml >=0.10.8, <0.11
