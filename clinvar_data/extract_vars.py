@@ -10,7 +10,10 @@ from google.protobuf.json_format import MessageToJson, ParseDict
 import tqdm
 
 from clinvar_data.pbs.clinvar_public import Allele, ClassifiedRecord, VariationArchive
-from clinvar_data.pbs.clinvar_public_pb2 import AggregateClassificationSet
+from clinvar_data.pbs.clinvar_public_pb2 import (
+    AggregateClassificationSet,
+    ClinicalAssertion,
+)
 from clinvar_data.pbs.extracted_vars import (
     ExtractedRcvRecord,
     ExtractedVcvRecord,
@@ -93,6 +96,43 @@ def thin_out_aggregate_classification_set(
         return result
 
 
+def thin_out_clinical_assertions(
+    clinical_assertions: typing.Iterable[ClinicalAssertion],
+) -> list[ClinicalAssertion]:
+    result = []
+    for clinical_assertion in clinical_assertions:
+        entry = ClinicalAssertion()
+        entry.CopyFrom(clinical_assertion)
+        for key in (
+            "clinvar_submission_id",
+            "additional_submitters",
+            "record_status",
+            "attributes",
+            "observed_ins",
+            "simple_allele",
+            "haplotype",
+            "genotype",
+            "trait_set",
+            "citations",
+            "study_name",
+            "study_description",
+            "comments",
+            "submission_names",
+            "date_created",
+            "date_last_updated",
+            "submission_date",
+            "id",
+            "fda_recognized_database",
+        ):
+            entry.ClearField(key)
+        if entry.HasField("clinvar_accession"):
+            entry.clinvar_accession.ClearField("submitter_identifiers")
+        if entry.HasField("classifications"):
+            entry.classifications.ClearField("comments")
+        result.append(entry)
+    return result
+
+
 def run(path_input: str, output_dir: str, gzip_output: bool):
     """Execute the variant extraction."""
     os.makedirs(output_dir, exist_ok=True)
@@ -142,7 +182,6 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                 for gene in classified_record.simple_allele.genes
                 if gene.HasField("hgnc_id")
             ]
-
             for location in simple_allele.locations or []:
                 for sequence_location in location.sequence_locations or []:
                     record = ExtractedVcvRecord(
@@ -152,6 +191,9 @@ def run(path_input: str, output_dir: str, gzip_output: bool):
                         variation_type=variation_type,
                         classifications=(
                             thin_out_aggregate_classification_set(classified_record.classifications)
+                        ),
+                        clinical_assertions=(
+                            thin_out_clinical_assertions(classified_record.clinical_assertions)
                         ),
                         sequence_location=sequence_location,
                         hgnc_ids=hgnc_ids,

@@ -22,7 +22,6 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "clinvar_data.pbs.clinvar_public_pb2", _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-
     DESCRIPTOR._options = None
     _globals["_GENEVARIANTRELATIONSHIP"]._serialized_start = 36055
     _globals["_GENEVARIANTRELATIONSHIP"]._serialized_end = 36505

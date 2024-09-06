@@ -68,6 +68,8 @@ message ExtractedVcvRecord {
   VariationType variation_type = 4;
   // Classifications (thinned out).
   clinvar_data.pbs.clinvar_public.AggregateClassificationSet classifications = 5;
+  // Clinical assertions (thinned out),
+  repeated clinvar_data.pbs.clinvar_public.ClinicalAssertion clinical_assertions = 8;
   // The sequence location on one reference.
   clinvar_data.pbs.clinvar_public.Location.SequenceLocation sequence_location = 6;
   // List of HGNC IDs.
