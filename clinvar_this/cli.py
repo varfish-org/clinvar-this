@@ -225,6 +225,12 @@ def data():
 @click.argument("input_file")
 @click.argument("output_file")
 @click.option(
+    "--fasta-ref-hg19", required=False, default=None, help="Normalize hg19 coordinates with FASTA"
+)
+@click.option(
+    "--fasta-ref-hg38", required=False, default=None, help="Normalize hg38 coordinates with FASTA"
+)
+@click.option(
     "--max-records", required=False, default=0, help="Maximum number of records to convert"
 )
 @click.option(
@@ -235,7 +241,13 @@ def data():
 )
 @click.pass_context
 def xml_to_jsonl(
-    ctx: click.Context, input_file: str, output_file: str, max_records: int, show_progress: bool
+    ctx: click.Context,
+    input_file: str,
+    output_file: str,
+    fasta_ref_hg19: str,
+    fasta_ref_hg38: str,
+    max_records: int,
+    show_progress: bool,
 ):
     """Convert XML to JSONL"""
     retcode = conversion.convert(
@@ -244,6 +256,8 @@ def xml_to_jsonl(
         max_records=max_records,
         use_click=True,
         show_progress=show_progress,
+        fasta_ref_hg19=fasta_ref_hg19,
+        fasta_ref_hg38=fasta_ref_hg38,
     )
     ctx.exit(retcode)
 
