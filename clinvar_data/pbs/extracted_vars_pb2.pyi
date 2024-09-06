@@ -171,6 +171,7 @@ class ExtractedVcvRecord(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     VARIATION_TYPE_FIELD_NUMBER: builtins.int
     CLASSIFICATIONS_FIELD_NUMBER: builtins.int
+    CLINICAL_ASSERTIONS_FIELD_NUMBER: builtins.int
     SEQUENCE_LOCATION_FIELD_NUMBER: builtins.int
     HGNC_IDS_FIELD_NUMBER: builtins.int
     name: builtins.str
@@ -194,6 +195,14 @@ class ExtractedVcvRecord(google.protobuf.message.Message):
         """Classifications (thinned out)."""
 
     @property
+    def clinical_assertions(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        clinvar_data.pbs.clinvar_public_pb2.ClinicalAssertion
+    ]:
+        """Clinical assertions (thinned out),"""
+
+    @property
     def sequence_location(self) -> clinvar_data.pbs.clinvar_public_pb2.Location.SequenceLocation:
         """The sequence location on one reference."""
 
@@ -212,6 +221,9 @@ class ExtractedVcvRecord(google.protobuf.message.Message):
         variation_type: global___VariationType.ValueType = ...,
         classifications: (
             clinvar_data.pbs.clinvar_public_pb2.AggregateClassificationSet | None
+        ) = ...,
+        clinical_assertions: (
+            collections.abc.Iterable[clinvar_data.pbs.clinvar_public_pb2.ClinicalAssertion] | None
         ) = ...,
         sequence_location: (
             clinvar_data.pbs.clinvar_public_pb2.Location.SequenceLocation | None
@@ -236,6 +248,8 @@ class ExtractedVcvRecord(google.protobuf.message.Message):
             b"accession",
             "classifications",
             b"classifications",
+            "clinical_assertions",
+            b"clinical_assertions",
             "hgnc_ids",
             b"hgnc_ids",
             "name",
