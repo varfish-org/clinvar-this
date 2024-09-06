@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.0](https://github.com/varfish-org/clinvar-this/compare/v0.17.1...v0.18.0) (2024-09-06)
+
+
+### Features
+
+* extract-vars writes thinned-out SCV infos ([#240](https://github.com/varfish-org/clinvar-this/issues/240)) ([#258](https://github.com/varfish-org/clinvar-this/issues/258)) ([19ecf18](https://github.com/varfish-org/clinvar-this/commit/19ecf185b15c8300801a79525c47f9dcfe9eac07))
+* xml-to-json can now left-shift variants ([#255](https://github.com/varfish-org/clinvar-this/issues/255)) ([#256](https://github.com/varfish-org/clinvar-this/issues/256)) ([66671cd](https://github.com/varfish-org/clinvar-this/commit/66671cddc68f6c2df517a24ec436524d883c503b))
+
 ## [0.17.1](https://github.com/varfish-org/clinvar-this/compare/v0.17.0...v0.17.1) (2024-07-01)
 
 
