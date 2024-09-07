@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.1](https://github.com/varfish-org/clinvar-this/compare/v0.18.0...v0.18.1) (2024-09-07)
+
+
+### Bug Fixes
+
+* losen lower protobuf dependency version ([#259](https://github.com/varfish-org/clinvar-this/issues/259)) ([b963510](https://github.com/varfish-org/clinvar-this/commit/b963510631ceb81b75cfb885ed917f10409ceea0))
+
 ## [0.18.0](https://github.com/varfish-org/clinvar-this/compare/v0.17.1...v0.18.0) (2024-09-06)
 
 
