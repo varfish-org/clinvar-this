@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.2](https://github.com/varfish-org/clinvar-this/compare/v0.18.1...v0.18.2) (2024-09-07)
+
+
+### Bug Fixes
+
+* adding .pyi files ([#261](https://github.com/varfish-org/clinvar-this/issues/261)) ([a1ae5cb](https://github.com/varfish-org/clinvar-this/commit/a1ae5cb3f691662114783d911ab2091e97d53561))
+
 ## [0.18.1](https://github.com/varfish-org/clinvar-this/compare/v0.18.0...v0.18.1) (2024-09-07)
 
 
