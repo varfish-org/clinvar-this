@@ -172,12 +172,12 @@ def _str_list(val: str, pat: str = r"[;,]") -> typing.List[str]:
         return [x.strip() for x in re.split(pat, val)]
 
 
-def _uuid4_if_falsy(value: typing.Optional[str] = None) -> typing.Union[str, uuid.UUID]:
-    """Return a new UUID4 if ``value`` is falsy."""
+def _uuid4_if_falsy(value: typing.Optional[str] = None) -> str:
+    """Return a new UUID4-valued string if ``value`` is falsy."""
     if value:
         return value
     else:
-        return uuid.uuid4()
+        return str(uuid.uuid4())
 
 
 def _today_if_falsy(value: typing.Optional[str] = None) -> str:
