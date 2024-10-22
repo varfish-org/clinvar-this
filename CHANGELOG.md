@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.3](https://github.com/varfish-org/clinvar-this/compare/v0.18.2...v0.18.3) (2024-10-22)
+
+
+### Bug Fixes
+
+* make _uuid4_if_falsy always return str ([#272](https://github.com/varfish-org/clinvar-this/issues/272)) ([038a22e](https://github.com/varfish-org/clinvar-this/commit/038a22e44b738578aceb83c399ff1be59bc6de15))
+
 ## [0.18.2](https://github.com/varfish-org/clinvar-this/compare/v0.18.1...v0.18.2) (2024-09-07)
 
 
