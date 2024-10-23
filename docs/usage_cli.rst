@@ -34,7 +34,7 @@ The following figure shows the overall workflow when using clinvar-this.
   You can query the current result with ``clinvar-this batch retrieve``.
   If this does not return yet, try again.
 - Otherwise, you can export the current state of the batch with ``clinvar-this batch export`` to a TSV file.
-- When there are errors, fix the variants to be submitted and re-submit with ``clinvar-this batch submit``.
+- When there are errors, fix the variants to be submitted, re-import (``clinvar-this`` will create a new payload with ``"record_status": "update"`` for each finding) and then re-submit with ``clinvar-this batch submit``.
 - If everything runs to your liking, read out your ClinVar SCV identifier.
 
 Note that the NCBI ClinVar server process runs the checks in several steps.
