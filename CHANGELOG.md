@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.4](https://github.com/varfish-org/clinvar-this/compare/v0.18.3...v0.18.4) (2025-02-28)
+
+
+### Bug Fixes
+
+* deal with undefined XRef ([#288](https://github.com/varfish-org/clinvar-this/issues/288)) ([9745f36](https://github.com/varfish-org/clinvar-this/commit/9745f369cbe7cb109d5cf3039a595c3bf98745d8))
+
 ## [0.18.3](https://github.com/varfish-org/clinvar-this/compare/v0.18.2...v0.18.3) (2024-10-22)
 
 
