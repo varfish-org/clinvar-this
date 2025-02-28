@@ -3511,16 +3511,16 @@ class ConvertAlleleScv(ConverterBase):
             assert False, f"Invalid type for Citation {tag_sa['Citation']}"
         # parse out xrefs
         xrefs: list[Xref] | None = None
-        if "XRefList" not in tag_sa or "XRef" not in tag_sa.get("XRefList", {}):
+        if "XRefList" not in tag_sa or "XRef" not in (tag_sa["XRefList"] or {}):
             pass
-        elif isinstance(tag_sa.get("XRefList", {}).get("XRef", []), list):
+        elif isinstance((tag_sa["XRefList"] or {}).get("XRef", []), list):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in tag_sa.get("XRefList", {}).get("XRef", [])
+                for entry in (tag_sa["XRefList"] or {}).get("XRef", [])
             ]
-        elif isinstance(tag_sa.get("XRefList", {}).get("XRef", {}), dict):
+        elif isinstance((tag_sa["XRefList"] or {}).get("XRef", {}), dict):
             xrefs = [
-                ConvertXref.xmldict_data_to_pb({"XRef": tag_sa.get("XRefList", {}).get("XRef", {})})
+                ConvertXref.xmldict_data_to_pb({"XRef": (tag_sa["XRefList"] or {}).get("XRef", {})})
             ]
         else:
             assert False, f"Invalid type for XRef {tag_sa['XRef']}"
@@ -3632,10 +3632,10 @@ class ConvertHaplotypeScv(ConverterBase):
                 for entry in cls.ensure_list(tag_genotype["CitationList"]["Citation"])
             ]
         xrefs: list[Xref] | None = None
-        if "XRefList" in tag_genotype and "XRef" in tag_genotype.get("XRefList", {}):
+        if "XRefList" in tag_genotype and "XRef" in (tag_genotype["XRefList"] or {}):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in cls.ensure_list(tag_genotype.get("XRefList", {}).get("XRef", []))
+                for entry in cls.ensure_list((tag_genotype["XRefList"] or {}).get("XRef", []))
             ]
         comments: list[Comment] | None = None
         if "Comment" in tag_genotype:
@@ -3726,10 +3726,10 @@ class ConvertGenotypeScv(ConverterBase):
                 for entry in cls.ensure_list(tag_genotype["CitationList"]["Citation"])
             ]
         xrefs: list[Xref] | None = None
-        if "XRefList" in tag_genotype and "XRef" in tag_genotype.get("XRefList", {}):
+        if "XRefList" in tag_genotype and "XRef" in (tag_genotype["XRefList"] or {}):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in cls.ensure_list(tag_genotype.get("XRefList", {}).get("XRef", []))
+                for entry in cls.ensure_list((tag_genotype["XRefList"] or {}).get("XRef", []))
             ]
         comments: list[Comment] | None = None
         if "Comment" in tag_genotype:
@@ -4399,10 +4399,10 @@ class ConvertAllele(ConverterBase):
                 {"Classifications": tag_allele["Classifications"]}
             )
         xrefs: list[Xref] | None = None
-        if "XRefList" in tag_allele and "XRef" in tag_allele.get("XRefList", {}):
+        if "XRefList" in tag_allele and "XRef" in (tag_allele["XRefList"] or {}):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in cls.ensure_list(tag_allele.get("XRefList", {}).get("XRef", []))
+                for entry in cls.ensure_list((tag_allele["XRefList"] or {}).get("XRef", []))
             ]
         comments: list[Comment] | None = None
         if "Comment" in tag_allele:
@@ -4500,10 +4500,10 @@ class ConvertHaplotype(ConverterBase):
                 for entry in cls.ensure_list(tag_haplotype["FunctionalConsequence"])
             ]
         xrefs: list[Xref] | None = None
-        if "XRefList" in tag_haplotype and "XRef" in tag_haplotype.get("XRefList", {}):
+        if "XRefList" in tag_haplotype and "XRef" in (tag_haplotype["XRefList"] or {}):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in cls.ensure_list(tag_haplotype.get("XRefList", {}).get("XRef", []))
+                for entry in cls.ensure_list((tag_haplotype["XRefList"] or {}).get("XRef", []))
             ]
         comments: list[Comment] | None = None
         if "Comment" in tag_haplotype:
@@ -4672,10 +4672,10 @@ class ConvertGenotype(ConverterBase):
                 {"Classifications": tag_record["Classifications"]}
             )
         xrefs: list[Xref] | None = None
-        if "XRefList" in tag_record and "XRef" in tag_record.get("XRefList", {}):
+        if "XRefList" in tag_record and "XRef" in (tag_record["XRefList"] or {}):
             xrefs = [
                 ConvertXref.xmldict_data_to_pb({"XRef": entry})
-                for entry in cls.ensure_list(tag_record.get("XRefList", {}).get("XRef", []))
+                for entry in cls.ensure_list((tag_record["XRefList"] or {}).get("XRef", []))
             ]
         citations: list[Citation] | None = None
         if "CitationList" in tag_record and "Citation" in tag_record["CitationList"]:
