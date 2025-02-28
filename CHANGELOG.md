@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.5](https://github.com/varfish-org/clinvar-this/compare/v0.18.4...v0.18.5) (2025-02-28)
+
+
+### Bug Fixes
+
+* downgrade xmltodict to v0.13 because of memory leak regression ([#290](https://github.com/varfish-org/clinvar-this/issues/290)) ([ddddef2](https://github.com/varfish-org/clinvar-this/commit/ddddef29fd7cbaecf95257e485424d04a71e60e7))
+
 ## [0.18.4](https://github.com/varfish-org/clinvar-this/compare/v0.18.3...v0.18.4) (2025-02-28)
 
 
