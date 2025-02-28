@@ -15,8 +15,8 @@ from clinvar_data.conversion import dict_to_pb
 from clinvar_data.conversion.normalizer import VariationArchiveNormalizer
 from clinvar_data.pbs import clinvar_public
 
-#: Total number of VariantArchive records in ClinVar on 2024-05-24: 2966486.
-TOTAL_RECORDS: int = 3_000_000
+#: Total number of VariantArchive records in ClinVar on 2025-02-18: 3335626.
+TOTAL_RECORDS: int = 3_335_626
 
 
 def convert_variation_archive(json_va: dict) -> clinvar_public.VariationArchive:
@@ -51,7 +51,7 @@ def convert(
     pb: tqdm.tqdm | None = None
     if show_progress:
         pb = tqdm.tqdm(
-            desc="parsing", unit=" VariationArchive records", smoothing=1.0, total=TOTAL_RECORDS
+            desc="parsing", unit=" VariationArchive records", smoothing=0.001, total=TOTAL_RECORDS
         )
     records_written = 0
     errors = 0
