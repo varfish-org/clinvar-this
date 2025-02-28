@@ -857,7 +857,9 @@ class ConverterBase:
         if "XRef" not in value:
             pass
         elif isinstance(value.get("XRef", []), list):
-            xrefs = [ConvertXref.xmldict_data_to_pb({"XRef": entry}) for entry in value.get("XRef", [])]
+            xrefs = [
+                ConvertXref.xmldict_data_to_pb({"XRef": entry}) for entry in value.get("XRef", [])
+            ]
         elif isinstance(value.get("XRef", {}), dict):
             xrefs = [ConvertXref.xmldict_data_to_pb({"XRef": value.get("XRef", {})})]
         else:
@@ -3517,7 +3519,9 @@ class ConvertAlleleScv(ConverterBase):
                 for entry in tag_sa.get("XRefList", {}).get("XRef", [])
             ]
         elif isinstance(tag_sa.get("XRefList", {}).get("XRef", {}), dict):
-            xrefs = [ConvertXref.xmldict_data_to_pb({"XRef": tag_sa.get("XRefList", {}).get("XRef", {})})]
+            xrefs = [
+                ConvertXref.xmldict_data_to_pb({"XRef": tag_sa.get("XRefList", {}).get("XRef", {})})
+            ]
         else:
             assert False, f"Invalid type for XRef {tag_sa['XRef']}"
         # parse out comments
