@@ -15,8 +15,8 @@ from clinvar_data.conversion import dict_to_pb
 from clinvar_data.conversion.normalizer import VariationArchiveNormalizer
 from clinvar_data.pbs import clinvar_public
 
-#: Total number of VariantArchive records in ClinVar on 2025-02-18: 3335626.
-TOTAL_RECORDS: int = 3_335_626
+#: Total number of VariantArchive records in ClinVar on 2025-02-28: 3437148.
+TOTAL_RECORDS: int = 3_437_148
 
 
 def convert_variation_archive(json_va: dict) -> clinvar_public.VariationArchive:
