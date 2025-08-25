@@ -21,7 +21,7 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -47,7 +47,7 @@ jobs:
   sphinx-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -75,7 +75,7 @@ jobs:
           - '3.12'
     needs: linting
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Python
         uses: actions/setup-python@v5
