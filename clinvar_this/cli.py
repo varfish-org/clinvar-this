@@ -210,7 +210,7 @@ def batch_submit(ctx: click.Context, use_testing: bool, dry_run: bool, name: str
 @click.argument("name")
 @click.pass_context
 def batch_retrieve(ctx: click.Context, use_testing: bool, name: str):
-    """Submit the given batch to ClinVar"""
+    """Retrieve current processing status from ClinVar"""
     config_obj = load_config(ctx.obj["profile"])
     config_obj = config_obj.model_copy(update={"verify_ssl": ctx.obj["verify_ssl"]})
     batches.retrieve(config_obj, name, use_testing=use_testing)
